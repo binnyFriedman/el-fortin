@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Source photos (web copies live under assets/brand/puzol/)
+*.HEIC
+assets/brand/Puzol - Before/
+assets/brand/Puzol - After/
+
+# Secrets / local env
+.env
+.env.*
+
+# Logs
+*.log
+
+# Python (local preview server)
+__pycache__/
+*.pyc
+
+# Editor backups
+*.swp
+*~
