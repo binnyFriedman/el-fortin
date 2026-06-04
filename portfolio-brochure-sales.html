@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="page-investment-overview">
 
   <nav class="nav" id="nav">
     <div class="container">
@@ -59,37 +59,34 @@
     </div>
   </div>
 
-  <section class="value-intro" id="model">
-    <div class="container reveal">
-      <p class="value-intro__lead">Deeded apartment · El Fortín develops, owns, and operates · Hands-off returns</p>
-      <p class="value-intro__support">Pre-sale flex-living at Carretera Valencia 31 — individual title, professional management, and transparent project documentation.</p>
-      <div class="deal-sheet-model">
-        <div class="deal-sheet-model__item">
-          <h3 class="serif">Your asset</h3>
-          <p>Individual title at the Spanish Property Registry (Registro de la Propiedad) — not a fund or opaque vehicle.</p>
-        </div>
-        <div class="deal-sheet-model__item">
-          <h3 class="serif">One operator</h3>
-          <p>Construction, ownership of the complex, flex-living operations, and reporting under EL FORTIN CONSTRUCCIONES Y PATRIMONIO S.L.</p>
-        </div>
-        <div class="deal-sheet-model__item">
-          <h3 class="serif">4% minimum net yield</h3>
-          <p>If annual net return falls below 4%, El Fortín covers the difference per the investor agreement. Target net yield under current models: 8%–12%.</p>
-        </div>
-        <div class="deal-sheet-model__item">
-          <h3 class="serif">Flex-living in the deed</h3>
-          <p>El Fortín owns the full building. The right to operate flexible short-term rentals is recorded in the property deed (Tabo). Municipal rules still apply — your advisors should review deed language.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-pad bg-parchment" id="units">
+  <div class="deal-sheet-pillars" id="model" aria-label="Investment structure">
     <div class="container">
-      <div style="text-align:center;" class="reveal">
-        <div class="caption" style="margin-bottom:12px;">Unit inventory</div>
-        <h2 class="section-heading serif">Units, List Price &amp; Typical All-In</h2>
-        <p class="section-subheading" style="margin:16px auto 0; max-width:760px;">List prices exclude local taxes / IVA (~14%) and the turn-key furniture package (€15,000–€20,000). All-in figures are indicative; your private briefing will confirm exact totals for your unit.</p>
+      <ul class="deal-sheet-pillars__list reveal">
+        <li class="deal-sheet-pillars__item">
+          <span class="deal-sheet-pillars__label caption">Asset</span>
+          <span class="deal-sheet-pillars__text">Individual title · Registro de la Propiedad</span>
+        </li>
+        <li class="deal-sheet-pillars__item">
+          <span class="deal-sheet-pillars__label caption">Operator</span>
+          <span class="deal-sheet-pillars__text">Develop · own · operate — one company</span>
+        </li>
+        <li class="deal-sheet-pillars__item">
+          <span class="deal-sheet-pillars__label caption">Yield</span>
+          <span class="deal-sheet-pillars__text">4% minimum net · 8–12% target</span>
+        </li>
+        <li class="deal-sheet-pillars__item">
+          <span class="deal-sheet-pillars__label caption">Deed</span>
+          <span class="deal-sheet-pillars__text">Flex-living rights recorded in Tabo</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="section-pad section-pad--airy bg-parchment" id="units">
+    <div class="container">
+      <div class="section-intro section-intro--tight reveal">
+        <div class="caption">Unit inventory</div>
+        <h2 class="section-heading serif">Units &amp; pricing</h2>
       </div>
 
       <div class="units-grid">
@@ -107,11 +104,11 @@
           </div>
           <dl class="unit-card__economics">
             <dt>Typical all-in</dt>
-            <dd><span class="serif">€247,000 – €252,000</span><br>Base + ~14% taxes + furniture mid-range</dd>
-            <dt>25% at reservation</dt>
-            <dd><span class="serif">~€51,000</span> on list · <span class="serif">~€62,000</span> on typical all-in path</dd>
+            <dd><span class="serif">€247,000 – €252,000</span></dd>
+            <dt>25% reservation</dt>
+            <dd><span class="serif">~€62,000</span></dd>
           </dl>
-          <a href="?unit=type-a#briefing" class="btn-primary" style="margin-top:16px; display:inline-block; width:100%; text-align:center;">Private briefing — Type A</a>
+          <a href="?unit=type-a#briefing" class="btn-primary" style="margin-top:20px; display:inline-block; width:100%; text-align:center;">Request briefing</a>
         </div>
 
         <div class="unit-card reveal" style="transition-delay: 0.15s;">
@@ -127,106 +124,80 @@
           </div>
           <dl class="unit-card__economics">
             <dt>Typical all-in</dt>
-            <dd><span class="serif">€296,000 – €301,000</span><br>Base + ~14% taxes + furniture mid-range</dd>
-            <dt>25% at reservation</dt>
-            <dd><span class="serif">~€62,000</span> on list · <span class="serif">~€74,000</span> on typical all-in path</dd>
+            <dd><span class="serif">€296,000 – €301,000</span></dd>
+            <dt>25% reservation</dt>
+            <dd><span class="serif">~€74,000</span></dd>
           </dl>
-          <a href="?unit=type-b#briefing" class="btn-secondary" style="margin-top:16px; display:inline-block; width:100%; text-align:center;">Private briefing — Type B</a>
+          <a href="?unit=type-b#briefing" class="btn-secondary" style="margin-top:20px; display:inline-block; width:100%; text-align:center;">Request briefing</a>
         </div>
       </div>
 
-      <p class="small-print" style="text-align:center; margin-top:24px;">Turn-key delivery: furnished units with appliances, aerothermal climate control, tableware, and linen. Ten-unit complex — pool, solarium, interior courtyard, private parking, bicycle storage (renders).</p>
-
-      <div class="amenity-photos reveal" style="margin-top:32px;">
-        <div class="amenity-photo">
-          <img src="assets/brand/pool-illustration.jpg" alt="Swimming pool and solarium — render" width="400" height="200" loading="lazy">
-          <div class="amenity-photo__label">Pool &amp; solarium</div>
-        </div>
-        <div class="amenity-photo">
-          <img src="assets/brand/garage.jpg" alt="Private parking — render" width="400" height="200" loading="lazy">
-          <div class="amenity-photo__label">Private parking</div>
-        </div>
-        <div class="amenity-photo">
-          <img src="assets/brand/interior-1.jpg" alt="Turn-key interior — render" width="400" height="200" loading="lazy">
-          <div class="amenity-photo__label">Turn-key interior</div>
-        </div>
-        <div class="amenity-photo">
-          <img src="assets/brand/interio-5.jpg" alt="Interior courtyard — render" width="400" height="200" loading="lazy">
-          <div class="amenity-photo__label">Interior courtyard</div>
-        </div>
-      </div>
-      <p class="small-print" style="text-align:center; margin-top:12px;">Amenity visuals are architectural renders.</p>
+      <p class="small-print units-footnote reveal">List prices exclude ~14% IVA and €15,000–€20,000 turn-key furniture. All-in figures are indicative. Turn-key units · pool · parking · courtyard.</p>
     </div>
   </section>
 
-  <section class="section-pad bg-white-stone" id="milestones">
+  <section class="section-pad section-pad--airy bg-white-stone" id="milestones">
     <div class="container">
-      <div style="text-align:center;" class="reveal">
-        <div class="caption" style="margin-bottom:12px;">Payment structure</div>
-        <h2 class="section-heading serif">Payments Tied to Certified Milestones</h2>
-        <p class="text-lead" style="margin:16px auto 0; text-align:center;">Four payments of 25% — never the full amount upfront</p>
-        <p class="text-detail" style="margin:8px auto 0; text-align:center;">Reservation → 40% build → 80% build (includes furniture) → notary handover &amp; deed</p>
+      <div class="section-intro section-intro--tight reveal">
+        <div class="caption">Payment structure</div>
+        <h2 class="section-heading serif">Four × 25% milestone payments</h2>
       </div>
 
-      <div class="timeline reveal">
+      <div class="timeline timeline--spacious reveal">
         <div class="timeline__step">
           <div class="timeline__dot">1</div>
           <div class="timeline__percent serif">25%</div>
-          <div class="timeline__desc">Reservation — upon signing the reservation contract</div>
+          <div class="timeline__desc">Reservation</div>
         </div>
         <div class="timeline__step">
           <div class="timeline__dot">2</div>
           <div class="timeline__percent serif">25%</div>
-          <div class="timeline__desc">At 40% construction — upon certified completion</div>
+          <div class="timeline__desc">40% build certified</div>
         </div>
         <div class="timeline__step">
           <div class="timeline__dot">3</div>
           <div class="timeline__percent serif">25%</div>
-          <div class="timeline__desc">At 80% construction — includes furniture package</div>
+          <div class="timeline__desc">80% build + furniture</div>
         </div>
         <div class="timeline__step future">
           <div class="timeline__dot">4</div>
           <div class="timeline__percent serif">25%</div>
-          <div class="timeline__desc">Notary handover — final completion and deed registration</div>
+          <div class="timeline__desc">Notary &amp; deed</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-pad bg-parchment" id="returns">
+  <section class="section-pad section-pad--airy bg-parchment" id="returns">
     <div class="container">
-      <div style="text-align:center;" class="reveal">
-        <div class="caption" style="margin-bottom:12px;">Returns &amp; legal structure</div>
-        <h2 class="section-heading serif">Yield &amp; Legal Structure</h2>
+      <div class="section-intro section-intro--tight reveal">
+        <div class="caption">Returns</div>
+        <h2 class="section-heading serif">Yield</h2>
       </div>
-      <div class="key-figures reveal">
+      <div class="key-figures key-figures--spacious reveal">
         <div class="key-figure">
           <div class="key-figure__number serif">8% – 12%</div>
-          <div class="key-figure__label caption">Target net yield (operating model)</div>
+          <div class="key-figure__label caption">Target net</div>
         </div>
         <div class="key-figure">
           <div class="key-figure__number serif">4%</div>
-          <div class="key-figure__label caption">Contractual minimum guarantee</div>
+          <div class="key-figure__label caption">Minimum guarantee</div>
         </div>
         <div class="key-figure">
           <div class="key-figure__number serif">8–15%</div>
-          <div class="key-figure__label caption">Management fee (from yield)</div>
+          <div class="key-figure__label caption">Management fee</div>
         </div>
       </div>
-      <div class="deal-sheet-shield reveal">
-        <p class="text-lead">High-yield flex living, structurally protected</p>
-        <p class="text-detail">European rental rules are tightening. Because El Fortín owns the entire complex, flexible short-term operation rights are written into the building deed (Tabo). Management fees (8%–15% depending on rental mix) are deducted from yield and cover operations end-to-end.</p>
-      </div>
-      <p class="small-print" style="text-align:center; margin-top:20px;">Projections are not guarantees. Review the investor agreement and your advisors’ tax position before committing.</p>
+      <p class="small-print returns-footnote reveal">Projections are not guarantees. Details in the investor agreement and your briefing.</p>
     </div>
   </section>
 
-  <section class="section-pad bg-white-stone puzol-section" id="track-record">
+  <section class="section-pad section-pad--airy bg-white-stone puzol-section" id="track-record">
     <div class="container">
-      <div style="text-align:center;" class="reveal">
-        <div class="caption" style="margin-bottom:12px;">Track record</div>
+      <div class="section-intro section-intro--tight reveal">
+        <div class="caption">Track record</div>
         <h2 class="section-heading serif">El Fortín de Puzol</h2>
-        <p class="text-detail" style="margin:12px auto 0; max-width:640px;">Full rehabilitation of a century-old house in historic Puzol — completed August 2025, before Riba-Roja handover.</p>
+        <p class="section-subheading">Completed August 2025</p>
       </div>
       <div class="deal-sheet-puzol reveal" style="transition-delay: 0.1s;">
         <div class="ba-slider ba-slider--full" aria-label="Puzol rehabilitation — before and after">
@@ -244,13 +215,11 @@
     </div>
   </section>
 
-  <section class="section-pad bg-warm-linen project-block" id="due-diligence">
+  <section class="section-pad section-pad--airy bg-warm-linen project-block" id="due-diligence">
     <div class="container">
-      <div style="text-align:center;" class="reveal">
-        <div class="caption" style="margin-bottom:12px;">Due diligence</div>
-        <h2 class="section-heading serif">Project Documentation</h2>
-        <p class="text-lead" style="margin:16px auto 0; text-align:center;">Official license and certified plans</p>
-        <p class="text-detail" style="margin:8px auto 0; text-align:center;">Name and email required to download each PDF.</p>
+      <div class="section-intro section-intro--tight reveal">
+        <div class="caption">Due diligence</div>
+        <h2 class="section-heading serif">Project documents</h2>
       </div>
       <div class="verification-strip reveal">
         <div class="verification-strip__item">
@@ -289,64 +258,24 @@
     </div>
   </section>
 
-  <section class="section-pad bg-parchment" id="briefing">
-    <div class="container">
-      <div class="contact-grid">
-        <div>
-          <div class="reveal">
-            <h2 class="section-heading serif" style="font-size:32px;">Common Questions</h2>
-          </div>
-          <div class="faq-list reveal" style="transition-delay: 0.15s;">
-            <div class="faq-item">
-              <button class="faq-question" type="button">
-                What are the management fees?
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-              </button>
-              <div class="faq-answer">
-                <p>Between 8% and 15% depending on rental structure (short vs. long term), deducted from yield. Covers tenant screening, check-in/check-out, maintenance, cleaning, and financial reporting.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question" type="button">
-                Can owners use the property personally?
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-              </button>
-              <div class="faq-answer">
-                <p>Up to two weeks per year, outside peak season, with four months’ advance notice.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question" type="button">
-                How is the 4% minimum yield guarantee structured?
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-              </button>
-              <div class="faq-answer">
-                <p>If annual net return falls below 4%, El Fortín covers the difference per the investor agreement.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question" type="button">
-                How does deed structure relate to flexible rental use?
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-              </button>
-              <div class="faq-answer">
-                <p>El Fortín develops and owns the full building complex. The right to operate flexible short-term rentals is recorded in the property deed (Tabo) for the development. Municipal licensing rules still apply; your advisors should review the deed language and current regulation.</p>
-              </div>
-            </div>
-          </div>
+  <section class="section-pad section-pad--airy bg-parchment" id="briefing">
+    <div class="container container--narrow">
+      <div class="briefing-block reveal">
+        <div class="section-intro section-intro--tight">
+          <div class="caption">Next step</div>
+          <h2 class="section-heading serif">Private investor briefing</h2>
+          <p class="section-subheading">Unit selection, exact pricing, reservation — no obligation.</p>
+          <p class="briefing-block__contact">
+            <a href="tel:+34626459818">+34 626 459 818</a>
+            <span aria-hidden="true">·</span>
+            <a href="mailto:conversemos@elfortincapital.com">conversemos@elfortincapital.com</a>
+          </p>
         </div>
-
-        <div>
-          <div class="reveal">
-            <h2 class="section-heading serif" style="font-size:32px;">Private Investor Briefing</h2>
-            <p class="section-subheading" style="margin-top:8px;">Discuss unit selection, exact pricing, and reservation. No obligation.</p>
-            <p class="text-detail" style="margin-top:12px;">
-              <a href="tel:+34626459818" style="text-decoration:underline; text-underline-offset:3px;">+34 626 459 818</a>
-              ·
-              <a href="mailto:conversemos@elfortincapital.com" style="text-decoration:underline; text-underline-offset:3px;">conversemos@elfortincapital.com</a>
-            </p>
-          </div>
-          <form class="contact-form reveal" style="transition-delay: 0.15s;" id="contactForm" onsubmit="handleSubmit(event)">
+        <details class="briefing-faq">
+          <summary>Can I use the apartment personally?</summary>
+          <p>Up to two weeks per year, outside peak season, with four months’ notice.</p>
+        </details>
+        <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
             <div class="form-group">
               <label for="fullName">Full Name</label>
               <input type="text" id="fullName" name="fullName" placeholder="Full name" required>
@@ -380,10 +309,9 @@
             </div>
             <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Request briefing</button>
           </form>
-          <div id="formSuccess" class="form-success">
-            <p class="form-success__title">Thank you.</p>
-            <p class="form-success__text">We aim to respond within one business day to schedule your briefing.</p>
-          </div>
+        <div id="formSuccess" class="form-success">
+          <p class="form-success__title">Thank you.</p>
+          <p class="form-success__text">We aim to respond within one business day.</p>
         </div>
       </div>
     </div>

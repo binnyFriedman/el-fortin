@@ -1899,32 +1899,135 @@ button.doc-card {
     padding: 22px var(--gutter-mobile);
   }
 }
-.deal-sheet-model {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 32px;
+/* Investment overview — airy layout & compressed copy */
+.page-investment-overview .section-pad--airy {
+  padding-top: 112px;
+  padding-bottom: 112px;
 }
-@media (max-width: 640px) {
-  .deal-sheet-model { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  .page-investment-overview .section-pad--airy {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
 }
-.deal-sheet-model__item {
+.page-investment-overview .section-intro--tight {
+  margin-bottom: 56px;
+}
+.page-investment-overview .section-intro--tight .section-heading {
+  margin-bottom: 8px;
+}
+.page-investment-overview .section-intro--tight .section-subheading {
+  margin-top: 8px;
+}
+.page-investment-overview .units-grid {
+  margin-top: 0;
+}
+.page-investment-overview .units-footnote,
+.page-investment-overview .returns-footnote {
+  text-align: center;
+  margin-top: 48px;
+}
+.page-investment-overview .key-figures--spacious {
+  margin-top: 0;
+  gap: 64px;
+}
+.page-investment-overview .timeline--spacious {
+  margin-top: 0;
+}
+.page-investment-overview .verification-strip {
+  margin-top: 0;
+}
+.page-investment-overview .doc-cards {
+  margin-top: 40px;
+}
+.page-investment-overview .deal-sheet-puzol {
+  margin-top: 8px;
+}
+
+.deal-sheet-pillars {
   background: var(--white-stone);
-  border: 1px solid var(--warm-linen);
-  border-radius: 6px;
-  padding: 20px 22px;
+  border-bottom: 1px solid var(--warm-linen);
+  padding: 40px var(--gutter);
 }
-.deal-sheet-model__item h3 {
-  font-family: var(--font-serif);
-  font-size: 18px;
+.deal-sheet-pillars__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+  list-style: none;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.deal-sheet-pillars__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+.deal-sheet-pillars__text {
+  font-size: 15px;
+  line-height: 1.45;
   color: var(--navy);
-  margin: 0 0 6px;
+  font-weight: 500;
 }
-.deal-sheet-model__item p {
-  margin: 0;
-  font-size: 16px;
+@media (max-width: 900px) {
+  .deal-sheet-pillars__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 20px;
+  }
+}
+@media (max-width: 480px) {
+  .deal-sheet-pillars__list { grid-template-columns: 1fr; }
+  .deal-sheet-pillars { padding: 32px var(--gutter-mobile); }
+}
+
+.container--narrow {
+  max-width: 560px;
+}
+.briefing-block {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.briefing-block__contact {
+  margin-top: 16px;
+  font-size: 15px;
+}
+.briefing-block__contact a {
+  color: var(--slate);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.briefing-faq {
+  border-top: 1px solid var(--warm-linen);
+  padding-top: 20px;
+}
+.briefing-faq summary {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  list-style: none;
+}
+.briefing-faq summary::-webkit-details-marker { display: none; }
+.briefing-faq summary::after {
+  content: "+";
+  float: right;
+  font-weight: 400;
+  color: var(--ash);
+}
+.briefing-faq[open] summary::after { content: "−"; }
+.briefing-faq p {
+  margin: 12px 0 0;
+  font-size: 15px;
   line-height: var(--leading-body);
   color: var(--slate);
+}
+.page-investment-overview .unit-card {
+  padding: 32px;
+}
+.page-investment-overview .unit-card__title {
+  margin-bottom: 20px;
 }
 .unit-card__economics {
   margin-top: 14px;
@@ -1950,12 +2053,6 @@ button.doc-card {
   font-size: 20px;
   color: var(--navy);
 }
-.deal-sheet-shield {
-  max-width: 720px;
-  margin: 32px auto 0;
-  text-align: center;
-}
-.deal-sheet-shield .text-detail { margin-top: 12px; }
 .deal-sheet-puzol {
   max-width: 640px;
   margin: 0 auto;
