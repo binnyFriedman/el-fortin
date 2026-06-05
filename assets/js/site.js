@@ -3,7 +3,16 @@
 
   const DOC_URLS = {
     license: 'assets/docs/Licencia%20de%20Obra.pdf',
-    plans: 'assets/docs/P00-PE-PLANOS_firmado_sellado.PDF'
+    plans: 'assets/docs/P00-PE-PLANOS_firmado_sellado.PDF',
+    // tabo: 'assets/docs/tabo-excerpt.pdf',
+    // 'investor-summary': 'assets/docs/investor-agreement-summary.pdf'
+  };
+
+  const DOC_TITLES = {
+    license: 'Download Construction License',
+    plans: 'Download Architectural Plans',
+    tabo: 'Download Tabo Excerpt',
+    'investor-summary': 'Download Investor Agreement Summary'
   };
 
   let activeDocUrl = null;
@@ -121,9 +130,7 @@
     activeDocUrl = DOC_URLS[docKey];
     if (!modalOverlay || !activeDocUrl) return;
     if (modalTitle) {
-      modalTitle.textContent = docKey === 'license'
-        ? 'Download Construction License'
-        : 'Download Architectural Plans';
+      modalTitle.textContent = DOC_TITLES[docKey] || 'Download Document';
     }
     if (modalForm) {
       modalForm.classList.remove('hidden');
@@ -175,6 +182,8 @@
   });
 
   // Before / after slider
+  // Layer order: base img = right of handle (After); after-wrap img = left of handle (Before).
+  // See assets/brand/puzol/README.md — filenames are not swapped; HTML layer assignment is intentional.
   document.querySelectorAll('.ba-slider').forEach((slider) => {
     const afterWrap = slider.querySelector('.ba-slider__after-wrap');
     const afterImg = afterWrap && afterWrap.querySelector('.ba-slider__img');
@@ -234,13 +243,17 @@
     setPosition(50);
   });
 
-  // Riba-Roja construction progress gallery (portfolio-brochure)
-  // Add image paths here when site photos are uploaded to assets/brand/riba-roja-progress/
+  // Riba-Roja construction progress gallery
+  // Replace placeholder paths with real site photos in assets/brand/riba-roja-progress/
   const PROGRESS_IMAGES = [
-    // 'assets/brand/riba-roja-progress/example-01.jpg',
+    'assets/brand/riba-roja-progress/placeholder-01.jpg',
+    'assets/brand/riba-roja-progress/placeholder-02.jpg',
+    'assets/brand/riba-roja-progress/placeholder-03.jpg'
   ];
+  const PROGRESS_PLACEHOLDER = true;
   const progressGallery = document.getElementById('progressGallery');
   const progressEmpty = document.getElementById('progressGalleryEmpty');
+  const progressCaption = document.getElementById('progressGalleryCaption');
   if (progressGallery && PROGRESS_IMAGES.length > 0) {
     PROGRESS_IMAGES.forEach((src, index) => {
       const fig = document.createElement('figure');
@@ -254,6 +267,9 @@
     });
     progressGallery.classList.remove('progress-gallery--empty');
     if (progressEmpty) progressEmpty.hidden = true;
+    if (progressCaption) progressCaption.hidden = !PROGRESS_PLACEHOLDER;
+  } else if (progressGallery && progressEmpty) {
+    progressEmpty.hidden = false;
   }
 
   // Investment overview — highlight nav link for current section
