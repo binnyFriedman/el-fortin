@@ -14,10 +14,11 @@
 
   <nav class="nav" id="nav">
     <div class="container">
-      <a href="portfolio-brochure-sales.html" class="nav__logo">
+      <a href="index.html" class="nav__logo">
         <img src="assets/brand/El-fortin_logo-1.png" alt="El Fortín Capital" width="175" height="50">
       </a>
       <div class="nav__links" id="navLinks">
+        <a href="#development">Project</a>
         <a href="#units">Units</a>
         <a href="#milestones">Payments</a>
         <a href="#returns">Returns</a>
@@ -25,7 +26,7 @@
         <a href="#due-diligence">Documents</a>
       </div>
       <div class="nav__cta" id="navCta">
-        <a href="#briefing" class="btn-primary">Private Briefing</a>
+        <a href="#briefing" class="btn-primary">Briefing</a>
       </div>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -33,31 +34,32 @@
     </div>
   </nav>
 
-  <section class="hero hero--deal-sheet" id="hero">
+  <section class="hero hero--cover" id="hero">
     <div class="hero__bg">
-      <img src="assets/brand/El-fortin_10-09-1.jpg" alt="Riba-Roja de Túria — exterior architectural render" width="1290" height="653">
+      <img src="assets/brand/El-fortin_10-09-1.jpg" alt="" width="1290" height="653" aria-hidden="true">
     </div>
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <p class="hero__eyebrow caption">Pre-sale · Valencia</p>
-      <h1 class="hero__title serif">Riba-Roja de Túria</h1>
-      <p class="hero__lede">Ten deeded units · Handover 2027 · List from €203,522</p>
-      <div class="hero__actions">
-        <a href="#units" class="btn-primary">View units &amp; pricing</a>
+    <div class="hero__overlay hero__overlay--cover" aria-hidden="true"></div>
+    <div class="hero__cover-desktop">
+      <div class="hero__cover-layout">
+        <div class="hero__card" aria-labelledby="hero-title">
+          <p class="hero__folio caption">El Fortín Capital · Pre-sale</p>
+          <h1 class="hero__title serif" id="hero-title">Riba-Roja de Túria</h1>
+          <p class="hero__deck">Ten deeded units · Handover 2027 · From €203,522</p>
+          <p class="hero__location caption">Riba-Roja de Túria · Valencia</p>
+        </div>
       </div>
-      <a href="#units" class="hero__scroll" aria-label="Scroll to units and pricing">
-        <span class="hero__scroll-label">Scroll</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-      </a>
+    </div>
+    <div class="hero__cover-mobile">
+      <figure class="hero__mobile-media">
+        <img src="assets/brand/El-fortin_10-09-1.jpg" alt="Riba-Roja de Túria — exterior architectural render" width="1290" height="653">
+      </figure>
+      <div class="hero__mobile-body">
+        <p class="hero__folio caption">El Fortín Capital · Pre-sale</p>
+        <h1 class="hero__title serif">Riba-Roja de Túria</h1>
+        <p class="hero__deck">Ten deeded units · Handover 2027 · From €203,522</p>
+      </div>
     </div>
   </section>
-
-  <div class="hero-band" aria-label="Project credentials">
-    <div class="container hero-band__inner">
-      <p class="hero-band__proof">Land owned · Building permit secured · CTAV-certified plans</p>
-      <p class="hero-band__legal">EL FORTIN CONSTRUCCIONES Y PATRIMONIO S.L. · CIF B22792923 · Carretera Valencia 31, Riba-Roja de Túria</p>
-    </div>
-  </div>
 
   <div class="deal-sheet-pillars" id="model" aria-label="Investment structure">
     <div class="container">
@@ -82,11 +84,25 @@
     </div>
   </div>
 
+  <section class="development-chapter bg-parchment" id="development" aria-labelledby="development-heading">
+    <div class="container">
+      <div class="development-chapter__intro reveal">
+        <p class="development-chapter__lead serif">Boutique flex-living at the edge of Valencia — titled apartments, professionally operated, with milestone-based pre-sale payments.</p>
+        <p class="development-chapter__support">Carretera Valencia 31 · Riba-Roja de Túria · 20 minutes from Valencia city centre</p>
+      </div>
+      <figure class="development-chapter__visual reveal">
+        <img src="assets/brand/3d illustartion.jpg" alt="Architectural section — ten units with rooftop pool, parking, and shared circulation" width="1536" height="736">
+        <figcaption class="development-chapter__caption" id="development-heading"><strong>Ten-unit building.</strong> Rooftop pool, underground parking, and shared circulation — section view from certified plans.</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section class="section-pad section-pad--airy bg-parchment" id="units">
     <div class="container">
       <div class="section-intro section-intro--tight reveal">
         <div class="caption">Unit inventory</div>
         <h2 class="section-heading serif">Units &amp; pricing</h2>
+        <p class="section-subheading">Two layouts across ten units. List prices below; typical all-in costs include taxes and turn-key furnishing.</p>
       </div>
 
       <div class="units-grid">
@@ -108,10 +124,10 @@
             <dt>25% reservation</dt>
             <dd><span class="serif">~€62,000</span></dd>
           </dl>
-          <a href="?unit=type-a#briefing" class="btn-primary" style="margin-top:20px; display:inline-block; width:100%; text-align:center;">Request briefing</a>
+          <a href="?unit=type-a#briefing" class="btn-secondary btn-block">Request briefing — Type A</a>
         </div>
 
-        <div class="unit-card reveal" style="transition-delay: 0.15s;">
+        <div class="unit-card reveal reveal-delay-2">
           <div class="unit-card__image">
             <img src="assets/brand/El-fortin_B.jpg" alt="Type B floor plan — 57 m² apartment" width="1290" height="653">
           </div>
@@ -128,11 +144,11 @@
             <dt>25% reservation</dt>
             <dd><span class="serif">~€74,000</span></dd>
           </dl>
-          <a href="?unit=type-b#briefing" class="btn-secondary" style="margin-top:20px; display:inline-block; width:100%; text-align:center;">Request briefing</a>
+          <a href="?unit=type-b#briefing" class="btn-secondary btn-block">Request briefing — Type B</a>
         </div>
       </div>
 
-      <p class="small-print units-footnote reveal">List prices exclude ~14% IVA and €15,000–€20,000 turn-key furniture. All-in figures are indicative. Turn-key units · pool · parking · courtyard.</p>
+      <p class="small-print units-footnote reveal">List prices exclude ~14% IVA and €15,000–€20,000 turn-key furniture. All-in figures are indicative.</p>
     </div>
   </section>
 
@@ -141,6 +157,7 @@
       <div class="section-intro section-intro--tight reveal">
         <div class="caption">Payment structure</div>
         <h2 class="section-heading serif">Four × 25% milestone payments</h2>
+        <p class="section-subheading">Capital is released in stages tied to construction progress — not upfront in full.</p>
       </div>
 
       <div class="timeline timeline--spacious reveal">
@@ -173,20 +190,21 @@
       <div class="section-intro section-intro--tight reveal">
         <div class="caption">Returns</div>
         <h2 class="section-heading serif">Yield</h2>
+        <p class="section-subheading">Net returns under the El Fortín operating model — professionally managed flex-living.</p>
       </div>
       <div class="key-figures key-figures--spacious reveal">
         <div class="key-figure">
           <div class="key-figure__number serif">8% – 12%</div>
-          <div class="key-figure__label caption">Target net</div>
+          <div class="key-figure__label caption">Target net yield</div>
         </div>
         <div class="key-figure">
           <div class="key-figure__number serif">4%</div>
           <div class="key-figure__label caption">Minimum guarantee</div>
         </div>
-        <div class="key-figure">
-          <div class="key-figure__number serif">8–15%</div>
-          <div class="key-figure__label caption">Management fee</div>
-        </div>
+      </div>
+      <div class="returns-operator reveal">
+        <span class="returns-operator__label caption">Operator fee</span>
+        <p class="returns-operator__text">Management fee of <strong>8–15%</strong> of gross rental income, covering property management, guest services, and operations. Deducted before net yield is calculated.</p>
       </div>
       <p class="small-print returns-footnote reveal">Projections are not guarantees. Details in the investor agreement and your briefing.</p>
     </div>
@@ -194,21 +212,24 @@
 
   <section class="section-pad section-pad--airy bg-white-stone puzol-section" id="track-record">
     <div class="container">
-      <div class="section-intro section-intro--tight reveal">
-        <div class="caption">Track record</div>
-        <h2 class="section-heading serif">El Fortín de Puzol</h2>
-        <p class="section-subheading">Completed August 2025</p>
-      </div>
-      <div class="deal-sheet-puzol reveal" style="transition-delay: 0.1s;">
-        <div class="ba-slider ba-slider--full" aria-label="Puzol rehabilitation — before and after">
-          <img class="ba-slider__img" src="assets/brand/puzol/before-compare.jpg" alt="Puzol property before rehabilitation" width="1200" height="900">
-          <div class="ba-slider__after-wrap">
-            <img class="ba-slider__img" src="assets/brand/puzol/after-compare.jpg" alt="Puzol property after rehabilitation" width="1200" height="900">
-          </div>
-          <div class="ba-slider__handle" role="slider" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50" aria-label="Before and after comparison slider"></div>
-          <div class="ba-slider__labels">
-            <span class="ba-slider__label">Before</span>
-            <span class="ba-slider__label">After</span>
+      <div class="two-col track-record-grid">
+        <div class="prose-block reveal">
+          <div class="caption">Track record</div>
+          <h2 class="section-heading serif">El Fortín de Puzol</h2>
+          <p class="section-subheading">Completed August 2025</p>
+          <p class="text-detail track-record-grid__copy">Full rehabilitation of a century-old house in historic Puzol — delivered before Riba-Roja construction began. Drag the slider to compare before and after.</p>
+        </div>
+        <div class="deal-sheet-puzol reveal reveal-delay-1">
+          <div class="ba-slider ba-slider--full" aria-label="Puzol rehabilitation — before and after">
+            <img class="ba-slider__img" src="assets/brand/puzol/after-compare.jpg" alt="Puzol property before rehabilitation" width="1200" height="900">
+            <div class="ba-slider__after-wrap">
+              <img class="ba-slider__img" src="assets/brand/puzol/before-compare.jpg" alt="Puzol property after rehabilitation" width="1200" height="900">
+            </div>
+            <div class="ba-slider__handle" role="slider" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50" aria-label="Before and after comparison slider"></div>
+            <div class="ba-slider__labels">
+              <span class="ba-slider__label">Before</span>
+              <span class="ba-slider__label">After</span>
+            </div>
           </div>
         </div>
       </div>
@@ -220,6 +241,7 @@
       <div class="section-intro section-intro--tight reveal">
         <div class="caption">Due diligence</div>
         <h2 class="section-heading serif">Project documents</h2>
+        <p class="section-subheading">Official references and downloadable records for independent review.</p>
       </div>
       <div class="verification-strip reveal">
         <div class="verification-strip__item">
@@ -259,25 +281,27 @@
   </section>
 
   <section class="section-pad section-pad--airy bg-parchment" id="briefing">
-    <div class="container container--narrow">
-      <div class="briefing-block reveal">
-        <div class="section-intro section-intro--tight">
-          <div class="caption">Next step</div>
-          <h2 class="section-heading serif">Private investor briefing</h2>
-          <p class="section-subheading">Unit selection, exact pricing, reservation — no obligation.</p>
-          <p class="briefing-block__contact">
-            <a href="tel:+34626459818">+34 626 459 818</a>
-            <span aria-hidden="true">·</span>
-            <a href="mailto:conversemos@elfortincapital.com">conversemos@elfortincapital.com</a>
-          </p>
+    <div class="container container--briefing">
+      <div class="briefing-grid reveal">
+        <div class="briefing-grid__intro">
+          <div class="section-intro section-intro--tight">
+            <div class="caption">Next step</div>
+            <h2 class="section-heading serif">Private investor briefing</h2>
+            <p class="section-subheading">Unit selection, exact pricing, and reservation walkthrough — no obligation.</p>
+          </div>
+          <div class="briefing-grid__contact">
+            <p>Prefer to speak first?</p>
+            <p>
+              <a href="tel:+34626459818">+34 626 459 818</a><br>
+              <a href="mailto:conversemos@elfortincapital.com">conversemos@elfortincapital.com</a>
+            </p>
+          </div>
+          <p class="briefing-grid__note">We aim to respond within one business day.</p>
         </div>
-        <details class="briefing-faq">
-          <summary>Can I use the apartment personally?</summary>
-          <p>Up to two weeks per year, outside peak season, with four months’ notice.</p>
-        </details>
-        <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="briefing-grid__form">
+          <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
             <div class="form-group">
-              <label for="fullName">Full Name</label>
+              <label for="fullName">Full name</label>
               <input type="text" id="fullName" name="fullName" placeholder="Full name" required>
             </div>
             <div class="form-group">
@@ -285,8 +309,8 @@
               <input type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
             <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" placeholder="+34 600 000 000" required>
+              <label for="phone">Phone <span class="form-optional">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+34 600 000 000">
             </div>
             <div class="form-group">
               <label for="unitInterest">Unit of interest</label>
@@ -307,11 +331,16 @@
                 <option value="500+">€500,000+</option>
               </select>
             </div>
-            <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Request briefing</button>
+            <button type="submit" class="btn-primary btn-block">Request briefing</button>
           </form>
-        <div id="formSuccess" class="form-success">
-          <p class="form-success__title">Thank you.</p>
-          <p class="form-success__text">We aim to respond within one business day.</p>
+          <div id="formSuccess" class="form-success">
+            <p class="form-success__title">Thank you.</p>
+            <p class="form-success__text">We aim to respond within one business day.</p>
+          </div>
+          <details class="briefing-faq">
+            <summary>Can I use the apartment personally?</summary>
+            <p>Up to two weeks per year, outside peak season, with four months’ notice.</p>
+          </details>
         </div>
       </div>
     </div>
@@ -324,32 +353,36 @@
       <p class="modal__desc">Enter your details to access this file for due diligence review.</p>
       <form class="modal__form" id="docModalForm">
         <div class="form-group">
-          <label for="docName">Full Name</label>
+          <label for="docName">Full name</label>
           <input type="text" id="docName" name="name" placeholder="Full name" required>
         </div>
         <div class="form-group">
           <label for="docEmail">Email</label>
           <input type="email" id="docEmail" name="email" placeholder="you@example.com" required>
         </div>
-        <button type="submit" class="btn-primary" style="width:100%;">Download PDF</button>
+        <button type="submit" class="btn-primary btn-block">Download PDF</button>
       </form>
       <div class="modal__success" id="docModalSuccess">
         <p class="form-success__title">Your download is ready.</p>
-        <p class="form-success__text" style="margin-top:8px;">If the file did not open automatically, check your downloads folder.</p>
-        <button type="button" class="btn-secondary" data-close-modal style="margin-top:24px;">Close</button>
+        <p class="form-success__text modal__success-note">If the file did not open automatically, check your downloads folder.</p>
+        <button type="button" class="btn-secondary modal__close-btn" data-close-modal>Close</button>
       </div>
     </div>
   </div>
 
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__copy-line"><strong>© 2026 El Fortín Capital. All rights reserved.</strong></p>
+      <p class="site-footer__copy-line">
+        <span class="site-footer__brand serif">El Fortín Capital</span>
+        <span class="site-footer__copy-sep" aria-hidden="true">·</span>
+        <span>© 2026 All rights reserved.</span>
+      </p>
       <div class="site-footer__grid">
         <div class="site-footer__col">
-          <p class="site-footer__label">Corporate Identity:</p>
-          <p>Developed and promoted by EL FORTIN CONSTRUCCIONES Y PATRIMONIO S.L. | Tax ID (CIF): B22792923.</p>
-          <p class="site-footer__label">Registered Office:</p>
-          <p>Camino Valencia nº 31, 46190 - Riba-roja de Túria, Valencia, Spain.</p>
+          <p class="site-footer__label caption">Corporate Identity</p>
+          <p>Developed and promoted by <strong class="site-footer__entity">EL FORTIN CONSTRUCCIONES Y PATRIMONIO S.L.</strong> · Tax ID (CIF): <span class="site-footer__id">B22792923</span></p>
+          <p class="site-footer__label caption">Registered Office</p>
+          <p>Camino Valencia nº 31, 46190 — Riba-roja de Túria, Valencia, Spain</p>
         </div>
       </div>
       <div class="site-footer__legal">
@@ -359,7 +392,8 @@
         <a href="terms-conditions.html">Terms &amp; Conditions</a>
       </div>
       <p class="site-footer__disclaimer">
-        *Disclaimer: All financial projections and yields are based on current market valuations, approved municipal planning parameters, and corporate operational standards. Past rehabilitations do not guarantee future results. Investments are legally backed by direct individual title deeds registered at the Spanish Property Registry (Registro de la Propiedad).
+        <span class="site-footer__disclaimer-tag caption">Disclaimer</span>
+        All financial projections and yields are based on current market valuations, approved municipal planning parameters, and corporate operational standards. Past rehabilitations do not guarantee future results. Investments are legally backed by direct individual title deeds registered at the Spanish Property Registry (Registro de la Propiedad).
       </p>
     </div>
   </footer>

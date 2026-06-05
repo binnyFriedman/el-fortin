@@ -255,4 +255,33 @@
     progressGallery.classList.remove('progress-gallery--empty');
     if (progressEmpty) progressEmpty.hidden = true;
   }
+
+  // Investment overview — highlight nav link for current section
+  if (document.body.classList.contains('page-investment-overview') && navLinks) {
+    const sectionIds = ['development', 'units', 'milestones', 'returns', 'track-record', 'due-diligence', 'briefing'];
+    const navAnchors = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length && navAnchors.length) {
+      const setActive = (id) => {
+        navAnchors.forEach((link) => {
+          const match = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('nav__link--active', match);
+          if (match) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      };
+
+      const spyObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      }, { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.15, 0.4] });
+
+      sections.forEach((section) => spyObserver.observe(section));
+    }
+  }
 })();
