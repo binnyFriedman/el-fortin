@@ -274,7 +274,9 @@
 
   // Investment overview — highlight nav link for current section
   if (document.body.classList.contains('page-investment-overview') && navLinks) {
-    const sectionIds = ['development', 'units', 'milestones', 'returns', 'track-record', 'due-diligence', 'briefing'];
+    const sectionIds = document.body.classList.contains('page-brochure-refined')
+      ? ['asset', 'deal', 'proof', 'due-diligence', 'briefing']
+      : ['development', 'units', 'milestones', 'returns', 'track-record', 'due-diligence', 'briefing'];
     const navAnchors = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
     const sections = sectionIds
       .map((id) => document.getElementById(id))

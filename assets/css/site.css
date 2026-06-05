@@ -2682,3 +2682,127 @@ button.doc-card {
     margin-left: auto;
   }
 }
+
+/* Brochure refinement — reduced copy, visual-first layout */
+.page-brochure-refined .development-chapter {
+  padding-top: 56px;
+  padding-bottom: 0;
+}
+.page-brochure-refined .development-chapter__visual {
+  margin: 0;
+}
+.page-brochure-refined .development-chapter__caption--compact {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.55;
+  text-align: center;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.page-brochure-refined .asset-interior {
+  margin: 64px auto 0;
+  max-width: 720px;
+}
+.page-brochure-refined .asset-interior img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+}
+.page-brochure-refined .asset-interior .photo-gallery__caption {
+  margin-top: 10px;
+  text-align: center;
+}
+.page-brochure-refined .asset-deed {
+  margin: 40px auto 0;
+  max-width: 520px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--slate);
+}
+.page-brochure-refined .deal-section {
+  padding-top: 80px;
+}
+.page-brochure-refined .deal-section .units-grid {
+  margin-top: 0;
+}
+.page-brochure-refined .deal-section__timeline {
+  margin-top: 56px;
+}
+.page-brochure-refined .deal-site-photo {
+  margin: 48px auto 0;
+  max-width: 960px;
+}
+.page-brochure-refined .deal-site-photo img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+}
+.page-brochure-refined .deal-site-photo figcaption {
+  text-align: center;
+  margin-top: 12px;
+}
+.page-brochure-refined .proof-section {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+.page-brochure-refined .key-figures--isolated {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.page-brochure-refined .proof-section__note {
+  text-align: center;
+  max-width: 440px;
+  margin: 24px auto 0;
+}
+.page-brochure-refined .proof-section__slider {
+  margin-top: 72px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.page-brochure-refined .proof-section__credit {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--ash);
+}
+.page-brochure-refined .proof-section__founder {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--slate);
+}
+.page-brochure-refined .briefing-grid__faq .faq-list {
+  margin-top: 0;
+}
+.page-brochure-refined .briefing-grid__form-heading {
+  font-size: clamp(26px, 3vw, 32px);
+  margin-bottom: 28px;
+}
+.page-brochure-refined .briefing-grid__contact {
+  margin-top: 32px;
+}
+.page-brochure-refined .section-pad--airy {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.page-brochure-refined #due-diligence {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+.page-brochure-refined #due-diligence .verification-strip {
+  margin-top: 0;
+}
+@media (max-width: 768px) {
+  .page-brochure-refined .asset-interior {
+    margin-top: 48px;
+  }
+  .page-brochure-refined .proof-section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .page-brochure-refined .proof-section__slider {
+    margin-top: 56px;
+  }
+}
