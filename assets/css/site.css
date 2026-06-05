@@ -2779,176 +2779,72 @@ button.doc-card {
   padding-top: 80px;
   padding-bottom: 80px;
 }
-/* Data room — institutional break (registry · vault · delivery) */
-.page-brochure-refined .data-room {
-  background: var(--navy);
-  color: var(--parchment);
-  padding: 80px 0;
+/* Records — same page family: warm linen, open registry, familiar doc cards */
+.page-brochure-refined .records-section__shell {
+  max-width: 960px;
 }
-.page-brochure-refined .data-room__shell {
-  max-width: 1040px;
-}
-.page-brochure-refined .data-room__panel {
+.page-brochure-refined .records-section__layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(212, 184, 150, 0.22);
-  border: 1px solid rgba(212, 184, 150, 0.28);
-  border-radius: 8px;
-  overflow: hidden;
+  gap: 48px 56px;
+  align-items: start;
 }
-.page-brochure-refined .data-room__index {
+.page-brochure-refined .records-section__index {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(212, 184, 150, 0.22);
+  gap: 28px 40px;
 }
-.page-brochure-refined .data-room__cluster {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  padding: 40px 36px;
-  background: var(--navy);
-}
-.page-brochure-refined .data-room__entry {
+.page-brochure-refined .records-section__entry {
   margin: 0;
 }
-.page-brochure-refined .data-room__entry dt {
+.page-brochure-refined .records-section__entry dt {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(247, 244, 239, 0.45);
-  margin-bottom: 6px;
+  color: var(--ash);
+  margin-bottom: 4px;
 }
-.page-brochure-refined .data-room__entry dd {
+.page-brochure-refined .records-section__entry dd {
   margin: 0;
   font-size: 15px;
-  line-height: 1.45;
-  color: var(--parchment);
+  line-height: 1.4;
+  color: var(--navy);
   font-weight: 500;
 }
-.page-brochure-refined .data-room__value--mono {
-  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-  font-size: 14px;
-  letter-spacing: 0.03em;
-}
-.page-brochure-refined .data-room__sep {
-  opacity: 0.4;
-}
-.page-brochure-refined .data-room__vault {
+.page-brochure-refined .records-section__files {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  background: rgba(212, 184, 150, 0.22);
+  gap: 16px;
 }
-.page-brochure-refined .data-room__file {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 36px 40px;
-  background: rgba(253, 252, 250, 0.04);
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  text-align: left;
-  transition: background 0.25s ease;
-  position: relative;
+.page-brochure-refined .records-section__doc {
+  min-width: 0;
+  flex: none;
+  padding: 24px 28px;
+  margin-top: 0;
 }
-.page-brochure-refined .data-room__file:hover {
-  background: rgba(253, 252, 250, 0.08);
+.page-brochure-refined .records-section__files .doc-cards {
+  margin-top: 0;
 }
-.page-brochure-refined .data-room__file-type {
-  color: var(--terracotta);
-  margin: 0;
-}
-.page-brochure-refined .data-room__file-name {
-  font-family: 'DM Serif Display', Georgia, serif;
-  font-size: clamp(22px, 2.5vw, 28px);
-  line-height: 1.2;
-  color: var(--parchment);
-}
-.page-brochure-refined .data-room__file-arrow {
-  position: absolute;
-  right: 36px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--terracotta);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.page-brochure-refined .data-room__file:hover .data-room__file-arrow {
-  opacity: 1;
-  transform: translateY(-50%) translateY(-2px);
-}
-.page-brochure-refined .data-room__file-arrow svg {
-  width: 18px;
-  height: 18px;
-  fill: var(--white-stone);
-}
-.page-brochure-refined .data-room__delivery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px 32px;
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(212, 184, 150, 0.2);
-}
-.page-brochure-refined .data-room__delivery-item {
-  font-size: 13px;
-  color: rgba(247, 244, 239, 0.55);
-  letter-spacing: 0.02em;
-}
-.page-brochure-refined .data-room__delivery-item strong {
-  font-weight: 600;
-  color: rgba(247, 244, 239, 0.85);
-  margin-right: 6px;
-}
-.page-brochure-refined .data-room__delivery-item em {
-  font-style: normal;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.7;
-}
-@media (max-width: 900px) {
-  .page-brochure-refined .data-room__panel {
-    grid-template-columns: 1fr;
-  }
-  .page-brochure-refined .data-room__index {
-    grid-template-columns: 1fr;
-  }
+.page-brochure-refined .records-section__delivery {
+  text-align: center;
+  margin-top: 48px;
+  color: var(--ash);
+  line-height: 1.6;
 }
 @media (max-width: 768px) {
-  .page-brochure-refined .data-room {
-    padding: 64px 0;
+  .page-brochure-refined .records-section__layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
-  .page-brochure-refined .data-room__cluster {
-    padding: 32px 24px;
+  .page-brochure-refined .records-section__index {
+    grid-template-columns: 1fr;
     gap: 24px;
   }
-  .page-brochure-refined .data-room__file {
-    padding: 28px 24px;
-    padding-right: 72px;
-  }
-  .page-brochure-refined .data-room__file-arrow {
-    opacity: 1;
-    right: 24px;
-  }
-  .page-brochure-refined .data-room__delivery {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  .page-brochure-refined .records-section__delivery {
+    margin-top: 40px;
+    font-size: 11px;
+    line-height: 1.7;
   }
 }
 @media (max-width: 768px) {
