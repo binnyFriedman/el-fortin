@@ -75,6 +75,63 @@
     if (success) success.classList.add('visible');
   };
 
+  const PAGE2_URL = 'project-fact-hub.html';
+
+  function redirectToDataRoom() {
+    try {
+      sessionStorage.clear();
+      localStorage.removeItem('elfortin-intake');
+    } catch (_) { /* storage may be unavailable */ }
+    window.location.replace(PAGE2_URL);
+  }
+
+  // Funnel page — instant redirect to data room (Page 2)
+  window.handleFunnelSubmit = function handleFunnelSubmit(e) {
+    e.preventDefault();
+    redirectToDataRoom();
+  };
+
+  // Page 1 landing — clear cache and redirect to due diligence area
+  window.handleLandingSubmit = function handleLandingSubmit(e) {
+    e.preventDefault();
+    redirectToDataRoom();
+  };
+
+  // Mobile sticky CTA — appears after scrolling past hero
+  const stickyCta = document.getElementById('stickyCta');
+  const stickyCtaBtn = document.getElementById('stickyCtaBtn');
+  const landingHero = document.querySelector('.page-landing .landing-hero');
+  if (stickyCta && landingHero) {
+    const mqDesktop = window.matchMedia('(min-width: 1024px)');
+
+    function updateStickyCta() {
+      if (mqDesktop.matches) {
+        stickyCta.hidden = true;
+        stickyCta.classList.remove('is-visible');
+        document.body.classList.remove('has-sticky-cta');
+        return;
+      }
+      const pastHero = landingHero.getBoundingClientRect().bottom < 0;
+      stickyCta.hidden = false;
+      stickyCta.classList.toggle('is-visible', pastHero);
+      document.body.classList.toggle('has-sticky-cta', pastHero);
+    }
+
+    window.addEventListener('scroll', updateStickyCta, { passive: true });
+    mqDesktop.addEventListener('change', updateStickyCta);
+    updateStickyCta();
+
+    if (stickyCtaBtn) {
+      stickyCtaBtn.addEventListener('click', () => {
+        const intake = document.getElementById('intake');
+        if (!intake) return;
+        const offset = 16;
+        const top = intake.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    }
+  }
+
   // Pre-fill unit interest from ?unit= query param
   const unitSelect = document.getElementById('unitInterest');
   if (unitSelect) {
@@ -129,8 +186,9 @@
   window.openDocModal = function openDocModal(docKey) {
     activeDocUrl = DOC_URLS[docKey];
     if (!modalOverlay || !activeDocUrl) return;
+    const trigger = document.querySelector(`[data-doc="${docKey}"]`);
     if (modalTitle) {
-      modalTitle.textContent = DOC_TITLES[docKey] || 'Download Document';
+      modalTitle.textContent = (trigger && trigger.dataset.docTitle) || DOC_TITLES[docKey] || 'Project file';
     }
     if (modalForm) {
       modalForm.classList.remove('hidden');
@@ -243,14 +301,18 @@
     setPosition(50);
   });
 
-  // Riba-Roja construction progress gallery
-  // Replace placeholder paths with real site photos in assets/brand/riba-roja-progress/
+  // Riba-Roja construction progress gallery — real site photos (June 2026)
   const PROGRESS_IMAGES = [
-    'assets/brand/riba-roja-progress/placeholder-01.jpg',
-    'assets/brand/riba-roja-progress/placeholder-02.jpg',
-    'assets/brand/riba-roja-progress/placeholder-03.jpg'
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.34.jpeg',
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.34%20(1).jpeg',
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.30.jpeg',
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.30%20(1).jpeg',
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.31.jpeg',
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.32.jpeg',
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.33.jpeg',
+    'assets/brand/on-going-construction/WhatsApp%20Image%202026-06-09%20at%2018.10.32%20(4).jpeg'
   ];
-  const PROGRESS_PLACEHOLDER = true;
+  const PROGRESS_PLACEHOLDER = false;
   const progressGallery = document.getElementById('progressGallery');
   const progressEmpty = document.getElementById('progressGalleryEmpty');
   const progressCaption = document.getElementById('progressGalleryCaption');
@@ -274,9 +336,11 @@
 
   // Investment overview — highlight nav link for current section
   if (document.body.classList.contains('page-investment-overview') && navLinks) {
-    const sectionIds = document.body.classList.contains('page-brochure-refined')
-      ? ['asset', 'deal', 'proof', 'due-diligence', 'briefing']
-      : ['development', 'units', 'milestones', 'returns', 'track-record', 'due-diligence', 'briefing'];
+    const sectionIds = document.body.classList.contains('page-fact-hub')
+      ? ['vehicle', 'returns', 'capital', 'legal', 'execution', 'proof', 'asset', 'briefing']
+      : document.body.classList.contains('page-brochure-refined')
+        ? ['asset', 'deal', 'site', 'proof', 'due-diligence', 'briefing']
+        : ['development', 'units', 'milestones', 'returns', 'track-record', 'due-diligence', 'briefing'];
     const navAnchors = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
     const sections = sectionIds
       .map((id) => document.getElementById(id))
