@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valencia Flex Living — The Executive Briefing | El Fortín Capital</title>
+  <meta name="description" content="Spend 2 weeks in the Spanish sun and let it earn for you the other 50. Deeded title, 4% contractual floor, 12 minutes from Valencia Airport. A single-owner flex-living vehicle in Valencia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/brand/page1/hero-rooftop-pool.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <style>
+    /* ===== PAGE 1 — EXECUTIVE BRIEFING (brief-scoped overrides) ===== */
+
+    /* §1 Hero — 60/40 split with full-height architectural render */
+    .page-briefing .landing-hero {
+      grid-template-columns: 60% 40%;
+    }
+    .page-briefing .landing-hero__media {
+      display: block;
+      padding: 0;
+      background: var(--p1-friction);
+    }
+    .page-briefing .landing-hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* §1 Data badges — icon + metric, compact label */
+    .page-briefing .landing-badge { text-align: left; padding: 18px 16px; }
+    .page-briefing .briefing-icon {
+      display: block;
+      width: 22px;
+      height: 22px;
+      flex: none;
+      stroke: currentColor;
+      fill: none;
+    }
+    .page-briefing .landing-badge__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 10px;
+      color: var(--p1-terracotta);
+    }
+    .page-briefing .landing-badge__value { font-size: clamp(26px, 3vw, 34px); margin-bottom: 2px; }
+    .page-briefing .landing-badge__key {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--p1-navy);
+      margin: 0 0 6px;
+    }
+    .page-briefing .landing-badge__key::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--p1-terracotta);
+      flex: none;
+    }
+    .page-briefing .landing-badge__label {
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 11px;
+      opacity: 0.65;
+      line-height: 1.35;
+    }
+
+    /* §2 Hands-off model — icon nodes replace body copy */
+    .page-briefing .workflow-step__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 14px;
+      border: 1px solid var(--p1-navy);
+      border-radius: var(--p1-radius);
+      color: var(--p1-navy);
+      background: var(--p1-canvas);
+    }
+    .page-briefing .workflow-step__icon .briefing-icon {
+      width: 22px;
+      height: 22px;
+    }
+    .page-briefing .workflow-step__head {
+      font-size: clamp(15px, 1.8vw, 18px);
+      font-weight: 700;
+      color: var(--p1-navy);
+      margin: 0 0 6px;
+    }
+    .page-briefing .workflow-step__tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--p1-terracotta);
+      margin: 0;
+    }
+
+    /* §3 Regulatory matrix — logo, stat chips, risk marks */
+    .page-briefing .briefing-card--risk { background: #eef1f5; }
+    .page-briefing .briefing-card__model {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+    }
+    .page-briefing .briefing-card__model-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--p1-navy);
+      opacity: 0.55;
+    }
+    .page-briefing .briefing-card__airbnb {
+      position: relative;
+      display: inline-flex;
+      color: #ff5a5f;
+    }
+    .page-briefing .briefing-card__airbnb svg {
+      width: 72px;
+      height: 22px;
+      fill: currentColor;
+    }
+    .page-briefing .briefing-card__airbnb::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 2px;
+      background: var(--alert, #b84d30);
+      transform: rotate(-4deg);
+    }
+    .page-briefing .briefing-card--risk .briefing-list__lead {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .page-briefing .briefing-card--risk .briefing-list__lead::before {
+      content: '\2715';
+      color: var(--alert, #b84d30);
+      font-weight: 700;
+      font-size: 13px;
+      flex: none;
+    }
+    .page-briefing .briefing-stat {
+      display: inline-block;
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 700;
+      color: var(--p1-navy);
+      margin-right: 6px;
+      letter-spacing: -0.02em;
+    }
+    .page-briefing .briefing-card--workaround .briefing-list__lead {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .page-briefing .briefing-card--workaround .briefing-list__lead::before {
+      content: '\2713';
+      color: var(--p1-navy);
+      font-weight: 700;
+      flex: none;
+    }
+    .page-briefing .briefing-list__body {
+      font-size: 13.5px;
+    }
+
+    /* §4 Credibility — date chip, credential pills */
+    .page-briefing .briefing-proof__case {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin: 16px 0 0;
+    }
+    .page-briefing .briefing-proof__chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--p1-canvas);
+      background: var(--p1-navy);
+      padding: 5px 10px;
+      border-radius: var(--p1-radius);
+    }
+    .page-briefing .briefing-proof__chip::before {
+      content: '\2713';
+      color: var(--p1-terracotta);
+    }
+    .page-briefing .briefing-proof__chip--date {
+      background: var(--p1-terracotta);
+      color: var(--p1-canvas);
+    }
+    .page-briefing .briefing-proof__chip--date::before { display: none; }
+    .page-briefing .briefing-proof__case-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--p1-navy);
+      margin: 0;
+    }
+    .page-briefing .briefing-proof__creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 4px;
+    }
+    .page-briefing .briefing-proof__cred {
+      display: block;
+      height: 18px;
+      width: auto;
+      margin: 0;
+      opacity: 0.72;
+      filter: grayscale(100%);
+    }
+    .page-briefing .briefing-proof__cred--sap { height: 16px; }
+    .page-briefing .briefing-proof__cred--siemens { height: 14px; }
+    .page-briefing .briefing-proof__partners figcaption {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--p1-navy);
+      opacity: 0.5;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .page-briefing .briefing-proof__partners figure {
+      margin: 0;
+      text-align: center;
+    }
+
+    /* §5 Intake — icon row replaces intro paragraph */
+    .page-briefing .intake-deliverables {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+      padding: 0;
+      list-style: none;
+    }
+    .page-briefing .intake-deliverable {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      padding: 12px 8px;
+      border: 1px solid rgba(41, 63, 91, 0.16);
+      border-radius: var(--p1-radius);
+    }
+    .page-briefing .intake-deliverable__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: var(--p1-terracotta);
+    }
+    .page-briefing .intake-deliverable__icon .briefing-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .page-briefing .intake-deliverable__label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--p1-navy);
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    /* §4 Credibility — asymmetrical split */
+    .page-briefing .briefing-proof {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(28px, 4vw, 56px);
+      align-items: center;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .page-briefing .briefing-proof__right {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .page-briefing .briefing-proof__quote {
+      font-family: var(--p1-font-serif);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.5;
+      color: var(--p1-navy);
+      text-align: center;
+      margin: 0;
+    }
+    .page-briefing .briefing-proof__quote cite {
+      display: block;
+      font-style: normal;
+      font-family: var(--p1-font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0.7;
+      margin-top: 14px;
+    }
+    .page-briefing .briefing-proof__founder {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(41, 63, 91, 0.14);
+    }
+    .page-briefing .briefing-proof__founder img {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--p1-radius);
+      object-fit: cover;
+      border: 1px solid var(--p1-navy);
+      flex: none;
+    }
+    .page-briefing .briefing-proof__founder-name { margin: 0; font-size: 14px; font-weight: 700; color: var(--p1-navy); }
+    .page-briefing .briefing-proof__partners {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+    }
+    .page-briefing .briefing-proof__partners img {
+      height: 38px;
+      width: auto;
+      max-width: 130px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 1023px) {
+      .page-briefing .briefing-proof { grid-template-columns: 1fr; }
+      .page-briefing .intake-deliverables { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body class="page-landing page-briefing">
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="hero-deeded" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></symbol>
+    <symbol id="hero-floor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="hero-proximity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="workflow-preservation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></symbol>
+    <symbol id="workflow-yield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+    <symbol id="workflow-lifestyle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+    <symbol id="intake-term-sheet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></symbol>
+    <symbol id="intake-financial-model" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+    <symbol id="intake-licenses" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+    <symbol id="intake-plans" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></symbol>
+  </svg>
+
+  <!-- 1. ABOVE THE FOLD — The Macro Shift -->
+  <section class="landing-hero" id="hero">
+    <div class="landing-hero__content">
+      <a href="index.html" class="landing-hero__logo serif">El Fortín Capital</a>
+      <p class="landing-hero__eyebrow">Valencia Flex Living · Private Presale</p>
+      <h1 class="landing-hero__title serif">Spend 2 weeks in the Spanish sun. Let it earn for you the other 50.</h1>
+      <div class="landing-badges" aria-label="Vehicle parameters">
+        <article class="landing-badge">
+          <div class="landing-badge__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#hero-deeded"/></svg>
+          </div>
+          <p class="landing-badge__value">100%</p>
+          <p class="landing-badge__key">Deeded</p>
+          <p class="landing-badge__label">Land Registry title</p>
+          <span class="visually-hidden">Registered title in the Spanish Land Registry.</span>
+        </article>
+        <article class="landing-badge">
+          <div class="landing-badge__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#hero-floor"/></svg>
+          </div>
+          <p class="landing-badge__value">4%</p>
+          <p class="landing-badge__key">Floor</p>
+          <p class="landing-badge__label">Contractual guarantee</p>
+          <span class="visually-hidden">Operator contractually covers any deficit out of pocket.</span>
+        </article>
+        <article class="landing-badge">
+          <div class="landing-badge__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#hero-proximity"/></svg>
+          </div>
+          <p class="landing-badge__value">12</p>
+          <p class="landing-badge__key">Minutes</p>
+          <p class="landing-badge__label">Valencia Airport</p>
+          <span class="visually-hidden">Transit proximity to Valencia International Airport.</span>
+        </article>
+      </div>
+    </div>
+    <div class="landing-hero__media">
+      <picture>
+        <source srcset="assets/brand/page1/hero-rooftop-pool.webp" type="image/webp">
+        <img src="assets/brand/page1/hero-rooftop-pool.jpg" alt="Rooftop pool and exterior — architectural render of the Valencia flex-living asset" width="1290" height="1600">
+      </picture>
+    </div>
+  </section>
+
+  <!-- 2. THE END-TO-END HANDS-OFF MODEL -->
+  <section class="landing-model" id="model" aria-labelledby="model-heading">
+    <div class="landing-model__inner">
+      <div class="section-head">
+        <p class="section-eyebrow">The Hands-Off Model</p>
+        <h2 class="section-h2 serif" id="model-heading">Own it. Earn from it. Enjoy it.</h2>
+      </div>
+      <ol class="workflow-steps">
+        <li class="workflow-step">
+          <span class="workflow-step__num">01</span>
+          <div class="workflow-step__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#workflow-preservation"/></svg>
+          </div>
+          <p class="workflow-step__head">Principal Preservation</p>
+          <p class="workflow-step__tag">Your name · Land Registry</p>
+          <span class="visually-hidden">Real estate asset title registered directly in your name at the Land Registry.</span>
+        </li>
+        <li class="workflow-step">
+          <span class="workflow-step__num">02</span>
+          <div class="workflow-step__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#workflow-yield"/></svg>
+          </div>
+          <p class="workflow-step__head">Yield Optimization</p>
+          <p class="workflow-step__tag">Turn-key · El Fortín ops</p>
+          <span class="visually-hidden">Complete turn-key corporate and mid-term tenancy operations handled by El Fortín.</span>
+        </li>
+        <li class="workflow-step">
+          <span class="workflow-step__num">03</span>
+          <div class="workflow-step__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#workflow-lifestyle"/></svg>
+          </div>
+          <p class="workflow-step__head">Lifestyle Allocation</p>
+          <p class="workflow-step__tag">2 weeks · Off-peak</p>
+          <span class="visually-hidden">Seamless access to your apartment for up to 2 weeks per year outside peak season.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3. THE REGULATORY LANDSCAPE — The Bridge of Logic -->
+  <section class="landing-mechanics" id="regulatory" aria-labelledby="regulatory-heading">
+    <div class="landing-mechanics__inner">
+      <div class="section-head">
+        <p class="section-eyebrow">The Regulatory Landscape</p>
+        <h2 class="section-h2 serif" id="regulatory-heading">Two structures. One survives the rules.</h2>
+      </div>
+
+      <div class="briefing-grid">
+        <article class="briefing-card briefing-card--risk">
+          <h3 class="briefing-card__title serif">The Regulatory Asymmetry of Valencia</h3>
+          <div class="briefing-card__model">
+            <span class="briefing-card__model-label">Independent model</span>
+            <span class="briefing-card__airbnb" aria-label="Airbnb model — structurally disrupted">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.001 18.275c-1.353-1.697-2.148-3.184-2.413-4.457-.263-1.027-.16-1.848.291-2.465.477-.71 1.188-1.056 2.121-1.056s1.643.345 2.12 1.063c.446.61.558 1.432.286 2.465-.291 1.298-1.085 2.785-2.412 4.458zm9.601 1.14c-.185 1.246-1.034 2.28-2.2 2.783-2.253.98-4.483-.583-6.392-2.704 3.157-3.951 3.74-7.028 2.385-9.018-.795-1.14-1.933-1.695-3.394-1.695-2.944 0-4.563 2.49-3.927 5.382.37 1.565 1.352 3.343 2.917 5.332-.98 1.085-1.91 1.856-2.732 2.333-.636.344-1.245.558-1.828.609-2.679.399-4.778-2.2-3.825-4.88.132-.345.395-.98.845-1.961l.025-.053c1.464-3.178 3.242-6.79 5.285-10.795l.053-.132.58-1.116c.45-.822.635-1.19 1.351-1.643.346-.21.77-.315 1.246-.315.954 0 1.698.558 2.016 1.007.158.239.345.557.582.953l.558 1.089.08.159c2.041 4.004 3.821 7.608 5.279 10.794l.026.025.533 1.22.318.764c.243.613.294 1.222.213 1.858zm1.22-2.39c-.186-.583-.505-1.271-.9-2.094v-.03c-1.889-4.006-3.642-7.608-5.307-10.844l-.111-.163C15.317 1.461 14.468 0 12.001 0c-2.44 0-3.476 1.695-4.535 3.898l-.081.16c-1.669 3.236-3.421 6.843-5.303 10.847v.053l-.559 1.22c-.21.504-.317.768-.345.847C-.172 20.74 2.611 24 5.98 24c.027 0 .132 0 .265-.027h.372c1.75-.213 3.554-1.325 5.384-3.317 1.829 1.989 3.635 3.104 5.382 3.317h.372c.133.027.239.027.265.027 3.37.003 6.152-3.261 4.802-6.975z"/></svg>
+            </span>
+          </div>
+          <ul class="briefing-list">
+            <li>
+              <p class="briefing-list__lead"><span class="briefing-stat">2%</span> District Cap</p>
+              <p class="briefing-list__body">New independent tourist licenses frozen by municipal law.</p>
+            </li>
+            <li>
+              <p class="briefing-list__lead"><span class="briefing-stat">3/5</span> HOA Veto</p>
+              <p class="briefing-list__body">Building majority can revoke an isolated unit&rsquo;s rental rights.</p>
+            </li>
+          </ul>
+        </article>
+        <article class="briefing-card briefing-card--workaround">
+          <p class="briefing-card__badge">The El Fortín Vehicle</p>
+          <h3 class="briefing-card__title serif">Unified &ldquo;Flex Living&rdquo; Architecture</h3>
+          <ul class="briefing-list">
+            <li>
+              <p class="briefing-list__lead">Unified Asset Exemption</p>
+              <p class="briefing-list__body">Single commercial hotel structure &mdash; exempt from residential caps.</p>
+            </li>
+            <li>
+              <p class="briefing-list__lead">Recorded Master Deed</p>
+              <p class="briefing-list__body">Rental rights written into <em>División Horizontal</em> &mdash; no community risk.</p>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CREDIBILITY & PROVEN EXECUTION -->
+  <section class="landing-trust" id="trust" aria-labelledby="trust-heading">
+    <div class="section-head">
+      <p class="section-eyebrow" id="trust-heading">Track Record &amp; Execution</p>
+    </div>
+    <div class="briefing-proof">
+      <div class="briefing-proof__left">
+        <div class="ba-slider ba-slider--full" aria-label="El Fortín de Puzol — before and after rehabilitation">
+          <picture>
+            <source srcset="assets/brand/page1/puzol-after.webp" type="image/webp">
+            <img class="ba-slider__img" src="assets/brand/page1/puzol-after.webp" alt="El Fortín de Puzol after rehabilitation" width="1200" height="900">
+          </picture>
+          <div class="ba-slider__after-wrap">
+            <picture>
+              <source srcset="assets/brand/page1/puzol-before.webp" type="image/webp">
+              <img class="ba-slider__img" src="assets/brand/page1/puzol-before.webp" alt="El Fortín de Puzol before rehabilitation" width="1200" height="900">
+            </picture>
+          </div>
+          <div class="ba-slider__handle" role="slider" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50" aria-label="Before and after comparison slider"></div>
+          <div class="ba-slider__labels">
+            <span class="ba-slider__label">Before</span>
+            <span class="ba-slider__label">After</span>
+          </div>
+        </div>
+        <div class="briefing-proof__case">
+          <span class="briefing-proof__chip">Delivered</span>
+          <span class="briefing-proof__chip briefing-proof__chip--date">Aug 2025</span>
+          <p class="briefing-proof__case-name">El Fortín de Puzol</p>
+        </div>
+      </div>
+
+      <div class="briefing-proof__right">
+        <blockquote class="briefing-proof__quote">
+          &ldquo;With EL FORTÍN, we felt from the start that we were in good hands. They listened to us, understood what we were looking for, and helped us find a solution that really fit. The whole process felt close, clear, and straightforward. Honestly, it gave us a lot of confidence.&rdquo;
+          <cite>&mdash; Dani &amp; Ale</cite>
+        </blockquote>
+        <figure class="briefing-proof__founder">
+          <img src="assets/brand/founder-placeholder.jpg" alt="Uriel Nabel — Founder, El Fortín Capital" width="64" height="64" loading="lazy">
+          <figcaption>
+            <p class="briefing-proof__founder-name">Uriel Nabel · Founder</p>
+            <div class="briefing-proof__creds" aria-label="Former corporate leadership">
+              <img class="briefing-proof__cred briefing-proof__cred--sap" src="assets/brand/logos/sap.svg" alt="SAP" width="48" height="16" loading="lazy">
+              <img class="briefing-proof__cred briefing-proof__cred--siemens" src="assets/brand/logos/siemens.svg" alt="Siemens" width="64" height="14" loading="lazy">
+            </div>
+          </figcaption>
+        </figure>
+        <div class="briefing-proof__partners" aria-label="Project partners">
+          <figure><img src="assets/brand/partners/nodhouses.png" alt="Nodhouses" width="130" height="38" loading="lazy"><figcaption>Constructor</figcaption></figure>
+          <figure><img src="assets/brand/partners/enlaza-arquitectura.png" alt="Enlaza" width="130" height="38" loading="lazy"><figcaption>Architect</figcaption></figure>
+          <figure><img src="assets/brand/partners/sofia-martin.png" alt="Sofia Martin" width="130" height="38" loading="lazy"><figcaption>Interior</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. THE INTAKE GATE — The Profile Form -->
+  <section class="landing-intake" id="intake" aria-labelledby="intake-heading">
+    <div class="intake-card">
+      <h2 class="intake-card__title serif" id="intake-heading">Unlock Private Investor Data Room &amp; Presale Brochure</h2>
+      <ul class="intake-deliverables" aria-label="Included in data room">
+        <li class="intake-deliverable">
+          <div class="intake-deliverable__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#intake-term-sheet"/></svg>
+          </div>
+          <p class="intake-deliverable__label">Term Sheet</p>
+        </li>
+        <li class="intake-deliverable">
+          <div class="intake-deliverable__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#intake-financial-model"/></svg>
+          </div>
+          <p class="intake-deliverable__label">Financial Model</p>
+        </li>
+        <li class="intake-deliverable">
+          <div class="intake-deliverable__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#intake-licenses"/></svg>
+          </div>
+          <p class="intake-deliverable__label">Licenses</p>
+        </li>
+        <li class="intake-deliverable">
+          <div class="intake-deliverable__icon" aria-hidden="true">
+            <svg class="briefing-icon" aria-hidden="true"><use href="#intake-plans"/></svg>
+          </div>
+          <p class="intake-deliverable__label">Certified Plans</p>
+        </li>
+      </ul>
+      <form class="intake-form" id="intakeForm" onsubmit="handleLandingSubmit(event)" novalidate>
+        <div class="intake-form__row">
+          <div class="intake-field">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required autocomplete="name">
+          </div>
+          <div class="intake-field">
+            <label for="email">Business Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+        </div>
+        <div class="intake-form__row">
+          <div class="intake-field">
+            <label for="phone">WhatsApp Phone (With Country Code)</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+34 ...">
+          </div>
+          <div class="intake-field">
+            <label for="capital">Available Allocation Capital</label>
+            <select id="capital" name="capital" required>
+              <option value="" disabled selected>Select range</option>
+              <option value="200-250">&euro;200k&ndash;&euro;250k</option>
+              <option value="250-350">&euro;250k&ndash;&euro;350k</option>
+              <option value="350+">&euro;350k+</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="intake-form__submit">Unlock Private Investor Data Room &amp; Brochure</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="landing-footer">
+    <p><strong>&copy; 2026 El Fortín Capital.</strong> EL FORTIN CONSTRUCCIONES Y PATRIMONIO S.L. &middot; CIF B22792923</p>
+    <p class="landing-footer__disclaimer">Projections are not guarantees; past results do not guarantee future performance. Investments are backed by individual title deeds registered at the Registro de la Propiedad.</p>
+    <nav class="landing-footer__legal" aria-label="Legal">
+      <a href="legal-disclaimer.html">Legal Disclaimer</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms &amp; Conditions</a>
+    </nav>
+  </footer>
+
+  <div class="landing-sticky-cta" id="stickyCta" hidden>
+    <button type="button" class="landing-sticky-cta__btn" id="stickyCtaBtn">Unlock Investor Data Room &amp; Brochure</button>
+  </div>
+
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>
