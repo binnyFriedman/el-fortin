@@ -11,7 +11,7 @@
   const DOC_TITLES = {
     license: 'Download Construction License',
     plans: 'Download Architectural Plans',
-    tabo: 'Download Tabo Excerpt',
+    tabo: 'Download deed excerpt',
     'investor-summary': 'Download Investor Agreement Summary'
   };
 
@@ -334,13 +334,132 @@
     progressEmpty.hidden = false;
   }
 
+  // Fact hub — construction site gallery
+  const FH_BUILD_GALLERY = [
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.34.jpeg', alt: 'Site — NODHOUSES banner' },
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.34 (1).jpeg', alt: 'Site — facade progress' },
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.30.jpeg', alt: 'Site — structural works' },
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.30 (1).jpeg', alt: 'Site — ground floor structure' },
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.31.jpeg', alt: 'Site — upper levels' },
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.32.jpeg', alt: 'Site — roof structure' },
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.33.jpeg', alt: 'Site — roof level' },
+    { src: 'assets/brand/on-going-construction/WhatsApp Image 2026-06-09 at 18.10.32 (4).jpeg', alt: 'Site — overview' }
+  ];
+  const buildGalleryEl = document.getElementById('buildGallery');
+  const buildGalleryOpen = document.getElementById('buildGalleryOpen');
+  const buildGalleryImg = document.getElementById('buildGalleryImg');
+  const buildGalleryCaption = document.getElementById('buildGalleryCaption');
+  const buildGalleryCount = document.getElementById('buildGalleryCount');
+  let buildGalleryIndex = 0;
+
+  function renderBuildGallerySlide(index) {
+    if (!buildGalleryEl || !FH_BUILD_GALLERY.length) return;
+    buildGalleryIndex = (index + FH_BUILD_GALLERY.length) % FH_BUILD_GALLERY.length;
+    const slide = FH_BUILD_GALLERY[buildGalleryIndex];
+    if (buildGalleryImg) {
+      buildGalleryImg.src = slide.src;
+      buildGalleryImg.alt = slide.alt;
+    }
+    if (buildGalleryCaption) buildGalleryCaption.textContent = slide.alt;
+    if (buildGalleryCount) {
+      buildGalleryCount.textContent = `${buildGalleryIndex + 1} / ${FH_BUILD_GALLERY.length}`;
+    }
+  }
+
+  function openBuildGallery(startIndex = 0) {
+    if (!buildGalleryEl) return;
+    renderBuildGallerySlide(startIndex);
+    buildGalleryEl.classList.add('is-open');
+    buildGalleryEl.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    buildGalleryEl.querySelector('[data-close-gallery]')?.focus();
+  }
+
+  function closeBuildGallery() {
+    if (!buildGalleryEl) return;
+    buildGalleryEl.classList.remove('is-open');
+    buildGalleryEl.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    buildGalleryOpen?.focus();
+  }
+
+  if (buildGalleryEl && buildGalleryOpen) {
+    buildGalleryOpen.addEventListener('click', () => openBuildGallery(0));
+    buildGalleryEl.querySelectorAll('[data-close-gallery]').forEach((el) => {
+      el.addEventListener('click', closeBuildGallery);
+    });
+    buildGalleryEl.querySelector('[data-gallery-prev]')?.addEventListener('click', () => {
+      renderBuildGallerySlide(buildGalleryIndex - 1);
+    });
+    buildGalleryEl.querySelector('[data-gallery-next]')?.addEventListener('click', () => {
+      renderBuildGallerySlide(buildGalleryIndex + 1);
+    });
+    buildGalleryEl.addEventListener('click', (e) => {
+      if (e.target === buildGalleryEl) closeBuildGallery();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!buildGalleryEl.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeBuildGallery();
+      else if (e.key === 'ArrowLeft') renderBuildGallerySlide(buildGalleryIndex - 1);
+      else if (e.key === 'ArrowRight') renderBuildGallerySlide(buildGalleryIndex + 1);
+    });
+  }
+
+  // Fact hub — sticky mobile bar
+  const fhSticky = document.getElementById('fhSticky');
+  const fhInstrument = document.querySelector('.fh-instrument');
+  if (fhSticky && fhInstrument) {
+    fhSticky.hidden = false;
+    const fhMq = window.matchMedia('(max-width: 640px)');
+    function updateFhSticky() {
+      if (!fhMq.matches) {
+        fhSticky.classList.remove('is-visible');
+        document.body.classList.remove('has-sticky-bar');
+        return;
+      }
+      const pastInstrument = fhInstrument.getBoundingClientRect().bottom < 0;
+      fhSticky.classList.toggle('is-visible', pastInstrument);
+      document.body.classList.toggle('has-sticky-bar', pastInstrument);
+    }
+    window.addEventListener('scroll', updateFhSticky, { passive: true });
+    fhMq.addEventListener('change', updateFhSticky);
+    updateFhSticky();
+  }
+
+  // Fact hub — section nav highlight
+  if (document.body.classList.contains('page-fact-hub') && navLinks) {
+    const sectionIds = ['summary', 'proof', 'capital', 'call'];
+    const navAnchors = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length && navAnchors.length) {
+      const setActive = (id) => {
+        navAnchors.forEach((link) => {
+          const match = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('nav__link--active', match);
+          if (match) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      };
+
+      const spyObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      }, { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.15, 0.4] });
+
+      sections.forEach((section) => spyObserver.observe(section));
+    }
+  }
+
   // Investment overview — highlight nav link for current section
   if (document.body.classList.contains('page-investment-overview') && navLinks) {
-    const sectionIds = document.body.classList.contains('page-fact-hub')
-      ? ['vehicle', 'returns', 'capital', 'legal', 'execution', 'proof', 'asset', 'briefing']
-      : document.body.classList.contains('page-brochure-refined')
-        ? ['asset', 'deal', 'site', 'proof', 'due-diligence', 'briefing']
-        : ['development', 'units', 'milestones', 'returns', 'track-record', 'due-diligence', 'briefing'];
+    const sectionIds = document.body.classList.contains('page-brochure-refined')
+      ? ['asset', 'deal', 'site', 'proof', 'due-diligence', 'briefing']
+      : ['development', 'units', 'milestones', 'returns', 'track-record', 'due-diligence', 'briefing'];
     const navAnchors = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
     const sections = sectionIds
       .map((id) => document.getElementById(id))
