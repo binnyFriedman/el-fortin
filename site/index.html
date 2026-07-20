@@ -6,12 +6,13 @@
   [ ] All ⏳ U-Q placeholders resolved with verified answers
   [ ] Land-paid claim included only if U-Q7 = yes
   [ ] Unit-10-sold mention only if U-Q9 = yes
-  [ ] Floor sentence is Uriel's approved wording (U-Q8)
+  [ ] Floor sentence is Uriel's approved wording (U-Q8 — drafted below from approved-claims.md, needs his signature)
   [ ] Numbers cross-checked once more against deal doc §4/§5
   [ ] No "guaranteed" anywhere on page
 
-  Also before launch: remove the robots noindex meta tag below, and set the GA4
-  measurement ID (search this file for "TODO").
+  Also before launch: remove the robots noindex meta tag below, set the GA4
+  measurement ID, and fill the CONFIG block at the bottom (Binny holds Uriel's
+  email + phone). Search this file for "TODO".
 -->
 <html lang="en">
 <head>
@@ -19,10 +20,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- TODO: remove noindex at launch (page is unshippable while ⏳ placeholders remain) -->
   <meta name="robots" content="noindex, nofollow">
-  <title>El Fortín — A deeded, new-build apartment on Valencia's Metro Line 1</title>
+  <title>El Fortín — A deeded, new-build apartment on the Valencia metro</title>
   <meta name="description" content="Ten units in one small building, 20 minutes from Spain's fastest-renting city. Title in your name at the Registro de la Propiedad. Handover 2027.">
 
-  <!-- GA4 stub — TODO: set measurement ID (U: cost per named fear is the primary KPI)
+  <!-- GA4 stub — TODO: set measurement ID (cost per named fear is the primary KPI)
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -35,6 +36,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 
   <style>
     :root {
@@ -114,6 +117,11 @@
       font-weight: 600;
       white-space: nowrap;
     }
+    .pending-signature {
+      display: inline-block; margin-top: 6px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--todo-amber);
+    }
 
     /* ---------- Section headings ---------- */
     .eyebrow {
@@ -122,20 +130,29 @@
     }
     h2 { font-size: 28px; line-height: 1.2; margin-bottom: 16px; }
 
-    /* ---------- 1. Hero ---------- */
-    .hero { padding: 80px 0 64px; text-align: left; }
-    .hero h1 { font-size: 36px; line-height: 1.15; max-width: 18em; }
-    .hero .sub {
-      margin-top: 20px; font-size: 17px; color: var(--slate); max-width: 42em;
+    /* ---------- 1. Hero — light paper + cutaway (illustration, not a photo) ---------- */
+    .hero {
+      background: var(--white-stone);
+      border-bottom: 1px solid var(--linen);
+    }
+    .hero .container { padding-top: 56px; padding-bottom: 40px; }
+    .hero-grid { display: grid; gap: 28px; align-items: center; }
+    .hero h1 { font-size: 36px; line-height: 1.15; }
+    .hero .sub { margin-top: 16px; font-size: 17px; max-width: 36em; color: var(--slate); }
+    .hero-art { margin: 0; }
+    .hero-art img { width: 100%; height: auto; display: block; }
+    .hero-art figcaption {
+      margin-top: 8px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--ash);
     }
     .trust-bar {
-      margin-top: 40px; padding-top: 20px;
+      margin-top: 32px; padding-top: 20px;
       border-top: 1px solid var(--sandstone);
       font-size: 13px; letter-spacing: 0.04em; color: var(--ash);
     }
     .trust-bar span { white-space: nowrap; }
 
-    /* ---------- 2. Competence ---------- */
+    /* ---------- 2. Who's behind it ---------- */
     .section-white { background: var(--white-stone); }
     .founder-grid { display: grid; gap: 32px; }
     .founder-photo-slot { max-width: 320px; }
@@ -151,7 +168,6 @@
       border-radius: 6px;
       padding: 32px;
     }
-    .letter h3 { font-size: 22px; margin-bottom: 20px; }
     .letter p { margin-bottom: 16px; }
 
     /* ---------- 4. Candor ---------- */
@@ -165,17 +181,71 @@
     }
     .candor-list li strong { color: var(--navy); }
 
-    /* ---------- 5. Town ---------- */
-    .town-grid { display: grid; gap: 32px; }
-    .town-facts { list-style: none; display: grid; gap: 16px; margin-top: 20px; }
+    /* ---------- 5. Town — large map as the stage; copy overlays it ---------- */
+    #town {
+      position: relative;
+      padding: 0;
+      background: var(--linen);
+    }
+    .town-stage {
+      position: relative;
+      min-height: 520px;
+    }
+    .town-stage #metro-map {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      background: var(--linen);
+      z-index: 0;
+    }
+    .town-stage .leaflet-tile-pane { filter: sepia(0.18) saturate(0.85) brightness(1.01); }
+    .town-stage .station-dot {
+      background: var(--white-stone);
+      border: 2px solid var(--navy);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(253,252,250,0.8);
+    }
+    .town-stage .building-marker {
+      background: var(--terracotta);
+      border: 2px solid var(--white-stone);
+      border-radius: 50%;
+      box-shadow: 0 1px 6px rgba(27,42,74,0.4);
+    }
+    .town-stage .leaflet-tooltip {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+      color: var(--navy); background: var(--white-stone);
+      border: 1px solid var(--sandstone); border-radius: 3px;
+      box-shadow: none; padding: 2px 7px;
+    }
+    .town-overlay {
+      position: relative; z-index: 2;
+      padding: 48px 16px 56px;
+      pointer-events: none; /* let map receive pan/zoom under empty space */
+    }
+    .town-overlay .container { pointer-events: none; }
+    .town-card {
+      pointer-events: auto; /* text + links stay clickable */
+      max-width: 440px;
+      background: rgba(253, 252, 250, 0.94);
+      border: 1px solid var(--sandstone);
+      border-radius: 6px;
+      padding: 28px 28px 24px;
+      box-shadow: 0 12px 40px rgba(27, 42, 74, 0.08);
+    }
+    .town-card .eyebrow { color: var(--ash); }
+    .town-card h2 { margin-bottom: 12px; }
+    .town-card > p { color: var(--slate); font-size: 15px; }
+    .town-facts { list-style: none; display: grid; gap: 12px; margin-top: 18px; }
     .town-facts li {
-      padding-left: 20px; position: relative; color: var(--slate);
+      padding-left: 16px; position: relative; color: var(--slate); font-size: 14px; line-height: 1.5;
     }
     .town-facts li::before {
-      content: ""; position: absolute; left: 0; top: 0.6em;
-      width: 8px; height: 8px; background: var(--terracotta); border-radius: 50%;
+      content: ""; position: absolute; left: 0; top: 0.55em;
+      width: 6px; height: 6px; background: var(--terracotta); border-radius: 50%;
     }
-    .town-photo img { width: 100%; border-radius: 6px; display: block; border: 1px solid var(--sandstone); }
+    .town-attrib {
+      margin-top: 16px; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--ash);
+    }
 
     /* ---------- 6. Numbers ---------- */
     .numbers { background: var(--navy); color: var(--white-stone); }
@@ -204,8 +274,9 @@
     .yield-card .figure em { font-style: normal; color: var(--terracotta); }
     .yield-card p { font-size: 14px; color: var(--linen); margin-top: 8px; }
     .numbers .disclaimer { margin-top: 32px; font-size: 13px; font-style: italic; color: var(--sandstone); }
-    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 16px; margin-top: 40px; }
     .plans img { width: 100%; border-radius: 6px; display: block; background: var(--white-stone); }
+    .plans figure.photo img { aspect-ratio: 3 / 2; object-fit: cover; }
     .plans figcaption { color: var(--sandstone); }
 
     /* ---------- 7. Questions asked ---------- */
@@ -271,12 +342,15 @@
     @media (min-width: 768px) {
       .container { padding: 0 32px; }
       section { padding: 96px 0; }
-      .hero { padding: 112px 0 96px; }
-      .hero h1 { font-size: 52px; }
+      .hero .container { padding-top: 72px; padding-bottom: 56px; }
+      .hero-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr); gap: 40px; }
+      .hero h1 { font-size: 48px; }
       h2 { font-size: 38px; }
       .cta h2 { font-size: 42px; }
       .founder-grid { grid-template-columns: 320px 1fr; align-items: start; }
-      .town-grid { grid-template-columns: 1fr 380px; align-items: start; }
+      .town-stage { min-height: 640px; }
+      .town-overlay { padding: 72px 32px 80px; }
+      .town-card { padding: 36px 36px 28px; }
       .fear-buttons { grid-template-columns: 1fr 1fr; }
       .yield-cards { grid-template-columns: repeat(3, 1fr); }
       .puzol-pair img { height: 340px; }
@@ -292,16 +366,26 @@
     </div>
   </nav>
 
-  <!-- 1. Hero — familiar anchor, no yield -->
+  <!-- 1. Hero — cutaway illustration (captioned as such); construction photo kept as alternate in assets/ -->
   <header class="hero">
     <div class="container">
-      <h1>A deeded, new-build apartment on Valencia&rsquo;s Metro Line&nbsp;1</h1>
-      <p class="sub">Ten units in one small building, 20 minutes from Spain&rsquo;s fastest-renting city. Title in your name at the Registro de la Propiedad &mdash; sell whenever you want. Handover 2027. Nine of ten still available.</p>
-      <p class="trust-bar">
-        <span>Building license Exp. 4497/2025/GEN</span> &nbsp;&middot;&nbsp;
-        <span>Res. 3658/2025</span> &nbsp;&middot;&nbsp;
-        <span>Architect COACV 11.357</span>
-      </p>
+      <div class="hero-grid">
+        <div>
+          <!-- Line number corrected from the copy doc: Riba-roja's station is on Metrovalencia Line 9
+               (the branch left Line 1 in the 2015 renumbering) — flagged to Binny, deal doc §1 needs the same fix. -->
+          <h1>A deeded, new-build apartment on Valencia&rsquo;s Metro Line&nbsp;9</h1>
+          <p class="sub">Ten units in one small building, 20 minutes from Spain&rsquo;s fastest-renting city. Title in your name at the Registro de la Propiedad &mdash; sell whenever you want. Handover 2027. Nine of ten still available.</p>
+          <p class="trust-bar">
+            <span>Building license Exp. 4497/2025/GEN</span> &nbsp;&middot;&nbsp;
+            <span>Res. 3658/2025</span> &nbsp;&middot;&nbsp;
+            <span>Architect COACV 11.357</span>
+          </p>
+        </div>
+        <figure class="hero-art">
+          <img src="assets/hero-building.jpg" alt="Architectural cutaway of the ten-unit building — illustrative">
+          <figcaption>Architectural cutaway &mdash; illustrative</figcaption>
+        </figure>
+      </div>
     </div>
   </header>
 
@@ -327,8 +411,8 @@
       </div>
       <div class="puzol-pair">
         <figure>
-          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol mid-renovation — exposed structure and works in progress">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; during works</figcaption>
+          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol before renovation — stripped room with arched doorway and peeling walls">
+          <figcaption>El Fort&iacute;n de Puzol &mdash; before</figcaption>
         </figure>
         <figure>
           <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
@@ -346,7 +430,7 @@
       <div class="letter">
         <div class="todo">
           <span class="todo-tag">&#9203; U-Q1 &mdash; pending</span><br>
-          The Argentina memory, verbatim from Uriel. Nothing publishes here until it is his exact words.
+          The story, verbatim from Uriel&rsquo;s voice notes. Never a suggested narrative.
         </div>
         <div class="todo">
           <span class="todo-tag">&#9203; U-Q2 &mdash; pending</span><br>
@@ -368,13 +452,10 @@
       <p class="eyebrow">Before you read further</p>
       <h2>What this is not</h2>
       <ul class="candor-list">
-        <li><strong>Not Valencia city centre.</strong> It&rsquo;s Riba-roja de T&uacute;ria &mdash; a working commuter town on Metro Line&nbsp;1. If you want a trophy address, this isn&rsquo;t your deal.</li>
+        <li><strong>Not Valencia city centre.</strong> It&rsquo;s Riba-roja de T&uacute;ria &mdash; a working commuter town on Metro Line&nbsp;9. If you want a trophy address, this isn&rsquo;t your deal.</li>
         <li>
-          <strong>Not a bank-backed yield.</strong> The 4% income floor is a contractual covenant of the developer company &mdash; backed by paid-off land and our profit in the project, not by a bank aval today.
-          <div class="todo">
-            <span class="todo-tag">&#9203; U-Q8 &mdash; pending</span><br>
-            Uriel&rsquo;s exact floor sentence goes here, in his approved wording.
-          </div>
+          <strong>Not a bank-backed yield.</strong> The 4% income floor is a contractual covenant of the developer company &mdash; a developer covenant, not a bank guarantee. It is backed by paid-off land and our profit in the project, not by a bank aval today.
+          <span class="pending-signature">Floor wording drafted from approved-claims.md &mdash; awaiting Uriel&rsquo;s signature (U-Q8)</span>
         </li>
         <li><strong>Not a tourist-rental story.</strong> Short-let here is thin and seasonal; we underwrite it as limited upside, never the base.</li>
         <li><strong>Not a fund or pooled product.</strong> One specific apartment, deeded to you.</li>
@@ -382,24 +463,24 @@
     </div>
   </section>
 
-  <!-- 5. The town, honestly — fear #0 pre-answer -->
+  <!-- 5. The town — large real map as the stage; copy overlays it -->
   <section id="town">
-    <div class="container">
-      <p class="eyebrow">The location, plainly</p>
-      <h2>The town, honestly</h2>
-      <div class="town-grid">
-        <div>
-          <p>You&rsquo;ve probably never heard of Riba-roja. It isn&rsquo;t a postcard town and it isn&rsquo;t near the beach &mdash; it&rsquo;s where the Valencia metro area&rsquo;s workforce actually lives. What the data says:</p>
-          <ul class="town-facts">
-            <li>Valencia is Spain&rsquo;s fastest-renting major market &mdash; 24% of listings rent in under 24 hours; 32&ndash;38 enquiries per listing, higher in metro towns than the city.</li>
-            <li>New, furnished, metro-adjacent apartments rent at ~&euro;16/m&sup2; &mdash; 40&ndash;55% above the town average (17 live comparables, July 2026).</li>
-            <li>Vacancy risk here is near zero. The honest question is the price level, not whether it rents.</li>
-          </ul>
+    <div class="town-stage">
+      <div id="metro-map" aria-label="Map: the building in Riba-roja de Túria and Metrovalencia Line 9 running to Valencia city centre"></div>
+      <div class="town-overlay">
+        <div class="container">
+          <div class="town-card">
+            <p class="eyebrow">The location, plainly</p>
+            <h2>The town, honestly</h2>
+            <p>You&rsquo;ve probably never heard of Riba-roja. It isn&rsquo;t a postcard town and it isn&rsquo;t near the beach &mdash; it&rsquo;s where the Valencia metro area&rsquo;s workforce actually lives. What the data says:</p>
+            <ul class="town-facts">
+              <li>Valencia is Spain&rsquo;s fastest-renting major market &mdash; 24% of listings rent in under 24 hours; 32&ndash;38 enquiries per listing, higher in metro towns than the city.</li>
+              <li>New, furnished, metro-adjacent apartments rent at ~&euro;16/m&sup2; &mdash; 40&ndash;55% above the town average (17 live comparables, July 2026).</li>
+              <li>Vacancy risk here is near zero. The honest question is the price level, not whether it rents.</li>
+            </ul>
+            <p class="town-attrib">Metrovalencia Line 9 &middot; real route data &copy; OpenStreetMap</p>
+          </div>
         </div>
-        <figure class="town-photo">
-          <img src="assets/site-june-2026.jpg" alt="Inside the building during structural works — props and new floor structure, June 2026">
-          <figcaption>The building at Camino Valencia 31 &mdash; site photo, June 2026</figcaption>
-        </figure>
       </div>
     </div>
   </section>
@@ -461,6 +542,14 @@
           <img src="assets/render-type-b.jpg" alt="Type B floor plan — 57 square metres">
           <figcaption>Type B &mdash; floor plan, 57&nbsp;m&sup2;</figcaption>
         </figure>
+        <figure class="photo">
+          <img src="assets/plans-on-site.jpg" alt="Hands reviewing the certified architectural plans at the construction site">
+          <figcaption>The certified plans, on site &mdash; photo, June 2026</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="assets/render-interior.jpg" alt="Interior render of a duplex unit — living area with mezzanine stair">
+          <figcaption>Interior &mdash; render, illustrative</figcaption>
+        </figure>
       </div>
       <p class="disclaimer">Projections are not guarantees.</p>
     </div>
@@ -502,8 +591,8 @@
       <p class="send-hint">One question, one focused answer. No mailing list, no follow-up sequence.</p>
 
       <div class="todo">
-        <span class="todo-tag">&#9203; U-Q15 &mdash; pending</span><br>
-        Lead inbox and WhatsApp number not yet confirmed &mdash; the send buttons point at placeholder addresses. Set them in the CONFIG block at the bottom of this file.
+        <span class="todo-tag">Config &mdash; fill at build sign-off</span><br>
+        Endpoint is decided (U-Q15 closed): the buttons deliver to Uriel&rsquo;s email and phone, which Binny holds. Paste both into the CONFIG block at the bottom of this file &mdash; they are placeholders until then.
       </div>
 
       <p class="quiet-cta">Prefer to just talk? <a href="#TODO-U-Q14" id="book-call">Book 15 minutes with Uriel.</a> <span class="todo-inline">&#9203; U-Q14: calendar link</span></p>
@@ -521,10 +610,10 @@
   </footer>
 
   <script>
-    // CONFIG — ⏳ U-Q15: replace both placeholders with the confirmed lead inbox + WhatsApp number.
+    // CONFIG — U-Q15 closed: Binny holds Uriel's email + phone. TODO: paste real values.
     var CONFIG = {
-      email: 'TODO-U-Q15@example.com',
-      whatsapp: 'TODO-U-Q15' // international format, digits only, e.g. 34600000000
+      email: 'TODO-PASTE-EMAIL@example.com',
+      whatsapp: 'TODO-PASTE-PHONE' // international format, digits only, e.g. 34600000000
     };
 
     // fear_named is the funnel's primary conversion (Google Ads / GA4).
@@ -573,6 +662,63 @@
       trackFearNamed(fearId, 'whatsapp');
       window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
     });
+  </script>
+
+  <!-- Real map: OpenStreetMap cartography + the actual Metrovalencia Line 9 geometry
+       (OSM relation 5626068, fetched 2026-07-20 — see assets/metro-line9.js).
+       Tiles: Carto "light_all" basemap (tile.openstreetmap.org 403s some browsers and
+       disallows production use anyway). If traffic grows past Carto's free-tier comfort,
+       move to a keyed provider (MapTiler / Stadia). -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="assets/metro-line9.js"></script>
+  <script>
+    (function () {
+      var map = L.map('metro-map', {
+        scrollWheelZoom: false,       // don't hijack page scroll — engaged, not trapped
+        zoomControl: true,
+        attributionControl: true
+      });
+
+      L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 17,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      }).addTo(map);
+
+      // The real Line 9 track, in the line's official colour reference from OSM (we restyle to navy).
+      var lineGroup = L.featureGroup(METRO_LINE9.segments.map(function (seg) {
+        return L.polyline(seg, { color: '#1B2A4A', weight: 3.5, opacity: 0.9 });
+      })).addTo(map);
+
+      // Stations as quiet dots; names on hover, one permanent label at the city end.
+      METRO_LINE9.stations.forEach(function (s) {
+        var m = L.marker(s.ll, {
+          icon: L.divIcon({ className: 'station-dot', iconSize: [9, 9] }),
+          keyboard: false
+        }).addTo(map);
+        if (s.name === 'Colón') {
+          m.bindTooltip('Val&egrave;ncia centre &middot; Col&oacute;n', { permanent: true, direction: 'left', offset: [-8, 0] });
+        } else {
+          m.bindTooltip(s.name, { direction: 'top' });
+        }
+      });
+
+      // The building.
+      L.marker(METRO_LINE9.building, {
+        icon: L.divIcon({ className: 'building-marker', iconSize: [15, 15] })
+      }).addTo(map).bindTooltip('The building &middot; Camino Valencia 31', {
+        permanent: true, direction: 'right', offset: [10, 0]
+      });
+
+      // Frame the story: the building to the city centre (the full real line still shows).
+      // Leave room on the left for the overlay card so the route stays visible.
+      map.fitBounds(L.latLngBounds(METRO_LINE9.building, [39.46767, -0.37758]), {
+        paddingTopLeft: [window.innerWidth >= 768 ? 480 : 24, 40],
+        paddingBottomRight: [40, 40]
+      });
+      // Absolute-positioned container — size is known only after layout.
+      setTimeout(function () { map.invalidateSize(); }, 0);
+    })();
   </script>
 </body>
 </html>
