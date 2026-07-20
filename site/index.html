@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<!--
+  PUBLISH CHECKLIST (from marketing-strategies/01-direct-investor-funnel/assets/landing-page-copy.md)
+  All must be checked before this page goes live anywhere:
+
+  [ ] All ⏳ U-Q placeholders resolved with verified answers
+  [ ] Land-paid claim included only if U-Q7 = yes
+  [ ] Unit-10-sold mention only if U-Q9 = yes
+  [ ] Floor sentence is Uriel's approved wording (U-Q8)
+  [ ] Numbers cross-checked once more against deal doc §4/§5
+  [ ] No "guaranteed" anywhere on page
+
+  Also before launch: remove the robots noindex meta tag below, and set the GA4
+  measurement ID (search this file for "TODO").
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- TODO: remove noindex at launch (page is unshippable while ⏳ placeholders remain) -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>El Fortín — A deeded, new-build apartment on Valencia's Metro Line 1</title>
+  <meta name="description" content="Ten units in one small building, 20 minutes from Spain's fastest-renting city. Title in your name at the Registro de la Propiedad. Handover 2027.">
+
+  <!-- GA4 stub — TODO: set measurement ID (U: cost per named fear is the primary KPI)
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --slate: #3D4F5F;
+      --ash: #6B7B8D;
+      --parchment: #F7F4EF;
+      --white-stone: #FDFCFA;
+      --terracotta: #C2703E;
+      --terracotta-dark: #A85E32;
+      --sandstone: #D4B896;
+      --linen: #EDE4D3;
+      --todo-amber: #B45309;
+      --todo-amber-bg: #FDF6EC;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--navy);
+      background: var(--parchment);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+    .narrow { max-width: 760px; margin-left: auto; margin-right: auto; }
+
+    section { padding: 64px 0; }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--navy);
+      height: 64px;
+      display: flex; align-items: center;
+    }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav img { height: 32px; width: auto; filter: brightness(0) invert(1); }
+    .nav a.nav-cta {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--white-stone); text-decoration: none;
+      border: 1.5px solid var(--terracotta); border-radius: 4px;
+      padding: 8px 16px; transition: background 300ms ease;
+    }
+    .nav a.nav-cta:hover { background: var(--terracotta); }
+
+    /* ---------- TODO placeholder blocks (⏳ U-Q#) ---------- */
+    .todo {
+      border: 2px dashed var(--todo-amber);
+      background: var(--todo-amber-bg);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      color: var(--todo-amber);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .todo .todo-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .todo-inline {
+      border: 2px dashed var(--todo-amber);
+      background: var(--todo-amber-bg);
+      border-radius: 4px;
+      padding: 1px 8px;
+      color: var(--todo-amber);
+      font-size: 0.9em;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ---------- Section headings ---------- */
+    .eyebrow {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ash); margin-bottom: 12px;
+    }
+    h2 { font-size: 28px; line-height: 1.2; margin-bottom: 16px; }
+
+    /* ---------- 1. Hero ---------- */
+    .hero { padding: 80px 0 64px; text-align: left; }
+    .hero h1 { font-size: 36px; line-height: 1.15; max-width: 18em; }
+    .hero .sub {
+      margin-top: 20px; font-size: 17px; color: var(--slate); max-width: 42em;
+    }
+    .trust-bar {
+      margin-top: 40px; padding-top: 20px;
+      border-top: 1px solid var(--sandstone);
+      font-size: 13px; letter-spacing: 0.04em; color: var(--ash);
+    }
+    .trust-bar span { white-space: nowrap; }
+
+    /* ---------- 2. Competence ---------- */
+    .section-white { background: var(--white-stone); }
+    .founder-grid { display: grid; gap: 32px; }
+    .founder-photo-slot { max-width: 320px; }
+    .founder-photo-slot img { width: 100%; border-radius: 6px; display: block; border: 1px solid var(--linen); }
+    figure figcaption { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ash); margin-top: 8px; }
+    .puzol-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .puzol-pair img { width: 100%; height: 260px; object-fit: cover; border-radius: 6px; border: 1px solid var(--sandstone); display: block; }
+
+    /* ---------- 3. Letter ---------- */
+    .letter {
+      background: var(--white-stone);
+      border: 1px solid var(--linen);
+      border-radius: 6px;
+      padding: 32px;
+    }
+    .letter h3 { font-size: 22px; margin-bottom: 20px; }
+    .letter p { margin-bottom: 16px; }
+
+    /* ---------- 4. Candor ---------- */
+    .candor-list { list-style: none; display: grid; gap: 20px; margin-top: 8px; }
+    .candor-list li {
+      background: var(--white-stone);
+      border-left: 3px solid var(--navy);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      color: var(--slate);
+    }
+    .candor-list li strong { color: var(--navy); }
+
+    /* ---------- 5. Town ---------- */
+    .town-grid { display: grid; gap: 32px; }
+    .town-facts { list-style: none; display: grid; gap: 16px; margin-top: 20px; }
+    .town-facts li {
+      padding-left: 20px; position: relative; color: var(--slate);
+    }
+    .town-facts li::before {
+      content: ""; position: absolute; left: 0; top: 0.6em;
+      width: 8px; height: 8px; background: var(--terracotta); border-radius: 50%;
+    }
+    .town-photo img { width: 100%; border-radius: 6px; display: block; border: 1px solid var(--sandstone); }
+
+    /* ---------- 6. Numbers ---------- */
+    .numbers { background: var(--navy); color: var(--white-stone); }
+    .numbers h2 { color: var(--white-stone); }
+    .numbers .eyebrow { color: var(--sandstone); }
+    .num-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 15px; }
+    .num-table th, .num-table td { padding: 14px 16px; text-align: right; }
+    .num-table th:first-child, .num-table td:first-child { text-align: left; }
+    .num-table thead th {
+      font-weight: 600; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+      border-bottom: 2px solid var(--terracotta);
+    }
+    .num-table tbody tr { border-bottom: 1px solid rgba(212, 184, 150, 0.25); }
+    .num-table td { font-variant-numeric: tabular-nums; font-weight: 500; }
+    .num-table td:first-child { font-weight: 400; color: var(--linen); }
+    .yield-cards { display: grid; gap: 16px; margin-top: 8px; }
+    .yield-card {
+      border: 1px solid rgba(212, 184, 150, 0.35);
+      border-radius: 6px; padding: 24px;
+    }
+    .yield-card .label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--sandstone); margin-bottom: 8px;
+    }
+    .yield-card .figure { font-family: 'DM Serif Display', Georgia, serif; font-size: 30px; line-height: 1.1; }
+    .yield-card .figure em { font-style: normal; color: var(--terracotta); }
+    .yield-card p { font-size: 14px; color: var(--linen); margin-top: 8px; }
+    .numbers .disclaimer { margin-top: 32px; font-size: 13px; font-style: italic; color: var(--sandstone); }
+    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .plans img { width: 100%; border-radius: 6px; display: block; background: var(--white-stone); }
+    .plans figcaption { color: var(--sandstone); }
+
+    /* ---------- 7. Questions asked ---------- */
+    .qa-empty {
+      background: var(--white-stone);
+      border: 1px solid var(--linen);
+      border-radius: 6px;
+      padding: 32px;
+      color: var(--slate);
+    }
+
+    /* ---------- 8. CTA ---------- */
+    .cta { background: var(--linen); }
+    .cta h2 { font-size: 32px; }
+    .cta h2 em { color: var(--terracotta); }
+    .cta .lede { color: var(--slate); max-width: 40em; margin-bottom: 32px; }
+    .fear-buttons { display: grid; gap: 12px; }
+    .fear-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 500; text-align: left;
+      color: var(--navy);
+      background: var(--white-stone);
+      border: 1.5px solid var(--sandstone);
+      border-radius: 6px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: border-color 300ms ease, background 300ms ease;
+    }
+    .fear-btn:hover { border-color: var(--terracotta); }
+    .fear-btn.selected { border-color: var(--terracotta); background: #FBF3EC; }
+    .fear-other { margin-top: 12px; }
+    .fear-other label { display: block; font-size: 13px; font-weight: 500; color: var(--slate); margin-bottom: 6px; }
+    .fear-other textarea {
+      width: 100%; min-height: 72px; resize: vertical;
+      font-family: 'Inter', sans-serif; font-size: 15px; color: var(--navy);
+      background: var(--white-stone);
+      border: 1.5px solid var(--sandstone); border-radius: 6px;
+      padding: 12px 16px;
+    }
+    .fear-other textarea:focus { outline: 2px solid rgba(194, 112, 62, 0.4); border-color: var(--terracotta); }
+    .send-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .send-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
+      border-radius: 4px; padding: 14px 28px; cursor: pointer;
+      transition: background 300ms ease, color 300ms ease;
+    }
+    .send-btn.primary { background: var(--terracotta); color: var(--white-stone); border: none; }
+    .send-btn.primary:hover { background: var(--terracotta-dark); }
+    .send-btn.secondary { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .send-btn.secondary:hover { background: var(--navy); color: var(--white-stone); }
+    .send-hint { font-size: 13px; color: var(--ash); margin-top: 10px; }
+    .quiet-cta { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--sandstone); font-size: 15px; color: var(--slate); }
+    .quiet-cta a { color: var(--navy); }
+    .freedom-line { margin-top: 32px; font-size: 15px; font-style: italic; color: var(--slate); }
+
+    /* ---------- Footer ---------- */
+    footer { background: var(--navy); color: var(--ash); padding: 40px 0; font-size: 13px; }
+    footer .container { display: grid; gap: 8px; }
+    footer .brand { color: var(--white-stone); font-family: 'DM Serif Display', Georgia, serif; font-size: 16px; }
+
+    /* ---------- Desktop ---------- */
+    @media (min-width: 768px) {
+      .container { padding: 0 32px; }
+      section { padding: 96px 0; }
+      .hero { padding: 112px 0 96px; }
+      .hero h1 { font-size: 52px; }
+      h2 { font-size: 38px; }
+      .cta h2 { font-size: 42px; }
+      .founder-grid { grid-template-columns: 320px 1fr; align-items: start; }
+      .town-grid { grid-template-columns: 1fr 380px; align-items: start; }
+      .fear-buttons { grid-template-columns: 1fr 1fr; }
+      .yield-cards { grid-template-columns: repeat(3, 1fr); }
+      .puzol-pair img { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <img src="assets/logo.png" alt="El Fortín">
+      <a class="nav-cta" href="#what-would-stop-you">What would stop you?</a>
+    </div>
+  </nav>
+
+  <!-- 1. Hero — familiar anchor, no yield -->
+  <header class="hero">
+    <div class="container">
+      <h1>A deeded, new-build apartment on Valencia&rsquo;s Metro Line&nbsp;1</h1>
+      <p class="sub">Ten units in one small building, 20 minutes from Spain&rsquo;s fastest-renting city. Title in your name at the Registro de la Propiedad &mdash; sell whenever you want. Handover 2027. Nine of ten still available.</p>
+      <p class="trust-bar">
+        <span>Building license Exp. 4497/2025/GEN</span> &nbsp;&middot;&nbsp;
+        <span>Res. 3658/2025</span> &nbsp;&middot;&nbsp;
+        <span>Architect COACV 11.357</span>
+      </p>
+    </div>
+  </header>
+
+  <!-- 2. Who's behind it — competence before anything else -->
+  <section class="section-white" id="who">
+    <div class="container">
+      <p class="eyebrow">The builder</p>
+      <h2>Who&rsquo;s behind it</h2>
+      <div class="founder-grid">
+        <div class="founder-photo-slot">
+          <figure>
+            <img src="assets/founder-placeholder.jpg" alt="Placeholder — natural photo of Uriel Nabel pending">
+            <figcaption>Temporary image</figcaption>
+          </figure>
+          <div class="todo">
+            <span class="todo-tag">&#9203; U-Q13 &mdash; pending</span><br>
+            Replace with a natural photo of Uriel &mdash; on site or at the Puzol building.
+          </div>
+        </div>
+        <div>
+          <p>Uriel Nabel delivered his first building &mdash; El Fort&iacute;n de Puzol, the full rehabilitation of a century-old house in Puzol&rsquo;s old centre &mdash; in August 2025. He spent twenty years in asset-intensive industry before that: most recently as a Global Domain Expert Advisor at SAP (2021&ndash;2026), where he worked on capital-project engineering management for some of Europe&rsquo;s largest industrial companies, and earlier building the Siemens PLM partner business in Argentina to &ldquo;Partner of the Year &ndash; Americas&rdquo;. In January 2026 he left SAP to do this full-time. Construction by NODHOUSES; architecture by J.&nbsp;J. P&eacute;rez Red&oacute;n (COACV 11.357).</p>
+        </div>
+      </div>
+      <div class="puzol-pair">
+        <figure>
+          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol mid-renovation — exposed structure and works in progress">
+          <figcaption>El Fort&iacute;n de Puzol &mdash; during works</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
+          <figcaption>El Fort&iacute;n de Puzol &mdash; delivered August 2025</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The letter — story, his words only -->
+  <section id="letter">
+    <div class="container narrow">
+      <p class="eyebrow">In his own words</p>
+      <h2>Why I build these buildings &mdash; Uriel</h2>
+      <div class="letter">
+        <div class="todo">
+          <span class="todo-tag">&#9203; U-Q1 &mdash; pending</span><br>
+          The Argentina memory, verbatim from Uriel. Nothing publishes here until it is his exact words.
+        </div>
+        <div class="todo">
+          <span class="todo-tag">&#9203; U-Q2 &mdash; pending</span><br>
+          What brought him to Spain, and how many years he has been here &mdash; verbatim.
+        </div>
+        <div class="todo">
+          <span class="todo-tag">&#9203; U-Q3 &mdash; pending</span><br>
+          The family line he&rsquo;s comfortable with.
+        </div>
+        <!-- Scaffolding paragraph per copy doc — replace with Uriel's natural phrasing from U-Q6 if better -->
+        <p>I don&rsquo;t ask anyone to trust a brochure. I ask them to put me under the same questions they&rsquo;d ask across a table. That&rsquo;s what the button below is for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. What this is not — candor, after competence -->
+  <section class="section-white" id="candor">
+    <div class="container narrow">
+      <p class="eyebrow">Before you read further</p>
+      <h2>What this is not</h2>
+      <ul class="candor-list">
+        <li><strong>Not Valencia city centre.</strong> It&rsquo;s Riba-roja de T&uacute;ria &mdash; a working commuter town on Metro Line&nbsp;1. If you want a trophy address, this isn&rsquo;t your deal.</li>
+        <li>
+          <strong>Not a bank-backed yield.</strong> The 4% income floor is a contractual covenant of the developer company &mdash; backed by paid-off land and our profit in the project, not by a bank aval today.
+          <div class="todo">
+            <span class="todo-tag">&#9203; U-Q8 &mdash; pending</span><br>
+            Uriel&rsquo;s exact floor sentence goes here, in his approved wording.
+          </div>
+        </li>
+        <li><strong>Not a tourist-rental story.</strong> Short-let here is thin and seasonal; we underwrite it as limited upside, never the base.</li>
+        <li><strong>Not a fund or pooled product.</strong> One specific apartment, deeded to you.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. The town, honestly — fear #0 pre-answer -->
+  <section id="town">
+    <div class="container">
+      <p class="eyebrow">The location, plainly</p>
+      <h2>The town, honestly</h2>
+      <div class="town-grid">
+        <div>
+          <p>You&rsquo;ve probably never heard of Riba-roja. It isn&rsquo;t a postcard town and it isn&rsquo;t near the beach &mdash; it&rsquo;s where the Valencia metro area&rsquo;s workforce actually lives. What the data says:</p>
+          <ul class="town-facts">
+            <li>Valencia is Spain&rsquo;s fastest-renting major market &mdash; 24% of listings rent in under 24 hours; 32&ndash;38 enquiries per listing, higher in metro towns than the city.</li>
+            <li>New, furnished, metro-adjacent apartments rent at ~&euro;16/m&sup2; &mdash; 40&ndash;55% above the town average (17 live comparables, July 2026).</li>
+            <li>Vacancy risk here is near zero. The honest question is the price level, not whether it rents.</li>
+          </ul>
+        </div>
+        <figure class="town-photo">
+          <img src="assets/site-june-2026.jpg" alt="Inside the building during structural works — props and new floor structure, June 2026">
+          <figcaption>The building at Camino Valencia 31 &mdash; site photo, June 2026</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. The numbers — floor first, targets labeled -->
+  <section class="numbers" id="the-numbers">
+    <div class="container">
+      <p class="eyebrow">Underwriting</p>
+      <h2>The numbers as we underwrite them</h2>
+      <table class="num-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Type A (47&nbsp;m&sup2;)</th>
+            <th>Type B (57&nbsp;m&sup2;)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>All-in pre-sale price (incl. ~12% closing costs + furniture)</td>
+            <td>&euro;209,319</td>
+            <td>&euro;253,885</td>
+          </tr>
+          <tr>
+            <td>Sticker all-in after pre-sale phase</td>
+            <td>&euro;243,442</td>
+            <td>&euro;295,272</td>
+          </tr>
+          <tr>
+            <td>Evidenced long-term rent today (base)</td>
+            <td>&euro;850&ndash;950/mo</td>
+            <td>&euro;1,050&ndash;1,150/mo</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="yield-cards">
+        <div class="yield-card">
+          <p class="label">Realistic base case</p>
+          <p class="figure">&asymp; 4% <em>net</em></p>
+          <p>On pre-sale capital, all long-term letting &mdash; roughly where the contractual floor sits.</p>
+        </div>
+        <div class="yield-card">
+          <p class="label">Contractual floor</p>
+          <p class="figure">4% <em>net</em></p>
+          <p>A developer covenant with step-in rights, not a bank guarantee.</p>
+        </div>
+        <div class="yield-card">
+          <p class="label">Target case &mdash; a target, not a promise</p>
+          <p class="figure">~7% <em>blended</em></p>
+          <p>With mid-term and seasonal letting layered on top of the long-term base.</p>
+        </div>
+      </div>
+      <div class="plans">
+        <figure>
+          <img src="assets/render-type-a.jpg" alt="Type A floor plan — 47 square metres">
+          <figcaption>Type A &mdash; floor plan, 47&nbsp;m&sup2;</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/render-type-b.jpg" alt="Type B floor plan — 57 square metres">
+          <figcaption>Type B &mdash; floor plan, 57&nbsp;m&sup2;</figcaption>
+        </figure>
+      </div>
+      <p class="disclaimer">Projections are not guarantees.</p>
+    </div>
+  </section>
+
+  <!-- 7. Questions investors have asked so far — real only, grows weekly -->
+  <section id="questions-asked">
+    <div class="container narrow">
+      <p class="eyebrow">Asked and answered</p>
+      <h2>Questions investors have asked so far</h2>
+      <div class="qa-empty">
+        <p>Nothing here yet &mdash; this page is new. As real questions come in, they&rsquo;ll appear here dated and verbatim, with our honest answer and the document that backs it. We don&rsquo;t invent testimonials, and we won&rsquo;t invent questions either.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CTA — name your fear -->
+  <section class="cta" id="what-would-stop-you">
+    <div class="container narrow">
+      <h2>What would stop <em>you</em>?</h2>
+      <p class="lede">Every serious buyer has one question that decides it. Tell us yours &mdash; you&rsquo;ll get back one focused answer with the relevant document, not a brochure.</p>
+
+      <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
+        <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent won&rsquo;t materialize</button>
+        <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stalls mid-build</button>
+        <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% floor is just paper</button>
+        <button type="button" class="fear-btn" data-fear="show_me_documents">Show me deeds and licenses first</button>
+      </div>
+
+      <div class="fear-other">
+        <label for="fear-text">Something else:</label>
+        <textarea id="fear-text" placeholder="Write your own question &mdash; the harder, the better."></textarea>
+      </div>
+
+      <div class="send-row">
+        <button type="button" class="send-btn primary" id="send-email">Send by email</button>
+        <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
+      </div>
+      <p class="send-hint">One question, one focused answer. No mailing list, no follow-up sequence.</p>
+
+      <div class="todo">
+        <span class="todo-tag">&#9203; U-Q15 &mdash; pending</span><br>
+        Lead inbox and WhatsApp number not yet confirmed &mdash; the send buttons point at placeholder addresses. Set them in the CONFIG block at the bottom of this file.
+      </div>
+
+      <p class="quiet-cta">Prefer to just talk? <a href="#TODO-U-Q14" id="book-call">Book 15 minutes with Uriel.</a> <span class="todo-inline">&#9203; U-Q14: calendar link</span></p>
+
+      <p class="freedom-line">And if the honest answer to your question turns out to be &ldquo;this isn&rsquo;t for you&rdquo; &mdash; we&rsquo;ll say that too.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p class="brand">El Fort&iacute;n &middot; Riba-roja de T&uacute;ria, Valencia</p>
+      <p>Building license Exp. 4497/2025/GEN &middot; Res. 3658/2025 &middot; Architect COACV 11.357</p>
+      <p>Projections are not guarantees. Nothing on this page is investment advice; review everything with your own lawyer.</p>
+    </div>
+  </footer>
+
+  <script>
+    // CONFIG — ⏳ U-Q15: replace both placeholders with the confirmed lead inbox + WhatsApp number.
+    var CONFIG = {
+      email: 'TODO-U-Q15@example.com',
+      whatsapp: 'TODO-U-Q15' // international format, digits only, e.g. 34600000000
+    };
+
+    // fear_named is the funnel's primary conversion (Google Ads / GA4).
+    function trackFearNamed(fear, channel) {
+      var payload = { event: 'fear_named', fear: fear, channel: channel || null };
+      if (typeof gtag === 'function') {
+        gtag('event', 'fear_named', { fear: fear, channel: channel || undefined });
+      } else {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+      }
+    }
+
+    var selectedFear = null;
+    var fearButtons = document.querySelectorAll('.fear-btn');
+    var freeText = document.getElementById('fear-text');
+
+    fearButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        fearButtons.forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        selectedFear = { id: btn.dataset.fear, label: btn.textContent.trim() };
+        trackFearNamed(btn.dataset.fear);
+      });
+    });
+
+    function buildMessage() {
+      var parts = [];
+      if (selectedFear) parts.push('My question: ' + selectedFear.label);
+      var custom = freeText.value.trim();
+      if (custom) parts.push(custom);
+      if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
+      return parts.join('\n\n');
+    }
+
+    document.getElementById('send-email').addEventListener('click', function () {
+      var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
+      trackFearNamed(fearId, 'email');
+      window.location.href = 'mailto:' + CONFIG.email
+        + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
+        + '&body=' + encodeURIComponent(buildMessage());
+    });
+
+    document.getElementById('send-whatsapp').addEventListener('click', function () {
+      var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
+      trackFearNamed(fearId, 'whatsapp');
+      window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
+    });
+  </script>
+</body>
+</html>
