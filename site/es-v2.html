@@ -15,14 +15,14 @@
   Also before launch: remove the robots noindex meta tag below, and set the GA4
   measurement ID. CONFIG email/WhatsApp are set (U-Q15). Search this file for "TODO".
 -->
-<html lang="en">
+<html lang="es-ES">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- TODO: remove noindex at launch (page is unshippable while ⏳ placeholders remain) -->
   <meta name="robots" content="noindex, nofollow">
-  <title>El Fortín — Fully managed apartments near Valencia</title>
-  <meta name="description" content="Ten apartments in one small building, 20 minutes from Spain's fastest-renting city. Title in your name at the Registro de la Propiedad, rental management included. Keys in 2027.">
+  <title>El Fortín — Pisos con gestión integral cerca de Valencia</title>
+  <meta name="description" content="Diez pisos en un edificio pequeño cerca de Valencia. Escritura pública a tu nombre e inscripción en el Registro de la Propiedad, con gestión integral del alquiler. Entrega de llaves prevista en 2027.">
 
   <!-- GA4 stub — TODO: set measurement ID (cost per named fear is the primary KPI)
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -160,20 +160,20 @@
     }
     h2 { font-size: 28px; line-height: 1.2; margin-bottom: 16px; }
 
-    /* ---------- 1. Hero — finished-building promise (cutaway render) ---------- */
+    /* ---------- 1. Hero — one vertical reading path over cutaway ---------- */
     .hero {
       position: relative;
-      /* Strong text overlay; cover so the cutaway fills the hero field */
       background-color: var(--parchment);
       background-image:
-        linear-gradient(180deg,
-          rgba(247, 244, 239, 0.88) 0%,
-          rgba(247, 244, 239, 0.90) 50%,
-          rgba(247, 244, 239, 0.96) 100%),
+        linear-gradient(100deg,
+          rgba(247, 244, 239, 0.98) 0%,
+          rgba(247, 244, 239, 0.96) 38%,
+          rgba(247, 244, 239, 0.78) 58%,
+          rgba(247, 244, 239, 0.35) 78%,
+          rgba(247, 244, 239, 0.18) 100%),
         url("assets/hero-cutaway-photoreal-v1.jpg");
       background-repeat: no-repeat;
       background-position: center 52%;
-      /* Zoom past native cover so the building fills the hero (cutaway has large white margins) */
       background-size: 145% auto;
       padding: 0;
     }
@@ -187,87 +187,140 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--navy);
-      opacity: 0.4;
+      opacity: 0.35;
       z-index: 1;
     }
     .hero-stage {
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 16px 56px;
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-    }
-    .hero-brand {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 22px;
-      letter-spacing: 0.02em;
-      color: var(--navy);
+      max-width: 760px;
       margin: 0;
-    }
-    .hero-main {
+      padding: 56px 16px 64px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      justify-content: center;
+      gap: 28px;
+    }
+    .hero-eyebrow {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: 0.5;
     }
     .hero h1 {
       font-size: 36px;
       line-height: 1.12;
       color: var(--navy);
       margin: 0;
+      max-width: 11em;
     }
-    .hero .sub-quiet {
+    .hero-deal {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 28px 48px;
       margin: 0;
-      font-size: 17px;
-      color: var(--navy);
-      opacity: 0.72;
-      line-height: 1.55;
-      max-width: 32em;
+      padding: 28px 0 0;
+      border-top: 1px solid rgba(27, 42, 74, 0.14);
     }
-    .hero-facts {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
+    .hero-deal-item {
       margin: 0;
-      padding: 24px 0 0;
+      min-width: 7.5em;
     }
-    .hero-fact {
-      margin: 0;
-    }
-    .hero-fact .fig {
+    .hero-deal-item .fig {
       font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 28px;
+      font-size: 42px;
       line-height: 1;
       color: var(--navy);
       font-variant-numeric: tabular-nums;
       margin: 0;
     }
-    .hero-fact .lbl {
+    .hero-deal-item .fig .approx {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 700;
+    }
+    .hero-deal-item .lbl {
       display: block;
-      margin-top: 8px;
+      margin-top: 14px;
       font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--navy);
       opacity: 0.5;
       line-height: 1.35;
     }
-    .hero-meta {
-      margin-top: auto;
-      padding-top: 28px;
-    }
-    .trust-bar {
+    .hero-qualify {
       margin: 0;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      font-size: 15px;
+      line-height: 1.55;
       color: var(--navy);
-      opacity: 0.45;
-      line-height: 1.7;
+      opacity: 0.62;
+      max-width: 28em;
     }
-    .trust-bar span { white-space: normal; }
+
+    /* ---------- Offer beat — product clarity before place ---------- */
+    #offer {
+      background: var(--white-stone);
+      padding: 72px 0;
+    }
+    .offer-grid {
+      display: grid;
+      gap: 36px;
+      align-items: center;
+    }
+    .offer-copy h2 {
+      margin-bottom: 14px;
+      max-width: 12em;
+    }
+    .offer-lede {
+      margin: 0 0 28px;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--navy);
+      opacity: 0.72;
+      max-width: 32em;
+    }
+    .offer-facts {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+    }
+    .offer-facts li {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--navy);
+      opacity: 0.78;
+    }
+    .offer-facts strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--navy);
+      opacity: 1;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .offer-media {
+      margin: 0;
+    }
+    .offer-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: cover;
+      border: 1px solid var(--linen);
+    }
+    .offer-media figcaption {
+      margin-top: 10px;
+    }
 
     /* ---------- 2. Who's behind it ---------- */
     .section-white { background: var(--white-stone); }
@@ -314,7 +367,7 @@
 
     /* ---------- 3. The pattern — two beats, one pull quote, move on ---------- */
     #letter {
-      background: var(--white-stone);
+      background: var(--parchment);
       padding-top: 88px;
       padding-bottom: 88px;
     }
@@ -330,7 +383,7 @@
       .pattern-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
     }
 
-    /* ---------- 4. Ownership facts ---------- */
+    /* ---------- Ownership facts (used in documents / offer lists) ---------- */
     .candor-list { list-style: none; display: grid; gap: 28px; margin-top: 20px; }
     .candor-list li {
       padding: 0;
@@ -340,13 +393,35 @@
       line-height: 1.65;
     }
     .candor-list li strong { color: var(--navy); opacity: 1; display: block; margin-bottom: 4px; }
-    .ownership-list { gap: 20px; margin-top: 24px; }
+    .ownership-list { gap: 20px; margin-top: 0; }
+    .documents-block {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--sandstone);
+    }
+    #documents .documents-block {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    #documents { padding-top: 72px; padding-bottom: 72px; }
+    #who .puzol-pair { margin-top: 64px; }
+    .capital-basis {
+      margin-top: 72px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(27, 42, 74, 0.12);
+    }
+    .numbers .model-notes {
+      margin-top: 40px;
+      padding-top: 8px;
+    }
 
     /* ---------- 5. Town — map = place; demand facts breathe below ---------- */
     #town {
       position: relative;
       padding: 0;
       background: var(--linen);
+      overflow: visible;
     }
     .town-stage {
       position: relative;
@@ -403,10 +478,10 @@
     }
     .town-intro + .town-intro { margin-top: 10px; }
     .town-sources {
-      margin-top: 20px;
-      font-size: 13px;
+      margin-top: 16px;
+      font-size: 12px;
       color: var(--navy);
-      opacity: 0.6;
+      opacity: 0.5;
     }
     .verify-link {
       color: var(--navy); font-weight: 600;
@@ -415,24 +490,25 @@
     .verify-link:hover { color: var(--terracotta-dark); }
     .town-demand {
       background: var(--white-stone);
-      padding: 56px 0 64px;
+      padding: 40px 0 48px;
       border-top: 1px solid var(--linen);
     }
     .town-demand .eyebrow { margin-bottom: 8px; }
     .town-demand h3 {
       font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 400;
       line-height: 1.25;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       max-width: 18em;
     }
     .town-demand-intro {
-      margin-bottom: 28px;
-      font-size: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
       line-height: 1.5;
       color: var(--navy);
-      opacity: 0.72;
+      opacity: 0.65;
+      max-width: 42em;
     }
     .town-metrics {
       display: grid;
@@ -443,34 +519,34 @@
       max-width: 920px;
     }
     .town-metric {
-      padding: 20px 0;
+      padding: 16px 0;
       border-bottom: 1px solid var(--linen);
     }
     .town-metric:last-child { border-bottom: none; }
     .town-metric .fig {
       font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 28px;
+      font-size: 26px;
       line-height: 1.1;
       color: var(--navy);
       margin: 0;
       font-variant-numeric: tabular-nums;
     }
     .town-metric .lbl {
-      margin-top: 8px;
+      margin-top: 6px;
       font-size: 13px;
       color: var(--navy);
-      opacity: 0.65;
-      line-height: 1.45;
+      opacity: 0.62;
+      line-height: 1.4;
       max-width: 22em;
     }
     .town-demand-close {
-      margin-top: 28px;
-      font-size: 15px;
+      margin-top: 14px;
+      font-size: 13px;
       color: var(--navy);
-      opacity: 0.6;
+      opacity: 0.55;
       font-style: italic;
       max-width: 34em;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     /* ---------- 6. Numbers — the operating model, shown rather than argued ---------- */
@@ -622,20 +698,21 @@
       line-height: 1;
       color: var(--navy);
     }
-    .return-figure .approx,
     .return-figure .percent {
       color: var(--navy);
       opacity: 0.38;
-    }
-    .return-figure .approx {
-      font-size: 0.26em;
-      margin-right: 0.3em;
-      transform: translateY(-1.25em);
-    }
-    .return-figure .percent {
       font-size: 0.32em;
       margin-left: 0.2em;
       transform: translateY(-1.45em);
+    }
+    .return-figure .approx {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 700;
+      font-size: 0.42em;
+      margin-right: 0.12em;
+      transform: translateY(-0.85em);
+      color: var(--navy);
+      opacity: 1;
     }
     .return-caption {
       max-width: 16em;
@@ -645,7 +722,6 @@
       line-height: 1.45;
       opacity: 0.85;
     }
-    .capital-basis { margin-top: 56px; }
     .capital-heading {
       margin-bottom: 18px;
       font-family: 'Source Sans 3', sans-serif;
@@ -925,14 +1001,21 @@
       .hero {
         min-height: auto;
         padding: 0;
-        background-position: center 45%;
-        background-size: 180% auto;
+        background-position: 70% 45%;
+        background-size: 220% auto;
+        background-image:
+          linear-gradient(180deg,
+            rgba(247, 244, 239, 0.96) 0%,
+            rgba(247, 244, 239, 0.92) 58%,
+            rgba(247, 244, 239, 0.88) 100%),
+          url("assets/hero-cutaway-photoreal-v1.jpg");
       }
       .hero-render-cue {
         right: 12px;
         bottom: 10px;
         font-size: 9px;
       }
+      .hero-deal-item .fig { font-size: 36px; }
       .puzol-pair { grid-template-columns: 1fr; }
       .puzol-pair img { height: 220px; }
       .town-stage { min-height: 480px; }
@@ -945,60 +1028,31 @@
       .container { padding: 0 32px; }
       section { padding: 96px 0; }
       .hero {
-        background-position: center 50%;
-        background-size: 115% auto;
+        background-position: 78% 50%;
+        background-size: 120% auto;
       }
       .hero-stage {
-        /* Deliberately short of a full viewport — the next section's white
-           band should always peek in at the bottom, the teaser cue */
-        min-height: calc(90vh - 64px);
-        padding: 56px 32px 40px;
-        display: grid;
-        grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
-        grid-template-rows: auto 1fr auto;
-        column-gap: 80px;
-        row-gap: 0;
-        align-items: stretch;
-      }
-      .hero-brand {
-        grid-column: 1 / -1;
-        grid-row: 1;
-        font-size: 28px;
-        margin-bottom: 0;
-        padding-bottom: 8px;
-      }
-      .hero-main {
-        grid-column: 1;
-        grid-row: 2;
-        align-self: center;
-        gap: 28px;
-        padding: 48px 0;
+        min-height: calc(88vh - 64px);
+        max-width: 640px;
+        margin: 0;
+        padding: 72px 32px 80px 32px;
+        gap: 32px;
       }
       .hero h1 {
-        font-size: 52px;
-        max-width: 11.5em;
-        line-height: 1.08;
+        font-size: 54px;
+        max-width: 10.5em;
+        line-height: 1.06;
       }
-      .hero .sub-quiet {
-        font-size: 18px;
-        max-width: 28em;
-      }
-      .hero-facts {
-        /* Spans into the meta row too — continuous column from stats to fold edge */
-        grid-column: 2;
-        grid-row: 2 / span 2;
-        align-self: stretch;
-        justify-self: stretch;
-        padding: 8px 0 0 48px;
-        gap: 40px;
-      }
-      .hero-fact .fig { font-size: 40px; }
-      .hero-fact .lbl { margin-top: 10px; font-size: 11px; }
-      .hero-meta {
-        grid-column: 1;
-        grid-row: 3;
-        margin-top: 0;
+      .hero-deal {
+        gap: 28px 56px;
         padding-top: 32px;
+      }
+      .hero-deal-item .fig { font-size: 52px; }
+      .hero-deal-item .lbl { margin-top: 16px; }
+      .hero-qualify { font-size: 16px; }
+      .offer-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
+        gap: 56px;
       }
       h2 { font-size: 38px; }
       .cta h2 { font-size: 42px; }
@@ -1008,8 +1062,8 @@
       .town-orient h2 { font-size: 32px; }
       .town-demand {
         position: absolute;
-        right: 0;
         left: 0;
+        right: 0;
         bottom: 0;
         z-index: 3;
         margin-top: 0;
@@ -1020,7 +1074,10 @@
       }
       .town-demand > .container {
         position: relative;
-        padding: 48px 126px;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 40px 64px 44px;
         background: linear-gradient(
           232deg,
           rgb(255, 255, 248) 0%,
@@ -1036,17 +1093,19 @@
           0 24px 60px rgba(27, 42, 74, 0.18),
           0 6px 16px rgba(27, 42, 74, 0.10);
       }
-      .town-demand h3 { font-size: 28px; margin-bottom: 10px; }
-      #the-numbers { padding-top: 268px; }
+      .town-demand h3 { font-size: 24px; margin-bottom: 8px; max-width: none; }
+      /* Demand card overlaps the next section (developer). */
+      #who { padding-top: 220px; }
       .town-metrics {
         grid-template-columns: repeat(3, 1fr);
-        gap: 48px;
+        gap: 40px;
+        max-width: 920px;
       }
       .town-metric {
-        padding: 24px 0;
+        padding: 20px 0;
         border-bottom: none;
       }
-      .town-metric .fig { font-size: 34px; }
+      .town-metric .fig { font-size: 32px; }
       .ownership-list { grid-template-columns: repeat(2, 1fr); }
       .fear-buttons { grid-template-columns: 1fr 1fr; gap: 12px; }
       .numbers-intro h2 { font-size: 54px; }
@@ -1125,12 +1184,12 @@
 
     @media (min-width: 1200px) {
       .hero-stage {
-        padding: 64px 32px 56px;
-        column-gap: 96px;
+        max-width: 680px;
+        padding: 88px 32px 96px 48px;
+        margin-left: max(0px, calc((100vw - 1200px) / 2));
       }
       .hero h1 { font-size: 58px; }
-      .hero-facts { padding-left: 56px; gap: 48px; }
-      .hero-fact .fig { font-size: 44px; }
+      .hero-deal-item .fig { font-size: 56px; }
     }
   </style>
 </head>
@@ -1139,174 +1198,155 @@
   <nav class="nav">
     <div class="container">
       <img src="assets/logo.png" alt="El Fortín">
-      <a class="nav-cta" href="#book">Book 15 minutes</a>
+      <a class="nav-cta" href="#book">Reserva 15 minutos</a>
     </div>
   </nav>
 
-  <!-- 1. Hero — finished-building promise via cutaway render (P12: labeled) -->
+  <!-- 1. Hero — one controlled reading path: place → promise → deal → qualifier -->
   <header class="hero">
     <div class="hero-stage hero-flow">
-      <p class="hero-brand reveal">El Fort&iacute;n</p>
-      <div class="hero-main reveal">
-        <!-- Metro line kept off the H1 (jargon to a foreign buyer); the correct Line 9 reference
-             lives in the town section. (Riba-roja is Line 9, not Line 1 — deal doc §1 needs the same fix.) -->
-        <h1>Own an apartment, not a second job.</h1>
-        <p class="sub-quiet">Near Valencia. In your name. Fully managed. Keys in 2027.</p>
-      </div>
-      <!-- Times are road connectivity from Camino Valencia 31; not metro ride times. -->
-      <dl class="hero-facts reveal">
-        <div class="hero-fact">
-          <dd class="fig">10</dd>
-          <dt class="lbl">Apartments</dt>
+      <p class="hero-eyebrow reveal">Riba-roja de T&uacute;ria &middot; Valencia</p>
+      <h1 class="reveal">Un piso, no un segundo trabajo.</h1>
+      <dl class="hero-deal reveal">
+        <div class="hero-deal-item">
+          <dd class="fig">Desde 197.000&nbsp;&euro;</dd>
+          <dt class="lbl">Inversión total en preventa</dt>
         </div>
-        <div class="hero-fact">
-          <dd class="fig">12&nbsp;min</dd>
-          <dt class="lbl">To the airport</dt>
-        </div>
-        <div class="hero-fact">
-          <dd class="fig">20&nbsp;min</dd>
-          <dt class="lbl">To Valencia centre</dt>
+        <div class="hero-deal-item">
+          <dd class="fig"><span class="approx">&gt;</span>7%</dd>
+          <dt class="lbl">Rentabilidad neta estimada</dt>
         </div>
       </dl>
-      <div class="hero-meta reveal">
-        <p class="trust-bar">
-          <span>Building license Exp. 4497/2025/GEN</span> &nbsp;&middot;&nbsp;
-          <span>Res. 3658/2025</span> &nbsp;&middot;&nbsp;
-          <span>Architect COACV 11.357</span>
-        </p>
-      </div>
+      <p class="hero-qualify reveal">Escritura pública e inscripción registral a tu nombre &middot; Gestión integral &middot; Entrega de llaves prevista en 2027</p>
     </div>
-    <p class="hero-render-cue">Render &mdash; illustrative</p>
+    <p class="hero-render-cue">Recreación &mdash; orientativa</p>
   </header>
 
-  <!-- 2. Who is building this — competence before anything else -->
-  <section class="section-white" id="who">
+  <!-- 2. Product clarity — before place -->
+  <section id="offer">
+    <div class="container offer-grid flow">
+      <div class="offer-copy reveal">
+        <p class="eyebrow">La propuesta</p>
+        <h2>Diez pisos.<br>Un edificio con gestión integral.</h2>
+        <p class="offer-lede">Un piso en España, con escritura pública e inscripción en el Registro de la Propiedad. El Fort&iacute;n gestiona el alquiler vacacional, de temporada y de larga duración &mdash; según cuál ofrezca mejor rentabilidad.</p>
+        <ul class="offer-facts">
+          <li><strong>Quedan nueve.</strong> La compraventa se formaliza en escritura pública y tu titularidad queda inscrita en el Registro de la Propiedad.</li>
+          <li><strong>Vende cuando quieras.</strong> Como cualquier otro piso en España.</li>
+          <li><strong>Licencia de obras concedida.</strong> Arquitecto COACV 11.357. Entrega de llaves prevista en 2027.</li>
+        </ul>
+      </div>
+      <figure class="offer-media reveal">
+        <img src="assets/candor-site.jpg" alt="Solar de El Fortín y calle circundante en Riba-roja de Túria">
+        <figcaption>La obra &middot; Camino Valencia 31</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3. Place — map answers "where" alone -->
+  <section id="town">
+    <div class="town-stage">
+      <div id="metro-map" aria-label="Mapa: Línea 9 de Metrovalencia desde el centro de Valencia hasta el edificio en Riba-roja de Túria"></div>
+      <div class="town-overlay">
+        <div class="container">
+          <div class="town-orient reveal">
+            <p class="eyebrow">Por qué Riba-roja de Túria</p>
+            <h2>Un municipio con vida propia en la Línea&nbsp;9.</h2>
+            <p class="town-intro">A las afueras de Valencia. Donde sí hay demanda de alquiler.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Demand proof — compact strip; sources stay quiet -->
+    <div class="town-demand">
+      <div class="container flow">
+        <p class="eyebrow reveal">El mercado del alquiler</p>
+        <h3 class="reveal">Cuánto tarda en alquilarse una vivienda</h3>
+        <p class="town-demand-intro reveal"><a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">24.616 habitantes</a>. Las dos primeras cifras son referencias del área de Valencia; la tercera procede de anuncios locales de viviendas amuebladas. <a class="verify-link" href="https://www.idealista.com/alquiler-viviendas/riba-roja-de-turia-valencia/" target="_blank" rel="noopener noreferrer">Consulta los anuncios actuales de Riba-roja de Túria</a>.</p>
+        <dl class="town-metrics reveal">
+          <div class="town-metric">
+            <dd class="fig">24%</dd>
+            <dt class="lbl">anuncios de Valencia retirados en 24 horas</dt>
+          </div>
+          <div class="town-metric">
+            <dd class="fig">32&ndash;38</dd>
+            <dt class="lbl">consultas por anuncio en municipios del área metropolitana de Valencia</dt>
+          </div>
+          <div class="town-metric">
+            <dd class="fig">~16&nbsp;&euro;/m&sup2;</dd>
+            <dt class="lbl">alquiler anunciado cerca del metro (17 viviendas amuebladas)</dt>
+          </div>
+        </dl>
+        <p class="town-sources reveal">Fuentes: <a class="verify-link" href="https://www.idealista.com/sala-de-prensa/informes-precio-vivienda/" target="_blank" rel="noopener noreferrer">Idealista</a> &middot; Fotocasa &middot; <a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">INE</a>. Observaciones sobre precios anunciados; no garantizan la ocupación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Developer introduction -->
+  <section class="section-parchment" id="who">
     <div class="container flow">
-      <p class="eyebrow reveal">The builder</p>
-      <h2 class="reveal">Who is building this</h2>
+      <p class="eyebrow reveal">La promotora</p>
+      <h2 class="reveal">Quién está detrás del proyecto</h2>
       <div class="founder-grid reveal">
         <div class="founder-photo-slot">
           <figure>
-            <img src="assets/uriel-onsite.jpg" alt="Uriel Nabel on site in a hard hat, smiling, hands on pallets of reclaimed roof tiles">
-            <figcaption>Uriel, on site &mdash; July 2026</figcaption>
+            <img src="assets/uriel-onsite.jpg" alt="Uriel Nabel en la obra, con casco, sonriendo y apoyado sobre palés de tejas recuperadas">
+            <figcaption>Uriel, en la obra &mdash; julio de 2026</figcaption>
           </figure>
         </div>
         <div class="bio-lead">
           <div class="bio-beat">
-            <h3>A project already finished.</h3>
-            <p>August 2025: El Fort&iacute;n de Puzol &mdash; a century-old house, emptied and fully rebuilt.</p>
+            <h3>Un proyecto ya terminado.</h3>
+            <p>Agosto de 2025: El Fort&iacute;n de Puzol &mdash; una casa centenaria, vaciada y reconstruida por completo.</p>
           </div>
           <div class="bio-beat">
-            <h3>The team building Riba-roja.</h3>
-            <p>Second El Fort&iacute;n project. Builder: <a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>. Architect: <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a> (COACV 11.357). License issued.</p>
+            <h3>El equipo que construye en Riba-roja de Túria.</h3>
+            <p>Segundo proyecto de El Fort&iacute;n. Constructora: <a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>. Arquitecto: <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a> (COACV 11.357). Licencia de obras concedida.</p>
           </div>
           <div class="bio-beat">
-            <h3>Now his full-time work.</h3>
-            <p>Twenty years in heavy industry &mdash; five at SAP on European engineering and construction. January 2026: left SAP for El Fort&iacute;n.</p>
+            <h3>Ahora, su dedicación exclusiva.</h3>
+            <p>Veinte años en la industria pesada &mdash; cinco en SAP, trabajando con ingeniería y construcción en Europa. Enero de 2026: dejó SAP por El Fort&iacute;n.</p>
           </div>
           <details class="bio-more">
-            <summary>Full background</summary>
+            <summary>Trayectoria completa</summary>
             <div class="bio-rest">
-              <p>Global Domain Expert Advisor, SAP (2021&ndash;2026), capital-project engineering management, EMEA. Earlier, built the Siemens PLM partner business in Argentina to &ldquo;Partner of the Year &ndash; Americas&rdquo;.</p>
-              <p><a class="verify-link" href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">Check every line against his LinkedIn &#8599;</a></p>
+              <p>Global Domain Expert Advisor, SAP (2021&ndash;2026), gestión de ingeniería de proyectos de inversión, EMEA. Antes, desarrolló el negocio de socios de Siemens PLM en Argentina hasta lograr el reconocimiento &ldquo;Partner of the Year &ndash; Americas&rdquo;.</p>
+              <p><a class="verify-link" href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">Comprueba cada dato en su LinkedIn &#8599;</a></p>
             </div>
           </details>
         </div>
       </div>
       <div class="puzol-pair reveal">
         <figure>
-          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol before renovation — stripped room with arched doorway and peeling walls">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; before</figcaption>
+          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol antes de la reforma: estancia vacía con puerta en arco y paredes desconchadas">
+          <figcaption>El Fort&iacute;n de Puzol &mdash; antes</figcaption>
         </figure>
         <figure>
-          <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; finished August 2025</figcaption>
+          <img src="assets/puzol-after.jpg" alt="Entrada terminada de El Fortín de Puzol, con suelo de madera, apliques y puerta blanca">
+          <figcaption>El Fort&iacute;n de Puzol &mdash; terminado en agosto de 2025</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- 3. The pattern — his story cut to two beats, tied to the deal.
-       Source: Uriel's voice notes 28 Jul 2026 (assets/brand/uriel-voice-notes/, Hebrew transcripts in transcripts/).
-       Launch gates (tracked in landing-page-copy.md §3): Uriel's read-back of the wording;
-       "world's largest gas company" must survive a reference check before go-live. -->
-  <section id="letter">
-    <div class="container viewport-beat flow">
-      <p class="eyebrow reveal">Why him, why now</p>
-      <h2 class="reveal">He has taken this kind of risk before.</h2>
-      <div class="pattern-grid reveal">
-        <article class="beat">
-          <p class="beat-year">2021</p>
-          <h3>SAP</h3>
-          <p>A failing global product in an old industry &mdash; rebuilt for energy infrastructure. First year: one of the product&rsquo;s biggest sales, to the world&rsquo;s largest gas company.</p>
-        </article>
-        <article class="beat">
-          <p class="beat-year">2026</p>
-          <h3>Riba-roja</h3>
-          <p>Left SAP in January to do it again &mdash; under his own name. Spain cannot build furnished, flexible rentals fast enough.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. The town — map answers "where"; demand strip answers "will it rent" -->
-  <section id="town">
-    <div class="town-stage">
-      <div id="metro-map" aria-label="Map: Metrovalencia Line 9 from Valencia city centre to the building in Riba-roja de Túria"></div>
-      <div class="town-overlay">
-        <div class="container">
-          <div class="town-orient reveal">
-            <p class="eyebrow">Why Riba-roja</p>
-            <h2>He lives here. He saw the need.</h2>
-            <p class="town-intro">A working town on Metro Line&nbsp;9, outside Valencia.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="town-demand">
-      <div class="container flow">
-        <p class="eyebrow reveal">The rental market</p>
-        <h3 class="reveal">How fast this market rents</h3>
-        <p class="town-demand-intro reveal"><a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">24,616 residents</a>. <a class="verify-link" href="https://www.idealista.com/alquiler-viviendas/riba-roja-de-turia-valencia/" target="_blank" rel="noopener noreferrer">See today&rsquo;s rental listings.</a></p>
-        <dl class="town-metrics reveal">
-          <div class="town-metric">
-            <dd class="fig">24%</dd>
-            <dt class="lbl">of Valencia listings rent within 24 hours</dt>
-          </div>
-          <div class="town-metric">
-            <dd class="fig">32&ndash;38</dd>
-            <dt class="lbl">enquiries per listing, Valencia metro towns</dt>
-          </div>
-          <div class="town-metric">
-            <dd class="fig">~&euro;16/m&sup2;</dd>
-            <dt class="lbl">new furnished homes near the metro (17 listings, July 2026)</dt>
-          </div>
-        </dl>
-        <p class="town-sources reveal">Sources: <a class="verify-link" href="https://www.idealista.com/sala-de-prensa/informes-precio-vivienda/" target="_blank" rel="noopener noreferrer">Idealista</a> &middot; Fotocasa &middot; <a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">INE</a></p>
-        <p class="town-demand-close reveal">Long-term demand is the base. Tourist rentals are seasonal extras only.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. The numbers — flexible living is the operating premise; 4% is the protection below it -->
+  <!-- 5. Operating model -->
   <section class="numbers" id="the-numbers">
     <div class="container flow">
       <div class="numbers-intro">
-        <p class="eyebrow reveal">The operating model</p>
-        <h2 class="reveal">One apartment.<br>Three rental markets.</h2>
-        <p class="numbers-lede reveal">Each furnished apartment moves between holiday, mid-term and long-term &mdash; whichever pays strongest.</p>
+        <p class="eyebrow reveal">El modelo de explotación</p>
+        <h2 class="reveal">Un piso.<br>Tres mercados de alquiler.</h2>
+        <p class="numbers-lede reveal">Cada piso amueblado se destina a alquiler vacacional, de temporada o de larga duración &mdash; según cuál ofrezca mejor rentabilidad.</p>
       </div>
 
-      <div class="operating-stage reveal" aria-label="Flexible-living operating model targeting approximately seven percent net">
+      <div class="operating-stage reveal" aria-label="Modelo de alquiler flexible con una rentabilidad neta estimada superior al siete por ciento">
         <div class="rental-stack">
           <div class="rental-channel">
-            <p class="channel-name">Holiday</p>
+            <p class="channel-name">Vacacional</p>
           </div>
           <div class="rental-channel">
-            <p class="channel-name">Mid-term</p>
+            <p class="channel-name">De temporada</p>
           </div>
           <div class="rental-channel">
-            <p class="channel-name">Long-term</p>
+            <p class="channel-name">Larga duración</p>
           </div>
           <span class="flow-brace" aria-hidden="true">
             <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1328,7 +1368,7 @@
         <div class="management-hub">
           <div class="hub-badge">
             <span class="hub-name">El Fort&iacute;n</span>
-            <span class="hub-label">Active management</span>
+            <span class="hub-label">Gestión integral</span>
             <span class="hub-brace" aria-hidden="true">
               <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 3
@@ -1348,116 +1388,149 @@
         </div>
 
         <div class="return-lockup">
-          <p class="return-label">Expected net return</p>
-          <p class="return-figure"><span class="approx">&asymp;</span><span class="digit">7</span><span class="percent">%</span></p>
-          <p class="return-caption">After management and costs.</p>
+          <p class="return-label">Rentabilidad neta estimada</p>
+          <p class="return-figure"><span class="approx">&gt;</span><span class="digit">7</span><span class="percent">%</span></p>
+          <p class="return-caption">Después de gestión y gastos.</p>
         </div>
       </div>
 
       <div class="capital-basis reveal">
-        <h3 class="capital-heading">What you put in</h3>
+        <h3 class="capital-heading">Tu inversión</h3>
         <div class="entry-basis">
           <div class="entry-copy">
             <dl class="entry-compare">
               <div>
-                <dt>All-in at pre-sale, from</dt>
-                <dd>&euro;197,370</dd>
+                <dt>Inversión total en preventa, desde</dt>
+                <dd>197.370&nbsp;&euro;</dd>
               </div>
               <div class="was">
-                <dt>All-in at full valuation</dt>
-                <dd>&euro;229,384</dd>
+                <dt>Inversión total a precio de tasación</dt>
+                <dd>229.384&nbsp;&euro;</dd>
               </div>
             </dl>
-            <p class="entry-sub">Entry apartment &mdash; 40.4&nbsp;m&sup2; useful</p>
-            <p class="entry-aside">Sale price is 15% below independent valuation (&euro;190,557). Purchase costs (~12%) and furniture are in both all-in figures. Prices vary by floor; full list comes with the documents.</p>
+            <p class="entry-sub">Piso de entrada &mdash; 40,4&nbsp;m&sup2; útiles</p>
+            <p class="entry-aside">El precio de venta está un 15% por debajo de la tasación independiente (190.557&nbsp;&euro;). Ambas cifras de inversión total incluyen los gastos de compraventa (~12%) y el mobiliario. El precio varía según la planta; recibirás la lista completa con la documentación.</p>
           </div>
           <figure class="entry-plan">
-            <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area">
-            <figcaption>Entry apartment &middot; floor plan</figcaption>
+            <img src="assets/render-type-a-cropped.jpg" alt="Plano del piso de entrada, con 40,4 metros cuadrados útiles">
+            <figcaption>Piso de entrada &middot; plano</figcaption>
           </figure>
         </div>
       </div>
 
       <div class="protection-band reveal">
         <div>
-          <p class="protection-kicker">The floor underneath</p>
+          <p class="protection-kicker">El mínimo previsto</p>
           <p class="protection-figure">4%</p>
-          <p class="protection-note">Contractual minimum</p>
+          <p class="protection-note">Mínimo contractual</p>
         </div>
-        <p class="protection-copy">If rent falls short of the plan, the developer company&rsquo;s contract sets a 4% minimum. Company covenant &mdash; not a bank guarantee.</p>
+        <p class="protection-copy">Si los alquileres quedan por debajo del plan, el contrato establece un mínimo del 4% asumido por la sociedad promotora. Es un compromiso contractual de la sociedad &mdash; sin aval bancario.</p>
       </div>
 
-      <details class="reveal">
-        <summary>How the 7% is shared</summary>
-        <p>Income and costs run across all ten apartments as one operation, then paid in proportion to each owner&rsquo;s capital. Your rate does not depend on which unit you hold. A weak month in one is carried by the other nine. A projection &mdash; not a fixed promise.</p>
-      </details>
-      <p class="disclaimer reveal">Projections, not guarantees. The 4% minimum is a company covenant, not bank-backed.</p>
+      <div class="model-notes">
+        <details class="reveal">
+          <summary>Cómo se reparte el 7%</summary>
+          <p>Los ingresos y gastos de los diez pisos se gestionan como una sola explotación y después se reparten según el capital aportado por cada propietario. Tu rentabilidad no depende del piso que tengas. Si uno tiene un mes flojo, los otros nueve lo compensan. Es una estimación &mdash; no un compromiso fijo.</p>
+        </details>
+        <details class="reveal">
+          <summary>Qué debe mostrar el modelo financiero</summary>
+          <p>La documentación facilitada antes de la reserva detalla los ingresos brutos y la ocupación por modalidad de alquiler, los honorarios de gestión (8&ndash;15%, según la estructura del alquiler), limpieza, suministros, mantenimiento, impuestos, periodos sin ocupación y escenarios adversos. La rentabilidad neta estimada de &gt;7% solo tiene sentido junto a estos supuestos.</p>
+        </details>
+        <p class="disclaimer reveal">Son estimaciones, no garantías. El mínimo del 4% es un compromiso contractual asumido por la sociedad promotora, sin aval bancario.</p>
+      </div>
     </div>
   </section>
 
-  <!-- 6b. Owning here — sequencing-law step 6: scarcity leads (P16); title + exit as holding facts.
-       Management promise stays in hero/numbers — not restated. Reworked 2026-08-03. -->
-  <section class="section-parchment" id="owning">
+  <!-- 6. Why him, why now — his story cut to two beats, tied to the deal.
+       Source: Uriel's voice notes 28 Jul 2026 (assets/brand/uriel-voice-notes/, Hebrew transcripts in transcripts/).
+       Launch gates (tracked in landing-page-copy.md §3): Uriel's read-back of the wording;
+       "world's largest gas company" must survive a reference check before go-live. -->
+  <section id="letter">
+    <div class="container viewport-beat flow">
+      <p class="eyebrow reveal">Por qué él, por qué ahora</p>
+      <h2 class="reveal">Ya ha asumido riesgos así.</h2>
+      <div class="pattern-grid reveal">
+        <article class="beat">
+          <p class="beat-year">2021</p>
+          <h3>SAP</h3>
+          <p>Un producto global que no funcionaba en una industria tradicional &mdash; lo reconstruyó para infraestructuras energéticas. Primer año: una de las mayores ventas del producto, a la mayor gasista del mundo.</p>
+        </article>
+        <article class="beat">
+          <p class="beat-year">2026</p>
+          <h3>Riba-roja de Túria</h3>
+          <p>Dejó SAP en enero para construir y explotar diez pisos amueblados en Riba-roja de Túria &mdash; bajo su propio nombre.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Document pack before the call -->
+  <section class="section-white" id="documents">
     <div class="container flow">
-      <p class="eyebrow reveal">Owning here</p>
-      <h2 class="reveal">Nine remain. Deed in your name.</h2>
-      <ul class="candor-list ownership-list reveal">
-        <li><strong>Your deed.</strong> Registro de la Propiedad &mdash; not a fund share.</li>
-        <li><strong>Sell anytime.</strong> Like any Spanish apartment.</li>
-      </ul>
+      <div class="documents-block reveal">
+        <p class="eyebrow">Documentos antes de decidir</p>
+        <h2>Revisa las pruebas, no solo esta página.</h2>
+        <p class="bio-lead">Antes de la reserva, recibirás la documentación disponible para que tú y tu abogado podáis revisarla:</p>
+        <ul class="candor-list ownership-list">
+          <li><strong>Pruebas del proyecto.</strong> Licencia de obras, datos del arquitecto, tasación independiente, planos y lista de precios por piso.</li>
+          <li><strong>Tu dinero antes de la entrega.</strong> Calendario de obra y pagos, junto con las protecciones aplicables a las cantidades entregadas por el comprador.</li>
+          <li><strong>La relación jurídica.</strong> Borradores vigentes de los contratos de compraventa y gestión, incluidos honorarios, el compromiso del 4% y las vías de reclamación del propietario.</li>
+          <li><strong>El modelo completo.</strong> Alquileres, ocupación, gastos de explotación, honorarios de gestión, impuestos y escenarios adversos que sustentan la rentabilidad neta estimada.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- 7. CTA — book a call (primary); name your fear (secondary) -->
+  <!-- Conversion — book a call (primary); name your fear (secondary) -->
   <section class="cta" id="book">
     <div class="container narrow viewport-beat flow">
-      <h2 class="reveal">Book 15 minutes with <em>Uriel</em>.</h2>
-      <p class="lede reveal">Pick a time. Google Meet. You speak with the developer &mdash; not a sales team.</p>
+      <h2 class="reveal">Reserva 15 minutos con <em>Uriel</em>.</h2>
+      <p class="lede reveal">Elige una hora. Por Google Meet. Hablas con el promotor &mdash; no con un equipo comercial.</p>
 
       <div class="booking-embed reveal" id="book-call">
         <iframe
           src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0ggzzAurhU1RcaUH9M8Ewvdv8E0J7_6mm0BEUNLlcp-DgNdpXI2_DVrqgQvLN9cNJkdP0KhB3J?gv=true"
-          title="Book a 15-minute call with Uriel"
+          title="Reserva una videollamada de 15 minutos con Uriel"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <p class="booking-fallback reveal">Calendar not loading? <a href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Open the booking page</a>.</p>
+      <p class="booking-fallback reveal">¿No carga el calendario? <a href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Abre la página de reservas</a>.</p>
 
       <div class="cta-alt reveal" id="what-would-stop-you">
-        <h3>Prefer to write first?</h3>
-        <p class="lede-alt">One question that decides it. Send yours &mdash; one answer, with the document. Not a brochure.</p>
+        <h3>¿Prefieres escribir primero?</h3>
+        <p class="lede-alt">Una pregunta puede decidirlo todo. Envía la tuya &mdash; recibirás una respuesta y el documento que la respalda. No un folleto.</p>
 
         <div class="cta-block">
-          <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
-            <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
-            <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stops halfway</button>
-            <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% minimum is only on paper</button>
-            <button type="button" class="fear-btn" data-fear="show_me_documents">Show me the deeds and licenses first</button>
-            <button type="button" class="fear-btn" data-fear="who_answers_after">Who actually answers, after I have paid?</button>
+          <div class="fear-buttons" role="group" aria-label="Elige la preocupación que más se parezca a la tuya">
+            <button type="button" class="fear-btn" data-fear="rent_wont_materialize">No habrá suficiente demanda de alquiler</button>
+            <button type="button" class="fear-btn" data-fear="construction_stalls">La obra se quedará a medias</button>
+            <button type="button" class="fear-btn" data-fear="floor_just_paper">El mínimo del 4% solo existe sobre el papel</button>
+            <button type="button" class="fear-btn" data-fear="show_me_documents">Quiero ver primero las escrituras y licencias</button>
+            <button type="button" class="fear-btn" data-fear="who_answers_after">¿Quién responde de verdad después de que pague?</button>
           </div>
 
           <div class="fear-other">
-            <label for="fear-text">Something else:</label>
-            <textarea id="fear-text" placeholder="Write your own question &mdash; hard questions are welcome."></textarea>
+            <label for="fear-text">Otra pregunta:</label>
+            <textarea id="fear-text" placeholder="Escribe tu pregunta &mdash; también si es incómoda."></textarea>
           </div>
 
           <div class="send-row">
-            <button type="button" class="send-btn primary" id="send-email">Send by email</button>
-            <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
+            <button type="button" class="send-btn primary" id="send-email">Enviar por email</button>
+            <button type="button" class="send-btn secondary" id="send-whatsapp">Enviar por WhatsApp</button>
           </div>
-          <p class="send-hint">No mailing list. No sales sequence. Nothing published with your name.</p>
+          <p class="send-hint">Sin listas de correo. Sin cadena comercial. Nada se publica con tu nombre.</p>
         </div>
       </div>
 
-      <p class="freedom-line reveal">If the honest answer is &ldquo;this is not for you&rdquo; &mdash; we will say so.</p>
+      <p class="freedom-line reveal">Si la respuesta honesta es &ldquo;esto no es para ti&rdquo; &mdash; te lo diremos.</p>
     </div>
   </section>
 
   <footer>
     <div class="container">
       <p class="brand">El Fort&iacute;n &middot; Riba-roja de T&uacute;ria, Valencia</p>
-      <p>Building license Exp. 4497/2025/GEN &middot; Res. 3658/2025 &middot; Architect COACV 11.357</p>
-      <p>Projections are not guarantees. Nothing on this page is investment advice; review everything with your own lawyer.</p>
+      <p>Licencia de obras Exp. 4497/2025/GEN &middot; Res. 3658/2025 &middot; Arquitecto COACV 11.357</p>
+      <p>Las estimaciones no son garantías. Nada de lo expuesto en esta página constituye asesoramiento de inversión; revísalo todo con tu propio abogado.</p>
     </div>
   </footer>
 
@@ -1494,10 +1567,10 @@
 
     function buildMessage() {
       var parts = [];
-      if (selectedFear) parts.push('My question: ' + selectedFear.label);
+      if (selectedFear) parts.push('Mi pregunta: ' + selectedFear.label);
       var custom = freeText.value.trim();
       if (custom) parts.push(custom);
-      if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
+      if (parts.length === 0) parts.push('Mi pregunta sobre los pisos de Riba-roja de Túria: ');
       return parts.join('\n\n');
     }
 
@@ -1505,7 +1578,7 @@
       var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
       trackFearNamed(fearId, 'email');
       window.location.href = 'mailto:' + CONFIG.email
-        + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
+        + '?subject=' + encodeURIComponent('Una pregunta sobre El Fortín Riba-roja de Túria')
         + '&body=' + encodeURIComponent(buildMessage());
     });
 
@@ -1562,10 +1635,15 @@
         zoomControl: true,
         attributionControl: true
       });
+      map.zoomControl._zoomInButton.title = 'Acercar';
+      map.zoomControl._zoomInButton.setAttribute('aria-label', 'Acercar');
+      map.zoomControl._zoomOutButton.title = 'Alejar';
+      map.zoomControl._zoomOutButton.setAttribute('aria-label', 'Alejar');
+      map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="Biblioteca JavaScript para mapas interactivos">Leaflet</a>');
 
       L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         maxZoom: 17,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        attribution: '&copy; colaboradores de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
       }).addTo(map);
 
       // Show only the relevant journey: Valencia centre (Colón) to Riba-roja.
@@ -1592,7 +1670,7 @@
           keyboard: false
         }).addTo(map);
         if (isCityCentre) {
-          m.bindTooltip('Val&egrave;ncia centre', { direction: 'top' });
+          m.bindTooltip('Centro de Valencia', { direction: 'top' });
         } else {
           m.bindTooltip(s.name, { direction: 'top' });
         }
@@ -1601,7 +1679,7 @@
       // The building.
       L.marker(METRO_LINE9.building, {
         icon: L.divIcon({ className: 'building-marker', iconSize: [15, 15] })
-      }).addTo(map).bindTooltip('The building &middot; Camino Valencia 31', {
+      }).addTo(map).bindTooltip('El edificio &middot; Camino Valencia 31', {
         permanent: true, direction: 'right', offset: [10, 0]
       });
 

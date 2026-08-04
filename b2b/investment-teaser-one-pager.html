@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Fortín Capital — Investment Summary | Riba-Roja Pre-Sale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --slate: #3D4F5F;
+      --ash: #6B7B8D;
+      --parchment: #F7F4EF;
+      --terracotta: #C2703E;
+      --success: #3A7D5C;
+      --white: #FDFCFA;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 14.7pt;
+      line-height: 1.5;
+      color: var(--navy);
+      background: var(--white);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      max-width: 294mm;
+      margin: 0 auto;
+      padding: 19.6mm 22.4mm 16.8mm;
+    }
+    .serif { font-family: 'DM Serif Display', Georgia, serif; }
+    .eyebrow {
+      font-size: 11.2pt;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 22.4px;
+      padding-bottom: 14px;
+      border-bottom: 2.8px solid var(--navy);
+      margin-bottom: 19.6px;
+    }
+    .header h1 {
+      font-size: 30.8pt;
+      line-height: 1.15;
+      margin-top: 5.6px;
+    }
+    .header__meta {
+      text-align: right;
+      font-size: 12.6pt;
+      color: var(--slate);
+      min-width: 42%;
+    }
+    .header__meta strong { color: var(--navy); display: block; }
+    .status-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 11.2px;
+      margin-bottom: 22.4px;
+    }
+    .status-bar__item {
+      background: var(--parchment);
+      padding: 11.2px 14px;
+      border-left: 4.2px solid var(--terracotta);
+    }
+    .status-bar__label {
+      font-size: 10.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ash);
+      font-weight: 600;
+    }
+    .status-bar__value {
+      font-size: 15.4pt;
+      font-weight: 700;
+      margin-top: 2.8px;
+    }
+    section { margin-bottom: 19.6px; }
+    h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 18.2pt;
+      margin-bottom: 11.2px;
+      color: var(--navy);
+    }
+    h2 span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.6pt;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin-right: 8.4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.3pt;
+    }
+    th, td {
+      padding: 8.4px 11.2px;
+      text-align: left;
+      border-bottom: 1.4px solid #ddd8d0;
+    }
+    th {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 11.2pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+    tr:nth-child(even) td { background: #faf8f5; }
+    .highlight { font-weight: 700; color: var(--success); }
+    .matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .matrix__card {
+      border: 1.4px solid #ddd8d0;
+      padding: 14px 16.8px;
+      background: var(--parchment);
+    }
+    .matrix__type {
+      font-size: 11.2pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ash);
+      font-weight: 600;
+    }
+    .matrix__sticker {
+      font-size: 12.6pt;
+      color: var(--slate);
+      margin: 5.6px 0;
+    }
+    .matrix__presale {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 22.4pt;
+      color: var(--navy);
+    }
+    .matrix__save {
+      font-size: 12.6pt;
+      font-weight: 700;
+      color: var(--success);
+      margin-top: 5.6px;
+    }
+    .yield-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .yield-card {
+      border: 1.4px solid var(--navy);
+      padding: 14px 16.8px;
+    }
+    .yield-card--stress { border-color: var(--ash); }
+    .yield-card__pct {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 39.2pt;
+      line-height: 1;
+      color: var(--navy);
+    }
+    .yield-card--stress .yield-card__pct { color: var(--slate); }
+    .yield-card__label {
+      font-size: 11.9pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--terracotta);
+      margin-bottom: 5.6px;
+    }
+    .yield-card__desc { font-size: 12.6pt; color: var(--slate); }
+    .risk-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 11.2px;
+    }
+    .risk-list li {
+      background: var(--parchment);
+      padding: 11.2px 14px;
+      font-size: 12.6pt;
+    }
+    .risk-list strong {
+      display: block;
+      font-size: 11.2pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--terracotta);
+      margin-bottom: 4.2px;
+    }
+    .footer {
+      margin-top: 16.8px;
+      padding-top: 11.2px;
+      border-top: 1.4px solid #ddd8d0;
+      font-size: 10.5pt;
+      color: var(--ash);
+      display: flex;
+      justify-content: space-between;
+      gap: 16.8px;
+    }
+    .cta {
+      margin-top: 14px;
+      padding: 11.2px 16.8px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 12.6pt;
+      font-weight: 600;
+      text-align: center;
+    }
+    @media print {
+      body { background: white; }
+      .page { padding: 14mm 16.8mm; max-width: none; }
+      @page { size: A3; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Investment Teaser · Confidential</p>
+        <h1 class="serif">El Fortín Capital</h1>
+        <p style="font-size: 15.4pt; color: var(--slate); margin-top: 5.6px;">Investment Summary — Riba-Roja Pre-Sale</p>
+      </div>
+      <div class="header__meta">
+        <strong>EL FORTIN CONSTRUCCIONES Y PATRIMONIO S.L.</strong>
+        CIF B22792923<br>
+        Carretera Valencia 31<br>
+        46190 Riba-roja de Túria, Valencia<br>
+        Handover expected 2027
+      </div>
+    </header>
+
+    <div class="status-bar">
+      <div class="status-bar__item">
+        <div class="status-bar__label">Location</div>
+        <div class="status-bar__value">Valencia Metro · Metro L1</div>
+      </div>
+      <div class="status-bar__item">
+        <div class="status-bar__label">Asset Class</div>
+        <div class="status-bar__value">10-Unit Single-Owner Block</div>
+      </div>
+      <div class="status-bar__item">
+        <div class="status-bar__label">Inventory</div>
+        <div class="status-bar__value">1 Sold · 9 Available</div>
+      </div>
+    </div>
+
+    <section>
+      <h2><span>I.</span> The Pre-Sale Arbitrage Matrix</h2>
+      <p style="font-size: 12.6pt; color: var(--slate); margin-bottom: 14px;">Sale price is 15% below independent valuation (Valor Publicado). All-in adds ~12% purchase costs and furniture. Source: <em>Valor_Publicado_All_In_by_Unit.csv</em>.</p>
+      <div class="matrix">
+        <div class="matrix__card">
+          <div class="matrix__type">Entry · ~40.4 m² useful · units 5–8</div>
+          <div class="matrix__sticker">Valuation: €190,557 · full all-in: <s>€229,384</s></div>
+          <div class="matrix__presale">€197,370</div>
+          <div class="matrix__save">All-in at pre-sale · 4% floor: €7,895/yr</div>
+        </div>
+        <div class="matrix__card">
+          <div class="matrix__type">Larger · 49.05 m² useful · units 1–4, 9–10</div>
+          <div class="matrix__sticker">Valuation: €220,225–€232,125 · full all-in: <s>€266k–€279k</s></div>
+          <div class="matrix__presale">€229k–€240k</div>
+          <div class="matrix__save">All-in at pre-sale · price rises with floor</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span>II.</span> Dual-Scenario Yield Modeling (Net of Operating Costs)</h2>
+      <div class="yield-grid">
+        <div class="yield-card">
+          <div class="yield-card__label">Scenario A — Target Portfolio Mix</div>
+          <div class="yield-card__pct">~7.5%</div>
+          <p class="yield-card__desc">Same modelled net income (<strong>€190,519</strong>) on updated portfolio all-in at full Valor Publicado (<strong>€2,552,530</strong>). Target, not a promise.</p>
+        </div>
+        <div class="yield-card yield-card--stress">
+          <div class="yield-card__label">Scenario B — Maximum Stress Case</div>
+          <div class="yield-card__pct">~4.7%</div>
+          <p class="yield-card__desc">100% long-term furnished. Portfolio net income: <strong>€119,488</strong> on the same capital base. Clears the contractual 4% floor with room.</p>
+        </div>
+      </div>
+      <table style="margin-top: 14px;">
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Size</th>
+            <th>Scenario A Type</th>
+            <th>Net Yield A</th>
+            <th>Net Yield B (LTR only)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1–2</td><td>47 m²</td><td>Vacation</td><td class="highlight">8.63%</td><td>4.53%</td></tr>
+          <tr><td>3–4</td><td>47 m²</td><td>Mid-term</td><td>5.39%</td><td>4.53%</td></tr>
+          <tr><td>5</td><td>57 m²</td><td>Mid-term</td><td>5.28%</td><td>4.25%</td></tr>
+          <tr><td>6–9</td><td>57 m²</td><td>Vacation</td><td class="highlight">7.43–8.16%</td><td>4.25%</td></tr>
+          <tr><td>10</td><td>57 m²</td><td>Long-term</td><td>4.22%</td><td>4.25%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2><span>III.</span> Counterparty Risk Mitigation</h2>
+      <ul class="risk-list">
+        <li>
+          <strong>Capital Security</strong>
+          Individual registered title deeds (<em>Escritura</em>) at the Registro de la Propiedad.
+        </li>
+        <li>
+          <strong>The Backstop</strong>
+          4.0% net cash-on-cash floor on total deployed capital — contractual in investor management agreement.
+        </li>
+        <li>
+          <strong>Developer Alignment</strong>
+          Land 100% pre-paid (€200,000). Developer profit pool: €299,379 tied to completion and operation.
+        </li>
+      </ul>
+    </section>
+
+    <div class="cta">Data Room access on reply with legal counsel · B2B finder commissions available</div>
+
+    <footer class="footer">
+      <span>Figures from El_Fortin_Master_Underwriting_Sheet_2026.xlsx. Projections are not guarantees. Past rehabilitations do not indicate future results.</span>
+      <span>el-fortin.com · Investor Relations</span>
+    </footer>
+  </article>
+</body>
+</html>

@@ -15,14 +15,14 @@
   Also before launch: remove the robots noindex meta tag below, and set the GA4
   measurement ID. CONFIG email/WhatsApp are set (U-Q15). Search this file for "TODO".
 -->
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- TODO: remove noindex at launch (page is unshippable while ⏳ placeholders remain) -->
   <meta name="robots" content="noindex, nofollow">
-  <title>El Fortín — Fully managed apartments near Valencia</title>
-  <meta name="description" content="Ten apartments in one small building, 20 minutes from Spain's fastest-renting city. Title in your name at the Registro de la Propiedad, rental management included. Keys in 2027.">
+  <title>El Fortín — דירות בניהול מלא ליד ולנסיה</title>
+  <meta name="description" content="עשר דירות בבניין בוטיק, כ־20 דקות מוולנסיה. רישום בטאבו הספרדי על שמכם, ניהול השכרה מלא ומסירה ב־2027.">
 
   <!-- GA4 stub — TODO: set measurement ID (cost per named fear is the primary KPI)
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -36,7 +36,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 
@@ -60,7 +60,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Source Sans 3', -apple-system, sans-serif;
+      font-family: 'Heebo', -apple-system, sans-serif;
       font-size: 17px;
       line-height: 1.6;
       color: var(--navy);
@@ -68,7 +68,11 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; color: var(--navy); }
+    h1, h2, h3 { font-family: 'Frank Ruhl Libre', Georgia, serif; font-weight: 500; color: var(--navy); }
+    .fig, .beat-year, .return-figure, .entry-compare dd, .protection-figure {
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
 
     /* Opacity hierarchy (Material-style emphasis) */
     .emph-high { opacity: 1; }
@@ -112,7 +116,7 @@
     .nav .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .nav img { height: 32px; width: auto; filter: brightness(0) invert(1); }
     .nav a.nav-cta {
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Heebo', sans-serif;
       font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
       color: var(--white-stone); text-decoration: none;
       background: var(--terracotta);
@@ -179,7 +183,7 @@
     }
     .hero-render-cue {
       position: absolute;
-      right: 16px;
+      left: 16px;
       bottom: 14px;
       margin: 0;
       font-size: 10px;
@@ -200,7 +204,7 @@
       gap: 36px;
     }
     .hero-brand {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 22px;
       letter-spacing: 0.02em;
       color: var(--navy);
@@ -236,7 +240,7 @@
       margin: 0;
     }
     .hero-fact .fig {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 28px;
       line-height: 1;
       color: var(--navy);
@@ -280,7 +284,7 @@
     .bio-beat + .bio-beat { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--linen); }
     .bio-beat h3 {
       margin-bottom: 6px;
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Heebo', sans-serif;
       font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.02em;
@@ -321,7 +325,7 @@
     .pattern-grid { display: grid; gap: 36px; margin: 40px 0 0; }
     .beat { border-top: 2px solid var(--sandstone); padding-top: 20px; }
     .beat p.beat-year {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 46px; line-height: 1; color: var(--terracotta); opacity: 1;
     }
     .beat h3 { font-size: 19px; margin: 8px 0 10px; }
@@ -376,7 +380,7 @@
       box-shadow: 0 1px 6px rgba(27,42,74,0.4);
     }
     .town-stage .leaflet-tooltip {
-      font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 600;
+      font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600;
       color: var(--navy); background: var(--white-stone);
       border: 1px solid var(--sandstone); border-radius: 3px;
       box-shadow: none; padding: 2px 7px;
@@ -420,7 +424,7 @@
     }
     .town-demand .eyebrow { margin-bottom: 8px; }
     .town-demand h3 {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 24px;
       font-weight: 400;
       line-height: 1.25;
@@ -448,7 +452,7 @@
     }
     .town-metric:last-child { border-bottom: none; }
     .town-metric .fig {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 28px;
       line-height: 1.1;
       color: var(--navy);
@@ -524,18 +528,18 @@
       gap: 0;
       width: max-content;
       max-width: 100%;
-      border-left: 1px solid rgba(194, 112, 62, 0.55);
-      padding-right: 44px;
+      border-right: 1px solid rgba(194, 112, 62, 0.55);
+      padding-left: 44px;
     }
     .rental-channel {
       position: relative;
-      padding: 14px 0 14px 22px;
+      padding: 14px 22px 14px 0;
     }
     .rental-channel + .rental-channel {
       border-top: 1px solid rgba(27, 42, 74, 0.08);
     }
     .channel-name {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 28px;
       line-height: 1.1;
       color: var(--navy);
@@ -579,7 +583,7 @@
     }
     .hub-name {
       display: block;
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 28px;
       line-height: 1.05;
       color: var(--white-stone);
@@ -617,7 +621,7 @@
       align-items: baseline;
       justify-content: center;
       margin: 0;
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: clamp(78px, 20vw, 118px);
       line-height: 1;
       color: var(--navy);
@@ -629,12 +633,12 @@
     }
     .return-figure .approx {
       font-size: 0.26em;
-      margin-right: 0.3em;
+      margin-left: 0.3em;
       transform: translateY(-1.25em);
     }
     .return-figure .percent {
       font-size: 0.32em;
-      margin-left: 0.2em;
+      margin-right: 0.2em;
       transform: translateY(-1.45em);
     }
     .return-caption {
@@ -648,7 +652,7 @@
     .capital-basis { margin-top: 56px; }
     .capital-heading {
       margin-bottom: 18px;
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Heebo', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.12em;
@@ -691,7 +695,7 @@
     }
     .entry-compare dd {
       margin: 0;
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: clamp(28px, 7vw, 40px);
       line-height: 1;
       color: var(--navy);
@@ -751,7 +755,7 @@
     }
     .protection-figure {
       margin-top: 6px;
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-size: 40px;
       line-height: 1;
       color: var(--navy);
@@ -799,7 +803,7 @@
     .operating-stage.is-visible .management-hub { animation: hub-in 500ms 390ms both; }
     .operating-stage.is-visible .return-lockup { animation: return-in 600ms 560ms both; }
     @keyframes channel-in {
-      from { opacity: 0; transform: translateX(-16px); }
+      from { opacity: 0; transform: translateX(16px); }
       to { opacity: 1; transform: none; }
     }
     @keyframes hub-in {
@@ -807,7 +811,7 @@
       to { opacity: 1; transform: none; }
     }
     @keyframes return-in {
-      from { opacity: 0; transform: translateX(-12px); }
+      from { opacity: 0; transform: translateX(12px); }
       to { opacity: 1; transform: none; }
     }
 
@@ -868,8 +872,8 @@
     .cta-block { display: grid; gap: 28px; }
     .fear-buttons { display: grid; gap: 10px; }
     .fear-btn {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 16px; font-weight: 500; text-align: left;
+      font-family: 'Heebo', sans-serif;
+      font-size: 16px; font-weight: 500; text-align: right;
       color: var(--navy);
       background: var(--white-stone);
       border: 2px solid var(--navy);
@@ -891,7 +895,7 @@
     .fear-other label { display: block; font-size: 13px; font-weight: 500; color: var(--slate); margin-bottom: 6px; }
     .fear-other textarea {
       width: 100%; min-height: 72px; resize: vertical;
-      font-family: 'Source Sans 3', sans-serif; font-size: 15px; color: var(--navy);
+      font-family: 'Heebo', sans-serif; font-size: 15px; color: var(--navy);
       background: var(--white-stone);
       border: 1.5px solid var(--sandstone); border-radius: 6px;
       padding: 12px 16px;
@@ -899,7 +903,7 @@
     .fear-other textarea:focus { outline: 2px solid rgba(194, 112, 62, 0.4); border-color: var(--terracotta); }
     .send-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
     .send-btn {
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Heebo', sans-serif;
       font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
       border-radius: 4px; padding: 14px 28px; cursor: pointer;
       transition: background 300ms ease, color 300ms ease;
@@ -918,7 +922,7 @@
     /* ---------- Footer ---------- */
     footer { background: var(--navy); color: var(--ash); padding: 40px 0; font-size: 13px; }
     footer .container { display: grid; gap: 8px; }
-    footer .brand { color: var(--white-stone); font-family: 'DM Serif Display', Georgia, serif; font-size: 16px; }
+    footer .brand { color: var(--white-stone); font-family: 'Frank Ruhl Libre', Georgia, serif; font-size: 16px; }
 
     /* ---------- Mobile polish ---------- */
     @media (max-width: 767px) {
@@ -929,7 +933,7 @@
         background-size: 180% auto;
       }
       .hero-render-cue {
-        right: 12px;
+        left: 12px;
         bottom: 10px;
         font-size: 9px;
       }
@@ -989,7 +993,7 @@
         grid-row: 2 / span 2;
         align-self: stretch;
         justify-self: stretch;
-        padding: 8px 0 0 48px;
+        padding: 8px 48px 0 0;
         gap: 40px;
       }
       .hero-fact .fig { font-size: 40px; }
@@ -1064,7 +1068,7 @@
         display: block;
         position: absolute;
         top: 6px;
-        right: 0;
+        left: 0;
         bottom: 6px;
         width: 26px;
       }
@@ -1076,13 +1080,13 @@
       .hub-brace {
         display: block;
         top: 8%;
-        right: -42px;
+        left: -42px;
         bottom: 8%;
         width: 26px;
       }
       .management-hub {
         min-height: 0;
-        padding: 0 42px 0 0;
+        padding: 0 0 0 42px;
         border: none;
         width: max-content;
       }
@@ -1110,8 +1114,8 @@
       .entry-plan {
         padding-top: 0;
         border-top: none;
-        border-left: 1px solid rgba(27, 42, 74, 0.1);
-        padding-left: 40px;
+        border-right: 1px solid rgba(27, 42, 74, 0.1);
+        padding-right: 40px;
       }
       .protection-band {
         grid-template-columns: 240px 1fr;
@@ -1129,7 +1133,7 @@
         column-gap: 96px;
       }
       .hero h1 { font-size: 58px; }
-      .hero-facts { padding-left: 56px; gap: 48px; }
+      .hero-facts { padding-right: 56px; gap: 48px; }
       .hero-fact .fig { font-size: 44px; }
     }
   </style>
@@ -1139,7 +1143,7 @@
   <nav class="nav">
     <div class="container">
       <img src="assets/logo.png" alt="El Fortín">
-      <a class="nav-cta" href="#book">Book 15 minutes</a>
+      <a class="nav-cta" href="#book">קובעים 15 דקות</a>
     </div>
   </nav>
 
@@ -1150,77 +1154,77 @@
       <div class="hero-main reveal">
         <!-- Metro line kept off the H1 (jargon to a foreign buyer); the correct Line 9 reference
              lives in the town section. (Riba-roja is Line 9, not Line 1 — deal doc §1 needs the same fix.) -->
-        <h1>Own an apartment, not a second job.</h1>
-        <p class="sub-quiet">Near Valencia. In your name. Fully managed. Keys in 2027.</p>
+        <h1>דירה בספרד. בלי לנהל עוד עבודה מהצד.</h1>
+        <p class="sub-quiet">ליד ולנסיה. רשומה על שמכם. מנוהלת מקצה לקצה. מפתחות ב־2027.</p>
       </div>
       <!-- Times are road connectivity from Camino Valencia 31; not metro ride times. -->
       <dl class="hero-facts reveal">
         <div class="hero-fact">
           <dd class="fig">10</dd>
-          <dt class="lbl">Apartments</dt>
+          <dt class="lbl">דירות בבניין</dt>
         </div>
         <div class="hero-fact">
-          <dd class="fig">12&nbsp;min</dd>
-          <dt class="lbl">To the airport</dt>
+          <dd class="fig">12&nbsp;דק׳</dd>
+          <dt class="lbl">לנמל התעופה</dt>
         </div>
         <div class="hero-fact">
-          <dd class="fig">20&nbsp;min</dd>
-          <dt class="lbl">To Valencia centre</dt>
+          <dd class="fig">20&nbsp;דק׳</dd>
+          <dt class="lbl">למרכז ולנסיה</dt>
         </div>
       </dl>
       <div class="hero-meta reveal">
         <p class="trust-bar">
-          <span>Building license Exp. 4497/2025/GEN</span> &nbsp;&middot;&nbsp;
-          <span>Res. 3658/2025</span> &nbsp;&middot;&nbsp;
-          <span>Architect COACV 11.357</span>
+          <span>היתר בנייה תיק 4497/2025/GEN</span> &nbsp;&middot;&nbsp;
+          <span>החלטה 3658/2025</span> &nbsp;&middot;&nbsp;
+          <span>אדריכל רשום COACV 11.357</span>
         </p>
       </div>
     </div>
-    <p class="hero-render-cue">Render &mdash; illustrative</p>
+    <p class="hero-render-cue">הדמיה להמחשה</p>
   </header>
 
   <!-- 2. Who is building this — competence before anything else -->
   <section class="section-white" id="who">
     <div class="container flow">
-      <p class="eyebrow reveal">The builder</p>
-      <h2 class="reveal">Who is building this</h2>
+      <p class="eyebrow reveal">מי עומד מאחורי הפרויקט</p>
+      <h2 class="reveal">לפני המספרים: מי בונה את זה</h2>
       <div class="founder-grid reveal">
         <div class="founder-photo-slot">
           <figure>
-            <img src="assets/uriel-onsite.jpg" alt="Uriel Nabel on site in a hard hat, smiling, hands on pallets of reclaimed roof tiles">
-            <figcaption>Uriel, on site &mdash; July 2026</figcaption>
+            <img src="assets/uriel-onsite.jpg" alt="אוריאל נאבל באתר הבנייה, חובש קסדה">
+            <figcaption>אוריאל באתר &mdash; יולי 2026</figcaption>
           </figure>
         </div>
         <div class="bio-lead">
           <div class="bio-beat">
-            <h3>A project already finished.</h3>
-            <p>August 2025: El Fort&iacute;n de Puzol &mdash; a century-old house, emptied and fully rebuilt.</p>
+            <h3>פרויקט אחד כבר הושלם.</h3>
+            <p>אוגוסט 2025: El Fort&iacute;n de Puzol &mdash; בית בן מאה שנה שרוקן ונבנה מחדש מן היסוד.</p>
           </div>
           <div class="bio-beat">
-            <h3>The team building Riba-roja.</h3>
-            <p>Second El Fort&iacute;n project. Builder: <a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>. Architect: <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a> (COACV 11.357). License issued.</p>
+            <h3>הצוות שבונה בריבה־רוחה.</h3>
+            <p>הפרויקט השני של El Fort&iacute;n. קבלן מבצע: <a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>. אדריכל: <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a> (מס׳ רישום COACV 11.357). היתר הבנייה התקבל.</p>
           </div>
           <div class="bio-beat">
-            <h3>Now his full-time work.</h3>
-            <p>Twenty years in heavy industry &mdash; five at SAP on European engineering and construction. January 2026: left SAP for El Fort&iacute;n.</p>
+            <h3>היום זה העיסוק המלא שלו.</h3>
+            <p>עשרים שנה בתעשייה הכבדה, מתוכן חמש ב־SAP בפרויקטי הנדסה ובנייה באירופה. בינואר 2026 עזב את SAP כדי להתמקד ב־El Fort&iacute;n.</p>
           </div>
           <details class="bio-more">
-            <summary>Full background</summary>
+            <summary>לרקע המקצועי המלא</summary>
             <div class="bio-rest">
-              <p>Global Domain Expert Advisor, SAP (2021&ndash;2026), capital-project engineering management, EMEA. Earlier, built the Siemens PLM partner business in Argentina to &ldquo;Partner of the Year &ndash; Americas&rdquo;.</p>
-              <p><a class="verify-link" href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">Check every line against his LinkedIn &#8599;</a></p>
+              <p>יועץ מומחה גלובלי ב־SAP בשנים 2021&ndash;2026, בתחום ניהול ההנדסה בפרויקטי הון באזור EMEA. קודם לכן בנה בארגנטינה את פעילות השותף של Siemens PLM, שזכתה בתואר ״שותף השנה &ndash; אמריקה״.</p>
+              <p><a class="verify-link" href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">אפשר לאמת כל שורה בפרופיל ה־LinkedIn שלו &#8599;</a></p>
             </div>
           </details>
         </div>
       </div>
       <div class="puzol-pair reveal">
         <figure>
-          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol before renovation — stripped room with arched doorway and peeling walls">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; before</figcaption>
+          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol לפני השיפוץ">
+          <figcaption>El Fort&iacute;n de Puzol &mdash; לפני</figcaption>
         </figure>
         <figure>
-          <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; finished August 2025</figcaption>
+          <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol לאחר השלמת השיפוץ">
+          <figcaption>El Fort&iacute;n de Puzol &mdash; הושלם באוגוסט 2025</figcaption>
         </figure>
       </div>
     </div>
@@ -1232,18 +1236,18 @@
        "world's largest gas company" must survive a reference check before go-live. -->
   <section id="letter">
     <div class="container viewport-beat flow">
-      <p class="eyebrow reveal">Why him, why now</p>
-      <h2 class="reveal">He has taken this kind of risk before.</h2>
+      <p class="eyebrow reveal">למה הוא, ולמה עכשיו</p>
+      <h2 class="reveal">זו לא הפעם הראשונה שהוא לוקח אחריות על מהלך כזה.</h2>
       <div class="pattern-grid reveal">
         <article class="beat">
           <p class="beat-year">2021</p>
           <h3>SAP</h3>
-          <p>A failing global product in an old industry &mdash; rebuilt for energy infrastructure. First year: one of the product&rsquo;s biggest sales, to the world&rsquo;s largest gas company.</p>
+          <p>מוצר גלובלי כושל בתעשייה ותיקה, שנבנה מחדש עבור תשתיות אנרגיה. כבר בשנה הראשונה: אחת העסקאות הגדולות בתולדות המוצר, מול חברת הגז הגדולה בעולם.</p>
         </article>
         <article class="beat">
           <p class="beat-year">2026</p>
           <h3>Riba-roja</h3>
-          <p>Left SAP in January to do it again &mdash; under his own name. Spain cannot build furnished, flexible rentals fast enough.</p>
+          <p>בינואר עזב את SAP כדי לעשות זאת שוב, הפעם תחת שמו ובאחריותו. הביקוש בספרד לדירות מרוהטות ולהשכרה גמישה גדל מהר מקצב הבנייה.</p>
         </article>
       </div>
     </div>
@@ -1252,38 +1256,38 @@
   <!-- 4. The town — map answers "where"; demand strip answers "will it rent" -->
   <section id="town">
     <div class="town-stage">
-      <div id="metro-map" aria-label="Map: Metrovalencia Line 9 from Valencia city centre to the building in Riba-roja de Túria"></div>
+      <div id="metro-map" aria-label="מפה: קו 9 של מטרו ולנסיה, ממרכז העיר אל הבניין בריבה־רוחה דה טוריה"></div>
       <div class="town-overlay">
         <div class="container">
           <div class="town-orient reveal">
-            <p class="eyebrow">Why Riba-roja</p>
-            <h2>He lives here. He saw the need.</h2>
-            <p class="town-intro">A working town on Metro Line&nbsp;9, outside Valencia.</p>
+            <p class="eyebrow">למה ריבה־רוחה</p>
+            <h2>הוא גר כאן. את הצורך הוא ראה מקרוב.</h2>
+            <p class="town-intro">עיר פעילה על קו&nbsp;9 של המטרו, מחוץ לוולנסיה.</p>
           </div>
         </div>
       </div>
     </div>
     <div class="town-demand">
       <div class="container flow">
-        <p class="eyebrow reveal">The rental market</p>
-        <h3 class="reveal">How fast this market rents</h3>
-        <p class="town-demand-intro reveal"><a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">24,616 residents</a>. <a class="verify-link" href="https://www.idealista.com/alquiler-viviendas/riba-roja-de-turia-valencia/" target="_blank" rel="noopener noreferrer">See today&rsquo;s rental listings.</a></p>
+        <p class="eyebrow reveal">שוק השכירות</p>
+        <h3 class="reveal">כמה מהר דירות מושכרות באזור</h3>
+        <p class="town-demand-intro reveal"><a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">24,616 תושבים</a>. <a class="verify-link" href="https://www.idealista.com/alquiler-viviendas/riba-roja-de-turia-valencia/" target="_blank" rel="noopener noreferrer">לצפייה במודעות השכירות של היום.</a></p>
         <dl class="town-metrics reveal">
           <div class="town-metric">
             <dd class="fig">24%</dd>
-            <dt class="lbl">of Valencia listings rent within 24 hours</dt>
+            <dt class="lbl">ממודעות ההשכרה בוולנסיה נסגרות בתוך 24 שעות</dt>
           </div>
           <div class="town-metric">
             <dd class="fig">32&ndash;38</dd>
-            <dt class="lbl">enquiries per listing, Valencia metro towns</dt>
+            <dt class="lbl">פניות בממוצע למודעה בערי המטרופולין של ולנסיה</dt>
           </div>
           <div class="town-metric">
             <dd class="fig">~&euro;16/m&sup2;</dd>
-            <dt class="lbl">new furnished homes near the metro (17 listings, July 2026)</dt>
+            <dt class="lbl">לדירות חדשות ומרוהטות ליד המטרו (17 מודעות, יולי 2026)</dt>
           </div>
         </dl>
-        <p class="town-sources reveal">Sources: <a class="verify-link" href="https://www.idealista.com/sala-de-prensa/informes-precio-vivienda/" target="_blank" rel="noopener noreferrer">Idealista</a> &middot; Fotocasa &middot; <a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">INE</a></p>
-        <p class="town-demand-close reveal">Long-term demand is the base. Tourist rentals are seasonal extras only.</p>
+        <p class="town-sources reveal">מקורות: <a class="verify-link" href="https://www.idealista.com/sala-de-prensa/informes-precio-vivienda/" target="_blank" rel="noopener noreferrer">Idealista</a> &middot; Fotocasa &middot; <a class="verify-link" href="https://www.ine.es/jaxiT3/Datos.htm?t=2903" target="_blank" rel="noopener noreferrer">INE</a></p>
+        <p class="town-demand-close reveal">הבסיס הוא ביקוש לשכירות ארוכת טווח. השכרה לתיירים היא תוספת עונתית בלבד.</p>
       </div>
     </div>
   </section>
@@ -1292,21 +1296,21 @@
   <section class="numbers" id="the-numbers">
     <div class="container flow">
       <div class="numbers-intro">
-        <p class="eyebrow reveal">The operating model</p>
-        <h2 class="reveal">One apartment.<br>Three rental markets.</h2>
-        <p class="numbers-lede reveal">Each furnished apartment moves between holiday, mid-term and long-term &mdash; whichever pays strongest.</p>
+        <p class="eyebrow reveal">מודל ההפעלה</p>
+        <h2 class="reveal">דירה אחת.<br>שלושה מסלולי השכרה.</h2>
+        <p class="numbers-lede reveal">כל דירה מרוהטת יכולה לעבור בין השכרה לתיירים, לטווח בינוני ולטווח ארוך &mdash; לפי המסלול שמניב יותר באותו זמן.</p>
       </div>
 
-      <div class="operating-stage reveal" aria-label="Flexible-living operating model targeting approximately seven percent net">
+      <div class="operating-stage reveal" aria-label="מודל השכרה גמיש המכוון לתשואה נטו של כשבעה אחוזים">
         <div class="rental-stack">
           <div class="rental-channel">
-            <p class="channel-name">Holiday</p>
+            <p class="channel-name">תיירות</p>
           </div>
           <div class="rental-channel">
-            <p class="channel-name">Mid-term</p>
+            <p class="channel-name">טווח בינוני</p>
           </div>
           <div class="rental-channel">
-            <p class="channel-name">Long-term</p>
+            <p class="channel-name">טווח ארוך</p>
           </div>
           <span class="flow-brace" aria-hidden="true">
             <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1328,7 +1332,7 @@
         <div class="management-hub">
           <div class="hub-badge">
             <span class="hub-name">El Fort&iacute;n</span>
-            <span class="hub-label">Active management</span>
+            <span class="hub-label">ניהול אקטיבי</span>
             <span class="hub-brace" aria-hidden="true">
               <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 3
@@ -1348,50 +1352,50 @@
         </div>
 
         <div class="return-lockup">
-          <p class="return-label">Expected net return</p>
+          <p class="return-label">תשואה נטו צפויה</p>
           <p class="return-figure"><span class="approx">&asymp;</span><span class="digit">7</span><span class="percent">%</span></p>
-          <p class="return-caption">After management and costs.</p>
+          <p class="return-caption">לאחר דמי ניהול והוצאות.</p>
         </div>
       </div>
 
       <div class="capital-basis reveal">
-        <h3 class="capital-heading">What you put in</h3>
+        <h3 class="capital-heading">כמה משקיעים בפועל</h3>
         <div class="entry-basis">
           <div class="entry-copy">
             <dl class="entry-compare">
               <div>
-                <dt>All-in at pre-sale, from</dt>
+                <dt>מחיר כולל במכירה מוקדמת, החל מ־</dt>
                 <dd>&euro;197,370</dd>
               </div>
               <div class="was">
-                <dt>All-in at full valuation</dt>
+                <dt>מחיר כולל לפי שווי מלא</dt>
                 <dd>&euro;229,384</dd>
               </div>
             </dl>
-            <p class="entry-sub">Entry apartment &mdash; 40.4&nbsp;m&sup2; useful</p>
-            <p class="entry-aside">Sale price is 15% below independent valuation (&euro;190,557). Purchase costs (~12%) and furniture are in both all-in figures. Prices vary by floor; full list comes with the documents.</p>
+            <p class="entry-sub">דירת הכניסה &mdash; 40.4&nbsp;מ״ר שימושיים</p>
+            <p class="entry-aside">מחיר המכירה נמוך ב־15% מהערכת שווי עצמאית (&euro;190,557). בשני המחירים הכוללים נכללות עלויות הרכישה (כ־12%) והריהוט. המחירים משתנים לפי קומה; הרשימה המלאה נשלחת יחד עם המסמכים.</p>
           </div>
           <figure class="entry-plan">
-            <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area">
-            <figcaption>Entry apartment &middot; floor plan</figcaption>
+            <img src="assets/render-type-a-cropped.jpg" alt="תכנית דירת הכניסה, 40.4 מ״ר שימושיים">
+            <figcaption>דירת הכניסה &middot; תכנית דירה</figcaption>
           </figure>
         </div>
       </div>
 
       <div class="protection-band reveal">
         <div>
-          <p class="protection-kicker">The floor underneath</p>
+          <p class="protection-kicker">רשת הביטחון החוזית</p>
           <p class="protection-figure">4%</p>
-          <p class="protection-note">Contractual minimum</p>
+          <p class="protection-note">מינימום חוזי</p>
         </div>
-        <p class="protection-copy">If rent falls short of the plan, the developer company&rsquo;s contract sets a 4% minimum. Company covenant &mdash; not a bank guarantee.</p>
+        <p class="protection-copy">אם ההכנסה משכירות נמוכה מהתחזית, חוזה חברת היזם קובע מינימום של 4%. זו התחייבות חוזית של החברה &mdash; לא ערבות בנקאית.</p>
       </div>
 
       <details class="reveal">
-        <summary>How the 7% is shared</summary>
-        <p>Income and costs run across all ten apartments as one operation, then paid in proportion to each owner&rsquo;s capital. Your rate does not depend on which unit you hold. A weak month in one is carried by the other nine. A projection &mdash; not a fixed promise.</p>
+        <summary>איך מחלקים את ה־7%</summary>
+        <p>ההכנסות וההוצאות של עשר הדירות מנוהלות כפעילות אחת, ומחולקות לכל בעלים ביחס להון שהשקיע. שיעור התשואה אינו תלוי בדירה הספציפית שבבעלותכם; חודש חלש בדירה אחת מתאזן מול תשע האחרות. זו תחזית &mdash; לא הבטחה לתשואה קבועה.</p>
       </details>
-      <p class="disclaimer reveal">Projections, not guarantees. The 4% minimum is a company covenant, not bank-backed.</p>
+      <p class="disclaimer reveal">הנתונים הם תחזיות, לא הבטחות. מינימום ה־4% הוא התחייבות של החברה ואינו מגובה בערבות בנקאית.</p>
     </div>
   </section>
 
@@ -1399,11 +1403,11 @@
        Management promise stays in hero/numbers — not restated. Reworked 2026-08-03. -->
   <section class="section-parchment" id="owning">
     <div class="container flow">
-      <p class="eyebrow reveal">Owning here</p>
-      <h2 class="reveal">Nine remain. Deed in your name.</h2>
+      <p class="eyebrow reveal">הבעלות</p>
+      <h2 class="reveal">נותרו תשע דירות. הנכס נרשם על שמכם.</h2>
       <ul class="candor-list ownership-list reveal">
-        <li><strong>Your deed.</strong> Registro de la Propiedad &mdash; not a fund share.</li>
-        <li><strong>Sell anytime.</strong> Like any Spanish apartment.</li>
+        <li><strong>שטר בעלות אישי.</strong> רישום ב־Registro de la Propiedad, הטאבו הספרדי &mdash; לא יחידה בקרן ולא מניה בחברה.</li>
+        <li><strong>אפשר למכור בכל עת.</strong> כמו כל דירה אחרת בספרד.</li>
       </ul>
     </div>
   </section>
@@ -1411,53 +1415,53 @@
   <!-- 7. CTA — book a call (primary); name your fear (secondary) -->
   <section class="cta" id="book">
     <div class="container narrow viewport-beat flow">
-      <h2 class="reveal">Book 15 minutes with <em>Uriel</em>.</h2>
-      <p class="lede reveal">Pick a time. Google Meet. You speak with the developer &mdash; not a sales team.</p>
+      <h2 class="reveal">קובעים 15 דקות עם <em>אוריאל</em>.</h2>
+      <p class="lede reveal">בוחרים שעה ונפגשים ב־Google Meet. השיחה היא עם היזם עצמו &mdash; לא עם מוקד מכירות.</p>
 
       <div class="booking-embed reveal" id="book-call">
         <iframe
           src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0ggzzAurhU1RcaUH9M8Ewvdv8E0J7_6mm0BEUNLlcp-DgNdpXI2_DVrqgQvLN9cNJkdP0KhB3J?gv=true"
-          title="Book a 15-minute call with Uriel"
+          title="קביעת שיחה של 15 דקות עם אוריאל"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <p class="booking-fallback reveal">Calendar not loading? <a href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Open the booking page</a>.</p>
+      <p class="booking-fallback reveal">היומן לא נטען? <a href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">אפשר לפתוח את עמוד קביעת השיחה</a>.</p>
 
       <div class="cta-alt reveal" id="what-would-stop-you">
-        <h3>Prefer to write first?</h3>
-        <p class="lede-alt">One question that decides it. Send yours &mdash; one answer, with the document. Not a brochure.</p>
+        <h3>מעדיפים להתחיל בכתב?</h3>
+        <p class="lede-alt">שלחו את השאלה שתקבע אם זה רלוונטי עבורכם. תקבלו תשובה עניינית, יחד עם המסמך שמגבה אותה &mdash; לא ברושור.</p>
 
         <div class="cta-block">
-          <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
-            <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
-            <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stops halfway</button>
-            <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% minimum is only on paper</button>
-            <button type="button" class="fear-btn" data-fear="show_me_documents">Show me the deeds and licenses first</button>
-            <button type="button" class="fear-btn" data-fear="who_answers_after">Who actually answers, after I have paid?</button>
+          <div class="fear-buttons" role="group" aria-label="בחרו את החשש שהכי קרוב לשלכם">
+            <button type="button" class="fear-btn" data-fear="rent_wont_materialize">מה אם לא יהיו מספיק שוכרים?</button>
+            <button type="button" class="fear-btn" data-fear="construction_stalls">מה קורה אם הבנייה נעצרת באמצע?</button>
+            <button type="button" class="fear-btn" data-fear="floor_just_paper">האם מינימום ה־4% שווה משהו מעבר לנייר?</button>
+            <button type="button" class="fear-btn" data-fear="show_me_documents">לפני הכול, אני רוצה לראות היתר ומסמכי בעלות</button>
+            <button type="button" class="fear-btn" data-fear="who_answers_after">מי מטפל בי בפועל אחרי שהכסף הועבר?</button>
           </div>
 
           <div class="fear-other">
-            <label for="fear-text">Something else:</label>
-            <textarea id="fear-text" placeholder="Write your own question &mdash; hard questions are welcome."></textarea>
+            <label for="fear-text">שאלה אחרת:</label>
+            <textarea id="fear-text" placeholder="כתבו כאן. גם שאלות קשות מתקבלות בברכה."></textarea>
           </div>
 
           <div class="send-row">
-            <button type="button" class="send-btn primary" id="send-email">Send by email</button>
-            <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
+            <button type="button" class="send-btn primary" id="send-email">שליחה במייל</button>
+            <button type="button" class="send-btn secondary" id="send-whatsapp">שליחה ב־WhatsApp</button>
           </div>
-          <p class="send-hint">No mailing list. No sales sequence. Nothing published with your name.</p>
+          <p class="send-hint">בלי רשימת תפוצה ובלי רצף הודעות מכירה. שום דבר לא יפורסם בשמכם.</p>
         </div>
       </div>
 
-      <p class="freedom-line reveal">If the honest answer is &ldquo;this is not for you&rdquo; &mdash; we will say so.</p>
+      <p class="freedom-line reveal">אם התשובה הכנה היא ״זה לא מתאים לכם״ &mdash; נגיד את זה.</p>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p class="brand">El Fort&iacute;n &middot; Riba-roja de T&uacute;ria, Valencia</p>
-      <p>Building license Exp. 4497/2025/GEN &middot; Res. 3658/2025 &middot; Architect COACV 11.357</p>
-      <p>Projections are not guarantees. Nothing on this page is investment advice; review everything with your own lawyer.</p>
+      <p class="brand">El Fort&iacute;n &middot; ריבה־רוחה דה טוריה, ולנסיה</p>
+      <p>היתר בנייה תיק 4497/2025/GEN &middot; החלטה 3658/2025 &middot; אדריכל רשום COACV 11.357</p>
+      <p>תחזיות אינן הבטחות. המידע בעמוד אינו ייעוץ השקעות; יש לבדוק את כל המסמכים עם עורך דין מטעמכם.</p>
     </div>
   </footer>
 
@@ -1494,10 +1498,10 @@
 
     function buildMessage() {
       var parts = [];
-      if (selectedFear) parts.push('My question: ' + selectedFear.label);
+      if (selectedFear) parts.push('השאלה שלי: ' + selectedFear.label);
       var custom = freeText.value.trim();
       if (custom) parts.push(custom);
-      if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
+      if (parts.length === 0) parts.push('השאלה שלי לגבי הדירות בריבה־רוחה: ');
       return parts.join('\n\n');
     }
 
@@ -1505,7 +1509,7 @@
       var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
       trackFearNamed(fearId, 'email');
       window.location.href = 'mailto:' + CONFIG.email
-        + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
+        + '?subject=' + encodeURIComponent('שאלה לגבי El Fortín ריבה־רוחה')
         + '&body=' + encodeURIComponent(buildMessage());
     });
 
@@ -1592,7 +1596,7 @@
           keyboard: false
         }).addTo(map);
         if (isCityCentre) {
-          m.bindTooltip('Val&egrave;ncia centre', { direction: 'top' });
+          m.bindTooltip('מרכז ולנסיה', { direction: 'top' });
         } else {
           m.bindTooltip(s.name, { direction: 'top' });
         }
@@ -1601,8 +1605,8 @@
       // The building.
       L.marker(METRO_LINE9.building, {
         icon: L.divIcon({ className: 'building-marker', iconSize: [15, 15] })
-      }).addTo(map).bindTooltip('The building &middot; Camino Valencia 31', {
-        permanent: true, direction: 'right', offset: [10, 0]
+      }).addTo(map).bindTooltip('הבניין &middot; Camino Valencia 31', {
+        permanent: true, direction: 'left', offset: [-10, 0]
       });
 
       // Frame the story from Valencia centre to the building.
@@ -1610,16 +1614,16 @@
       // is never hidden underneath it.
       function frameStory() {
         var overlayCard = document.querySelector('.town-orient');
-        var padLeft = 24;
+        var padRight = 24;
         if (window.innerWidth >= 768 && overlayCard) {
-          padLeft = Math.round(overlayCard.getBoundingClientRect().right) + 48;
+          padRight = Math.round(window.innerWidth - overlayCard.getBoundingClientRect().left) + 48;
         }
         // Twice the desired visual offset because fitBounds splits padding
         // across both sides: 30% extra bottom padding shifts the route ~15% up.
         var verticalShift = Math.round(map.getSize().y * 0.30);
         map.fitBounds(L.latLngBounds(cityCentre, METRO_LINE9.building), {
-          paddingTopLeft: [padLeft, 40],
-          paddingBottomRight: [40, 40 + verticalShift]
+          paddingTopLeft: [40, 40],
+          paddingBottomRight: [padRight, 40 + verticalShift]
         });
       }
       frameStory();
