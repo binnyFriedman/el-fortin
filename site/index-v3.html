@@ -17,6 +17,11 @@
       --linen: #EDE4D3;
       --map-paper: #FFFFF8;
       --wall-count: 8;
+      --depth: clamp(36px, 5.5vw, 72px);
+      --mesh: rgba(27, 42, 74, 0.085);
+      --mesh-strong: rgba(27, 42, 74, 0.16);
+      --mesh-on-navy: rgba(253, 252, 250, 0.10);
+      --mesh-size: 48px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,15 +36,14 @@
     }
 
     /*
-      Depth stack
-      -----------
-      .depth-track  → tall scroll document (creates progress)
-      .depth-stage  → fixed viewport with perspective
-      .wall         → stacked planes, front → back by z-index
-
-      Each wall exposes --p (0 → 1) as it exits.
-      Interim exit transform (swap later for stronger X/Y turns):
-        rotateX + slight rotateY + translateZ + scale + fade
+      Depth stack + volumetric walls
+      -----------------------------
+      .depth-track  → tall scroll document
+      .depth-stage  → sticky viewport + perspective
+      .wall         → exit transform (--p), z-order
+      .wall-shell   → 3D box (preserve-3d)
+      .wall-face-*  → front / back / sides / top / bottom
+      .wall-mesh    → wire grid on every face
     */
 
     .depth-track {
@@ -53,51 +57,162 @@
       height: 100svh;
       width: 100%;
       overflow: clip;
-      perspective: 1400px;
-      perspective-origin: 50% 50%;
+      perspective: 1600px;
+      perspective-origin: 50% 45%;
       background: var(--navy);
     }
 
-    /*
-      Layer contract (every .wall):
-        wall fill          → the section itself
-        blended word       → ::before  z-index: 0
-        future media/map   → .wall-media  z-index: 1
-        future foreground  → .wall-content  z-index: 2
-    */
     .wall {
       --p: 0;
       --z: 1;
+      --fill: var(--parchment);
+      --fill-side: var(--linen);
+      --fill-edge: #e5dcc8;
+      --word-color: rgba(27, 42, 74, 0.10);
+      --mesh-color: var(--mesh);
+      --mesh-edge: var(--mesh-strong);
       position: absolute;
       inset: 0;
       z-index: var(--z);
-      isolation: isolate;
-      overflow: clip;
       transform-origin: 50% 100%;
       transform-style: preserve-3d;
       will-change: transform, opacity;
       /* Interim forward-exit — refine X/Y turns next */
       transform:
-        translate3d(0, 0, calc(var(--p) * -180px))
-        rotateX(calc(var(--p) * -68deg))
-        rotateY(calc(var(--p) * 8deg))
-        scale(calc(1 - var(--p) * 0.08));
-      opacity: calc(1 - var(--p) * 1.05);
+        translate3d(0, 0, calc(var(--p) * -220px))
+        rotateX(calc(var(--p) * -62deg))
+        rotateY(calc(var(--p) * 10deg))
+        scale(calc(1 - var(--p) * 0.06));
+      opacity: calc(1 - var(--p) * 1.02);
       pointer-events: none;
     }
 
-    .wall.is-active {
-      pointer-events: auto;
+    .wall.is-active { pointer-events: auto; }
+    .wall.is-gone { visibility: hidden; }
+
+    .wall-shell {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
     }
 
-    .wall.is-gone {
-      visibility: hidden;
+    .wall-face {
+      position: absolute;
+      background: var(--fill);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      overflow: hidden;
     }
 
-    .wall::before {
+    /* Front flush at z=0; box extrudes backward so rest stays full-bleed */
+    .wall-face--front {
+      inset: 0;
+      transform: translateZ(0);
+      isolation: isolate;
+    }
+
+    .wall-face--back {
+      inset: 0;
+      background: var(--fill-side);
+      transform: translateZ(calc(var(--depth) * -1)) rotateY(180deg);
+      filter: brightness(0.92);
+    }
+
+    .wall-face--left,
+    .wall-face--right {
+      top: 0;
+      bottom: 0;
+      width: var(--depth);
+      background: var(--fill-edge);
+    }
+
+    .wall-face--left {
+      left: 0;
+      margin-left: calc(var(--depth) / -2);
+      transform: rotateY(-90deg);
+    }
+
+    .wall-face--right {
+      left: 100%;
+      margin-left: calc(var(--depth) / -2);
+      transform: rotateY(90deg);
+    }
+
+    .wall-face--top,
+    .wall-face--bottom {
+      left: 0;
+      right: 0;
+      height: var(--depth);
+      background: var(--fill-edge);
+    }
+
+    .wall-face--top {
+      top: 0;
+      margin-top: calc(var(--depth) / -2);
+      transform: rotateX(90deg);
+    }
+
+    .wall-face--bottom {
+      top: 100%;
+      margin-top: calc(var(--depth) / -2);
+      transform: rotateX(-90deg);
+    }
+
+    /* Wire mesh — architectural grid */
+    .wall-mesh {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, var(--mesh-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--mesh-color) 1px, transparent 1px);
+      background-size: var(--mesh-size) var(--mesh-size);
+      background-position: center center;
+      opacity: 1;
+    }
+
+    .wall-face--left .wall-mesh,
+    .wall-face--right .wall-mesh,
+    .wall-face--top .wall-mesh,
+    .wall-face--bottom .wall-mesh {
+      --mesh-color: var(--mesh-edge);
+      background-size: calc(var(--mesh-size) * 0.55) calc(var(--mesh-size) * 0.55);
+      opacity: 0.95;
+    }
+
+    .wall-face--back .wall-mesh {
+      opacity: 0.55;
+    }
+
+    /* Soft inner rim so thickness reads even at rest */
+    .wall-face--front::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      box-shadow:
+        inset 0 0 0 1px rgba(27, 42, 74, 0.06),
+        inset 0 0 48px rgba(27, 42, 74, 0.04);
+    }
+
+    .wall-nine .wall-face--front::after {
+      box-shadow:
+        inset 0 0 0 1px rgba(253, 252, 250, 0.08),
+        inset 0 0 48px rgba(0, 0, 0, 0.18);
+    }
+
+    /*
+      Front layer contract:
+        mesh / word  → z-index: 0
+        media        → z-index: 1
+        content      → z-index: 2
+    */
+    .wall-word {
       position: absolute;
       z-index: 0;
       inset: auto;
+      margin: 0;
       font-family: 'DM Serif Display', Georgia, serif;
       font-weight: 400;
       font-style: normal;
@@ -105,6 +220,7 @@
       letter-spacing: -0.04em;
       text-transform: uppercase;
       white-space: nowrap;
+      color: var(--word-color);
       pointer-events: none;
       user-select: none;
     }
@@ -119,6 +235,7 @@
     .wall-content {
       position: relative;
       z-index: 2;
+      height: 100%;
     }
 
     .sr-only {
@@ -133,22 +250,29 @@
       border: 0;
     }
 
-    /* ---------- Wall fills + word rhythm ---------- */
+    /* ---------- Per-wall palette + word placement ---------- */
 
-    .wall-own { background: var(--parchment); }
-    .wall-own::before {
+    .wall-own {
+      --fill: var(--parchment);
+      --fill-side: #efe8dc;
+      --fill-edge: #e2d6c2;
+      --word-color: rgba(27, 42, 74, 0.10);
+    }
+    .wall-own .wall-word {
       content: "OWN";
-      color: rgba(27, 42, 74, 0.10);
       font-size: clamp(180px, 42vw, 520px);
       top: 42%;
       left: -4%;
       transform: translateY(-50%);
     }
 
-    .wall-proven { background: var(--white-stone); }
-    .wall-proven::before {
-      content: "PROVEN";
-      color: rgba(27, 42, 74, 0.09);
+    .wall-proven {
+      --fill: var(--white-stone);
+      --fill-side: #f3efe8;
+      --fill-edge: #e5ddd0;
+      --word-color: rgba(27, 42, 74, 0.09);
+    }
+    .wall-proven .wall-word {
       font-size: clamp(120px, 28vw, 360px);
       top: 58%;
       right: -8%;
@@ -156,20 +280,26 @@
       transform: translateY(-50%);
     }
 
-    .wall-committed { background: var(--linen); }
-    .wall-committed::before {
-      content: "COMMITTED";
-      color: rgba(27, 42, 74, 0.11);
+    .wall-committed {
+      --fill: var(--linen);
+      --fill-side: #e5d9c3;
+      --fill-edge: #d7c7ab;
+      --word-color: rgba(27, 42, 74, 0.11);
+    }
+    .wall-committed .wall-word {
       font-size: clamp(90px, 22vw, 280px);
       top: 38%;
       left: -6%;
       transform: translateY(-50%);
     }
 
-    .wall-connected { background: var(--map-paper); }
-    .wall-connected::before {
-      content: "CONNECTED";
-      color: rgba(27, 42, 74, 0.09);
+    .wall-connected {
+      --fill: var(--map-paper);
+      --fill-side: #f4f0e4;
+      --fill-edge: #e6dfce;
+      --word-color: rgba(27, 42, 74, 0.09);
+    }
+    .wall-connected .wall-word {
       font-size: clamp(90px, 20vw, 260px);
       bottom: 8%;
       top: auto;
@@ -177,30 +307,41 @@
       transform: none;
     }
 
-    .wall-yours { background: var(--parchment); }
-    .wall-yours::before {
-      content: "YOURS";
-      color: rgba(194, 112, 62, 0.14);
+    .wall-yours {
+      --fill: var(--parchment);
+      --fill-side: #efe8dc;
+      --fill-edge: #e2d6c2;
+      --word-color: rgba(194, 112, 62, 0.14);
+    }
+    .wall-yours .wall-word {
       font-size: clamp(160px, 38vw, 480px);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
 
-    .wall-return { background: var(--linen); }
-    .wall-return::before {
-      content: "RETURN";
-      color: rgba(27, 42, 74, 0.10);
+    .wall-return {
+      --fill: var(--linen);
+      --fill-side: #e5d9c3;
+      --fill-edge: #d7c7ab;
+      --word-color: rgba(27, 42, 74, 0.10);
+    }
+    .wall-return .wall-word {
       font-size: clamp(130px, 30vw, 400px);
       top: 48%;
       left: -5%;
       transform: translateY(-50%);
     }
 
-    .wall-nine { background: var(--navy); }
-    .wall-nine::before {
-      content: "NINE";
-      color: rgba(253, 252, 250, 0.12);
+    .wall-nine {
+      --fill: var(--navy);
+      --fill-side: #152238;
+      --fill-edge: #0f1a2c;
+      --word-color: rgba(253, 252, 250, 0.12);
+      --mesh-color: var(--mesh-on-navy);
+      --mesh-edge: rgba(253, 252, 250, 0.18);
+    }
+    .wall-nine .wall-word {
       font-size: clamp(200px, 48vw, 560px);
       top: 50%;
       right: -6%;
@@ -208,10 +349,13 @@
       transform: translateY(-50%);
     }
 
-    .wall-talk { background: var(--parchment); }
-    .wall-talk::before {
-      content: "TALK";
-      color: rgba(27, 42, 74, 0.10);
+    .wall-talk {
+      --fill: var(--parchment);
+      --fill-side: #efe8dc;
+      --fill-edge: #e2d6c2;
+      --word-color: rgba(27, 42, 74, 0.10);
+    }
+    .wall-talk .wall-word {
       font-size: clamp(180px, 44vw, 540px);
       top: 55%;
       left: -2%;
@@ -219,42 +363,46 @@
     }
 
     @media (max-width: 767px) {
-      .depth-stage { perspective: 900px; }
+      :root {
+        --depth: clamp(24px, 7vw, 40px);
+        --mesh-size: 36px;
+      }
+      .depth-stage { perspective: 1000px; }
       .wall {
         transform:
-          translate3d(0, 0, calc(var(--p) * -120px))
-          rotateX(calc(var(--p) * -58deg))
-          rotateY(calc(var(--p) * 5deg))
-          scale(calc(1 - var(--p) * 0.06));
+          translate3d(0, 0, calc(var(--p) * -140px))
+          rotateX(calc(var(--p) * -54deg))
+          rotateY(calc(var(--p) * 6deg))
+          scale(calc(1 - var(--p) * 0.05));
       }
-      .wall-own::before {
+      .wall-own .wall-word {
         font-size: clamp(140px, 48vw, 280px);
         left: -10%;
       }
-      .wall-proven::before {
+      .wall-proven .wall-word {
         font-size: clamp(90px, 36vw, 200px);
         right: -18%;
       }
-      .wall-committed::before {
+      .wall-committed .wall-word {
         font-size: clamp(70px, 28vw, 160px);
         left: -14%;
       }
-      .wall-connected::before {
+      .wall-connected .wall-word {
         font-size: clamp(70px, 26vw, 150px);
         left: -4%;
       }
-      .wall-yours::before {
+      .wall-yours .wall-word {
         font-size: clamp(140px, 46vw, 260px);
       }
-      .wall-return::before {
+      .wall-return .wall-word {
         font-size: clamp(100px, 40vw, 220px);
         left: -12%;
       }
-      .wall-nine::before {
+      .wall-nine .wall-word {
         font-size: clamp(160px, 52vw, 300px);
         right: -14%;
       }
-      .wall-talk::before {
+      .wall-talk .wall-word {
         font-size: clamp(140px, 50vw, 280px);
         left: -8%;
       }
@@ -273,6 +421,13 @@
         opacity: 0;
         visibility: hidden;
       }
+      .wall-face--left,
+      .wall-face--right,
+      .wall-face--top,
+      .wall-face--bottom,
+      .wall-face--back {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -282,43 +437,131 @@
     <div class="depth-stage" id="depth-stage" aria-live="polite">
 
       <section class="wall wall-own" data-i="0" style="--z: 8" aria-label="Own">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Own</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">OWN</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Own</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
       <section class="wall wall-proven" data-i="1" style="--z: 7" aria-label="Proven">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Proven</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">PROVEN</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Proven</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
       <section class="wall wall-committed" data-i="2" style="--z: 6" aria-label="Committed">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Committed</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">COMMITTED</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Committed</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
       <section class="wall wall-connected" data-i="3" style="--z: 5" aria-label="Connected">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Connected</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">CONNECTED</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Connected</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
       <section class="wall wall-yours" data-i="4" style="--z: 4" aria-label="Yours">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Yours</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">YOURS</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Yours</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
       <section class="wall wall-return" data-i="5" style="--z: 3" aria-label="Return">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Return</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">RETURN</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Return</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
       <section class="wall wall-nine" data-i="6" style="--z: 2" aria-label="Nine">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Nine</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">NINE</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Nine</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
       <section class="wall wall-talk" data-i="7" style="--z: 1" aria-label="Talk">
-        <div class="wall-media" aria-hidden="true"></div>
-        <div class="wall-content"><h2 class="sr-only">Talk</h2></div>
+        <div class="wall-shell">
+          <div class="wall-face wall-face--front">
+            <div class="wall-mesh" aria-hidden="true"></div>
+            <p class="wall-word" aria-hidden="true">TALK</p>
+            <div class="wall-media" aria-hidden="true"></div>
+            <div class="wall-content"><h2 class="sr-only">Talk</h2></div>
+          </div>
+          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
+          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+        </div>
       </section>
 
     </div>
@@ -338,13 +581,11 @@
       function update() {
         ticking = false;
         var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        // n segments for n walls: last wall stays fully in view at the end
         var progress = clamp(window.scrollY / max, 0, 1) * (n - 1);
         var active = Math.min(n - 1, Math.floor(progress + 0.0001));
 
         walls.forEach(function (wall, i) {
           var local = clamp(progress - i, 0, 1);
-          // Last wall never exits — journey ends on TALK
           if (i === n - 1) local = 0;
           wall.style.setProperty('--p', local.toFixed(4));
           wall.classList.toggle('is-active', i === active);
