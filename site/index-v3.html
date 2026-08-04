@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>El Fortín — Section walls (v3 background)</title>
+  <title>El Fortín — Section walls (v3 depth)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -16,32 +16,82 @@
       --terracotta: #C2703E;
       --linen: #EDE4D3;
       --map-paper: #FFFFF8;
+      --wall-count: 8;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
 
     body {
       font-family: 'DM Serif Display', Georgia, serif;
-      background: var(--parchment);
+      background: var(--navy);
       color: var(--navy);
       -webkit-font-smoothing: antialiased;
+    }
+
+    /*
+      Depth stack
+      -----------
+      .depth-track  → tall scroll document (creates progress)
+      .depth-stage  → fixed viewport with perspective
+      .wall         → stacked planes, front → back by z-index
+
+      Each wall exposes --p (0 → 1) as it exits.
+      Interim exit transform (swap later for stronger X/Y turns):
+        rotateX + slight rotateY + translateZ + scale + fade
+    */
+
+    .depth-track {
+      height: calc(var(--wall-count) * 100svh);
+      position: relative;
+    }
+
+    .depth-stage {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      width: 100%;
+      overflow: clip;
+      perspective: 1400px;
+      perspective-origin: 50% 50%;
+      background: var(--navy);
     }
 
     /*
       Layer contract (every .wall):
         wall fill          → the section itself
         blended word       → ::before  z-index: 0
-        future media/map   → .wall-media  z-index: 1  (reserved)
-        future foreground  → .wall-content  z-index: 2  (reserved)
+        future media/map   → .wall-media  z-index: 1
+        future foreground  → .wall-content  z-index: 2
     */
     .wall {
-      position: relative;
+      --p: 0;
+      --z: 1;
+      position: absolute;
+      inset: 0;
+      z-index: var(--z);
       isolation: isolate;
       overflow: clip;
-      min-height: 100svh;
-      width: 100%;
+      transform-origin: 50% 100%;
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+      /* Interim forward-exit — refine X/Y turns next */
+      transform:
+        translate3d(0, 0, calc(var(--p) * -180px))
+        rotateX(calc(var(--p) * -68deg))
+        rotateY(calc(var(--p) * 8deg))
+        scale(calc(1 - var(--p) * 0.08));
+      opacity: calc(1 - var(--p) * 1.05);
+      pointer-events: none;
+    }
+
+    .wall.is-active {
+      pointer-events: auto;
+    }
+
+    .wall.is-gone {
+      visibility: hidden;
     }
 
     .wall::before {
@@ -59,7 +109,6 @@
       user-select: none;
     }
 
-    /* Reserved for later layers — empty now */
     .wall-media {
       position: absolute;
       inset: 0;
@@ -70,7 +119,6 @@
     .wall-content {
       position: relative;
       z-index: 2;
-      /* Visually empty: only an sr-only label for structure */
     }
 
     .sr-only {
@@ -87,10 +135,7 @@
 
     /* ---------- Wall fills + word rhythm ---------- */
 
-    /* 1 — OWN */
-    .wall-own {
-      background: var(--parchment);
-    }
+    .wall-own { background: var(--parchment); }
     .wall-own::before {
       content: "OWN";
       color: rgba(27, 42, 74, 0.10);
@@ -100,10 +145,7 @@
       transform: translateY(-50%);
     }
 
-    /* 2 — PROVEN */
-    .wall-proven {
-      background: var(--white-stone);
-    }
+    .wall-proven { background: var(--white-stone); }
     .wall-proven::before {
       content: "PROVEN";
       color: rgba(27, 42, 74, 0.09);
@@ -114,10 +156,7 @@
       transform: translateY(-50%);
     }
 
-    /* 3 — COMMITTED */
-    .wall-committed {
-      background: var(--linen);
-    }
+    .wall-committed { background: var(--linen); }
     .wall-committed::before {
       content: "COMMITTED";
       color: rgba(27, 42, 74, 0.11);
@@ -127,10 +166,7 @@
       transform: translateY(-50%);
     }
 
-    /* 4 — CONNECTED */
-    .wall-connected {
-      background: var(--map-paper);
-    }
+    .wall-connected { background: var(--map-paper); }
     .wall-connected::before {
       content: "CONNECTED";
       color: rgba(27, 42, 74, 0.09);
@@ -141,10 +177,7 @@
       transform: none;
     }
 
-    /* 5 — YOURS */
-    .wall-yours {
-      background: var(--parchment);
-    }
+    .wall-yours { background: var(--parchment); }
     .wall-yours::before {
       content: "YOURS";
       color: rgba(194, 112, 62, 0.14);
@@ -154,10 +187,7 @@
       transform: translate(-50%, -50%);
     }
 
-    /* 6 — RETURN */
-    .wall-return {
-      background: var(--linen);
-    }
+    .wall-return { background: var(--linen); }
     .wall-return::before {
       content: "RETURN";
       color: rgba(27, 42, 74, 0.10);
@@ -167,10 +197,7 @@
       transform: translateY(-50%);
     }
 
-    /* 7 — NINE */
-    .wall-nine {
-      background: var(--navy);
-    }
+    .wall-nine { background: var(--navy); }
     .wall-nine::before {
       content: "NINE";
       color: rgba(253, 252, 250, 0.12);
@@ -181,10 +208,7 @@
       transform: translateY(-50%);
     }
 
-    /* 8 — TALK */
-    .wall-talk {
-      background: var(--parchment);
-    }
+    .wall-talk { background: var(--parchment); }
     .wall-talk::before {
       content: "TALK";
       color: rgba(27, 42, 74, 0.10);
@@ -195,6 +219,14 @@
     }
 
     @media (max-width: 767px) {
+      .depth-stage { perspective: 900px; }
+      .wall {
+        transform:
+          translate3d(0, 0, calc(var(--p) * -120px))
+          rotateX(calc(var(--p) * -58deg))
+          rotateY(calc(var(--p) * 5deg))
+          scale(calc(1 - var(--p) * 0.06));
+      }
       .wall-own::before {
         font-size: clamp(140px, 48vw, 280px);
         left: -10%;
@@ -227,65 +259,114 @@
         left: -8%;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wall {
+        transform: none;
+        opacity: 0;
+      }
+      .wall.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .wall.is-gone {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <section class="wall wall-own" aria-label="Own">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Own</h2>
-    </div>
-  </section>
+  <div class="depth-track" id="depth-track">
+    <div class="depth-stage" id="depth-stage" aria-live="polite">
 
-  <section class="wall wall-proven" aria-label="Proven">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Proven</h2>
-    </div>
-  </section>
+      <section class="wall wall-own" data-i="0" style="--z: 8" aria-label="Own">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Own</h2></div>
+      </section>
 
-  <section class="wall wall-committed" aria-label="Committed">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Committed</h2>
-    </div>
-  </section>
+      <section class="wall wall-proven" data-i="1" style="--z: 7" aria-label="Proven">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Proven</h2></div>
+      </section>
 
-  <section class="wall wall-connected" aria-label="Connected">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Connected</h2>
-    </div>
-  </section>
+      <section class="wall wall-committed" data-i="2" style="--z: 6" aria-label="Committed">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Committed</h2></div>
+      </section>
 
-  <section class="wall wall-yours" aria-label="Yours">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Yours</h2>
-    </div>
-  </section>
+      <section class="wall wall-connected" data-i="3" style="--z: 5" aria-label="Connected">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Connected</h2></div>
+      </section>
 
-  <section class="wall wall-return" aria-label="Return">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Return</h2>
-    </div>
-  </section>
+      <section class="wall wall-yours" data-i="4" style="--z: 4" aria-label="Yours">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Yours</h2></div>
+      </section>
 
-  <section class="wall wall-nine" aria-label="Nine">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Nine</h2>
-    </div>
-  </section>
+      <section class="wall wall-return" data-i="5" style="--z: 3" aria-label="Return">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Return</h2></div>
+      </section>
 
-  <section class="wall wall-talk" aria-label="Talk">
-    <div class="wall-media" aria-hidden="true"></div>
-    <div class="wall-content">
-      <h2 class="sr-only">Talk</h2>
-    </div>
-  </section>
+      <section class="wall wall-nine" data-i="6" style="--z: 2" aria-label="Nine">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Nine</h2></div>
+      </section>
 
+      <section class="wall wall-talk" data-i="7" style="--z: 1" aria-label="Talk">
+        <div class="wall-media" aria-hidden="true"></div>
+        <div class="wall-content"><h2 class="sr-only">Talk</h2></div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var walls = Array.prototype.slice.call(document.querySelectorAll('.wall'));
+      var n = walls.length;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var ticking = false;
+
+      function clamp(v, a, b) {
+        return Math.max(a, Math.min(b, v));
+      }
+
+      function update() {
+        ticking = false;
+        var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        // n segments for n walls: last wall stays fully in view at the end
+        var progress = clamp(window.scrollY / max, 0, 1) * (n - 1);
+        var active = Math.min(n - 1, Math.floor(progress + 0.0001));
+
+        walls.forEach(function (wall, i) {
+          var local = clamp(progress - i, 0, 1);
+          // Last wall never exits — journey ends on TALK
+          if (i === n - 1) local = 0;
+          wall.style.setProperty('--p', local.toFixed(4));
+          wall.classList.toggle('is-active', i === active);
+          wall.classList.toggle('is-gone', local >= 0.999 && i !== n - 1);
+          if (reduce) {
+            wall.classList.toggle('is-active', i === active);
+            wall.classList.toggle('is-gone', i !== active);
+          }
+        });
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>
