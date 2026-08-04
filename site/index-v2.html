@@ -175,19 +175,6 @@
       background-size: 145% auto;
       padding: 0;
     }
-    .hero-render-cue {
-      position: absolute;
-      right: 16px;
-      bottom: 14px;
-      margin: 0;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.35;
-      z-index: 1;
-    }
     .hero-stage {
       width: 100%;
       max-width: 760px;
@@ -198,14 +185,73 @@
       justify-content: center;
       gap: 28px;
     }
-    .hero-eyebrow {
+    .hero-place {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
       margin: 0;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      padding: 0;
+      list-style: none;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1;
       color: var(--navy);
-      opacity: 0.5;
+    }
+    .hero-place > li {
+      display: flex;
+      align-items: center;
+    }
+    .hero-place-ride {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-place .rail {
+      width: 36px;
+      height: 1.5px;
+      background: var(--terracotta);
+      opacity: 0.75;
+      flex: none;
+    }
+    .hero-place .ride-chip {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      line-height: 1;
+    }
+    .hero-place .ride-time {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1em;
+      font-variant-numeric: tabular-nums;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+    .hero-place .metro-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Source Sans 3', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .hero-place .metro-num {
+      display: grid;
+      place-items: center;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 1.5px solid var(--terracotta);
+      border-radius: 50%;
+      color: var(--terracotta);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1;
     }
     .hero h1 {
       font-size: 36px;
@@ -421,63 +467,6 @@
       padding-top: 8px;
     }
 
-    /* ---------- 5. Town — one static location cue ---------- */
-    #town {
-      padding: 72px 0;
-      background: var(--map-paper);
-    }
-    .town-brief {
-      display: grid;
-      gap: 32px;
-      align-items: center;
-    }
-    .town-orient {
-      max-width: 26em;
-    }
-    .town-orient .eyebrow {
-      margin-bottom: 8px;
-    }
-    .town-orient h2 {
-      margin-bottom: 12px;
-      font-size: 34px;
-    }
-    .town-intro {
-      color: var(--navy);
-      opacity: 0.72;
-      font-size: 15px;
-      line-height: 1.55;
-      margin: 0;
-    }
-    .town-map {
-      margin: 0;
-      min-width: 0;
-    }
-    .town-map-frame {
-      position: relative;
-      height: 260px;
-      overflow: hidden;
-      border: 1px solid var(--sandstone);
-      background: var(--linen);
-    }
-    .town-map-tiles {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      transform: translateY(-50%);
-    }
-    .town-map-tiles img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: sepia(0.18) saturate(0.75) brightness(1.03);
-    }
-    .town-map figcaption {
-      margin-top: 7px;
-      font-size: 10px;
-    }
     .verify-link {
       color: var(--navy); font-weight: 600;
       text-decoration: underline; text-underline-offset: 2px;
@@ -1027,11 +1016,6 @@
             rgba(247, 244, 239, 0.88) 100%),
           url("assets/hero-cutaway-photoreal-v1.jpg");
       }
-      .hero-render-cue {
-        right: 12px;
-        bottom: 10px;
-        font-size: 9px;
-      }
       .puzol-pair { grid-template-columns: 1fr; }
       .puzol-pair img { height: 220px; }
     }
@@ -1070,11 +1054,6 @@
       }
       h2 { font-size: 38px; }
       .founder-grid { grid-template-columns: 320px 1fr; align-items: start; }
-      .town-brief {
-        grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
-        gap: 64px;
-      }
-      .town-map-frame { height: 300px; }
       .fear-buttons { grid-template-columns: 1fr 1fr; gap: 12px; }
       .operating-stage {
         grid-template-columns: 1fr 1fr 1fr;
@@ -1170,12 +1149,26 @@
     </div>
   </nav>
 
-  <!-- 1. Hero — place → ownership → management → price → timing -->
+  <!-- 1. Hero — place+metro → ownership → management → price → timing -->
   <header class="hero">
     <div class="hero-stage hero-flow">
-      <p class="hero-eyebrow reveal">Riba-roja de T&uacute;ria &middot; Valencia</p>
+      <ol class="hero-place reveal" aria-label="Riba-roja to Valencia by Metro Line 9, about 35 minutes">
+        <li>Riba-roja</li>
+        <li class="hero-place-ride" aria-hidden="true">
+          <span class="rail"></span>
+          <span class="ride-chip">
+            <span class="ride-time">35&nbsp;min</span>
+            <span class="metro-mark">
+              <span class="metro-num">9</span>
+              Metro
+            </span>
+          </span>
+          <span class="rail"></span>
+        </li>
+        <li>Valencia</li>
+      </ol>
       <h1 class="reveal">
-        Near Valencia.<br>Yours.
+        Yours.
         <span class="hero-title-service">Rentals managed.</span>
       </h1>
       <dl class="hero-deal reveal">
@@ -1186,7 +1179,6 @@
       </dl>
       <p class="hero-qualify reveal">Ready in 2027</p>
     </div>
-    <p class="hero-render-cue">Render &mdash; illustrative</p>
   </header>
 
   <!-- 2. Competence — proof before explanation -->
@@ -1240,39 +1232,13 @@
       <div class="pattern-grid commitment-grid reveal">
         <article class="beat">
           <p class="beat-year">2026</p>
-          <p>El Fort&iacute;n has one completed renovation &mdash; not a long operating record. Uriel left SAP in January; this is now his full-time work. Judge the title, licence, contract and numbers with your own advisers.</p>
+          <p>El Fort&iacute;n has one completed renovation &mdash; not a long operating record. Uriel left SAP in January; this is now his full-time work.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 4. Place — one static location cue -->
-  <section id="town">
-    <div class="container">
-      <div class="town-brief">
-        <div class="town-orient reveal">
-          <p class="eyebrow">Location</p>
-          <h2>Riba-roja.</h2>
-          <p class="town-intro">Metro Line&nbsp;9 to Valencia.</p>
-        </div>
-        <figure class="town-map reveal">
-          <div class="town-map-frame">
-            <div class="town-map-tiles" role="img" aria-label="Map showing Riba-roja west of Valencia">
-              <img src="https://basemaps.cartocdn.com/light_all/11/1020/778.png" alt="">
-              <img src="https://basemaps.cartocdn.com/light_all/11/1021/778.png" alt="">
-              <img src="https://basemaps.cartocdn.com/light_all/11/1022/778.png" alt="">
-              <img src="https://basemaps.cartocdn.com/light_all/11/1020/779.png" alt="">
-              <img src="https://basemaps.cartocdn.com/light_all/11/1021/779.png" alt="">
-              <img src="https://basemaps.cartocdn.com/light_all/11/1022/779.png" alt="">
-            </div>
-          </div>
-          <figcaption>Map &copy; OpenStreetMap contributors &middot; CARTO</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Ownership — the legal object, without repeating the operating model -->
+  <!-- 4. Ownership — the legal object, without repeating the operating model -->
   <section id="offer">
     <div class="container offer-grid flow">
       <div class="offer-copy reveal">
@@ -1332,7 +1298,7 @@
   <section class="cta" id="book">
     <div class="container narrow viewport-beat flow">
       <h2 class="cta-display reveal">Documents<em>first.</em></h2>
-      <p class="lede reveal">Title. Licence. Valuation. Contract. Read them with your lawyer. Then decide whether to talk.</p>
+      <p class="lede reveal">Title. Licence. Valuation. Contract. We send them first.</p>
       <div class="booking-action reveal">
         <a class="booking-primary" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Request the pack</a>
         <a class="booking-secondary" id="book-call" href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Book 15 minutes</a>
@@ -1373,7 +1339,7 @@
     <div class="container">
       <p class="brand">El Fort&iacute;n &middot; Riba-roja de T&uacute;ria, Valencia</p>
       <p>Building licence Exp. 4497/2025/GEN &middot; Res. 3658/2025 &middot; Architect COACV 11.357</p>
-      <p>Projections are not guarantees. Nothing on this page is investment advice; review everything with your own lawyer.</p>
+      <p>Projections, not promises. Not investment advice.</p>
     </div>
   </footer>
 

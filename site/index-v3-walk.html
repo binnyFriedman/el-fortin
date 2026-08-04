@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<!--
+  THE WALK — v3 theater engine + the approved messages of index-v2.html.
+  Journey plan: marketing-strategies/01-direct-investor-funnel/assets/v3-walkthrough-journey.md
+
+  PUBLISH CHECKLIST (carried over from index-v2 / landing-page-copy.md — all must be checked):
+  [ ] All ⏳ U-Q placeholders resolved with verified answers
+  [ ] Land-paid claim included only if U-Q7 = yes
+  [ ] Unit-10-sold mention only if U-Q9 = yes
+  [ ] Floor sentence is Uriel's approved wording (U-Q8)
+  [ ] Numbers cross-checked once more against deal doc §4/§5
+  [ ] No "guaranteed" anywhere on page
+  [ ] Strip the dev panel (keydown 'd') before launch
+  [ ] Touch input + reduced-motion/no-JS fallback verified on real devices
+  [ ] Remove the robots noindex meta tag at launch; set the GA4 measurement ID
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>El Fortín — The Walk (six rooms, one goal)</title>
+  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €197,370 all-in at pre-sale. Ready in 2027.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --navy-deep: #101C33;
+      --slate: #3D4F5F;
+      --ash: #6B7B8D;
+      --parchment: #F7F4EF;
+      --white-stone: #FDFCFA;
+      --terracotta: #C2703E;
+      --terracotta-dark: #A85E32;
+      --sandstone: #D4B896;
+      --linen: #EDE4D3;
+      --map-paper: #FFFFF8;
+
+      --rooms: 6;
+
+      /* Camera */
+      --lens: 1600px;          /* focal length */
+      --walk: 5600px;          /* distance between neighboring rooms — a long walk */
+      --dolly: 1.8s;
+      --dolly-ease: cubic-bezier(0.66, 0, 0.16, 1);
+
+      /*
+        Room volume: each room is a space, not a poster.
+        Content is staggered from the back wall to the station:
+        back wall (−1400) → word (−1150) → panel (0, reading plane)
+
+        Past the station lies the close-up zone: the visitor can push ~900px
+        deeper while the content keeps coming closer, before the room lets go.
+
+        The back wall is monumentally oversized (6.4×) so it swallows the view
+        early in the approach. When first revealed it stands ~4450px away —
+        floating over the stage's own grid, so the journey shows drafting
+        paper at every distance, never black.
+      */
+      --room-depth: 2300px;
+      --back-scale: 6.4;
+      --word-depth: 1150px;
+      --word-scale: 1.72;      /* (1600 + 1150) / 1600 */
+      --mesh-navy: rgba(27, 42, 74, 0.085);
+      --mesh-light: rgba(253, 252, 250, 0.10);
+      --mesh-size: 192px;
+      --mesh-mult: 4;
+      --title-scale: 1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden; /* no document scroll — the walk is the interaction */
+    }
+
+    body {
+      font-family: 'DM Serif Display', Georgia, serif;
+      background: var(--navy-deep);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /*
+      Theater
+      -------
+      #stage    → the house: viewport, camera lens (perspective), background
+      #scene    → the set: preserve-3d, moved by the camera dolly (--cam)
+      .frame    → one room composition standing at --i × --walk deep
+      .prop     → an element positioned in 3D inside a frame
+      .light-*  → lighting rig, 2D layers above the set
+    */
+
+    #stage {
+      position: fixed;
+      inset: 0;
+      overflow: clip;
+      perspective: var(--lens);
+      perspective-origin: 50% 45%;
+      /* The house: even the void is drafting paper — a faint grid,
+         so a distant room floats over structure, never over black */
+      background:
+        linear-gradient(to right, rgba(253, 252, 250, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(253, 252, 250, 0.05) 1px, transparent 1px),
+        radial-gradient(120% 90% at 50% 30%, #223357 0%, var(--navy-deep) 62%, #0B1424 100%);
+      background-size: 720px 720px, 720px 720px, 100% 100%;
+      background-position: center center;
+      --cam: 0px;
+    }
+
+    #scene {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transform: translateZ(var(--cam));
+      will-change: transform;
+    }
+
+    /* ---------- Floor: grounds the whole walk ---------- */
+
+    .scene-floor {
+      position: absolute;
+      top: 100%;
+      left: -20%;
+      width: 140%;
+      height: calc(var(--walk) * (var(--rooms) - 1) + 600px);
+      transform-origin: top center;
+      transform: rotateX(-90deg);
+      background:
+        linear-gradient(to bottom, rgba(16, 28, 51, 0) 0%, var(--navy-deep) 92%),
+        linear-gradient(to right, var(--mesh-light) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--mesh-light) 1px, transparent 1px);
+      background-size: 100% 100%, var(--mesh-size) var(--mesh-size), var(--mesh-size) var(--mesh-size);
+      backface-visibility: hidden;
+    }
+
+    /* ---------- Frames ---------- */
+
+    /* Opacity + visibility are driven per-frame by the camera loop:
+       each wall dissolves as the camera physically passes through it */
+    .frame {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transform: translateZ(calc(var(--i) * var(--walk) * -1));
+    }
+
+    .wall {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      backface-visibility: hidden;
+      background: var(--fill);
+      transform: translateZ(calc(var(--room-depth) * -1)) scale(var(--back-scale));
+    }
+
+    .frame--light .wall {
+      --mesh-color: var(--mesh-navy);
+      box-shadow: inset 0 0 0 1px rgba(27, 42, 74, 0.06), inset 0 0 48px rgba(27, 42, 74, 0.04);
+    }
+
+    .frame--dark .wall {
+      --mesh-color: var(--mesh-light);
+      box-shadow: inset 0 0 0 1px rgba(253, 252, 250, 0.08), inset 0 0 48px rgba(0, 0, 0, 0.18);
+    }
+
+    .wall-mesh {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, var(--mesh-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--mesh-color) 1px, transparent 1px);
+      background-size: calc(var(--mesh-size) * var(--mesh-mult)) calc(var(--mesh-size) * var(--mesh-mult));
+      background-position: center center;
+    }
+
+    /* The word hangs on its own plane just in front of the back wall.
+       No overflow clipping: words are composed to overhang the frame,
+       and the oversized wall behind them carries the bleed. */
+    .prop-word {
+      position: absolute;
+      inset: 0;
+      transform: translateZ(calc(var(--word-depth) * -1)) scale(var(--word-scale));
+      pointer-events: none;
+      backface-visibility: hidden;
+    }
+
+    .wall-word {
+      position: absolute;
+      font-weight: 400;
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--word-color);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ---------- Per-room palette + word placement (beat map §1) ---------- */
+
+    /* 01 ARRIVE — place + Metro 9 answered here; cutaway ghosts the wall. */
+    .frame-arrive {
+      --fill: var(--parchment);
+      --word-color: rgba(27, 42, 74, 0.10);
+      --mesh-size: 704px;
+    }
+    .frame-arrive .wall {
+      background-image:
+        linear-gradient(rgba(247, 244, 239, 0.86), rgba(247, 244, 239, 0.86)),
+        url("assets/hero-cutaway-photoreal-v1.jpg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%, 30% auto;
+      background-position: center, 60% 46%;
+    }
+    .frame-arrive .wall-word {
+      font-size: clamp(220px, 42vw, 580px);
+      top: 44%;
+      left: -6%;
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: left center;
+    }
+    .walk-place {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 12px;
+      margin: 0 0 1.1em;
+      padding: 0;
+      list-style: none;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1;
+      color: var(--navy);
+    }
+    .walk-place > li {
+      display: flex;
+      align-items: center;
+    }
+    .walk-place .rail {
+      width: 28px;
+      height: 1.5px;
+      background: var(--terracotta);
+      opacity: 0.75;
+      flex: none;
+    }
+    .walk-place .metro-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Source Sans 3', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .walk-place .metro-num {
+      display: grid;
+      place-items: center;
+      width: 1.55rem;
+      height: 1.55rem;
+      border: 1.5px solid var(--terracotta);
+      border-radius: 50%;
+      color: var(--terracotta);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    /* 02 BUILT — competence. Big word, verifiable panel. */
+    .frame-built {
+      --fill: var(--white-stone);
+      --word-color: rgba(27, 42, 74, 0.09);
+      --mesh-size: 480px;
+    }
+    .frame-built .wall-word {
+      font-size: clamp(320px, 74vw, 960px);
+      top: 56%;
+      right: -7%;
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: right center;
+    }
+
+    /* 03 HONEST — bare wall. The wipe is the admission.
+       No mesh, no glow, no instrument chrome. */
+    .frame-honest {
+      --fill: #F3EEE6;
+      --mesh-size: 0;
+    }
+    .frame-honest .wall {
+      box-shadow: none;
+      background: var(--fill);
+    }
+    body[data-room="2"] .light--warm { opacity: 0; }
+    body[data-room="2"] .light--vignette {
+      box-shadow: inset 0 0 160px rgba(27, 42, 74, 0.12);
+    }
+
+    /* 04 YOURS — ownership; largest type reserved for this (P17). */
+    .frame-yours {
+      --fill: #e9e4dd;
+      --word-color: #cebdaa;
+      --mesh-size: 832px;
+    }
+    .frame-yours .wall-word {
+      font-size: clamp(400px, 96vw, 1240px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(var(--title-scale));
+      transform-origin: center center;
+    }
+    /* Beat .prop-say max-width (same specificity, later in file would win). */
+    .prop-say.yours-plan {
+      left: 50%;
+      top: 36%;
+      --ox: -50%;
+      --oy: -50%;
+      width: min(68vw, 780px);
+      max-width: none;
+      transform-origin: center center;
+    }
+    .prop-say.yours-plan img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: rgba(253, 252, 250, 0.96);
+      border: 1px solid rgba(27, 42, 74, 0.1);
+      padding: 18px 22px;
+    }
+    .prop-say.yours-plan figcaption {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-align: center;
+    }
+    .frame-yours .prop-say--low-left,
+    .frame-yours .prop-say--low-right {
+      top: 62%;
+    }
+
+    /* 05 THE DEAL — the floor line. One wall rule is the metaphor;
+       three figures stagger in depth (price → floor → target).
+       No ledger chrome. Numbers stay evidentiary (P17). */
+    .frame-deal {
+      --fill: #EDE7DD;
+      --mesh-size: 0;
+    }
+    .frame-deal .wall {
+      background:
+        /* the floor — a single horizon the whole room rests on */
+        linear-gradient(
+          180deg,
+          transparent 0%,
+          transparent calc(52% - 1px),
+          rgba(194, 112, 62, 0.55) calc(52% - 1px),
+          rgba(194, 112, 62, 0.55) calc(52% + 1px),
+          rgba(194, 112, 62, 0.08) calc(52% + 1px),
+          rgba(194, 112, 62, 0.14) 100%
+        ),
+        radial-gradient(90% 55% at 50% 18%, rgba(253, 252, 250, 0.55) 0%, transparent 60%),
+        var(--fill);
+      box-shadow: inset 0 0 0 1px rgba(27, 42, 74, 0.04);
+    }
+    .frame-deal .wall-mesh { display: none; }
+    body[data-room="4"] .light--warm {
+      opacity: 1;
+      background:
+        radial-gradient(70% 45% at 50% 52%, rgba(194, 112, 62, 0.18) 0%, transparent 55%),
+        radial-gradient(90% 55% at 50% 108%, rgba(194, 112, 62, 0.2) 0%, transparent 52%);
+    }
+    body[data-room="4"] .light--vignette {
+      box-shadow: inset 0 0 200px rgba(27, 42, 74, 0.22);
+    }
+
+    /* 06 ASK — the end of the road. Warm field; the door is the composition. */
+    .frame-ask {
+      --fill: #F3EBE0;
+      --word-color: rgba(194, 112, 62, 0.14);
+      --mesh-size: 640px;
+    }
+    .frame-ask .wall {
+      background:
+        radial-gradient(90% 70% at 70% 40%, rgba(194, 112, 62, 0.14) 0%, transparent 55%),
+        radial-gradient(80% 60% at 20% 80%, rgba(253, 252, 250, 0.55) 0%, transparent 50%),
+        var(--fill);
+    }
+    .frame-ask .wall-word {
+      font-size: clamp(480px, 118vw, 1520px);
+      top: 48%;
+      left: -3%;
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: left center;
+    }
+    body[data-room="5"] .light--warm {
+      opacity: 1;
+      background: radial-gradient(100% 80% at 55% 40%, rgba(194, 112, 62, 0.28) 0%, transparent 62%);
+    }
+    body[data-room="5"] .light--vignette {
+      box-shadow: inset 0 0 220px rgba(27, 42, 74, 0.22);
+    }
+
+    /* ---------- Props: elements positioned in the set ---------- */
+
+    .prop {
+      position: absolute;
+      backface-visibility: hidden;
+    }
+
+    /*
+      Spoken props — messages float in the room at a depth (--z).
+      Far → mid → station → lean-in. One claim per depth.
+      No cards except the Ask action block (interaction container).
+    */
+    .prop-say {
+      --z: 0;
+      --ox: 0%;
+      --oy: 0%;
+      max-width: 22rem;
+      color: var(--navy);
+      font-family: 'Source Sans 3', -apple-system, sans-serif;
+      transform:
+        translate(var(--ox), var(--oy))
+        translateZ(calc(var(--z) * -1px))
+        scale(calc((1600 + var(--z)) / 1600));
+      transform-origin: left center;
+      pointer-events: auto;
+    }
+    .prop-say h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 400;
+      line-height: 1.12;
+      margin-bottom: 0.35em;
+    }
+    .prop-say h3 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 0.25em;
+    }
+    .prop-say p {
+      font-size: 16px;
+      line-height: 1.5;
+      opacity: 0.78;
+    }
+    .prop-say a { pointer-events: auto; }
+
+    .prop-say--left   { left: 9%;  top: 42%; }
+    .prop-say--right  { right: 9%; top: 42%; left: auto; transform-origin: right center; }
+    .prop-say--center {
+      left: 50%;
+      top: 48%;
+      --ox: -50%;
+      --oy: -50%;
+      text-align: center;
+      transform-origin: center center;
+    }
+    .prop-say--low-left  { left: 9%;  top: 58%; }
+    .prop-say--low-right { right: 9%; top: 58%; left: auto; transform-origin: right center; }
+    .prop-say--high-left { left: 9%;  top: 28%; }
+
+    .prop-say--loud h2 { margin-bottom: 0; }
+    .prop-say--loud p { margin-top: 0.7em; }
+
+    .h2-service {
+      display: block;
+      margin-top: 0.32em;
+      font-size: 0.58em;
+      line-height: 1.15;
+      color: var(--terracotta-dark);
+    }
+
+    .say-fig {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      color: var(--terracotta-dark);
+    }
+    .say-lbl {
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      line-height: 1.35;
+      max-width: 14em;
+    }
+    .say-sub {
+      margin-top: 14px;
+      font-size: 15px;
+      opacity: 0.65;
+    }
+
+    .prop-say--portrait { max-width: 200px; }
+    .prop-say--portrait img {
+      display: block;
+      width: 100%;
+      border: 1px solid var(--linen);
+    }
+    .prop-say--portrait figcaption {
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    .verify-link {
+      color: inherit;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .verify-link:hover { color: var(--terracotta-dark); }
+
+    .say-note {
+      max-width: 28rem;
+      font-size: 12.5px !important;
+      line-height: 1.5;
+      opacity: 0.62 !important;
+    }
+
+    /* HONEST — one composition. Words read; the wipe proves.
+       Arrow rests: before → after → next room. */
+    .honest-copy {
+      left: 8%;
+      top: 50%;
+      --oy: -50%;
+      max-width: 17rem;
+      transform-origin: left center;
+    }
+    .honest-copy .year-numeral {
+      font-size: clamp(14px, 1.4vw, 16px);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--slate);
+      opacity: 0.55;
+      margin-bottom: 18px;
+    }
+    .honest-copy h2 {
+      margin-bottom: 0.4em;
+      font-size: clamp(36px, 4.4vw, 52px);
+    }
+    .honest-copy p {
+      font-size: 15px;
+      line-height: 1.5;
+      max-width: 16em;
+      opacity: 0.72;
+    }
+
+    .prop-say.honest-figure {
+      --t: 0;
+      left: 34%;
+      right: auto;
+      top: 50%;
+      --ox: 0%;
+      --oy: -50%;
+      width: min(54vw, 640px);
+      max-width: none;
+      transform-origin: center center;
+      pointer-events: auto;
+    }
+
+    .honest-figure__state {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .honest-figure__state .fig-cond[data-active="true"] {
+      color: var(--navy);
+    }
+    .honest-figure__state .fig-cond[data-active="true"]::after {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-left: 8px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      vertical-align: 1px;
+    }
+
+    .honest-compare {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--navy-deep);
+      touch-action: none;
+      cursor: ew-resize;
+      user-select: none;
+    }
+
+    .honest-compare img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: none;
+    }
+
+    /* t=0 → all before (left); t=1 → all after (grows from the right). */
+    .honest-compare__after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      width: calc(var(--t) * 100%);
+      overflow: hidden;
+      z-index: 1;
+    }
+    .honest-compare__after img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: auto;
+      width: var(--cw, 100%);
+      height: 100%;
+      max-width: none;
+    }
+
+    /* The wipe rule — candor as a boundary you can move */
+    .honest-compare__rule {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(100% - var(--t) * 100%);
+      width: 1px;
+      background: rgba(253, 252, 250, 0.92);
+      transform: translateX(-0.5px);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .honest-figure__cap {
+      margin-top: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--slate);
+      opacity: 0.75;
+    }
+    .honest-figure__cap strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .honest-figure { --t: 0.5; }
+    }
+
+    /* Deal figures — float on the floor line. No cells.
+       Depth order is the argument: price → floor → target. */
+    .deal-title {
+      left: 9%;
+      top: 14%;
+      width: auto;
+      max-width: none;
+      margin: 0;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--slate);
+      opacity: 0.55;
+      transform-origin: left top;
+    }
+
+    .prop-say.deal-fig {
+      max-width: 16rem;
+      color: var(--navy);
+    }
+    .deal-fig .deal-num {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(52px, 6.4vw, 84px);
+      line-height: 0.9;
+      letter-spacing: -0.035em;
+      font-variant-numeric: tabular-nums;
+      margin: 0;
+      opacity: 1;
+    }
+    .deal-fig .deal-lbl {
+      margin: 14px 0 0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      opacity: 0.7;
+    }
+    .deal-fig .deal-note {
+      margin: 8px 0 0;
+      max-width: 14em;
+      font-size: 14px;
+      line-height: 1.45;
+      opacity: 0.68;
+    }
+
+    /* Price — first encounter, left, resting above the floor */
+    .deal-fig--price {
+      left: 10%;
+      top: 52%;
+      --oy: -100%;
+      transform-origin: left bottom;
+      padding-bottom: 22px;
+    }
+
+    /* Floor — the beef. Number above the horizon; label below it. */
+    .deal-fig--floor {
+      left: 50%;
+      top: 52%;
+      --ox: -50%;
+      --oy: 0%;
+      text-align: center;
+      max-width: 18rem;
+      transform-origin: center top;
+    }
+    .deal-fig--floor .deal-num {
+      margin-top: -0.92em;
+      color: var(--terracotta-dark);
+    }
+    .deal-fig--floor .deal-lbl {
+      margin-top: 20px;
+      color: var(--navy);
+      opacity: 0.75;
+    }
+    .deal-fig--floor .deal-note {
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.78;
+    }
+
+    /* Target — quieter, right, above the floor; labeled not sold */
+    .deal-fig--target {
+      right: 10%;
+      left: auto;
+      top: 52%;
+      --oy: -100%;
+      transform-origin: right bottom;
+      text-align: right;
+      padding-bottom: 22px;
+    }
+    .deal-fig--target .deal-num {
+      opacity: 0.72;
+    }
+    .deal-fig--target .deal-note {
+      margin-left: auto;
+      opacity: 0.58;
+    }
+
+    /* Lean-in — assumptions resolve past the station */
+    .deal-fine {
+      left: 10%;
+      right: 10%;
+      top: auto;
+      bottom: 18%;
+      width: auto;
+      max-width: none;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      color: var(--slate);
+      opacity: 0.65;
+      transform-origin: center center;
+    }
+    .deal-fine em {
+      font-style: normal;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .deal-forward {
+      left: 50%;
+      --ox: -50%;
+      top: auto;
+      bottom: 7%;
+      width: auto;
+      max-width: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      text-align: center;
+      transform-origin: center center;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--slate);
+    }
+    .deal-forward .fwd-hint {
+      font-family: 'Source Sans 3', sans-serif;
+      opacity: 0.85;
+    }
+    .deal-forward .fwd-mark {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 22px;
+      letter-spacing: 0;
+      line-height: 1;
+      color: var(--terracotta);
+      flex-shrink: 0;
+    }
+    body[data-room="4"] .deal-forward .fwd-mark {
+      animation: fwd-pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes fwd-pulse {
+      0%, 100% { transform: translateX(0); opacity: 0.55; }
+      50% { transform: translateX(8px); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body[data-room="4"] .deal-forward .fwd-mark { animation: none; }
+    }
+
+    /* Ask — staged across the room. No card for the mandate.
+       The only solid plane is the door (the pack CTA). Write-first
+       opens as a sheet when needed — interaction container only. */
+
+    /* Mandate — owns the upper field */
+    .ask-mandate {
+      left: 8%;
+      right: 8%;
+      top: 18%;
+      max-width: none;
+    }
+    .ask-mandate h2 {
+      font-size: clamp(64px, 11vw, 118px);
+      line-height: 0.86;
+      letter-spacing: -0.045em;
+      margin-bottom: 0.2em;
+      max-width: 9em;
+    }
+    .ask-mandate h2 em {
+      display: block;
+      margin-top: 0.06em;
+      margin-left: 0.7em;
+      color: var(--terracotta);
+      font-style: italic;
+    }
+    .ask-mandate .ask-lede {
+      font-size: clamp(16px, 1.6vw, 19px);
+      line-height: 1.5;
+      opacity: 0.68;
+      max-width: 28em;
+    }
+
+    /* Door — full-bleed bar. The only solid plane. Inevitable. */
+    .ask-door {
+      left: 0;
+      right: 0;
+      top: auto;
+      bottom: 20%;
+      max-width: none;
+      width: 100%;
+      padding: 0 8%;
+      box-sizing: border-box;
+      transform-origin: center center;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .walk-primary--door {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 92px;
+      padding: 28px 40px;
+      box-sizing: border-box;
+      background: var(--terracotta);
+      color: var(--white-stone);
+      font-size: clamp(15px, 1.6vw, 18px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: 0 28px 70px rgba(168, 94, 50, 0.4);
+      transition: background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+    }
+    .walk-primary--door:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 36px 80px rgba(168, 94, 50, 0.48);
+    }
+    body[data-room="5"] .walk-primary--door {
+      animation: door-arrive 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes door-arrive {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body[data-room="5"] .walk-primary--door { animation: none; }
+    }
+
+    .ask-door-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px 28px;
+      padding-top: 2px;
+      border-top: 1px solid rgba(27, 42, 74, 0.12);
+    }
+    .walk-secondary {
+      display: inline-block;
+      padding: 4px 0;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+      white-space: nowrap;
+    }
+    .walk-secondary:hover { color: var(--terracotta-dark); border-color: var(--terracotta-dark); }
+
+    .count-line {
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      opacity: 0.78;
+      margin: 0;
+    }
+    .count-line strong {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      opacity: 1;
+    }
+
+    .ask-floor {
+      left: 8%;
+      right: 8%;
+      top: auto;
+      bottom: 5%;
+      max-width: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px 32px;
+    }
+    .freedom-line {
+      margin: 0;
+      flex: 1 1 18rem;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--slate);
+      opacity: 0.85;
+      text-align: right;
+    }
+
+    /* Write-first — the only card; expands into a sheet over the floor */
+    .ask-alt {
+      position: relative;
+      margin: 0;
+    }
+    .ask-alt > summary {
+      width: fit-content;
+      cursor: pointer;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      list-style: none;
+      opacity: 0.8;
+    }
+    .ask-alt > summary::-webkit-details-marker { display: none; }
+    .ask-alt > summary::after { content: " +"; color: var(--terracotta); }
+    .ask-alt[open] > summary::after { content: " −"; }
+    .ask-alt[open] > summary { opacity: 1; }
+    .ask-alt-body {
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 12px);
+      width: min(36rem, calc(100vw - 48px));
+      max-height: min(52vh, 420px);
+      overflow: auto;
+      overscroll-behavior: contain;
+      padding: 22px 24px;
+      background: var(--white-stone);
+      border: 1px solid rgba(27, 42, 74, 0.16);
+      box-shadow: 0 24px 56px rgba(27, 42, 74, 0.18);
+      -webkit-overflow-scrolling: touch;
+    }
+    .ask-alt .lede-alt {
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: 0.65;
+      margin-bottom: 16px;
+      max-width: 28em;
+    }
+    .fear-buttons { display: grid; gap: 8px; }
+    @media (min-width: 560px) {
+      .fear-buttons { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .fear-buttons .fear-btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    }
+    .fear-btn {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+      color: var(--navy);
+      background: var(--parchment);
+      border: 1px solid var(--sandstone);
+      border-radius: 4px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color 300ms ease, background 300ms ease, color 300ms ease;
+    }
+    .fear-btn:hover {
+      border-color: var(--terracotta);
+      background: #FBF3EC;
+    }
+    .fear-btn.selected {
+      border-color: var(--terracotta);
+      background: var(--terracotta);
+      color: var(--white-stone);
+    }
+    .fear-other { margin-top: 12px; }
+    .fear-other label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+    .fear-other textarea {
+      width: 100%;
+      min-height: 64px;
+      resize: vertical;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      color: var(--navy);
+      background: var(--parchment);
+      border: 1.5px solid var(--sandstone);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .fear-other textarea:focus {
+      outline: 2px solid rgba(194, 112, 62, 0.4);
+      border-color: var(--terracotta);
+    }
+    .send-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .send-btn {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 12px 22px;
+      cursor: pointer;
+      border: none;
+      transition: background 300ms ease;
+    }
+    .send-btn.primary { background: var(--terracotta); color: var(--white-stone); }
+    .send-btn.primary:hover { background: var(--terracotta-dark); }
+    .send-btn.secondary { background: var(--navy); color: var(--white-stone); }
+    .send-btn.secondary:hover { background: var(--slate); }
+    .send-hint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--ash);
+      max-width: 28em;
+    }
+
+    /* Skip the walk — hottest lead signal; always available after Arrive */
+    .skip-docs {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 40;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: rgba(253, 252, 250, 0.92);
+      border: 1px solid rgba(27, 42, 74, 0.18);
+      padding: 10px 14px;
+      text-decoration: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease, border-color 300ms ease, color 300ms ease;
+    }
+    .skip-docs.is-live {
+      opacity: 0.85;
+      pointer-events: auto;
+    }
+    .skip-docs:hover {
+      opacity: 1;
+      color: var(--terracotta-dark);
+      border-color: var(--terracotta);
+    }
+    body[data-room="0"] .skip-docs,
+    body[data-room="5"] .skip-docs,
+    body.dev-hidden .skip-docs { opacity: 0; pointer-events: none; }
+
+    @media (max-width: 720px) {
+      .prop-say--left,
+      .prop-say--right,
+      .prop-say--low-left,
+      .prop-say--low-right,
+      .prop-say--high-left {
+        left: 7%;
+        right: 7%;
+        max-width: none;
+        transform-origin: left center;
+      }
+      .prop-say--right,
+      .prop-say--low-right { top: auto; bottom: 10%; }
+      .prop-say--low-left { top: 62%; }
+      .deal-title {
+        left: 7%;
+        top: 6%;
+      }
+      .deal-fig--price {
+        left: 7%;
+        right: 7%;
+        top: 12%;
+        --oy: 0%;
+        max-width: none;
+        padding-bottom: 0;
+      }
+      .deal-fig--floor {
+        left: 7%;
+        right: 7%;
+        top: 38%;
+        --ox: 0%;
+        --oy: 0%;
+        max-width: none;
+        text-align: left;
+      }
+      .deal-fig--floor .deal-num { margin-top: 0; }
+      .deal-fig--floor .deal-lbl { margin-top: 14px; }
+      .deal-fig--floor .deal-note { margin-left: 0; }
+      .deal-fig--target {
+        left: 7%;
+        right: 7%;
+        top: auto;
+        bottom: 26%;
+        --oy: 0%;
+        text-align: left;
+        padding-bottom: 0;
+      }
+      .deal-fig--target .deal-note { margin-left: 0; }
+      .deal-fig .deal-num { font-size: clamp(44px, 14vw, 64px); }
+      .deal-fine {
+        left: 7%;
+        right: 7%;
+        bottom: 16%;
+        font-size: 12px;
+        text-align: left;
+      }
+      .deal-forward {
+        left: 7%;
+        right: 7%;
+        --ox: 0%;
+        bottom: 5%;
+        justify-content: flex-start;
+      }
+      .ask-mandate {
+        left: 6%;
+        right: 6%;
+        top: 12%;
+      }
+      .ask-mandate h2 { font-size: clamp(48px, 15vw, 68px); max-width: none; }
+      .ask-door {
+        left: 0;
+        right: 0;
+        bottom: 24%;
+        padding: 0 6%;
+      }
+      .walk-primary--door {
+        min-height: 72px;
+        padding: 22px 20px;
+        font-size: 14px;
+        letter-spacing: 0.08em;
+      }
+      .ask-floor {
+        left: 6%;
+        right: 6%;
+        bottom: 4%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .freedom-line { text-align: left; }
+      .ask-alt-body {
+        width: calc(100vw - 32px);
+        left: 50%;
+        transform: translateX(-50%);
+        max-height: 46vh;
+      }
+      .honest-copy {
+        left: 7%;
+        right: 7%;
+        top: 6%;
+        --oy: 0%;
+        max-width: none;
+      }
+      .prop-say.honest-figure {
+        left: 7%;
+        right: 7%;
+        top: auto;
+        bottom: 8%;
+        width: auto;
+        --oy: 0%;
+      }
+      .prop-say.yours-plan {
+        left: 7%;
+        right: 7%;
+        top: 16%;
+        width: auto;
+        --ox: 0%;
+        --oy: 0%;
+      }
+      .frame-yours .prop-say--low-left {
+        top: 52%;
+        bottom: auto;
+      }
+      .frame-yours .prop-say--low-right {
+        top: auto;
+        bottom: 10%;
+      }
+      .skip-docs { bottom: 12px; left: 12px; font-size: 11px; padding: 8px 12px; }
+    }
+
+    /* ---------- Lighting rig: 2D layers above the set ---------- */
+
+    .light {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transition: opacity var(--dolly) var(--dolly-ease);
+    }
+
+    .light--vignette {
+      box-shadow: inset 0 0 180px rgba(6, 12, 24, 0.55);
+    }
+
+    .light--warm {
+      background: radial-gradient(90% 70% at 32% 22%, rgba(194, 112, 62, 0.16) 0%, transparent 60%);
+      opacity: 1;
+    }
+    body[data-tone="dark"] .light--warm { opacity: 0; }
+
+    .light--cool {
+      background: radial-gradient(90% 70% at 68% 24%, rgba(140, 170, 220, 0.14) 0%, transparent 60%);
+      opacity: 0;
+    }
+    body[data-tone="dark"] .light--cool { opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #scene, .light, .frame { transition: none; }
+    }
+
+    /* ---------- Dev panel ---------- */
+
+    .dev {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      width: 300px;
+      max-height: calc(100svh - 32px);
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      line-height: 1.35;
+      color: #e8e4dc;
+      background: rgba(10, 16, 28, 0.92);
+      border: 1px solid rgba(253, 252, 250, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      pointer-events: auto;
+    }
+
+    .dev[hidden] { display: none; }
+
+    .dev.is-min {
+      width: auto;
+      max-height: none;
+      overflow: hidden;
+    }
+    .dev.is-min .dev-body { display: none; }
+    .dev.is-min .dev-head { border-bottom: none; }
+    .dev.is-min .dev-actions { display: none; }
+
+    .dev-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(253, 252, 250, 0.12);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      background: rgba(10, 16, 28, 0.96);
+    }
+
+    .dev-head > span:last-child {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dev-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dev-head button {
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 1px solid rgba(253, 252, 250, 0.25);
+      padding: 4px 8px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .dev-head button:hover { border-color: var(--terracotta); color: #fff; }
+
+    .dev-body { padding: 10px 12px 14px; }
+
+    .dev-readout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(253, 252, 250, 0.1);
+      color: rgba(253, 252, 250, 0.7);
+    }
+    .dev-readout strong {
+      color: #fff;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .dev-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2px 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .dev-row label {
+      grid-column: 1 / -1;
+      color: rgba(253, 252, 250, 0.55);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    .dev-row input[type="range"] {
+      width: 100%;
+      accent-color: var(--terracotta);
+    }
+    .dev-row .dev-val {
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      min-width: 4.5em;
+      text-align: right;
+    }
+
+    .dev-hint {
+      margin-top: 8px;
+      color: rgba(253, 252, 250, 0.4);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body data-tone="light">
+
+  <div id="stage">
+    <div id="scene">
+
+      <div class="scene-floor" aria-hidden="true"></div>
+
+      <!-- 01 ARRIVE — place + Metro 9 + ownership; opens at station. -->
+      <section class="frame frame--light frame-arrive" style="--i: 0" data-tone="light" aria-label="Arrive — Riba-roja, Metro 9, Valencia">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">VALENCIA</p>
+        </div>
+        <div class="prop prop-say prop-say--loud prop-say--left" data-depth="0" style="--z: 0; max-width: 28rem;">
+          <ol class="walk-place" aria-label="Riba-roja to Valencia on Metro Line 9">
+            <li>Riba-roja</li>
+            <li aria-hidden="true"><span class="rail"></span></li>
+            <li>
+              <span class="metro-mark">
+                <span class="metro-num">9</span>
+                Metro
+              </span>
+            </li>
+            <li aria-hidden="true"><span class="rail"></span></li>
+            <li>Valencia</li>
+          </ol>
+          <h2>Yours.
+            <span class="h2-service">Rentals managed.</span>
+          </h2>
+        </div>
+        <div class="prop prop-say prop-say--right" data-depth="0" style="--z: 0">
+          <p class="say-fig">From &euro;197k</p>
+          <p class="say-lbl">All-in at pre-sale</p>
+          <p class="say-sub">Ready in 2027</p>
+        </div>
+      </section>
+
+      <!-- 02 BUILT — word → face + name → verify facts → LinkedIn lean-in -->
+      <section class="frame frame--light frame-built" style="--i: 1" data-tone="light" aria-label="Built — who is building this">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">BUILT</p>
+        </div>
+        <figure class="prop prop-say prop-say--portrait" data-depth="560" style="--z: 560; left: 9%; top: 26%;">
+          <img src="assets/uriel-onsite.jpg" alt="Uriel Nabel on site in a hard hat, smiling, hands on pallets of reclaimed roof tiles">
+          <figcaption>On site &mdash; July 2026</figcaption>
+        </figure>
+        <div class="prop prop-say prop-say--loud" data-depth="560" style="--z: 560; left: 26%; top: 30%;">
+          <h2>Uriel Nabel.</h2>
+        </div>
+        <div class="prop prop-say prop-say--low-left" data-depth="0" style="--z: 0">
+          <h3>Puzol &mdash; finished August 2025.</h3>
+          <p>A century-old house, fully rebuilt.</p>
+        </div>
+        <div class="prop prop-say prop-say--low-right" data-depth="0" style="--z: 0; max-width: 26rem;">
+          <h3>Riba-roja &mdash; licensed.</h3>
+          <p><a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>, builder. <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a>, architect (COACV 11.357).</p>
+          <p class="say-note" style="margin-top: 12px;"><a class="verify-link" href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">Check his LinkedIn &#8599;</a></p>
+        </div>
+      </section>
+
+      <!-- 03 HONEST — bare wall. Words admit; the wipe proves.
+           Arrow rests: before → after → next room. -->
+      <section class="frame frame--light frame-honest" style="--i: 2" data-tone="light" aria-label="Honest — a short record">
+        <div class="wall"></div>
+
+        <div class="prop prop-say prop-say--loud honest-copy" data-depth="120" style="--z: 120">
+          <p class="year-numeral">2026</p>
+          <h2>A short record.</h2>
+          <p>One completed renovation. Uriel left SAP in January; this is full-time now.</p>
+        </div>
+
+        <figure class="prop prop-say honest-figure" data-depth="0" style="--z: 0" id="honest-figure">
+          <div class="honest-figure__state" aria-hidden="true">
+            <span class="fig-cond" data-cond="before" data-active="true">Before</span>
+            <span class="fig-cond" data-cond="after" data-active="false">After</span>
+          </div>
+          <div class="honest-compare" id="honest-compare" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <img src="assets/puzol-before.jpg" alt="" width="1040" height="780" decoding="async" draggable="false">
+            <div class="honest-compare__after">
+              <img src="assets/puzol-after.jpg" alt="" width="1040" height="780" decoding="async" draggable="false">
+            </div>
+            <span class="honest-compare__rule" aria-hidden="true"></span>
+          </div>
+          <figcaption class="honest-figure__cap">
+            <strong>El Fort&iacute;n de Puzol.</strong> Century-old house, fully rebuilt. Completed August 2025.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 04 YOURS — word → floor plan (mid) → ownership facts at station -->
+      <section class="frame frame--light frame-yours" style="--i: 3" data-tone="light" aria-label="Yours — deed in your name">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">YOURS</p>
+        </div>
+        <figure class="prop prop-say yours-plan" data-depth="280" style="--z: 280">
+          <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area" width="984" height="254" decoding="async">
+          <figcaption>Entry apartment &middot; 40.4&nbsp;m&sup2; useful</figcaption>
+        </figure>
+        <div class="prop prop-say prop-say--loud prop-say--low-left" data-depth="0" style="--z: 0">
+          <h2>Registered in your name.</h2>
+          <p>At Spain&rsquo;s Property Registry &mdash; a deed, not a fund share.</p>
+        </div>
+        <div class="prop prop-say prop-say--low-right" data-depth="0" style="--z: 0">
+          <h2>Sell when you choose.</h2>
+          <p>Like any Spanish apartment.</p>
+        </div>
+      </section>
+
+      <!-- 05 THE DEAL — the floor line. Walk reveals price → floor → target.
+           Wall horizon is the metaphor. Numbers stay evidentiary (P17).
+           Fine print leans in. Forward cue pulls into Ask. -->
+      <section class="frame frame--light frame-deal" style="--i: 4" data-tone="light" aria-label="The deal — floor first, target labeled">
+        <div class="wall"></div>
+
+        <p class="prop prop-say deal-title" data-depth="640" style="--z: 640">The deal</p>
+
+        <div class="prop prop-say deal-fig deal-fig--price" data-depth="420" style="--z: 420">
+          <p class="deal-num">&euro;197k</p>
+          <p class="deal-lbl">All-in at pre-sale</p>
+          <p class="deal-note">Purchase costs and furniture included.</p>
+        </div>
+
+        <div class="prop prop-say deal-fig deal-fig--floor" data-depth="180" style="--z: 180">
+          <p class="deal-num">4%</p>
+          <p class="deal-lbl">Contractual floor</p>
+          <p class="deal-note">Developer covenant. Not bank-backed.</p>
+        </div>
+
+        <div class="prop prop-say deal-fig deal-fig--target" data-depth="60" style="--z: 60">
+          <p class="deal-num">&gt;7%</p>
+          <p class="deal-lbl">Blended net target</p>
+          <p class="deal-note">Holiday, mid-term and long-term. Target, not a promise.</p>
+        </div>
+
+        <p class="prop prop-say deal-fine" data-depth="-200" style="--z: -200">
+          Entry <em>&euro;197,370</em> all-in &middot; Stress case <em>~4.35% net</em> long-term &middot; Full assumptions in the pack.
+        </p>
+
+        <p class="prop prop-say deal-forward" data-depth="0" style="--z: 0">
+          <span class="fwd-hint">Title. Licence. Valuation. Contract.</span>
+          <span class="fwd-mark" aria-hidden="true">&rarr;</span>
+        </p>
+      </section>
+
+      <!-- 06 ASK — end of the road. Mandate fills the left; the pack is the door on the right.
+           Write-first opens as a sheet from the floor. Freedom closes the room. -->
+      <section class="frame frame--light frame-ask" style="--i: 5" data-tone="light" aria-label="Ask — documents first" id="ask">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">ASK.</p>
+        </div>
+
+        <div class="prop prop-say ask-mandate" data-depth="180" style="--z: 180">
+          <h2>Documents <em>first.</em></h2>
+          <p class="ask-lede">Title. Licence. Valuation. Contract. We send them first.</p>
+        </div>
+
+        <div class="prop prop-say ask-door" data-depth="0" style="--z: 0" id="ask-panel">
+          <a class="walk-primary--door" id="request-pack" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Request the pack</a>
+          <div class="ask-door-meta">
+            <p class="count-line"><strong>10 apartments.</strong> 1 sold. 9 available.</p>
+            <a class="walk-secondary" id="book-call" href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Book 15 minutes</a>
+          </div>
+        </div>
+
+        <div class="prop prop-say ask-floor" data-depth="0" style="--z: 0">
+          <details class="ask-alt" id="what-would-stop-you">
+            <summary>Prefer to write first?</summary>
+            <div class="ask-alt-body">
+              <p class="lede-alt">One question. The relevant document. No brochure.</p>
+              <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
+                <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
+                <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stops halfway</button>
+                <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% minimum is only on paper</button>
+                <button type="button" class="fear-btn" data-fear="show_me_documents">Show me the title and licence documents first</button>
+                <button type="button" class="fear-btn" data-fear="who_answers_after">Who actually answers, after I have paid?</button>
+              </div>
+              <div class="fear-other">
+                <label for="fear-text">Something else:</label>
+                <textarea id="fear-text" placeholder="Write your own question &mdash; hard questions are welcome."></textarea>
+              </div>
+              <div class="send-row">
+                <button type="button" class="send-btn primary" id="send-email">Send by email</button>
+                <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
+              </div>
+              <p class="send-hint">No mailing list. No sales sequence. Nothing published with your name.</p>
+            </div>
+          </details>
+          <p class="freedom-line">If the honest answer is &ldquo;this is not for you&rdquo; &mdash; we will say so.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="light light--warm" aria-hidden="true"></div>
+    <div class="light light--cool" aria-hidden="true"></div>
+    <div class="light light--vignette" aria-hidden="true"></div>
+  </div>
+
+  <a class="skip-docs" id="skip-docs" href="#ask">Skip the walk — documents &rarr;</a>
+
+  <aside class="dev is-min" id="dev" aria-label="Theater parameters">
+    <div class="dev-head">
+      <span>Dev · Theater</span>
+      <span>
+        <span class="dev-actions">
+          <button type="button" id="dev-copy">Copy values</button>
+          <button type="button" id="dev-reset">Reset</button>
+        </span>
+        <button type="button" id="dev-min" aria-expanded="false" aria-controls="dev-body" title="Expand (m)">Max</button>
+      </span>
+    </div>
+    <div class="dev-body" id="dev-body">
+      <div class="dev-readout">
+        <span>camera</span><strong id="dev-cam">0</strong>
+        <span>reveal size</span><strong id="dev-reveal">—</strong>
+        <span>room</span><strong id="dev-room">01</strong>
+      </div>
+
+      <div class="dev-row">
+        <label for="p-walk">Walk / page start distance</label>
+        <input id="p-walk" type="range" min="1200" max="12000" step="100" value="5600">
+        <span class="dev-val" data-for="p-walk">5600px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-title">Title size</label>
+        <input id="p-title" type="range" min="0.25" max="4" step="0.05" value="1">
+        <span class="dev-val" data-for="p-title">1.00×</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-back">Wall / bg scale</label>
+        <input id="p-back" type="range" min="1" max="12" step="0.1" value="6.4">
+        <span class="dev-val" data-for="p-back">6.4×</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-mesh">Grid size</label>
+        <input id="p-mesh" type="range" min="0.25" max="4" step="0.05" value="4">
+        <span class="dev-val" data-for="p-mesh">4.00×</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-depth">Room depth</label>
+        <input id="p-depth" type="range" min="400" max="2800" step="50" value="2300">
+        <span class="dev-val" data-for="p-depth">2300px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-word-depth">Title depth (in room)</label>
+        <input id="p-word-depth" type="range" min="200" max="2400" step="50" value="1150">
+        <span class="dev-val" data-for="p-word-depth">1150px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-gain">Wheel gain</label>
+        <input id="p-gain" type="range" min="0.4" max="6" step="0.1" value="3.7">
+        <span class="dev-val" data-for="p-gain">3.7</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-smooth">Dolly weight</label>
+        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="5">
+        <span class="dev-val" data-for="p-smooth">5.0</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-pass-start">Pass start (past layer)</label>
+        <input id="p-pass-start" type="range" min="0" max="1200" step="25" value="500">
+        <span class="dev-val" data-for="p-pass-start">500px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-pass-end">Pass end (gone)</label>
+        <input id="p-pass-end" type="range" min="200" max="2000" step="25" value="1150">
+        <span class="dev-val" data-for="p-pass-end">1150px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-rest-delay">Rest delay (pause before settle)</label>
+        <input id="p-rest-delay" type="range" min="0.2" max="3" step="0.1" value="0.2">
+        <span class="dev-val" data-for="p-rest-delay">0.2s</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-gravity">Gravity (0 = off)</label>
+        <input id="p-gravity" type="range" min="0" max="8" step="0.25" value="8">
+        <span class="dev-val" data-for="p-gravity">8.00</span>
+      </div>
+
+    </div>
+  </aside>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var stage = document.getElementById('stage');
+      var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var DEFAULTS = {
+        walk: 5600,
+        title: 1,
+        back: 6.4,
+        mesh: 4,
+        depth: 2300,
+        wordDepth: 1150,
+        gain: 3.7,
+        smooth: 5,
+        passStart: 500,
+        passEnd: 1150,
+        restDelay: 0.2,
+        gravity: 8
+      };
+
+      var params = Object.assign({}, DEFAULTS);
+      var n = frames.length;
+      var target = 0;
+      var cam = 0;
+      var shownRoom = -1;
+      var lastTime = performance.now();
+      var frameLayers = [];
+      var lastInput = 0;   /* timestamp of the last wheel gesture */
+      var lastDir = 0;     /* direction of travel: +1 forward, -1 back */
+      var HONEST_ROOM = 2;
+      var honestFigure = document.getElementById('honest-figure');
+      var honestCompare = document.getElementById('honest-compare');
+      var honestReadout = document.getElementById('honest-t-readout');
+      var honestCondBefore = document.querySelector('.fig-cond[data-cond="before"]');
+      var honestCondAfter = document.querySelector('.fig-cond[data-cond="after"]');
+      /* Local figure state — camera stays on the honest station */
+      var honestT = reduce ? 0.5 : 0;
+      var honestPhase = 0; /* 0 = before rest, 1 = after rest */
+      var honestDragging = false;
+      var honestAuto = {
+        dir: 1,
+        dwell: 0,
+        speed: 0.22,   /* units per second while sweeping */
+        pause: 1.35    /* seconds resting at each end */
+      };
+
+      function clamp(v, a, b) {
+        return Math.max(a, Math.min(b, v));
+      }
+
+      function pad(i) {
+        return (i < 10 ? '0' : '') + i;
+      }
+
+      function maxCam() {
+        return (n - 1) * params.walk;
+      }
+
+      function nearestRoom(pos) {
+        return clamp(Math.round(pos / params.walk), 0, n - 1);
+      }
+
+      function syncCompareWidth() {
+        if (!honestCompare || !honestFigure) return;
+        honestFigure.style.setProperty('--cw', honestCompare.clientWidth + 'px');
+      }
+
+      function setHonestT(t, fromUser) {
+        honestT = clamp(t, 0, 1);
+        if (honestFigure) honestFigure.style.setProperty('--t', honestT.toFixed(4));
+        if (honestCompare) honestCompare.setAttribute('aria-valuenow', String(Math.round(honestT * 100)));
+        if (honestReadout) honestReadout.textContent = 't = ' + honestT.toFixed(2);
+        if (honestCondBefore) honestCondBefore.setAttribute('data-active', honestT < 0.5 ? 'true' : 'false');
+        if (honestCondAfter) honestCondAfter.setAttribute('data-active', honestT >= 0.5 ? 'true' : 'false');
+        if (fromUser) {
+          honestPhase = honestT < 0.5 ? 0 : 1;
+          honestAuto.dwell = 0;
+        }
+      }
+
+      function honestAtStation() {
+        return Math.abs(target - HONEST_ROOM * params.walk) < 8
+          && nearestRoom(cam) === HONEST_ROOM;
+      }
+
+      function tickHonestCompare(dt) {
+        if (!honestFigure || reduce || honestDragging) return;
+        if (nearestRoom(cam) !== HONEST_ROOM) return;
+
+        /* Calibrated sweep with dwell rests at t=0 and t=1 */
+        if ((honestAuto.dir > 0 && honestT >= 1) || (honestAuto.dir < 0 && honestT <= 0)) {
+          honestT = honestAuto.dir > 0 ? 1 : 0;
+          honestPhase = honestAuto.dir > 0 ? 1 : 0;
+          honestAuto.dwell += dt;
+          if (honestAuto.dwell >= honestAuto.pause) {
+            honestAuto.dwell = 0;
+            honestAuto.dir *= -1;
+          }
+          setHonestT(honestT, false);
+          return;
+        }
+        honestAuto.dwell = 0;
+        setHonestT(honestT + honestAuto.dir * honestAuto.speed * dt, false);
+      }
+
+      function bindHonestCompare() {
+        if (!honestCompare || !honestFigure) return;
+
+        function tFromEvent(e) {
+          var rect = honestCompare.getBoundingClientRect();
+          var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          /* After grows from the right; drag toward the right → more after */
+          return clamp((clientX - rect.left) / rect.width, 0, 1);
+        }
+
+        function onDown(e) {
+          honestDragging = true;
+          honestAuto.dwell = 0;
+          setHonestT(tFromEvent(e), true);
+          e.preventDefault();
+        }
+        function onMove(e) {
+          if (!honestDragging) return;
+          setHonestT(tFromEvent(e), true);
+          e.preventDefault();
+        }
+        function onUp() {
+          honestDragging = false;
+          /* Snap to nearest rest end if close */
+          if (honestT < 0.12) setHonestT(0, true);
+          else if (honestT > 0.88) setHonestT(1, true);
+        }
+
+        honestCompare.addEventListener('pointerdown', onDown);
+        window.addEventListener('pointermove', onMove);
+        window.addEventListener('pointerup', onUp);
+        honestCompare.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') { setHonestT(honestT - 0.05, true); e.preventDefault(); e.stopPropagation(); }
+          if (e.key === 'ArrowRight') { setHonestT(honestT + 0.05, true); e.preventDefault(); e.stopPropagation(); }
+          if (e.key === 'Home') { setHonestT(0, true); e.preventDefault(); e.stopPropagation(); }
+          if (e.key === 'End') { setHonestT(1, true); e.preventDefault(); e.stopPropagation(); }
+        });
+
+        syncCompareWidth();
+        window.addEventListener('resize', syncCompareWidth);
+        setHonestT(honestT, false);
+      }
+
+      function rebuildLayers() {
+        var depth = params.depth;
+        var wordDepth = clamp(params.wordDepth, 0, depth - 50);
+        var lens = 1600;
+        var wordScale = (lens + wordDepth) / lens;
+
+        root.style.setProperty('--room-depth', depth + 'px');
+        root.style.setProperty('--word-depth', wordDepth + 'px');
+        root.style.setProperty('--word-scale', wordScale.toFixed(4));
+
+        frameLayers = frames.map(function (frame) {
+          var layers = [];
+          var wall = frame.querySelector('.wall');
+          if (wall) layers.push({ el: wall, depth: depth });
+          var word = frame.querySelector('.prop-word');
+          if (word) layers.push({ el: word, depth: wordDepth });
+          frame.querySelectorAll('[data-depth]').forEach(function (el) {
+            layers.push({ el: el, depth: Number(el.getAttribute('data-depth')) || 0 });
+          });
+          return layers;
+        });
+      }
+
+      function applyCssParams() {
+        root.style.setProperty('--walk', params.walk + 'px');
+        root.style.setProperty('--back-scale', String(params.back));
+        root.style.setProperty('--title-scale', String(params.title));
+        root.style.setProperty('--mesh-mult', String(params.mesh));
+        rebuildLayers();
+      }
+
+      function renderTone() {
+        var room = nearestRoom(cam);
+        if (room === shownRoom) return;
+        var prev = shownRoom;
+        shownRoom = room;
+        document.body.dataset.tone = frames[room].dataset.tone;
+        document.body.dataset.room = String(room);
+        var skip = document.getElementById('skip-docs');
+        if (skip) skip.classList.toggle('is-live', room > 0 && room < n - 1);
+        if (room === HONEST_ROOM && prev !== HONEST_ROOM) {
+          honestPhase = 0;
+          setHonestT(reduce ? 0.5 : 0, false);
+          honestAuto.dir = 1;
+          honestAuto.dwell = 0;
+        }
+      }
+
+      function renderScene() {
+        stage.style.setProperty('--cam', cam.toFixed(2) + 'px');
+        frameLayers.forEach(function (layers, i) {
+          var station = i * params.walk;
+          layers.forEach(function (layer) {
+            var rel = cam - station - layer.depth;
+            var fade = clamp((rel - params.passStart) / (params.passEnd - params.passStart), 0, 1);
+            layer.el.style.opacity = (1 - fade).toFixed(3);
+            layer.el.style.visibility = fade >= 1 ? 'hidden' : 'visible';
+          });
+        });
+      }
+
+      function renderDevReadout() {
+        var camEl = document.getElementById('dev-cam');
+        var revealEl = document.getElementById('dev-reveal');
+        var roomEl = document.getElementById('dev-room');
+        if (!camEl) return;
+
+        camEl.textContent = Math.round(cam) + 'px';
+        roomEl.textContent = pad(nearestRoom(cam) + 1);
+
+        var lens = 1600;
+        var revealDist = params.walk - params.depth - params.passEnd;
+        if (revealDist < 200) revealDist = 200;
+        var apparent = params.back * (lens / (lens + revealDist + params.depth));
+        revealEl.textContent = (apparent * 100).toFixed(0) + '% view';
+      }
+
+      /*
+        Resting points: every station is a gravity well.
+        While the hand is on the wheel, nothing interferes. Once input
+        pauses past restDelay, the camera rolls into the next well in the
+        direction of travel — with a small capture zone (15% of a walk)
+        so a barely-crossed station pulls you back rather than forward.
+      */
+      function applyGravity(now, dt) {
+        if (params.gravity <= 0) return;
+        if (now - lastInput < params.restDelay * 1000) return;
+
+        var progress = target / params.walk;
+        var rest;
+        if (lastDir > 0) rest = Math.ceil(progress - 0.15);
+        else if (lastDir < 0) rest = Math.floor(progress + 0.15);
+        else rest = Math.round(progress);
+        rest = clamp(rest, 0, n - 1) * params.walk;
+
+        var pull = 1 - Math.exp(-params.gravity * dt);
+        target += (rest - target) * pull;
+        if (Math.abs(rest - target) < 0.5) target = rest;
+      }
+
+      function tick(now) {
+        var dt = Math.min((now - lastTime) / 1000, 0.05);
+        lastTime = now;
+
+        applyGravity(now, dt);
+
+        var pull = reduce ? 1 : 1 - Math.exp(-params.smooth * dt);
+        cam += (target - cam) * pull;
+        if (Math.abs(target - cam) < 0.05) cam = target;
+
+        renderScene();
+        tickHonestCompare(dt);
+        renderTone();
+        renderDevReadout();
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('wheel', function (e) {
+        if (e.target.closest && (e.target.closest('.dev') || e.target.closest('#ask-panel') || e.target.closest('.ask-floor') || e.target.closest('.ask-alt-body') || e.target.closest('#honest-compare'))) return;
+        target = clamp(target + e.deltaY * params.gain, 0, maxCam());
+        lastInput = performance.now();
+        if (e.deltaY !== 0) lastDir = e.deltaY > 0 ? 1 : -1;
+      }, { passive: true });
+
+      function goToRoom(i) {
+        target = clamp(i, 0, n - 1) * params.walk;
+        lastDir = 0;
+        lastInput = performance.now();
+        if (i === HONEST_ROOM) {
+          honestPhase = 0;
+          setHonestT(reduce ? 0.5 : 0, false);
+          honestAuto.dir = 1;
+          honestAuto.dwell = 0;
+        }
+      }
+
+      function step(dir) {
+        /* Inside HONEST: before → after → next room (camera stays put). */
+        if (honestAtStation()) {
+          if (dir > 0) {
+            if (honestPhase === 0) {
+              honestPhase = 1;
+              setHonestT(1, true);
+              honestAuto.dir = 1;
+              honestAuto.dwell = 0;
+              lastDir = dir;
+              lastInput = performance.now();
+              return;
+            }
+            /* after rest → leave to YOURS */
+            honestPhase = 0;
+            target = (HONEST_ROOM + 1) * params.walk;
+            lastDir = dir;
+            lastInput = performance.now();
+            return;
+          }
+          if (dir < 0) {
+            if (honestPhase === 1) {
+              honestPhase = 0;
+              setHonestT(0, true);
+              honestAuto.dir = -1;
+              honestAuto.dwell = 0;
+              lastDir = dir;
+              lastInput = performance.now();
+              return;
+            }
+            target = (HONEST_ROOM - 1) * params.walk;
+            lastDir = dir;
+            lastInput = performance.now();
+            return;
+          }
+        }
+
+        target = clamp((nearestRoom(target) + dir) * params.walk, 0, maxCam());
+        lastDir = dir;
+        lastInput = performance.now();
+        if (nearestRoom(target) === HONEST_ROOM) {
+          honestPhase = 0;
+          setHonestT(reduce ? 0.5 : 0, false);
+          honestAuto.dir = 1;
+          honestAuto.dwell = 0;
+        }
+      }
+
+      bindHonestCompare();
+
+      document.getElementById('skip-docs').addEventListener('click', function (e) {
+        e.preventDefault();
+        goToRoom(n - 1);
+        if (typeof gtag === 'function') {
+          gtag('event', 'skip_to_documents');
+        } else {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'skip_to_documents' });
+        }
+      });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+        if (e.key === 'd' || e.key === 'D') {
+          var panel = document.getElementById('dev');
+          panel.hidden = !panel.hidden;
+          document.body.classList.toggle('dev-hidden', panel.hidden);
+          return;
+        }
+        if (e.key === 'm' || e.key === 'M') {
+          toggleDevMin();
+          return;
+        }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') step(1);
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') step(-1);
+      });
+
+      var controlMap = {
+        'p-walk': { key: 'walk', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-title': { key: 'title', fmt: function (v) { return Number(v).toFixed(2) + '×'; }, parse: Number },
+        'p-back': { key: 'back', fmt: function (v) { return Number(v).toFixed(1) + '×'; }, parse: Number },
+        'p-mesh': { key: 'mesh', fmt: function (v) { return Number(v).toFixed(2) + '×'; }, parse: Number },
+        'p-depth': { key: 'depth', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-word-depth': { key: 'wordDepth', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-gain': { key: 'gain', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
+        'p-smooth': { key: 'smooth', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
+        'p-pass-start': { key: 'passStart', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-pass-end': { key: 'passEnd', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-rest-delay': { key: 'restDelay', fmt: function (v) { return Number(v).toFixed(1) + 's'; }, parse: Number },
+        'p-gravity': { key: 'gravity', fmt: function (v) { return Number(v).toFixed(2); }, parse: Number }
+      };
+
+      function setParam(key, value, preserveProgress) {
+        var progress = maxCam() > 0 ? target / maxCam() : 0;
+        params[key] = value;
+        applyCssParams();
+        if (preserveProgress) {
+          target = clamp(progress * maxCam(), 0, maxCam());
+          cam = target;
+        } else {
+          target = clamp(target, 0, maxCam());
+          cam = clamp(cam, 0, maxCam());
+        }
+        shownRoom = -1;
+      }
+
+      Object.keys(controlMap).forEach(function (id) {
+        var input = document.getElementById(id);
+        var meta = controlMap[id];
+        var label = document.querySelector('.dev-val[data-for="' + id + '"]');
+        if (!input) return;
+
+        input.addEventListener('input', function () {
+          var value = meta.parse(input.value);
+          label.textContent = meta.fmt(value);
+          setParam(meta.key, value, meta.key === 'walk');
+        });
+      });
+
+      document.getElementById('dev-reset').addEventListener('click', function () {
+        params = Object.assign({}, DEFAULTS);
+        Object.keys(controlMap).forEach(function (id) {
+          var input = document.getElementById(id);
+          var meta = controlMap[id];
+          var label = document.querySelector('.dev-val[data-for="' + id + '"]');
+          input.value = String(DEFAULTS[meta.key]);
+          label.textContent = meta.fmt(DEFAULTS[meta.key]);
+        });
+        applyCssParams();
+        target = clamp(target, 0, maxCam());
+        cam = clamp(cam, 0, maxCam());
+        shownRoom = -1;
+      });
+
+      var copyBtn = document.getElementById('dev-copy');
+      copyBtn.addEventListener('click', function () {
+        var text = JSON.stringify(params, null, 2);
+
+        function flash(ok) {
+          copyBtn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+          setTimeout(function () { copyBtn.textContent = 'Copy values'; }, 1200);
+        }
+
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+          document.body.removeChild(ta);
+          flash(ok);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { flash(true); }, fallback);
+        } else {
+          fallback();
+        }
+      });
+
+      var devPanel = document.getElementById('dev');
+      var minBtn = document.getElementById('dev-min');
+
+      function setDevMin(min) {
+        devPanel.classList.toggle('is-min', min);
+        minBtn.setAttribute('aria-expanded', min ? 'false' : 'true');
+        minBtn.textContent = min ? 'Max' : 'Min';
+        minBtn.title = min ? 'Expand (m)' : 'Minimize (m)';
+      }
+
+      function toggleDevMin() {
+        setDevMin(!devPanel.classList.contains('is-min'));
+      }
+
+      minBtn.addEventListener('click', toggleDevMin);
+
+      devPanel.addEventListener('wheel', function (e) {
+        e.stopPropagation();
+      }, { passive: true });
+
+      ['ask-panel', 'what-would-stop-you'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('wheel', function (e) { e.stopPropagation(); }, { passive: true });
+      });
+      var askFloor = document.querySelector('.ask-floor');
+      if (askFloor) {
+        askFloor.addEventListener('wheel', function (e) { e.stopPropagation(); }, { passive: true });
+      }
+
+      applyCssParams();
+      renderScene();
+      renderTone();
+      requestAnimationFrame(tick);
+    })();
+  </script>
+
+  <!-- Conversion — ported from index-v2; KPI remains cost per named fear -->
+  <script>
+    (function () {
+      var CONFIG = {
+        email: 'uriel.nabel@elfortincapital.com',
+        whatsapp: '34626459818'
+      };
+
+      function track(event, payload) {
+        payload = payload || {};
+        if (typeof gtag === 'function') {
+          gtag('event', event, payload);
+        } else {
+          window.dataLayer = window.dataLayer || [];
+          var row = { event: event };
+          Object.keys(payload).forEach(function (k) { row[k] = payload[k]; });
+          window.dataLayer.push(row);
+        }
+      }
+
+      var pack = document.getElementById('request-pack');
+      if (pack) {
+        pack.addEventListener('click', function () { track('request_pack_clicked'); });
+      }
+
+      var book = document.getElementById('book-call');
+      if (book) {
+        book.addEventListener('click', function () { track('book_call_clicked'); });
+      }
+
+      var selectedFear = null;
+      var fearButtons = document.querySelectorAll('.fear-btn');
+      var freeText = document.getElementById('fear-text');
+
+      fearButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          fearButtons.forEach(function (b) { b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          selectedFear = { id: btn.dataset.fear, label: btn.textContent.trim() };
+          track('fear_named', { fear: btn.dataset.fear });
+        });
+      });
+
+      function buildMessage() {
+        var parts = [];
+        if (selectedFear) parts.push('My question: ' + selectedFear.label);
+        var custom = freeText && freeText.value.trim();
+        if (custom) parts.push(custom);
+        if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
+        return parts.join('\n\n');
+      }
+
+      function fearId() {
+        if (selectedFear) return selectedFear.id;
+        if (freeText && freeText.value.trim()) return 'free_text';
+        return 'unspecified';
+      }
+
+      var sendEmail = document.getElementById('send-email');
+      if (sendEmail) {
+        sendEmail.addEventListener('click', function () {
+          track('fear_named', { fear: fearId(), channel: 'email' });
+          window.location.href = 'mailto:' + CONFIG.email
+            + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
+            + '&body=' + encodeURIComponent(buildMessage());
+        });
+      }
+
+      var sendWa = document.getElementById('send-whatsapp');
+      if (sendWa) {
+        sendWa.addEventListener('click', function () {
+          track('fear_named', { fear: fearId(), channel: 'whatsapp' });
+          window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
+        });
+      }
+
+      var alt = document.getElementById('what-would-stop-you');
+      if (alt) {
+        alt.addEventListener('toggle', function () {
+          if (alt.open) track('write_first_opened');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
