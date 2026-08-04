@@ -11,7 +11,8 @@
   [ ] Numbers cross-checked once more against deal doc §4/§5
   [ ] No "guaranteed" anywhere on page
   [ ] Strip the dev panel (keydown 'd') before launch
-  [ ] Touch input + reduced-motion/no-JS fallback verified on real devices
+  [ ] Touch physics verified on real devices (swipe commits one room, never settles backwards; 3-tap hides controllers)
+  [ ] Honest room verified: scroll drives the before→after wipe, then the walk resumes
   [ ] Remove the robots noindex meta tag at launch; set the GA4 measurement ID
 -->
 <html lang="en">
@@ -75,6 +76,7 @@
     html, body {
       height: 100%;
       overflow: hidden; /* no document scroll — the walk is the interaction */
+      touch-action: none; /* own the gesture; mapped to camera in JS */
     }
 
     body {
@@ -98,6 +100,7 @@
       position: fixed;
       inset: 0;
       overflow: clip;
+      touch-action: none;
       perspective: var(--lens);
       perspective-origin: 50% 45%;
       /* The house: even the void is drafting paper — a faint grid,
@@ -599,14 +602,14 @@
       vertical-align: 1px;
     }
 
+    /* The pointer never touches this — the walk itself drives the wipe. */
     .honest-compare {
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
       background: var(--navy-deep);
-      touch-action: none;
-      cursor: ew-resize;
+      pointer-events: none;
       user-select: none;
     }
 
@@ -621,7 +624,10 @@
       pointer-events: none;
     }
 
-    /* t=0 → all before (left); t=1 → all after (grows from the right). */
+    /*
+      Desktop: the boundary sweeps across.
+      t=0 → all before (left); t=1 → all after (grows from the right).
+    */
     .honest-compare__after {
       position: absolute;
       top: 0;
@@ -642,7 +648,7 @@
       max-width: none;
     }
 
-    /* The wipe rule — candor as a boundary you can move */
+    /* The wipe rule — candor as a boundary the walk moves */
     .honest-compare__rule {
       position: absolute;
       top: 0;
@@ -668,7 +674,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .honest-figure { --t: 0.5; }
+      .honest-figure { --t: 1; }
     }
 
     /* Deal figures — float on the floor line. No cells.
@@ -1003,6 +1009,7 @@
       max-height: min(52vh, 420px);
       overflow: auto;
       overscroll-behavior: contain;
+      touch-action: pan-y;
       padding: 22px 24px;
       background: var(--white-stone);
       border: 1px solid rgba(27, 42, 74, 0.16);
@@ -1096,166 +1103,355 @@
       max-width: 28em;
     }
 
-    /* Skip the walk — hottest lead signal; always available after Arrive */
-    .skip-docs {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 40;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--navy);
-      background: rgba(253, 252, 250, 0.92);
-      border: 1px solid rgba(27, 42, 74, 0.18);
-      padding: 10px 14px;
-      text-decoration: none;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 300ms ease, border-color 300ms ease, color 300ms ease;
-    }
-    .skip-docs.is-live {
-      opacity: 0.85;
-      pointer-events: auto;
-    }
-    .skip-docs:hover {
-      opacity: 1;
-      color: var(--terracotta-dark);
-      border-color: var(--terracotta);
-    }
-    body[data-room="0"] .skip-docs,
-    body[data-room="5"] .skip-docs,
-    body.dev-hidden .skip-docs { opacity: 0; pointer-events: none; }
-
+    /*
+      Mobile: one vertical reading column per room.
+      Desktop side-pairs collapse — no left/right split compositions.
+      Coarse pointers: props don't steal the walk gesture; only real controls do.
+    */
     @media (max-width: 720px) {
-      .prop-say--left,
-      .prop-say--right,
-      .prop-say--low-left,
-      .prop-say--low-right,
-      .prop-say--high-left {
-        left: 7%;
-        right: 7%;
-        max-width: none;
-        transform-origin: left center;
+      .prop-say {
+        left: 6% !important;
+        right: 6% !important;
+        max-width: none !important;
+        width: auto !important;
+        --ox: 0% !important;
+        transform-origin: left top;
+        pointer-events: none;
       }
-      .prop-say--right,
-      .prop-say--low-right { top: auto; bottom: 10%; }
-      .prop-say--low-left { top: 62%; }
+      .prop-say a,
+      .ask-door a,
+      .ask-floor a,
+      .ask-floor button,
+      .ask-alt,
+      .ask-alt-body,
+      .fear-btn,
+      .send-btn,
+      .walk-primary {
+        pointer-events: auto;
+      }
+
+      /* 01 ARRIVE — place → claim → price, one stack */
+      .frame-arrive .prop-say--left {
+        top: 14%;
+        bottom: auto;
+      }
+      .frame-arrive .prop-say--right {
+        top: auto;
+        bottom: 12%;
+        text-align: left;
+        transform-origin: left bottom;
+      }
+      .frame-arrive .wall-word {
+        font-size: clamp(140px, 38vw, 220px);
+        top: 58%;
+        left: -4%;
+      }
+      .frame-arrive .prop-say--loud h2 {
+        font-size: clamp(40px, 12vw, 56px);
+      }
+      .walk-place { font-size: clamp(15px, 4.2vw, 18px); gap: 8px 10px; }
+      .say-fig { font-size: clamp(34px, 10vw, 44px); }
+
+      /* 02 BUILT — face + name as a header pair, proofs stacked under */
+      .frame-built .prop-say {
+        --z: 0 !important;
+        --ox: 0% !important;
+        --oy: 0% !important;
+        transform: none !important;
+      }
+      .frame-built .prop-say--portrait {
+        top: 9% !important;
+        bottom: auto !important;
+        left: 6% !important;
+        right: auto !important;
+        width: min(36vw, 140px) !important;
+        max-width: min(36vw, 140px) !important;
+      }
+      .frame-built .prop-say--portrait img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+      }
+      .frame-built .prop-say--portrait figcaption {
+        margin-top: 6px;
+        font-size: 10px;
+      }
+      .frame-built .prop-say--loud {
+        top: 11% !important;
+        bottom: auto !important;
+        left: calc(6% + min(36vw, 140px) + 14px) !important;
+        right: 6% !important;
+        max-width: none !important;
+      }
+      .frame-built .prop-say--loud h2 {
+        font-size: clamp(30px, 9vw, 40px);
+        margin: 0;
+        line-height: 1.05;
+      }
+      .frame-built .prop-say--low-left {
+        top: 44% !important;
+        bottom: auto !important;
+        left: 6% !important;
+        right: 6% !important;
+      }
+      .frame-built .prop-say--low-left h3 {
+        font-size: clamp(22px, 6vw, 26px);
+      }
+      .frame-built .prop-say--low-right {
+        top: auto !important;
+        bottom: 10% !important;
+        left: 6% !important;
+        right: 6% !important;
+      }
+      .frame-built .prop-say--low-right h3 {
+        font-size: clamp(22px, 6vw, 26px);
+      }
+      .frame-built .prop-say--low-right p {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+      .frame-built .wall-word {
+        font-size: clamp(100px, 32vw, 180px);
+        top: 90%;
+        opacity: 0.4;
+      }
+
+      /* 03 HONEST — copy above, wipe below */
+      .honest-copy {
+        top: 8%;
+        bottom: auto;
+        --oy: 0%;
+      }
+      .honest-copy h2 { font-size: clamp(32px, 9vw, 42px); }
+      .honest-copy p { max-width: none; font-size: 14px; }
+      .prop-say.honest-figure {
+        top: auto;
+        bottom: 7%;
+        --oy: 0%;
+      }
+      .honest-figure__state { font-size: 10px; letter-spacing: 0.1em; gap: 10px; }
+
+      /*
+        The wipe follows the thumb. The gesture here is vertical, so the
+        boundary is too: After rises from the bottom as the walk goes
+        forward, the way new content arrives in any scroll.
+      */
+      .honest-compare__after {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: calc(var(--t) * 100%);
+      }
+      .honest-compare__after img {
+        top: auto;
+        right: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: var(--ch, 100%);
+        max-height: none;
+      }
+      .honest-compare__rule {
+        top: calc(100% - var(--t) * 100%);
+        right: 0;
+        bottom: auto;
+        left: 0;
+        width: auto;
+        height: 1px;
+        transform: translateY(-0.5px);
+      }
+
+      /* 04 YOURS — claims bookend a centered floor plan */
+      .frame-yours .prop-say {
+        --z: 0 !important;
+        --ox: 0% !important;
+        --oy: 0% !important;
+        transform: none !important;
+      }
+      .frame-yours .prop-say--low-left {
+        top: 8% !important;
+        bottom: auto !important;
+        left: 6% !important;
+        right: 6% !important;
+      }
+      .prop-say.yours-plan {
+        top: 50% !important;
+        bottom: auto !important;
+        left: 6% !important;
+        right: 6% !important;
+        width: auto !important;
+        transform: translateY(-50%) !important;
+      }
+      .prop-say.yours-plan img {
+        padding: 10px 12px;
+        width: 100%;
+      }
+      .frame-yours .prop-say--low-right {
+        top: auto !important;
+        bottom: 8% !important;
+        left: 6% !important;
+        right: 6% !important;
+      }
+      .frame-yours .prop-say--loud h2,
+      .frame-yours .prop-say--low-right h2 {
+        font-size: clamp(26px, 7.5vw, 34px);
+      }
+
+      /* 05 DEAL — 4% sits on the horizon; price above, target below */
+      .frame-deal .prop-say {
+        --z: 0 !important;
+        --ox: 0% !important;
+        --oy: 0% !important;
+        transform: none !important;
+        left: 6% !important;
+        right: 6% !important;
+        max-width: none !important;
+        width: auto !important;
+        text-align: left !important;
+        padding-bottom: 0 !important;
+      }
       .deal-title {
-        left: 7%;
-        top: 6%;
+        top: 6% !important;
+        bottom: auto !important;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.55;
       }
       .deal-fig--price {
-        left: 7%;
-        right: 7%;
-        top: 12%;
-        --oy: 0%;
-        max-width: none;
-        padding-bottom: 0;
+        top: 14% !important;
+        bottom: auto !important;
       }
       .deal-fig--floor {
-        left: 7%;
-        right: 7%;
-        top: 38%;
-        --ox: 0%;
-        --oy: 0%;
-        max-width: none;
-        text-align: left;
+        top: 52% !important;
+        bottom: auto !important;
       }
-      .deal-fig--floor .deal-num { margin-top: 0; }
-      .deal-fig--floor .deal-lbl { margin-top: 14px; }
-      .deal-fig--floor .deal-note { margin-left: 0; }
+      .deal-fig--floor .deal-num {
+        margin-top: -0.95em !important; /* number rests on the terracotta horizon */
+        line-height: 1;
+      }
+      .deal-fig--floor .deal-lbl {
+        margin-top: 16px !important;
+      }
       .deal-fig--target {
-        left: 7%;
-        right: 7%;
-        top: auto;
-        bottom: 26%;
-        --oy: 0%;
-        text-align: left;
-        padding-bottom: 0;
+        top: auto !important;
+        bottom: 10% !important;
       }
-      .deal-fig--target .deal-note { margin-left: 0; }
-      .deal-fig .deal-num { font-size: clamp(44px, 14vw, 64px); }
-      .deal-fine {
-        left: 7%;
-        right: 7%;
-        bottom: 16%;
-        font-size: 12px;
-        text-align: left;
+      .deal-fig .deal-num { font-size: clamp(48px, 15vw, 64px); }
+      .deal-fig .deal-lbl {
+        margin-top: 8px;
       }
+      .deal-fig .deal-note,
+      .deal-fine,
       .deal-forward {
-        left: 7%;
-        right: 7%;
-        --ox: 0%;
-        bottom: 5%;
-        justify-content: flex-start;
+        display: none !important;
+      }
+
+      /* 06 ASK — tight vertical CTA stack: headline → door → auxiliaries */
+      .frame-ask .prop-say {
+        --z: 0 !important;
+        --ox: 0% !important;
+        --oy: 0% !important;
+        transform: none !important;
+      }
+      .frame-ask .wall-word {
+        display: none;
       }
       .ask-mandate {
-        left: 6%;
-        right: 6%;
-        top: 12%;
+        top: 8% !important;
+        bottom: auto !important;
+        left: 6% !important;
+        right: 6% !important;
       }
-      .ask-mandate h2 { font-size: clamp(48px, 15vw, 68px); max-width: none; }
+      .ask-mandate h2 {
+        font-size: clamp(40px, 12vw, 54px);
+        max-width: none;
+        margin-bottom: 0.28em;
+        line-height: 0.92;
+      }
+      .ask-mandate h2 em {
+        margin-left: 0;
+        margin-top: 0.04em;
+      }
+      .ask-mandate .ask-lede {
+        font-size: 16px;
+        line-height: 1.45;
+        max-width: 22em;
+        opacity: 0.72;
+      }
       .ask-door {
-        left: 0;
-        right: 0;
-        bottom: 24%;
+        left: 0 !important;
+        right: 0 !important;
+        top: 34% !important;
+        bottom: auto !important;
         padding: 0 6%;
+        gap: 14px;
       }
       .walk-primary--door {
         min-height: 72px;
-        padding: 22px 20px;
-        font-size: 14px;
+        padding: 22px 18px;
+        font-size: 15px;
         letter-spacing: 0.08em;
+        white-space: normal;
+        box-shadow: 0 18px 40px rgba(168, 94, 50, 0.32);
+      }
+      .ask-door-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px 16px;
+        width: 100%;
+      }
+      .ask-door-meta .count-line {
+        font-size: 14px;
+      }
+      .ask-door-meta .count-line strong {
+        font-size: 18px;
       }
       .ask-floor {
-        left: 6%;
-        right: 6%;
-        bottom: 4%;
+        left: 6% !important;
+        right: 6% !important;
+        top: 66% !important;
+        bottom: auto !important;
         flex-direction: column;
         align-items: flex-start;
+        gap: 14px;
       }
-      .freedom-line { text-align: left; }
+      .ask-alt > summary {
+        font-size: 15px;
+      }
+      .freedom-line {
+        flex: none;
+        text-align: left;
+        font-size: 14px;
+        max-width: 22em;
+      }
       .ask-alt-body {
         width: calc(100vw - 32px);
         left: 50%;
         transform: translateX(-50%);
-        max-height: 46vh;
+        max-height: 50vh;
       }
-      .honest-copy {
-        left: 7%;
-        right: 7%;
-        top: 6%;
-        --oy: 0%;
-        max-width: none;
+
+    }
+
+    /* Coarse pointers: props never steal the walk gesture; only real controls do */
+    @media (hover: none), (pointer: coarse) {
+      .prop-say { pointer-events: none; }
+      .prop-say a,
+      .ask-door a,
+      .ask-floor a,
+      .ask-floor button,
+      .ask-alt,
+      .ask-alt-body,
+      .fear-btn,
+      .send-btn,
+      .walk-primary {
+        pointer-events: auto;
       }
-      .prop-say.honest-figure {
-        left: 7%;
-        right: 7%;
-        top: auto;
-        bottom: 8%;
-        width: auto;
-        --oy: 0%;
-      }
-      .prop-say.yours-plan {
-        left: 7%;
-        right: 7%;
-        top: 16%;
-        width: auto;
-        --ox: 0%;
-        --oy: 0%;
-      }
-      .frame-yours .prop-say--low-left {
-        top: 52%;
-        bottom: auto;
-      }
-      .frame-yours .prop-say--low-right {
-        top: auto;
-        bottom: 10%;
-      }
-      .skip-docs { bottom: 12px; left: 12px; font-size: 11px; padding: 8px 12px; }
     }
 
     /* ---------- Lighting rig: 2D layers above the set ---------- */
@@ -1297,6 +1493,7 @@
       width: 300px;
       max-height: calc(100svh - 32px);
       overflow: auto;
+      touch-action: pan-y;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 11px;
       line-height: 1.35;
@@ -1485,10 +1682,10 @@
             <span class="fig-cond" data-cond="before" data-active="true">Before</span>
             <span class="fig-cond" data-cond="after" data-active="false">After</span>
           </div>
-          <div class="honest-compare" id="honest-compare" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
-            <img src="assets/puzol-before.jpg" alt="" width="1040" height="780" decoding="async" draggable="false">
+          <div class="honest-compare" id="honest-compare">
+            <img src="assets/puzol-before.jpg" alt="The Puzol house before the renovation" width="1040" height="780" decoding="async" draggable="false">
             <div class="honest-compare__after">
-              <img src="assets/puzol-after.jpg" alt="" width="1040" height="780" decoding="async" draggable="false">
+              <img src="assets/puzol-after.jpg" alt="The same house after the renovation" width="1040" height="780" decoding="async" draggable="false">
             </div>
             <span class="honest-compare__rule" aria-hidden="true"></span>
           </div>
@@ -1613,9 +1810,7 @@
     <div class="light light--vignette" aria-hidden="true"></div>
   </div>
 
-  <a class="skip-docs" id="skip-docs" href="#ask">Skip the walk — documents &rarr;</a>
-
-  <aside class="dev is-min" id="dev" aria-label="Theater parameters">
+  <aside class="dev is-min" id="dev" hidden aria-label="Theater parameters">
     <div class="dev-head">
       <span>Dev · Theater</span>
       <span>
@@ -1669,29 +1864,39 @@
         <span class="dev-val" data-for="p-gain">3.7</span>
       </div>
       <div class="dev-row">
+        <label for="p-touch-gain">Touch gain</label>
+        <input id="p-touch-gain" type="range" min="2" max="12" step="0.1" value="6.5">
+        <span class="dev-val" data-for="p-touch-gain">6.5</span>
+      </div>
+      <div class="dev-row">
         <label for="p-smooth">Dolly weight</label>
-        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="5">
-        <span class="dev-val" data-for="p-smooth">5.0</span>
+        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="6">
+        <span class="dev-val" data-for="p-smooth">6.0</span>
       </div>
       <div class="dev-row">
-        <label for="p-pass-start">Pass start (past layer)</label>
-        <input id="p-pass-start" type="range" min="0" max="1200" step="25" value="500">
-        <span class="dev-val" data-for="p-pass-start">500px</span>
+        <label for="p-max-speed">Max dolly speed (rooms/s)</label>
+        <input id="p-max-speed" type="range" min="0.8" max="4" step="0.1" value="1.8">
+        <span class="dev-val" data-for="p-max-speed">1.8</span>
       </div>
       <div class="dev-row">
-        <label for="p-pass-end">Pass end (gone)</label>
-        <input id="p-pass-end" type="range" min="200" max="2000" step="25" value="1150">
-        <span class="dev-val" data-for="p-pass-end">1150px</span>
+        <label for="p-pass-start">Dissolve starts (from eye)</label>
+        <input id="p-pass-start" type="range" min="60" max="1400" step="20" value="320">
+        <span class="dev-val" data-for="p-pass-start">320px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-pass-end">Dissolve done (from eye)</label>
+        <input id="p-pass-end" type="range" min="0" max="600" step="20" value="40">
+        <span class="dev-val" data-for="p-pass-end">40px</span>
       </div>
       <div class="dev-row">
         <label for="p-rest-delay">Rest delay (pause before settle)</label>
-        <input id="p-rest-delay" type="range" min="0.2" max="3" step="0.1" value="0.2">
-        <span class="dev-val" data-for="p-rest-delay">0.2s</span>
+        <input id="p-rest-delay" type="range" min="0" max="3" step="0.05" value="0.35">
+        <span class="dev-val" data-for="p-rest-delay">0.35s</span>
       </div>
       <div class="dev-row">
         <label for="p-gravity">Gravity (0 = off)</label>
-        <input id="p-gravity" type="range" min="0" max="8" step="0.25" value="8">
-        <span class="dev-val" data-for="p-gravity">8.00</span>
+        <input id="p-gravity" type="range" min="0" max="12" step="0.25" value="4.5">
+        <span class="dev-val" data-for="p-gravity">4.50</span>
       </div>
 
     </div>
@@ -1711,13 +1916,49 @@
         mesh: 4,
         depth: 2300,
         wordDepth: 1150,
-        gain: 3.7,
-        smooth: 5,
-        passStart: 500,
-        passEnd: 1150,
-        restDelay: 0.2,
-        gravity: 8
+        gain: 3.7,       /* wheel only — discrete notches need amplification */
+        touchGain: 6.5,  /* light: one comfortable swipe carries most of a room */
+        smooth: 6,       /* camera lerp rate (per s) — the dolly's weight; ~lerp 0.1/frame */
+        passStart: 320,  /* dissolve begins this close to the eye */
+        passEnd: 40,     /* fully gone this close — you are through it */
+        restDelay: 0.35, /* idle time before the room pulls you in */
+        gravity: 4.5,    /* rest-pull rate (per s) — a glide, not a snap */
+        maxSpeed: 1.8    /* camera speed ceiling, in walks per second */
       };
+
+      /*
+        Wheel is indirect, quantized input — it is never coupled 1:1 to the
+        camera. Deltas feed a target; the camera lerps toward it each frame.
+      */
+      var WHEEL = {
+        clampDelta: 160,  /* tame trackpad-momentum spikes per event */
+        lineHeight: 16    /* deltaMode LINE → px */
+      };
+
+      /*
+        Touch is direct manipulation: the scene tracks the finger 1:1 while
+        it is down. On release the gesture is honored, never second-guessed —
+        any swipe past `commit` (a nudge) walks one room the way it was
+        aimed. Speed is irrelevant; there is no flick/slow distinction and
+        no threshold to fail. Below `commit` the finger never really left,
+        so the room simply stays.
+      */
+      var TOUCH = {
+        slop: 2,
+        commit: 0.02,   /* ~20px of finger — a swipe, not a twitch */
+        rubber: 0.2
+      };
+
+      /*
+        Fraction of a walk that commits you to the next room. Idle settle is
+        directional: once past CAPTURE in the travel direction the theater
+        walks you in — it never yanks you back to the "nearest" room.
+      */
+      var CAPTURE = 0.18;
+
+      /* Focal length — must match --lens. Distances are measured from the
+         eye, which sits one lens-length in front of the z=0 plane. */
+      var LENS = 1600;
 
       var params = Object.assign({}, DEFAULTS);
       var n = frames.length;
@@ -1731,19 +1972,26 @@
       var HONEST_ROOM = 2;
       var honestFigure = document.getElementById('honest-figure');
       var honestCompare = document.getElementById('honest-compare');
-      var honestReadout = document.getElementById('honest-t-readout');
       var honestCondBefore = document.querySelector('.fig-cond[data-cond="before"]');
       var honestCondAfter = document.querySelector('.fig-cond[data-cond="after"]');
-      /* Local figure state — camera stays on the honest station */
-      var honestT = reduce ? 0.5 : 0;
-      var honestPhase = 0; /* 0 = before rest, 1 = after rest */
-      var honestDragging = false;
-      var honestAuto = {
-        dir: 1,
-        dwell: 0,
-        speed: 0.22,   /* units per second while sweeping */
-        pause: 1.35    /* seconds resting at each end */
+      /*
+        HONEST is the one room the walk pauses inside. The camera holds at
+        the station and the scroll drives the before→after wipe instead —
+        the visitor performs the renovation rather than watching it. Once
+        the wipe is complete the room lets go and the walk resumes.
+      */
+      var HONEST = {
+        travel: 0.45,  /* scroll worth this fraction of a walk completes the wipe */
+        nod: 0.16,     /* how far the room opens the wipe on its own */
+        nodDelay: 0.5, /* a beat to arrive before it speaks */
+        nodCycle: 1.4, /* seconds per nod: out and back */
+        nodCount: 2    /* then it stops and waits, like a native scroll hint */
       };
+      var honestT = reduce ? 1 : 0;
+      var honestDriven = false;    /* the visitor has taken the wipe over */
+      var honestCompleted = reduce;/* seen through to the end at least once */
+      var honestNodClock = 0;
+      var honestNodDone = false;
 
       function clamp(v, a, b) {
         return Math.max(a, Math.min(b, v));
@@ -1761,97 +2009,83 @@
         return clamp(Math.round(pos / params.walk), 0, n - 1);
       }
 
-      function syncCompareWidth() {
+      /* The revealed half is a clipping window; the image inside it keeps the
+         full frame's size so the picture never squashes as the wipe moves. */
+      function syncCompareSize() {
         if (!honestCompare || !honestFigure) return;
         honestFigure.style.setProperty('--cw', honestCompare.clientWidth + 'px');
+        honestFigure.style.setProperty('--ch', honestCompare.clientHeight + 'px');
       }
 
       function setHonestT(t, fromUser) {
         honestT = clamp(t, 0, 1);
+        if (honestT >= 1) honestCompleted = true;
         if (honestFigure) honestFigure.style.setProperty('--t', honestT.toFixed(4));
-        if (honestCompare) honestCompare.setAttribute('aria-valuenow', String(Math.round(honestT * 100)));
-        if (honestReadout) honestReadout.textContent = 't = ' + honestT.toFixed(2);
+        if (fromUser) honestDriven = true;
         if (honestCondBefore) honestCondBefore.setAttribute('data-active', honestT < 0.5 ? 'true' : 'false');
         if (honestCondAfter) honestCondAfter.setAttribute('data-active', honestT >= 0.5 ? 'true' : 'false');
-        if (fromUser) {
-          honestPhase = honestT < 0.5 ? 0 : 1;
-          honestAuto.dwell = 0;
-        }
       }
 
+      function resetHonest() {
+        honestDriven = false;
+        honestNodClock = 0;
+        honestNodDone = false;
+        setHonestT(0, false);
+      }
+
+      /* The wipe answers to the walk only while the room is the destination. */
       function honestAtStation() {
-        return Math.abs(target - HONEST_ROOM * params.walk) < 8
-          && nearestRoom(cam) === HONEST_ROOM;
+        return Math.abs(target - HONEST_ROOM * params.walk) < params.walk * 0.02;
       }
 
-      function tickHonestCompare(dt) {
-        if (!honestFigure || reduce || honestDragging) return;
-        if (nearestRoom(cam) !== HONEST_ROOM) return;
+      /*
+        Scroll arriving at the honest station is spent on the wipe before it
+        is spent on the camera. Returns the travel left over, which is zero
+        until the wipe is done — that is what holds you in the room.
+      */
+      function honestConsume(delta) {
+        if (reduce || !honestFigure || !honestAtStation()) return delta;
+        if (delta > 0 && honestT >= 1) return delta;
+        if (delta < 0 && honestT <= 0) return delta;
+        setHonestT(honestT + delta / (HONEST.travel * params.walk), true);
+        return 0;
+      }
 
-        /* Calibrated sweep with dwell rests at t=0 and t=1 */
-        if ((honestAuto.dir > 0 && honestT >= 1) || (honestAuto.dir < 0 && honestT <= 0)) {
-          honestT = honestAuto.dir > 0 ? 1 : 0;
-          honestPhase = honestAuto.dir > 0 ? 1 : 0;
-          honestAuto.dwell += dt;
-          if (honestAuto.dwell >= honestAuto.pause) {
-            honestAuto.dwell = 0;
-            honestAuto.dir *= -1;
-          }
-          setHonestT(honestT, false);
+      /*
+        The ask, with no words in it: on arrival the wipe starts to move,
+        nods twice, and settles back. It shows the gesture that continues
+        it — then gets out of the way and waits.
+      */
+      function tickHonestCompare(dt) {
+        if (!honestFigure || reduce || honestNodDone) return;
+        if (honestDriven || honestCompleted) return;
+        if (shownRoom !== HONEST_ROOM) return;
+
+        honestNodClock += dt;
+        var elapsed = honestNodClock - HONEST.nodDelay;
+        if (elapsed <= 0) return;
+
+        if (elapsed >= HONEST.nodCycle * HONEST.nodCount) {
+          honestNodDone = true;
+          setHonestT(0, false);
           return;
         }
-        honestAuto.dwell = 0;
-        setHonestT(honestT + honestAuto.dir * honestAuto.speed * dt, false);
+
+        var phase = (elapsed % HONEST.nodCycle) / HONEST.nodCycle;
+        setHonestT(HONEST.nod * (1 - Math.cos(phase * Math.PI * 2)) / 2, false);
       }
 
       function bindHonestCompare() {
         if (!honestCompare || !honestFigure) return;
-
-        function tFromEvent(e) {
-          var rect = honestCompare.getBoundingClientRect();
-          var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-          /* After grows from the right; drag toward the right → more after */
-          return clamp((clientX - rect.left) / rect.width, 0, 1);
-        }
-
-        function onDown(e) {
-          honestDragging = true;
-          honestAuto.dwell = 0;
-          setHonestT(tFromEvent(e), true);
-          e.preventDefault();
-        }
-        function onMove(e) {
-          if (!honestDragging) return;
-          setHonestT(tFromEvent(e), true);
-          e.preventDefault();
-        }
-        function onUp() {
-          honestDragging = false;
-          /* Snap to nearest rest end if close */
-          if (honestT < 0.12) setHonestT(0, true);
-          else if (honestT > 0.88) setHonestT(1, true);
-        }
-
-        honestCompare.addEventListener('pointerdown', onDown);
-        window.addEventListener('pointermove', onMove);
-        window.addEventListener('pointerup', onUp);
-        honestCompare.addEventListener('keydown', function (e) {
-          if (e.key === 'ArrowLeft') { setHonestT(honestT - 0.05, true); e.preventDefault(); e.stopPropagation(); }
-          if (e.key === 'ArrowRight') { setHonestT(honestT + 0.05, true); e.preventDefault(); e.stopPropagation(); }
-          if (e.key === 'Home') { setHonestT(0, true); e.preventDefault(); e.stopPropagation(); }
-          if (e.key === 'End') { setHonestT(1, true); e.preventDefault(); e.stopPropagation(); }
-        });
-
-        syncCompareWidth();
-        window.addEventListener('resize', syncCompareWidth);
+        syncCompareSize();
+        window.addEventListener('resize', syncCompareSize);
         setHonestT(honestT, false);
       }
 
       function rebuildLayers() {
         var depth = params.depth;
         var wordDepth = clamp(params.wordDepth, 0, depth - 50);
-        var lens = 1600;
-        var wordScale = (lens + wordDepth) / lens;
+        var wordScale = (LENS + wordDepth) / LENS;
 
         root.style.setProperty('--room-depth', depth + 'px');
         root.style.setProperty('--word-depth', wordDepth + 'px');
@@ -1879,19 +2113,25 @@
       }
 
       function renderTone() {
-        var room = nearestRoom(cam);
+        /*
+          You are in the next room once you have physically passed through
+          the wall behind you — that is, when its back wall reaches the eye
+          (cam = station + depth + LENS), not when it merely reaches z=0.
+        */
+        var room = clamp(
+          Math.floor((cam - params.depth - LENS + 0.5) / params.walk) + 1,
+          0,
+          n - 1
+        );
         if (room === shownRoom) return;
         var prev = shownRoom;
         shownRoom = room;
         document.body.dataset.tone = frames[room].dataset.tone;
         document.body.dataset.room = String(room);
-        var skip = document.getElementById('skip-docs');
-        if (skip) skip.classList.toggle('is-live', room > 0 && room < n - 1);
-        if (room === HONEST_ROOM && prev !== HONEST_ROOM) {
-          honestPhase = 0;
-          setHonestT(reduce ? 0.5 : 0, false);
-          honestAuto.dir = 1;
-          honestAuto.dwell = 0;
+        /* Rearm on the way out, not on the way in: the visitor may start
+           the wipe while the camera is still gliding into the room. */
+        if (prev === HONEST_ROOM && room !== HONEST_ROOM && !honestCompleted) {
+          resetHonest();
         }
       }
 
@@ -1900,8 +2140,17 @@
         frameLayers.forEach(function (layers, i) {
           var station = i * params.walk;
           layers.forEach(function (layer) {
-            var rel = cam - station - layer.depth;
-            var fade = clamp((rel - params.passStart) / (params.passEnd - params.passStart), 0, 1);
+            /*
+              `eye` is the true distance from the camera to the layer.
+              A layer sitting at z=0 is still a full lens-length away — it
+              only reaches the eye at eye=0, where its scale runs to
+              infinity. Dissolving is measured from the eye, so a wall
+              stays solid while it swells to fill the view and only gives
+              way in the last moment, as you pass through it.
+            */
+            var eye = LENS - (cam - station - layer.depth);
+            var span = Math.max(params.passStart - params.passEnd, 1);
+            var fade = clamp((params.passStart - eye) / span, 0, 1);
             layer.el.style.opacity = (1 - fade).toFixed(3);
             layer.el.style.visibility = fade >= 1 ? 'hidden' : 'visible';
           });
@@ -1917,31 +2166,34 @@
         camEl.textContent = Math.round(cam) + 'px';
         roomEl.textContent = pad(nearestRoom(cam) + 1);
 
-        var lens = 1600;
-        var revealDist = params.walk - params.depth - params.passEnd;
-        if (revealDist < 200) revealDist = 200;
-        var apparent = params.back * (lens / (lens + revealDist + params.depth));
+        /* How big the next wall already looks the moment the one in front
+           of it has dissolved away. */
+        var revealEye = params.walk - params.passStart + LENS;
+        var apparent = params.back * (LENS / Math.max(revealEye, LENS * 0.1));
         revealEl.textContent = (apparent * 100).toFixed(0) + '% view';
       }
 
       /*
-        Resting points: every station is a gravity well.
-        While the hand is on the wheel, nothing interferes. Once input
-        pauses past restDelay, the camera rolls into the next well in the
-        direction of travel — with a small capture zone (15% of a walk)
-        so a barely-crossed station pulls you back rather than forward.
+        The rest a position resolves to, honoring the direction of travel:
+        past CAPTURE of a walk you are committed to the room ahead; short of
+        it you drift back. Progress is never undone by the settle.
       */
+      function directionalRest(pos, dir) {
+        var progress = pos / params.walk;
+        var room;
+        if (dir > 0) room = Math.ceil(progress - CAPTURE);
+        else if (dir < 0) room = Math.floor(progress + CAPTURE);
+        else room = Math.round(progress);
+        return clamp(room, 0, n - 1) * params.walk;
+      }
+
+      /* Every station is a gravity well. While input is live nothing
+         interferes; once it pauses, the camera rolls into the well in the
+         direction of travel. */
       function applyGravity(now, dt) {
         if (params.gravity <= 0) return;
         if (now - lastInput < params.restDelay * 1000) return;
-
-        var progress = target / params.walk;
-        var rest;
-        if (lastDir > 0) rest = Math.ceil(progress - 0.15);
-        else if (lastDir < 0) rest = Math.floor(progress + 0.15);
-        else rest = Math.round(progress);
-        rest = clamp(rest, 0, n - 1) * params.walk;
-
+        var rest = directionalRest(target, lastDir);
         var pull = 1 - Math.exp(-params.gravity * dt);
         target += (rest - target) * pull;
         if (Math.abs(rest - target) < 0.5) target = rest;
@@ -1951,11 +2203,27 @@
         var dt = Math.min((now - lastTime) / 1000, 0.05);
         lastTime = now;
 
-        applyGravity(now, dt);
+        if (!touchDriving) {
+          applyGravity(now, dt);
+        }
 
-        var pull = reduce ? 1 : 1 - Math.exp(-params.smooth * dt);
-        cam += (target - cam) * pull;
-        if (Math.abs(target - cam) < 0.05) cam = target;
+        /*
+          Touch drags track the finger exactly — smoothing lag under a
+          finger is the cardinal sin of direct manipulation. Everything
+          else (wheel, settle, keyboard) goes through the eased dolly,
+          with a speed ceiling so a violent fling cannot warp the walk.
+        */
+        if (touchDriving || reduce) {
+          cam = target;
+        } else {
+          var pull = 1 - Math.exp(-params.smooth * dt);
+          var move = (target - cam) * pull;
+          var maxStep = params.maxSpeed * params.walk * dt;
+          if (move > maxStep) move = maxStep;
+          else if (move < -maxStep) move = -maxStep;
+          cam += move;
+          if (Math.abs(target - cam) < 0.5) cam = target;
+        }
 
         renderScene();
         tickHonestCompare(dt);
@@ -1964,92 +2232,182 @@
         requestAnimationFrame(tick);
       }
 
-      window.addEventListener('wheel', function (e) {
-        if (e.target.closest && (e.target.closest('.dev') || e.target.closest('#ask-panel') || e.target.closest('.ask-floor') || e.target.closest('.ask-alt-body') || e.target.closest('#honest-compare'))) return;
-        target = clamp(target + e.deltaY * params.gain, 0, maxCam());
+      function inputBlocked(el) {
+        return !!(el && el.closest && (
+          el.closest('.dev') ||
+          el.closest('#ask-panel') ||
+          el.closest('.ask-floor') ||
+          el.closest('.ask-alt-body') ||
+          el.closest('input') ||
+          el.closest('textarea') ||
+          el.closest('select') ||
+          el.closest('a') ||
+          el.closest('button') ||
+          el.closest('summary')
+        ));
+      }
+
+      function normalizeWheelDelta(e) {
+        var dy = e.deltaY;
+        if (e.deltaMode === 1) dy *= WHEEL.lineHeight;
+        else if (e.deltaMode === 2) dy *= window.innerHeight;
+        return clamp(dy, -WHEEL.clampDelta, WHEEL.clampDelta);
+      }
+
+      function advanceWheel(deltaY) {
+        if (!deltaY) return;
         lastInput = performance.now();
-        if (e.deltaY !== 0) lastDir = e.deltaY > 0 ? 1 : -1;
+        lastDir = deltaY > 0 ? 1 : -1;
+
+        var delta = honestConsume(deltaY * params.gain);
+        if (!delta) return;
+
+        target = clamp(target + delta, 0, maxCam());
+        /* The target may run at most one walk ahead of the camera, so a
+           long fling still passes through every room instead of skipping. */
+        target = clamp(target, cam - params.walk, cam + params.walk);
+      }
+
+      function applyTouchDelta(dy) {
+        if (!dy) return;
+        lastInput = performance.now();
+        lastDir = dy > 0 ? 1 : -1;
+
+        var delta = honestConsume(dy * params.touchGain);
+        if (!delta) return;
+
+        var next = target + delta;
+        var max = maxCam();
+        if (next < 0) next *= TOUCH.rubber;
+        else if (next > max) next = max + (next - max) * TOUCH.rubber;
+        target = next;
+      }
+
+      window.addEventListener('wheel', function (e) {
+        if (inputBlocked(e.target)) return;
+        advanceWheel(normalizeWheelDelta(e));
+      }, { passive: true });
+
+      var touchY = null;
+      var touchDriving = false;
+      var touchStartTarget = 0;
+      var tapTimes = [];
+
+      /*
+        Where a released swipe lands. The gesture's own direction decides,
+        so a lazy drag and a hard flick read the same — one room, the way
+        you aimed. The landing is never behind where the finger left off
+        (beyond the commit nudge), so the walk never claws progress back.
+      */
+      function touchRelease() {
+        var moved = target - touchStartTarget;
+        var progress = clamp(target, 0, maxCam()) / params.walk;
+        var startRoom = nearestRoom(touchStartTarget);
+
+        if (Math.abs(moved) < TOUCH.commit * params.walk) {
+          return startRoom * params.walk;
+        }
+
+        var direction = moved > 0 ? 1 : -1;
+        var room = direction > 0
+          ? Math.max(startRoom + 1, Math.ceil(progress - TOUCH.commit))
+          : Math.min(startRoom - 1, Math.floor(progress + TOUCH.commit));
+
+        lastDir = direction;
+        return clamp(room, 0, n - 1) * params.walk;
+      }
+
+      function setControllersVisible(visible) {
+        var panel = document.getElementById('dev');
+        if (!panel) return;
+        panel.hidden = !visible;
+        document.body.classList.toggle('dev-hidden', !visible);
+      }
+
+      function toggleControllers() {
+        var panel = document.getElementById('dev');
+        if (!panel) return;
+        setControllersVisible(panel.hidden);
+      }
+
+      /* Controllers stay off until a quick triple-tap (or key d) */
+      setControllersVisible(false);
+
+      window.addEventListener('touchstart', function (e) {
+        if (!e.touches || e.touches.length !== 1 || inputBlocked(e.target)) {
+          touchY = null;
+          touchDriving = false;
+          return;
+        }
+        touchY = e.touches[0].clientY;
+        touchStartTarget = target;
+        touchDriving = false;
+      }, { passive: true });
+
+      window.addEventListener('touchmove', function (e) {
+        if (touchY == null || !e.touches || e.touches.length !== 1) return;
+        var y = e.touches[0].clientY;
+        var dy = touchY - y;
+        if (!touchDriving) {
+          if (Math.abs(dy) < TOUCH.slop) return;
+          touchDriving = true;
+          tapTimes = [];
+        }
+        touchY = y;
+        applyTouchDelta(dy);
+        e.preventDefault();
+      }, { passive: false });
+
+      function endTouch(e) {
+        if (touchDriving) {
+          target = touchRelease();
+          /* Let the eased dolly carry the settle immediately. */
+          lastInput = performance.now() - params.restDelay * 1000;
+        } else if (touchY != null && !(e && e.target && inputBlocked(e.target))) {
+          var now = performance.now();
+          tapTimes.push(now);
+          tapTimes = tapTimes.filter(function (t) { return now - t < 480; });
+          if (tapTimes.length >= 3) {
+            tapTimes = [];
+            toggleControllers();
+          }
+        }
+        touchY = null;
+        touchDriving = false;
+      }
+      window.addEventListener('touchend', endTouch, { passive: true });
+      window.addEventListener('touchcancel', function () {
+        if (touchDriving) target = touchRelease();
+        touchY = null;
+        touchDriving = false;
       }, { passive: true });
 
       function goToRoom(i) {
         target = clamp(i, 0, n - 1) * params.walk;
         lastDir = 0;
         lastInput = performance.now();
-        if (i === HONEST_ROOM) {
-          honestPhase = 0;
-          setHonestT(reduce ? 0.5 : 0, false);
-          honestAuto.dir = 1;
-          honestAuto.dwell = 0;
-        }
       }
 
+      /* One key press = one whole beat: inside HONEST the first press
+         completes the wipe, the next one leaves the room. */
       function step(dir) {
-        /* Inside HONEST: before → after → next room (camera stays put). */
-        if (honestAtStation()) {
-          if (dir > 0) {
-            if (honestPhase === 0) {
-              honestPhase = 1;
-              setHonestT(1, true);
-              honestAuto.dir = 1;
-              honestAuto.dwell = 0;
-              lastDir = dir;
-              lastInput = performance.now();
-              return;
-            }
-            /* after rest → leave to YOURS */
-            honestPhase = 0;
-            target = (HONEST_ROOM + 1) * params.walk;
-            lastDir = dir;
-            lastInput = performance.now();
-            return;
-          }
-          if (dir < 0) {
-            if (honestPhase === 1) {
-              honestPhase = 0;
-              setHonestT(0, true);
-              honestAuto.dir = -1;
-              honestAuto.dwell = 0;
-              lastDir = dir;
-              lastInput = performance.now();
-              return;
-            }
-            target = (HONEST_ROOM - 1) * params.walk;
-            lastDir = dir;
-            lastInput = performance.now();
-            return;
-          }
+        lastDir = dir;
+        lastInput = performance.now();
+
+        if (!reduce && honestAtStation()) {
+          if (dir > 0 && honestT < 1) { setHonestT(1, true); return; }
+          if (dir < 0 && honestT > 0) { setHonestT(0, true); return; }
         }
 
         target = clamp((nearestRoom(target) + dir) * params.walk, 0, maxCam());
-        lastDir = dir;
-        lastInput = performance.now();
-        if (nearestRoom(target) === HONEST_ROOM) {
-          honestPhase = 0;
-          setHonestT(reduce ? 0.5 : 0, false);
-          honestAuto.dir = 1;
-          honestAuto.dwell = 0;
-        }
       }
 
       bindHonestCompare();
 
-      document.getElementById('skip-docs').addEventListener('click', function (e) {
-        e.preventDefault();
-        goToRoom(n - 1);
-        if (typeof gtag === 'function') {
-          gtag('event', 'skip_to_documents');
-        } else {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'skip_to_documents' });
-        }
-      });
-
       window.addEventListener('keydown', function (e) {
         if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
         if (e.key === 'd' || e.key === 'D') {
-          var panel = document.getElementById('dev');
-          panel.hidden = !panel.hidden;
-          document.body.classList.toggle('dev-hidden', panel.hidden);
+          toggleControllers();
           return;
         }
         if (e.key === 'm' || e.key === 'M') {
@@ -2068,10 +2426,12 @@
         'p-depth': { key: 'depth', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
         'p-word-depth': { key: 'wordDepth', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
         'p-gain': { key: 'gain', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
+        'p-touch-gain': { key: 'touchGain', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
         'p-smooth': { key: 'smooth', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
+        'p-max-speed': { key: 'maxSpeed', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
         'p-pass-start': { key: 'passStart', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
         'p-pass-end': { key: 'passEnd', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
-        'p-rest-delay': { key: 'restDelay', fmt: function (v) { return Number(v).toFixed(1) + 's'; }, parse: Number },
+        'p-rest-delay': { key: 'restDelay', fmt: function (v) { return Number(v).toFixed(2) + 's'; }, parse: Number },
         'p-gravity': { key: 'gravity', fmt: function (v) { return Number(v).toFixed(2); }, parse: Number }
       };
 
