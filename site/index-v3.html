@@ -4,161 +4,152 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>El Fortín — Section walls (v3 depth)</title>
+  <title>El Fortín — Theater (v3: eight rooms, one walk)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #1B2A4A;
+      --navy-deep: #101C33;
       --parchment: #F7F4EF;
       --white-stone: #FDFCFA;
       --terracotta: #C2703E;
       --linen: #EDE4D3;
       --map-paper: #FFFFF8;
-      --wall-count: 8;
-      --depth: clamp(36px, 5.5vw, 72px);
-      --mesh: rgba(27, 42, 74, 0.085);
-      --mesh-strong: rgba(27, 42, 74, 0.16);
-      --mesh-on-navy: rgba(253, 252, 250, 0.10);
-      --mesh-size: 48px;
+
+      --rooms: 8;
+
+      /* Camera */
+      --lens: 1600px;          /* focal length */
+      --walk: 5600px;          /* distance between neighboring rooms — a long walk */
+      --dolly: 1.8s;
+      --dolly-ease: cubic-bezier(0.66, 0, 0.16, 1);
+
+      /*
+        Room volume: each room is a space, not a poster.
+        Content is staggered from the back wall to the station:
+        back wall (−1400) → word (−1150) → index (−500) → panel (0, reading plane)
+
+        Past the station lies the close-up zone: the visitor can push ~900px
+        deeper while the content keeps coming closer, before the room lets go.
+
+        The back wall is monumentally oversized (6.4×) so it swallows the view
+        early in the approach. When first revealed it stands ~4450px away —
+        floating over the stage's own grid, so the journey shows drafting
+        paper at every distance, never black.
+      */
+      --room-depth: 1400px;
+      --back-scale: 6.4;
+      --word-depth: 1150px;
+      --word-scale: 1.72;      /* (1600 + 1150) / 1600 */
+      --index-depth: 500px;
+      --index-scale: 1.31;     /* (1600 + 500) / 1600 */
+
+      --mesh-navy: rgba(27, 42, 74, 0.085);
+      --mesh-light: rgba(253, 252, 250, 0.10);
+      --mesh-size: 192px;
+      --mesh-mult: 1;
+      --title-scale: 1;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: auto; }
+    html, body {
+      height: 100%;
+      overflow: hidden; /* no document scroll — the walk is the interaction */
+    }
 
     body {
       font-family: 'DM Serif Display', Georgia, serif;
-      background: var(--navy);
+      background: var(--navy-deep);
       color: var(--navy);
       -webkit-font-smoothing: antialiased;
     }
 
     /*
-      Depth stack + volumetric walls
-      -----------------------------
-      .depth-track  → tall scroll document
-      .depth-stage  → sticky viewport + perspective
-      .wall         → exit transform (--p), z-order
-      .wall-shell   → 3D box (preserve-3d)
-      .wall-face-*  → front / back / sides / top / bottom
-      .wall-mesh    → wire grid on every face
+      Theater
+      -------
+      #stage    → the house: viewport, camera lens (perspective), background
+      #scene    → the set: preserve-3d, moved by the camera dolly (--cam)
+      .frame    → one room composition standing at --i × --walk deep
+      .prop     → an element positioned in 3D inside a frame
+      .light-*  → lighting rig, 2D layers above the set
     */
 
-    .depth-track {
-      height: calc(var(--wall-count) * 100svh);
-      position: relative;
+    #stage {
+      position: fixed;
+      inset: 0;
+      overflow: clip;
+      perspective: var(--lens);
+      perspective-origin: 50% 45%;
+      /* The house: even the void is drafting paper — a faint grid,
+         so a distant room floats over structure, never over black */
+      background:
+        linear-gradient(to right, rgba(253, 252, 250, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(253, 252, 250, 0.05) 1px, transparent 1px),
+        radial-gradient(120% 90% at 50% 30%, #223357 0%, var(--navy-deep) 62%, #0B1424 100%);
+      background-size: 720px 720px, 720px 720px, 100% 100%;
+      background-position: center center;
+      --cam: 0px;
     }
 
-    .depth-stage {
-      position: sticky;
-      top: 0;
-      height: 100svh;
-      width: 100%;
-      overflow: clip;
-      perspective: 1600px;
-      perspective-origin: 50% 45%;
-      background: var(--navy);
+    #scene {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transform: translateZ(var(--cam));
+      will-change: transform;
+    }
+
+    /* ---------- Floor: grounds the whole walk ---------- */
+
+    .scene-floor {
+      position: absolute;
+      top: 100%;
+      left: -20%;
+      width: 140%;
+      height: calc(var(--walk) * (var(--rooms) - 1) + 600px);
+      transform-origin: top center;
+      transform: rotateX(-90deg);
+      background:
+        linear-gradient(to bottom, rgba(16, 28, 51, 0) 0%, var(--navy-deep) 92%),
+        linear-gradient(to right, var(--mesh-light) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--mesh-light) 1px, transparent 1px);
+      background-size: 100% 100%, var(--mesh-size) var(--mesh-size), var(--mesh-size) var(--mesh-size);
+      backface-visibility: hidden;
+    }
+
+    /* ---------- Frames ---------- */
+
+    /* Opacity + visibility are driven per-frame by the camera loop:
+       each wall dissolves as the camera physically passes through it */
+    .frame {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transform: translateZ(calc(var(--i) * var(--walk) * -1));
     }
 
     .wall {
-      --p: 0;
-      --z: 1;
-      --fill: var(--parchment);
-      --fill-side: var(--linen);
-      --fill-edge: #e5dcc8;
-      --word-color: rgba(27, 42, 74, 0.10);
-      --mesh-color: var(--mesh);
-      --mesh-edge: var(--mesh-strong);
       position: absolute;
       inset: 0;
-      z-index: var(--z);
-      transform-origin: 50% 100%;
-      transform-style: preserve-3d;
-      will-change: transform, opacity;
-      /* Interim forward-exit — refine X/Y turns next */
-      transform:
-        translate3d(0, 0, calc(var(--p) * -220px))
-        rotateX(calc(var(--p) * -62deg))
-        rotateY(calc(var(--p) * 10deg))
-        scale(calc(1 - var(--p) * 0.06));
-      opacity: calc(1 - var(--p) * 1.02);
-      pointer-events: none;
-    }
-
-    .wall.is-active { pointer-events: auto; }
-    .wall.is-gone { visibility: hidden; }
-
-    .wall-shell {
-      position: absolute;
-      inset: 0;
-      transform-style: preserve-3d;
-    }
-
-    .wall-face {
-      position: absolute;
-      background: var(--fill);
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
       overflow: hidden;
+      backface-visibility: hidden;
+      background: var(--fill);
+      transform: translateZ(calc(var(--room-depth) * -1)) scale(var(--back-scale));
     }
 
-    /* Front flush at z=0; box extrudes backward so rest stays full-bleed */
-    .wall-face--front {
-      inset: 0;
-      transform: translateZ(0);
-      isolation: isolate;
+    .frame--light .wall {
+      --mesh-color: var(--mesh-navy);
+      box-shadow: inset 0 0 0 1px rgba(27, 42, 74, 0.06), inset 0 0 48px rgba(27, 42, 74, 0.04);
     }
 
-    .wall-face--back {
-      inset: 0;
-      background: var(--fill-side);
-      transform: translateZ(calc(var(--depth) * -1)) rotateY(180deg);
-      filter: brightness(0.92);
+    .frame--dark .wall {
+      --mesh-color: var(--mesh-light);
+      box-shadow: inset 0 0 0 1px rgba(253, 252, 250, 0.08), inset 0 0 48px rgba(0, 0, 0, 0.18);
     }
 
-    .wall-face--left,
-    .wall-face--right {
-      top: 0;
-      bottom: 0;
-      width: var(--depth);
-      background: var(--fill-edge);
-    }
-
-    .wall-face--left {
-      left: 0;
-      margin-left: calc(var(--depth) / -2);
-      transform: rotateY(-90deg);
-    }
-
-    .wall-face--right {
-      left: 100%;
-      margin-left: calc(var(--depth) / -2);
-      transform: rotateY(90deg);
-    }
-
-    .wall-face--top,
-    .wall-face--bottom {
-      left: 0;
-      right: 0;
-      height: var(--depth);
-      background: var(--fill-edge);
-    }
-
-    .wall-face--top {
-      top: 0;
-      margin-top: calc(var(--depth) / -2);
-      transform: rotateX(90deg);
-    }
-
-    .wall-face--bottom {
-      top: 100%;
-      margin-top: calc(var(--depth) / -2);
-      transform: rotateX(-90deg);
-    }
-
-    /* Wire mesh — architectural grid */
     .wall-mesh {
       position: absolute;
       inset: 0;
@@ -166,56 +157,24 @@
       background-image:
         linear-gradient(to right, var(--mesh-color) 1px, transparent 1px),
         linear-gradient(to bottom, var(--mesh-color) 1px, transparent 1px);
-      background-size: var(--mesh-size) var(--mesh-size);
+      background-size: calc(var(--mesh-size) * var(--mesh-mult)) calc(var(--mesh-size) * var(--mesh-mult));
       background-position: center center;
-      opacity: 1;
     }
 
-    .wall-face--left .wall-mesh,
-    .wall-face--right .wall-mesh,
-    .wall-face--top .wall-mesh,
-    .wall-face--bottom .wall-mesh {
-      --mesh-color: var(--mesh-edge);
-      background-size: calc(var(--mesh-size) * 0.55) calc(var(--mesh-size) * 0.55);
-      opacity: 0.95;
-    }
-
-    .wall-face--back .wall-mesh {
-      opacity: 0.55;
-    }
-
-    /* Soft inner rim so thickness reads even at rest */
-    .wall-face--front::after {
-      content: "";
+    /* The word hangs on its own plane just in front of the back wall.
+       No overflow clipping: words are composed to overhang the frame,
+       and the oversized wall behind them carries the bleed. */
+    .prop-word {
       position: absolute;
       inset: 0;
-      z-index: 3;
+      transform: translateZ(calc(var(--word-depth) * -1)) scale(var(--word-scale));
       pointer-events: none;
-      box-shadow:
-        inset 0 0 0 1px rgba(27, 42, 74, 0.06),
-        inset 0 0 48px rgba(27, 42, 74, 0.04);
+      backface-visibility: hidden;
     }
 
-    .wall-nine .wall-face--front::after {
-      box-shadow:
-        inset 0 0 0 1px rgba(253, 252, 250, 0.08),
-        inset 0 0 48px rgba(0, 0, 0, 0.18);
-    }
-
-    /*
-      Front layer contract:
-        mesh / word  → z-index: 0
-        media        → z-index: 1
-        content      → z-index: 2
-    */
     .wall-word {
       position: absolute;
-      z-index: 0;
-      inset: auto;
-      margin: 0;
-      font-family: 'DM Serif Display', Georgia, serif;
       font-weight: 400;
-      font-style: normal;
       line-height: 0.82;
       letter-spacing: -0.04em;
       text-transform: uppercase;
@@ -225,388 +184,793 @@
       user-select: none;
     }
 
-    .wall-media {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
+    /* ---------- Per-room palette + word placement ---------- */
 
-    .wall-content {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* ---------- Per-wall palette + word placement ---------- */
-
-    .wall-own {
+    .frame-own {
       --fill: var(--parchment);
-      --fill-side: #efe8dc;
-      --fill-edge: #e2d6c2;
       --word-color: rgba(27, 42, 74, 0.10);
+      --mesh-size: 704px;
     }
-    .wall-own .wall-word {
-      content: "OWN";
-      font-size: clamp(180px, 42vw, 520px);
+    .frame-own .wall-word {
+      font-size: clamp(540px, 126vw, 1560px);
       top: 42%;
       left: -4%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: left center;
     }
 
-    .wall-proven {
+    .frame-proven {
       --fill: var(--white-stone);
-      --fill-side: #f3efe8;
-      --fill-edge: #e5ddd0;
       --word-color: rgba(27, 42, 74, 0.09);
+      --mesh-size: 480px;
     }
-    .wall-proven .wall-word {
-      font-size: clamp(120px, 28vw, 360px);
+    .frame-proven .wall-word {
+      font-size: clamp(360px, 84vw, 1080px);
       top: 58%;
       right: -8%;
-      left: auto;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: right center;
     }
 
-    .wall-committed {
+    .frame-committed {
       --fill: var(--linen);
-      --fill-side: #e5d9c3;
-      --fill-edge: #d7c7ab;
       --word-color: rgba(27, 42, 74, 0.11);
+      --mesh-size: 576px;
     }
-    .wall-committed .wall-word {
-      font-size: clamp(90px, 22vw, 280px);
+    .frame-committed .wall-word {
+      font-size: clamp(270px, 66vw, 840px);
       top: 38%;
       left: -6%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: left center;
     }
 
-    .wall-connected {
+    .frame-connected {
       --fill: var(--map-paper);
-      --fill-side: #f4f0e4;
-      --fill-edge: #e6dfce;
       --word-color: rgba(27, 42, 74, 0.09);
+      --mesh-size: 352px; /* map paper — the finest grid */
     }
-    .wall-connected .wall-word {
-      font-size: clamp(90px, 20vw, 260px);
+    .frame-connected .wall-word {
+      font-size: clamp(270px, 60vw, 780px);
       bottom: 8%;
-      top: auto;
       left: 4%;
-      transform: none;
+      transform: scale(var(--title-scale));
+      transform-origin: left bottom;
     }
 
-    .wall-yours {
+    .frame-yours {
       --fill: var(--parchment);
-      --fill-side: #efe8dc;
-      --fill-edge: #e2d6c2;
       --word-color: rgba(194, 112, 62, 0.14);
+      --mesh-size: 832px; /* the widest room */
     }
-    .wall-yours .wall-word {
-      font-size: clamp(160px, 38vw, 480px);
+    .frame-yours .wall-word {
+      font-size: clamp(480px, 114vw, 1440px);
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(var(--title-scale));
+      transform-origin: center center;
     }
 
-    .wall-return {
+    .frame-return {
       --fill: var(--linen);
-      --fill-side: #e5d9c3;
-      --fill-edge: #d7c7ab;
       --word-color: rgba(27, 42, 74, 0.10);
+      --mesh-size: 528px;
     }
-    .wall-return .wall-word {
-      font-size: clamp(130px, 30vw, 400px);
+    .frame-return .wall-word {
+      font-size: clamp(390px, 90vw, 1200px);
       top: 48%;
       left: -5%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: left center;
     }
 
-    .wall-nine {
+    .frame-nine {
       --fill: var(--navy);
-      --fill-side: #152238;
-      --fill-edge: #0f1a2c;
       --word-color: rgba(253, 252, 250, 0.12);
-      --mesh-color: var(--mesh-on-navy);
-      --mesh-edge: rgba(253, 252, 250, 0.18);
+      --mesh-size: 640px;
     }
-    .wall-nine .wall-word {
-      font-size: clamp(200px, 48vw, 560px);
+    .frame-nine .wall-word {
+      font-size: clamp(600px, 144vw, 1680px);
       top: 50%;
       right: -6%;
-      left: auto;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: right center;
     }
 
-    .wall-talk {
+    .frame-talk {
       --fill: var(--parchment);
-      --fill-side: #efe8dc;
-      --fill-edge: #e2d6c2;
       --word-color: rgba(27, 42, 74, 0.10);
+      --mesh-size: 440px;
     }
-    .wall-talk .wall-word {
-      font-size: clamp(180px, 44vw, 540px);
+    .frame-talk .wall-word {
+      font-size: clamp(540px, 132vw, 1620px);
       top: 55%;
       left: -2%;
+      transform: translateY(-50%) scale(var(--title-scale));
+      transform-origin: left center;
+    }
+
+    /* ---------- Props: elements positioned in the set ---------- */
+
+    .prop {
+      position: absolute;
+      backface-visibility: hidden;
+    }
+
+    .prop-index {
+      top: 9%;
+      left: 7%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 15px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      transform: translateZ(calc(var(--index-depth) * -1)) scale(var(--index-scale));
+      transform-origin: left center;
+    }
+    .prop-index::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .frame--light .prop-index { color: var(--navy); }
+    .frame--dark .prop-index { color: var(--parchment); }
+
+    .prop-panel {
+      top: 50%;
+      max-width: 380px;
+      padding: 40px 44px;
+    }
+    .prop-panel h2 {
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .prop-panel p {
+      font-size: 17px;
+      line-height: 1.55;
+      opacity: 0.78;
+    }
+    .prop-panel .accent { color: var(--terracotta); }
+
+    /* The panel sits at the station — reading distance, the front of the room.
+       Inboard enough to stay on stage through the whole close-up zone. */
+    .prop-panel--right {
+      right: 18%;
+      transform: translateY(-50%);
+    }
+    .prop-panel--left {
+      left: 18%;
       transform: translateY(-50%);
     }
 
-    @media (max-width: 767px) {
-      :root {
-        --depth: clamp(24px, 7vw, 40px);
-        --mesh-size: 36px;
-      }
-      .depth-stage { perspective: 1000px; }
-      .wall {
-        transform:
-          translate3d(0, 0, calc(var(--p) * -140px))
-          rotateX(calc(var(--p) * -54deg))
-          rotateY(calc(var(--p) * 6deg))
-          scale(calc(1 - var(--p) * 0.05));
-      }
-      .wall-own .wall-word {
-        font-size: clamp(140px, 48vw, 280px);
-        left: -10%;
-      }
-      .wall-proven .wall-word {
-        font-size: clamp(90px, 36vw, 200px);
-        right: -18%;
-      }
-      .wall-committed .wall-word {
-        font-size: clamp(70px, 28vw, 160px);
-        left: -14%;
-      }
-      .wall-connected .wall-word {
-        font-size: clamp(70px, 26vw, 150px);
-        left: -4%;
-      }
-      .wall-yours .wall-word {
-        font-size: clamp(140px, 46vw, 260px);
-      }
-      .wall-return .wall-word {
-        font-size: clamp(100px, 40vw, 220px);
-        left: -12%;
-      }
-      .wall-nine .wall-word {
-        font-size: clamp(160px, 52vw, 300px);
-        right: -14%;
-      }
-      .wall-talk .wall-word {
-        font-size: clamp(140px, 50vw, 280px);
-        left: -8%;
-      }
+    .frame--light .prop-panel {
+      background: var(--white-stone);
+      color: var(--navy);
+      border: 1px solid rgba(27, 42, 74, 0.18);
+      box-shadow: 0 30px 60px rgba(27, 42, 74, 0.14);
     }
 
+    .frame--dark .prop-panel {
+      background: rgba(16, 28, 51, 0.88);
+      color: var(--parchment);
+      border: 1px solid rgba(253, 252, 250, 0.22);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ---------- Lighting rig: 2D layers above the set ---------- */
+
+    .light {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transition: opacity var(--dolly) var(--dolly-ease);
+    }
+
+    .light--vignette {
+      box-shadow: inset 0 0 180px rgba(6, 12, 24, 0.55);
+    }
+
+    .light--warm {
+      background: radial-gradient(90% 70% at 32% 22%, rgba(194, 112, 62, 0.16) 0%, transparent 60%);
+      opacity: 1;
+    }
+    body[data-tone="dark"] .light--warm { opacity: 0; }
+
+    .light--cool {
+      background: radial-gradient(90% 70% at 68% 24%, rgba(140, 170, 220, 0.14) 0%, transparent 60%);
+      opacity: 0;
+    }
+    body[data-tone="dark"] .light--cool { opacity: 1; }
+
     @media (prefers-reduced-motion: reduce) {
-      .wall {
-        transform: none;
-        opacity: 0;
-      }
-      .wall.is-active {
-        opacity: 1;
-        visibility: visible;
-      }
-      .wall.is-gone {
-        opacity: 0;
-        visibility: hidden;
-      }
-      .wall-face--left,
-      .wall-face--right,
-      .wall-face--top,
-      .wall-face--bottom,
-      .wall-face--back {
-        display: none;
-      }
+      #scene, .light, .frame { transition: none; }
+    }
+
+    /* ---------- Dev panel ---------- */
+
+    .dev {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      width: 300px;
+      max-height: calc(100svh - 32px);
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      line-height: 1.35;
+      color: #e8e4dc;
+      background: rgba(10, 16, 28, 0.92);
+      border: 1px solid rgba(253, 252, 250, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      pointer-events: auto;
+    }
+
+    .dev[hidden] { display: none; }
+
+    .dev-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(253, 252, 250, 0.12);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      background: rgba(10, 16, 28, 0.96);
+    }
+
+    .dev-head button {
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 1px solid rgba(253, 252, 250, 0.25);
+      padding: 4px 8px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .dev-head button:hover { border-color: var(--terracotta); color: #fff; }
+
+    .dev-body { padding: 10px 12px 14px; }
+
+    .dev-readout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(253, 252, 250, 0.1);
+      color: rgba(253, 252, 250, 0.7);
+    }
+    .dev-readout strong {
+      color: #fff;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .dev-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2px 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .dev-row label {
+      grid-column: 1 / -1;
+      color: rgba(253, 252, 250, 0.55);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    .dev-row input[type="range"] {
+      width: 100%;
+      accent-color: var(--terracotta);
+    }
+    .dev-row .dev-val {
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      min-width: 4.5em;
+      text-align: right;
+    }
+
+    .dev-hint {
+      margin-top: 8px;
+      color: rgba(253, 252, 250, 0.4);
+      letter-spacing: 0.04em;
     }
   </style>
 </head>
-<body>
+<body data-tone="light">
 
-  <div class="depth-track" id="depth-track">
-    <div class="depth-stage" id="depth-stage" aria-live="polite">
+  <div id="stage">
+    <div id="scene">
 
-      <section class="wall wall-own" data-i="0" style="--z: 8" aria-label="Own">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">OWN</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Own</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <div class="scene-floor" aria-hidden="true"></div>
+
+      <section class="frame frame--light frame-own" style="--i: 0" data-tone="light" aria-label="Own">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">OWN</p>
+        </div>
+        <p class="prop prop-index">Room 01 — Own</p>
+        <div class="prop prop-panel prop-panel--right">
+          <h2>One address on the fortress hill.</h2>
+          <p>Nine residences behind a single wall, held the way the town has always held its ground — <span class="accent">quietly, and for good</span>.</p>
         </div>
       </section>
 
-      <section class="wall wall-proven" data-i="1" style="--z: 7" aria-label="Proven">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">PROVEN</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Proven</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <section class="frame frame--light frame-proven" style="--i: 1" data-tone="light" aria-label="Proven">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">PROVEN</p>
+        </div>
+        <p class="prop prop-index">Room 02 — Proven</p>
+        <div class="prop prop-panel prop-panel--left">
+          <h2>Built, sold, and lived in.</h2>
+          <p>Every earlier phase stands finished and occupied. The record is on the street, <span class="accent">not in a brochure</span>.</p>
         </div>
       </section>
 
-      <section class="wall wall-committed" data-i="2" style="--z: 6" aria-label="Committed">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">COMMITTED</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Committed</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <section class="frame frame--light frame-committed" style="--i: 2" data-tone="light" aria-label="Committed">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">COMMITTED</p>
+        </div>
+        <p class="prop prop-index">Room 03 — Committed</p>
+        <div class="prop prop-panel prop-panel--right">
+          <h2>The same hands, first stone to last key.</h2>
+          <p>Built by people who live here and answer here — <span class="accent">no middlemen, no handover</span>.</p>
         </div>
       </section>
 
-      <section class="wall wall-connected" data-i="3" style="--z: 5" aria-label="Connected">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">CONNECTED</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Connected</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <section class="frame frame--light frame-connected" style="--i: 3" data-tone="light" aria-label="Connected">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">CONNECTED</p>
+        </div>
+        <p class="prop prop-index">Room 04 — Connected</p>
+        <div class="prop prop-panel prop-panel--right">
+          <h2>Twenty minutes from Valencia.</h2>
+          <p>The fast road, the airport, the sea — <span class="accent">close enough to use</span>, far enough to forget.</p>
         </div>
       </section>
 
-      <section class="wall wall-yours" data-i="4" style="--z: 4" aria-label="Yours">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">YOURS</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Yours</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <section class="frame frame--light frame-yours" style="--i: 4" data-tone="light" aria-label="Yours">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">YOURS</p>
+        </div>
+        <p class="prop prop-index">Room 05 — Yours</p>
+        <div class="prop prop-panel prop-panel--left">
+          <h2>Choose your walls.</h2>
+          <p>Nine floor plans, finished to your taste <span class="accent">before you move in</span> — not after.</p>
         </div>
       </section>
 
-      <section class="wall wall-return" data-i="5" style="--z: 3" aria-label="Return">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">RETURN</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Return</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <section class="frame frame--light frame-return" style="--i: 5" data-tone="light" aria-label="Return">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">RETURN</p>
+        </div>
+        <p class="prop prop-index">Room 06 — Return</p>
+        <div class="prop prop-panel prop-panel--right">
+          <h2>A place that pays you back.</h2>
+          <p>Demand on the hill has never waited for marketing. <span class="accent">Neither will yours</span>.</p>
         </div>
       </section>
 
-      <section class="wall wall-nine" data-i="6" style="--z: 2" aria-label="Nine">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">NINE</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Nine</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <section class="frame frame--dark frame-nine" style="--i: 6" data-tone="dark" aria-label="Nine">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">NINE</p>
+        </div>
+        <p class="prop prop-index">Room 07 — Nine</p>
+        <div class="prop prop-panel prop-panel--left">
+          <h2>Nine, and no more.</h2>
+          <p>The wall holds nine residences. When they are taken, <span class="accent">this page comes down</span>.</p>
         </div>
       </section>
 
-      <section class="wall wall-talk" data-i="7" style="--z: 1" aria-label="Talk">
-        <div class="wall-shell">
-          <div class="wall-face wall-face--front">
-            <div class="wall-mesh" aria-hidden="true"></div>
-            <p class="wall-word" aria-hidden="true">TALK</p>
-            <div class="wall-media" aria-hidden="true"></div>
-            <div class="wall-content"><h2 class="sr-only">Talk</h2></div>
-          </div>
-          <div class="wall-face wall-face--back" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--left" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--right" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--top" aria-hidden="true"><div class="wall-mesh"></div></div>
-          <div class="wall-face wall-face--bottom" aria-hidden="true"><div class="wall-mesh"></div></div>
+      <section class="frame frame--light frame-talk" style="--i: 7" data-tone="light" aria-label="Talk">
+        <div class="wall">
+          <div class="wall-mesh" aria-hidden="true"></div>
+        </div>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">TALK</p>
+        </div>
+        <p class="prop prop-index">Room 08 — Talk</p>
+        <div class="prop prop-panel prop-panel--right">
+          <h2>Come walk the hill with us.</h2>
+          <p>One conversation, no pressure. <span class="accent">Say hello</span> and we will open the gate.</p>
         </div>
       </section>
 
     </div>
+
+    <div class="light light--warm" aria-hidden="true"></div>
+    <div class="light light--cool" aria-hidden="true"></div>
+    <div class="light light--vignette" aria-hidden="true"></div>
   </div>
+
+  <aside class="dev" id="dev" aria-label="Theater parameters">
+    <div class="dev-head">
+      <span>Dev · Theater</span>
+      <span>
+        <button type="button" id="dev-copy">Copy values</button>
+        <button type="button" id="dev-reset">Reset</button>
+      </span>
+    </div>
+    <div class="dev-body">
+      <div class="dev-readout">
+        <span>camera</span><strong id="dev-cam">0</strong>
+        <span>reveal size</span><strong id="dev-reveal">—</strong>
+        <span>room</span><strong id="dev-room">01</strong>
+      </div>
+
+      <div class="dev-row">
+        <label for="p-walk">Walk / page start distance</label>
+        <input id="p-walk" type="range" min="1200" max="12000" step="100" value="5600">
+        <span class="dev-val" data-for="p-walk">5600px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-title">Title size</label>
+        <input id="p-title" type="range" min="0.25" max="4" step="0.05" value="1">
+        <span class="dev-val" data-for="p-title">1.00×</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-back">Wall / bg scale</label>
+        <input id="p-back" type="range" min="1" max="12" step="0.1" value="6.4">
+        <span class="dev-val" data-for="p-back">6.4×</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-mesh">Grid size</label>
+        <input id="p-mesh" type="range" min="0.25" max="4" step="0.05" value="1">
+        <span class="dev-val" data-for="p-mesh">1.00×</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-depth">Room depth</label>
+        <input id="p-depth" type="range" min="400" max="2800" step="50" value="1400">
+        <span class="dev-val" data-for="p-depth">1400px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-word-depth">Title depth (in room)</label>
+        <input id="p-word-depth" type="range" min="200" max="2400" step="50" value="1150">
+        <span class="dev-val" data-for="p-word-depth">1150px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-gain">Wheel gain</label>
+        <input id="p-gain" type="range" min="0.4" max="6" step="0.1" value="2.4">
+        <span class="dev-val" data-for="p-gain">2.4</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-smooth">Dolly weight</label>
+        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="5">
+        <span class="dev-val" data-for="p-smooth">5.0</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-pass-start">Pass start (past layer)</label>
+        <input id="p-pass-start" type="range" min="0" max="1200" step="25" value="500">
+        <span class="dev-val" data-for="p-pass-start">500px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-pass-end">Pass end (gone)</label>
+        <input id="p-pass-end" type="range" min="200" max="2000" step="25" value="1150">
+        <span class="dev-val" data-for="p-pass-end">1150px</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-rest-delay">Rest delay (pause before settle)</label>
+        <input id="p-rest-delay" type="range" min="0.2" max="3" step="0.1" value="0.2">
+        <span class="dev-val" data-for="p-rest-delay">0.2s</span>
+      </div>
+      <div class="dev-row">
+        <label for="p-gravity">Gravity (0 = off)</label>
+        <input id="p-gravity" type="range" min="0" max="8" step="0.25" value="8">
+        <span class="dev-val" data-for="p-gravity">8.00</span>
+      </div>
+
+    </div>
+  </aside>
 
   <script>
     (function () {
-      var walls = Array.prototype.slice.call(document.querySelectorAll('.wall'));
-      var n = walls.length;
+      var root = document.documentElement;
+      var stage = document.getElementById('stage');
+      var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var ticking = false;
+
+      var DEFAULTS = {
+        walk: 5600,
+        title: 1,
+        back: 6.4,
+        mesh: 1,
+        depth: 1400,
+        wordDepth: 1150,
+        gain: 2.4,
+        smooth: 5,
+        passStart: 500,
+        passEnd: 1150,
+        restDelay: 0.2,
+        gravity: 8
+      };
+
+      var params = Object.assign({}, DEFAULTS);
+      var n = frames.length;
+      var target = 0;
+      var cam = 0;
+      var shownRoom = -1;
+      var lastTime = performance.now();
+      var frameLayers = [];
+      var lastInput = 0;   /* timestamp of the last wheel gesture */
+      var lastDir = 0;     /* direction of travel: +1 forward, -1 back */
 
       function clamp(v, a, b) {
         return Math.max(a, Math.min(b, v));
       }
 
-      function update() {
-        ticking = false;
-        var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        var progress = clamp(window.scrollY / max, 0, 1) * (n - 1);
-        var active = Math.min(n - 1, Math.floor(progress + 0.0001));
+      function pad(i) {
+        return (i < 10 ? '0' : '') + i;
+      }
 
-        walls.forEach(function (wall, i) {
-          var local = clamp(progress - i, 0, 1);
-          if (i === n - 1) local = 0;
-          wall.style.setProperty('--p', local.toFixed(4));
-          wall.classList.toggle('is-active', i === active);
-          wall.classList.toggle('is-gone', local >= 0.999 && i !== n - 1);
-          if (reduce) {
-            wall.classList.toggle('is-active', i === active);
-            wall.classList.toggle('is-gone', i !== active);
-          }
+      function maxCam() {
+        return (n - 1) * params.walk;
+      }
+
+      function nearestRoom(pos) {
+        return clamp(Math.round(pos / params.walk), 0, n - 1);
+      }
+
+      function rebuildLayers() {
+        var depth = params.depth;
+        var wordDepth = clamp(params.wordDepth, 0, depth - 50);
+        var indexDepth = Math.round(wordDepth * 0.43);
+        var lens = 1600;
+        var wordScale = (lens + wordDepth) / lens;
+        var indexScale = (lens + indexDepth) / lens;
+
+        root.style.setProperty('--room-depth', depth + 'px');
+        root.style.setProperty('--word-depth', wordDepth + 'px');
+        root.style.setProperty('--index-depth', indexDepth + 'px');
+        root.style.setProperty('--word-scale', wordScale.toFixed(4));
+        root.style.setProperty('--index-scale', indexScale.toFixed(4));
+
+        var LAYERS = [
+          { sel: '.prop-panel', depth: 0 },
+          { sel: '.prop-index', depth: indexDepth },
+          { sel: '.prop-word', depth: wordDepth },
+          { sel: '.wall', depth: depth }
+        ];
+
+        frameLayers = frames.map(function (frame) {
+          return LAYERS.map(function (layer) {
+            return { el: frame.querySelector(layer.sel), depth: layer.depth };
+          }).filter(function (layer) { return layer.el; });
         });
       }
 
-      function onScroll() {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(update);
-        }
+      function applyCssParams() {
+        root.style.setProperty('--walk', params.walk + 'px');
+        root.style.setProperty('--back-scale', String(params.back));
+        root.style.setProperty('--title-scale', String(params.title));
+        root.style.setProperty('--mesh-mult', String(params.mesh));
+        rebuildLayers();
       }
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      update();
+      function renderTone() {
+        var room = nearestRoom(cam);
+        if (room === shownRoom) return;
+        shownRoom = room;
+        document.body.dataset.tone = frames[room].dataset.tone;
+      }
+
+      function renderScene() {
+        stage.style.setProperty('--cam', cam.toFixed(2) + 'px');
+        frameLayers.forEach(function (layers, i) {
+          var station = i * params.walk;
+          layers.forEach(function (layer) {
+            var rel = cam - station - layer.depth;
+            var fade = clamp((rel - params.passStart) / (params.passEnd - params.passStart), 0, 1);
+            layer.el.style.opacity = (1 - fade).toFixed(3);
+            layer.el.style.visibility = fade >= 1 ? 'hidden' : 'visible';
+          });
+        });
+      }
+
+      function renderDevReadout() {
+        var camEl = document.getElementById('dev-cam');
+        var revealEl = document.getElementById('dev-reveal');
+        var roomEl = document.getElementById('dev-room');
+        if (!camEl) return;
+
+        camEl.textContent = Math.round(cam) + 'px';
+        roomEl.textContent = pad(nearestRoom(cam) + 1);
+
+        var lens = 1600;
+        var revealDist = params.walk - params.depth - params.passEnd;
+        if (revealDist < 200) revealDist = 200;
+        var apparent = params.back * (lens / (lens + revealDist + params.depth));
+        revealEl.textContent = (apparent * 100).toFixed(0) + '% view';
+      }
+
+      /*
+        Resting points: every station is a gravity well.
+        While the hand is on the wheel, nothing interferes. Once input
+        pauses past restDelay, the camera rolls into the next well in the
+        direction of travel — with a small capture zone (15% of a walk)
+        so a barely-crossed station pulls you back rather than forward.
+      */
+      function applyGravity(now, dt) {
+        if (params.gravity <= 0) return;
+        if (now - lastInput < params.restDelay * 1000) return;
+
+        var progress = target / params.walk;
+        var rest;
+        if (lastDir > 0) rest = Math.ceil(progress - 0.15);
+        else if (lastDir < 0) rest = Math.floor(progress + 0.15);
+        else rest = Math.round(progress);
+        rest = clamp(rest, 0, n - 1) * params.walk;
+
+        var pull = 1 - Math.exp(-params.gravity * dt);
+        target += (rest - target) * pull;
+        if (Math.abs(rest - target) < 0.5) target = rest;
+      }
+
+      function tick(now) {
+        var dt = Math.min((now - lastTime) / 1000, 0.05);
+        lastTime = now;
+
+        applyGravity(now, dt);
+
+        var pull = reduce ? 1 : 1 - Math.exp(-params.smooth * dt);
+        cam += (target - cam) * pull;
+        if (Math.abs(target - cam) < 0.05) cam = target;
+
+        renderScene();
+        renderTone();
+        renderDevReadout();
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('wheel', function (e) {
+        if (e.target.closest && e.target.closest('.dev')) return;
+        target = clamp(target + e.deltaY * params.gain, 0, maxCam());
+        lastInput = performance.now();
+        if (e.deltaY !== 0) lastDir = e.deltaY > 0 ? 1 : -1;
+      }, { passive: true });
+
+      function step(dir) {
+        target = clamp((nearestRoom(target) + dir) * params.walk, 0, maxCam());
+        lastDir = dir;
+        lastInput = performance.now();
+      }
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'd' || e.key === 'D') {
+          if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+          var panel = document.getElementById('dev');
+          panel.hidden = !panel.hidden;
+          return;
+        }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') step(1);
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') step(-1);
+      });
+
+      var controlMap = {
+        'p-walk': { key: 'walk', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-title': { key: 'title', fmt: function (v) { return Number(v).toFixed(2) + '×'; }, parse: Number },
+        'p-back': { key: 'back', fmt: function (v) { return Number(v).toFixed(1) + '×'; }, parse: Number },
+        'p-mesh': { key: 'mesh', fmt: function (v) { return Number(v).toFixed(2) + '×'; }, parse: Number },
+        'p-depth': { key: 'depth', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-word-depth': { key: 'wordDepth', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-gain': { key: 'gain', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
+        'p-smooth': { key: 'smooth', fmt: function (v) { return Number(v).toFixed(1); }, parse: Number },
+        'p-pass-start': { key: 'passStart', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-pass-end': { key: 'passEnd', fmt: function (v) { return Math.round(v) + 'px'; }, parse: Number },
+        'p-rest-delay': { key: 'restDelay', fmt: function (v) { return Number(v).toFixed(1) + 's'; }, parse: Number },
+        'p-gravity': { key: 'gravity', fmt: function (v) { return Number(v).toFixed(2); }, parse: Number }
+      };
+
+      function setParam(key, value, preserveProgress) {
+        var progress = maxCam() > 0 ? target / maxCam() : 0;
+        params[key] = value;
+        applyCssParams();
+        if (preserveProgress) {
+          target = clamp(progress * maxCam(), 0, maxCam());
+          cam = target;
+        } else {
+          target = clamp(target, 0, maxCam());
+          cam = clamp(cam, 0, maxCam());
+        }
+        shownRoom = -1;
+      }
+
+      Object.keys(controlMap).forEach(function (id) {
+        var input = document.getElementById(id);
+        var meta = controlMap[id];
+        var label = document.querySelector('.dev-val[data-for="' + id + '"]');
+        if (!input) return;
+
+        input.addEventListener('input', function () {
+          var value = meta.parse(input.value);
+          label.textContent = meta.fmt(value);
+          setParam(meta.key, value, meta.key === 'walk');
+        });
+      });
+
+      document.getElementById('dev-reset').addEventListener('click', function () {
+        params = Object.assign({}, DEFAULTS);
+        Object.keys(controlMap).forEach(function (id) {
+          var input = document.getElementById(id);
+          var meta = controlMap[id];
+          var label = document.querySelector('.dev-val[data-for="' + id + '"]');
+          input.value = String(DEFAULTS[meta.key]);
+          label.textContent = meta.fmt(DEFAULTS[meta.key]);
+        });
+        applyCssParams();
+        target = clamp(target, 0, maxCam());
+        cam = clamp(cam, 0, maxCam());
+        shownRoom = -1;
+      });
+
+      var copyBtn = document.getElementById('dev-copy');
+      copyBtn.addEventListener('click', function () {
+        var text = JSON.stringify(params, null, 2);
+
+        function flash(ok) {
+          copyBtn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+          setTimeout(function () { copyBtn.textContent = 'Copy values'; }, 1200);
+        }
+
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+          document.body.removeChild(ta);
+          flash(ok);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { flash(true); }, fallback);
+        } else {
+          fallback();
+        }
+      });
+
+      document.getElementById('dev').addEventListener('wheel', function (e) {
+        e.stopPropagation();
+      }, { passive: true });
+
+      applyCssParams();
+      renderScene();
+      renderTone();
+      requestAnimationFrame(tick);
     })();
   </script>
 </body>
