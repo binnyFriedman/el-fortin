@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>El Fortín — Section walls (v3 background)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --parchment: #F7F4EF;
+      --white-stone: #FDFCFA;
+      --terracotta: #C2703E;
+      --linen: #EDE4D3;
+      --map-paper: #FFFFF8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Serif Display', Georgia, serif;
+      background: var(--parchment);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /*
+      Layer contract (every .wall):
+        wall fill          → the section itself
+        blended word       → ::before  z-index: 0
+        future media/map   → .wall-media  z-index: 1  (reserved)
+        future foreground  → .wall-content  z-index: 2  (reserved)
+    */
+    .wall {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      min-height: 100svh;
+      width: 100%;
+    }
+
+    .wall::before {
+      position: absolute;
+      z-index: 0;
+      inset: auto;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Reserved for later layers — empty now */
+    .wall-media {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .wall-content {
+      position: relative;
+      z-index: 2;
+      /* Visually empty: only an sr-only label for structure */
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ---------- Wall fills + word rhythm ---------- */
+
+    /* 1 — OWN */
+    .wall-own {
+      background: var(--parchment);
+    }
+    .wall-own::before {
+      content: "OWN";
+      color: rgba(27, 42, 74, 0.10);
+      font-size: clamp(180px, 42vw, 520px);
+      top: 42%;
+      left: -4%;
+      transform: translateY(-50%);
+    }
+
+    /* 2 — PROVEN */
+    .wall-proven {
+      background: var(--white-stone);
+    }
+    .wall-proven::before {
+      content: "PROVEN";
+      color: rgba(27, 42, 74, 0.09);
+      font-size: clamp(120px, 28vw, 360px);
+      top: 58%;
+      right: -8%;
+      left: auto;
+      transform: translateY(-50%);
+    }
+
+    /* 3 — COMMITTED */
+    .wall-committed {
+      background: var(--linen);
+    }
+    .wall-committed::before {
+      content: "COMMITTED";
+      color: rgba(27, 42, 74, 0.11);
+      font-size: clamp(90px, 22vw, 280px);
+      top: 38%;
+      left: -6%;
+      transform: translateY(-50%);
+    }
+
+    /* 4 — CONNECTED */
+    .wall-connected {
+      background: var(--map-paper);
+    }
+    .wall-connected::before {
+      content: "CONNECTED";
+      color: rgba(27, 42, 74, 0.09);
+      font-size: clamp(90px, 20vw, 260px);
+      bottom: 8%;
+      top: auto;
+      left: 4%;
+      transform: none;
+    }
+
+    /* 5 — YOURS */
+    .wall-yours {
+      background: var(--parchment);
+    }
+    .wall-yours::before {
+      content: "YOURS";
+      color: rgba(194, 112, 62, 0.14);
+      font-size: clamp(160px, 38vw, 480px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 6 — RETURN */
+    .wall-return {
+      background: var(--linen);
+    }
+    .wall-return::before {
+      content: "RETURN";
+      color: rgba(27, 42, 74, 0.10);
+      font-size: clamp(130px, 30vw, 400px);
+      top: 48%;
+      left: -5%;
+      transform: translateY(-50%);
+    }
+
+    /* 7 — NINE */
+    .wall-nine {
+      background: var(--navy);
+    }
+    .wall-nine::before {
+      content: "NINE";
+      color: rgba(253, 252, 250, 0.12);
+      font-size: clamp(200px, 48vw, 560px);
+      top: 50%;
+      right: -6%;
+      left: auto;
+      transform: translateY(-50%);
+    }
+
+    /* 8 — TALK */
+    .wall-talk {
+      background: var(--parchment);
+    }
+    .wall-talk::before {
+      content: "TALK";
+      color: rgba(27, 42, 74, 0.10);
+      font-size: clamp(180px, 44vw, 540px);
+      top: 55%;
+      left: -2%;
+      transform: translateY(-50%);
+    }
+
+    @media (max-width: 767px) {
+      .wall-own::before {
+        font-size: clamp(140px, 48vw, 280px);
+        left: -10%;
+      }
+      .wall-proven::before {
+        font-size: clamp(90px, 36vw, 200px);
+        right: -18%;
+      }
+      .wall-committed::before {
+        font-size: clamp(70px, 28vw, 160px);
+        left: -14%;
+      }
+      .wall-connected::before {
+        font-size: clamp(70px, 26vw, 150px);
+        left: -4%;
+      }
+      .wall-yours::before {
+        font-size: clamp(140px, 46vw, 260px);
+      }
+      .wall-return::before {
+        font-size: clamp(100px, 40vw, 220px);
+        left: -12%;
+      }
+      .wall-nine::before {
+        font-size: clamp(160px, 52vw, 300px);
+        right: -14%;
+      }
+      .wall-talk::before {
+        font-size: clamp(140px, 50vw, 280px);
+        left: -8%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="wall wall-own" aria-label="Own">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Own</h2>
+    </div>
+  </section>
+
+  <section class="wall wall-proven" aria-label="Proven">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Proven</h2>
+    </div>
+  </section>
+
+  <section class="wall wall-committed" aria-label="Committed">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Committed</h2>
+    </div>
+  </section>
+
+  <section class="wall wall-connected" aria-label="Connected">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Connected</h2>
+    </div>
+  </section>
+
+  <section class="wall wall-yours" aria-label="Yours">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Yours</h2>
+    </div>
+  </section>
+
+  <section class="wall wall-return" aria-label="Return">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Return</h2>
+    </div>
+  </section>
+
+  <section class="wall wall-nine" aria-label="Nine">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Nine</h2>
+    </div>
+  </section>
+
+  <section class="wall wall-talk" aria-label="Talk">
+    <div class="wall-media" aria-hidden="true"></div>
+    <div class="wall-content">
+      <h2 class="sr-only">Talk</h2>
+    </div>
+  </section>
+
+</body>
+</html>
