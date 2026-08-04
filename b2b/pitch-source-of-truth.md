@@ -54,7 +54,7 @@
 
 ## 3. Return structure (layered)
 
-1. **Target case (~7% blended)** 🟡 — mix of long-term, mid-term corporate, and *some* vacation letting; requires the vacation layer to beat the conservative Riba-roja range (see §6); target, not base.
+1. **Target case (>7% blended)** 🟡 — mix of long-term, mid-term corporate, and *some* vacation letting; requires the vacation layer to beat the conservative Riba-roja range (see §6); target, not base.
 2. **Seasonality upside** 🟡 — real but limited: Riba-roja STR is thin/seasonal (~35–43% occ, villa-driven). Genuine peaks (summer, Fallas/Feria overflow) help *some* units; upside, not a steady base (see §6).
 3. **Diversification** ✅ — 10 units = 10 levers; units that underperform on vacation rotate to mid/long-term, where demand is strong.
 4. **New-build premium** ✅ — new + furnished + metro-adjacent rents **~40–55% above town average** (see §5).
@@ -152,7 +152,7 @@ Sources: Idealista data/valuation + Q2-2025 reports; Fotocasa index; INE / PEGV-
 
 ### 6b. Realistic vacation underwrite for a 45–57 m² unit 🟡 (conservative)
 - **Occupancy ~35–45% · ADR ~€55–75/night · ~€700–1,000/month gross** (before management, cleaning, utilities, VUT compliance, vacancy).
-- **Implication:** vacation letting is **genuine upside on good units in peak season only** — it is **not** a bankable base. The **base case must be long/mid-term** (where §5 demand data is strong). The ~7% blended target requires the vacation layer to outperform this conservative range and is 🟡 target, not base.
+- **Implication:** vacation letting is **genuine upside on good units in peak season only** — it is **not** a bankable base. The **base case must be long/mid-term** (where §5 demand data is strong). The >7% blended target requires the vacation layer to outperform this conservative range and is 🟡 target, not base.
 - Villa ADR/revenue market averages (~€180–270/night, ~€12–32K/yr) **must not** be used to justify a small apartment — wrong product, thin sample (n≈39).
 
 ### 6b. Regulatory gate ⏳ (must verify per unit)
@@ -202,7 +202,7 @@ Sources: Idealista data/valuation + Q2-2025 reports; Fotocasa index; INE / PEGV-
 - [ ] Upload `Management_Agreement_Section_4_Step-In_Rights.pdf` (guarantee, default, step-in)
 - [ ] Confirm ICU / tourist-use eligibility for the specific address (Ayuntamiento ACT-10)
 - [ ] Decide + document guarantee backing: contractual covenant only vs escrowed reserve vs aval bancario
-- [ ] Re-cast the headline yield to the **defensible base case** (~4% presale), keep 6.94% as clearly-labeled target
+- [ ] Lead with the **defensible base case** (~4% presale); keep >7% clearly labeled as the blended target
 - [ ] One-page "new-build premium" comps sheet (Moncada, Valterna, Paterna, L'Eliana) for Folder 01
 - [ ] If keeping any vacation claim: pull exact licensed-VUT count for Riba-roja from the GVA open dataset (dadesobertes.gva.es) + build comps from *actual small-apartment* STR listings (not villa averages)
 - [ ] After handover: run SERPAVI on the **new unit cadastral refs** for an official rent range

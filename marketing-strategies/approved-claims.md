@@ -11,7 +11,7 @@
 | Say | Never say |
 |---|---|
 | "a **contractual 4% income floor** — a developer covenant, not a bank guarantee" | "guaranteed", "4% guaranteed minimum", "risk-free" |
-| "**~7% blended target** — a target, not a promise" *(6.94% underwritten)* | "returns above 10%", any double-digit figure as the headline return |
+| "**>7% blended target** — a target, not a promise" *(~7.5% underwritten on the current model)* | "returns above 10%", any double-digit figure as the headline return |
 | "stress case — everything rented long-term — **~4.35% net**" | quoting the stress case as if it were the floor's backing |
 | "income once the building is **operational (handover 2027)**" | "income from day one" (without the operational qualifier) |
 | "pre-sale sale price ~15% below independent valuation (Valor Publicado) — **all-in from €197,370** incl. ~12% purchase costs + furniture; entry unit valuation €190,557" | implying the all-in figure itself is 15% below the valuation; old Type A/B averages (€209k–€254k) |

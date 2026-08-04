@@ -37,9 +37,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-
   <style>
     :root {
       --navy: #1B2A4A;
@@ -278,11 +275,18 @@
       align-items: center;
     }
     .offer-copy h2 {
-      margin-bottom: 14px;
+      margin-bottom: 24px;
       max-width: 12em;
     }
+    .ownership-heading {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(52px, 9vw, 80px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
     .offer-lede {
-      margin: 0 0 28px;
+      margin: 0 0 32px;
       font-size: 17px;
       line-height: 1.55;
       color: var(--navy);
@@ -339,15 +343,27 @@
     .founder-photo-slot { max-width: 320px; }
     .founder-photo-slot img { width: 100%; border-radius: 0; display: block; border: 1px solid var(--linen); }
     figure figcaption { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ash); margin-top: 8px; }
-    .bio-lead { font-size: 17px; line-height: 1.65; color: var(--navy); opacity: 0.78; max-width: 42em; }
-    .bio-beat + .bio-beat { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--linen); }
-    .bio-beat h3 {
-      margin-bottom: 6px;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+    .bio-lead { font-size: 17px; line-height: 1.65; color: var(--navy); max-width: 42em; }
+    .builder-name {
+      margin-bottom: 34px;
+      font-size: clamp(42px, 7vw, 64px);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
     }
+    .bio-beat {
+      padding-top: 18px;
+      border-top: 1px solid var(--sandstone);
+    }
+    .bio-beat + .bio-beat { margin-top: 24px; }
+    .bio-beat h3 {
+      margin-bottom: 8px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+    }
+    .bio-beat p { color: var(--slate); }
     .bio-more { margin-top: 16px; }
     .bio-more summary {
       font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
@@ -405,59 +421,26 @@
       padding-top: 8px;
     }
 
-    /* ---------- 5. Town — map = place; demand facts breathe below ---------- */
+    /* ---------- 5. Town — one static location cue ---------- */
     #town {
-      position: relative;
-      padding: 0;
+      padding: 72px 0;
       background: var(--map-paper);
-      overflow: visible;
     }
-    .town-stage {
-      position: relative;
-      min-height: 520px;
+    .town-brief {
+      display: grid;
+      gap: 32px;
+      align-items: center;
     }
-    .town-stage #metro-map {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      background: var(--map-paper);
-      z-index: 0;
-    }
-    .town-stage .leaflet-tile-pane { filter: sepia(0.18) saturate(0.85) brightness(1.01); }
-    .town-stage .station-dot {
-      background: var(--white-stone);
-      border: 2px solid var(--navy);
-      border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(253,252,250,0.8);
-    }
-    .town-stage .city-origin {
-      border-width: 3px;
-      box-shadow: 0 0 0 2px rgba(253,252,250,0.9);
-    }
-    .town-stage .building-marker {
-      background: var(--terracotta);
-      border: 2px solid var(--white-stone);
-      border-radius: 50%;
-      box-shadow: 0 1px 6px rgba(27,42,74,0.4);
-    }
-    .town-stage .leaflet-tooltip {
-      font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 600;
-      color: var(--navy); background: var(--white-stone);
-      border: 1px solid var(--sandstone); border-radius: 3px;
-      box-shadow: none; padding: 2px 7px;
-    }
-    .town-overlay {
-      position: relative; z-index: 2;
-      padding: 40px 16px 48px;
-      pointer-events: none;
-    }
-    .town-overlay .container { pointer-events: none; }
     .town-orient {
-      pointer-events: auto;
-      max-width: 28em;
-      padding: 0;
+      max-width: 26em;
     }
-    .town-orient .eyebrow { color: var(--navy); opacity: 0.5; margin-bottom: 8px; }
-    .town-orient h2 { margin-bottom: 12px; font-size: 26px; }
+    .town-orient .eyebrow {
+      margin-bottom: 8px;
+    }
+    .town-orient h2 {
+      margin-bottom: 12px;
+      font-size: 34px;
+    }
     .town-intro {
       color: var(--navy);
       opacity: 0.72;
@@ -465,60 +448,41 @@
       line-height: 1.55;
       margin: 0;
     }
-    .town-intro + .town-intro { margin-top: 10px; }
-    .town-sources {
-      margin-top: 16px;
-      font-size: 12px;
-      color: var(--navy);
-      opacity: 0.5;
+    .town-map {
+      margin: 0;
+      min-width: 0;
+    }
+    .town-map-frame {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      border: 1px solid var(--sandstone);
+      background: var(--linen);
+    }
+    .town-map-tiles {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      transform: translateY(-50%);
+    }
+    .town-map-tiles img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: sepia(0.18) saturate(0.75) brightness(1.03);
+    }
+    .town-map figcaption {
+      margin-top: 7px;
+      font-size: 10px;
     }
     .verify-link {
       color: var(--navy); font-weight: 600;
       text-decoration: underline; text-underline-offset: 2px;
     }
     .verify-link:hover { color: var(--terracotta-dark); }
-    .town-demand {
-      background: var(--map-paper);
-      padding: 40px 0 48px;
-    }
-    .town-demand .eyebrow { margin-bottom: 8px; }
-    .town-demand h3 {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.25;
-      margin-bottom: 8px;
-      max-width: 18em;
-    }
-    .town-metrics {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      border-top: 1px solid var(--sandstone);
-      border-bottom: 1px solid var(--sandstone);
-      max-width: 920px;
-    }
-    .town-metric {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--linen);
-    }
-    .town-metric:last-child { border-bottom: none; }
-    .town-metric .fig {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 26px;
-      line-height: 1.1;
-      color: var(--navy);
-      margin: 0;
-      font-variant-numeric: tabular-nums;
-    }
-    .town-metric .lbl {
-      margin-top: 6px;
-      font-size: 13px;
-      color: var(--navy);
-      opacity: 0.62;
-      line-height: 1.4;
-      max-width: 22em;
-    }
 
     /* ---------- 6. Numbers — the operating model, shown rather than argued ---------- */
     .numbers {
@@ -543,9 +507,21 @@
     .numbers-intro { max-width: 780px; }
     .numbers-intro h2 {
       max-width: 12em;
-      margin-bottom: 20px;
-      font-size: 42px;
-      line-height: 1.04;
+      margin-bottom: 28px;
+    }
+    .numbers-intro .data-heading {
+      margin-bottom: 24px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(48px, 8vw, 76px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      text-transform: none;
+    }
+    .numbers-intro .data-heading .count {
+      display: inline;
+      margin-right: 0.14em;
+      color: var(--terracotta);
     }
     .numbers-lede {
       max-width: 42em;
@@ -665,7 +641,7 @@
       justify-content: center;
       margin: 0;
       font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(78px, 20vw, 118px);
+      font-size: clamp(58px, 12vw, 76px);
       line-height: 1;
       color: var(--navy);
     }
@@ -818,6 +794,48 @@
       font-size: 12px;
       font-style: italic;
     }
+    .numbers-heading {
+      margin-bottom: 36px;
+      font-size: clamp(42px, 7vw, 64px);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
+    .numbers-summary {
+      display: grid;
+      margin: 0;
+      border-top: 1px solid rgba(27, 42, 74, 0.24);
+      border-bottom: 1px solid rgba(27, 42, 74, 0.24);
+    }
+    .summary-item {
+      padding: 26px 0;
+      border-bottom: 1px solid rgba(27, 42, 74, 0.12);
+    }
+    .summary-item:last-child { border-bottom: none; }
+    .summary-item dt {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .summary-item dd {
+      margin: 8px 0 0;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(46px, 10vw, 68px);
+      line-height: 0.95;
+      color: var(--navy);
+      font-variant-numeric: tabular-nums;
+    }
+    .summary-item:first-child dd { color: var(--terracotta-dark); }
+    .summary-note {
+      max-width: 22em;
+      margin-top: 12px;
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .deal-details { margin-top: 28px; }
+    .deal-details p + p { margin-top: 10px; }
 
     .operating-stage.is-visible .rental-channel {
       animation: channel-in 520ms both;
@@ -870,6 +888,17 @@
     .cta { background: var(--parchment); padding-top: 88px; padding-bottom: 96px; }
     .cta h2 { font-size: 36px; margin-bottom: 14px; line-height: 1.15; }
     .cta h2 em { color: var(--terracotta); }
+    .cta h2.cta-display {
+      margin-bottom: 28px;
+      font-size: clamp(58px, 11vw, 112px);
+      line-height: 0.84;
+      letter-spacing: -0.045em;
+    }
+    .cta h2.cta-display em {
+      display: block;
+      margin-top: 0.12em;
+      margin-left: 0.7em;
+    }
     .cta .lede { color: var(--navy); opacity: 0.72; max-width: 34em; margin-bottom: 28px; font-size: 17px; line-height: 1.55; }
     .booking-action {
       display: flex;
@@ -891,6 +920,18 @@
       transition: background 300ms ease;
     }
     .booking-primary:hover { background: var(--terracotta-dark); }
+    .booking-secondary {
+      display: inline-block;
+      padding: 14px 0;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+    }
+    .booking-secondary:hover { color: var(--terracotta-dark); border-color: var(--terracotta-dark); }
     .booking-action p { margin: 0; color: var(--ash); font-size: 13px; }
     .cta-alt {
       margin-top: 8px;
@@ -993,10 +1034,6 @@
       }
       .puzol-pair { grid-template-columns: 1fr; }
       .puzol-pair img { height: 220px; }
-      /* Stack intro above the map — text never sits on the tiles */
-      .town-stage { min-height: 0; display: flex; flex-direction: column; }
-      .town-stage #metro-map { position: relative; inset: auto; height: 340px; flex: none; }
-      .town-overlay { order: -1; padding: 48px 16px 24px; pointer-events: auto; }
     }
 
     /* ---------- Desktop ---------- */
@@ -1015,9 +1052,10 @@
         gap: 32px;
       }
       .hero h1 {
-        font-size: 54px;
-        max-width: 10.5em;
-        line-height: 1.06;
+        font-size: clamp(68px, 7.2vw, 92px);
+        max-width: 8.2em;
+        line-height: 0.93;
+        letter-spacing: -0.035em;
       }
       .hero-deal {
         gap: 28px 56px;
@@ -1031,28 +1069,13 @@
         gap: 56px;
       }
       h2 { font-size: 38px; }
-      .cta h2 { font-size: 42px; }
       .founder-grid { grid-template-columns: 320px 1fr; align-items: start; }
-      .town-stage { min-height: 692px; }
-      .town-overlay { padding: 56px 32px 80px; }
-      .town-orient h2 { font-size: 32px; }
-      .town-demand {
-        padding: 48px 0 64px;
-        border-top: 1px solid rgba(212, 184, 150, 0.6);
+      .town-brief {
+        grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
+        gap: 64px;
       }
-      .town-demand h3 { font-size: 24px; margin-bottom: 8px; max-width: none; }
-      .town-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 56px;
-        max-width: 720px;
-      }
-      .town-metric {
-        padding: 20px 0;
-        border-bottom: none;
-      }
-      .town-metric .fig { font-size: 32px; }
+      .town-map-frame { height: 300px; }
       .fear-buttons { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .numbers-intro h2 { font-size: 42px; }
       .operating-stage {
         grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
@@ -1094,7 +1117,7 @@
         width: max-content;
         max-width: 100%;
       }
-      .return-figure { font-size: clamp(96px, 9.5vw, 126px); }
+      .return-figure { font-size: 76px; }
       .entry-basis {
         padding: 36px 40px;
       }
@@ -1112,6 +1135,17 @@
         align-items: center;
         padding: 34px 0;
       }
+      .numbers-summary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .summary-item {
+        min-width: 0;
+        padding: 30px 28px;
+        border-right: 1px solid rgba(27, 42, 74, 0.12);
+        border-bottom: none;
+      }
+      .summary-item:first-child { padding-left: 0; }
+      .summary-item:last-child { padding-right: 0; border-right: none; }
       .letter { padding: 48px 48px 52px; }
       .puzol-pair img { height: 340px; }
     }
@@ -1122,7 +1156,7 @@
         padding: 88px 32px 96px 48px;
         margin-left: max(0px, calc((100vw - 1200px) / 2));
       }
-      .hero h1 { font-size: 58px; }
+      .hero h1 { font-size: 92px; }
       .hero-deal-item .fig { font-size: 40px; }
     }
   </style>
@@ -1132,7 +1166,7 @@
   <nav class="nav">
     <div class="container">
       <img src="assets/logo.png" alt="El Fortín">
-      <a class="nav-cta" href="#book">Book 15 minutes</a>
+      <a class="nav-cta" href="#book">See the documents</a>
     </div>
   </nav>
 
@@ -1141,8 +1175,8 @@
     <div class="hero-stage hero-flow">
       <p class="hero-eyebrow reveal">Riba-roja de T&uacute;ria &middot; Valencia</p>
       <h1 class="reveal">
-        Own an apartment near Valencia.
-        <span class="hero-title-service">We manage the rentals.</span>
+        Near Valencia.<br>Yours.
+        <span class="hero-title-service">Rentals managed.</span>
       </h1>
       <dl class="hero-deal reveal">
         <div class="hero-deal-item">
@@ -1158,23 +1192,23 @@
   <!-- 2. Competence — proof before explanation -->
   <section class="section-parchment" id="who">
     <div class="container flow">
-      <p class="eyebrow reveal">The builder</p>
-      <h2 class="reveal">One project finished.<br>The next is licensed.</h2>
       <div class="founder-grid reveal">
         <div class="founder-photo-slot">
           <figure>
             <img src="assets/uriel-onsite.jpg" alt="Uriel Nabel on site in a hard hat, smiling, hands on pallets of reclaimed roof tiles">
-            <figcaption>Uriel, on site &mdash; July 2026</figcaption>
+            <figcaption>On site &mdash; July 2026</figcaption>
           </figure>
         </div>
         <div class="bio-lead">
+          <p class="eyebrow">Developer and operator</p>
+          <h2 class="builder-name">Uriel Nabel.</h2>
           <div class="bio-beat">
-            <h3>El Fort&iacute;n de Puzol &mdash; delivered.</h3>
-            <p>A century-old house, emptied and fully rebuilt. Finished August 2025.</p>
+            <h3>Puzol &mdash; finished August 2025.</h3>
+            <p>A century-old house, fully rebuilt.</p>
           </div>
           <div class="bio-beat">
-            <h3>Riba-roja &mdash; project two.</h3>
-            <p>Builder: <a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>. Architect: <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a> (COACV 11.357). Building licence issued.</p>
+            <h3>Riba-roja &mdash; licensed.</h3>
+            <p><a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>, builder. <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a>, architect (COACV 11.357).</p>
           </div>
           <details class="bio-more">
             <summary>Full background</summary>
@@ -1198,50 +1232,42 @@
     </div>
   </section>
 
-  <!-- 3. Commitment — one personal reason to trust the operator -->
+  <!-- 3. Candor — competence has been shown; now name the operator risk -->
   <section id="letter">
     <div class="container viewport-beat flow">
-      <p class="eyebrow reveal">Why him, why now</p>
-      <h2 class="reveal">El Fort&iacute;n is now his full-time work.</h2>
+      <p class="eyebrow reveal">The honest limit</p>
+      <h2 class="reveal">A short record.</h2>
       <div class="pattern-grid commitment-grid reveal">
         <article class="beat">
           <p class="beat-year">2026</p>
-          <p>Uriel left SAP in January. He now builds and operates the Riba-roja apartments under his own name.</p>
+          <p>El Fort&iacute;n has one completed renovation &mdash; not a long operating record. Uriel left SAP in January; this is now his full-time work. Judge the title, licence, contract and numbers with your own advisers.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 4. Place — map answers "where" alone -->
+  <!-- 4. Place — one static location cue -->
   <section id="town">
-    <div class="town-stage">
-      <div id="metro-map" aria-label="Map: Metrovalencia Line 9 from Valencia city centre to the building in Riba-roja de Túria"></div>
-      <div class="town-overlay">
-        <div class="container">
-          <div class="town-orient reveal">
-            <p class="eyebrow">Why Riba-roja</p>
-            <h2>A working town on Metro Line&nbsp;9.</h2>
-            <p class="town-intro">Outside Valencia city. Connected to it.</p>
-          </div>
+    <div class="container">
+      <div class="town-brief">
+        <div class="town-orient reveal">
+          <p class="eyebrow">Location</p>
+          <h2>Riba-roja.</h2>
+          <p class="town-intro">Metro Line&nbsp;9 to Valencia.</p>
         </div>
-      </div>
-    </div>
-    <!-- Demand proof — long-term first; sources stay quiet -->
-    <div class="town-demand">
-      <div class="container flow">
-        <p class="eyebrow reveal">The rental market</p>
-        <h3 class="reveal">Long-term demand is the base.</h3>
-        <dl class="town-metrics reveal">
-          <div class="town-metric">
-            <dd class="fig">32&ndash;38</dd>
-            <dt class="lbl">enquiries per listing in Valencia metro towns</dt>
+        <figure class="town-map reveal">
+          <div class="town-map-frame">
+            <div class="town-map-tiles" role="img" aria-label="Map showing Riba-roja west of Valencia">
+              <img src="https://basemaps.cartocdn.com/light_all/11/1020/778.png" alt="">
+              <img src="https://basemaps.cartocdn.com/light_all/11/1021/778.png" alt="">
+              <img src="https://basemaps.cartocdn.com/light_all/11/1022/778.png" alt="">
+              <img src="https://basemaps.cartocdn.com/light_all/11/1020/779.png" alt="">
+              <img src="https://basemaps.cartocdn.com/light_all/11/1021/779.png" alt="">
+              <img src="https://basemaps.cartocdn.com/light_all/11/1022/779.png" alt="">
+            </div>
           </div>
-          <div class="town-metric">
-            <dd class="fig">~&euro;16/m&sup2;</dd>
-            <dt class="lbl">asking rent for new furnished homes near the metro</dt>
-          </div>
-        </dl>
-        <p class="town-sources reveal"><a class="verify-link" href="https://www.idealista.com/sala-de-prensa/informes-precio-vivienda/" target="_blank" rel="noopener noreferrer">Idealista</a> &middot; Fotocasa &middot; <a class="verify-link" href="https://www.idealista.com/alquiler-viviendas/riba-roja-de-turia-valencia/" target="_blank" rel="noopener noreferrer">today&rsquo;s Riba-roja listings</a>. Asking-market data, not occupancy guarantees. Holiday rentals are seasonal upside.</p>
+          <figcaption>Map &copy; OpenStreetMap contributors &middot; CARTO</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -1250,12 +1276,10 @@
   <section id="offer">
     <div class="container offer-grid flow">
       <div class="offer-copy reveal">
-        <p class="eyebrow">What you own</p>
-        <h2>One apartment.<br>In your name.</h2>
-        <p class="offer-lede">You buy an apartment, not a share in a fund.</p>
+        <h2 class="ownership-heading">Yours</h2>
         <ul class="offer-facts">
-          <li><strong>Registered ownership.</strong> The apartment is recorded in your name at Spain&rsquo;s Property Registry.</li>
-          <li><strong>Sell when you choose.</strong> Like any other Spanish apartment.</li>
+          <li>Registered in your name at Spain&rsquo;s Property Registry.</li>
+          <li>Sell when you choose.</li>
         </ul>
       </div>
       <figure class="offer-media offer-plan reveal">
@@ -1268,109 +1292,32 @@
   <!-- 6. Operating model -->
   <section class="numbers" id="the-numbers">
     <div class="container flow">
-      <div class="numbers-intro">
-        <p class="eyebrow reveal">The operating model</p>
-        <h2 class="reveal">One apartment.<br>Three rental markets.</h2>
-        <p class="numbers-lede reveal">Each furnished apartment moves between holiday, mid-term and long-term &mdash; whichever pays strongest.</p>
-      </div>
+      <h2 class="numbers-heading reveal">The deal.</h2>
 
-      <div class="operating-stage reveal" aria-label="Flexible-living operating model projecting more than seven percent net">
-        <div class="rental-stack">
-          <div class="rental-channel">
-            <p class="channel-name">Holiday</p>
-          </div>
-          <div class="rental-channel">
-            <p class="channel-name">Mid-term</p>
-          </div>
-          <div class="rental-channel">
-            <p class="channel-name">Long-term</p>
-          </div>
-          <span class="flow-brace" aria-hidden="true">
-            <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 3
-                       C14 3 18 10 18 22
-                       V48
-                       C18 54 20 57 27 60
-                       C20 63 18 66 18 72
-                       V98
-                       C18 110 14 117 3 117"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"/>
-            </svg>
-          </span>
+      <dl class="numbers-summary reveal">
+        <div class="summary-item">
+          <dt>All-in from</dt>
+          <dd>&euro;197k</dd>
+          <p class="summary-note">Pre-sale. Purchase costs and furniture included.</p>
         </div>
-
-        <div class="management-hub">
-          <div class="hub-badge">
-            <span class="hub-name">El Fort&iacute;n</span>
-            <span class="hub-label">Active management</span>
-            <span class="hub-brace" aria-hidden="true">
-              <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 3
-                         C14 3 18 10 18 22
-                         V48
-                         C18 54 20 57 27 60
-                         C20 63 18 66 18 72
-                         V98
-                         C18 110 14 117 3 117"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
+        <div class="summary-item">
+          <dt>Contractual floor</dt>
+          <dd>4%</dd>
+          <p class="summary-note">Developer covenant. Not bank-backed.</p>
         </div>
-
-        <div class="return-lockup">
-          <p class="return-label">Projected net return</p>
-          <p class="return-figure"><span class="approx">&gt;</span><span class="digit">7</span><span class="percent">%</span></p>
-          <p class="return-caption">Blended target after management and costs.</p>
+        <div class="summary-item">
+          <dt>Blended net target</dt>
+          <dd>&gt;7%</dd>
+          <p class="summary-note">Holiday, mid-term and long-term. Target, not a promise.</p>
         </div>
-      </div>
+      </dl>
 
-      <div class="capital-basis reveal">
-        <h3 class="capital-heading">What you put in</h3>
-        <div class="entry-basis">
-          <div class="entry-copy">
-            <dl class="entry-compare">
-              <div>
-                <dt>All-in at pre-sale, from</dt>
-                <dd>&euro;197,370</dd>
-              </div>
-              <div class="was">
-                <dt>All-in at full valuation</dt>
-                <dd>&euro;229,384</dd>
-              </div>
-            </dl>
-            <p class="entry-sub">Entry apartment &mdash; 40.4&nbsp;m&sup2; useful</p>
-            <p class="entry-aside">Sale price is 15% below independent valuation (&euro;190,557). Purchase costs (~12%) and furniture are in both all-in figures. Prices vary by floor; full list comes with the documents.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="protection-band reveal">
-        <div>
-          <p class="protection-kicker">The floor underneath</p>
-          <p class="protection-figure">4%</p>
-          <p class="protection-note">Contractual minimum</p>
-        </div>
-        <p class="protection-copy">If rent falls short of the plan, the developer company promises a 4% minimum in the contract. A bank does not guarantee it.</p>
-      </div>
-
-      <div class="model-notes">
-        <details class="reveal">
-          <summary>How income is shared</summary>
-          <p>Income and costs run across all ten apartments as one operation, then paid in proportion to each owner&rsquo;s capital. Your rate does not depend on which unit you hold. A weak month in one is carried by the other nine. A projection &mdash; not a fixed promise.</p>
-        </details>
-        <details class="reveal">
-          <summary>What the financial model must show</summary>
-          <p>The document pack provided before reservation lists gross rent and occupancy by rental channel, management fees (8&ndash;15%, depending on rental structure), cleaning, utilities, maintenance, taxes, vacancy and downside scenarios. The &gt;7% figure is meaningful only with those assumptions beside it.</p>
-        </details>
-        <p class="disclaimer reveal">Projections, not guarantees. The 4% minimum is a company covenant, not bank-backed. There is no aval bancario on buyer payments before completion.</p>
-      </div>
+      <details class="deal-details reveal">
+        <summary>Exact figures and assumptions</summary>
+        <p>Entry apartment: &euro;197,370 all-in at pre-sale; &euro;229,384 at full valuation. The sale price is 15% below the independent valuation (&euro;190,557). Both all-in figures include purchase costs (~12%) and furniture.</p>
+        <p>Stress case: ~4.35% net with everything rented long-term. Income and costs are pooled across ten apartments and paid by each owner&rsquo;s share of capital.</p>
+        <p>The document pack lists occupancy, rent, management fees (8&ndash;15%), cleaning, utilities, maintenance, taxes, vacancy and downside scenarios. There is no bank guarantee on the 4% covenant or buyer payments before completion.</p>
+      </details>
     </div>
   </section>
 
@@ -1384,17 +1331,17 @@
   <!-- 8. Conversion — book a call (primary); written question (secondary) -->
   <section class="cta" id="book">
     <div class="container narrow viewport-beat flow">
-      <h2 class="reveal">Book 15 minutes with <em>Uriel</em>.</h2>
-      <p class="lede reveal">You speak with the developer, not a sales team. Ask what matters. See the documents. Decide whether to continue.</p>
+      <h2 class="cta-display reveal">Documents<em>first.</em></h2>
+      <p class="lede reveal">Title. Licence. Valuation. Contract. Read them with your lawyer. Then decide whether to talk.</p>
       <div class="booking-action reveal">
-        <a class="booking-primary" id="book-call" href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Choose a time</a>
-        <p>Google Meet &middot; 15 minutes</p>
+        <a class="booking-primary" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Request the pack</a>
+        <a class="booking-secondary" id="book-call" href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Book 15 minutes</a>
       </div>
 
       <details class="cta-alt reveal" id="what-would-stop-you">
         <summary>Prefer to write first?</summary>
         <div class="cta-alt-body">
-          <p class="lede-alt">Send one question. Uriel will answer with the relevant document, not a brochure.</p>
+          <p class="lede-alt">One question. The relevant document. No brochure.</p>
           <div class="cta-block">
           <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
             <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
@@ -1525,85 +1472,5 @@
     }
   </script>
 
-  <!-- Real map: OpenStreetMap cartography + the actual Metrovalencia Line 9 geometry
-       (OSM relation 5626068, fetched 2026-07-20 — see assets/metro-line9.js).
-       Tiles: Carto "light_all" basemap (tile.openstreetmap.org 403s some browsers and
-       disallows production use anyway). If traffic grows past Carto's free-tier comfort,
-       move to a keyed provider (MapTiler / Stadia). -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="assets/metro-line9.js"></script>
-  <script>
-    (function () {
-      var map = L.map('metro-map', {
-        scrollWheelZoom: false,       // don't hijack page scroll — engaged, not trapped
-        zoomControl: true,
-        attributionControl: true
-      });
-
-      L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 17,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      }).addTo(map);
-
-      // Show only the relevant journey: Valencia centre (Colón) to Riba-roja.
-      // The full OSM relation continues east to Alboraia, which is not part of this story.
-      var cityCentre = [39.47016, -0.37068];
-      var routeSegments = METRO_LINE9.segments.map(function (seg) {
-        return seg.filter(function (point) { return point[1] <= cityCentre[1]; });
-      }).filter(function (seg) { return seg.length > 1; });
-
-      var lineGroup = L.featureGroup(routeSegments.map(function (seg) {
-        return L.polyline(seg, { color: '#1B2A4A', weight: 3.5, opacity: 0.9 });
-      })).addTo(map);
-
-      // Start at Valencia centre, then follow the route west to Riba-roja.
-      var cityIndex = METRO_LINE9.stations.findIndex(function (s) { return s.name === 'Colón'; });
-      var routeStations = METRO_LINE9.stations.slice(0, cityIndex + 1).reverse();
-      routeStations.forEach(function (s) {
-        var isCityCentre = s.name === 'Colón';
-        var m = L.marker(s.ll, {
-          icon: L.divIcon({
-            className: isCityCentre ? 'station-dot city-origin' : 'station-dot',
-            iconSize: isCityCentre ? [13, 13] : [9, 9]
-          }),
-          keyboard: false
-        }).addTo(map);
-        if (isCityCentre) {
-          m.bindTooltip('Val&egrave;ncia centre', { direction: 'top' });
-        } else {
-          m.bindTooltip(s.name, { direction: 'top' });
-        }
-      });
-
-      // The building.
-      L.marker(METRO_LINE9.building, {
-        icon: L.divIcon({ className: 'building-marker', iconSize: [15, 15] })
-      }).addTo(map).bindTooltip('The building &middot; Camino Valencia 31', {
-        permanent: true, direction: 'right', offset: [10, 0]
-      });
-
-      // Frame the story from Valencia centre to the building.
-      // On desktop, reserve the width occupied by the map introduction.
-      function frameStory() {
-        var isDesktop = window.innerWidth >= 768;
-        var overlayCard = document.querySelector('.town-orient');
-        var padLeft = 24;
-        if (isDesktop && overlayCard) {
-          padLeft = Math.round(overlayCard.getBoundingClientRect().right) + 48;
-        }
-        map.fitBounds(L.latLngBounds(cityCentre, METRO_LINE9.building), {
-          paddingTopLeft: [padLeft, 40],
-          paddingBottomRight: [40, 40]
-        });
-      }
-      frameStory();
-      // Absolute-positioned container — size is known only after layout, so re-frame then.
-      setTimeout(function () {
-        map.invalidateSize();
-        frameStory();
-      }, 0);
-    })();
-  </script>
 </body>
 </html>

@@ -127,7 +127,7 @@ If rent falls short of the plan, the developer company's contract sets a 4% mini
 
 - **Realistic estimate:** ≈ 4% net (Net means after costs). On early-buyer capital, all long-term rental — roughly where the minimum in the contract sits.
 - **Minimum in the contract:** 4% net — a commitment from the developer company, not a bank guarantee. Your own lawyer should review the final contract and the remedies it gives you. *(deal doc §7; no backing or step-in claim until the documents are available)*
-- **Higher target — a target, not a promise:** ~7% combined if mid-term and seasonal rentals are added on top of the long-term base. *(deal doc §3)*
+- **Higher target — a target, not a promise:** >7% combined if mid-term and seasonal rentals are added on top of the long-term base. *(deal doc §3)*
 
 ---
 

@@ -26,6 +26,7 @@
 | P14 | Loss framing beats gain framing for loss-averse audiences (**prospect theory**); an **identifiable person** triggers care where statistics don't. | Kahneman & Tversky (1979); Small & Loewenstein (2003) |
 | P15 | Explicitly affirming the right to refuse (**"but you are free"**) roughly doubles compliance across 42 studies. | Carpenter meta-analysis (2013) |
 | P16 | Scarcity persuades **only when credible**. | Cialdini, *Influence*; Worchel et al. (1975) |
+| P17 | **Large type signals importance** and guides selective memory. Enlarging numerical claims also increases their perceived message strength and persuasiveness. Typography therefore determines what the page appears to be selling, not merely what readers notice. | Luna, Nogueira & Albuquerque, *Memory* (2019); Murphy et al., *Memory & Cognition* (2024); Park & Kang, *Journal of Consumer Behaviour* (2025) |
 
 ---
 
@@ -89,3 +90,4 @@ The psychologically valid order of elements in any cold-facing asset:
 - No affinity pitch that bypasses documents (P11).
 - No unverifiable biographical or market claims (P12; pitch doc §8 ledger governs market claims).
 - No inconsistent persona across assets — one voice everywhere (consistency principle).
+- No oversized yield, floor, price, or scarcity claims. Large display type is reserved for the ownership frame, verifiable competence, and low-pressure next step; financial figures remain clearly legible but evidentiary (P9, P12, P17).
