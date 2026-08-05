@@ -43,32 +43,32 @@
 
       /* Camera */
       --lens: 1600px;          /* focal length */
-      --walk: 5600px;          /* distance between neighboring rooms — a long walk */
+      --walk: 7900px;          /* distance between neighboring rooms — a long walk */
       --dolly: 1.8s;
       --dolly-ease: cubic-bezier(0.66, 0, 0.16, 1);
 
       /*
         Room volume: each room is a space, not a poster.
         Content is staggered from the back wall to the station:
-        back wall (−1400) → word (−1150) → panel (0, reading plane)
+        back wall (−2800) → word (−2400) → panel (0, reading plane)
 
         Past the station lies the close-up zone: the visitor can push ~900px
         deeper while the content keeps coming closer, before the room lets go.
 
-        The back wall is monumentally oversized (6.4×) so it swallows the view
-        early in the approach. When first revealed it stands ~4450px away —
+        The back wall is monumentally oversized (8.9×) so it swallows the view
+        early in the approach. When first revealed it stands far away —
         floating over the stage's own grid, so the journey shows drafting
         paper at every distance, never black.
       */
-      --room-depth: 2300px;
-      --back-scale: 6.4;
-      --word-depth: 1150px;
-      --word-scale: 1.72;      /* (1600 + 1150) / 1600 */
+      --room-depth: 2800px;
+      --back-scale: 8.9;
+      --word-depth: 2400px;
+      --word-scale: 2.5;       /* (1600 + 2400) / 1600 */
       --mesh-navy: rgba(27, 42, 74, 0.085);
       --mesh-light: rgba(253, 252, 250, 0.10);
       --mesh-size: 192px;
       --mesh-mult: 4;
-      --title-scale: 1;
+      --title-scale: 1.5;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1830,18 +1830,18 @@
 
       <div class="dev-row">
         <label for="p-walk">Walk / page start distance</label>
-        <input id="p-walk" type="range" min="1200" max="12000" step="100" value="5600">
-        <span class="dev-val" data-for="p-walk">5600px</span>
+        <input id="p-walk" type="range" min="1200" max="12000" step="100" value="7900">
+        <span class="dev-val" data-for="p-walk">7900px</span>
       </div>
       <div class="dev-row">
         <label for="p-title">Title size</label>
-        <input id="p-title" type="range" min="0.25" max="4" step="0.05" value="1">
-        <span class="dev-val" data-for="p-title">1.00×</span>
+        <input id="p-title" type="range" min="0.25" max="4" step="0.05" value="1.5">
+        <span class="dev-val" data-for="p-title">1.50×</span>
       </div>
       <div class="dev-row">
         <label for="p-back">Wall / bg scale</label>
-        <input id="p-back" type="range" min="1" max="12" step="0.1" value="6.4">
-        <span class="dev-val" data-for="p-back">6.4×</span>
+        <input id="p-back" type="range" min="1" max="12" step="0.1" value="8.9">
+        <span class="dev-val" data-for="p-back">8.9×</span>
       </div>
       <div class="dev-row">
         <label for="p-mesh">Grid size</label>
@@ -1850,53 +1850,53 @@
       </div>
       <div class="dev-row">
         <label for="p-depth">Room depth</label>
-        <input id="p-depth" type="range" min="400" max="2800" step="50" value="2300">
-        <span class="dev-val" data-for="p-depth">2300px</span>
+        <input id="p-depth" type="range" min="400" max="2800" step="50" value="2800">
+        <span class="dev-val" data-for="p-depth">2800px</span>
       </div>
       <div class="dev-row">
         <label for="p-word-depth">Title depth (in room)</label>
-        <input id="p-word-depth" type="range" min="200" max="2400" step="50" value="1150">
-        <span class="dev-val" data-for="p-word-depth">1150px</span>
+        <input id="p-word-depth" type="range" min="200" max="2400" step="50" value="2400">
+        <span class="dev-val" data-for="p-word-depth">2400px</span>
       </div>
       <div class="dev-row">
         <label for="p-gain">Wheel gain</label>
-        <input id="p-gain" type="range" min="0.4" max="6" step="0.1" value="3.7">
-        <span class="dev-val" data-for="p-gain">3.7</span>
+        <input id="p-gain" type="range" min="0.4" max="6" step="0.1" value="5">
+        <span class="dev-val" data-for="p-gain">5.0</span>
       </div>
       <div class="dev-row">
         <label for="p-touch-gain">Touch gain</label>
-        <input id="p-touch-gain" type="range" min="2" max="12" step="0.1" value="6.5">
-        <span class="dev-val" data-for="p-touch-gain">6.5</span>
+        <input id="p-touch-gain" type="range" min="2" max="12" step="0.1" value="12">
+        <span class="dev-val" data-for="p-touch-gain">12.0</span>
       </div>
       <div class="dev-row">
         <label for="p-smooth">Dolly weight</label>
-        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="6">
-        <span class="dev-val" data-for="p-smooth">6.0</span>
+        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="1">
+        <span class="dev-val" data-for="p-smooth">1.0</span>
       </div>
       <div class="dev-row">
         <label for="p-max-speed">Max dolly speed (rooms/s)</label>
-        <input id="p-max-speed" type="range" min="0.8" max="4" step="0.1" value="1.8">
-        <span class="dev-val" data-for="p-max-speed">1.8</span>
+        <input id="p-max-speed" type="range" min="0.8" max="4" step="0.1" value="3.1">
+        <span class="dev-val" data-for="p-max-speed">3.1</span>
       </div>
       <div class="dev-row">
         <label for="p-pass-start">Dissolve starts (from eye)</label>
-        <input id="p-pass-start" type="range" min="60" max="1400" step="20" value="320">
-        <span class="dev-val" data-for="p-pass-start">320px</span>
+        <input id="p-pass-start" type="range" min="60" max="1400" step="20" value="60">
+        <span class="dev-val" data-for="p-pass-start">60px</span>
       </div>
       <div class="dev-row">
         <label for="p-pass-end">Dissolve done (from eye)</label>
-        <input id="p-pass-end" type="range" min="0" max="600" step="20" value="40">
-        <span class="dev-val" data-for="p-pass-end">40px</span>
+        <input id="p-pass-end" type="range" min="0" max="600" step="20" value="60">
+        <span class="dev-val" data-for="p-pass-end">60px</span>
       </div>
       <div class="dev-row">
         <label for="p-rest-delay">Rest delay (pause before settle)</label>
-        <input id="p-rest-delay" type="range" min="0" max="3" step="0.05" value="0.35">
-        <span class="dev-val" data-for="p-rest-delay">0.35s</span>
+        <input id="p-rest-delay" type="range" min="0" max="3" step="0.05" value="0">
+        <span class="dev-val" data-for="p-rest-delay">0.00s</span>
       </div>
       <div class="dev-row">
         <label for="p-gravity">Gravity (0 = off)</label>
-        <input id="p-gravity" type="range" min="0" max="12" step="0.25" value="4.5">
-        <span class="dev-val" data-for="p-gravity">4.50</span>
+        <input id="p-gravity" type="range" min="0" max="12" step="0.25" value="1">
+        <span class="dev-val" data-for="p-gravity">1.00</span>
       </div>
 
     </div>
@@ -1910,20 +1910,20 @@
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       var DEFAULTS = {
-        walk: 5600,
-        title: 1,
-        back: 6.4,
+        walk: 7900,
+        title: 1.5,
+        back: 8.9,
         mesh: 4,
-        depth: 2300,
-        wordDepth: 1150,
-        gain: 3.7,       /* wheel only — discrete notches need amplification */
-        touchGain: 6.5,  /* light: one comfortable swipe carries most of a room */
-        smooth: 6,       /* camera lerp rate (per s) — the dolly's weight; ~lerp 0.1/frame */
-        passStart: 320,  /* dissolve begins this close to the eye */
-        passEnd: 40,     /* fully gone this close — you are through it */
-        restDelay: 0.35, /* idle time before the room pulls you in */
-        gravity: 4.5,    /* rest-pull rate (per s) — a glide, not a snap */
-        maxSpeed: 1.8    /* camera speed ceiling, in walks per second */
+        depth: 2800,
+        wordDepth: 2400,
+        gain: 5,         /* wheel only — discrete notches need amplification */
+        touchGain: 12,   /* one swipe carries a full room */
+        smooth: 1,       /* camera lerp rate (per s) — the dolly's weight */
+        passStart: 60,   /* dissolve begins this close to the eye */
+        passEnd: 60,     /* fully gone this close — you are through it */
+        restDelay: 0,    /* idle time before the room pulls you in */
+        gravity: 1,      /* rest-pull rate (per s) — a glide, not a snap */
+        maxSpeed: 3.1    /* camera speed ceiling, in walks per second */
       };
 
       /*
