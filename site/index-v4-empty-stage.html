@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<!--
+  THE EMPTY STAGE — v4.
+  Same approved messages as index-v3-walk.html / index-v2.html, with the
+  theater machinery stripped away. The document scrolls; the visitor
+  controls the pacing; every act has one purpose.
+
+  Acts:
+    01 PROMISE   — place, claim, price
+    02 EVIDENCE  — who is building this
+    03 HONESTY   — a short record + before/after proof (explicit control)
+    04 OWNERSHIP — deed, plan, and the deal's three numbers
+    05 DECISION  — documents first, questions, or a call
+
+  PUBLISH CHECKLIST (carried over — all must be checked):
+  [ ] All ⏳ U-Q placeholders resolved with verified answers
+  [ ] Land-paid claim included only if U-Q7 = yes
+  [ ] Unit-10-sold mention only if U-Q9 = yes
+  [ ] Floor sentence is Uriel's approved wording (U-Q8)
+  [ ] Numbers cross-checked once more against deal doc §4/§5
+  [ ] No "guaranteed" anywhere on page
+  [ ] Remove the robots noindex meta tag at launch; set the GA4 measurement ID
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>El Fortín — Own an apartment near Valencia, rentals managed</title>
+  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €236,141 all-in at pre-sale. Ready in 2027.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --navy-deep: #101C33;
+      --slate: #3D4F5F;
+      --ash: #6B7B8D;
+      --parchment: #F7F4EF;
+      --white-stone: #FDFCFA;
+      --terracotta: #C2703E;
+      --terracotta-dark: #A85E32;
+      --sandstone: #D4B896;
+      --linen: #EDE4D3;
+
+      --measure: 34em;
+      --gutter: clamp(20px, 6vw, 96px);
+      --act-gap: clamp(88px, 14vh, 160px);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      font-family: 'Source Sans 3', -apple-system, sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--navy);
+      background: var(--parchment);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+    }
+
+    a { color: inherit; }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    .act {
+      max-width: 62rem;
+      margin: 0 auto;
+      padding: var(--act-gap) var(--gutter) 0;
+      scroll-margin-top: 24px;
+    }
+    .act:last-of-type { padding-bottom: var(--act-gap); }
+
+    /* Act numeral — the only stage direction that survives the strip */
+    .act-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: clamp(28px, 5vh, 48px);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .act-mark::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(27, 42, 74, 0.14);
+    }
+
+    .lede {
+      font-size: clamp(17px, 1.9vw, 20px);
+      color: var(--slate);
+      max-width: var(--measure);
+    }
+
+    .verify-link {
+      color: inherit;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .verify-link:hover { color: var(--terracotta-dark); }
+
+    /* Quiet entrance: only when JS runs and motion is welcome */
+    .reveal { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 480ms ease, transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .js .reveal.is-on {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ---------- 01 PROMISE ---------- */
+
+    .promise {
+      min-height: 88svh;
+      max-width: 74rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: clamp(48px, 8vh, 96px);
+    }
+
+    .promise-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .promise-grid { grid-template-columns: 1fr; }
+    }
+
+    /* The anchor: the building in section. Its near-white ground blends
+       into the parchment, so it reads as a model on the page, not a photo
+       in a box. */
+    .promise-cutaway { margin: 0; }
+    .promise-cutaway img {
+      width: 100%;
+      /* The illustration's ground is ~4% below white; the brightness lift
+         clips it to pure white, which multiply then dissolves into the
+         page — the model sits on the parchment with no visible frame. */
+      filter: brightness(1.05);
+      mix-blend-mode: multiply;
+    }
+    .promise-cutaway figcaption {
+      margin-top: 10px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-align: right;
+    }
+    @media (max-width: 860px) {
+      .promise-cutaway { max-width: 34rem; }
+      .promise-cutaway figcaption { text-align: left; }
+    }
+
+    .walk-place {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 12px;
+      margin: 0 0 1.4em;
+      list-style: none;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(17px, 2.1vw, 23px);
+      line-height: 1;
+    }
+    .walk-place > li { display: flex; align-items: center; }
+    .walk-place .rail {
+      width: 28px;
+      height: 1.5px;
+      background: var(--terracotta);
+      opacity: 0.75;
+    }
+    .walk-place .metro-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Source Sans 3', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .walk-place .metro-num {
+      display: grid;
+      place-items: center;
+      width: 1.55rem;
+      height: 1.55rem;
+      border: 1.5px solid var(--terracotta);
+      border-radius: 50%;
+      color: var(--terracotta);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    .promise h1 {
+      font-size: clamp(46px, 8vw, 92px);
+      max-width: 11em;
+    }
+    .promise h1 .h1-service {
+      display: block;
+      margin-top: 0.18em;
+      font-size: 0.42em;
+      color: var(--terracotta-dark);
+    }
+
+    .promise-figures {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px 28px;
+      margin-top: clamp(28px, 5vh, 44px);
+    }
+    .say-fig {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      color: var(--terracotta-dark);
+    }
+    .say-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .say-sub { font-size: 15px; color: var(--slate); }
+
+    /* The quiet clock — the count appears once here, long before the ask.
+       Same publish condition as the Act V count line (U-Q9). */
+    .promise-count {
+      margin-top: 16px;
+      font-size: 15px;
+      color: var(--slate);
+    }
+    .promise-count strong {
+      color: var(--terracotta-dark);
+      font-weight: 600;
+    }
+
+    /*
+      Exit lines — the imbalance at each act's end. Every act closes with
+      the question the next act answers; the visitor carries it across
+      the gap. Staged as the visitor's own aside, not the developer's voice.
+    */
+    .act-exit {
+      margin-top: clamp(56px, 9vh, 96px);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(19px, 2.2vw, 24px);
+      font-style: italic;
+      color: var(--slate);
+      text-align: right;
+    }
+    .act-exit::before { content: "\2014\00a0"; color: var(--terracotta); }
+
+    .promise-exits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 28px;
+      margin-top: clamp(36px, 6vh, 60px);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .promise-exits a {
+      text-decoration: none;
+      border-bottom: 1px solid rgba(27, 42, 74, 0.35);
+      padding-bottom: 3px;
+    }
+    .promise-exits a:hover { color: var(--terracotta-dark); border-color: var(--terracotta-dark); }
+
+    /* ---------- 02 EVIDENCE ---------- */
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: minmax(180px, 240px) 1fr;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .evidence-grid { grid-template-columns: 1fr; }
+      .evidence-grid figure { max-width: 240px; }
+    }
+
+    .evidence-grid figure img { border: 1px solid var(--linen); }
+    .evidence-grid figcaption {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    .evidence-copy h2 {
+      font-size: clamp(34px, 4.6vw, 52px);
+      margin-bottom: 0.45em;
+    }
+
+    .proof-list {
+      list-style: none;
+      margin-top: 1.6em;
+      display: grid;
+      gap: 1.15em;
+      max-width: var(--measure);
+    }
+    .proof-list h3 { font-size: clamp(20px, 2.3vw, 25px); margin-bottom: 0.2em; }
+    .proof-list p { color: var(--slate); }
+
+    /* ---------- 03 HONESTY ----------
+       The reversal. The one act staged differently: a bare full-bleed
+       wall, the admission centered, and more silence than any other act.
+       The script drops; the builder speaks plainly. */
+
+    .honesty {
+      background: #F3EEE6;
+      margin-top: var(--act-gap);
+    }
+    .honesty-inner {
+      max-width: 62rem;
+      margin: 0 auto;
+      padding: clamp(104px, 16vh, 184px) var(--gutter);
+    }
+
+    .honesty-head {
+      max-width: var(--measure);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .honesty-head .year-numeral {
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--slate);
+      opacity: 0.7;
+      margin-bottom: 14px;
+    }
+    .honesty-head h2 { font-size: clamp(40px, 5.4vw, 64px); margin-bottom: 0.4em; }
+    .honesty-head p { color: var(--slate); }
+
+    .compare-figure {
+      margin: clamp(48px, 8vh, 80px) auto 0;
+      max-width: 46rem;
+    }
+
+    .compare-state {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .compare-state [data-active="true"] { color: var(--navy); }
+    .compare-state [data-active="true"]::after {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-left: 8px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      vertical-align: 1px;
+    }
+
+    .compare {
+      --t: 0.5;
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--navy-deep);
+      touch-action: none; /* the handle owns the horizontal drag */
+      cursor: ew-resize;
+      user-select: none;
+    }
+    .compare img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .compare-after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: calc(100% - var(--t) * 100%);
+      overflow: hidden;
+    }
+    .compare-after img {
+      /* stays frame-sized so the picture never squashes */
+      width: auto;
+      min-width: 100%;
+      right: 0;
+      left: auto;
+      max-width: none;
+    }
+    .compare-rule {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(var(--t) * 100%);
+      width: 2px;
+      margin-left: -1px;
+      background: var(--white-stone);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+      pointer-events: none;
+    }
+    .compare-grip {
+      position: absolute;
+      top: 50%;
+      left: calc(var(--t) * 100%);
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--white-stone);
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      box-shadow: 0 6px 18px rgba(16, 28, 51, 0.35);
+      pointer-events: none;
+    }
+
+    /* The same control for keyboard and assistive tech */
+    .compare-range {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      accent-color: var(--terracotta);
+      cursor: ew-resize;
+    }
+
+    .compare-cap {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--slate);
+    }
+    .compare-cap strong { color: var(--navy); font-weight: 600; }
+
+    /* ---------- 04 OWNERSHIP ---------- */
+
+    .ownership h2 { font-size: clamp(34px, 4.6vw, 52px); margin-bottom: 0.4em; max-width: 12em; }
+    .ownership .lede { margin-bottom: clamp(28px, 5vh, 44px); }
+
+    .plan-figure {
+      max-width: 46rem;
+      margin-bottom: clamp(32px, 5vh, 52px);
+    }
+    .plan-figure img {
+      width: 100%;
+      background: var(--white-stone);
+      border: 1px solid rgba(27, 42, 74, 0.1);
+      padding: 16px 20px;
+    }
+    .plan-figure figcaption {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-align: center;
+    }
+
+    .own-claims {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: 1.4em 3em;
+      max-width: 46rem;
+      margin-bottom: clamp(48px, 8vh, 72px);
+    }
+    .own-claims h3 { font-size: clamp(21px, 2.4vw, 26px); margin-bottom: 0.2em; }
+    .own-claims p { color: var(--slate); }
+
+    .deal-figs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+      gap: 2.2em 2.5em;
+      max-width: 52rem;
+      padding-top: clamp(28px, 4vh, 40px);
+      border-top: 2px solid #D58A5B;
+    }
+    .deal-num {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(44px, 5.6vw, 72px);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .deal-fig--floor .deal-num { color: #C87A4A; }
+    .deal-lbl {
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .deal-note {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--slate);
+    }
+
+    /* ---------- 05 DECISION ---------- */
+
+    .decision {
+      background: var(--white-stone);
+      border-top: 1px solid rgba(27, 42, 74, 0.1);
+      margin-top: var(--act-gap);
+    }
+    .decision-inner {
+      max-width: 62rem;
+      margin: 0 auto;
+      padding: clamp(72px, 11vh, 128px) var(--gutter);
+    }
+
+    .decision h2 {
+      font-size: clamp(52px, 9vw, 104px);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.25em;
+      max-width: 9em;
+    }
+    .decision h2 em { color: var(--terracotta); font-style: italic; }
+    .decision .ask-lede {
+      font-size: clamp(16px, 1.7vw, 19px);
+      color: var(--slate);
+      max-width: 28em;
+    }
+
+    .ask-door {
+      margin-top: clamp(36px, 6vh, 56px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 46rem;
+    }
+    .walk-primary--door {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 84px;
+      padding: 26px 36px;
+      background: var(--terracotta);
+      color: var(--white-stone);
+      font-size: clamp(15px, 1.6vw, 18px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 22px 56px rgba(168, 94, 50, 0.35);
+      transition: background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+    }
+    .walk-primary--door:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 28px 64px rgba(168, 94, 50, 0.42);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .walk-primary--door,
+      .walk-primary--door:hover { transform: none; transition: background 300ms ease; }
+    }
+
+    .ask-door-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px 28px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(27, 42, 74, 0.12);
+    }
+    .count-line { font-size: 16px; color: var(--slate); }
+    .count-line strong {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--navy);
+    }
+    .walk-secondary {
+      display: inline-block;
+      padding: 4px 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+      white-space: nowrap;
+    }
+    .walk-secondary:hover { color: var(--terracotta-dark); border-color: var(--terracotta-dark); }
+
+    /* Write-first — a plain disclosure, in the reading flow */
+    .ask-alt {
+      margin-top: clamp(40px, 6vh, 64px);
+      max-width: 46rem;
+    }
+    .ask-alt > summary {
+      width: fit-content;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      list-style: none;
+      opacity: 0.85;
+    }
+    .ask-alt > summary::-webkit-details-marker { display: none; }
+    .ask-alt > summary::after { content: " +"; color: var(--terracotta); }
+    .ask-alt[open] > summary::after { content: " −"; }
+    .ask-alt[open] > summary { opacity: 1; }
+
+    .ask-alt-body {
+      margin-top: 18px;
+      padding: 22px 24px;
+      background: var(--parchment);
+      border: 1px solid rgba(27, 42, 74, 0.14);
+    }
+    .ask-alt .lede-alt {
+      font-size: 14px;
+      color: var(--slate);
+      margin-bottom: 16px;
+      max-width: 28em;
+    }
+    .fear-buttons { display: grid; gap: 8px; }
+    @media (min-width: 560px) {
+      .fear-buttons { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .fear-buttons .fear-btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    }
+    .fear-btn {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+      color: var(--navy);
+      background: var(--white-stone);
+      border: 1px solid var(--sandstone);
+      border-radius: 4px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color 300ms ease, background 300ms ease, color 300ms ease;
+    }
+    .fear-btn:hover { border-color: var(--terracotta); background: #FBF3EC; }
+    .fear-btn.selected {
+      border-color: var(--terracotta);
+      background: var(--terracotta);
+      color: var(--white-stone);
+    }
+    .fear-other { margin-top: 12px; }
+    .fear-other label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+    .fear-other textarea {
+      width: 100%;
+      min-height: 64px;
+      resize: vertical;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      color: var(--navy);
+      background: var(--white-stone);
+      border: 1.5px solid var(--sandstone);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .fear-other textarea:focus {
+      outline: 2px solid rgba(194, 112, 62, 0.4);
+      border-color: var(--terracotta);
+    }
+    .send-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .send-btn {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 12px 22px;
+      cursor: pointer;
+      border: none;
+      transition: background 300ms ease;
+    }
+    .send-btn.primary { background: var(--terracotta); color: var(--white-stone); }
+    .send-btn.primary:hover { background: var(--terracotta-dark); }
+    .send-btn.secondary { background: var(--navy); color: var(--white-stone); }
+    .send-btn.secondary:hover { background: var(--slate); }
+    .send-hint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--ash);
+      max-width: 28em;
+    }
+
+    .freedom-line {
+      margin-top: clamp(40px, 6vh, 64px);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--slate);
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- 01 PROMISE — place, claim, price. Nothing else. -->
+    <section class="act promise" aria-label="The promise — Riba-roja, Metro 9, Valencia">
+      <p class="act-mark">Act I · The promise</p>
+      <div class="promise-grid">
+        <div class="promise-copy">
+          <ol class="walk-place" aria-label="Riba-roja to Valencia on Metro Line 9">
+            <li>Riba-roja</li>
+            <li aria-hidden="true"><span class="rail"></span></li>
+            <li>
+              <span class="metro-mark">
+                <span class="metro-num">9</span>
+                Metro
+              </span>
+            </li>
+            <li aria-hidden="true"><span class="rail"></span></li>
+            <li>Valencia</li>
+          </ol>
+          <h1>Yours.
+            <span class="h1-service">Rentals managed.</span>
+          </h1>
+          <div class="promise-figures">
+            <p class="say-fig">From &euro;236k</p>
+            <p class="say-lbl">All-in at pre-sale</p>
+            <p class="say-sub">Ready in 2027</p>
+          </div>
+          <p class="promise-count">Ten apartments. <strong>Nine remain.</strong></p>
+          <nav class="promise-exits" aria-label="Skip ahead">
+            <a href="#deal">The deal</a>
+            <a href="#ask">The documents</a>
+          </nav>
+        </div>
+        <figure class="promise-cutaway">
+          <img src="assets/hero-cutaway-photoreal-v2.jpg"
+               alt="Cutaway 3D illustration of the Riba-roja building: three floors of apartments in section, a rooftop terrace with a pool, and covered parking at street level"
+               width="1024" height="683" fetchpriority="high" decoding="async">
+          <figcaption>The Riba-roja building, in section</figcaption>
+        </figure>
+      </div>
+      <p class="act-exit">Who is building this?</p>
+    </section>
+
+    <!-- 02 EVIDENCE — who is building this. Verifiable, outbound links. -->
+    <section class="act" aria-label="Evidence — who is building this">
+      <p class="act-mark">Act II · The evidence</p>
+      <div class="evidence-grid reveal">
+        <figure>
+          <img src="assets/uriel-onsite.jpg" alt="Uriel Nabel on site in a hard hat, smiling, hands on pallets of reclaimed roof tiles" loading="lazy" decoding="async">
+          <figcaption>On site &mdash; July 2026</figcaption>
+        </figure>
+        <div class="evidence-copy">
+          <h2>Uriel Nabel.</h2>
+          <ul class="proof-list">
+            <li>
+              <h3>Puzol &mdash; finished August 2025.</h3>
+              <p>A century-old house, fully rebuilt.</p>
+            </li>
+            <li>
+              <h3>Riba-roja &mdash; licensed.</h3>
+              <p><a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>, builder. <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a>, architect (COACV 11.357).</p>
+              <p><a class="verify-link" href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">Check his LinkedIn &#8599;</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="act-exit">So what&rsquo;s the catch?</p>
+    </section>
+
+    <!-- 03 HONESTY — the reversal. The admission answers "what's the catch?"
+         before the visitor finds it themselves. Staged bare, centered,
+         with more silence than any other act. -->
+    <section class="honesty" aria-label="Honesty — a short record">
+      <div class="honesty-inner">
+      <p class="act-mark">Act III · The honesty</p>
+      <header class="honesty-head reveal">
+        <p class="year-numeral">2026</p>
+        <h2>A short record.</h2>
+        <p>One completed renovation. Uriel left SAP in January; this is full-time now.</p>
+      </header>
+
+      <figure class="compare-figure reveal" id="compare-figure">
+        <div class="compare-state" aria-hidden="true">
+          <span data-cond="before" data-active="true">Before</span>
+          <span data-cond="after" data-active="false">After</span>
+        </div>
+        <div class="compare" id="compare">
+          <img src="assets/puzol-before.jpg" alt="The Puzol house before the renovation" width="1040" height="780" loading="lazy" decoding="async" draggable="false">
+          <div class="compare-after">
+            <img src="assets/puzol-after.jpg" alt="The same house after the renovation" width="1040" height="780" loading="lazy" decoding="async" draggable="false">
+          </div>
+          <span class="compare-rule" aria-hidden="true"></span>
+          <span class="compare-grip" aria-hidden="true">&#8596;</span>
+        </div>
+        <input class="compare-range" id="compare-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal the renovation: slide between before and after">
+        <figcaption class="compare-cap">
+          <strong>El Fort&iacute;n de Puzol.</strong> Century-old house, fully rebuilt. Completed August 2025. Drag to compare.
+        </figcaption>
+      </figure>
+      <p class="act-exit">Then what exactly is yours?</p>
+      </div>
+    </section>
+
+    <!-- 04 OWNERSHIP — deed, plan, and the deal's three numbers. -->
+    <section class="act ownership" id="deal" aria-label="Ownership and the deal">
+      <p class="act-mark">Act IV · The deal</p>
+      <div class="reveal">
+        <h2>Registered in your name.</h2>
+        <p class="lede">At Spain&rsquo;s Property Registry &mdash; a deed, not a fund share.</p>
+      </div>
+
+      <figure class="plan-figure reveal">
+        <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area" width="984" height="254" loading="lazy" decoding="async">
+        <figcaption>Entry apartment &middot; 40.4&nbsp;m&sup2; useful</figcaption>
+      </figure>
+
+      <div class="own-claims reveal">
+        <div>
+          <h3>Sell when you choose.</h3>
+          <p>Like any Spanish apartment.</p>
+        </div>
+        <div>
+          <h3>Rentals managed.</h3>
+          <p>El Fort&iacute;n runs the rentals; you hold the deed.</p>
+        </div>
+      </div>
+
+      <div class="deal-figs reveal">
+        <div class="deal-fig">
+          <p class="deal-num">&euro;236k</p>
+          <p class="deal-lbl">All-in at pre-sale</p>
+          <p class="deal-note">Costs and furniture included.</p>
+        </div>
+        <div class="deal-fig deal-fig--floor">
+          <p class="deal-num">4%</p>
+          <p class="deal-lbl">Contractual floor</p>
+          <p class="deal-note">Developer covenant, not bank-backed.</p>
+        </div>
+        <div class="deal-fig">
+          <p class="deal-num">&gt;7%</p>
+          <p class="deal-lbl">Blended net target</p>
+          <p class="deal-note">Target, not a promise.</p>
+        </div>
+      </div>
+      <p class="act-exit">How do you check any of this?</p>
+    </section>
+
+    <!-- 05 DECISION — documents first. One door, one alternative, one exit line. -->
+    <section class="decision" id="ask" aria-label="The decision — documents first">
+      <div class="decision-inner">
+        <p class="act-mark">Act V · The decision</p>
+        <h2>Documents <em>first.</em></h2>
+        <p class="ask-lede">Title. Licence. Valuation. Contract. We send them first.</p>
+
+        <div class="ask-door">
+          <a class="walk-primary--door" id="request-pack" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Request the pack</a>
+          <div class="ask-door-meta">
+            <p class="count-line"><strong>10 apartments.</strong> 1 sold. 9 available.</p>
+            <a class="walk-secondary" id="book-call" href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Book 15 minutes</a>
+          </div>
+        </div>
+
+        <details class="ask-alt" id="what-would-stop-you">
+          <summary>Prefer to write first?</summary>
+          <div class="ask-alt-body">
+            <p class="lede-alt">One question. The relevant document. No brochure.</p>
+            <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
+              <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
+              <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stops halfway</button>
+              <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% minimum is only on paper</button>
+              <button type="button" class="fear-btn" data-fear="show_me_documents">Show me the title and licence documents first</button>
+              <button type="button" class="fear-btn" data-fear="who_answers_after">Who actually answers, after I have paid?</button>
+            </div>
+            <div class="fear-other">
+              <label for="fear-text">Something else:</label>
+              <textarea id="fear-text" placeholder="Write your own question &mdash; hard questions are welcome."></textarea>
+            </div>
+            <div class="send-row">
+              <button type="button" class="send-btn primary" id="send-email">Send by email</button>
+              <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
+            </div>
+            <p class="send-hint">No mailing list. No sales sequence. Nothing published with your name.</p>
+          </div>
+        </details>
+
+        <p class="freedom-line">If the honest answer is &ldquo;this is not for you&rdquo; &mdash; we will say so.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+
+      /* ---------- Before/after: one explicit control, two inputs ---------- */
+
+      var compare = document.getElementById('compare');
+      var range = document.getElementById('compare-range');
+      var figure = document.getElementById('compare-figure');
+      var condBefore = document.querySelector('.compare-state [data-cond="before"]');
+      var condAfter = document.querySelector('.compare-state [data-cond="after"]');
+
+      function setT(t) {
+        t = Math.max(0, Math.min(1, t));
+        compare.style.setProperty('--t', t.toFixed(4));
+        range.value = String(Math.round(t * 100));
+        /* t is the boundary position from the left — the share of Before showing */
+        condBefore.setAttribute('data-active', t >= 0.5 ? 'true' : 'false');
+        condAfter.setAttribute('data-active', t < 0.5 ? 'true' : 'false');
+      }
+
+      range.addEventListener('input', function () {
+        setT(Number(range.value) / 100);
+      });
+
+      compare.addEventListener('pointerdown', function (e) {
+        compare.setPointerCapture(e.pointerId);
+        setT((e.clientX - compare.getBoundingClientRect().left) / compare.clientWidth);
+      });
+      compare.addEventListener('pointermove', function (e) {
+        if (!compare.hasPointerCapture || !compare.hasPointerCapture(e.pointerId)) return;
+        setT((e.clientX - compare.getBoundingClientRect().left) / compare.clientWidth);
+      });
+
+      setT(0.5);
+
+      /* ---------- Quiet entrances (skipped under reduced motion via CSS) ---------- */
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-on');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -10% 0px' });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      } else {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-on'); });
+      }
+    })();
+  </script>
+
+  <!-- Conversion — ported unchanged from v3; KPI remains cost per named fear -->
+  <script>
+    (function () {
+      var CONFIG = {
+        email: 'uriel.nabel@elfortincapital.com',
+        whatsapp: '34626459818'
+      };
+
+      function track(event, payload) {
+        payload = payload || {};
+        if (typeof gtag === 'function') {
+          gtag('event', event, payload);
+        } else {
+          window.dataLayer = window.dataLayer || [];
+          var row = { event: event };
+          Object.keys(payload).forEach(function (k) { row[k] = payload[k]; });
+          window.dataLayer.push(row);
+        }
+      }
+
+      var pack = document.getElementById('request-pack');
+      if (pack) {
+        pack.addEventListener('click', function () { track('request_pack_clicked'); });
+      }
+
+      var book = document.getElementById('book-call');
+      if (book) {
+        book.addEventListener('click', function () { track('book_call_clicked'); });
+      }
+
+      var selectedFear = null;
+      var fearButtons = document.querySelectorAll('.fear-btn');
+      var freeText = document.getElementById('fear-text');
+
+      fearButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          fearButtons.forEach(function (b) { b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          selectedFear = { id: btn.dataset.fear, label: btn.textContent.trim() };
+          track('fear_named', { fear: btn.dataset.fear });
+        });
+      });
+
+      function buildMessage() {
+        var parts = [];
+        if (selectedFear) parts.push('My question: ' + selectedFear.label);
+        var custom = freeText && freeText.value.trim();
+        if (custom) parts.push(custom);
+        if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
+        return parts.join('\n\n');
+      }
+
+      function fearId() {
+        if (selectedFear) return selectedFear.id;
+        if (freeText && freeText.value.trim()) return 'free_text';
+        return 'unspecified';
+      }
+
+      var sendEmail = document.getElementById('send-email');
+      if (sendEmail) {
+        sendEmail.addEventListener('click', function () {
+          track('fear_named', { fear: fearId(), channel: 'email' });
+          window.location.href = 'mailto:' + CONFIG.email
+            + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
+            + '&body=' + encodeURIComponent(buildMessage());
+        });
+      }
+
+      var sendWa = document.getElementById('send-whatsapp');
+      if (sendWa) {
+        sendWa.addEventListener('click', function () {
+          track('fear_named', { fear: fearId(), channel: 'whatsapp' });
+          window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
+        });
+      }
+
+      var alt = document.getElementById('what-would-stop-you');
+      if (alt) {
+        alt.addEventListener('toggle', function () {
+          if (alt.open) track('write_first_opened');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
