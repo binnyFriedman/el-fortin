@@ -22,9 +22,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Stage publish tree
+        run: |
+          mkdir -p publish/site
+          # Root landing + legal pages that historically lived on Pages
+          for f in index.html contact.html investor-relations.html legal-disclaimer.html privacy-policy.html terms-conditions.html project-fact-hub.html portfolio.html portfolio-brochure.html portfolio-brochure-outreach.html portfolio-brochure-sales.html flex-living-valencia.html flex-living-valencia-executive-briefing.html; do
+            [ -f "$f" ] && cp "$f" publish/
+          done
+          cp -R site/. publish/site/
+          touch publish/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: publish
       - id: deployment
         uses: actions/deploy-pages@v4
