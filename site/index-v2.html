@@ -22,7 +22,7 @@
   <!-- TODO: remove noindex at launch (page is unshippable while ⏳ placeholders remain) -->
   <meta name="robots" content="noindex, nofollow">
   <title>El Fortín — Fully managed apartments near Valencia</title>
-  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €197,370 all-in at pre-sale. Ready in 2027.">
+  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €236,141 all-in at pre-sale. Ready in 2027.">
 
   <!-- GA4 stub — TODO: set measurement ID (cost per named fear is the primary KPI)
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -161,6 +161,8 @@
     /* ---------- 1. Hero — one vertical reading path over cutaway ---------- */
     .hero {
       position: relative;
+      display: flex;
+      flex-direction: column;
       background-color: var(--parchment);
       background-image:
         linear-gradient(100deg,
@@ -179,7 +181,7 @@
       width: 100%;
       max-width: 760px;
       margin: 0;
-      padding: 56px 16px 64px;
+      padding: 56px 16px 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -187,11 +189,12 @@
     }
     .hero-place {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      gap: 10px 14px;
+      gap: 12px 20px;
+      box-sizing: border-box;
+      width: 100%;
       margin: 0;
-      padding: 0;
+      padding: 0 16px 48px;
       list-style: none;
       font-family: 'DM Serif Display', Georgia, serif;
       font-size: clamp(18px, 2.4vw, 22px);
@@ -201,27 +204,31 @@
     .hero-place > li {
       display: flex;
       align-items: center;
+      flex: none;
     }
     .hero-place-ride {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      flex: 1 1 auto;
+      min-width: 0;
     }
     .hero-place .rail {
-      width: 36px;
+      flex: 1 1 auto;
       height: 1.5px;
+      min-width: 48px;
       background: var(--terracotta);
       opacity: 0.75;
-      flex: none;
     }
     .hero-place .ride-chip {
       display: inline-flex;
       flex-direction: column;
       align-items: center;
       gap: 5px;
+      flex: none;
       line-height: 1;
     }
-    .hero-place .ride-time {
+    .hero-place .ride-dist {
       font-family: 'DM Serif Display', Georgia, serif;
       font-size: 1em;
       font-variant-numeric: tabular-nums;
@@ -1029,10 +1036,10 @@
         background-size: 120% auto;
       }
       .hero-stage {
-        min-height: calc(88vh - 64px);
+        min-height: calc(88vh - 64px - 88px);
         max-width: 640px;
         margin: 0;
-        padding: 72px 32px 80px 32px;
+        padding: 72px 32px 48px 32px;
         gap: 32px;
       }
       .hero h1 {
@@ -1048,6 +1055,10 @@
       .hero-deal-item .fig { font-size: 38px; }
       .hero-deal-item .lbl { margin-top: 16px; }
       .hero-qualify { font-size: 16px; }
+      .hero-place {
+        width: 100%;
+        padding: 0 32px 56px;
+      }
       .offer-grid {
         grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
         gap: 56px;
@@ -1132,8 +1143,11 @@
     @media (min-width: 1200px) {
       .hero-stage {
         max-width: 680px;
-        padding: 88px 32px 96px 48px;
+        padding: 88px 32px 56px 48px;
         margin-left: max(0px, calc((100vw - 1200px) / 2));
+      }
+      .hero-place {
+        padding: 0 max(32px, calc((100vw - 1200px) / 2)) 64px;
       }
       .hero h1 { font-size: 92px; }
       .hero-deal-item .fig { font-size: 40px; }
@@ -1149,36 +1163,36 @@
     </div>
   </nav>
 
-  <!-- 1. Hero — place+metro → ownership → management → price → timing -->
+  <!-- 1. Hero — ownership → management → price → timing; place+metro full-bleed bottom -->
   <header class="hero">
     <div class="hero-stage hero-flow">
-      <ol class="hero-place reveal" aria-label="Riba-roja to Valencia by Metro Line 9, about 35 minutes">
-        <li>Riba-roja</li>
-        <li class="hero-place-ride" aria-hidden="true">
-          <span class="rail"></span>
-          <span class="ride-chip">
-            <span class="ride-time">35&nbsp;min</span>
-            <span class="metro-mark">
-              <span class="metro-num">9</span>
-              Metro
-            </span>
-          </span>
-          <span class="rail"></span>
-        </li>
-        <li>Valencia</li>
-      </ol>
       <h1 class="reveal">
         Yours.
         <span class="hero-title-service">Rentals managed.</span>
       </h1>
       <dl class="hero-deal reveal">
         <div class="hero-deal-item">
-          <dd class="fig">From &euro;197k</dd>
+          <dd class="fig">From &euro;236k</dd>
           <dt class="lbl">All-in at pre-sale</dt>
         </div>
       </dl>
       <p class="hero-qualify reveal">Ready in 2027</p>
     </div>
+    <ol class="hero-place reveal" aria-label="Riba-roja to Valencia, about 20 km on Metro Line 9">
+      <li>Riba-roja</li>
+      <li class="hero-place-ride" aria-hidden="true">
+        <span class="rail"></span>
+        <span class="ride-chip">
+          <span class="ride-dist">20&nbsp;km</span>
+          <span class="metro-mark">
+            <span class="metro-num">9</span>
+            Metro
+          </span>
+        </span>
+        <span class="rail"></span>
+      </li>
+      <li>Valencia</li>
+    </ol>
   </header>
 
   <!-- 2. Competence — proof before explanation -->
@@ -1263,7 +1277,7 @@
       <dl class="numbers-summary reveal">
         <div class="summary-item">
           <dt>All-in from</dt>
-          <dd>&euro;197k</dd>
+          <dd>&euro;236k</dd>
           <p class="summary-note">Pre-sale. Purchase costs and furniture included.</p>
         </div>
         <div class="summary-item">
@@ -1279,10 +1293,12 @@
       </dl>
 
       <details class="deal-details reveal">
-        <summary>Exact figures and assumptions</summary>
-        <p>Entry apartment: &euro;197,370 all-in at pre-sale; &euro;229,384 at full valuation. The sale price is 15% below the independent valuation (&euro;190,557). Both all-in figures include purchase costs (~12%) and furniture.</p>
-        <p>Stress case: ~4.35% net with everything rented long-term. Income and costs are pooled across ten apartments and paid by each owner&rsquo;s share of capital.</p>
-        <p>The document pack lists occupancy, rent, management fees (8&ndash;15%), cleaning, utilities, maintenance, taxes, vacancy and downside scenarios. There is no bank guarantee on the 4% covenant or buyer payments before completion.</p>
+        <summary>Price, returns and risk</summary>
+        <p><strong>Price:</strong> &euro;236,141 all-in, including purchase costs and furniture.</p>
+        <p><strong>Stress case:</strong> ~4.35% net if every apartment is rented long-term.</p>
+        <p><strong>Shared model:</strong> Income and costs are pooled across ten apartments. Each owner&rsquo;s share is based on their invested capital.</p>
+        <p><strong>Full assumptions:</strong> The document pack covers income, costs, management fees (8&ndash;15%), vacancy and downside scenarios.</p>
+        <p><strong>Important risk:</strong> No bank guarantee covers the 4% covenant or buyer payments made before completion.</p>
       </details>
     </div>
   </section>

@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>El Fortín — The Walk (six rooms, one goal)</title>
-  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €197,370 all-in at pre-sale. Ready in 2027.">
+  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €236,141 all-in at pre-sale. Ready in 2027.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -43,32 +43,32 @@
 
       /* Camera */
       --lens: 1600px;          /* focal length */
-      --walk: 7900px;          /* distance between neighboring rooms — a long walk */
+      --walk: 10900px;         /* distance between neighboring rooms — a long walk */
       --dolly: 1.8s;
       --dolly-ease: cubic-bezier(0.66, 0, 0.16, 1);
 
       /*
-        Room volume: each room is a space, not a poster.
+        Room volume: each room is a shallow space, not a corridor.
         Content is staggered from the back wall to the station:
-        back wall (−2800) → word (−2400) → panel (0, reading plane)
+        back wall (−1250) → word (−1200) → panel (0, reading plane)
 
         Past the station lies the close-up zone: the visitor can push ~900px
         deeper while the content keeps coming closer, before the room lets go.
 
-        The back wall is monumentally oversized (8.9×) so it swallows the view
+        The back wall is monumentally oversized (7.7×) so it swallows the view
         early in the approach. When first revealed it stands far away —
         floating over the stage's own grid, so the journey shows drafting
         paper at every distance, never black.
       */
-      --room-depth: 2800px;
-      --back-scale: 8.9;
-      --word-depth: 2400px;
-      --word-scale: 2.5;       /* (1600 + 2400) / 1600 */
+      --room-depth: 1250px;
+      --back-scale: 7.7;
+      --word-depth: 1200px;
+      --word-scale: 1.75;      /* (1600 + 1200) / 1600 */
       --mesh-navy: rgba(27, 42, 74, 0.085);
       --mesh-light: rgba(253, 252, 250, 0.10);
       --mesh-size: 192px;
       --mesh-mult: 4;
-      --title-scale: 1.5;
+      --title-scale: 0.95;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -290,6 +290,7 @@
       transform: translateY(-50%) scale(var(--title-scale));
       transform-origin: right center;
     }
+    .frame-built .prop-say--low-left { top: 73%; }
 
     /* 03 HONEST — bare wall. The wipe is the admission.
        No mesh, no glow, no instrument chrome. */
@@ -354,34 +355,38 @@
        three figures stagger in depth (price → floor → target).
        No ledger chrome. Numbers stay evidentiary (P17). */
     .frame-deal {
-      --fill: #EDE7DD;
+      --fill: #E8EDF1;
+      --word-color: rgba(27, 42, 74, 0.1);
       --mesh-size: 0;
     }
     .frame-deal .wall {
       background:
-        /* the floor — a single horizon the whole room rests on */
-        linear-gradient(
-          180deg,
-          transparent 0%,
-          transparent calc(52% - 1px),
-          rgba(194, 112, 62, 0.55) calc(52% - 1px),
-          rgba(194, 112, 62, 0.55) calc(52% + 1px),
-          rgba(194, 112, 62, 0.08) calc(52% + 1px),
-          rgba(194, 112, 62, 0.14) 100%
-        ),
-        radial-gradient(90% 55% at 50% 18%, rgba(253, 252, 250, 0.55) 0%, transparent 60%),
+        radial-gradient(90% 70% at 58% 42%, rgba(212, 184, 150, 0.34) 0%, transparent 60%),
+        radial-gradient(75% 55% at 18% 86%, rgba(253, 252, 250, 0.5) 0%, transparent 52%),
         var(--fill);
-      box-shadow: inset 0 0 0 1px rgba(27, 42, 74, 0.04);
+      box-shadow: inset 0 0 0 1px rgba(27, 42, 74, 0.05);
+    }
+    .frame-deal .wall-word {
+      top: 46%;
+      left: 50%;
+      font-size: clamp(400px, 96vw, 1240px);
+      transform: translate(-50%, -50%) scale(var(--title-scale));
+      transform-origin: center center;
+    }
+    .deal-floor-line {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      transform:
+        translateZ(calc(var(--z) * -1px))
+        scale(calc((1600 + var(--z)) / 1600));
+      transform-origin: 50% 45%;
     }
     .frame-deal .wall-mesh { display: none; }
-    body[data-room="4"] .light--warm {
-      opacity: 1;
-      background:
-        radial-gradient(70% 45% at 50% 52%, rgba(194, 112, 62, 0.18) 0%, transparent 55%),
-        radial-gradient(90% 55% at 50% 108%, rgba(194, 112, 62, 0.2) 0%, transparent 52%);
-    }
     body[data-room="4"] .light--vignette {
-      box-shadow: inset 0 0 200px rgba(27, 42, 74, 0.22);
+      box-shadow: inset 0 0 160px rgba(27, 42, 74, 0.12);
     }
 
     /* 06 ASK — the end of the road. Warm field; the door is the composition. */
@@ -679,23 +684,6 @@
 
     /* Deal figures — float on the floor line. No cells.
        Depth order is the argument: price → floor → target. */
-    .deal-title {
-      left: 9%;
-      top: 14%;
-      width: auto;
-      max-width: none;
-      margin: 0;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(18px, 1.8vw, 22px);
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--slate);
-      opacity: 0.55;
-      transform-origin: left top;
-    }
-
     .prop-say.deal-fig {
       max-width: 16rem;
       color: var(--navy);
@@ -711,25 +699,25 @@
     }
     .deal-fig .deal-lbl {
       margin: 14px 0 0;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--slate);
-      opacity: 0.7;
+      color: var(--navy);
+      opacity: 0.78;
     }
     .deal-fig .deal-note {
-      margin: 8px 0 0;
-      max-width: 14em;
+      margin: 6px 0 0;
+      max-width: 16em;
       font-size: 14px;
-      line-height: 1.45;
+      line-height: 1.4;
       opacity: 0.68;
     }
 
     /* Price — first encounter, left, resting above the floor */
     .deal-fig--price {
       left: 10%;
-      top: 52%;
+      top: 72%;
       --oy: -100%;
       transform-origin: left bottom;
       padding-bottom: 22px;
@@ -738,7 +726,7 @@
     /* Floor — the beef. Number above the horizon; label below it. */
     .deal-fig--floor {
       left: 50%;
-      top: 52%;
+      top: 72%;
       --ox: -50%;
       --oy: 0%;
       text-align: center;
@@ -746,99 +734,38 @@
       transform-origin: center top;
     }
     .deal-fig--floor .deal-num {
-      margin-top: -0.92em;
-      color: var(--terracotta-dark);
+      margin-top: -0.68em; /* glyphs rest on the horizon, not across it */
+      color: #D58A5B;
     }
     .deal-fig--floor .deal-lbl {
-      margin-top: 20px;
+      margin-top: 38px; /* clears the line before the label starts */
       color: var(--navy);
-      opacity: 0.75;
+      opacity: 0.82;
     }
     .deal-fig--floor .deal-note {
+      margin-top: 12px;
       margin-left: auto;
       margin-right: auto;
-      opacity: 0.78;
+      max-width: 24em;
+      opacity: 0.6;
     }
 
     /* Target — quieter, right, above the floor; labeled not sold */
     .deal-fig--target {
       right: 10%;
       left: auto;
-      top: 52%;
+      top: 72%;
       --oy: -100%;
       transform-origin: right bottom;
       text-align: right;
       padding-bottom: 22px;
     }
     .deal-fig--target .deal-num {
-      opacity: 0.72;
+      opacity: 0.9;
     }
     .deal-fig--target .deal-note {
       margin-left: auto;
-      opacity: 0.58;
-    }
-
-    /* Lean-in — assumptions resolve past the station */
-    .deal-fine {
-      left: 10%;
-      right: 10%;
-      top: auto;
-      bottom: 18%;
-      width: auto;
-      max-width: none;
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.5;
-      letter-spacing: 0.01em;
-      color: var(--slate);
-      opacity: 0.65;
-      transform-origin: center center;
-    }
-    .deal-fine em {
-      font-style: normal;
-      color: var(--navy);
-      font-weight: 600;
-    }
-
-    .deal-forward {
-      left: 50%;
-      --ox: -50%;
-      top: auto;
-      bottom: 7%;
-      width: auto;
-      max-width: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      text-align: center;
-      transform-origin: center center;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--slate);
-    }
-    .deal-forward .fwd-hint {
-      font-family: 'Source Sans 3', sans-serif;
-      opacity: 0.85;
-    }
-    .deal-forward .fwd-mark {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 22px;
-      letter-spacing: 0;
-      line-height: 1;
-      color: var(--terracotta);
-      flex-shrink: 0;
-    }
-    body[data-room="4"] .deal-forward .fwd-mark {
-      animation: fwd-pulse 1.8s ease-in-out infinite;
-    }
-    @keyframes fwd-pulse {
-      0%, 100% { transform: translateX(0); opacity: 0.55; }
-      50% { transform: translateX(8px); opacity: 1; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      body[data-room="4"] .deal-forward .fwd-mark { animation: none; }
+      opacity: 0.62;
     }
 
     /* Ask — staged across the room. No card for the mandate.
@@ -1189,7 +1116,7 @@
         line-height: 1.05;
       }
       .frame-built .prop-say--low-left {
-        top: 44% !important;
+        top: 59% !important;
         bottom: auto !important;
         left: 6% !important;
         right: 6% !important;
@@ -1312,40 +1239,30 @@
         text-align: left !important;
         padding-bottom: 0 !important;
       }
-      .deal-title {
-        top: 6% !important;
-        bottom: auto !important;
-        font-size: 12px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        opacity: 0.55;
-      }
       .deal-fig--price {
         top: 14% !important;
         bottom: auto !important;
       }
       .deal-fig--floor {
-        top: 52% !important;
+        top: 72% !important;
         bottom: auto !important;
       }
       .deal-fig--floor .deal-num {
-        margin-top: -0.95em !important; /* number rests on the terracotta horizon */
+        margin-top: -1em !important; /* number ends at the floor line */
         line-height: 1;
       }
       .deal-fig--floor .deal-lbl {
-        margin-top: 16px !important;
+        margin-top: 14px !important;
       }
       .deal-fig--target {
         top: auto !important;
-        bottom: 10% !important;
+        bottom: 8% !important;
       }
       .deal-fig .deal-num { font-size: clamp(48px, 15vw, 64px); }
       .deal-fig .deal-lbl {
         margin-top: 8px;
       }
-      .deal-fig .deal-note,
-      .deal-fine,
-      .deal-forward {
+      .deal-fig .deal-note {
         display: none !important;
       }
 
@@ -1436,6 +1353,17 @@
         max-height: 50vh;
       }
 
+    }
+
+    @media (orientation: portrait) {
+      .frame .wall-word {
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translate(-50%, -50%) rotate(90deg) scale(var(--title-scale));
+        transform-origin: center center;
+      }
+      .frame-ask .wall-word { display: block; }
     }
 
     /* Coarse pointers: props never steal the walk gesture; only real controls do */
@@ -1634,7 +1562,7 @@
           </h2>
         </div>
         <div class="prop prop-say prop-say--right" data-depth="0" style="--z: 0">
-          <p class="say-fig">From &euro;197k</p>
+          <p class="say-fig">From &euro;236k</p>
           <p class="say-lbl">All-in at pre-sale</p>
           <p class="say-sub">Ready in 2027</p>
         </div>
@@ -1719,38 +1647,34 @@
 
       <!-- 05 THE DEAL — the floor line. Walk reveals price → floor → target.
            Wall horizon is the metaphor. Numbers stay evidentiary (P17).
-           Fine print leans in. Forward cue pulls into Ask. -->
+           Three figures, one qualifier each. Nothing else in the room. -->
       <section class="frame frame--light frame-deal" style="--i: 4" data-tone="light" aria-label="The deal — floor first, target labeled">
         <div class="wall"></div>
-
-        <p class="prop prop-say deal-title" data-depth="640" style="--z: 640">The deal</p>
+        <div class="prop prop-word" aria-hidden="true">
+          <p class="wall-word">DEAL</p>
+        </div>
+        <svg class="prop deal-floor-line" data-depth="240" style="--z: 240" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <rect x="0" y="71.75" width="100" height="0.5" fill="#D58A5B" fill-opacity="0.9"/>
+        </svg>
 
         <div class="prop prop-say deal-fig deal-fig--price" data-depth="420" style="--z: 420">
-          <p class="deal-num">&euro;197k</p>
+          <p class="deal-num">&euro;236k</p>
           <p class="deal-lbl">All-in at pre-sale</p>
-          <p class="deal-note">Purchase costs and furniture included.</p>
+          <p class="deal-note">Costs and furniture included.</p>
         </div>
 
         <div class="prop prop-say deal-fig deal-fig--floor" data-depth="180" style="--z: 180">
           <p class="deal-num">4%</p>
           <p class="deal-lbl">Contractual floor</p>
-          <p class="deal-note">Developer covenant. Not bank-backed.</p>
+          <p class="deal-note">Developer covenant, not bank-backed.</p>
         </div>
 
         <div class="prop prop-say deal-fig deal-fig--target" data-depth="60" style="--z: 60">
           <p class="deal-num">&gt;7%</p>
           <p class="deal-lbl">Blended net target</p>
-          <p class="deal-note">Holiday, mid-term and long-term. Target, not a promise.</p>
+          <p class="deal-note">Target, not a promise.</p>
         </div>
 
-        <p class="prop prop-say deal-fine" data-depth="-200" style="--z: -200">
-          Entry <em>&euro;197,370</em> all-in &middot; Stress case <em>~4.35% net</em> long-term &middot; Full assumptions in the pack.
-        </p>
-
-        <p class="prop prop-say deal-forward" data-depth="0" style="--z: 0">
-          <span class="fwd-hint">Title. Licence. Valuation. Contract.</span>
-          <span class="fwd-mark" aria-hidden="true">&rarr;</span>
-        </p>
       </section>
 
       <!-- 06 ASK — end of the road. Mandate fills the left; the pack is the door on the right.
@@ -1830,18 +1754,18 @@
 
       <div class="dev-row">
         <label for="p-walk">Walk / page start distance</label>
-        <input id="p-walk" type="range" min="1200" max="12000" step="100" value="7900">
-        <span class="dev-val" data-for="p-walk">7900px</span>
+        <input id="p-walk" type="range" min="1200" max="12000" step="100" value="10900">
+        <span class="dev-val" data-for="p-walk">10900px</span>
       </div>
       <div class="dev-row">
         <label for="p-title">Title size</label>
-        <input id="p-title" type="range" min="0.25" max="4" step="0.05" value="1.5">
-        <span class="dev-val" data-for="p-title">1.50×</span>
+        <input id="p-title" type="range" min="0.25" max="4" step="0.05" value="0.95">
+        <span class="dev-val" data-for="p-title">0.95×</span>
       </div>
       <div class="dev-row">
         <label for="p-back">Wall / bg scale</label>
-        <input id="p-back" type="range" min="1" max="12" step="0.1" value="8.9">
-        <span class="dev-val" data-for="p-back">8.9×</span>
+        <input id="p-back" type="range" min="1" max="12" step="0.1" value="7.7">
+        <span class="dev-val" data-for="p-back">7.7×</span>
       </div>
       <div class="dev-row">
         <label for="p-mesh">Grid size</label>
@@ -1850,8 +1774,8 @@
       </div>
       <div class="dev-row">
         <label for="p-depth">Room depth</label>
-        <input id="p-depth" type="range" min="400" max="2800" step="50" value="2800">
-        <span class="dev-val" data-for="p-depth">2800px</span>
+        <input id="p-depth" type="range" min="400" max="2800" step="50" value="1250">
+        <span class="dev-val" data-for="p-depth">1250px</span>
       </div>
       <div class="dev-row">
         <label for="p-word-depth">Title depth (in room)</label>
@@ -1860,23 +1784,23 @@
       </div>
       <div class="dev-row">
         <label for="p-gain">Wheel gain</label>
-        <input id="p-gain" type="range" min="0.4" max="6" step="0.1" value="5">
-        <span class="dev-val" data-for="p-gain">5.0</span>
+        <input id="p-gain" type="range" min="0.4" max="6" step="0.1" value="2.7">
+        <span class="dev-val" data-for="p-gain">2.7</span>
       </div>
       <div class="dev-row">
         <label for="p-touch-gain">Touch gain</label>
-        <input id="p-touch-gain" type="range" min="2" max="12" step="0.1" value="12">
-        <span class="dev-val" data-for="p-touch-gain">12.0</span>
+        <input id="p-touch-gain" type="range" min="2" max="12" step="0.1" value="6.3">
+        <span class="dev-val" data-for="p-touch-gain">6.3</span>
       </div>
       <div class="dev-row">
         <label for="p-smooth">Dolly weight</label>
-        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="1">
-        <span class="dev-val" data-for="p-smooth">1.0</span>
+        <input id="p-smooth" type="range" min="1" max="14" step="0.5" value="7.5">
+        <span class="dev-val" data-for="p-smooth">7.5</span>
       </div>
       <div class="dev-row">
         <label for="p-max-speed">Max dolly speed (rooms/s)</label>
-        <input id="p-max-speed" type="range" min="0.8" max="4" step="0.1" value="3.1">
-        <span class="dev-val" data-for="p-max-speed">3.1</span>
+        <input id="p-max-speed" type="range" min="0.8" max="4" step="0.1" value="3.7">
+        <span class="dev-val" data-for="p-max-speed">3.7</span>
       </div>
       <div class="dev-row">
         <label for="p-pass-start">Dissolve starts (from eye)</label>
@@ -1894,9 +1818,9 @@
         <span class="dev-val" data-for="p-rest-delay">0.00s</span>
       </div>
       <div class="dev-row">
-        <label for="p-gravity">Gravity (0 = off)</label>
-        <input id="p-gravity" type="range" min="0" max="12" step="0.25" value="1">
-        <span class="dev-val" data-for="p-gravity">1.00</span>
+        <label for="p-gravity">Intent pull (0 = off)</label>
+        <input id="p-gravity" type="range" min="0" max="12" step="0.25" value="8.25">
+        <span class="dev-val" data-for="p-gravity">8.25</span>
       </div>
 
     </div>
@@ -1910,20 +1834,20 @@
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       var DEFAULTS = {
-        walk: 7900,
-        title: 1.5,
-        back: 8.9,
+        walk: 10900,
+        title: 0.95,
+        back: 7.7,
         mesh: 4,
-        depth: 2800,
-        wordDepth: 2400,
-        gain: 5,         /* wheel only — discrete notches need amplification */
-        touchGain: 12,   /* one swipe carries a full room */
-        smooth: 1,       /* camera lerp rate (per s) — the dolly's weight */
+        depth: 1250,
+        wordDepth: 2400, /* clamped to depth - 50 — the wall word sits at the back */
+        gain: 2.7,       /* wheel only — discrete notches need amplification */
+        touchGain: 6.3,  /* one swipe carries a full room */
+        smooth: 7.5,     /* camera lerp rate (per s) — the dolly's weight */
         passStart: 60,   /* dissolve begins this close to the eye */
         passEnd: 60,     /* fully gone this close — you are through it */
         restDelay: 0,    /* idle time before the room pulls you in */
-        gravity: 1,      /* rest-pull rate (per s) — a glide, not a snap */
-        maxSpeed: 3.1    /* camera speed ceiling, in walks per second */
+        gravity: 8.25,   /* directional intent-pull rate (per s) */
+        maxSpeed: 3.7    /* camera speed ceiling, in walks per second */
       };
 
       /*
@@ -1932,7 +1856,8 @@
       */
       var WHEEL = {
         clampDelta: 160,  /* tame trackpad-momentum spikes per event */
-        lineHeight: 16    /* deltaMode LINE → px */
+        lineHeight: 16,   /* deltaMode LINE → px */
+        gestureGap: 140   /* quiet time that starts a new directional intent */
       };
 
       /*
@@ -1949,13 +1874,6 @@
         rubber: 0.2
       };
 
-      /*
-        Fraction of a walk that commits you to the next room. Idle settle is
-        directional: once past CAPTURE in the travel direction the theater
-        walks you in — it never yanks you back to the "nearest" room.
-      */
-      var CAPTURE = 0.18;
-
       /* Focal length — must match --lens. Distances are measured from the
          eye, which sits one lens-length in front of the z=0 plane. */
       var LENS = 1600;
@@ -1969,6 +1887,8 @@
       var frameLayers = [];
       var lastInput = 0;   /* timestamp of the last wheel gesture */
       var lastDir = 0;     /* direction of travel: +1 forward, -1 back */
+      var intentTarget = null;
+      var wheelGestureCommitted = false;
       var HONEST_ROOM = 2;
       var honestFigure = document.getElementById('honest-figure');
       var honestCompare = document.getElementById('honest-compare');
@@ -2173,30 +2093,28 @@
         revealEl.textContent = (apparent * 100).toFixed(0) + '% view';
       }
 
-      /*
-        The rest a position resolves to, honoring the direction of travel:
-        past CAPTURE of a walk you are committed to the room ahead; short of
-        it you drift back. Progress is never undone by the settle.
-      */
-      function directionalRest(pos, dir) {
+      /* Resolve one adjacent room from the camera's current position.
+         Direction alone decides; distance traveled never reverses intent. */
+      function directionalIntent(pos, dir) {
         var progress = pos / params.walk;
-        var room;
-        if (dir > 0) room = Math.ceil(progress - CAPTURE);
-        else if (dir < 0) room = Math.floor(progress + CAPTURE);
-        else room = Math.round(progress);
+        var epsilon = 0.000001;
+        var room = dir > 0
+          ? Math.floor(progress + epsilon) + 1
+          : Math.ceil(progress - epsilon) - 1;
         return clamp(room, 0, n - 1) * params.walk;
       }
 
-      /* Every station is a gravity well. While input is live nothing
-         interferes; once it pauses, the camera rolls into the well in the
-         direction of travel. */
+      /* Gravity serves an explicit destination only. It never chooses a
+         station and therefore cannot pull against the visitor's direction. */
       function applyGravity(now, dt) {
-        if (params.gravity <= 0) return;
+        if (params.gravity <= 0 || intentTarget == null) return;
         if (now - lastInput < params.restDelay * 1000) return;
-        var rest = directionalRest(target, lastDir);
         var pull = 1 - Math.exp(-params.gravity * dt);
-        target += (rest - target) * pull;
-        if (Math.abs(rest - target) < 0.5) target = rest;
+        target += (intentTarget - target) * pull;
+        if (Math.abs(intentTarget - target) < 0.5) {
+          target = intentTarget;
+          intentTarget = null;
+        }
       }
 
       function tick(now) {
@@ -2256,13 +2174,27 @@
 
       function advanceWheel(deltaY) {
         if (!deltaY) return;
-        lastInput = performance.now();
-        lastDir = deltaY > 0 ? 1 : -1;
+        var now = performance.now();
+        var direction = deltaY > 0 ? 1 : -1;
+        var newGesture = now - lastInput > WHEEL.gestureGap || direction !== lastDir;
+        if (newGesture) wheelGestureCommitted = false;
+        lastInput = now;
+        lastDir = direction;
 
         var delta = honestConsume(deltaY * params.gain);
         if (!delta) return;
 
+        if (!wheelGestureCommitted) {
+          intentTarget = directionalIntent(cam, direction);
+          wheelGestureCommitted = true;
+        } else if (intentTarget == null) {
+          return;
+        }
+
         target = clamp(target + delta, 0, maxCam());
+        target = direction > 0
+          ? Math.min(target, intentTarget)
+          : Math.max(target, intentTarget);
         /* The target may run at most one walk ahead of the camera, so a
            long fling still passes through every room instead of skipping. */
         target = clamp(target, cam - params.walk, cam + params.walk);
@@ -2270,6 +2202,7 @@
 
       function applyTouchDelta(dy) {
         if (!dy) return;
+        intentTarget = null;
         lastInput = performance.now();
         lastDir = dy > 0 ? 1 : -1;
 
@@ -2341,6 +2274,7 @@
         }
         touchY = e.touches[0].clientY;
         touchStartTarget = target;
+        intentTarget = null;
         touchDriving = false;
       }, { passive: true });
 
@@ -2383,6 +2317,7 @@
       }, { passive: true });
 
       function goToRoom(i) {
+        intentTarget = null;
         target = clamp(i, 0, n - 1) * params.walk;
         lastDir = 0;
         lastInput = performance.now();
@@ -2391,6 +2326,7 @@
       /* One key press = one whole beat: inside HONEST the first press
          completes the wipe, the next one leaves the room. */
       function step(dir) {
+        intentTarget = null;
         lastDir = dir;
         lastInput = performance.now();
 
@@ -2437,6 +2373,8 @@
 
       function setParam(key, value, preserveProgress) {
         var progress = maxCam() > 0 ? target / maxCam() : 0;
+        intentTarget = null;
+        wheelGestureCommitted = false;
         params[key] = value;
         applyCssParams();
         if (preserveProgress) {
@@ -2463,6 +2401,8 @@
       });
 
       document.getElementById('dev-reset').addEventListener('click', function () {
+        intentTarget = null;
+        wheelGestureCommitted = false;
         params = Object.assign({}, DEFAULTS);
         Object.keys(controlMap).forEach(function (id) {
           var input = document.getElementById(id);
