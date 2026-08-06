@@ -12,8 +12,8 @@
   [ ] 2-weeks/year personal-use claim (#owning) has a signed contract clause — see pitch-source-of-truth.md §9 and approved-claims.md; remove the .pending-signature note only once documented
   [ ] Investor platform claim (#owning) matches what will actually ship at launch — if the app isn't live yet, keep it worded as "coming" / "in development", never as a current feature
 
-  Also before launch: remove the robots noindex meta tag below, and set the GA4
-  measurement ID. CONFIG email/WhatsApp are set (U-Q15). Search this file for "TODO".
+  Also before launch: remove the robots noindex meta tag below, set the GA4
+  measurement ID and verify the contact email. Search this file for "TODO".
 -->
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@
   <title>El Fortín — Fully managed apartments near Valencia</title>
   <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €236,141 all-in at pre-sale. Ready in 2027.">
 
-  <!-- GA4 stub — TODO: set measurement ID (cost per named fear is the primary KPI)
+  <!-- GA4 stub — TODO: set measurement ID (document-pack requests are the primary KPI)
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -317,58 +317,18 @@
       max-width: 28em;
     }
 
-    /* ---------- Ownership beat ---------- */
-    #offer {
-      background: var(--white-stone);
-      padding: 72px 0;
+    /* ---------- Ownership beat inside the deal ---------- */
+    .deal-ownership {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 96px;
+      padding-top: 112px;
     }
-    .offer-grid {
-      display: grid;
-      gap: 36px;
-      align-items: center;
-    }
-    .offer-copy h2 {
-      margin-bottom: 24px;
-      max-width: 12em;
-    }
-    .ownership-heading {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(52px, 9vw, 80px);
-      font-weight: 400;
-      line-height: 0.95;
-      letter-spacing: -0.035em;
-    }
-    .offer-lede {
-      margin: 0 0 32px;
-      font-size: 17px;
-      line-height: 1.55;
-      color: var(--navy);
-      opacity: 0.72;
-      max-width: 32em;
-    }
-    .offer-facts {
-      list-style: none;
-      display: grid;
-      gap: 16px;
-      margin: 0;
-      padding: 0;
-    }
-    .offer-facts li {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--navy);
-      opacity: 0.78;
-    }
-    .offer-facts strong {
-      display: block;
-      margin-bottom: 2px;
-      color: var(--navy);
-      opacity: 1;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.01em;
+    .deal-ownership .offer-plan {
+      width: min(88%, 760px);
+      padding: 20px;
+      background: rgba(253, 252, 250, 0.88);
+      border: 1px solid rgba(27, 42, 74, 0.1);
     }
     .offer-media {
       margin: 0;
@@ -384,30 +344,88 @@
     .offer-plan img {
       object-fit: contain;
       background: var(--white-stone);
+      border: none;
     }
     .offer-media figcaption {
       margin-top: 10px;
     }
 
-    /* ---------- 2. Who's behind it ---------- */
+    /* ---------- 2. Built — competence as an architectural proof wall ---------- */
     .section-white { background: var(--white-stone); }
     .section-parchment { background: var(--parchment); }
-    .founder-grid { display: grid; gap: 32px; }
-    .founder-photo-slot { max-width: 320px; }
-    .founder-photo-slot img { width: 100%; border-radius: 0; display: block; border: 1px solid var(--linen); }
+    #who {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--white-stone);
+    }
+    #who::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(135deg, rgba(247, 244, 239, 0.7), transparent 46%);
+    }
+    .built-word {
+      position: absolute;
+      top: 96px;
+      right: -0.03em;
+      z-index: -1;
+      color: rgba(27, 42, 74, 0.035);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(108px, 22vw, 320px);
+      line-height: 0.78;
+      letter-spacing: -0.055em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .built-shell { position: relative; }
+    .built-kicker { margin-bottom: 64px; }
+    .founder-grid {
+      display: grid;
+      gap: 48px;
+      align-items: start;
+    }
+    .founder-photo-slot {
+      width: min(72vw, 320px);
+      margin: 0;
+    }
+    .founder-photo-slot figure { margin: 0; }
+    .founder-photo-slot img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border: 1px solid var(--linen);
+    }
     figure figcaption { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ash); margin-top: 8px; }
-    .bio-lead { font-size: 17px; line-height: 1.65; color: var(--navy); max-width: 42em; }
+    .bio-lead {
+      max-width: 48em;
+      padding: 0;
+      color: var(--navy);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    .builder-role {
+      margin-bottom: 16px;
+      color: var(--terracotta-dark);
+    }
     .builder-name {
-      margin-bottom: 34px;
-      font-size: clamp(42px, 7vw, 64px);
-      line-height: 0.95;
-      letter-spacing: -0.035em;
+      margin-bottom: 52px;
+      font-size: clamp(48px, 8vw, 76px);
+      line-height: 0.9;
+      letter-spacing: -0.045em;
+    }
+    .bio-proof-grid {
+      display: grid;
+      gap: 0;
+      max-width: 36em;
     }
     .bio-beat {
-      padding-top: 18px;
+      padding-top: 22px;
       border-top: 1px solid var(--sandstone);
     }
-    .bio-beat + .bio-beat { margin-top: 24px; }
+    .bio-beat + .bio-beat { margin-top: 28px; }
     .bio-beat h3 {
       margin-bottom: 8px;
       font-family: 'DM Serif Display', Georgia, serif;
@@ -417,7 +435,7 @@
       letter-spacing: -0.015em;
     }
     .bio-beat p { color: var(--slate); }
-    .bio-more { margin-top: 16px; }
+    .bio-more { margin-top: 32px; }
     .bio-more summary {
       font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
       color: var(--terracotta); cursor: pointer; list-style: none;
@@ -429,18 +447,44 @@
       margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--linen);
       font-size: 15px; line-height: 1.65; color: var(--slate);
     }
+    .puzol-proof {
+      margin-top: 120px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(27, 42, 74, 0.2);
+    }
+    .puzol-proof-header {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .puzol-proof-title {
+      max-width: 15em;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
     .puzol-pair {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 48px;
+      gap: 24px;
+      margin: 0;
+    }
+    .puzol-pair figure {
+      min-width: 0;
+      margin: 0;
     }
     .puzol-pair img {
       width: 100%;
       height: 260px;
       object-fit: cover;
       display: block;
-      border: 1px solid var(--sandstone);
+      border: 1px solid var(--linen);
+    }
+    .puzol-pair figcaption {
+      margin: 10px 0 0;
+      color: var(--slate);
     }
 
     /* ---------- 3. The pattern — two beats, one pull quote, move on ---------- */
@@ -458,12 +502,12 @@
     }
     .beat h3 { font-size: 19px; margin: 8px 0 10px; }
     .beat p { font-size: 17px; line-height: 1.6; color: var(--navy); opacity: 0.8; }
+    .beat p + p { margin-top: 12px; }
     @media (min-width: 720px) {
       .pattern-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
       .commitment-grid { grid-template-columns: 1fr; }
     }
 
-    #who .puzol-pair { margin-top: 64px; }
     .capital-basis {
       margin-top: 72px;
       padding-top: 48px;
@@ -484,20 +528,30 @@
     .numbers {
       position: relative;
       overflow: hidden;
-      background: var(--linen);
+      background: var(--white-stone);
       color: var(--navy);
     }
     .numbers::before {
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.3;
       pointer-events: none;
-      background-image:
-        linear-gradient(rgba(27, 42, 74, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(27, 42, 74, 0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+      background:
+        linear-gradient(145deg, rgba(232, 224, 213, 0.6), transparent 38%),
+        linear-gradient(to bottom, transparent 72%, rgba(232, 224, 213, 0.34));
+    }
+    .deal-word {
+      position: absolute;
+      top: 104px;
+      left: -0.04em;
+      z-index: 0;
+      color: rgba(27, 42, 74, 0.045);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(116px, 25vw, 380px);
+      line-height: 0.78;
+      letter-spacing: -0.055em;
+      pointer-events: none;
+      user-select: none;
     }
     .numbers .container { position: relative; z-index: 1; }
     .numbers-intro { max-width: 780px; }
@@ -771,42 +825,13 @@
       font-size: 14px;
       line-height: 1.55;
     }
-    .numbers details {
-      margin-top: 22px;
-      color: var(--slate);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .numbers details summary {
-      width: fit-content;
-      cursor: pointer;
-      color: var(--navy);
-      font-weight: 600;
-    }
-    .numbers details p { max-width: 68em; margin-top: 10px; }
-    .numbers .disclaimer {
-      margin-top: 28px;
-      color: var(--slate);
-      font-size: 12px;
-      font-style: italic;
-    }
-    .numbers-heading {
-      margin-bottom: 36px;
-      font-size: clamp(42px, 7vw, 64px);
-      line-height: 0.95;
-      letter-spacing: -0.035em;
-    }
     .numbers-summary {
       display: grid;
       margin: 0;
-      border-top: 1px solid rgba(27, 42, 74, 0.24);
-      border-bottom: 1px solid rgba(27, 42, 74, 0.24);
     }
     .summary-item {
-      padding: 26px 0;
-      border-bottom: 1px solid rgba(27, 42, 74, 0.12);
+      padding: 32px 0;
     }
-    .summary-item:last-child { border-bottom: none; }
     .summary-item dt {
       font-size: 10px;
       font-weight: 700;
@@ -815,7 +840,7 @@
       color: var(--slate);
     }
     .summary-item dd {
-      margin: 8px 0 0;
+      margin: 12px 0 0;
       font-family: 'DM Serif Display', Georgia, serif;
       font-size: clamp(46px, 10vw, 68px);
       line-height: 0.95;
@@ -830,9 +855,6 @@
       font-size: 13px;
       line-height: 1.45;
     }
-    .deal-details { margin-top: 28px; }
-    .deal-details p + p { margin-top: 10px; }
-
     .operating-stage.is-visible .rental-channel {
       animation: channel-in 520ms both;
     }
@@ -862,25 +884,14 @@
       }
     }
 
-    /* ---------- 7. Availability ---------- */
-    .availability-band {
-      padding: 30px 0;
-      background: var(--navy);
-      color: var(--white-stone);
-      text-align: center;
-    }
-    .availability-band p {
-      margin: 0;
-      font-size: 18px;
+    .availability-note {
+      margin-top: 64px;
+      color: var(--slate);
+      font-size: 13px;
       letter-spacing: 0.02em;
     }
-    .availability-band strong {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 24px;
-      font-weight: 400;
-    }
 
-    /* ---------- 8. CTA ---------- */
+    /* ---------- 7. CTA ---------- */
     .cta { background: var(--parchment); padding-top: 88px; padding-bottom: 96px; }
     .cta h2 { font-size: 36px; margin-bottom: 14px; line-height: 1.15; }
     .cta h2 em { color: var(--terracotta); }
@@ -928,80 +939,12 @@
       border-bottom: 1px solid var(--navy);
     }
     .booking-secondary:hover { color: var(--terracotta-dark); border-color: var(--terracotta-dark); }
-    .booking-action p { margin: 0; color: var(--ash); font-size: 13px; }
-    .cta-alt {
-      margin-top: 8px;
-      padding-top: 28px;
-      border-top: 1px solid var(--sandstone);
-    }
-    .cta-alt > summary {
-      width: fit-content;
-      cursor: pointer;
-      color: var(--navy);
-      font-size: 15px;
-      font-weight: 600;
-      list-style: none;
-    }
-    .cta-alt > summary::-webkit-details-marker { display: none; }
-    .cta-alt > summary::after { content: " +"; color: var(--terracotta); }
-    .cta-alt[open] > summary::after { content: " −"; }
-    .cta-alt-body { padding-top: 20px; }
-    .cta-alt .lede-alt {
-      color: var(--navy);
-      opacity: 0.65;
-      max-width: 34em;
-      margin-bottom: 24px;
-      font-size: 15px;
+    .cta-assurance {
+      max-width: 36em;
+      color: var(--slate);
+      font-size: 13px;
       line-height: 1.55;
     }
-    .cta-block { display: grid; gap: 28px; }
-    .fear-buttons { display: grid; gap: 10px; }
-    .fear-btn {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 16px; font-weight: 500; text-align: left;
-      color: var(--navy);
-      background: var(--white-stone);
-      border: 1px solid var(--sandstone);
-      border-radius: 4px;
-      padding: 14px 18px;
-      cursor: pointer;
-      transition: border-color 300ms ease, background 300ms ease, color 300ms ease;
-    }
-    .fear-btn:hover {
-      border-color: var(--terracotta);
-      background: #FBF3EC;
-    }
-    .fear-btn.selected {
-      border-color: var(--terracotta);
-      background: var(--terracotta);
-      color: var(--white-stone);
-    }
-    .fear-other { margin-top: 12px; }
-    .fear-other label { display: block; font-size: 13px; font-weight: 500; color: var(--slate); margin-bottom: 6px; }
-    .fear-other textarea {
-      width: 100%; min-height: 72px; resize: vertical;
-      font-family: 'Source Sans 3', sans-serif; font-size: 15px; color: var(--navy);
-      background: var(--white-stone);
-      border: 1.5px solid var(--sandstone); border-radius: 6px;
-      padding: 12px 16px;
-    }
-    .fear-other textarea:focus { outline: 2px solid rgba(194, 112, 62, 0.4); border-color: var(--terracotta); }
-    .send-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .send-btn {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
-      border-radius: 4px; padding: 14px 28px; cursor: pointer;
-      transition: background 300ms ease, color 300ms ease;
-    }
-    .send-btn.primary { background: var(--terracotta); color: var(--white-stone); border: none; }
-    .send-btn.primary:hover { background: var(--terracotta-dark); }
-    .send-btn.secondary {
-      background: var(--navy);
-      color: var(--white-stone);
-      border: none;
-    }
-    .send-btn.secondary:hover { background: var(--slate); }
-    .send-hint { font-size: 13px; color: var(--ash); margin-top: 10px; max-width: 28em; }
     .freedom-line { margin-top: 28px; font-size: 15px; font-style: italic; color: var(--slate); max-width: 32em; }
 
     /* ---------- Footer ---------- */
@@ -1023,6 +966,20 @@
             rgba(247, 244, 239, 0.88) 100%),
           url("assets/hero-cutaway-photoreal-v1.jpg");
       }
+      .built-word {
+        top: 96px;
+        right: -0.04em;
+      }
+      .deal-ownership {
+        margin-bottom: 88px;
+        padding-top: 104px;
+      }
+      .deal-ownership .offer-plan {
+        width: 100%;
+        padding: 12px;
+      }
+      .builder-name { margin-bottom: 42px; }
+      .puzol-proof { margin-top: 96px; }
       .puzol-pair { grid-template-columns: 1fr; }
       .puzol-pair img { height: 220px; }
     }
@@ -1059,13 +1016,26 @@
         width: 100%;
         padding: 0 32px 56px;
       }
-      .offer-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
-        gap: 56px;
+      .deal-ownership {
+        margin-bottom: 120px;
+        padding-top: 144px;
       }
+      .deal-word { top: 96px; }
       h2 { font-size: 38px; }
-      .founder-grid { grid-template-columns: 320px 1fr; align-items: start; }
-      .fear-buttons { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .built-kicker { margin-bottom: 88px; }
+      .founder-grid {
+        grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+        gap: clamp(72px, 10vw, 128px);
+        align-items: center;
+      }
+      .founder-photo-slot {
+        width: 100%;
+      }
+      .puzol-proof { margin-top: 160px; }
+      .puzol-proof-header {
+        max-width: 680px;
+        margin-bottom: 48px;
+      }
       .operating-stage {
         grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
@@ -1126,16 +1096,15 @@
         padding: 34px 0;
       }
       .numbers-summary {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1.35fr repeat(2, minmax(0, 1fr));
       }
       .summary-item {
         min-width: 0;
-        padding: 30px 28px;
-        border-right: 1px solid rgba(27, 42, 74, 0.12);
-        border-bottom: none;
+        padding: 36px 32px;
       }
       .summary-item:first-child { padding-left: 0; }
-      .summary-item:last-child { padding-right: 0; border-right: none; }
+      .summary-item:first-child dd { font-size: 80px; }
+      .summary-item:last-child { padding-right: 0; }
       .letter { padding: 48px 48px 52px; }
       .puzol-pair img { height: 340px; }
     }
@@ -1195,9 +1164,11 @@
     </ol>
   </header>
 
-  <!-- 2. Competence — proof before explanation -->
+  <!-- 2. BUILT — the v3 proof wall translated into a scroll-native section -->
   <section class="section-parchment" id="who">
-    <div class="container flow">
+    <span class="built-word" aria-hidden="true">BUILT</span>
+    <div class="container flow built-shell">
+      <p class="eyebrow built-kicker reveal">Who is building this</p>
       <div class="founder-grid reveal">
         <div class="founder-photo-slot">
           <figure>
@@ -1206,15 +1177,17 @@
           </figure>
         </div>
         <div class="bio-lead">
-          <p class="eyebrow">Developer and operator</p>
+          <p class="eyebrow builder-role">Developer and operator</p>
           <h2 class="builder-name">Uriel Nabel.</h2>
-          <div class="bio-beat">
-            <h3>Puzol &mdash; finished August 2025.</h3>
-            <p>A century-old house, fully rebuilt.</p>
-          </div>
-          <div class="bio-beat">
-            <h3>Riba-roja &mdash; licensed.</h3>
-            <p><a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>, builder. <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a>, architect (COACV 11.357).</p>
+          <div class="bio-proof-grid">
+            <div class="bio-beat">
+              <h3>Puzol &mdash; finished.</h3>
+              <p>A century-old house, fully rebuilt in August 2025.</p>
+            </div>
+            <div class="bio-beat">
+              <h3>Riba-roja &mdash; licensed.</h3>
+              <p><a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>, builder. <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a>, architect (COACV 11.357).</p>
+            </div>
           </div>
           <details class="bio-more">
             <summary>Full background</summary>
@@ -1225,54 +1198,35 @@
           </details>
         </div>
       </div>
-      <div class="puzol-pair reveal">
-        <figure>
-          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol before renovation — stripped room with arched doorway and peeling walls">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; before</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; finished August 2025</figcaption>
-        </figure>
+      <div class="puzol-proof reveal">
+        <div class="puzol-proof-header">
+          <p class="eyebrow">The finished proof</p>
+          <h3 class="puzol-proof-title">One restoration.<br>Before and after.</h3>
+        </div>
+        <div class="puzol-pair">
+          <figure>
+            <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol before renovation — stripped room with arched doorway and peeling walls">
+            <figcaption>El Fort&iacute;n de Puzol &mdash; before</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
+            <figcaption>Finished &mdash; August 2025</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. Candor — competence has been shown; now name the operator risk -->
-  <section id="letter">
-    <div class="container viewport-beat flow">
-      <p class="eyebrow reveal">The honest limit</p>
-      <h2 class="reveal">A short record.</h2>
-      <div class="pattern-grid commitment-grid reveal">
-        <article class="beat">
-          <p class="beat-year">2026</p>
-          <p>El Fort&iacute;n has one completed renovation &mdash; not a long operating record. Uriel left SAP in January; this is now his full-time work.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Ownership — the legal object, without repeating the operating model -->
-  <section id="offer">
-    <div class="container offer-grid flow">
-      <div class="offer-copy reveal">
-        <h2 class="ownership-heading">Yours</h2>
-        <ul class="offer-facts">
-          <li>Registered in your name at Spain&rsquo;s Property Registry.</li>
-          <li>Sell when you choose.</li>
-        </ul>
-      </div>
-      <figure class="offer-media offer-plan reveal">
-        <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area">
-        <figcaption>Entry apartment &middot; 40.4&nbsp;m&sup2; useful</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 6. Operating model -->
+  <!-- 3. The deal — floor plan and economics, with YOURS as the proof-wall word -->
   <section class="numbers" id="the-numbers">
+    <span class="deal-word" aria-hidden="true">YOURS</span>
     <div class="container flow">
-      <h2 class="numbers-heading reveal">The deal.</h2>
+      <div class="deal-ownership reveal">
+        <figure class="offer-media offer-plan">
+          <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area">
+          <figcaption>Entry apartment &middot; 40.4&nbsp;m&sup2; useful &middot; registered in your name</figcaption>
+        </figure>
+      </div>
 
       <dl class="numbers-summary reveal">
         <div class="summary-item">
@@ -1291,62 +1245,41 @@
           <p class="summary-note">Holiday, mid-term and long-term. Target, not a promise.</p>
         </div>
       </dl>
-
-      <details class="deal-details reveal">
-        <summary>Price, returns and risk</summary>
-        <p><strong>Price:</strong> &euro;236,141 all-in, including purchase costs and furniture.</p>
-        <p><strong>Stress case:</strong> ~4.35% net if every apartment is rented long-term.</p>
-        <p><strong>Shared model:</strong> Income and costs are pooled across ten apartments. Each owner&rsquo;s share is based on their invested capital.</p>
-        <p><strong>Full assumptions:</strong> The document pack covers income, costs, management fees (8&ndash;15%), vacancy and downside scenarios.</p>
-        <p><strong>Important risk:</strong> No bank guarantee covers the 4% covenant or buyer payments made before completion.</p>
-      </details>
+      <p class="availability-note reveal">Current availability: 9 of 10 apartments. Updated August 2026.</p>
     </div>
   </section>
 
-  <!-- 7. Credible scarcity — one count, once -->
-  <section class="availability-band">
-    <div class="container reveal">
-      <p><strong>10 apartments.</strong> 1 sold. 9 available.</p>
+  <!-- 4. Candor — material limits before the ask -->
+  <section id="letter">
+    <div class="container viewport-beat flow">
+      <p class="eyebrow reveal">The honest limit</p>
+      <h2 class="reveal">What the headline numbers do not say.</h2>
+      <div class="pattern-grid commitment-grid reveal">
+        <article class="beat">
+          <p class="beat-year">2026</p>
+          <h3>A short record.</h3>
+          <p>El Fort&iacute;n has one completed renovation &mdash; not a long operating record. Uriel left SAP in January; this is now his full-time work.</p>
+        </article>
+        <article class="beat">
+          <p class="beat-year">4.35%</p>
+          <h3>Long-term stress case.</h3>
+          <p>This assumes every apartment is rented long-term. Income and costs are pooled across ten apartments; each owner&rsquo;s share follows their invested capital.</p>
+          <p>No bank guarantee covers the 4% covenant or buyer payments made before completion.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- 8. Conversion — book a call (primary); written question (secondary) -->
+  <!-- 5. Conversion — inspect evidence first; conversation remains optional -->
   <section class="cta" id="book">
     <div class="container narrow viewport-beat flow">
-      <h2 class="cta-display reveal">Documents<em>first.</em></h2>
-      <p class="lede reveal">Title. Licence. Valuation. Contract. We send them first.</p>
+      <h2 class="cta-display reveal">Inspect<em>the deal.</em></h2>
+      <p class="lede reveal">Receive the title, licence, valuation, contract and financial assumptions. Review them before deciding whether a conversation is worthwhile.</p>
       <div class="booking-action reveal">
-        <a class="booking-primary" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Request the pack</a>
-        <a class="booking-secondary" id="book-call" href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Book 15 minutes</a>
+        <a class="booking-primary" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Send me the document pack</a>
+        <a class="booking-secondary" href="mailto:uriel.nabel@elfortincapital.com?subject=One%20question%20about%20El%20Fort%C3%ADn">Ask Uriel one question</a>
       </div>
-
-      <details class="cta-alt reveal" id="what-would-stop-you">
-        <summary>Prefer to write first?</summary>
-        <div class="cta-alt-body">
-          <p class="lede-alt">One question. The relevant document. No brochure.</p>
-          <div class="cta-block">
-          <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
-            <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
-            <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stops halfway</button>
-            <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% minimum is only on paper</button>
-            <button type="button" class="fear-btn" data-fear="show_me_documents">Show me the title and licence documents first</button>
-            <button type="button" class="fear-btn" data-fear="who_answers_after">Who actually answers, after I have paid?</button>
-          </div>
-
-          <div class="fear-other">
-            <label for="fear-text">Something else:</label>
-            <textarea id="fear-text" placeholder="Write your own question &mdash; hard questions are welcome."></textarea>
-          </div>
-
-          <div class="send-row">
-            <button type="button" class="send-btn primary" id="send-email">Send by email</button>
-            <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
-          </div>
-          <p class="send-hint">No mailing list. No sales sequence. Nothing published with your name.</p>
-        </div>
-        </div>
-      </details>
-
+      <p class="cta-assurance reveal">No mailing list. No sales sequence. The documents come before any call.</p>
       <p class="freedom-line reveal">If the honest answer is &ldquo;this is not for you&rdquo; &mdash; we will say so.</p>
     </div>
   </section>
@@ -1360,68 +1293,6 @@
   </footer>
 
   <script>
-    // CONFIG — U-Q15: Uriel's lead endpoints
-    var CONFIG = {
-      email: 'uriel.nabel@elfortincapital.com',
-      whatsapp: '34626459818' // +34 626 45 98 18
-    };
-
-    document.getElementById('book-call').addEventListener('click', function () {
-      if (typeof gtag === 'function') {
-        gtag('event', 'book_call_clicked');
-      } else {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'book_call_clicked' });
-      }
-    });
-
-    // Written questions are a secondary conversion for visitors not ready to book.
-    function trackFearNamed(fear, channel) {
-      var payload = { event: 'fear_named', fear: fear, channel: channel || null };
-      if (typeof gtag === 'function') {
-        gtag('event', 'fear_named', { fear: fear, channel: channel || undefined });
-      } else {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push(payload);
-      }
-    }
-
-    var selectedFear = null;
-    var fearButtons = document.querySelectorAll('.fear-btn');
-    var freeText = document.getElementById('fear-text');
-
-    fearButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        fearButtons.forEach(function (b) { b.classList.remove('selected'); });
-        btn.classList.add('selected');
-        selectedFear = { id: btn.dataset.fear, label: btn.textContent.trim() };
-        trackFearNamed(btn.dataset.fear);
-      });
-    });
-
-    function buildMessage() {
-      var parts = [];
-      if (selectedFear) parts.push('My question: ' + selectedFear.label);
-      var custom = freeText.value.trim();
-      if (custom) parts.push(custom);
-      if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
-      return parts.join('\n\n');
-    }
-
-    document.getElementById('send-email').addEventListener('click', function () {
-      var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
-      trackFearNamed(fearId, 'email');
-      window.location.href = 'mailto:' + CONFIG.email
-        + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
-        + '&body=' + encodeURIComponent(buildMessage());
-    });
-
-    document.getElementById('send-whatsapp').addEventListener('click', function () {
-      var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
-      trackFearNamed(fearId, 'whatsapp');
-      window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
-    });
-
     // Design temporal flow — staggered scroll reveals (style-guide § micro-interactions)
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var heroReveals = document.querySelectorAll('.hero-flow .reveal');
