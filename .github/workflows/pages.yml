@@ -1,0 +1,47 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage publish tree
+        run: |
+          mkdir -p publish/assets
+          cp site/index-v4-empty-stage.html publish/index.html
+          cp site/index-v2.html publish/v2.html
+          for asset in \
+            logo.png \
+            hero-cutaway-photoreal-v1.jpg \
+            hero-cutaway-photoreal-v2.jpg \
+            render-type-a-cropped.jpg \
+            uriel-onsite.jpg \
+            puzol-before.jpg \
+            puzol-after.jpg \
+            puzol-after-interior.webp; do
+            cp "site/assets/$asset" "publish/assets/$asset"
+          done
+          touch publish/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: publish
+      - id: deployment
+        uses: actions/deploy-pages@v4

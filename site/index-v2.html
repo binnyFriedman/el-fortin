@@ -12,8 +12,8 @@
   [ ] 2-weeks/year personal-use claim (#owning) has a signed contract clause — see pitch-source-of-truth.md §9 and approved-claims.md; remove the .pending-signature note only once documented
   [ ] Investor platform claim (#owning) matches what will actually ship at launch — if the app isn't live yet, keep it worded as "coming" / "in development", never as a current feature
 
-  Also before launch: remove the robots noindex meta tag below, and set the GA4
-  measurement ID. CONFIG email/WhatsApp are set (U-Q15). Search this file for "TODO".
+  Also before launch: remove the robots noindex meta tag below, set the GA4
+  measurement ID and verify the contact email. Search this file for "TODO".
 -->
 <html lang="en">
 <head>
@@ -22,9 +22,9 @@
   <!-- TODO: remove noindex at launch (page is unshippable while ⏳ placeholders remain) -->
   <meta name="robots" content="noindex, nofollow">
   <title>El Fortín — Fully managed apartments near Valencia</title>
-  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €197,370 all-in at pre-sale. Ready in 2027.">
+  <meta name="description" content="Own an apartment near Valencia while El Fortín manages the rentals. From €236,141 all-in at pre-sale. Ready in 2027.">
 
-  <!-- GA4 stub — TODO: set measurement ID (cost per named fear is the primary KPI)
+  <!-- GA4 stub — TODO: set measurement ID (document-pack requests are the primary KPI)
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -37,9 +37,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-
   <style>
     :root {
       --navy: #1B2A4A;
@@ -164,6 +161,8 @@
     /* ---------- 1. Hero — one vertical reading path over cutaway ---------- */
     .hero {
       position: relative;
+      display: flex;
+      flex-direction: column;
       background-color: var(--parchment);
       background-image:
         linear-gradient(100deg,
@@ -178,37 +177,88 @@
       background-size: 145% auto;
       padding: 0;
     }
-    .hero-render-cue {
-      position: absolute;
-      right: 16px;
-      bottom: 14px;
-      margin: 0;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.35;
-      z-index: 1;
-    }
     .hero-stage {
       width: 100%;
       max-width: 760px;
       margin: 0;
-      padding: 56px 16px 64px;
+      padding: 56px 16px 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 28px;
     }
-    .hero-eyebrow {
+    .hero-place {
+      display: flex;
+      align-items: center;
+      gap: 12px 20px;
+      box-sizing: border-box;
+      width: 100%;
       margin: 0;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      padding: 0 16px 48px;
+      list-style: none;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1;
       color: var(--navy);
-      opacity: 0.5;
+    }
+    .hero-place > li {
+      display: flex;
+      align-items: center;
+      flex: none;
+    }
+    .hero-place-ride {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .hero-place .rail {
+      flex: 1 1 auto;
+      height: 1.5px;
+      min-width: 48px;
+      background: var(--terracotta);
+      opacity: 0.75;
+    }
+    .hero-place .ride-chip {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      flex: none;
+      line-height: 1;
+    }
+    .hero-place .ride-dist {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1em;
+      font-variant-numeric: tabular-nums;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+    .hero-place .metro-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Source Sans 3', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .hero-place .metro-num {
+      display: grid;
+      place-items: center;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 1.5px solid var(--terracotta);
+      border-radius: 50%;
+      color: var(--terracotta);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1;
     }
     .hero h1 {
       font-size: 36px;
@@ -267,51 +317,18 @@
       max-width: 28em;
     }
 
-    /* ---------- Ownership beat ---------- */
-    #offer {
-      background: var(--white-stone);
-      padding: 72px 0;
+    /* ---------- Ownership beat inside the deal ---------- */
+    .deal-ownership {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 96px;
+      padding-top: 112px;
     }
-    .offer-grid {
-      display: grid;
-      gap: 36px;
-      align-items: center;
-    }
-    .offer-copy h2 {
-      margin-bottom: 14px;
-      max-width: 12em;
-    }
-    .offer-lede {
-      margin: 0 0 28px;
-      font-size: 17px;
-      line-height: 1.55;
-      color: var(--navy);
-      opacity: 0.72;
-      max-width: 32em;
-    }
-    .offer-facts {
-      list-style: none;
-      display: grid;
-      gap: 16px;
-      margin: 0;
-      padding: 0;
-    }
-    .offer-facts li {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--navy);
-      opacity: 0.78;
-    }
-    .offer-facts strong {
-      display: block;
-      margin-bottom: 2px;
-      color: var(--navy);
-      opacity: 1;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.01em;
+    .deal-ownership .offer-plan {
+      width: min(88%, 760px);
+      padding: 20px;
+      background: rgba(253, 252, 250, 0.88);
+      border: 1px solid rgba(27, 42, 74, 0.1);
     }
     .offer-media {
       margin: 0;
@@ -327,28 +344,98 @@
     .offer-plan img {
       object-fit: contain;
       background: var(--white-stone);
+      border: none;
     }
     .offer-media figcaption {
       margin-top: 10px;
     }
 
-    /* ---------- 2. Who's behind it ---------- */
+    /* ---------- 2. Built — competence as an architectural proof wall ---------- */
     .section-white { background: var(--white-stone); }
     .section-parchment { background: var(--parchment); }
-    .founder-grid { display: grid; gap: 32px; }
-    .founder-photo-slot { max-width: 320px; }
-    .founder-photo-slot img { width: 100%; border-radius: 0; display: block; border: 1px solid var(--linen); }
-    figure figcaption { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ash); margin-top: 8px; }
-    .bio-lead { font-size: 17px; line-height: 1.65; color: var(--navy); opacity: 0.78; max-width: 42em; }
-    .bio-beat + .bio-beat { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--linen); }
-    .bio-beat h3 {
-      margin-bottom: 6px;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+    #who {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--white-stone);
     }
-    .bio-more { margin-top: 16px; }
+    #who::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(135deg, rgba(247, 244, 239, 0.7), transparent 46%);
+    }
+    .built-word {
+      position: absolute;
+      top: 96px;
+      right: -0.03em;
+      z-index: -1;
+      color: rgba(27, 42, 74, 0.035);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(108px, 22vw, 320px);
+      line-height: 0.78;
+      letter-spacing: -0.055em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .built-shell { position: relative; }
+    .built-kicker { margin-bottom: 64px; }
+    .founder-grid {
+      display: grid;
+      gap: 48px;
+      align-items: start;
+    }
+    .founder-photo-slot {
+      width: min(72vw, 320px);
+      margin: 0;
+    }
+    .founder-photo-slot figure { margin: 0; }
+    .founder-photo-slot img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border: 1px solid var(--linen);
+    }
+    figure figcaption { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ash); margin-top: 8px; }
+    .bio-lead {
+      max-width: 48em;
+      padding: 0;
+      color: var(--navy);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    .builder-role {
+      margin-bottom: 16px;
+      color: var(--terracotta-dark);
+    }
+    .builder-name {
+      margin-bottom: 52px;
+      font-size: clamp(48px, 8vw, 76px);
+      line-height: 0.9;
+      letter-spacing: -0.045em;
+    }
+    .bio-proof-grid {
+      display: grid;
+      gap: 0;
+      max-width: 36em;
+    }
+    .bio-beat {
+      padding-top: 22px;
+      border-top: 1px solid var(--sandstone);
+    }
+    .bio-beat + .bio-beat { margin-top: 28px; }
+    .bio-beat h3 {
+      margin-bottom: 8px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+    }
+    .bio-beat p { color: var(--slate); }
+    .bio-more { margin-top: 32px; }
     .bio-more summary {
       font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
       color: var(--terracotta); cursor: pointer; list-style: none;
@@ -360,18 +447,44 @@
       margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--linen);
       font-size: 15px; line-height: 1.65; color: var(--slate);
     }
+    .puzol-proof {
+      margin-top: 120px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(27, 42, 74, 0.2);
+    }
+    .puzol-proof-header {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .puzol-proof-title {
+      max-width: 15em;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
     .puzol-pair {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 48px;
+      gap: 24px;
+      margin: 0;
+    }
+    .puzol-pair figure {
+      min-width: 0;
+      margin: 0;
     }
     .puzol-pair img {
       width: 100%;
       height: 260px;
       object-fit: cover;
       display: block;
-      border: 1px solid var(--sandstone);
+      border: 1px solid var(--linen);
+    }
+    .puzol-pair figcaption {
+      margin: 10px 0 0;
+      color: var(--slate);
     }
 
     /* ---------- 3. The pattern — two beats, one pull quote, move on ---------- */
@@ -389,12 +502,12 @@
     }
     .beat h3 { font-size: 19px; margin: 8px 0 10px; }
     .beat p { font-size: 17px; line-height: 1.6; color: var(--navy); opacity: 0.8; }
+    .beat p + p { margin-top: 12px; }
     @media (min-width: 720px) {
       .pattern-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
       .commitment-grid { grid-template-columns: 1fr; }
     }
 
-    #who .puzol-pair { margin-top: 64px; }
     .capital-basis {
       margin-top: 72px;
       padding-top: 48px;
@@ -405,147 +518,60 @@
       padding-top: 8px;
     }
 
-    /* ---------- 5. Town — map = place; demand facts breathe below ---------- */
-    #town {
-      position: relative;
-      padding: 0;
-      background: var(--map-paper);
-      overflow: visible;
-    }
-    .town-stage {
-      position: relative;
-      min-height: 520px;
-    }
-    .town-stage #metro-map {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      background: var(--map-paper);
-      z-index: 0;
-    }
-    .town-stage .leaflet-tile-pane { filter: sepia(0.18) saturate(0.85) brightness(1.01); }
-    .town-stage .station-dot {
-      background: var(--white-stone);
-      border: 2px solid var(--navy);
-      border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(253,252,250,0.8);
-    }
-    .town-stage .city-origin {
-      border-width: 3px;
-      box-shadow: 0 0 0 2px rgba(253,252,250,0.9);
-    }
-    .town-stage .building-marker {
-      background: var(--terracotta);
-      border: 2px solid var(--white-stone);
-      border-radius: 50%;
-      box-shadow: 0 1px 6px rgba(27,42,74,0.4);
-    }
-    .town-stage .leaflet-tooltip {
-      font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 600;
-      color: var(--navy); background: var(--white-stone);
-      border: 1px solid var(--sandstone); border-radius: 3px;
-      box-shadow: none; padding: 2px 7px;
-    }
-    .town-overlay {
-      position: relative; z-index: 2;
-      padding: 40px 16px 48px;
-      pointer-events: none;
-    }
-    .town-overlay .container { pointer-events: none; }
-    .town-orient {
-      pointer-events: auto;
-      max-width: 28em;
-      padding: 0;
-    }
-    .town-orient .eyebrow { color: var(--navy); opacity: 0.5; margin-bottom: 8px; }
-    .town-orient h2 { margin-bottom: 12px; font-size: 26px; }
-    .town-intro {
-      color: var(--navy);
-      opacity: 0.72;
-      font-size: 15px;
-      line-height: 1.55;
-      margin: 0;
-    }
-    .town-intro + .town-intro { margin-top: 10px; }
-    .town-sources {
-      margin-top: 16px;
-      font-size: 12px;
-      color: var(--navy);
-      opacity: 0.5;
-    }
     .verify-link {
       color: var(--navy); font-weight: 600;
       text-decoration: underline; text-underline-offset: 2px;
     }
     .verify-link:hover { color: var(--terracotta-dark); }
-    .town-demand {
-      background: var(--map-paper);
-      padding: 40px 0 48px;
-    }
-    .town-demand .eyebrow { margin-bottom: 8px; }
-    .town-demand h3 {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.25;
-      margin-bottom: 8px;
-      max-width: 18em;
-    }
-    .town-metrics {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      border-top: 1px solid var(--sandstone);
-      border-bottom: 1px solid var(--sandstone);
-      max-width: 920px;
-    }
-    .town-metric {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--linen);
-    }
-    .town-metric:last-child { border-bottom: none; }
-    .town-metric .fig {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 26px;
-      line-height: 1.1;
-      color: var(--navy);
-      margin: 0;
-      font-variant-numeric: tabular-nums;
-    }
-    .town-metric .lbl {
-      margin-top: 6px;
-      font-size: 13px;
-      color: var(--navy);
-      opacity: 0.62;
-      line-height: 1.4;
-      max-width: 22em;
-    }
 
     /* ---------- 6. Numbers — the operating model, shown rather than argued ---------- */
     .numbers {
       position: relative;
       overflow: hidden;
-      background: var(--linen);
+      background: var(--white-stone);
       color: var(--navy);
     }
     .numbers::before {
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.3;
       pointer-events: none;
-      background-image:
-        linear-gradient(rgba(27, 42, 74, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(27, 42, 74, 0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+      background:
+        linear-gradient(145deg, rgba(232, 224, 213, 0.6), transparent 38%),
+        linear-gradient(to bottom, transparent 72%, rgba(232, 224, 213, 0.34));
+    }
+    .deal-word {
+      position: absolute;
+      top: 104px;
+      left: -0.04em;
+      z-index: 0;
+      color: rgba(27, 42, 74, 0.045);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(116px, 25vw, 380px);
+      line-height: 0.78;
+      letter-spacing: -0.055em;
+      pointer-events: none;
+      user-select: none;
     }
     .numbers .container { position: relative; z-index: 1; }
     .numbers-intro { max-width: 780px; }
     .numbers-intro h2 {
       max-width: 12em;
-      margin-bottom: 20px;
-      font-size: 42px;
-      line-height: 1.04;
+      margin-bottom: 28px;
+    }
+    .numbers-intro .data-heading {
+      margin-bottom: 24px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(48px, 8vw, 76px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      text-transform: none;
+    }
+    .numbers-intro .data-heading .count {
+      display: inline;
+      margin-right: 0.14em;
+      color: var(--terracotta);
     }
     .numbers-lede {
       max-width: 42em;
@@ -665,7 +691,7 @@
       justify-content: center;
       margin: 0;
       font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(78px, 20vw, 118px);
+      font-size: clamp(58px, 12vw, 76px);
       line-height: 1;
       color: var(--navy);
     }
@@ -799,26 +825,36 @@
       font-size: 14px;
       line-height: 1.55;
     }
-    .numbers details {
-      margin-top: 22px;
+    .numbers-summary {
+      display: grid;
+      margin: 0;
+    }
+    .summary-item {
+      padding: 32px 0;
+    }
+    .summary-item dt {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .summary-item dd {
+      margin: 12px 0 0;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(46px, 10vw, 68px);
+      line-height: 0.95;
+      color: var(--navy);
+      font-variant-numeric: tabular-nums;
+    }
+    .summary-item:first-child dd { color: var(--terracotta-dark); }
+    .summary-note {
+      max-width: 22em;
+      margin-top: 12px;
       color: var(--slate);
       font-size: 13px;
-      line-height: 1.55;
+      line-height: 1.45;
     }
-    .numbers details summary {
-      width: fit-content;
-      cursor: pointer;
-      color: var(--navy);
-      font-weight: 600;
-    }
-    .numbers details p { max-width: 68em; margin-top: 10px; }
-    .numbers .disclaimer {
-      margin-top: 28px;
-      color: var(--slate);
-      font-size: 12px;
-      font-style: italic;
-    }
-
     .operating-stage.is-visible .rental-channel {
       animation: channel-in 520ms both;
     }
@@ -848,28 +884,28 @@
       }
     }
 
-    /* ---------- 7. Availability ---------- */
-    .availability-band {
-      padding: 30px 0;
-      background: var(--navy);
-      color: var(--white-stone);
-      text-align: center;
-    }
-    .availability-band p {
-      margin: 0;
-      font-size: 18px;
+    .availability-note {
+      margin-top: 64px;
+      color: var(--slate);
+      font-size: 13px;
       letter-spacing: 0.02em;
     }
-    .availability-band strong {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 24px;
-      font-weight: 400;
-    }
 
-    /* ---------- 8. CTA ---------- */
+    /* ---------- 7. CTA ---------- */
     .cta { background: var(--parchment); padding-top: 88px; padding-bottom: 96px; }
     .cta h2 { font-size: 36px; margin-bottom: 14px; line-height: 1.15; }
     .cta h2 em { color: var(--terracotta); }
+    .cta h2.cta-display {
+      margin-bottom: 28px;
+      font-size: clamp(58px, 11vw, 112px);
+      line-height: 0.84;
+      letter-spacing: -0.045em;
+    }
+    .cta h2.cta-display em {
+      display: block;
+      margin-top: 0.12em;
+      margin-left: 0.7em;
+    }
     .cta .lede { color: var(--navy); opacity: 0.72; max-width: 34em; margin-bottom: 28px; font-size: 17px; line-height: 1.55; }
     .booking-action {
       display: flex;
@@ -891,80 +927,24 @@
       transition: background 300ms ease;
     }
     .booking-primary:hover { background: var(--terracotta-dark); }
-    .booking-action p { margin: 0; color: var(--ash); font-size: 13px; }
-    .cta-alt {
-      margin-top: 8px;
-      padding-top: 28px;
-      border-top: 1px solid var(--sandstone);
-    }
-    .cta-alt > summary {
-      width: fit-content;
-      cursor: pointer;
+    .booking-secondary {
+      display: inline-block;
+      padding: 14px 0;
       color: var(--navy);
-      font-size: 15px;
-      font-weight: 600;
-      list-style: none;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
     }
-    .cta-alt > summary::-webkit-details-marker { display: none; }
-    .cta-alt > summary::after { content: " +"; color: var(--terracotta); }
-    .cta-alt[open] > summary::after { content: " −"; }
-    .cta-alt-body { padding-top: 20px; }
-    .cta-alt .lede-alt {
-      color: var(--navy);
-      opacity: 0.65;
-      max-width: 34em;
-      margin-bottom: 24px;
-      font-size: 15px;
+    .booking-secondary:hover { color: var(--terracotta-dark); border-color: var(--terracotta-dark); }
+    .cta-assurance {
+      max-width: 36em;
+      color: var(--slate);
+      font-size: 13px;
       line-height: 1.55;
     }
-    .cta-block { display: grid; gap: 28px; }
-    .fear-buttons { display: grid; gap: 10px; }
-    .fear-btn {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 16px; font-weight: 500; text-align: left;
-      color: var(--navy);
-      background: var(--white-stone);
-      border: 1px solid var(--sandstone);
-      border-radius: 4px;
-      padding: 14px 18px;
-      cursor: pointer;
-      transition: border-color 300ms ease, background 300ms ease, color 300ms ease;
-    }
-    .fear-btn:hover {
-      border-color: var(--terracotta);
-      background: #FBF3EC;
-    }
-    .fear-btn.selected {
-      border-color: var(--terracotta);
-      background: var(--terracotta);
-      color: var(--white-stone);
-    }
-    .fear-other { margin-top: 12px; }
-    .fear-other label { display: block; font-size: 13px; font-weight: 500; color: var(--slate); margin-bottom: 6px; }
-    .fear-other textarea {
-      width: 100%; min-height: 72px; resize: vertical;
-      font-family: 'Source Sans 3', sans-serif; font-size: 15px; color: var(--navy);
-      background: var(--white-stone);
-      border: 1.5px solid var(--sandstone); border-radius: 6px;
-      padding: 12px 16px;
-    }
-    .fear-other textarea:focus { outline: 2px solid rgba(194, 112, 62, 0.4); border-color: var(--terracotta); }
-    .send-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .send-btn {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 14px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
-      border-radius: 4px; padding: 14px 28px; cursor: pointer;
-      transition: background 300ms ease, color 300ms ease;
-    }
-    .send-btn.primary { background: var(--terracotta); color: var(--white-stone); border: none; }
-    .send-btn.primary:hover { background: var(--terracotta-dark); }
-    .send-btn.secondary {
-      background: var(--navy);
-      color: var(--white-stone);
-      border: none;
-    }
-    .send-btn.secondary:hover { background: var(--slate); }
-    .send-hint { font-size: 13px; color: var(--ash); margin-top: 10px; max-width: 28em; }
     .freedom-line { margin-top: 28px; font-size: 15px; font-style: italic; color: var(--slate); max-width: 32em; }
 
     /* ---------- Footer ---------- */
@@ -986,17 +966,22 @@
             rgba(247, 244, 239, 0.88) 100%),
           url("assets/hero-cutaway-photoreal-v1.jpg");
       }
-      .hero-render-cue {
-        right: 12px;
-        bottom: 10px;
-        font-size: 9px;
+      .built-word {
+        top: 96px;
+        right: -0.04em;
       }
+      .deal-ownership {
+        margin-bottom: 88px;
+        padding-top: 104px;
+      }
+      .deal-ownership .offer-plan {
+        width: 100%;
+        padding: 12px;
+      }
+      .builder-name { margin-bottom: 42px; }
+      .puzol-proof { margin-top: 96px; }
       .puzol-pair { grid-template-columns: 1fr; }
       .puzol-pair img { height: 220px; }
-      /* Stack intro above the map — text never sits on the tiles */
-      .town-stage { min-height: 0; display: flex; flex-direction: column; }
-      .town-stage #metro-map { position: relative; inset: auto; height: 340px; flex: none; }
-      .town-overlay { order: -1; padding: 48px 16px 24px; pointer-events: auto; }
     }
 
     /* ---------- Desktop ---------- */
@@ -1008,16 +993,17 @@
         background-size: 120% auto;
       }
       .hero-stage {
-        min-height: calc(88vh - 64px);
+        min-height: calc(88vh - 64px - 88px);
         max-width: 640px;
         margin: 0;
-        padding: 72px 32px 80px 32px;
+        padding: 72px 32px 48px 32px;
         gap: 32px;
       }
       .hero h1 {
-        font-size: 54px;
-        max-width: 10.5em;
-        line-height: 1.06;
+        font-size: clamp(68px, 7.2vw, 92px);
+        max-width: 8.2em;
+        line-height: 0.93;
+        letter-spacing: -0.035em;
       }
       .hero-deal {
         gap: 28px 56px;
@@ -1026,33 +1012,30 @@
       .hero-deal-item .fig { font-size: 38px; }
       .hero-deal-item .lbl { margin-top: 16px; }
       .hero-qualify { font-size: 16px; }
-      .offer-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
-        gap: 56px;
+      .hero-place {
+        width: 100%;
+        padding: 0 32px 56px;
       }
+      .deal-ownership {
+        margin-bottom: 120px;
+        padding-top: 144px;
+      }
+      .deal-word { top: 96px; }
       h2 { font-size: 38px; }
-      .cta h2 { font-size: 42px; }
-      .founder-grid { grid-template-columns: 320px 1fr; align-items: start; }
-      .town-stage { min-height: 692px; }
-      .town-overlay { padding: 56px 32px 80px; }
-      .town-orient h2 { font-size: 32px; }
-      .town-demand {
-        padding: 48px 0 64px;
-        border-top: 1px solid rgba(212, 184, 150, 0.6);
+      .built-kicker { margin-bottom: 88px; }
+      .founder-grid {
+        grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+        gap: clamp(72px, 10vw, 128px);
+        align-items: center;
       }
-      .town-demand h3 { font-size: 24px; margin-bottom: 8px; max-width: none; }
-      .town-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 56px;
-        max-width: 720px;
+      .founder-photo-slot {
+        width: 100%;
       }
-      .town-metric {
-        padding: 20px 0;
-        border-bottom: none;
+      .puzol-proof { margin-top: 160px; }
+      .puzol-proof-header {
+        max-width: 680px;
+        margin-bottom: 48px;
       }
-      .town-metric .fig { font-size: 32px; }
-      .fear-buttons { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .numbers-intro h2 { font-size: 42px; }
       .operating-stage {
         grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
@@ -1094,7 +1077,7 @@
         width: max-content;
         max-width: 100%;
       }
-      .return-figure { font-size: clamp(96px, 9.5vw, 126px); }
+      .return-figure { font-size: 76px; }
       .entry-basis {
         padding: 36px 40px;
       }
@@ -1112,6 +1095,16 @@
         align-items: center;
         padding: 34px 0;
       }
+      .numbers-summary {
+        grid-template-columns: 1.35fr repeat(2, minmax(0, 1fr));
+      }
+      .summary-item {
+        min-width: 0;
+        padding: 36px 32px;
+      }
+      .summary-item:first-child { padding-left: 0; }
+      .summary-item:first-child dd { font-size: 80px; }
+      .summary-item:last-child { padding-right: 0; }
       .letter { padding: 48px 48px 52px; }
       .puzol-pair img { height: 340px; }
     }
@@ -1119,10 +1112,13 @@
     @media (min-width: 1200px) {
       .hero-stage {
         max-width: 680px;
-        padding: 88px 32px 96px 48px;
+        padding: 88px 32px 56px 48px;
         margin-left: max(0px, calc((100vw - 1200px) / 2));
       }
-      .hero h1 { font-size: 58px; }
+      .hero-place {
+        padding: 0 max(32px, calc((100vw - 1200px) / 2)) 64px;
+      }
+      .hero h1 { font-size: 92px; }
       .hero-deal-item .fig { font-size: 40px; }
     }
   </style>
@@ -1132,49 +1128,66 @@
   <nav class="nav">
     <div class="container">
       <img src="assets/logo.png" alt="El Fortín">
-      <a class="nav-cta" href="#book">Book 15 minutes</a>
+      <a class="nav-cta" href="#book">See the documents</a>
     </div>
   </nav>
 
-  <!-- 1. Hero — place → ownership → management → price → timing -->
+  <!-- 1. Hero — ownership → management → price → timing; place+metro full-bleed bottom -->
   <header class="hero">
     <div class="hero-stage hero-flow">
-      <p class="hero-eyebrow reveal">Riba-roja de T&uacute;ria &middot; Valencia</p>
       <h1 class="reveal">
-        Own an apartment near Valencia.
-        <span class="hero-title-service">We manage the rentals.</span>
+        Yours.
+        <span class="hero-title-service">Rentals managed.</span>
       </h1>
       <dl class="hero-deal reveal">
         <div class="hero-deal-item">
-          <dd class="fig">From &euro;197k</dd>
+          <dd class="fig">From &euro;236k</dd>
           <dt class="lbl">All-in at pre-sale</dt>
         </div>
       </dl>
       <p class="hero-qualify reveal">Ready in 2027</p>
     </div>
-    <p class="hero-render-cue">Render &mdash; illustrative</p>
+    <ol class="hero-place reveal" aria-label="Riba-roja to Valencia, about 20 km on Metro Line 9">
+      <li>Riba-roja</li>
+      <li class="hero-place-ride" aria-hidden="true">
+        <span class="rail"></span>
+        <span class="ride-chip">
+          <span class="ride-dist">20&nbsp;km</span>
+          <span class="metro-mark">
+            <span class="metro-num">9</span>
+            Metro
+          </span>
+        </span>
+        <span class="rail"></span>
+      </li>
+      <li>Valencia</li>
+    </ol>
   </header>
 
-  <!-- 2. Competence — proof before explanation -->
+  <!-- 2. BUILT — the v3 proof wall translated into a scroll-native section -->
   <section class="section-parchment" id="who">
-    <div class="container flow">
-      <p class="eyebrow reveal">The builder</p>
-      <h2 class="reveal">One project finished.<br>The next is licensed.</h2>
+    <span class="built-word" aria-hidden="true">BUILT</span>
+    <div class="container flow built-shell">
+      <p class="eyebrow built-kicker reveal">Who is building this</p>
       <div class="founder-grid reveal">
         <div class="founder-photo-slot">
           <figure>
             <img src="assets/uriel-onsite.jpg" alt="Uriel Nabel on site in a hard hat, smiling, hands on pallets of reclaimed roof tiles">
-            <figcaption>Uriel, on site &mdash; July 2026</figcaption>
+            <figcaption>On site &mdash; July 2026</figcaption>
           </figure>
         </div>
         <div class="bio-lead">
-          <div class="bio-beat">
-            <h3>El Fort&iacute;n de Puzol &mdash; delivered.</h3>
-            <p>A century-old house, emptied and fully rebuilt. Finished August 2025.</p>
-          </div>
-          <div class="bio-beat">
-            <h3>Riba-roja &mdash; project two.</h3>
-            <p>Builder: <a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>. Architect: <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a> (COACV 11.357). Building licence issued.</p>
+          <p class="eyebrow builder-role">Developer and operator</p>
+          <h2 class="builder-name">Uriel Nabel.</h2>
+          <div class="bio-proof-grid">
+            <div class="bio-beat">
+              <h3>Puzol &mdash; finished.</h3>
+              <p>A century-old house, fully rebuilt in August 2025.</p>
+            </div>
+            <div class="bio-beat">
+              <h3>Riba-roja &mdash; licensed.</h3>
+              <p><a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>, builder. <a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a>, architect (COACV 11.357).</p>
+            </div>
           </div>
           <details class="bio-more">
             <summary>Full background</summary>
@@ -1185,239 +1198,88 @@
           </details>
         </div>
       </div>
-      <div class="puzol-pair reveal">
-        <figure>
-          <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol before renovation — stripped room with arched doorway and peeling walls">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; before</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
-          <figcaption>El Fort&iacute;n de Puzol &mdash; finished August 2025</figcaption>
-        </figure>
+      <div class="puzol-proof reveal">
+        <div class="puzol-proof-header">
+          <p class="eyebrow">The finished proof</p>
+          <h3 class="puzol-proof-title">One restoration.<br>Before and after.</h3>
+        </div>
+        <div class="puzol-pair">
+          <figure>
+            <img src="assets/puzol-before.jpg" alt="El Fortín de Puzol before renovation — stripped room with arched doorway and peeling walls">
+            <figcaption>El Fort&iacute;n de Puzol &mdash; before</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/puzol-after.jpg" alt="El Fortín de Puzol finished entryway — wood floor, sconces, white door">
+            <figcaption>Finished &mdash; August 2025</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. Commitment — one personal reason to trust the operator -->
+  <!-- 3. The deal — floor plan and economics, with YOURS as the proof-wall word -->
+  <section class="numbers" id="the-numbers">
+    <span class="deal-word" aria-hidden="true">YOURS</span>
+    <div class="container flow">
+      <div class="deal-ownership reveal">
+        <figure class="offer-media offer-plan">
+          <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area">
+          <figcaption>Entry apartment &middot; 40.4&nbsp;m&sup2; useful &middot; registered in your name</figcaption>
+        </figure>
+      </div>
+
+      <dl class="numbers-summary reveal">
+        <div class="summary-item">
+          <dt>All-in from</dt>
+          <dd>&euro;236k</dd>
+          <p class="summary-note">Pre-sale. Purchase costs and furniture included.</p>
+        </div>
+        <div class="summary-item">
+          <dt>Contractual floor</dt>
+          <dd>4%</dd>
+          <p class="summary-note">Developer covenant. Not bank-backed.</p>
+        </div>
+        <div class="summary-item">
+          <dt>Blended net target</dt>
+          <dd>&gt;7%</dd>
+          <p class="summary-note">Holiday, mid-term and long-term. Target, not a promise.</p>
+        </div>
+      </dl>
+      <p class="availability-note reveal">Current availability: 9 of 10 apartments. Updated August 2026.</p>
+    </div>
+  </section>
+
+  <!-- 4. Candor — material limits before the ask -->
   <section id="letter">
     <div class="container viewport-beat flow">
-      <p class="eyebrow reveal">Why him, why now</p>
-      <h2 class="reveal">El Fort&iacute;n is now his full-time work.</h2>
+      <p class="eyebrow reveal">The honest limit</p>
+      <h2 class="reveal">What the headline numbers do not say.</h2>
       <div class="pattern-grid commitment-grid reveal">
         <article class="beat">
           <p class="beat-year">2026</p>
-          <p>Uriel left SAP in January. He now builds and operates the Riba-roja apartments under his own name.</p>
+          <h3>A short record.</h3>
+          <p>El Fort&iacute;n has one completed renovation &mdash; not a long operating record. Uriel left SAP in January; this is now his full-time work.</p>
+        </article>
+        <article class="beat">
+          <p class="beat-year">4.35%</p>
+          <h3>Long-term stress case.</h3>
+          <p>This assumes every apartment is rented long-term. Income and costs are pooled across ten apartments; each owner&rsquo;s share follows their invested capital.</p>
+          <p>No bank guarantee covers the 4% covenant or buyer payments made before completion.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 4. Place — map answers "where" alone -->
-  <section id="town">
-    <div class="town-stage">
-      <div id="metro-map" aria-label="Map: Metrovalencia Line 9 from Valencia city centre to the building in Riba-roja de Túria"></div>
-      <div class="town-overlay">
-        <div class="container">
-          <div class="town-orient reveal">
-            <p class="eyebrow">Why Riba-roja</p>
-            <h2>A working town on Metro Line&nbsp;9.</h2>
-            <p class="town-intro">Outside Valencia city. Connected to it.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Demand proof — long-term first; sources stay quiet -->
-    <div class="town-demand">
-      <div class="container flow">
-        <p class="eyebrow reveal">The rental market</p>
-        <h3 class="reveal">Long-term demand is the base.</h3>
-        <dl class="town-metrics reveal">
-          <div class="town-metric">
-            <dd class="fig">32&ndash;38</dd>
-            <dt class="lbl">enquiries per listing in Valencia metro towns</dt>
-          </div>
-          <div class="town-metric">
-            <dd class="fig">~&euro;16/m&sup2;</dd>
-            <dt class="lbl">asking rent for new furnished homes near the metro</dt>
-          </div>
-        </dl>
-        <p class="town-sources reveal"><a class="verify-link" href="https://www.idealista.com/sala-de-prensa/informes-precio-vivienda/" target="_blank" rel="noopener noreferrer">Idealista</a> &middot; Fotocasa &middot; <a class="verify-link" href="https://www.idealista.com/alquiler-viviendas/riba-roja-de-turia-valencia/" target="_blank" rel="noopener noreferrer">today&rsquo;s Riba-roja listings</a>. Asking-market data, not occupancy guarantees. Holiday rentals are seasonal upside.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Ownership — the legal object, without repeating the operating model -->
-  <section id="offer">
-    <div class="container offer-grid flow">
-      <div class="offer-copy reveal">
-        <p class="eyebrow">What you own</p>
-        <h2>One apartment.<br>In your name.</h2>
-        <p class="offer-lede">You buy an apartment, not a share in a fund.</p>
-        <ul class="offer-facts">
-          <li><strong>Registered ownership.</strong> The apartment is recorded in your name at Spain&rsquo;s Property Registry.</li>
-          <li><strong>Sell when you choose.</strong> Like any other Spanish apartment.</li>
-        </ul>
-      </div>
-      <figure class="offer-media offer-plan reveal">
-        <img src="assets/render-type-a-cropped.jpg" alt="Floor plan of the entry apartment, 40.4 square metres useful area">
-        <figcaption>Entry apartment &middot; 40.4&nbsp;m&sup2; useful</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 6. Operating model -->
-  <section class="numbers" id="the-numbers">
-    <div class="container flow">
-      <div class="numbers-intro">
-        <p class="eyebrow reveal">The operating model</p>
-        <h2 class="reveal">One apartment.<br>Three rental markets.</h2>
-        <p class="numbers-lede reveal">Each furnished apartment moves between holiday, mid-term and long-term &mdash; whichever pays strongest.</p>
-      </div>
-
-      <div class="operating-stage reveal" aria-label="Flexible-living operating model projecting more than seven percent net">
-        <div class="rental-stack">
-          <div class="rental-channel">
-            <p class="channel-name">Holiday</p>
-          </div>
-          <div class="rental-channel">
-            <p class="channel-name">Mid-term</p>
-          </div>
-          <div class="rental-channel">
-            <p class="channel-name">Long-term</p>
-          </div>
-          <span class="flow-brace" aria-hidden="true">
-            <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 3
-                       C14 3 18 10 18 22
-                       V48
-                       C18 54 20 57 27 60
-                       C20 63 18 66 18 72
-                       V98
-                       C18 110 14 117 3 117"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-
-        <div class="management-hub">
-          <div class="hub-badge">
-            <span class="hub-name">El Fort&iacute;n</span>
-            <span class="hub-label">Active management</span>
-            <span class="hub-brace" aria-hidden="true">
-              <svg viewBox="0 0 28 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 3
-                         C14 3 18 10 18 22
-                         V48
-                         C18 54 20 57 27 60
-                         C20 63 18 66 18 72
-                         V98
-                         C18 110 14 117 3 117"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </div>
-
-        <div class="return-lockup">
-          <p class="return-label">Projected net return</p>
-          <p class="return-figure"><span class="approx">&gt;</span><span class="digit">7</span><span class="percent">%</span></p>
-          <p class="return-caption">Blended target after management and costs.</p>
-        </div>
-      </div>
-
-      <div class="capital-basis reveal">
-        <h3 class="capital-heading">What you put in</h3>
-        <div class="entry-basis">
-          <div class="entry-copy">
-            <dl class="entry-compare">
-              <div>
-                <dt>All-in at pre-sale, from</dt>
-                <dd>&euro;197,370</dd>
-              </div>
-              <div class="was">
-                <dt>All-in at full valuation</dt>
-                <dd>&euro;229,384</dd>
-              </div>
-            </dl>
-            <p class="entry-sub">Entry apartment &mdash; 40.4&nbsp;m&sup2; useful</p>
-            <p class="entry-aside">Sale price is 15% below independent valuation (&euro;190,557). Purchase costs (~12%) and furniture are in both all-in figures. Prices vary by floor; full list comes with the documents.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="protection-band reveal">
-        <div>
-          <p class="protection-kicker">The floor underneath</p>
-          <p class="protection-figure">4%</p>
-          <p class="protection-note">Contractual minimum</p>
-        </div>
-        <p class="protection-copy">If rent falls short of the plan, the developer company promises a 4% minimum in the contract. A bank does not guarantee it.</p>
-      </div>
-
-      <div class="model-notes">
-        <details class="reveal">
-          <summary>How income is shared</summary>
-          <p>Income and costs run across all ten apartments as one operation, then paid in proportion to each owner&rsquo;s capital. Your rate does not depend on which unit you hold. A weak month in one is carried by the other nine. A projection &mdash; not a fixed promise.</p>
-        </details>
-        <details class="reveal">
-          <summary>What the financial model must show</summary>
-          <p>The document pack provided before reservation lists gross rent and occupancy by rental channel, management fees (8&ndash;15%, depending on rental structure), cleaning, utilities, maintenance, taxes, vacancy and downside scenarios. The &gt;7% figure is meaningful only with those assumptions beside it.</p>
-        </details>
-        <p class="disclaimer reveal">Projections, not guarantees. The 4% minimum is a company covenant, not bank-backed. There is no aval bancario on buyer payments before completion.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. Credible scarcity — one count, once -->
-  <section class="availability-band">
-    <div class="container reveal">
-      <p><strong>10 apartments.</strong> 1 sold. 9 available.</p>
-    </div>
-  </section>
-
-  <!-- 8. Conversion — book a call (primary); written question (secondary) -->
+  <!-- 5. Conversion — inspect evidence first; conversation remains optional -->
   <section class="cta" id="book">
     <div class="container narrow viewport-beat flow">
-      <h2 class="reveal">Book 15 minutes with <em>Uriel</em>.</h2>
-      <p class="lede reveal">You speak with the developer, not a sales team. Ask what matters. See the documents. Decide whether to continue.</p>
+      <h2 class="cta-display reveal">Inspect<em>the deal.</em></h2>
+      <p class="lede reveal">Receive the title, licence, valuation, contract and financial assumptions. Review them before deciding whether a conversation is worthwhile.</p>
       <div class="booking-action reveal">
-        <a class="booking-primary" id="book-call" href="https://calendar.app.google/9u8m5k2A6pSg83ap8" target="_blank" rel="noopener noreferrer">Choose a time</a>
-        <p>Google Meet &middot; 15 minutes</p>
+        <a class="booking-primary" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Send me the document pack</a>
+        <a class="booking-secondary" href="mailto:uriel.nabel@elfortincapital.com?subject=One%20question%20about%20El%20Fort%C3%ADn">Ask Uriel one question</a>
       </div>
-
-      <details class="cta-alt reveal" id="what-would-stop-you">
-        <summary>Prefer to write first?</summary>
-        <div class="cta-alt-body">
-          <p class="lede-alt">Send one question. Uriel will answer with the relevant document, not a brochure.</p>
-          <div class="cta-block">
-          <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
-            <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
-            <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stops halfway</button>
-            <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% minimum is only on paper</button>
-            <button type="button" class="fear-btn" data-fear="show_me_documents">Show me the title and licence documents first</button>
-            <button type="button" class="fear-btn" data-fear="who_answers_after">Who actually answers, after I have paid?</button>
-          </div>
-
-          <div class="fear-other">
-            <label for="fear-text">Something else:</label>
-            <textarea id="fear-text" placeholder="Write your own question &mdash; hard questions are welcome."></textarea>
-          </div>
-
-          <div class="send-row">
-            <button type="button" class="send-btn primary" id="send-email">Send by email</button>
-            <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
-          </div>
-          <p class="send-hint">No mailing list. No sales sequence. Nothing published with your name.</p>
-        </div>
-        </div>
-      </details>
-
+      <p class="cta-assurance reveal">No mailing list. No sales sequence. The documents come before any call.</p>
       <p class="freedom-line reveal">If the honest answer is &ldquo;this is not for you&rdquo; &mdash; we will say so.</p>
     </div>
   </section>
@@ -1426,73 +1288,11 @@
     <div class="container">
       <p class="brand">El Fort&iacute;n &middot; Riba-roja de T&uacute;ria, Valencia</p>
       <p>Building licence Exp. 4497/2025/GEN &middot; Res. 3658/2025 &middot; Architect COACV 11.357</p>
-      <p>Projections are not guarantees. Nothing on this page is investment advice; review everything with your own lawyer.</p>
+      <p>Projections, not promises. Not investment advice.</p>
     </div>
   </footer>
 
   <script>
-    // CONFIG — U-Q15: Uriel's lead endpoints
-    var CONFIG = {
-      email: 'uriel.nabel@elfortincapital.com',
-      whatsapp: '34626459818' // +34 626 45 98 18
-    };
-
-    document.getElementById('book-call').addEventListener('click', function () {
-      if (typeof gtag === 'function') {
-        gtag('event', 'book_call_clicked');
-      } else {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'book_call_clicked' });
-      }
-    });
-
-    // Written questions are a secondary conversion for visitors not ready to book.
-    function trackFearNamed(fear, channel) {
-      var payload = { event: 'fear_named', fear: fear, channel: channel || null };
-      if (typeof gtag === 'function') {
-        gtag('event', 'fear_named', { fear: fear, channel: channel || undefined });
-      } else {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push(payload);
-      }
-    }
-
-    var selectedFear = null;
-    var fearButtons = document.querySelectorAll('.fear-btn');
-    var freeText = document.getElementById('fear-text');
-
-    fearButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        fearButtons.forEach(function (b) { b.classList.remove('selected'); });
-        btn.classList.add('selected');
-        selectedFear = { id: btn.dataset.fear, label: btn.textContent.trim() };
-        trackFearNamed(btn.dataset.fear);
-      });
-    });
-
-    function buildMessage() {
-      var parts = [];
-      if (selectedFear) parts.push('My question: ' + selectedFear.label);
-      var custom = freeText.value.trim();
-      if (custom) parts.push(custom);
-      if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
-      return parts.join('\n\n');
-    }
-
-    document.getElementById('send-email').addEventListener('click', function () {
-      var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
-      trackFearNamed(fearId, 'email');
-      window.location.href = 'mailto:' + CONFIG.email
-        + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
-        + '&body=' + encodeURIComponent(buildMessage());
-    });
-
-    document.getElementById('send-whatsapp').addEventListener('click', function () {
-      var fearId = selectedFear ? selectedFear.id : (freeText.value.trim() ? 'free_text' : 'unspecified');
-      trackFearNamed(fearId, 'whatsapp');
-      window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
-    });
-
     // Design temporal flow — staggered scroll reveals (style-guide § micro-interactions)
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var heroReveals = document.querySelectorAll('.hero-flow .reveal');
@@ -1525,85 +1325,5 @@
     }
   </script>
 
-  <!-- Real map: OpenStreetMap cartography + the actual Metrovalencia Line 9 geometry
-       (OSM relation 5626068, fetched 2026-07-20 — see assets/metro-line9.js).
-       Tiles: Carto "light_all" basemap (tile.openstreetmap.org 403s some browsers and
-       disallows production use anyway). If traffic grows past Carto's free-tier comfort,
-       move to a keyed provider (MapTiler / Stadia). -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="assets/metro-line9.js"></script>
-  <script>
-    (function () {
-      var map = L.map('metro-map', {
-        scrollWheelZoom: false,       // don't hijack page scroll — engaged, not trapped
-        zoomControl: true,
-        attributionControl: true
-      });
-
-      L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 17,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      }).addTo(map);
-
-      // Show only the relevant journey: Valencia centre (Colón) to Riba-roja.
-      // The full OSM relation continues east to Alboraia, which is not part of this story.
-      var cityCentre = [39.47016, -0.37068];
-      var routeSegments = METRO_LINE9.segments.map(function (seg) {
-        return seg.filter(function (point) { return point[1] <= cityCentre[1]; });
-      }).filter(function (seg) { return seg.length > 1; });
-
-      var lineGroup = L.featureGroup(routeSegments.map(function (seg) {
-        return L.polyline(seg, { color: '#1B2A4A', weight: 3.5, opacity: 0.9 });
-      })).addTo(map);
-
-      // Start at Valencia centre, then follow the route west to Riba-roja.
-      var cityIndex = METRO_LINE9.stations.findIndex(function (s) { return s.name === 'Colón'; });
-      var routeStations = METRO_LINE9.stations.slice(0, cityIndex + 1).reverse();
-      routeStations.forEach(function (s) {
-        var isCityCentre = s.name === 'Colón';
-        var m = L.marker(s.ll, {
-          icon: L.divIcon({
-            className: isCityCentre ? 'station-dot city-origin' : 'station-dot',
-            iconSize: isCityCentre ? [13, 13] : [9, 9]
-          }),
-          keyboard: false
-        }).addTo(map);
-        if (isCityCentre) {
-          m.bindTooltip('Val&egrave;ncia centre', { direction: 'top' });
-        } else {
-          m.bindTooltip(s.name, { direction: 'top' });
-        }
-      });
-
-      // The building.
-      L.marker(METRO_LINE9.building, {
-        icon: L.divIcon({ className: 'building-marker', iconSize: [15, 15] })
-      }).addTo(map).bindTooltip('The building &middot; Camino Valencia 31', {
-        permanent: true, direction: 'right', offset: [10, 0]
-      });
-
-      // Frame the story from Valencia centre to the building.
-      // On desktop, reserve the width occupied by the map introduction.
-      function frameStory() {
-        var isDesktop = window.innerWidth >= 768;
-        var overlayCard = document.querySelector('.town-orient');
-        var padLeft = 24;
-        if (isDesktop && overlayCard) {
-          padLeft = Math.round(overlayCard.getBoundingClientRect().right) + 48;
-        }
-        map.fitBounds(L.latLngBounds(cityCentre, METRO_LINE9.building), {
-          paddingTopLeft: [padLeft, 40],
-          paddingBottomRight: [40, 40]
-        });
-      }
-      frameStory();
-      // Absolute-positioned container — size is known only after layout, so re-frame then.
-      setTimeout(function () {
-        map.invalidateSize();
-        frameStory();
-      }, 0);
-    })();
-  </script>
 </body>
 </html>
