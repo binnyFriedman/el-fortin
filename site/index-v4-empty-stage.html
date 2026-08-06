@@ -76,13 +76,38 @@
 
     img { display: block; max-width: 100%; height: auto; }
 
+    /*
+      Lighting and rhythm
+      -------------------
+      Each act is a full-bleed band holding its own lighting state
+      (--light) and its own breath (--breath, the vertical air). The cuts
+      between bands are hard, like light cues. The arc:
+
+        I   warm parchment   — morning, open
+        II  white-stone      — documentary, working light
+        III bare wall        — house lights up, nothing hidden
+        IV  cool blue-grey   — the light of a spreadsheet
+        V   warm terracotta  — arrival, dusk, the door
+
+      Rhythm: I–II breathe long, III holds the most silence, IV is dense
+      and quick, V opens wide again. Compression and release, felt as
+      scroll distance.
+    */
     .act {
-      max-width: 62rem;
-      margin: 0 auto;
-      padding: var(--act-gap) var(--gutter) 0;
+      background: var(--light, var(--parchment));
       scroll-margin-top: 24px;
     }
-    .act:last-of-type { padding-bottom: var(--act-gap); }
+    .act-inner {
+      max-width: 62rem;
+      margin: 0 auto;
+      padding: var(--breath, var(--act-gap)) var(--gutter);
+    }
+
+    .act--promise  { --light: var(--parchment); }
+    .act--evidence { --light: var(--white-stone); --breath: clamp(96px, 14vh, 168px); }
+    .act--honesty  { --light: #F3EEE6;           --breath: clamp(120px, 18vh, 208px); }
+    .act--deal     { --light: #E8EDF1;           --breath: clamp(56px, 8vh, 96px); }
+    .act--decision { --light: #F3EBE0;           --breath: clamp(104px, 16vh, 176px); }
 
     /* Act numeral — the only stage direction that survives the strip */
     .act-mark {
@@ -133,7 +158,7 @@
 
     /* ---------- 01 PROMISE ---------- */
 
-    .promise {
+    .act-inner.promise {
       min-height: 88svh;
       max-width: 74rem;
       display: flex;
@@ -338,16 +363,6 @@
        The reversal. The one act staged differently: a bare full-bleed
        wall, the admission centered, and more silence than any other act.
        The script drops; the builder speaks plainly. */
-
-    .honesty {
-      background: #F3EEE6;
-      margin-top: var(--act-gap);
-    }
-    .honesty-inner {
-      max-width: 62rem;
-      margin: 0 auto;
-      padding: clamp(104px, 16vh, 184px) var(--gutter);
-    }
 
     .honesty-head {
       max-width: var(--measure);
