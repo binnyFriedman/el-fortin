@@ -34,6 +34,7 @@
   <meta name="description" content="El Fortín · Riba-roja de Túria. Own a deeded rental apartment near Valencia — rentals managed, up to two weeks a year yours. From €236,141 all-in at pre-sale. Ready in 2027.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/render-rooftop-pool.jpg" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
@@ -124,47 +125,36 @@
        else stays offstage until the visitor asks for it. */
 
     .promise {
-      min-height: 88svh;
+      position: relative;
+      min-height: 100svh;
       max-width: none;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: clamp(48px, 8vh, 96px);
-      padding-bottom: clamp(48px, 8vh, 96px);
+      align-items: flex-end;
+      padding-top: clamp(72px, 12vh, 144px);
+      padding-bottom: clamp(56px, 9vh, 104px);
+      color: var(--white-stone);
+      isolation: isolate;
+      background: var(--navy) url('assets/render-rooftop-pool.jpg') center / cover no-repeat;
     }
-
-    .promise-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-      gap: clamp(36px, 7vw, 104px);
-      align-items: center;
+    .promise::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(to top, rgba(16, 28, 51, 0.78), rgba(16, 28, 51, 0.08) 66%),
+        linear-gradient(to right, rgba(16, 28, 51, 0.5), transparent 62%);
     }
-    @media (max-width: 860px) {
-      .promise-grid { grid-template-columns: 1fr; }
-    }
-
-    /* The anchor: the rooftop, lived in. A photograph-grade render carries
-       the desire; the technical drawings wait further down the stage. */
-    .promise-render { margin: 0; }
-    .promise-render img {
-      width: 100%;
-      aspect-ratio: 5 / 4;
-      object-fit: cover;
-      /* Bias the crop toward the staircase and mezzanine — the double-height
-         drama is the point of this render. */
-      object-position: center 42%;
-      border: 1px solid var(--linen);
-    }
-    .promise-render figcaption {
-      margin-top: 8px;
-      font-size: 11px;
-      letter-spacing: 0.05em;
+    .promise-grid { width: min(100%, 72rem); }
+    .promise-copy { max-width: 48rem; }
+    .promise-credit {
+      position: absolute;
+      right: var(--gutter);
+      bottom: 16px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--ash);
-      text-align: right;
-    }
-    @media (max-width: 860px) {
-      .promise-render { max-width: 34rem; }
+      color: rgba(253, 252, 250, 0.65);
     }
 
     .promise-brand {
@@ -173,7 +163,7 @@
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--slate);
+      color: rgba(253, 252, 250, 0.8);
     }
     .promise h1 {
       font-size: clamp(44px, 6.2vw, 82px);
@@ -184,11 +174,11 @@
       font-family: 'DM Serif Display', Georgia, serif;
       font-size: clamp(21px, 2.6vw, 30px);
       line-height: 1.25;
-      color: var(--slate);
+      color: var(--white-stone);
     }
     .promise-context span {
       display: block;
-      color: var(--terracotta-dark);
+      color: var(--white-stone);
     }
 
     /* The cutaway keeps its parchment trick where it reappears downstage. */
@@ -289,55 +279,25 @@
     }
 
     /* ---------- 02b LOCATION ----------
-       One scene: the rooftop is the stage itself, full bleed. The metro
-       map lies on it like a mounted print; "20 min" talks from the scrim. */
+       The rooftop has already made the emotional case in the cover.
+       This frame answers the practical location question without another wall. */
 
     .location {
-      /* How far the map print hangs past the scene's bottom edge,
-         into the gallery's whitespace — it stitches the two frames. */
-      --map-hang: clamp(112px, 17vh, 200px);
-      --scene-cut: clamp(48px, 7vh, 84px);
       position: relative;
       max-width: none;
-      margin-top: clamp(96px, 14vh, 168px);
-      padding: clamp(48px, 8vh, 96px) var(--gutter) clamp(40px, 7vh, 72px);
-      min-height: 92svh;
+      margin-top: 0;
+      min-height: min(78svh, 880px);
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
       column-gap: clamp(24px, 4vw, 72px);
       align-items: center;
     }
-    /* A shallow architectural cut breaks the horizontal stop and carries
-       the eye from the ownership copy at right into the rooftop scene. */
-    .location::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      clip-path: polygon(
-        100% 0,
-        100% 100%,
-        0 100%,
-        0 var(--scene-cut)
-      );
-      background:
-        linear-gradient(
-          to top,
-          rgba(27, 42, 74, 0.66) 0%,
-          rgba(27, 42, 74, 0.24) 34%,
-          rgba(27, 42, 74, 0) 58%
-        ),
-        var(--navy) url('assets/render-rooftop-pool.jpg') center / cover no-repeat;
-      pointer-events: none;
-    }
     .location-map {
       grid-column: 7 / 13;
       grid-row: 1;
-      align-self: end;
+      align-self: center;
       z-index: 2;
-      /* The mounted print straddles the scene's bottom edge and hangs
-         into the next frame's whitespace — the eye follows it down. */
-      margin: 0 0 calc(-1 * var(--map-hang));
+      margin: 0;
       /* A mounted print laid on the scene — same mat as the bedroom. */
       padding: clamp(10px, 1.1vw, 16px);
       background: var(--white-stone);
@@ -357,16 +317,6 @@
       text-transform: uppercase;
       color: var(--ash);
       text-align: center;
-    }
-    .location-credit {
-      position: absolute;
-      right: var(--gutter);
-      bottom: 14px;
-      z-index: 2;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(253, 252, 250, 0.65);
     }
     .location .leaflet-tile-pane { filter: sepia(0.18) saturate(0.85) brightness(1.01); }
     .location .station-dot {
@@ -394,10 +344,10 @@
     .location-fact {
       grid-column: 1 / 7;
       grid-row: 1;
-      align-self: end;
+      align-self: center;
       z-index: 2;
-      color: var(--white-stone);
-      padding-bottom: clamp(8px, 2vh, 24px);
+      color: var(--navy);
+      padding-bottom: 0;
     }
     .location-fact .loc-num {
       font-family: 'DM Serif Display', Georgia, serif;
@@ -416,17 +366,16 @@
     .location-fact .loc-note {
       margin-top: clamp(24px, 4vh, 36px);
       padding-top: 16px;
-      border-top: 1px solid rgba(253, 252, 250, 0.32);
+      border-top: 1px solid rgba(27, 42, 74, 0.18);
       font-size: 14px;
       line-height: 1.7;
-      color: rgba(253, 252, 250, 0.85);
+      color: var(--slate);
       max-width: 18em;
     }
     @media (max-width: 760px) {
       .location {
         display: block;
         min-height: 0;
-        padding: clamp(40px, 7vh, 64px) var(--gutter) 56px;
       }
       .location-map { margin-bottom: clamp(28px, 5vh, 44px); }
       .location-fact { padding-bottom: 0; }
@@ -1161,10 +1110,8 @@
   <main>
 
     <!-- FRAME 01 — INTRIGUE
-         One proposition, one object. The proposition now states the offer
-         (visitors read "Yours." as the project name); the object is the
-         duplex-salon render — desire, not diagram. Price, scarcity and
-         geography detail remain offstage. -->
+         One proposition over the rooftop itself: the shared life the
+         building offers, before ownership mechanics and numbers appear. -->
     <section class="act promise" aria-label="El Fortín — own a rental apartment near Valencia">
       <div class="promise-grid">
         <div class="promise-copy">
@@ -1172,13 +1119,8 @@
           <h1>Own a rental apartment near Valencia.</h1>
           <p class="promise-context"><span>Rentals managed.</span></p>
         </div>
-        <figure class="promise-render">
-          <img src="assets/render-salon-loft.jpg"
-               alt="Duplex apartment render: double-height living room with terracotta staircase to a mezzanine, dining table and warm-lit kitchen"
-               width="1400" height="1400" fetchpriority="high" decoding="async">
-          <figcaption>Duplex salon &mdash; render, illustrative</figcaption>
-        </figure>
       </div>
+      <p class="promise-credit">Rooftop &mdash; render, illustrative</p>
     </section>
 
     <!-- FRAME 02 — OWNERSHIP
@@ -1214,7 +1156,7 @@
     </section>
 
     <!-- FRAME 02b — LOCATION
-         One scene: the rooftop is the stage; the metro map lies on it. -->
+         The practical answer after the rooftop cover: distance and route. -->
     <section class="act location" aria-label="Location — Camino Valencia 31, Riba-roja de Túria">
       <div class="location-fact reveal">
         <p class="loc-num">20&nbsp;min</p>
@@ -1225,7 +1167,6 @@
         <div id="metro-map" aria-label="Map: Metrovalencia Line 9 from Valencia city centre to the building in Riba-roja de Túria"></div>
         <figcaption>Metro Line&nbsp;9 &middot; Riba-roja to Valencia</figcaption>
       </figure>
-      <p class="location-credit">The rooftop &mdash; render, illustrative</p>
     </section>
 
     <!-- FRAME 02c — GALLERY
