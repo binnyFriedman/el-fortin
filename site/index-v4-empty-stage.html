@@ -293,6 +293,10 @@
        map lies on it like a mounted print; "20 min" talks from the scrim. */
 
     .location {
+      /* How far the map print hangs past the scene's bottom edge,
+         into the gallery's whitespace — it stitches the two frames. */
+      --map-hang: clamp(112px, 17vh, 200px);
+      --scene-cut: clamp(48px, 7vh, 84px);
       position: relative;
       max-width: none;
       margin-top: clamp(96px, 14vh, 168px);
@@ -302,28 +306,38 @@
       grid-template-columns: repeat(12, minmax(0, 1fr));
       column-gap: clamp(24px, 4vw, 72px);
       align-items: center;
-      background: var(--navy) url('assets/render-rooftop-pool.jpg') center / cover no-repeat;
     }
-    /* Legibility scrim rising from the floor of the scene. */
-    .location::after {
+    /* A shallow architectural cut breaks the horizontal stop and carries
+       the eye from the ownership copy at right into the rooftop scene. */
+    .location::before {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 1;
-      background: linear-gradient(
-        to top,
-        rgba(27, 42, 74, 0.66) 0%,
-        rgba(27, 42, 74, 0.24) 34%,
-        rgba(27, 42, 74, 0) 58%
+      z-index: 0;
+      clip-path: polygon(
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 var(--scene-cut)
       );
+      background:
+        linear-gradient(
+          to top,
+          rgba(27, 42, 74, 0.66) 0%,
+          rgba(27, 42, 74, 0.24) 34%,
+          rgba(27, 42, 74, 0) 58%
+        ),
+        var(--navy) url('assets/render-rooftop-pool.jpg') center / cover no-repeat;
       pointer-events: none;
     }
     .location-map {
       grid-column: 7 / 13;
       grid-row: 1;
-      align-self: center;
+      align-self: end;
       z-index: 2;
-      margin: 0;
+      /* The mounted print straddles the scene's bottom edge and hangs
+         into the next frame's whitespace — the eye follows it down. */
+      margin: 0 0 calc(-1 * var(--map-hang));
       /* A mounted print laid on the scene — same mat as the bedroom. */
       padding: clamp(10px, 1.1vw, 16px);
       background: var(--white-stone);

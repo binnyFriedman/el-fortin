@@ -296,6 +296,7 @@
       /* How far the map print hangs past the scene's bottom edge,
          into the gallery's whitespace — it stitches the two frames. */
       --map-hang: clamp(112px, 17vh, 200px);
+      --scene-cut: clamp(48px, 7vh, 84px);
       position: relative;
       max-width: none;
       margin-top: clamp(96px, 14vh, 168px);
@@ -305,32 +306,28 @@
       grid-template-columns: repeat(12, minmax(0, 1fr));
       column-gap: clamp(24px, 4vw, 72px);
       align-items: center;
-      background: var(--navy) url('assets/render-rooftop-pool.jpg') center / cover no-repeat;
     }
-    /* The scene rises out of the parchment rather than cutting across it. */
+    /* A shallow architectural cut breaks the horizontal stop and carries
+       the eye from the ownership copy at right into the rooftop scene. */
     .location::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: clamp(96px, 16vh, 200px);
-      z-index: 1;
-      background: linear-gradient(to bottom, var(--parchment), rgba(247, 244, 239, 0));
-      pointer-events: none;
-    }
-    /* Legibility scrim rising from the floor of the scene. */
-    .location::after {
-      content: "";
-      position: absolute;
       inset: 0;
-      z-index: 1;
-      background: linear-gradient(
-        to top,
-        rgba(27, 42, 74, 0.66) 0%,
-        rgba(27, 42, 74, 0.24) 34%,
-        rgba(27, 42, 74, 0) 58%
+      z-index: 0;
+      clip-path: polygon(
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 var(--scene-cut)
       );
+      background:
+        linear-gradient(
+          to top,
+          rgba(27, 42, 74, 0.66) 0%,
+          rgba(27, 42, 74, 0.24) 34%,
+          rgba(27, 42, 74, 0) 58%
+        ),
+        var(--navy) url('assets/render-rooftop-pool.jpg') center / cover no-repeat;
       pointer-events: none;
     }
     .location-map {
