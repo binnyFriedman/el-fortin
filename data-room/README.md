@@ -1,8 +1,8 @@
 # Asset 3 — Master Data Room Architecture
 
-**Purpose:** When a buyer's agent says *"Send me the link,"* this folder structure signals institutional discipline and moves the conversation to negotiation — not education.
+**Purpose:** Controlled follow-up after a live buyer meeting. Review the evidence with the buyer first, then release only the papers relevant to the agreed next step.
 
-**Access protocol:** Grant on reply with legal counsel name. Never open publicly without qualification.
+**Access protocol:** Never grant before a held meeting. Afterward, release a buyer-specific selection; grant fuller access only when counsel is involved. Never publish this folder.
 
 ---
 
@@ -14,12 +14,12 @@
 ├── 📂 01_FINANCIALS_AND_UNDERWRITING
 │   ├── 📄 El_Fortin_Master_Underwriting_Sheet_2026.xlsx
 │   ├── 📄 Valor_Publicado_by_Unit.png              ← appraisal sale prices by puerta
-│   ├── 📄 Valor_Publicado_All_In_by_Unit.csv       ← 15% pre-sale + closing + furniture
+│   ├── 📄 Valor_Publicado_All_In_by_Unit.csv       ← SUPERSEDED price model; audit only
 │   ├── 📄 Pre-Sale_vs_Sticker_Price_Inventory_List.csv  (superseded averages — keep for audit)
 │   └── 📄 sales-info-raw-export.json
 │
 ├── 📂 02_LEGAL_AND_URBAN_PLANNING
-│   ├── 📄 Licencia_de_Obras_Riba_Roja.pdf          [UPLOAD]
+│   ├── 📄 Licencia_de_Obras_Riba_Roja.pdf          [SOURCE AVAILABLE: assets/docs/Licencia de Obra.pdf]
 │   ├── 📄 Nota_Simple_Registro_Propiedad.pdf       [UPLOAD]
 │   └── 📄 Division_Horizontal_Draft_Statutes.pdf   [UPLOAD]
 │
@@ -28,7 +28,7 @@
 │   └── 📄 Management_Agreement_Section_4_Step-In_Rights.pdf [UPLOAD]
 │
 └── 📂 04_TECHNICAL_AND_ARCHITECTURE
-    ├── 📄 Planos_Visados_47m_57m.pdf                 [UPLOAD]
+    ├── 📄 Planos_Visados_47m_57m.pdf                 [FULL SOURCE AVAILABLE: assets/docs/P00-PE-PLANOS_firmado_sellado.PDF]
     └── 📄 Turnkey_Furniture_Pack_Inventory_Specs.pdf [UPLOAD]
 ```
 
@@ -51,19 +51,21 @@
 |---|---|
 | `01_…/El_Fortin_Master_Underwriting_Sheet_2026.xlsx` | ✅ Live (from `sales-info.xlsx`) |
 | `01_…/Valor_Publicado_by_Unit.png` | ✅ Live — independent valuation by unit |
-| `01_…/Valor_Publicado_All_In_by_Unit.csv` | ✅ Live — public pricing basis (2026-08-02) |
+| `01_…/Valor_Publicado_All_In_by_Unit.csv` | ⛔ Superseded audit model — never quote; rebuild against €236,141 |
 | `01_…/Pre-Sale_vs_Sticker_Price_Inventory_List.csv` | ⚠ Superseded averages (audit trail) |
 | `01_…/sales-info-raw-export.json` | ✅ Live |
-| All PDFs in folders 02–04 | ⏳ Upload from counsel / architect |
+| `assets/docs/Licencia de Obra.pdf` | ✅ Official source available; stage only for controlled follow-up |
+| `assets/docs/P00-PE-PLANOS_firmado_sellado.PDF` | ✅ Official full plans available; stage only for controlled follow-up |
+| Remaining PDFs in folders 02–04 | ⏳ Obtain from counsel / architect |
 
 ---
 
 ## Finder workflow
 
-1. **Cold email** → `b2b/outreach-cold-email-template.md`
-2. **Reply / interest** → attach `b2b/investment-teaser-one-pager.html` (Print → PDF)
-3. **"Send the link"** → zip `data-room/` or grant secure link to qualified finder
-4. **Counsel engaged** → prioritize Folder 03 (step-in rights draft)
+1. **Interest** → book a live meeting with Uriel; do not send a document pack
+2. **Meeting** → review the relevant official documents and commercial terms on screen
+3. **Agreed next step** → send only the documents discussed
+4. **Counsel engaged** → grant the appropriate legal, contract, and technical folders
 
 ---
 
@@ -75,5 +77,5 @@ Document finder fee split in `03_INVESTOR_CONTRACTS/` when template is finalized
 
 ## Related assets
 
-- Outreach template: [`../b2b/outreach-cold-email-template.md`](../b2b/outreach-cold-email-template.md)
-- One-pager: [`../b2b/investment-teaser-one-pager.html`](../b2b/investment-teaser-one-pager.html)
+- Deal source of truth: [`../b2b/pitch-source-of-truth.md`](../b2b/pitch-source-of-truth.md)
+- One-pager source: [`../b2b/investment-teaser-one-pager.html`](../b2b/investment-teaser-one-pager.html) — internal draft until rebuilt against €236,141

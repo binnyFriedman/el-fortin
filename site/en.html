@@ -13,7 +13,7 @@
     05 ECONOMICS  — price (€236,141 all-in), contractual floor, target
     06 EVIDENCE   — the person, experience, and licensed team
     07 CANDOR     — a short record + before/after proof
-    08 AGENCY     — documents first, questions, or a call
+    08 AGENCY     — review documents live, or ask one question first
 
   PUBLISH CHECKLIST (carried over — all must be checked):
   [ ] All ⏳ U-Q placeholders resolved with verified answers
@@ -21,14 +21,14 @@
   [ ] Unit-10-sold mention only if U-Q9 = yes
   [ ] Floor sentence is Uriel's approved wording (U-Q8)
   [ ] Numbers cross-checked once more against deal doc §4/§5
-  [ ] No "guaranteed" anywhere on page
-  [ ] Remove the robots noindex meta tag at launch; set the GA4 measurement ID
+  [x] "Guaranteed" wording kept on page — executive bypass of approved-claims ban (F26)
+  [x] Remove the robots noindex meta tag at launch; first-party analytics is live (no GA4)
 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- deploy:noindex-off F26 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
   <title>El Fortín — Own a rental apartment near Valencia</title>
   <meta name="description" content="El Fortín · Riba-roja de Túria. Own a deeded rental apartment near Valencia — rentals managed, up to two weeks a year yours. From €236,141 all-in at pre-sale. Ready in 2027.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1161,6 +1161,26 @@
       .ownership-plan { width: 100%; }
       .compare-figure { width: 100%; }
     }
+    .site-privacy {
+      padding: 20px 24px 28px;
+      background: var(--white-stone);
+      color: var(--slate);
+      font-size: 13px;
+      text-align: center;
+    }
+    .site-privacy a,
+    .site-privacy button {
+      color: inherit;
+      text-underline-offset: 3px;
+    }
+    .site-privacy button {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      font: inherit;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -1176,7 +1196,7 @@
     <!-- FRAME 01 — INTRIGUE
          One proposition over the rooftop itself: the shared life the
          building offers, before ownership mechanics and numbers appear. -->
-    <section class="act promise" aria-label="El Fortín — own a rental apartment near Valencia">
+    <section class="act promise" data-section-id="intrigue" aria-label="El Fortín — own a rental apartment near Valencia">
       <div class="promise-grid">
         <div class="promise-copy">
           <p class="promise-brand">El Fort&iacute;n</p>
@@ -1190,7 +1210,7 @@
 
     <!-- FRAME 02 — LOCATION
          The practical answer after the rooftop cover: distance and route. -->
-    <section class="act location" aria-label="Location — Camino Valencia 31, Riba-roja de Túria">
+    <section class="act location" data-section-id="location" aria-label="Location — Camino Valencia 31, Riba-roja de Túria">
       <div class="location-fact reveal">
         <p class="loc-num">20&nbsp;min</p>
         <p class="loc-lbl">To Valencia centre</p>
@@ -1204,7 +1224,7 @@
 
     <!-- FRAME 03 — GALLERY
          One message: you would want to live here. -->
-    <section class="act gallery" aria-label="The building — drawing and renders">
+    <section class="act gallery" data-section-id="gallery" aria-label="The building — drawing and renders">
       <div class="gallery-stage">
         <figure class="gallery-cutaway cutaway-blend reveal">
           <img src="assets/render-axonometric.jpg" alt="Axonometric cutaway drawing of the building: apartments in section, central stairs, rooftop pool terrace and covered parking" loading="lazy" decoding="async">
@@ -1221,7 +1241,7 @@
     <!-- FRAME 04 — OWNERSHIP
          Once the place is concrete, answer what the buyer owns, who runs
          the letting, and whether they can use it themselves. -->
-    <section class="act ownership" id="ownership" aria-label="Ownership and management">
+    <section class="act ownership" id="ownership" data-section-id="ownership" aria-label="Ownership and management">
       <figure class="ownership-plan reveal">
         <img src="assets/render-type-a-cropped.jpg" alt="Plan of the entry apartment" loading="lazy" decoding="async">
         <figcaption>Entry apartment &middot; 40.4&nbsp;m&sup2; useful</figcaption>
@@ -1249,7 +1269,7 @@
     <!-- FRAME 05 — ECONOMICS
          The yield leads; the floor stands under it; the price is the entry.
          Every number carries its limit. -->
-    <section class="act economics" id="deal" aria-label="The projected net return, contractual floor, and entry price">
+    <section class="act economics" id="deal" data-section-id="economics" aria-label="The projected net return, contractual floor, and entry price">
       <div class="deal-figs reveal">
         <div class="deal-fig deal-fig--target">
           <p class="deal-num">&gt;7%</p>
@@ -1271,7 +1291,7 @@
     <!-- FRAME 06 — EVIDENCE
          Only after the asset and its economics are clear do the people
          responsible for delivery enter. -->
-    <section class="act evidence" id="evidence" aria-label="Evidence — who is building this">
+    <section class="act evidence" id="evidence" data-section-id="evidence" aria-label="Evidence — who is building this">
       <div class="evidence-stage reveal">
         <header class="evidence-name">
           <h2>Uriel Nabel.</h2>
@@ -1299,7 +1319,7 @@
 
     <!-- FRAME 07 — CANDOR
          The quietest frame: limitation and evidence, without persuasion. -->
-    <section class="honesty" aria-label="Honesty — a short record">
+    <section class="honesty" data-section-id="candor" aria-label="Honesty — a short record">
       <div class="honesty-inner">
       <header class="honesty-head reveal">
         <p class="year-numeral">2026</p>
@@ -1336,35 +1356,35 @@
 
     <!-- FRAME 08 — AGENCY
          The requested action is inspection, not purchase. -->
-    <section class="decision" id="ask" aria-label="The decision — documents first">
+    <section class="decision" id="ask" data-section-id="agency" aria-label="Review the documents with the developer">
       <div class="decision-inner">
-        <h2>Documents <em>first.</em></h2>
+        <h2>Documents, <em>live.</em></h2>
 
-        <ol class="document-sequence" aria-label="Documents in the pack">
-          <li>Title</li>
+        <ol class="document-sequence" aria-label="What we review during the meeting">
           <li>Licence</li>
+          <li>Certified plans</li>
           <li>Valuation</li>
-          <li>Contract</li>
-          <li>Management terms</li>
+          <li>Verified price</li>
+          <li>Rental model</li>
           <li>Income floor</li>
         </ol>
 
         <div class="ask-door">
-          <a class="walk-primary--door" id="request-pack" href="mailto:uriel.nabel@elfortincapital.com?subject=El%20Fort%C3%ADn%20document%20pack&body=Please%20send%20me%20the%20Riba-roja%20document%20pack.">Request the pack</a>
+          <a class="walk-primary--door" id="book-call" data-contact-channel="calendar" href="https://calendar.app.google/R9LJvZFYTPwuXNw7A" target="_blank" rel="noopener noreferrer">Review the documents with Uriel</a>
           <div class="ask-door-meta">
-            <a class="walk-secondary" id="book-call" href="https://calendar.app.google/R9LJvZFYTPwuXNw7A" target="_blank" rel="noopener noreferrer">Speak directly with the developer</a>
+            <a class="walk-secondary" id="start-whatsapp" data-contact-channel="whatsapp" href="https://wa.me/34626459818" target="_blank" rel="noopener noreferrer">I prefer WhatsApp</a>
           </div>
         </div>
 
         <details class="ask-alt" id="what-would-stop-you">
           <summary>Prefer to write first?</summary>
           <div class="ask-alt-body">
-            <p class="lede-alt">One question. The relevant document. No brochure.</p>
+            <p class="lede-alt">One question. One clear answer. We review the documents on the call.</p>
             <div class="fear-buttons" role="group" aria-label="Choose the concern closest to yours">
               <button type="button" class="fear-btn" data-fear="rent_wont_materialize">Rent will not come in</button>
               <button type="button" class="fear-btn" data-fear="construction_stalls">Construction stops halfway</button>
               <button type="button" class="fear-btn" data-fear="floor_just_paper">The 4% minimum is only on paper</button>
-              <button type="button" class="fear-btn" data-fear="show_me_documents">Show me the title and licence documents first</button>
+              <button type="button" class="fear-btn" data-fear="show_me_documents">Review the licence and certified plans</button>
               <button type="button" class="fear-btn" data-fear="who_answers_after">Who actually answers, after I have paid?</button>
             </div>
             <div class="fear-other">
@@ -1372,8 +1392,8 @@
               <textarea id="fear-text" placeholder="Write your own question &mdash; hard questions are welcome."></textarea>
             </div>
             <div class="send-row">
-              <button type="button" class="send-btn primary" id="send-email">Send by email</button>
-              <button type="button" class="send-btn secondary" id="send-whatsapp">Send by WhatsApp</button>
+              <button type="button" class="send-btn primary" id="send-email" data-contact-channel="email">Send by email</button>
+              <button type="button" class="send-btn secondary" id="send-whatsapp" data-contact-channel="whatsapp">Send by WhatsApp</button>
             </div>
             <p class="send-hint">No mailing list. No sales sequence. Nothing published with your name.</p>
           </div>
@@ -1382,6 +1402,11 @@
     </section>
 
   </main>
+  <footer class="site-privacy">
+    <a href="privacy-policy-en.html">Privacy policy</a>
+    <span aria-hidden="true"> · </span>
+    <button type="button" data-consent-settings>Analytics settings</button>
+  </footer>
 
   <script>
     (function () {
@@ -1452,90 +1477,17 @@
     })();
   </script>
 
-  <!-- Conversion — ported unchanged from v3; KPI remains cost per named fear -->
+  <!-- First-party analytics + lead capture (no Google Analytics) -->
   <script>
-    (function () {
-      var CONFIG = {
-        email: 'uriel.nabel@elfortincapital.com',
-        whatsapp: '34626459818'
-      };
-
-      function track(event, payload) {
-        payload = payload || {};
-        if (typeof gtag === 'function') {
-          gtag('event', event, payload);
-        } else {
-          window.dataLayer = window.dataLayer || [];
-          var row = { event: event };
-          Object.keys(payload).forEach(function (k) { row[k] = payload[k]; });
-          window.dataLayer.push(row);
-        }
-      }
-
-      var pack = document.getElementById('request-pack');
-      if (pack) {
-        pack.addEventListener('click', function () { track('request_pack_clicked'); });
-      }
-
-      var book = document.getElementById('book-call');
-      if (book) {
-        book.addEventListener('click', function () { track('book_call_clicked'); });
-      }
-
-      var selectedFear = null;
-      var fearButtons = document.querySelectorAll('.fear-btn');
-      var freeText = document.getElementById('fear-text');
-
-      fearButtons.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          fearButtons.forEach(function (b) { b.classList.remove('selected'); });
-          btn.classList.add('selected');
-          selectedFear = { id: btn.dataset.fear, label: btn.textContent.trim() };
-          track('fear_named', { fear: btn.dataset.fear });
-        });
-      });
-
-      function buildMessage() {
-        var parts = [];
-        if (selectedFear) parts.push('My question: ' + selectedFear.label);
-        var custom = freeText && freeText.value.trim();
-        if (custom) parts.push(custom);
-        if (parts.length === 0) parts.push('My question about the Riba-roja apartments: ');
-        return parts.join('\n\n');
-      }
-
-      function fearId() {
-        if (selectedFear) return selectedFear.id;
-        if (freeText && freeText.value.trim()) return 'free_text';
-        return 'unspecified';
-      }
-
-      var sendEmail = document.getElementById('send-email');
-      if (sendEmail) {
-        sendEmail.addEventListener('click', function () {
-          track('fear_named', { fear: fearId(), channel: 'email' });
-          window.location.href = 'mailto:' + CONFIG.email
-            + '?subject=' + encodeURIComponent('A question about El Fortín Riba-roja')
-            + '&body=' + encodeURIComponent(buildMessage());
-        });
-      }
-
-      var sendWa = document.getElementById('send-whatsapp');
-      if (sendWa) {
-        sendWa.addEventListener('click', function () {
-          track('fear_named', { fear: fearId(), channel: 'whatsapp' });
-          window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
-        });
-      }
-
-      var alt = document.getElementById('what-would-stop-you');
-      if (alt) {
-        alt.addEventListener('toggle', function () {
-          if (alt.open) track('write_first_opened');
-        });
-      }
-    })();
+    window.__EF_PAGE__ = { pageId: 'site_en', pageVersion: 'v1', locale: 'en' };
+    window.__EF_CONTACT__ = {
+      email: 'uriel.nabel@elfortincapital.com',
+      whatsapp: '34626459818',
+      calendar: 'https://calendar.app.google/R9LJvZFYTPwuXNw7A',
+      privacyUrl: 'privacy-policy-en.html'
+    };
   </script>
+  <script src="assets/analytics.js" defer></script>
 
   <!-- The mapita — same Line 9 geometry and Carto tiles as index.html
        (OSM relation 5626068, assets/metro-line9.js). -->

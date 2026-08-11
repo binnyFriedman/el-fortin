@@ -15,7 +15,7 @@
 | **Web-only funnel; Binny's personal contacts are off-limits; Binny has no deep Israeli-market knowledge** | Attention must be **intercepted from existing intent** (search, communities), not created by interruption ads or network access |
 | Budget per signed engagement (`../engagement-terms.md`): €5k setup covers month 1; **media capped at €1,500 for the initial run, paid direct to platforms** | Low-volume high-intent channels; a €1,500 initial-run cap (~€10–20/day) is enough at 9-buyer scale |
 | Direct end investors only — no finders/agents | We are entirely in the P1 funnel (gut feel about the person); the P2 defensibility track is out of scope |
-| Ticket: all-in from €197,370 (entry) to ~€240k; sale 15% below Valor Publicado (deal doc §4) | Buyer = private individual with ~€200k+ liquid seeking EU brick; low volume, high trust threshold |
+| Ticket: all-in from **€236,141** (developer-verified canonical entry; deal doc §4) | Buyer = private individual with ~€200k+ liquid seeking EU brick; low volume, high trust threshold |
 | Inventory: 9 of 10 units (deal doc §1) | We need **a handful of buyers, not an audience**. Depth beats reach everywhere |
 | Relationship is new; Binny must show results | Instrument the funnel from day 1 (named fears, replies, calls booked) so progress is visible even before a sale |
 
@@ -74,9 +74,9 @@ A person wires €250k when all of these are true. Each funnel stage exists to f
      ↓
 [Dialogue]   WhatsApp, one fear → one answer → one question back   — B3, B5
      ↓
-[Live]       1:1 call with Uriel (default) · group Q&A only when a credible room exists   — B2 (P1: the person closes)
+[Live]       1:1 call with Uriel; documents reviewed together on screen                  — B1, B2
      ↓
-[Evidence]   Data room, paper-first order   — B1
+[Evidence]   Relevant papers released after the meeting; no document dumps               — B1
      ↓
 [Close]      Buyer's own lawyer + reservation   — B7 only here, with the real count
 ```
@@ -84,11 +84,11 @@ A person wires €250k when all of these are true. Each funnel stage exists to f
 Design notes (each traced):
 
 - **Video before landing page** — P5: the face is the trust channel; P1: the person is the product. Content order obeys the sequencing law (psych doc §4).
-- **CTA is "name your fear," never "book a call"** — commitment gradient (psych doc §5); a named fear is a micro-commitment *and* our diagnostic instrument (B-ladder). Always close with explicit freedom to refuse (P15).
+- **Primary CTA is the live document review; “name your fear” is the lower-commitment alternative** — decisive buyers book directly, while cautious buyers can start with one question. Always close with explicit freedom to refuse (P15).
 - **WhatsApp, not email, for segment 1** — native medium, conversational, lets Binny run the 1:1 loop at low cost. One fear → one focused answer → one question back. No document dumps.
 - **1:1 calls with Uriel are the default live step** — P1: the investor is deciding on the person, and a 1:1 call is the highest-bandwidth read of a person; it's also Uriel's proven strength and has the lowest scheduling friction at trickle-volume. Uriel takes the call from the site or the finished Puzol building when possible: on-ground proof (B1) + face (P5) in one shot.
 - **Group Q&A is a phase-2 weapon, never the default** — its sole unique job is B6 + credible scarcity (P16): other serious buyers visible in the room is the one thing a 1:1 can't provide. But social proof is symmetric — an empty room broadcasts "nobody wants this." **Trigger condition: run it only when ≥5–8 qualified, fear-named leads can be invited.** Until then, 1:1 only.
-- **Data room after dialogue, not before** — P11 guardrail: identity earns attention, only documents close; but paper offered too early is noise, offered on request is respect (paper-first buyers self-identify in the dialogue step).
+- **Documents in the meeting; data room after it** — identity earns attention and paper closes, but a download before a live conversation turns the project into one more spreadsheet. Uriel reviews the relevant evidence on screen, then releases the exact papers the buyer or counsel needs.
 - **Scarcity only at close** — P16: the 9-of-10 count is credible precisely because we never lead with it.
 
 ---

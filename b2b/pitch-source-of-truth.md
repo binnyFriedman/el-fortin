@@ -81,29 +81,17 @@ Pre-sale = **15% below Valor Publicado** (sale price only). Closing costs (~12% 
 
 ### 4b. All-in capital (presale) ✅
 
-All-in = presale sale + ~12% closing on that sale + furniture pack. Furniture from workbook: €15,960 (small) / €19,358 (large). Full matrix in `Valor_Publicado_All_In_by_Unit.csv`.
+**Canonical public entry price: €236,141 all-in.** The developer confirmed this figure on 2026-08-06 and reconfirmed it for use on 2026-08-11. It includes the sale price, estimated purchase costs, and furniture.
 
-| Band | Units | All-in @ presale | All-in @ full Valor Publicado |
-|---|---|---|---|
-| Entry (small) | 5–8 | **€197,370** | €229,384 |
-| Lower large | 1–2 | €229,011 | €266,009 |
-| Mid large | 3–4 | €234,231 | €272,150 |
-| Upper large | 9–10 | €240,341 | €279,338 |
+The earlier €197,370 matrix in `Valor_Publicado_All_In_by_Unit.csv` is a superseded working model. It remains only as an audit artifact and must not be quoted, published, or sent to prospects. A replacement unit-by-unit schedule still needs to reconcile the canonical price with the underlying sale price, costs, and furniture allocation before counsel use.
 
-**Entry math (units 5–8):** Valor Publicado €190,557 → presale sale €161,974 → + closing €19,437 + furniture €15,960 → **€197,370 all-in**.
+### 4c. Yield framing 🟡
 
-**Portfolio all-in @ presale:** €2,196,648. **Portfolio all-in @ full Valor Publicado:** €2,552,530.
+- **Realistic base:** approximately 4% net.
+- **Contractual floor:** 4% net, as a developer-company covenant rather than a bank guarantee.
+- **Higher operating target:** approximately 7% net from the blended rental strategy; a target, not a promise.
 
-*Supersedes the older Type A/B averages (€209k / €254k all-in) from `sales-info.xlsx`, which used a self-declared sticker above the appraisal.*
-
-### 4c. Yield scenarios (same income model, new capital base) 🟡
-
-Net income still from the workbook scenarios; denominator updated to portfolio all-in @ full Valor Publicado (€2,552,530). Income-by-puerta mapping still needs a clean rematch to the appraisal footprints before counsel use.
-
-| Scenario | Net income | Net yield | Status |
-|---|---|---|---|
-| A — Target mix (vacation + mid + long) | €190,519 | **~7.5%** | 🟡 target (was 6.94% on old sticker base) |
-| B — Stress: all long-term furnished | €119,488 | **~4.7%** | 🟡 optimistic — see §5/§6 |
+The old workbook's unit-level yields and portfolio denominator are superseded until the financial model is rebuilt against the €236,141 canonical entry price. Do not use its 7.5% / 4.7% outputs in prospect materials.
 
 **Developer profit pool:** €299,379 (tied to completion + operation; from prior workbook — ⏳ re-check vs appraisal sellout). **Land:** €200,000, 100% paid, debt-free.
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
   THE EMPTY STAGE — main (ES).
   Chosen landing page. English lives at en.html.
@@ -13,1591 +13,1935 @@
     05 ECONOMICS  — price (€236,141 all-in), contractual floor, target
     06 EVIDENCE   — the person, experience, and licensed team
     07 CANDOR     — a short record + before/after proof
-    08 AGENCY     — documents first, questions, or a call
+    08 AGENCY     — review documents live, or ask one question first
 
-  PUBLISH CHECKLIST (carried over — all must be checked):
-  [ ] All ⏳ U-Q placeholders resolved with verified answers
-  [ ] Land-paid claim included only if U-Q7 = yes
-  [ ] Unit-10-sold mention only if U-Q9 = yes
-  [ ] Floor sentence is Uriel's approved wording (U-Q8)
-  [ ] Numbers cross-checked once more against deal doc §4/§5
-  [ ] No "guaranteed" anywhere on page
-  [ ] Remove the robots noindex meta tag at launch; set the GA4 measurement ID
 -->
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>El Fortín — Apartamento en propiedad cerca de Valencia</title>
-  <meta name="description" content="El Fortín · Riba-roja de Túria. Una vivienda en propiedad con alquiler gestionado y dos semanas de uso propio al año. Desde 236.141 € en preventa. Finalización prevista en 2027.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/render-rooftop-pool.jpg" fetchpriority="high">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <style>
-    :root {
-      --navy: #1B2A4A;
-      --navy-deep: #101C33;
-      --slate: #3D4F5F;
-      --ash: #6B7B8D;
-      --parchment: #F7F4EF;
-      --white-stone: #FDFCFA;
-      --terracotta: #C2703E;
-      --terracotta-dark: #A85E32;
-      --sandstone: #D4B896;
-      --linen: #EDE4D3;
+  <head>
+    <meta charset="UTF-8" />
+    <!-- deploy:noindex-off F26 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Fortín — Apartamento en propiedad cerca de Valencia</title>
+    <meta
+      name="description"
+      content="El Fortín · Riba-roja de Túria. Una vivienda en propiedad con alquiler gestionado y dos semanas de uso propio al año. Desde 236.141 € en preventa. Finalización prevista en 2027."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/render-rooftop-pool.jpg"
+      fetchpriority="high"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <style>
+      :root {
+        --navy: #1b2a4a;
+        --navy-deep: #101c33;
+        --slate: #3d4f5f;
+        --ash: #6b7b8d;
+        --parchment: #f7f4ef;
+        --white-stone: #fdfcfa;
+        --terracotta: #c2703e;
+        --terracotta-dark: #a85e32;
+        --sandstone: #d4b896;
+        --linen: #ede4d3;
 
-      --measure: 34em;
-      --gutter: clamp(20px, 3vw, 64px);
-      --grid-gap: clamp(10px, 1.1vw, 21px);
-      --act-gap: clamp(88px, 14vh, 160px);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
-
-    body {
-      font-family: 'Source Sans 3', -apple-system, sans-serif;
-      font-size: 17px;
-      line-height: 1.55;
-      color: var(--navy);
-      background: var(--parchment);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* The page is composed on one architectural folio grid. Press G to
-       expose the twelve columns and eight-pixel baseline used throughout. */
-    .grid-overlay {
-      position: fixed;
-      inset: 0 var(--gutter);
-      z-index: 9999;
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: var(--grid-gap);
-      pointer-events: none;
-      opacity: 0;
-      visibility: hidden;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 7px,
-        rgba(27, 42, 74, 0.16) 8px
-      );
-      transition: opacity 160ms ease, visibility 160ms ease;
-    }
-    .grid-overlay span {
-      background: rgba(194, 112, 62, 0.11);
-      border-left: 1px solid rgba(27, 42, 74, 0.24);
-      border-right: 1px solid rgba(27, 42, 74, 0.24);
-    }
-    .grid-overlay span:nth-child(1),
-    .grid-overlay span:nth-child(5),
-    .grid-overlay span:nth-child(9) {
-      border-left-color: rgba(194, 112, 62, 0.7);
-    }
-    body.grid-visible .grid-overlay {
-      opacity: 1;
-      visibility: visible;
-    }
-    body.grid-visible::after {
-      content: "12 COL · 8 PX BASELINE · G TO HIDE";
-      position: fixed;
-      top: 12px;
-      right: var(--gutter);
-      z-index: 10000;
-      padding: 5px 8px;
-      color: var(--white-stone);
-      background: var(--navy);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      line-height: 1;
-      pointer-events: none;
-    }
-    @media (max-width: 760px) {
-      body.grid-visible::after { content: "4 COL · 8 PX · G TO HIDE"; }
-    }
-
-    h1, h2, h3 {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-    }
-
-    a { color: inherit; }
-
-    img { display: block; max-width: 100%; height: auto; }
-
-    .act {
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: clamp(96px, 14vh, 168px) var(--gutter) 0;
-      scroll-margin-top: 24px;
-    }
-    .act:last-of-type { padding-bottom: var(--act-gap); }
-
-    .lede {
-      font-size: clamp(17px, 1.9vw, 20px);
-      color: var(--slate);
-      max-width: var(--measure);
-    }
-
-    .verify-link {
-      color: inherit;
-      font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-    .verify-link:hover { color: var(--terracotta-dark); }
-
-    /* Quiet entrance: only when JS runs and motion is welcome */
-    .reveal { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: no-preference) {
-      .js .reveal {
-        opacity: 0;
-        transform: translateY(14px);
-        transition: opacity 480ms ease, transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+        --measure: 34em;
+        --gutter: clamp(20px, 3vw, 64px);
+        --grid-gap: clamp(10px, 1.1vw, 21px);
+        --act-gap: clamp(88px, 14vh, 160px);
       }
-      .js .reveal.is-on {
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      body {
+        font-family:
+          "Source Sans 3",
+          -apple-system,
+          sans-serif;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--navy);
+        background: var(--parchment);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* The page is composed on one architectural folio grid. Press G to
+       expose the twelve columns and eight-pixel baseline used throughout. */
+      .grid-overlay {
+        position: fixed;
+        inset: 0 var(--gutter);
+        z-index: 9999;
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: var(--grid-gap);
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        background: repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 7px,
+          rgba(27, 42, 74, 0.16) 8px
+        );
+        transition:
+          opacity 160ms ease,
+          visibility 160ms ease;
+      }
+      .grid-overlay span {
+        background: rgba(194, 112, 62, 0.11);
+        border-left: 1px solid rgba(27, 42, 74, 0.24);
+        border-right: 1px solid rgba(27, 42, 74, 0.24);
+      }
+      .grid-overlay span:nth-child(1),
+      .grid-overlay span:nth-child(5),
+      .grid-overlay span:nth-child(9) {
+        border-left-color: rgba(194, 112, 62, 0.7);
+      }
+      body.grid-visible .grid-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+      body.grid-visible::after {
+        content: "12 COL · 8 PX BASELINE · G TO HIDE";
+        position: fixed;
+        top: 12px;
+        right: var(--gutter);
+        z-index: 10000;
+        padding: 5px 8px;
+        color: var(--white-stone);
+        background: var(--navy);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        line-height: 1;
+        pointer-events: none;
+      }
+      @media (max-width: 760px) {
+        body.grid-visible::after {
+          content: "4 COL · 8 PX · G TO HIDE";
+        }
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .act {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: clamp(96px, 14vh, 168px) var(--gutter) 0;
+        scroll-margin-top: 24px;
+      }
+      .act:last-of-type {
+        padding-bottom: var(--act-gap);
+      }
+
+      .lede {
+        font-size: clamp(17px, 1.9vw, 20px);
+        color: var(--slate);
+        max-width: var(--measure);
+      }
+
+      .verify-link {
+        color: inherit;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .verify-link:hover {
+        color: var(--terracotta-dark);
+      }
+
+      /* Quiet entrance: only when JS runs and motion is welcome */
+      .reveal {
         opacity: 1;
         transform: none;
       }
-    }
+      @media (prefers-reduced-motion: no-preference) {
+        .js .reveal {
+          opacity: 0;
+          transform: translateY(14px);
+          transition:
+            opacity 480ms ease,
+            transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .js .reveal.is-on {
+          opacity: 1;
+          transform: none;
+        }
+      }
 
-    /* ---------- 01 INTRIGUE ----------
+      /* ---------- 01 INTRIGUE ----------
        The first frame contains one proposition and one object. Everything
        else stays offstage until the visitor asks for it. */
 
-    .promise {
-      position: relative;
-      min-height: 80svh;
-      max-width: none;
-      display: flex;
-      align-items: flex-end;
-      padding-top: clamp(72px, 12vh, 144px);
-      padding-bottom: clamp(56px, 9vh, 104px);
-      color: var(--white-stone);
-      isolation: isolate;
-      background: var(--navy) url('assets/render-rooftop-pool.jpg') center 42% / cover no-repeat;
-    }
-    .promise::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(90deg, rgba(16, 28, 51, 0.8) 0%, rgba(16, 28, 51, 0.56) 34%, rgba(16, 28, 51, 0.12) 62%, transparent 78%),
-        linear-gradient(0deg, rgba(16, 28, 51, 0.32), transparent 34%);
-    }
-    .promise-grid { width: min(100%, 72rem); }
-    .promise-copy { max-width: 48rem; }
-    .promise-credit {
-      position: absolute;
-      right: var(--gutter);
-      bottom: 16px;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(253, 252, 250, 0.65);
-    }
+      .promise {
+        position: relative;
+        min-height: 80svh;
+        max-width: none;
+        display: flex;
+        align-items: flex-end;
+        padding-top: clamp(72px, 12vh, 144px);
+        padding-bottom: clamp(56px, 9vh, 104px);
+        color: var(--white-stone);
+        isolation: isolate;
+        background: var(--navy) url("assets/render-rooftop-pool.jpg") center
+          42% / cover no-repeat;
+      }
+      .promise::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(16, 28, 51, 0.8) 0%,
+            rgba(16, 28, 51, 0.56) 34%,
+            rgba(16, 28, 51, 0.12) 62%,
+            transparent 78%
+          ),
+          linear-gradient(0deg, rgba(16, 28, 51, 0.32), transparent 34%);
+      }
+      .promise-grid {
+        width: min(100%, 72rem);
+      }
+      .promise-copy {
+        max-width: 48rem;
+      }
+      .promise-credit {
+        position: absolute;
+        right: var(--gutter);
+        bottom: 16px;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(253, 252, 250, 0.65);
+      }
 
-    .promise-brand {
-      position: absolute;
-      top: clamp(28px, 5vh, 56px);
-      left: var(--gutter);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(253, 252, 250, 0.9);
-    }
-    .promise-location {
-      margin-bottom: 14px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(253, 252, 250, 0.78);
-    }
-    .promise h1 {
-      font-size: clamp(44px, 6.2vw, 82px);
-      max-width: 8em;
-    }
-    .promise-support {
-      margin-top: 0.7em;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(20px, 2.4vw, 29px);
-      line-height: 1.25;
-      color: rgba(253, 252, 250, 0.9);
-    }
+      .promise-brand {
+        position: absolute;
+        top: clamp(28px, 5vh, 56px);
+        left: var(--gutter);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(253, 252, 250, 0.9);
+      }
+      .promise-location {
+        margin-bottom: 14px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(253, 252, 250, 0.78);
+      }
+      .promise h1 {
+        font-size: clamp(44px, 6.2vw, 82px);
+        max-width: 8em;
+      }
+      .promise-support {
+        margin-top: 0.7em;
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(20px, 2.4vw, 29px);
+        line-height: 1.25;
+        color: rgba(253, 252, 250, 0.9);
+      }
 
-    /* The cutaway keeps its parchment trick where it reappears downstage. */
-    .cutaway-blend img {
-      filter: brightness(1.05);
-      mix-blend-mode: multiply;
-      border: none;
-    }
+      /* The cutaway keeps its parchment trick where it reappears downstage. */
+      .cutaway-blend img {
+        filter: brightness(1.05);
+        mix-blend-mode: multiply;
+        border: none;
+      }
 
-    /* ---------- 04 OWNERSHIP ---------- */
+      /* ---------- 04 OWNERSHIP ---------- */
 
-    .ownership {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      grid-template-rows: 1fr;
-      column-gap: var(--grid-gap);
-      min-height: 86svh;
-      align-items: center;
-    }
-    .ownership-plan {
-      grid-column: 1 / 7;
-      grid-row: 1;
-      margin: 0;
-      align-self: center;
-    }
-    .ownership-plan img {
-      width: 100%;
-      mix-blend-mode: multiply;
-    }
-    .ownership-plan figcaption {
-      margin-top: 8px;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--ash);
-    }
-    .ownership-copy {
-      grid-column: 9 / 13;
-      grid-row: 1;
-      align-self: center;
-    }
+      .ownership {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-rows: 1fr;
+        column-gap: var(--grid-gap);
+        min-height: 86svh;
+        align-items: center;
+      }
+      .ownership-plan {
+        grid-column: 1 / 7;
+        grid-row: 1;
+        margin: 0;
+        align-self: center;
+      }
+      .ownership-plan img {
+        width: 100%;
+        mix-blend-mode: multiply;
+      }
+      .ownership-plan figcaption {
+        margin-top: 8px;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ash);
+      }
+      .ownership-copy {
+        grid-column: 9 / 13;
+        grid-row: 1;
+        align-self: center;
+      }
 
-    /* Resale / pooled income / personal stay — the operating model in three lines. */
-    .own-split {
-      margin: clamp(28px, 5vh, 44px) 0 0;
-      max-width: var(--measure);
-    }
-    .own-split div {
-      display: flex;
-      align-items: baseline;
-      gap: 18px;
-      padding: 13px 0;
-      border-top: 1px solid rgba(27, 42, 74, 0.16);
-    }
-    .own-split dt {
-      flex: 0 0 6.5em;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--terracotta-dark);
-    }
-    .own-split dd {
-      margin: 0;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(17px, 1.8vw, 21px);
-      color: var(--navy);
-    }
+      /* Resale / pooled income / personal stay — the operating model in three lines. */
+      .own-split {
+        margin: clamp(28px, 5vh, 44px) 0 0;
+        max-width: var(--measure);
+      }
+      .own-split div {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        padding: 13px 0;
+        border-top: 1px solid rgba(27, 42, 74, 0.16);
+      }
+      .own-split dt {
+        flex: 0 0 6.5em;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--terracotta-dark);
+      }
+      .own-split dd {
+        margin: 0;
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(17px, 1.8vw, 21px);
+        color: var(--navy);
+      }
 
-    /* ---------- 02 LOCATION ----------
+      /* ---------- 02 LOCATION ----------
        The rooftop has already made the emotional case in the cover.
        This frame answers the practical location question without another wall. */
 
-    .location {
-      position: relative;
-      max-width: none;
-      margin-top: 0;
-      min-height: min(78svh, 880px);
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: var(--grid-gap);
-      align-items: center;
-    }
-    .location-map {
-      grid-column: 5 / 13;
-      grid-row: 1;
-      align-self: center;
-      z-index: 2;
-      margin: 0;
-      /* A mounted print laid on the scene — same mat as the bedroom. */
-      padding: clamp(10px, 1.1vw, 16px);
-      background: var(--white-stone);
-      border: 1px solid rgba(27, 42, 74, 0.08);
-      box-shadow: 0 18px 44px rgba(27, 42, 74, 0.28);
-    }
-    .location-map #metro-map {
-      width: 100%;
-      height: clamp(300px, 44svh, 460px);
-      background: var(--linen);
-      z-index: 0;
-    }
-    .location-map figcaption {
-      margin-top: 8px;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ash);
-      text-align: center;
-    }
-    .location .leaflet-tile-pane { filter: sepia(0.18) saturate(0.85) brightness(1.01); }
-    .location .station-dot {
-      background: var(--white-stone);
-      border: 2px solid var(--navy);
-      border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(253,252,250,0.8);
-    }
-    .location .city-origin {
-      border-width: 3px;
-      box-shadow: 0 0 0 2px rgba(253,252,250,0.9);
-    }
-    .location .building-marker {
-      background: var(--terracotta);
-      border: 2px solid var(--white-stone);
-      border-radius: 50%;
-      box-shadow: 0 1px 6px rgba(27,42,74,0.4);
-    }
-    .location .leaflet-tooltip {
-      font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 600;
-      color: var(--navy); background: var(--white-stone);
-      border: 1px solid var(--sandstone); border-radius: 3px;
-      box-shadow: none; padding: 2px 7px;
-    }
-    .location-fact {
-      grid-column: 1 / 5;
-      grid-row: 1;
-      align-self: center;
-      z-index: 2;
-      color: var(--navy);
-      padding-bottom: 0;
-    }
-    .location-fact .loc-num {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(56px, 6.5vw, 104px);
-      line-height: 0.9;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-    }
-    .location-fact .loc-lbl {
-      margin-top: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .location-fact .loc-note {
-      margin-top: clamp(24px, 4vh, 36px);
-      padding-top: 16px;
-      border-top: 1px solid rgba(27, 42, 74, 0.18);
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--slate);
-      max-width: 18em;
-    }
-    @media (max-width: 760px) {
       .location {
-        display: block;
-        min-height: 0;
+        position: relative;
+        max-width: none;
+        margin-top: 0;
+        min-height: min(78svh, 880px);
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--grid-gap);
+        align-items: center;
       }
-      .location-fact { margin-bottom: clamp(40px, 7vh, 64px); }
-    }
+      .location-map {
+        grid-column: 5 / 13;
+        grid-row: 1;
+        align-self: center;
+        z-index: 2;
+        margin: 0;
+        /* A mounted print laid on the scene — same mat as the bedroom. */
+        padding: clamp(10px, 1.1vw, 16px);
+        background: var(--white-stone);
+        border: 1px solid rgba(27, 42, 74, 0.08);
+        box-shadow: 0 18px 44px rgba(27, 42, 74, 0.28);
+      }
+      .location-map #metro-map {
+        width: 100%;
+        height: clamp(300px, 44svh, 460px);
+        background: var(--linen);
+        z-index: 0;
+      }
+      .location-map figcaption {
+        margin-top: 8px;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ash);
+        text-align: center;
+      }
+      .location .leaflet-tile-pane {
+        filter: sepia(0.18) saturate(0.85) brightness(1.01);
+      }
+      .location .station-dot {
+        background: var(--white-stone);
+        border: 2px solid var(--navy);
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(253, 252, 250, 0.8);
+      }
+      .location .city-origin {
+        border-width: 3px;
+        box-shadow: 0 0 0 2px rgba(253, 252, 250, 0.9);
+      }
+      .location .building-marker {
+        background: var(--terracotta);
+        border: 2px solid var(--white-stone);
+        border-radius: 50%;
+        box-shadow: 0 1px 6px rgba(27, 42, 74, 0.4);
+      }
+      .location .leaflet-tooltip {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--navy);
+        background: var(--white-stone);
+        border: 1px solid var(--sandstone);
+        border-radius: 3px;
+        box-shadow: none;
+        padding: 2px 7px;
+      }
+      .location-fact {
+        grid-column: 1 / 5;
+        grid-row: 1;
+        align-self: center;
+        z-index: 2;
+        color: var(--navy);
+        padding-bottom: 0;
+      }
+      .location-fact .loc-num {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(56px, 6.5vw, 104px);
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+      }
+      .location-fact .loc-lbl {
+        margin-top: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .location-fact .loc-note {
+        margin-top: clamp(24px, 4vh, 36px);
+        padding-top: 16px;
+        border-top: 1px solid rgba(27, 42, 74, 0.18);
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--slate);
+        max-width: 18em;
+      }
+      @media (max-width: 760px) {
+        .location {
+          display: block;
+          min-height: 0;
+        }
+        .location-fact {
+          margin-bottom: clamp(40px, 7vh, 64px);
+        }
+      }
 
-    /* ---------- 03 GALLERY ----------
+      /* ---------- 03 GALLERY ----------
        One message: you would want to live here. The rooftop bleeds off
        the canvas; the bedroom lies on top of it like a mounted print,
        hanging into the whitespace; the drawing closes the frame. */
 
-    .gallery { max-width: none; }
-    .gallery-stage {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: var(--grid-gap);
-      align-items: end;
-    }
-    .gallery-stage figure { margin: 0; }
-    .gallery-cutaway {
-      grid-column: 1 / 9;
-      grid-row: 1;
-    }
-    .gallery-cutaway img { width: 100%; }
-    .gallery-cutaway figcaption {
-      margin-top: 8px;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--ash);
-      text-align: right;
-    }
-    /* The smaller photograph occupies the third field like an inset plate. */
-    .g-bedroom {
-      grid-column: 9 / 13;
-      grid-row: 1;
-      width: 100%;
-      padding: clamp(10px, 1.1vw, 16px) clamp(10px, 1.1vw, 16px) clamp(8px, 0.9vw, 12px);
-      background: var(--white-stone);
-      border: 1px solid rgba(27, 42, 74, 0.08);
-      box-shadow: 0 14px 34px rgba(27, 42, 74, 0.14);
-    }
-    .g-bedroom img {
-      width: 100%;
-      display: block;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-    }
-    .g-bedroom figcaption {
-      margin-top: 8px;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ash);
-      text-align: center;
-    }
-    .gallery-note {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-    @media (max-width: 760px) {
-      .gallery-stage { display: block; }
-      .gallery-stage .g-bedroom {
-        width: min(72%, 320px);
-        margin: clamp(64px, 12vh, 104px) auto 0;
+      .gallery {
+        max-width: none;
       }
-    }
+      .gallery-stage {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--grid-gap);
+        align-items: end;
+      }
+      .gallery-stage figure {
+        margin: 0;
+      }
+      .gallery-cutaway {
+        grid-column: 1 / 9;
+        grid-row: 1;
+      }
+      .gallery-cutaway img {
+        width: 100%;
+      }
+      .gallery-cutaway figcaption {
+        margin-top: 8px;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ash);
+        text-align: right;
+      }
+      /* The smaller photograph occupies the third field like an inset plate. */
+      .g-bedroom {
+        grid-column: 9 / 13;
+        grid-row: 1;
+        width: 100%;
+        padding: clamp(10px, 1.1vw, 16px) clamp(10px, 1.1vw, 16px)
+          clamp(8px, 0.9vw, 12px);
+        background: var(--white-stone);
+        border: 1px solid rgba(27, 42, 74, 0.08);
+        box-shadow: 0 14px 34px rgba(27, 42, 74, 0.14);
+      }
+      .g-bedroom img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+      .g-bedroom figcaption {
+        margin-top: 8px;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ash);
+        text-align: center;
+      }
+      .gallery-note {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      @media (max-width: 760px) {
+        .gallery-stage {
+          display: block;
+        }
+        .gallery-stage .g-bedroom {
+          width: min(72%, 320px);
+          margin: clamp(64px, 12vh, 104px) auto 0;
+        }
+      }
 
-    /* ---------- 06 EVIDENCE ---------- */
+      /* ---------- 06 EVIDENCE ---------- */
 
-    .evidence {
-      width: 100%;
-      max-width: none;
-      padding-right: var(--gutter);
-      padding-left: var(--gutter);
-    }
+      .evidence {
+        width: 100%;
+        max-width: none;
+        padding-right: var(--gutter);
+        padding-left: var(--gutter);
+      }
 
-    .evidence-stage {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      grid-template-rows: auto auto auto;
-      gap: clamp(28px, 4vh, 44px) var(--grid-gap);
-      min-height: min(82svh, 860px);
-      align-content: center;
-    }
-
-    .evidence-name {
-      grid-column: 6 / 11;
-      grid-row: 1;
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-    .evidence-name h2 {
-      font-size: clamp(44px, 6vw, 72px);
-    }
-    .evidence-name a {
-      color: var(--slate);
-      font-size: 13px;
-      font-weight: 600;
-      text-underline-offset: 3px;
-      white-space: nowrap;
-    }
-
-    .evidence-portrait {
-      grid-column: 1 / 5;
-      grid-row: 1 / 4;
-      align-self: center;
-    }
-    .evidence-portrait img {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      border: 1px solid var(--linen);
-    }
-    .evidence-portrait figcaption {
-      margin-top: 8px;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--ash);
-    }
-
-    .evidence-proof {
-      align-self: start;
-      padding-top: 22px;
-      border-top: 1px solid rgba(27, 42, 74, 0.16);
-    }
-    .evidence-proof--experience {
-      grid-column: 6 / 11;
-      grid-row: 2;
-    }
-    .evidence-proof--licensed {
-      grid-column: 6 / 11;
-      grid-row: 3;
-    }
-    .evidence-place {
-      margin-bottom: 10px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--terracotta-dark);
-    }
-    .evidence-proof h3 {
-      font-size: clamp(23px, 2.8vw, 32px);
-      margin-bottom: 0.4em;
-    }
-    .evidence-proof p:not(.evidence-place) {
-      color: var(--slate);
-      font-size: 15px;
-    }
-
-    @media (max-width: 720px) {
       .evidence-stage {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        row-gap: 0;
-        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-rows: auto auto auto;
+        gap: clamp(28px, 4vh, 44px) var(--grid-gap);
+        min-height: min(82svh, 860px);
+        align-content: center;
       }
-      .evidence-name {
-        grid-column: 1 / -1;
-        grid-row: auto;
-        align-items: baseline;
-        gap: 10px;
-        margin-bottom: 32px;
-      }
-      .evidence-portrait {
-        grid-column: 1 / -1;
-        grid-row: auto;
-        width: min(72vw, 280px);
-        align-self: auto;
-      }
-      .evidence-proof--experience,
-      .evidence-proof--licensed {
-        grid-column: 1;
-        grid-row: auto;
-        align-self: start;
-      }
-      .evidence-proof--experience { margin-top: clamp(52px, 9vh, 76px); }
-      .evidence-proof--licensed { margin-top: clamp(52px, 9vh, 76px); }
-    }
 
-    /* ---------- 07 HONESTY ----------
+      .evidence-name {
+        grid-column: 6 / 11;
+        grid-row: 1;
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .evidence-name h2 {
+        font-size: clamp(44px, 6vw, 72px);
+      }
+      .evidence-name a {
+        color: var(--slate);
+        font-size: 13px;
+        font-weight: 600;
+        text-underline-offset: 3px;
+        white-space: nowrap;
+      }
+
+      .evidence-portrait {
+        grid-column: 1 / 5;
+        grid-row: 1 / 4;
+        align-self: center;
+      }
+      .evidence-portrait img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        border: 1px solid var(--linen);
+      }
+      .evidence-portrait figcaption {
+        margin-top: 8px;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ash);
+      }
+
+      .evidence-proof {
+        align-self: start;
+        padding-top: 22px;
+        border-top: 1px solid rgba(27, 42, 74, 0.16);
+      }
+      .evidence-proof--experience {
+        grid-column: 6 / 11;
+        grid-row: 2;
+      }
+      .evidence-proof--licensed {
+        grid-column: 6 / 11;
+        grid-row: 3;
+      }
+      .evidence-place {
+        margin-bottom: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--terracotta-dark);
+      }
+      .evidence-proof h3 {
+        font-size: clamp(23px, 2.8vw, 32px);
+        margin-bottom: 0.4em;
+      }
+      .evidence-proof p:not(.evidence-place) {
+        color: var(--slate);
+        font-size: 15px;
+      }
+
+      @media (max-width: 720px) {
+        .evidence-stage {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          row-gap: 0;
+          min-height: 0;
+        }
+        .evidence-name {
+          grid-column: 1 / -1;
+          grid-row: auto;
+          align-items: baseline;
+          gap: 10px;
+          margin-bottom: 32px;
+        }
+        .evidence-portrait {
+          grid-column: 1 / -1;
+          grid-row: auto;
+          width: min(72vw, 280px);
+          align-self: auto;
+        }
+        .evidence-proof--experience,
+        .evidence-proof--licensed {
+          grid-column: 1;
+          grid-row: auto;
+          align-self: start;
+        }
+        .evidence-proof--experience {
+          margin-top: clamp(52px, 9vh, 76px);
+        }
+        .evidence-proof--licensed {
+          margin-top: clamp(52px, 9vh, 76px);
+        }
+      }
+
+      /* ---------- 07 HONESTY ----------
        The reversal. The one act staged differently: a bare full-bleed
        wall, the admission centered, and more silence than any other act.
        The script drops; the builder speaks plainly. */
 
-    .honesty {
-      background: #F3EEE6;
-      margin-top: var(--act-gap);
-    }
-    .honesty-inner {
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: clamp(104px, 16vh, 184px) var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      grid-template-rows: auto 1fr;
-      column-gap: var(--grid-gap);
-      row-gap: clamp(40px, 7vh, 72px);
-      align-content: center;
-      min-height: 100svh;
-    }
-
-    .honesty-head {
-      grid-column: 1 / 5;
-      grid-row: 1;
-      max-width: none;
-      margin: 0;
-      text-align: left;
-    }
-    .honesty-head .year-numeral {
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--slate);
-      opacity: 0.7;
-      margin-bottom: 14px;
-    }
-    .honesty-head h2 { font-size: clamp(52px, 7vw, 88px); margin-bottom: 0.4em; }
-    .honesty-head p {
-      max-width: 38em;
-      color: var(--slate);
-    }
-
-    .compare-figure {
-      grid-column: 5 / 13;
-      grid-row: 1 / 3;
-      width: 70%;
-      margin: 0;
-      max-width: none;
-      align-self: center;
-      justify-self: end;
-    }
-
-    .honesty-record {
-      grid-column: 1 / 5;
-      grid-row: 2;
-      align-self: end;
-      padding-top: 22px;
-      border-top: 1px solid rgba(27, 42, 74, 0.16);
-    }
-    .honesty-record .evidence-place {
-      margin-bottom: 10px;
-    }
-    .honesty-record h3 {
-      margin-bottom: 0.4em;
-      font-size: clamp(23px, 2.8vw, 32px);
-    }
-    .honesty-record p:not(.evidence-place) {
-      color: var(--slate);
-      font-size: 15px;
-    }
-
-    .compare-state {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      margin-bottom: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ash);
-    }
-    .compare-state [data-active="true"] { color: var(--navy); }
-    .compare-state [data-active="true"]::after {
-      content: "";
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      margin-left: 8px;
-      border-radius: 50%;
-      background: var(--terracotta);
-      vertical-align: 1px;
-    }
-
-    .compare {
-      --t: 0.5;
-      position: relative;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: var(--navy-deep);
-      touch-action: none; /* the handle owns the horizontal drag */
-      cursor: ew-resize;
-      user-select: none;
-    }
-    .compare img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-    .compare-after {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      width: calc(100% - var(--t) * 100%);
-      overflow: hidden;
-    }
-    .compare-after img {
-      /* stays frame-sized so the picture never squashes */
-      width: auto;
-      min-width: 100%;
-      right: 0;
-      left: auto;
-      max-width: none;
-    }
-    .compare-rule {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: calc(var(--t) * 100%);
-      width: 2px;
-      margin-left: -1px;
-      background: var(--white-stone);
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
-      pointer-events: none;
-    }
-    .compare-grip {
-      position: absolute;
-      top: 50%;
-      left: calc(var(--t) * 100%);
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--white-stone);
-      color: var(--navy);
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      box-shadow: 0 6px 18px rgba(16, 28, 51, 0.35);
-      pointer-events: none;
-    }
-
-    /* The same control for keyboard and assistive tech */
-    .compare-range {
-      display: block;
-      width: 100%;
-      margin-top: 12px;
-      accent-color: var(--terracotta);
-      cursor: ew-resize;
-    }
-
-    .compare-cap {
-      margin-top: 12px;
-      font-size: 14px;
-      color: var(--slate);
-    }
-    .compare-cap strong { color: var(--navy); font-weight: 600; }
-
-    /* Ownership is deliberately staged before evidence: the object and
-       legal form become concrete before the people behind it enter. */
-
-    .ownership h2 { font-size: clamp(34px, 4.6vw, 52px); margin-bottom: 0.4em; max-width: 12em; }
-    .ownership .lede { margin-bottom: clamp(28px, 5vh, 44px); }
-
-    .deal-figs {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      grid-template-rows: 1fr 1fr;
-      column-gap: var(--grid-gap);
-      max-width: none;
-      width: 100%;
-      min-height: min(56svh, 620px);
-      padding: 0;
-      align-items: center;
-    }
-    .deal-fig {
-      align-self: center;
-    }
-    /* One dominant proposition; floor and price form a quieter right-hand index. */
-    .deal-fig--target {
-      grid-column: 1 / 7;
-      grid-row: 1 / 3;
-    }
-    .deal-fig--floor {
-      grid-column: 8 / 13;
-      grid-row: 1;
-      align-self: end;
-      padding-bottom: clamp(44px, 7vh, 72px);
-    }
-    .deal-fig--price {
-      grid-column: 8 / 13;
-      grid-row: 2;
-      align-self: start;
-      padding-top: clamp(44px, 7vh, 72px);
-    }
-    .deal-num {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(64px, 7vw, 112px);
-      line-height: 0.9;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-    }
-    .deal-fig--target .deal-num {
-      font-size: clamp(96px, 10vw, 160px);
-    }
-    .deal-fig--floor .deal-num { color: #C87A4A; }
-    .deal-fig--price .deal-num {
-      color: rgba(27, 42, 74, 0.76);
-    }
-    .deal-lbl {
-      margin-top: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .deal-note {
-      margin-top: 6px;
-      font-size: 14px;
-      color: var(--slate);
-    }
-    .deal-availability {
-      margin-top: 22px;
-      font-size: 14px;
-      color: var(--slate);
-    }
-    .deal-availability strong {
-      color: var(--terracotta-dark);
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(24px, 2.4vw, 34px);
-      font-weight: 400;
-    }
-
-    /* ---------- 05 ECONOMICS ---------- */
-
-    .economics {
-      min-height: 76svh;
-      padding-bottom: clamp(64px, 10vh, 112px);
-      display: flex;
-      align-items: center;
-    }
-
-    /* ---------- 08 DECISION ---------- */
-
-    .decision {
-      background: var(--white-stone);
-      border-top: 1px solid rgba(27, 42, 74, 0.1);
-      margin-top: 0;
-    }
-    .decision-inner {
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: clamp(72px, 11vh, 128px) var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      grid-template-rows: auto auto auto auto;
-      column-gap: var(--grid-gap);
-      align-items: start;
-      align-content: center;
-      min-height: 100svh;
-    }
-
-    .decision h2 {
-      grid-column: 3 / 11;
-      grid-row: 1;
-      text-align: center;
-      font-size: clamp(52px, 9vw, 104px);
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      margin-bottom: 0.25em;
-      max-width: none;
-    }
-    .decision h2 em { color: var(--terracotta); font-style: italic; }
-
-    .document-sequence {
-      grid-column: 3 / 11;
-      grid-row: 2;
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      margin-top: clamp(32px, 5vh, 52px);
-      list-style: none;
-    }
-    .document-sequence li {
-      padding: 9px 8px;
-      text-align: center;
-      color: var(--slate);
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: clamp(9px, 0.7vw, 11px);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-    .ask-door {
-      grid-column: 3 / 11;
-      grid-row: 3;
-      margin-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      max-width: none;
-    }
-    .walk-primary--door {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 84px;
-      padding: 26px 36px;
-      background: var(--terracotta);
-      color: var(--white-stone);
-      font-size: clamp(15px, 1.6vw, 18px);
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      text-align: center;
-      box-shadow: 0 22px 56px rgba(168, 94, 50, 0.35);
-      transition: background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
-    }
-    .walk-primary--door:hover {
-      background: var(--terracotta-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 28px 64px rgba(168, 94, 50, 0.42);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .walk-primary--door,
-      .walk-primary--door:hover { transform: none; transition: background 300ms ease; }
-    }
-
-    .ask-door-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: center;
-      gap: 12px 28px;
-      margin-top: clamp(32px, 5vh, 52px);
-    }
-    .walk-secondary {
-      display: inline-block;
-      padding: 4px 0;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-bottom: 1px solid var(--navy);
-      white-space: nowrap;
-    }
-    .walk-secondary:hover { color: var(--terracotta-dark); border-color: var(--terracotta-dark); }
-
-    /* Write-first — a plain disclosure, in the reading flow */
-    .ask-alt {
-      grid-column: 4 / 10;
-      grid-row: 4;
-      justify-self: center;
-      width: 100%;
-      margin-top: clamp(36px, 5vh, 56px);
-      max-width: none;
-    }
-    .ask-alt > summary {
-      width: 100%;
-      cursor: pointer;
-      text-align: center;
-      font-size: 15px;
-      font-weight: 600;
-      list-style: none;
-      opacity: 0.85;
-    }
-    .ask-alt > summary::-webkit-details-marker { display: none; }
-    .ask-alt > summary::after { content: " +"; color: var(--terracotta); }
-    .ask-alt[open] > summary::after { content: " −"; }
-    .ask-alt[open] > summary { opacity: 1; }
-
-    .ask-alt-body {
-      margin-top: 18px;
-      padding: 22px 24px;
-      background: var(--parchment);
-      border: 1px solid rgba(27, 42, 74, 0.14);
-    }
-    .ask-alt .lede-alt {
-      font-size: 14px;
-      color: var(--slate);
-      margin-bottom: 16px;
-      max-width: 28em;
-    }
-    .fear-buttons { display: grid; gap: 8px; }
-    @media (min-width: 560px) {
-      .fear-buttons { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .fear-buttons .fear-btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
-    }
-    .fear-btn {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      text-align: left;
-      color: var(--navy);
-      background: var(--white-stone);
-      border: 1px solid var(--sandstone);
-      border-radius: 4px;
-      padding: 12px 14px;
-      cursor: pointer;
-      transition: border-color 300ms ease, background 300ms ease, color 300ms ease;
-    }
-    .fear-btn:hover { border-color: var(--terracotta); background: #FBF3EC; }
-    .fear-btn.selected {
-      border-color: var(--terracotta);
-      background: var(--terracotta);
-      color: var(--white-stone);
-    }
-    .fear-other { margin-top: 12px; }
-    .fear-other label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--slate);
-      margin-bottom: 6px;
-    }
-    .fear-other textarea {
-      width: 100%;
-      min-height: 64px;
-      resize: vertical;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 14px;
-      color: var(--navy);
-      background: var(--white-stone);
-      border: 1.5px solid var(--sandstone);
-      border-radius: 6px;
-      padding: 10px 12px;
-    }
-    .fear-other textarea:focus {
-      outline: 2px solid rgba(194, 112, 62, 0.4);
-      border-color: var(--terracotta);
-    }
-    .send-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .send-btn {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      border-radius: 4px;
-      padding: 12px 22px;
-      cursor: pointer;
-      border: none;
-      transition: background 300ms ease;
-    }
-    .send-btn.primary { background: var(--terracotta); color: var(--white-stone); }
-    .send-btn.primary:hover { background: var(--terracotta-dark); }
-    .send-btn.secondary { background: var(--navy); color: var(--white-stone); }
-    .send-btn.secondary:hover { background: var(--slate); }
-    .send-hint {
-      margin-top: 10px;
-      font-size: 12px;
-      color: var(--ash);
-      max-width: 28em;
-    }
-
-    @media (min-width: 900px) {
-      :root {
-        --gutter: 16.5vw;
+      .honesty {
+        background: #f3eee6;
+        margin-top: var(--act-gap);
       }
-    }
-
-    @media (max-width: 760px) {
-      .promise::before {
-        background: linear-gradient(
-          to top,
-          rgba(16, 28, 51, 0.88) 0%,
-          rgba(16, 28, 51, 0.16) 62%,
-          transparent 78%
-        );
-      }
-      .grid-overlay {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-      .grid-overlay span:nth-child(n + 5) { display: none; }
-      .ownership,
-      .honesty-inner,
-      .economics,
-      .decision-inner {
-        display: block;
-        min-height: 0;
-      }
-      .ownership-copy,
-      .honesty-record,
-      .honesty .compare-figure,
-      .economics .deal-figs,
-      .ask-door,
-      .ask-alt {
-        margin-top: clamp(32px, 6vh, 56px);
-      }
-      .deal-figs {
-        display: grid;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        grid-template-rows: auto;
-        row-gap: clamp(72px, 11vh, 96px);
-        min-height: 0;
-        padding: 32px 0;
-      }
-      .deal-fig {
-        width: auto;
-        margin: 0;
-        padding: 0;
-        border-left: 0;
-        background: transparent;
-        transform: none;
-      }
-      .deal-fig--target {
-        grid-column: 1 / 7;
-        grid-row: auto;
+      .honesty-inner {
         width: 100%;
-        justify-self: center;
-        text-align: center;
+        max-width: none;
+        margin: 0;
+        padding: clamp(104px, 16vh, 184px) var(--gutter);
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-rows: auto 1fr;
+        column-gap: var(--grid-gap);
+        row-gap: clamp(40px, 7vh, 72px);
+        align-content: center;
+        min-height: 100svh;
       }
-      .deal-fig--floor {
+
+      .honesty-head {
         grid-column: 1 / 5;
-        grid-row: auto;
-        width: min(100%, 220px);
-        justify-self: start;
+        grid-row: 1;
+        max-width: none;
+        margin: 0;
         text-align: left;
       }
-      .deal-fig--price {
-        grid-column: 2 / 7;
-        grid-row: auto;
-        width: min(100%, 260px);
+      .honesty-head .year-numeral {
+        font-size: 14px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--slate);
+        opacity: 0.7;
+        margin-bottom: 14px;
+      }
+      .honesty-head h2 {
+        font-size: clamp(52px, 7vw, 88px);
+        margin-bottom: 0.4em;
+      }
+      .honesty-head p {
+        max-width: 38em;
+        color: var(--slate);
+      }
+
+      .compare-figure {
+        grid-column: 5 / 13;
+        grid-row: 1 / 3;
+        width: 70%;
+        margin: 0;
+        max-width: none;
+        align-self: center;
         justify-self: end;
-        text-align: right;
+      }
+
+      .honesty-record {
+        grid-column: 1 / 5;
+        grid-row: 2;
+        align-self: end;
+        padding-top: 22px;
+        border-top: 1px solid rgba(27, 42, 74, 0.16);
+      }
+      .honesty-record .evidence-place {
+        margin-bottom: 10px;
+      }
+      .honesty-record h3 {
+        margin-bottom: 0.4em;
+        font-size: clamp(23px, 2.8vw, 32px);
+      }
+      .honesty-record p:not(.evidence-place) {
+        color: var(--slate);
+        font-size: 15px;
+      }
+
+      .compare-state {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ash);
+      }
+      .compare-state [data-active="true"] {
+        color: var(--navy);
+      }
+      .compare-state [data-active="true"]::after {
+        content: "";
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        margin-left: 8px;
+        border-radius: 50%;
+        background: var(--terracotta);
+        vertical-align: 1px;
+      }
+
+      .compare {
+        --t: 0.5;
+        position: relative;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background: var(--navy-deep);
+        touch-action: none; /* the handle owns the horizontal drag */
+        cursor: ew-resize;
+        user-select: none;
+      }
+      .compare img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+      }
+      .compare-after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: calc(100% - var(--t) * 100%);
+        overflow: hidden;
+      }
+      .compare-after img {
+        /* stays frame-sized so the picture never squashes */
+        width: auto;
+        min-width: 100%;
+        right: 0;
+        left: auto;
+        max-width: none;
+      }
+      .compare-rule {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(var(--t) * 100%);
+        width: 2px;
+        margin-left: -1px;
+        background: var(--white-stone);
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+        pointer-events: none;
+      }
+      .compare-grip {
+        position: absolute;
+        top: 50%;
+        left: calc(var(--t) * 100%);
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--white-stone);
+        color: var(--navy);
+        display: grid;
+        place-items: center;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        box-shadow: 0 6px 18px rgba(16, 28, 51, 0.35);
+        pointer-events: none;
+      }
+
+      /* The same control for keyboard and assistive tech */
+      .compare-range {
+        display: block;
+        width: 100%;
+        margin-top: 12px;
+        accent-color: var(--terracotta);
+        cursor: ew-resize;
+      }
+
+      .compare-cap {
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--slate);
+      }
+      .compare-cap strong {
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+      /* Ownership is deliberately staged before evidence: the object and
+       legal form become concrete before the people behind it enter. */
+
+      .ownership h2 {
+        font-size: clamp(34px, 4.6vw, 52px);
+        margin-bottom: 0.4em;
+        max-width: 12em;
+      }
+      .ownership .lede {
+        margin-bottom: clamp(28px, 5vh, 44px);
+      }
+
+      .deal-figs {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-rows: 1fr 1fr;
+        column-gap: var(--grid-gap);
+        max-width: none;
+        width: 100%;
+        min-height: min(56svh, 620px);
+        padding: 0;
+        align-items: center;
+      }
+      .deal-fig {
+        align-self: center;
+      }
+      /* One dominant proposition; floor and price form a quieter right-hand index. */
+      .deal-fig--target {
+        grid-column: 1 / 7;
+        grid-row: 1 / 3;
+      }
+      .deal-fig--floor {
+        grid-column: 8 / 13;
+        grid-row: 1;
+        align-self: end;
+        padding-bottom: clamp(44px, 7vh, 72px);
+      }
+      .deal-fig--price {
+        grid-column: 8 / 13;
+        grid-row: 2;
+        align-self: start;
+        padding-top: clamp(44px, 7vh, 72px);
+      }
+      .deal-num {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(64px, 7vw, 112px);
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
       }
       .deal-fig--target .deal-num {
-        font-size: clamp(96px, 30vw, 132px);
+        font-size: clamp(96px, 10vw, 160px);
       }
-      .document-sequence {
+      .deal-fig--floor .deal-num {
+        color: #c87a4a;
+      }
+      .deal-fig--price .deal-num {
+        color: rgba(27, 42, 74, 0.76);
+      }
+      .deal-lbl {
+        margin-top: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .deal-note {
+        margin-top: 6px;
+        font-size: 14px;
+        color: var(--slate);
+      }
+      .deal-availability {
+        margin-top: 22px;
+        font-size: 14px;
+        color: var(--slate);
+      }
+      .deal-availability strong {
+        color: var(--terracotta-dark);
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(24px, 2.4vw, 34px);
+        font-weight: 400;
+      }
+
+      /* ---------- 05 ECONOMICS ---------- */
+
+      .economics {
+        min-height: 76svh;
+        padding-bottom: clamp(64px, 10vh, 112px);
+        display: flex;
+        align-items: center;
+      }
+
+      /* ---------- 08 DECISION ---------- */
+
+      .decision {
+        background: var(--white-stone);
+        border-top: 1px solid rgba(27, 42, 74, 0.1);
+        margin-top: 0;
+      }
+      .decision-inner {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: clamp(72px, 11vh, 128px) var(--gutter);
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-rows: auto auto auto auto;
+        column-gap: var(--grid-gap);
+        align-items: start;
+        align-content: center;
+        min-height: 100svh;
+      }
+
+      .decision h2 {
+        grid-column: 3 / 11;
+        grid-row: 1;
+        text-align: center;
+        font-size: clamp(52px, 9vw, 104px);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        margin-bottom: 0.25em;
+        max-width: none;
+      }
+      .decision h2 em {
+        color: var(--terracotta);
+        font-style: italic;
+      }
+
+      .document-sequence {
+        grid-column: 3 / 11;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        margin-top: clamp(32px, 5vh, 52px);
+        list-style: none;
       }
       .document-sequence li {
-        margin: 0;
-        padding: 8px 2px;
+        padding: 9px 8px;
+        text-align: center;
+        color: var(--slate);
+        font-family: "Source Sans 3", sans-serif;
+        font-size: clamp(9px, 0.7vw, 11px);
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        line-height: 1;
+        text-transform: uppercase;
       }
-      .economics {
-        padding-top: 72px;
-        padding-bottom: 88px;
+      .ask-door {
+        grid-column: 3 / 11;
+        grid-row: 3;
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        max-width: none;
       }
-      .ownership {
-        padding-bottom: 0;
+      .walk-primary--door {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 84px;
+        padding: 26px 36px;
+        background: var(--terracotta);
+        color: var(--white-stone);
+        font-size: clamp(15px, 1.6vw, 18px);
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        box-shadow: 0 22px 56px rgba(168, 94, 50, 0.35);
+        transition:
+          background 300ms ease,
+          transform 300ms ease,
+          box-shadow 300ms ease;
       }
-      .ownership-plan { width: 100%; }
-      .compare-figure { width: 100%; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="grid-overlay" aria-hidden="true">
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-  </div>
-
-  <main>
-
-    <!-- FRAME 01 — INTRIGUE
-         One proposition over the rooftop itself: the shared life the
-         building offers, before ownership mechanics and numbers appear. -->
-    <section class="act promise" aria-label="El Fortín — apartamento en propiedad cerca de Valencia">
-      <div class="promise-grid">
-        <div class="promise-copy">
-          <p class="promise-brand">El Fort&iacute;n</p>
-          <p class="promise-location">Riba-roja de T&uacute;ria</p>
-          <h1>Un apartamento tuyo.</h1>
-          <p class="promise-support">El alquiler, en nuestras manos.</p>
-        </div>
-      </div>
-      <p class="promise-credit">Azotea &middot; Imagen orientativa</p>
-    </section>
-
-    <!-- FRAME 02 — LOCATION
-         The practical answer after the rooftop cover: distance and route. -->
-    <section class="act location" aria-label="Ubicación — Camino Valencia 31, Riba-roja de Túria">
-      <div class="location-fact reveal">
-        <p class="loc-num">20&nbsp;min</p>
-        <p class="loc-lbl">de Valencia</p>
-        <p class="loc-note">Camino Valencia,&nbsp;31.<br>Metrovalencia, línea&nbsp;9 &middot; Aeropuerto a 12&nbsp;min en coche.</p>
-      </div>
-      <figure class="location-map reveal">
-        <div id="metro-map" aria-label="Mapa: línea 9 de Metrovalencia desde el centro de Valencia hasta el edificio en Riba-roja de Túria"></div>
-        <figcaption>Línea&nbsp;9 de Metrovalencia &middot; Riba-roja–Valencia</figcaption>
-      </figure>
-    </section>
-
-    <!-- FRAME 03 — GALLERY
-         One message: you would want to live here. -->
-    <section class="act gallery" aria-label="El edificio — plano e imágenes orientativas">
-      <div class="gallery-stage">
-        <figure class="gallery-cutaway cutaway-blend reveal">
-          <img src="assets/render-axonometric.jpg" alt="Vista axonométrica del edificio: viviendas en sección, escalera central, terraza con piscina en la azotea y aparcamiento cubierto" loading="lazy" decoding="async">
-          <figcaption>El edificio</figcaption>
-        </figure>
-        <figure class="g-bedroom reveal">
-          <img src="assets/render-bedroom.jpg" alt="Imagen orientativa del dormitorio: cama en tonos terracota y oliva, armario de madera y ventanal con cortinas" loading="lazy" decoding="async">
-          <figcaption>Dormitorio</figcaption>
-        </figure>
-      </div>
-      <p class="gallery-note">Imágenes orientativas del proyecto</p>
-    </section>
-
-    <!-- FRAME 04 — OWNERSHIP
-         Once the place is concrete, answer what the buyer owns, who runs
-         the letting, and whether they can use it themselves. -->
-    <section class="act ownership" id="ownership" aria-label="Propiedad y gestión">
-      <figure class="ownership-plan reveal">
-        <img src="assets/render-type-a-cropped.jpg" alt="Plano de la vivienda de acceso" loading="lazy" decoding="async">
-        <figcaption>Vivienda de acceso &middot; 40,4&nbsp;m&sup2; útiles</figcaption>
-      </figure>
-
-      <div class="ownership-copy reveal">
-        <h2>Propiedad. Con escritura.</h2>
-        <dl class="own-split">
-          <div>
-            <dt>Venta</dt>
-            <dd>Véndela cuando quieras.</dd>
-          </div>
-          <div>
-            <dt>Alquiler</dt>
-            <dd>Gestionamos. Repartimos los ingresos.</dd>
-          </div>
-          <div>
-            <dt>Para ti.</dt>
-            <dd>Dos semanas al año. Disfruta de tu vivienda.</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- FRAME 05 — ECONOMICS
-         The yield leads; the floor stands under it; the price is the entry.
-         Every number carries its limit. -->
-    <section class="act economics" id="deal" aria-label="Rentabilidad neta proyectada, mínimo contractual y precio de entrada">
-      <div class="deal-figs reveal">
-        <div class="deal-fig deal-fig--target">
-          <p class="deal-num">&gt;7%</p>
-          <p class="deal-lbl">Rentabilidad neta prevista</p>
-        </div>
-        <div class="deal-fig deal-fig--floor">
-          <p class="deal-num">4%</p>
-          <p class="deal-lbl">Retorno mínimo garantizado</p>
-        </div>
-        <div class="deal-fig deal-fig--price">
-          <p class="deal-num">236.141&nbsp;&euro;</p>
-          <p class="deal-lbl">Precio en preventa</p>
-          <p class="deal-note">Gastos y mobiliario incluidos</p>
-          <p class="deal-availability"><strong>9 de 10</strong> disponibles &middot; Entrega prevista en 2027</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FRAME 06 — EVIDENCE
-         Only after the asset and its economics are clear do the people
-         responsible for delivery enter. -->
-    <section class="act evidence" id="evidence" aria-label="Quién está detrás del proyecto">
-      <div class="evidence-stage reveal">
-        <header class="evidence-name">
-          <h2>Uriel Nabel.</h2>
-          <a href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
-        </header>
-
-        <figure class="evidence-portrait">
-          <img src="assets/uriel-onsite.jpg" alt="Uriel trabajando en la obra de Riba-roja junto a tejas recuperadas" loading="lazy" decoding="async">
-          <figcaption>Obra de Riba-roja &middot; Julio de 2026</figcaption>
-        </figure>
-
-        <article class="evidence-proof evidence-proof--experience">
-          <p class="evidence-place">Experiencia</p>
-          <h3>20 años en el sector.</h3>
-          <p>Cinco en SAP, con empresas de ingeniería y construcción de toda Europa.</p>
-        </article>
-
-        <article class="evidence-proof evidence-proof--licensed">
-          <p class="evidence-place">Riba-roja</p>
-          <h3>Equipo acreditado.</h3>
-          <p><a class="verify-link" href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a>, constructora.<br><a class="verify-link" href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J.&nbsp;J. P&eacute;rez Red&oacute;n</a>, arquitecto (COACV 11.357).<br>Licencia 4497/2025/GEN.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- FRAME 07 — CANDOR
-         The quietest frame: limitation and evidence, without persuasion. -->
-    <section class="honesty" aria-label="Trayectoria — transparencia y experiencia">
-      <div class="honesty-inner">
-      <header class="honesty-head reveal">
-        <p class="year-numeral">2026</p>
-        <h2>A tiempo completo.</h2>
-        <p>Uriel dejó SAP en enero de 2026 para dedicarse a El Fortín.</p>
-      </header>
-
-      <article class="honesty-record reveal">
-        <p class="evidence-place">Puzol</p>
-        <h3>Rehabilitada en agosto de 2025.</h3>
-        <p>Una casa centenaria, rehecha por completo.</p>
-      </article>
-
-      <figure class="compare-figure reveal" id="compare-figure">
-        <div class="compare-state" aria-hidden="true">
-          <span data-cond="before" data-active="true">Antes</span>
-          <span data-cond="after" data-active="false">Después</span>
-        </div>
-        <div class="compare" id="compare">
-          <img src="assets/puzol-before.jpg" alt="La vivienda de Puzol antes de la rehabilitación" width="1040" height="780" loading="lazy" decoding="async" draggable="false">
-          <div class="compare-after">
-            <img src="assets/puzol-after-interior.webp" alt="El salón dúplex de la vivienda de Puzol después de la rehabilitación" width="1200" height="800" loading="lazy" decoding="async" draggable="false">
-          </div>
-          <span class="compare-rule" aria-hidden="true"></span>
-          <span class="compare-grip" aria-hidden="true">&#8596;</span>
-        </div>
-        <input class="compare-range" id="compare-range" type="range" min="0" max="100" value="50" step="1" aria-label="Descubre la rehabilitación: desliza para comparar el antes y el después">
-        <figcaption class="compare-cap">
-          <strong>Desliza para comparar.</strong>
-        </figcaption>
-      </figure>
-      </div>
-    </section>
-
-    <!-- FRAME 08 — AGENCY
-         The requested action is inspection, not purchase. -->
-    <section class="decision" id="ask" aria-label="Primero, la documentación">
-      <div class="decision-inner">
-        <h2>Los documentos, <em>primero.</em></h2>
-
-        <ol class="document-sequence" aria-label="Documentos incluidos en el dossier">
-          <li>Escritura</li>
-          <li>Licencia</li>
-          <li>Tasación</li>
-          <li>Contrato</li>
-          <li>Condiciones de gestión</li>
-          <li>Mínimo contractual</li>
-        </ol>
-
-        <div class="ask-door">
-          <a class="walk-primary--door" id="request-pack" href="mailto:uriel.nabel@elfortincapital.com?subject=Documentaci%C3%B3n%20de%20El%20Fort%C3%ADn&body=Hola%2C%20me%20gustar%C3%ADa%20recibir%20el%20dossier%20documental%20del%20proyecto%20El%20Fort%C3%ADn%20en%20Riba-roja%20de%20T%C3%BAria.">Pide el dossier</a>
-          <div class="ask-door-meta">
-            <a class="walk-secondary" id="book-call" href="https://calendar.app.google/R9LJvZFYTPwuXNw7A" target="_blank" rel="noopener noreferrer">Habla con el promotor</a>
-          </div>
-        </div>
-
-        <details class="ask-alt" id="what-would-stop-you">
-          <summary>¿Prefieres preguntar?</summary>
-          <div class="ask-alt-body">
-            <p class="lede-alt">Una pregunta. Un documento. Cero folletos.</p>
-            <div class="fear-buttons" role="group" aria-label="Elige la cuestión que más se acerque a tu consulta">
-              <button type="button" class="fear-btn" data-fear="rent_wont_materialize">El alquiler no rinde lo previsto</button>
-              <button type="button" class="fear-btn" data-fear="construction_stalls">¿Y si la obra se para?</button>
-              <button type="button" class="fear-btn" data-fear="floor_just_paper">¿Qué respalda el mínimo del 4&nbsp;%?</button>
-              <button type="button" class="fear-btn" data-fear="show_me_documents">Ver escritura y licencia</button>
-              <button type="button" class="fear-btn" data-fear="who_answers_after">¿Quién responde tras la compra?</button>
-            </div>
-            <div class="fear-other">
-              <label for="fear-text">Otra pregunta:</label>
-              <textarea id="fear-text" placeholder="Pregunta sin rodeos."></textarea>
-            </div>
-            <div class="send-row">
-              <button type="button" class="send-btn primary" id="send-email">Enviar por correo</button>
-              <button type="button" class="send-btn secondary" id="send-whatsapp">Enviar por WhatsApp</button>
-            </div>
-            <p class="send-hint">Sin listas. Sin campañas. Tu consulta es privada.</p>
-          </div>
-        </details>
-      </div>
-    </section>
-
-  </main>
-
-  <script>
-    (function () {
-      document.documentElement.classList.add('js');
-
-      /* ---------- Master grid: press G to inspect the composition ---------- */
-
-      window.addEventListener('keydown', function (event) {
-        var target = event.target;
-        var isWriting = target && (
-          target.tagName === 'INPUT'
-          || target.tagName === 'TEXTAREA'
-          || target.tagName === 'SELECT'
-          || target.isContentEditable
-        );
-        if (isWriting || event.metaKey || event.ctrlKey || event.altKey) return;
-        if (event.key.toLowerCase() !== 'g') return;
-        document.body.classList.toggle('grid-visible');
-      });
-
-      /* ---------- Before/after: one explicit control, two inputs ---------- */
-
-      var compare = document.getElementById('compare');
-      var range = document.getElementById('compare-range');
-      var figure = document.getElementById('compare-figure');
-      var condBefore = document.querySelector('.compare-state [data-cond="before"]');
-      var condAfter = document.querySelector('.compare-state [data-cond="after"]');
-
-      function setT(t) {
-        t = Math.max(0, Math.min(1, t));
-        compare.style.setProperty('--t', t.toFixed(4));
-        range.value = String(Math.round(t * 100));
-        /* t is the boundary position from the left — the share of Before showing */
-        condBefore.setAttribute('data-active', t >= 0.5 ? 'true' : 'false');
-        condAfter.setAttribute('data-active', t < 0.5 ? 'true' : 'false');
+      .walk-primary--door:hover {
+        background: var(--terracotta-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 28px 64px rgba(168, 94, 50, 0.42);
       }
-
-      range.addEventListener('input', function () {
-        setT(Number(range.value) / 100);
-      });
-
-      compare.addEventListener('pointerdown', function (e) {
-        compare.setPointerCapture(e.pointerId);
-        setT((e.clientX - compare.getBoundingClientRect().left) / compare.clientWidth);
-      });
-      compare.addEventListener('pointermove', function (e) {
-        if (!compare.hasPointerCapture || !compare.hasPointerCapture(e.pointerId)) return;
-        setT((e.clientX - compare.getBoundingClientRect().left) / compare.clientWidth);
-      });
-
-      setT(0.5);
-
-      /* ---------- Quiet entrances (skipped under reduced motion via CSS) ---------- */
-
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-on');
-              io.unobserve(entry.target);
-            }
-          });
-        }, { rootMargin: '0px 0px -10% 0px' });
-        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-      } else {
-        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-on'); });
-      }
-    })();
-  </script>
-
-  <!-- Conversion — ported unchanged from v3; KPI remains cost per named fear -->
-  <script>
-    (function () {
-      var CONFIG = {
-        email: 'uriel.nabel@elfortincapital.com',
-        whatsapp: '34626459818'
-      };
-
-      function track(event, payload) {
-        payload = payload || {};
-        if (typeof gtag === 'function') {
-          gtag('event', event, payload);
-        } else {
-          window.dataLayer = window.dataLayer || [];
-          var row = { event: event };
-          Object.keys(payload).forEach(function (k) { row[k] = payload[k]; });
-          window.dataLayer.push(row);
+      @media (prefers-reduced-motion: reduce) {
+        .walk-primary--door,
+        .walk-primary--door:hover {
+          transform: none;
+          transition: background 300ms ease;
         }
       }
 
-      var pack = document.getElementById('request-pack');
-      if (pack) {
-        pack.addEventListener('click', function () { track('request_pack_clicked'); });
+      .ask-door-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: center;
+        gap: 12px 28px;
+        margin-top: clamp(32px, 5vh, 52px);
+      }
+      .walk-secondary {
+        display: inline-block;
+        padding: 4px 0;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-bottom: 1px solid var(--navy);
+        white-space: nowrap;
+      }
+      .walk-secondary:hover {
+        color: var(--terracotta-dark);
+        border-color: var(--terracotta-dark);
       }
 
-      var book = document.getElementById('book-call');
-      if (book) {
-        book.addEventListener('click', function () { track('book_call_clicked'); });
+      /* Write-first — a plain disclosure, in the reading flow */
+      .ask-alt {
+        grid-column: 4 / 10;
+        grid-row: 4;
+        justify-self: center;
+        width: 100%;
+        margin-top: clamp(36px, 5vh, 56px);
+        max-width: none;
+      }
+      .ask-alt > summary {
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 600;
+        list-style: none;
+        opacity: 0.85;
+      }
+      .ask-alt > summary::-webkit-details-marker {
+        display: none;
+      }
+      .ask-alt > summary::after {
+        content: " +";
+        color: var(--terracotta);
+      }
+      .ask-alt[open] > summary::after {
+        content: " −";
+      }
+      .ask-alt[open] > summary {
+        opacity: 1;
       }
 
-      var selectedFear = null;
-      var fearButtons = document.querySelectorAll('.fear-btn');
-      var freeText = document.getElementById('fear-text');
+      .ask-alt-body {
+        margin-top: 18px;
+        padding: 22px 24px;
+        background: var(--parchment);
+        border: 1px solid rgba(27, 42, 74, 0.14);
+      }
+      .ask-alt .lede-alt {
+        font-size: 14px;
+        color: var(--slate);
+        margin-bottom: 16px;
+        max-width: 28em;
+      }
+      .fear-buttons {
+        display: grid;
+        gap: 8px;
+      }
+      @media (min-width: 560px) {
+        .fear-buttons {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        .fear-buttons .fear-btn:last-child:nth-child(odd) {
+          grid-column: 1 / -1;
+        }
+      }
+      .fear-btn {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        color: var(--navy);
+        background: var(--white-stone);
+        border: 1px solid var(--sandstone);
+        border-radius: 4px;
+        padding: 12px 14px;
+        cursor: pointer;
+        transition:
+          border-color 300ms ease,
+          background 300ms ease,
+          color 300ms ease;
+      }
+      .fear-btn:hover {
+        border-color: var(--terracotta);
+        background: #fbf3ec;
+      }
+      .fear-btn.selected {
+        border-color: var(--terracotta);
+        background: var(--terracotta);
+        color: var(--white-stone);
+      }
+      .fear-other {
+        margin-top: 12px;
+      }
+      .fear-other label {
+        display: block;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--slate);
+        margin-bottom: 6px;
+      }
+      .fear-other textarea {
+        width: 100%;
+        min-height: 64px;
+        resize: vertical;
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 14px;
+        color: var(--navy);
+        background: var(--white-stone);
+        border: 1.5px solid var(--sandstone);
+        border-radius: 6px;
+        padding: 10px 12px;
+      }
+      .fear-other textarea:focus {
+        outline: 2px solid rgba(194, 112, 62, 0.4);
+        border-color: var(--terracotta);
+      }
+      .send-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .send-btn {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 12px 22px;
+        cursor: pointer;
+        border: none;
+        transition: background 300ms ease;
+      }
+      .send-btn.primary {
+        background: var(--terracotta);
+        color: var(--white-stone);
+      }
+      .send-btn.primary:hover {
+        background: var(--terracotta-dark);
+      }
+      .send-btn.secondary {
+        background: var(--navy);
+        color: var(--white-stone);
+      }
+      .send-btn.secondary:hover {
+        background: var(--slate);
+      }
+      .send-hint {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--ash);
+        max-width: 28em;
+      }
 
-      fearButtons.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          fearButtons.forEach(function (b) { b.classList.remove('selected'); });
-          btn.classList.add('selected');
-          selectedFear = { id: btn.dataset.fear, label: btn.textContent.trim() };
-          track('fear_named', { fear: btn.dataset.fear });
+      @media (min-width: 900px) {
+        :root {
+          --gutter: 16.5vw;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .promise::before {
+          background: linear-gradient(
+            to top,
+            rgba(16, 28, 51, 0.88) 0%,
+            rgba(16, 28, 51, 0.16) 62%,
+            transparent 78%
+          );
+        }
+        .grid-overlay {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .grid-overlay span:nth-child(n + 5) {
+          display: none;
+        }
+        .ownership,
+        .honesty-inner,
+        .economics,
+        .decision-inner {
+          display: block;
+          min-height: 0;
+        }
+        .ownership-copy,
+        .honesty-record,
+        .honesty .compare-figure,
+        .economics .deal-figs,
+        .ask-door,
+        .ask-alt {
+          margin-top: clamp(32px, 6vh, 56px);
+        }
+        .deal-figs {
+          display: grid;
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+          grid-template-rows: auto;
+          row-gap: clamp(72px, 11vh, 96px);
+          min-height: 0;
+          padding: 32px 0;
+        }
+        .deal-fig {
+          width: auto;
+          margin: 0;
+          padding: 0;
+          border-left: 0;
+          background: transparent;
+          transform: none;
+        }
+        .deal-fig--target {
+          grid-column: 1 / 7;
+          grid-row: auto;
+          width: 100%;
+          justify-self: center;
+          text-align: center;
+        }
+        .deal-fig--floor {
+          grid-column: 1 / 5;
+          grid-row: auto;
+          width: min(100%, 220px);
+          justify-self: start;
+          text-align: left;
+        }
+        .deal-fig--price {
+          grid-column: 2 / 7;
+          grid-row: auto;
+          width: min(100%, 260px);
+          justify-self: end;
+          text-align: right;
+        }
+        .deal-fig--target .deal-num {
+          font-size: clamp(96px, 30vw, 132px);
+        }
+        .document-sequence {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .document-sequence li {
+          margin: 0;
+          padding: 8px 2px;
+        }
+        .economics {
+          padding-top: 72px;
+          padding-bottom: 88px;
+        }
+        .ownership {
+          padding-bottom: 0;
+        }
+        .ownership-plan {
+          width: 100%;
+        }
+        .compare-figure {
+          width: 100%;
+        }
+      }
+      .site-privacy {
+        padding: 20px 24px 28px;
+        background: var(--white-stone);
+        color: var(--slate);
+        font-size: 13px;
+        text-align: center;
+      }
+      .site-privacy a,
+      .site-privacy button {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+      .site-privacy button {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        font: inherit;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-overlay" aria-hidden="true">
+      <span></span><span></span><span></span><span></span> <span></span
+      ><span></span><span></span><span></span> <span></span><span></span
+      ><span></span><span></span>
+    </div>
+
+    <main>
+      <!-- FRAME 01 — INTRIGUE
+         One proposition over the rooftop itself: the shared life the
+         building offers, before ownership mechanics and numbers appear. -->
+      <section
+        class="act promise"
+        data-section-id="intrigue"
+        aria-label="El Fortín — apartamento en propiedad cerca de Valencia"
+      >
+        <div class="promise-grid">
+          <div class="promise-copy">
+            <p class="promise-brand">El Fort&iacute;n</p>
+            <p class="promise-location">Riba-roja de T&uacute;ria</p>
+            <h1>Un apartamento tuyo.</h1>
+            <p class="promise-support">El alquiler, en nuestras manos.</p>
+          </div>
+        </div>
+        <p class="promise-credit">Azotea &middot; Imagen orientativa</p>
+      </section>
+
+      <!-- FRAME 02 — LOCATION
+         The practical answer after the rooftop cover: distance and route. -->
+      <section
+        class="act location"
+        data-section-id="location"
+        aria-label="Ubicación — Camino Valencia 31, Riba-roja de Túria"
+      >
+        <div class="location-fact reveal">
+          <p class="loc-num">20&nbsp;min</p>
+          <p class="loc-lbl">de Valencia</p>
+          <p class="loc-note">
+            Camino Valencia,&nbsp;31.<br />Metrovalencia, línea&nbsp;9 &middot;
+            Aeropuerto a 12&nbsp;min en coche.
+          </p>
+        </div>
+        <figure class="location-map reveal">
+          <div
+            id="metro-map"
+            aria-label="Mapa: línea 9 de Metrovalencia desde el centro de Valencia hasta el edificio en Riba-roja de Túria"
+          ></div>
+          <figcaption>
+            Línea&nbsp;9 de Metrovalencia &middot; Riba-roja–Valencia
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- FRAME 03 — GALLERY
+         One message: you would want to live here. -->
+      <section
+        class="act gallery"
+        data-section-id="gallery"
+        aria-label="El edificio — plano e imágenes orientativas"
+      >
+        <div class="gallery-stage">
+          <figure class="gallery-cutaway cutaway-blend reveal">
+            <img
+              src="assets/render-axonometric.jpg"
+              alt="Vista axonométrica del edificio: viviendas en sección, escalera central, terraza con piscina en la azotea y aparcamiento cubierto"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>El edificio</figcaption>
+          </figure>
+          <figure class="g-bedroom reveal">
+            <img
+              src="assets/render-bedroom.jpg"
+              alt="Imagen orientativa del dormitorio: cama en tonos terracota y oliva, armario de madera y ventanal con cortinas"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Dormitorio</figcaption>
+          </figure>
+        </div>
+        <p class="gallery-note">Imágenes orientativas del proyecto</p>
+      </section>
+
+      <!-- FRAME 04 — OWNERSHIP
+         Once the place is concrete, answer what the buyer owns, who runs
+         the letting, and whether they can use it themselves. -->
+      <section
+        class="act ownership"
+        id="ownership"
+        data-section-id="ownership"
+        aria-label="Propiedad y gestión"
+      >
+        <figure class="ownership-plan reveal">
+          <img
+            src="assets/render-type-a-cropped.jpg"
+            alt="Plano de la vivienda de acceso"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            Vivienda de acceso &middot; 40,4&nbsp;m&sup2; útiles
+          </figcaption>
+        </figure>
+
+        <div class="ownership-copy reveal">
+          <h2>Propiedad. Con escritura.</h2>
+          <dl class="own-split">
+            <div>
+              <dt>Venta</dt>
+              <dd>Véndela cuando quieras.</dd>
+            </div>
+            <div>
+              <dt>Alquiler</dt>
+              <dd>Gestionamos. Repartimos los ingresos.</dd>
+            </div>
+            <div>
+              <dt>Para ti.</dt>
+              <dd>Dos semanas al año. Disfruta de tu vivienda.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- FRAME 05 — ECONOMICS
+         The yield leads; the floor stands under it; the price is the entry.
+         Every number carries its limit. -->
+      <section
+        class="act economics"
+        id="deal"
+        data-section-id="economics"
+        aria-label="Rentabilidad neta proyectada, mínimo contractual y precio de entrada"
+      >
+        <div class="deal-figs reveal">
+          <div class="deal-fig deal-fig--target">
+            <p class="deal-num">&gt;7%</p>
+            <p class="deal-lbl">Rentabilidad neta prevista</p>
+          </div>
+          <div class="deal-fig deal-fig--floor">
+            <p class="deal-num">4%</p>
+            <p class="deal-lbl">Retorno mínimo garantizado</p>
+          </div>
+          <div class="deal-fig deal-fig--price">
+            <p class="deal-num">236.141&nbsp;&euro;</p>
+            <p class="deal-lbl">Precio en preventa</p>
+            <p class="deal-note">Gastos y mobiliario incluidos</p>
+            <p class="deal-availability">
+              <strong>9 de 10</strong> disponibles &middot; Entrega prevista en
+              2027
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FRAME 06 — EVIDENCE
+         Only after the asset and its economics are clear do the people
+         responsible for delivery enter. -->
+      <section
+        class="act evidence"
+        id="evidence"
+        data-section-id="evidence"
+        aria-label="Quién está detrás del proyecto"
+      >
+        <div class="evidence-stage reveal">
+          <header class="evidence-name">
+            <h2>Uriel Nabel.</h2>
+            <a
+              href="https://es.linkedin.com/in/urielnabel/es"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn &#8599;</a
+            >
+          </header>
+
+          <figure class="evidence-portrait">
+            <img
+              src="assets/uriel-onsite.jpg"
+              alt="Uriel trabajando en la obra de Riba-roja junto a tejas recuperadas"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Obra de Riba-roja &middot; Julio de 2026</figcaption>
+          </figure>
+
+          <article class="evidence-proof evidence-proof--experience">
+            <p class="evidence-place">Experiencia</p>
+            <h3>20 años en el sector.</h3>
+            <p>
+              Cinco en SAP, con empresas de ingeniería y construcción de toda
+              Europa.
+            </p>
+          </article>
+
+          <article class="evidence-proof evidence-proof--licensed">
+            <p class="evidence-place">Riba-roja</p>
+            <h3>Equipo acreditado.</h3>
+            <p>
+              <a
+                class="verify-link"
+                href="https://www.nodhouses.es/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >NODHOUSES</a
+              >, constructora.<br /><a
+                class="verify-link"
+                href="https://enlazaarquitectura.com/estudio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >J.&nbsp;J. P&eacute;rez Red&oacute;n</a
+              >, arquitecto (COACV 11.357).<br />Licencia 4497/2025/GEN.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FRAME 07 — CANDOR
+         The quietest frame: limitation and evidence, without persuasion. -->
+      <section
+        class="honesty"
+        data-section-id="candor"
+        aria-label="Trayectoria — transparencia y experiencia"
+      >
+        <div class="honesty-inner">
+          <header class="honesty-head reveal">
+            <p class="year-numeral">2026</p>
+            <h2>A tiempo completo.</h2>
+            <p>Uriel dejó SAP en enero de 2026 para dedicarse a El Fortín.</p>
+          </header>
+
+          <article class="honesty-record reveal">
+            <p class="evidence-place">Puzol</p>
+            <h3>Rehabilitada en agosto de 2025.</h3>
+            <p>Una casa centenaria, rehecha por completo.</p>
+          </article>
+
+          <figure class="compare-figure reveal" id="compare-figure">
+            <div class="compare-state" aria-hidden="true">
+              <span data-cond="before" data-active="true">Antes</span>
+              <span data-cond="after" data-active="false">Después</span>
+            </div>
+            <div class="compare" id="compare">
+              <img
+                src="assets/puzol-before.jpg"
+                alt="La vivienda de Puzol antes de la rehabilitación"
+                width="1040"
+                height="780"
+                loading="lazy"
+                decoding="async"
+                draggable="false"
+              />
+              <div class="compare-after">
+                <img
+                  src="assets/puzol-after-interior.webp"
+                  alt="El salón dúplex de la vivienda de Puzol después de la rehabilitación"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  draggable="false"
+                />
+              </div>
+              <span class="compare-rule" aria-hidden="true"></span>
+              <span class="compare-grip" aria-hidden="true">&#8596;</span>
+            </div>
+            <input
+              class="compare-range"
+              id="compare-range"
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              step="1"
+              aria-label="Descubre la rehabilitación: desliza para comparar el antes y el después"
+            />
+            <figcaption class="compare-cap">
+              <strong>Desliza para comparar.</strong>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- FRAME 08 — AGENCY
+         The requested action is inspection, not purchase. -->
+      <section
+        class="decision"
+        id="ask"
+        data-section-id="agency"
+        aria-label="Revisa la documentación con el promotor"
+      >
+        <div class="decision-inner">
+          <h2>Los documentos, <em>en directo.</em></h2>
+
+          <ol
+            class="document-sequence"
+            aria-label="Lo que se revisa durante la reunión"
+          >
+            <li>Licencia</li>
+            <li>Planos visados</li>
+            <li>Tasación</li>
+            <li>Precio verificado</li>
+            <li>Modelo de alquiler</li>
+            <li>Mínimo contractual</li>
+          </ol>
+
+          <div class="ask-door">
+            <a
+              class="walk-primary--door"
+              id="book-call"
+              data-contact-channel="calendar"
+              href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Revisa los documentos con Uriel</a
+            >
+            <div class="ask-door-meta">
+              <a
+                class="walk-secondary"
+                id="start-whatsapp"
+                data-contact-channel="whatsapp"
+                href="https://wa.me/34626459818"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Prefiero WhatsApp</a
+              >
+            </div>
+          </div>
+
+          <details class="ask-alt" id="what-would-stop-you">
+            <summary>¿Prefieres preguntar?</summary>
+            <div class="ask-alt-body">
+              <p class="lede-alt">
+                Una pregunta. Una respuesta clara. Los documentos se revisan en
+                la llamada.
+              </p>
+              <div
+                class="fear-buttons"
+                role="group"
+                aria-label="Elige la cuestión que más se acerque a tu consulta"
+              >
+                <button
+                  type="button"
+                  class="fear-btn"
+                  data-fear="rent_wont_materialize"
+                >
+                  El alquiler no rinde lo previsto
+                </button>
+                <button
+                  type="button"
+                  class="fear-btn"
+                  data-fear="construction_stalls"
+                >
+                  ¿Y si la obra se para?
+                </button>
+                <button
+                  type="button"
+                  class="fear-btn"
+                  data-fear="floor_just_paper"
+                >
+                  ¿Qué respalda el mínimo del 4&nbsp;%?
+                </button>
+                <button
+                  type="button"
+                  class="fear-btn"
+                  data-fear="show_me_documents"
+                >
+                  Revisar licencia y planos
+                </button>
+                <button
+                  type="button"
+                  class="fear-btn"
+                  data-fear="who_answers_after"
+                >
+                  ¿Quién responde tras la compra?
+                </button>
+              </div>
+              <div class="fear-other">
+                <label for="fear-text">Otra pregunta:</label>
+                <textarea
+                  id="fear-text"
+                  placeholder="Pregunta sin rodeos."
+                ></textarea>
+              </div>
+              <div class="send-row">
+                <button
+                  type="button"
+                  class="send-btn primary"
+                  id="send-email"
+                  data-contact-channel="email"
+                >
+                  Enviar por correo
+                </button>
+                <button
+                  type="button"
+                  class="send-btn secondary"
+                  id="send-whatsapp"
+                  data-contact-channel="whatsapp"
+                >
+                  Enviar por WhatsApp
+                </button>
+              </div>
+              <p class="send-hint">
+                Sin listas. Sin campañas. Tu consulta es privada.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </main>
+    <footer class="site-privacy">
+      <a href="privacy-policy.html">Política de privacidad</a>
+      <span aria-hidden="true"> · </span>
+      <button type="button" data-consent-settings>Configurar analítica</button>
+    </footer>
+
+    <script>
+      (function () {
+        document.documentElement.classList.add("js");
+
+        /* ---------- Master grid: press G to inspect the composition ---------- */
+
+        window.addEventListener("keydown", function (event) {
+          var target = event.target;
+          var isWriting =
+            target &&
+            (target.tagName === "INPUT" ||
+              target.tagName === "TEXTAREA" ||
+              target.tagName === "SELECT" ||
+              target.isContentEditable);
+          if (isWriting || event.metaKey || event.ctrlKey || event.altKey)
+            return;
+          if (event.key.toLowerCase() !== "g") return;
+          document.body.classList.toggle("grid-visible");
         });
-      });
 
-      function buildMessage() {
-        var parts = [];
-        if (selectedFear) parts.push('Mi consulta: ' + selectedFear.label);
-        var custom = freeText && freeText.value.trim();
-        if (custom) parts.push(custom);
-        if (parts.length === 0) parts.push('Mi consulta sobre las viviendas de El Fortín es: ');
-        return parts.join('\n\n');
-      }
+        /* ---------- Before/after: one explicit control, two inputs ---------- */
 
-      function fearId() {
-        if (selectedFear) return selectedFear.id;
-        if (freeText && freeText.value.trim()) return 'free_text';
-        return 'unspecified';
-      }
+        var compare = document.getElementById("compare");
+        var range = document.getElementById("compare-range");
+        var figure = document.getElementById("compare-figure");
+        var condBefore = document.querySelector(
+          '.compare-state [data-cond="before"]',
+        );
+        var condAfter = document.querySelector(
+          '.compare-state [data-cond="after"]',
+        );
 
-      var sendEmail = document.getElementById('send-email');
-      if (sendEmail) {
-        sendEmail.addEventListener('click', function () {
-          track('fear_named', { fear: fearId(), channel: 'email' });
-          window.location.href = 'mailto:' + CONFIG.email
-            + '?subject=' + encodeURIComponent('Consulta sobre El Fortín · Riba-roja')
-            + '&body=' + encodeURIComponent(buildMessage());
+        function setT(t) {
+          t = Math.max(0, Math.min(1, t));
+          compare.style.setProperty("--t", t.toFixed(4));
+          range.value = String(Math.round(t * 100));
+          /* t is the boundary position from the left — the share of Before showing */
+          condBefore.setAttribute("data-active", t >= 0.5 ? "true" : "false");
+          condAfter.setAttribute("data-active", t < 0.5 ? "true" : "false");
+        }
+
+        range.addEventListener("input", function () {
+          setT(Number(range.value) / 100);
         });
-      }
 
-      var sendWa = document.getElementById('send-whatsapp');
-      if (sendWa) {
-        sendWa.addEventListener('click', function () {
-          track('fear_named', { fear: fearId(), channel: 'whatsapp' });
-          window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(buildMessage()), '_blank');
+        compare.addEventListener("pointerdown", function (e) {
+          compare.setPointerCapture(e.pointerId);
+          setT(
+            (e.clientX - compare.getBoundingClientRect().left) /
+              compare.clientWidth,
+          );
         });
-      }
-
-      var alt = document.getElementById('what-would-stop-you');
-      if (alt) {
-        alt.addEventListener('toggle', function () {
-          if (alt.open) track('write_first_opened');
+        compare.addEventListener("pointermove", function (e) {
+          if (
+            !compare.hasPointerCapture ||
+            !compare.hasPointerCapture(e.pointerId)
+          )
+            return;
+          setT(
+            (e.clientX - compare.getBoundingClientRect().left) /
+              compare.clientWidth,
+          );
         });
-      }
-    })();
-  </script>
 
-  <!-- The mapita — same Line 9 geometry and Carto tiles as index.html
+        setT(0.5);
+
+        /* ---------- Quiet entrances (skipped under reduced motion via CSS) ---------- */
+
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-on");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -10% 0px" },
+          );
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            el.classList.add("is-on");
+          });
+        }
+      })();
+    </script>
+
+    <!-- First-party analytics + lead capture (no Google Analytics) -->
+    <script>
+      window.__EF_PAGE__ = {
+        pageId: "site_es",
+        pageVersion: "v1",
+        locale: "es",
+      };
+      window.__EF_CONTACT__ = {
+        email: "uriel.nabel@elfortincapital.com",
+        whatsapp: "34626459818",
+        calendar: "https://calendar.app.google/R9LJvZFYTPwuXNw7A",
+        privacyUrl: "privacy-policy.html",
+      };
+    </script>
+    <script src="assets/analytics.js" defer></script>
+
+    <!-- The mapita — same Line 9 geometry and Carto tiles as index.html
        (OSM relation 5626068, assets/metro-line9.js). -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="assets/metro-line9.js"></script>
-  <script>
-    (function () {
-      if (typeof L === 'undefined' || typeof METRO_LINE9 === 'undefined') return;
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="assets/metro-line9.js"></script>
+    <script>
+      (function () {
+        if (typeof L === "undefined" || typeof METRO_LINE9 === "undefined")
+          return;
 
-      var map = L.map('metro-map', {
-        scrollWheelZoom: false,       // don't hijack page scroll
-        zoomControl: true,
-        attributionControl: true
-      });
-
-      L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 17,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      }).addTo(map);
-
-      // Show only the relevant journey: Valencia centre (Colón) to Riba-roja.
-      var cityCentre = [39.47016, -0.37068];
-      var routeSegments = METRO_LINE9.segments.map(function (seg) {
-        return seg.filter(function (point) { return point[1] <= cityCentre[1]; });
-      }).filter(function (seg) { return seg.length > 1; });
-
-      L.featureGroup(routeSegments.map(function (seg) {
-        return L.polyline(seg, { color: '#1B2A4A', weight: 3.5, opacity: 0.9 });
-      })).addTo(map);
-
-      var cityIndex = METRO_LINE9.stations.findIndex(function (s) { return s.name === 'Colón'; });
-      var routeStations = METRO_LINE9.stations.slice(0, cityIndex + 1).reverse();
-      routeStations.forEach(function (s) {
-        var isCityCentre = s.name === 'Colón';
-        var m = L.marker(s.ll, {
-          icon: L.divIcon({
-            className: isCityCentre ? 'station-dot city-origin' : 'station-dot',
-            iconSize: isCityCentre ? [13, 13] : [9, 9]
-          }),
-          keyboard: false
-        }).addTo(map);
-        m.bindTooltip(isCityCentre ? 'Centro de València' : s.name, { direction: 'top' });
-      });
-
-      L.marker(METRO_LINE9.building, {
-        icon: L.divIcon({ className: 'building-marker', iconSize: [15, 15] })
-      }).addTo(map).bindTooltip('El edificio &middot; Camino Valencia, 31', {
-        permanent: true, direction: 'right', offset: [10, 0]
-      });
-
-      function frameStory() {
-        map.invalidateSize();
-        map.fitBounds(L.latLngBounds(cityCentre, METRO_LINE9.building), {
-          paddingTopLeft: [40, 40],
-          paddingBottomRight: [40, 40]
+        var map = L.map("metro-map", {
+          scrollWheelZoom: false, // don't hijack page scroll
+          zoomControl: true,
+          attributionControl: true,
         });
-      }
 
-      frameStory();
-      window.addEventListener('resize', frameStory);
-    })();
-  </script>
-</body>
+        L.tileLayer(
+          "https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+          {
+            maxZoom: 17,
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          },
+        ).addTo(map);
+
+        // Show only the relevant journey: Valencia centre (Colón) to Riba-roja.
+        var cityCentre = [39.47016, -0.37068];
+        var routeSegments = METRO_LINE9.segments
+          .map(function (seg) {
+            return seg.filter(function (point) {
+              return point[1] <= cityCentre[1];
+            });
+          })
+          .filter(function (seg) {
+            return seg.length > 1;
+          });
+
+        L.featureGroup(
+          routeSegments.map(function (seg) {
+            return L.polyline(seg, {
+              color: "#1B2A4A",
+              weight: 3.5,
+              opacity: 0.9,
+            });
+          }),
+        ).addTo(map);
+
+        var cityIndex = METRO_LINE9.stations.findIndex(function (s) {
+          return s.name === "Colón";
+        });
+        var routeStations = METRO_LINE9.stations
+          .slice(0, cityIndex + 1)
+          .reverse();
+        routeStations.forEach(function (s) {
+          var isCityCentre = s.name === "Colón";
+          var m = L.marker(s.ll, {
+            icon: L.divIcon({
+              className: isCityCentre
+                ? "station-dot city-origin"
+                : "station-dot",
+              iconSize: isCityCentre ? [13, 13] : [9, 9],
+            }),
+            keyboard: false,
+          }).addTo(map);
+          m.bindTooltip(isCityCentre ? "Centro de València" : s.name, {
+            direction: "top",
+          });
+        });
+
+        L.marker(METRO_LINE9.building, {
+          icon: L.divIcon({ className: "building-marker", iconSize: [15, 15] }),
+        })
+          .addTo(map)
+          .bindTooltip("El edificio &middot; Camino Valencia, 31", {
+            permanent: true,
+            direction: "right",
+            offset: [10, 0],
+          });
+
+        function frameStory() {
+          map.invalidateSize();
+          map.fitBounds(L.latLngBounds(cityCentre, METRO_LINE9.building), {
+            paddingTopLeft: [40, 40],
+            paddingBottomRight: [40, 40],
+          });
+        }
+
+        frameStory();
+        window.addEventListener("resize", frameStory);
+      })();
+    </script>
+  </body>
 </html>

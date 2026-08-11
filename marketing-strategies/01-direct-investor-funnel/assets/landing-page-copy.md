@@ -107,16 +107,9 @@ The numbers section continues the sand (`--linen`) background from the town tran
 
 **On-page lede:** Each furnished apartment moves between holiday, mid-term and long-term — whichever pays strongest.
 
-| | Entry (≈40.4 m² useful) | Larger (49.05 m² useful) |
-|---|---|---|
-| Independent valuation (Valor Publicado) | €190,557 | €220,225–€232,125 |
-| Early-buyer sale (15% below valuation) | €161,974 | €187,191–€197,307 |
-| All-in early-buyer price (sale + ~12% purchase costs + furniture) | **€197,370** | €229,011–€240,341 |
-| Based on today's long-term rents | €850–950/mo | €1,050–1,150/mo |
+**Canonical entry:** **€236,141 all-in**, verified by the developer. Includes the sale price, estimated purchase costs, and furniture. The unit-by-unit schedule is reviewed live with the developer; do not reuse older workbook prices.
 
-*(deal doc §4; ES: preventa / valoración / rentabilidad neta). Do not say the all-in figure is 15% below the valuation — the 15% applies to the sale price only.*
-
-**Entry aside (on-page):** Sale price is 15% below independent valuation (€190,557). Purchase costs (~12%) and furniture are in both all-in figures. Prices vary by floor; full list comes with the documents.
+*(deal doc §4; ES: preventa / valoración / rentabilidad neta). Do not say the all-in figure itself is 15% below the valuation — that comparison applies only to the sale price.*
 
 **Protection band:** The floor underneath · **4%** · Contractual minimum.  
 If rent falls short of the plan, the developer company's contract sets a 4% minimum. Company covenant — not a bank guarantee.
@@ -156,11 +149,11 @@ The two-weeks-per-year claim and owner platform stay off-page until documented /
 
 The Q&A section stays off-page while empty. Add it only after real investor questions exist; never seed it with invented questions.
 
-**H2:** Book 15 minutes with *Uriel*.  
-**Lede:** Pick a time. Google Meet. You speak with the developer — not a sales team.
+**H2:** Review the documents with *Uriel*.
+**Lede:** Pick a time. Google Meet. The developer takes you through the licence, certified plans, valuation, verified price, rental model, and income floor.
 
 **Prefer to write first?**  
-One question that decides it. Send yours — one answer, with the document. Not a brochure.
+One question that decides it. Send yours; get one clear answer. The documents stay for the call, then Uriel sends the relevant papers afterward.
 
 [ Rent will not come in ] [ Construction stops halfway ] [ The 4% minimum is only on paper ] [ Show me the deeds and licenses first ] [ Who actually answers, after I have paid? ]
 [ Something else: ____________ ] placeholder: Write your own question — hard questions are welcome.
