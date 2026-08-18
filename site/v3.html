@@ -36,7 +36,15 @@
     <link
       rel="preload"
       as="image"
-      href="assets/render-building-full.jpg"
+      href="assets/hero-desk-elfortin.jpg"
+      media="(min-width: 900px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero-mobile-elfortin.jpg"
+      media="(max-width: 899px)"
       fetchpriority="high"
     />
     <style>
@@ -575,12 +583,15 @@
         </div>
         <!-- The building is the product. It stands beside the offer. Do not write on it. -->
         <figure>
-          <img
-            class="img-frame"
-            src="assets/render-building-full.jpg"
-            alt="The El Fortín building: the full façade on its street in Riba-roja de Túria"
-            fetchpriority="high"
-          />
+          <picture>
+            <source media="(max-width: 899px)" srcset="assets/hero-mobile-elfortin.jpg" />
+            <img
+              class="img-frame"
+              src="assets/hero-desk-elfortin.jpg"
+              alt="The El Fortín building: the full façade on its street in Riba-roja de Túria"
+              fetchpriority="high"
+            />
+          </picture>
           <figcaption class="caption">The building · render</figcaption>
         </figure>
       </div>
@@ -647,17 +658,13 @@
     <section class="frame" id="proof" data-section-id="proof">
       <h2>Already underway.</h2>
       <figure>
-        <!-- PLACEHOLDER: replace with a dated Riba-roja construction photograph. -->
         <img
           class="proof-photo img-frame"
-          src="assets/riba-roja-construction-placeholder.jpg"
-          alt="The building mid-construction: scaffolding, raw brick and stone on pallets"
+          src="assets/construction-2026-06.jpg"
+          alt="Inside the works: shoring props under the opened roof, June 2026"
           loading="lazy"
         />
-        <figcaption class="caption">
-          Illustrative — dated site photographs arrive with the construction
-          record.
-        </figcaption>
+        <figcaption class="caption">The site · June 2026</figcaption>
       </figure>
       <p class="strip">
         Exp. 4497/2025/GEN · Res. 3658/2025<br />
@@ -668,6 +675,26 @@
       <details class="record" id="construction-record">
         <summary>See the construction record</summary>
         <div class="record-body">
+          <div class="record-pair">
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/construction-team-2026-06.jpg"
+                alt="The team on site among stacked roof tiles, June 2026"
+                loading="lazy"
+              />
+              <figcaption class="caption">On site · June 2026</figcaption>
+            </figure>
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/construction-plans-2026-06.jpg"
+                alt="Hands over the floor plans on site, June 2026"
+                loading="lazy"
+              />
+              <figcaption class="caption">The plans, on site · June 2026</figcaption>
+            </figure>
+          </div>
           <div class="record-pair">
             <figure>
               <img

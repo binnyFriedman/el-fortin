@@ -36,8 +36,8 @@ One job per frame. Captions sit outside the image. Do not write on faces, doors,
 **Graphic to provide**  
 The full building render — the whole façade, finished, in Riba-roja. The product in one frame. No labels, no overlay.
 
-**Stand-in**  
-`site/assets/render-building-full.jpg` (from `assets/Renders/Fachada_05-2.png`)
+**Locked**  
+Desktop: `site/assets/hero-desk-elfortin.jpg` · Mobile: `site/assets/hero-mobile-elfortin.jpg` (from `assets/Renders/hero/`). Purpose-cropped per display; no car in either frame.
 
 **Do not**  
 Write on the render. Use the pool as the hero. Make the cars the subject. Put an illustration here — the drawing explains, it does not identify.
@@ -126,14 +126,11 @@ Stack. Display. Then the lines of the calculation. Then 4% isolated. Same fact, 
 **Job:** Prove  
 **Desire:** This is already happening. I am not buying a brochure.
 
-**Graphic to provide**  
-One dated construction photograph of **this** building, in Riba-roja. Documentary. Keep the imperfections. Do not caption it “construction.” The photograph is the proof.
+**Locked**  
+`site/assets/construction-2026-06.jpg` — the works under the opened roof, June 2026. Documentary, imperfections kept. Captioned with the date, not the word “construction.”
 
-The current construction set in the repo is the wrong site — NODHOUSES / Palma branding, Puzol fabric. Placeholders in `assets/brand/riba-roja-progress/` are empty. This frame has no usable still until you provide one.
-
-**Stand-in, secondary only**  
-Cropped façade, cars out: `site/assets/render-facade.jpg`  
-Puzol delivered: `site/assets/puzol-before.jpg` · `site/assets/puzol-after-interior.webp` — these belong in the construction-record layer, not as the main frame.
+**Record layer**  
+`construction-team-2026-06.jpg` · `construction-plans-2026-06.jpg` (June 2026, from `assets/brand/`) then `puzol-before.jpg` · `puzol-after-interior.webp` — the dated media live inside the record, not as the main frame.
 
 **Do not**  
 Use the yellow Mini. Use Uriel as the proof (he is 07). Repeat tourist rental; it already lives in 01.
@@ -257,10 +254,10 @@ The same stack. Primary action first. Write first stays quieter.
 
 | Frame | Job | Send us | First-draft stand-in | Gap |
 | --- | --- | --- | --- | --- |
-| 01 | Identify | The full building render — the product, finished, on its street | `render-building-full.jpg` (Fachada_05-2) | The yellow car pulls attention; a version without it would be stronger |
+| 01 | Identify | Locked: hero renders, desktop + mobile crops | `hero-desk-elfortin.jpg` · `hero-mobile-elfortin.jpg` | — |
 | 06 | Explain | The engineering cutaway, once on the page | `hero-cutaway-photoreal-v1.jpg` | — |
 | 05 | Explain | Nothing | — | Do not fill this frame |
-| 03 | Prove | One dated Riba-roja construction photograph | None usable | Current construction set is the wrong site |
+| 03 | Prove | Locked: June 2026 works photograph | `construction-2026-06.jpg` + record layer | — |
 | 07 | Identify | Keep `uriel-onsite.jpg` uncropped | Locked | Do not replace with a headshot |
 | 08 | Identify | Type A interior + Type B interior, confirmed · phone-legible plans | Plans exist; interiors unlabelled | Uriel must say which render is which |
 | 09 | Locate | Optional: site as it is today | Type only | Do not invent a close |
