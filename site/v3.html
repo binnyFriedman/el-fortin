@@ -1,0 +1,857 @@
+<!doctype html>
+<!--
+  Landing page v3 — English draft.
+  Copy:      marketing-strategies/01-direct-investor-funnel/assets/landing-page-v3-copy.md
+  Structure: landing-page-v3-5-second-structure.md
+  Frames:    landing-page-v3-framing.md
+
+  Page order: 01 offer · 06 earn · 05 rent · 03 proof · 07 uriel · 08 position · 09 meeting
+  02 and 04 stay off.
+  Visuals: the building render is the hero (01) — the product shines.
+  The engineering cutaway illustrates the mechanism (06). One illustration, once.
+
+  Placeholders awaiting real material:
+  - #proof photograph is a generated illustrative image. Replace with a dated
+    Riba-roja construction photograph as soon as one exists.
+  - #position figures (all-in price, conservative monthly) publish only when
+    the unit model matches €236,141. Interiors stay unlabelled until Uriel
+    confirms which render is Type A and which is Type B.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>El Fortín — One building. Engineered to max ROI.</title>
+    <meta
+      name="description"
+      content="El Fortín · Riba-roja de Túria, Valencia. One purpose-built rental building of ten apartments, owned by titled apartment, managed as one. From €236,141 all-in. Handover 2027."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/render-building-full.jpg"
+      fetchpriority="high"
+    />
+    <style>
+      :root {
+        /* Valencia palette — landing-page-v3-5-second-structure.md */
+        --blue: #176b87;
+        --sky: #72bde0;
+        --gold: #f2bc3b;
+        --plaster: #faf5e8;
+        --sand: #dccbaa;
+        --clay: #c96843;
+        --deep: #173d4a;
+
+        --measure: 32em;
+        --gutter: clamp(20px, 4vw, 72px);
+        --frame-gap: clamp(96px, 15vh, 180px);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      body {
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--deep);
+        background: var(--plaster);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .frame {
+        padding: 0 var(--gutter);
+        margin: 0 auto var(--frame-gap);
+        max-width: 1280px;
+      }
+
+      .kicker {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--blue);
+      }
+
+      h1,
+      h2 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        color: var(--deep);
+        text-wrap: balance;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 5.2vw, 4rem);
+        line-height: 1.06;
+      }
+
+      h2 {
+        font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+        line-height: 1.12;
+      }
+
+      .support {
+        max-width: var(--measure);
+        color: var(--deep);
+      }
+
+      .strip {
+        font-size: 13.5px;
+        line-height: 1.7;
+        letter-spacing: 0.02em;
+        color: var(--deep);
+        opacity: 0.72;
+      }
+
+      .caption {
+        font-size: 13.5px;
+        color: var(--deep);
+        opacity: 0.62;
+        margin-top: 10px;
+      }
+
+      .action {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--deep);
+        font-weight: 700;
+        font-size: 17px;
+        text-decoration: none;
+        padding: 14px 26px;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        line-height: 1.3;
+      }
+      .action:hover {
+        background: #e8ae22;
+      }
+
+      .action--quiet {
+        display: inline-block;
+        background: transparent;
+        color: var(--deep);
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        padding: 13px 22px;
+        border: 1px solid var(--deep);
+        cursor: pointer;
+        font-family: inherit;
+        line-height: 1.3;
+      }
+      .action--quiet:hover {
+        background: rgba(23, 61, 74, 0.06);
+      }
+
+      .fact {
+        font-weight: 700;
+        color: var(--deep);
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      .img-frame {
+        border: 1px solid rgba(23, 61, 74, 0.18);
+      }
+
+      /* ---------- persistent fact bar ---------- */
+      #fact-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 60;
+        background: var(--deep);
+        color: var(--plaster);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 10px var(--gutter);
+        font-size: 15px;
+        transform: translateY(110%);
+        transition: transform 0.3s ease;
+      }
+      #fact-bar.visible {
+        transform: translateY(0);
+      }
+      #fact-bar strong {
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      #fact-bar a {
+        color: var(--gold);
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #fact-bar {
+          transition: none;
+        }
+      }
+
+      /* ---------- 01 offer ---------- */
+      #offer {
+        padding-top: clamp(28px, 6vh, 72px);
+      }
+
+      .offer-split {
+        display: grid;
+        gap: clamp(24px, 4vw, 56px);
+        align-items: center;
+      }
+
+      .offer-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        align-items: flex-start;
+      }
+
+      .offer-fact {
+        font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+        font-weight: 700;
+        border-left: 3px solid var(--gold);
+        padding-left: 14px;
+      }
+
+      /* ---------- 06 earn ---------- */
+      .earn-split {
+        display: grid;
+        gap: clamp(24px, 4vw, 56px);
+        align-items: center;
+      }
+
+      .earn-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .fact-target {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--blue);
+        line-height: 1.2;
+      }
+      .fact-target small {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--deep);
+        opacity: 0.7;
+      }
+
+      /* The illustration keeps its native ratio — never cropped into a banner. */
+      .roof-img {
+        width: 100%;
+        background: #fdfbf4;
+      }
+
+      /* ---------- 05 rent ---------- */
+      #rent .rent-panel {
+        background: var(--sand);
+        padding: clamp(28px, 5vw, 64px);
+        margin-top: 28px;
+      }
+
+      .calc {
+        display: grid;
+        gap: clamp(28px, 5vw, 72px);
+        max-width: 880px;
+      }
+
+      .calc-col h3 {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--deep);
+        opacity: 0.65;
+        margin-bottom: 16px;
+      }
+
+      .calc-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 9px 0;
+        border-bottom: 1px solid rgba(23, 61, 74, 0.16);
+        font-size: 16.5px;
+      }
+      .calc-line:last-child {
+        border-bottom: none;
+      }
+      .calc-line .op {
+        opacity: 0.55;
+        font-weight: 600;
+      }
+
+      .fact-floor {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(3.4rem, 7vw, 5.2rem);
+        line-height: 1;
+        color: var(--deep);
+      }
+      .fact-floor-caption {
+        font-size: 15px;
+        color: var(--deep);
+        opacity: 0.7;
+        margin-top: 8px;
+      }
+
+      /* ---------- 03 proof ---------- */
+      #proof h2 {
+        margin-bottom: 26px;
+      }
+
+      #proof .proof-photo {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      #proof .strip {
+        margin-top: 16px;
+      }
+
+      .record {
+        margin-top: 26px;
+        border-top: 1px solid rgba(23, 61, 74, 0.18);
+      }
+      .record summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 16px 0;
+        font-weight: 700;
+        color: var(--deep);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .record summary::-webkit-details-marker {
+        display: none;
+      }
+      .record summary::after {
+        content: "+";
+        font-size: 22px;
+        line-height: 1;
+        color: var(--clay);
+      }
+      .record[open] summary::after {
+        content: "−";
+      }
+      .record-body {
+        padding-bottom: 22px;
+        display: grid;
+        gap: 18px;
+      }
+      .record-pair {
+        display: grid;
+        gap: 12px;
+      }
+      .record-pair figure {
+        flex: 1;
+      }
+
+      /* ---------- 07 uriel ---------- */
+      .uriel-split {
+        display: grid;
+        gap: clamp(24px, 4vw, 56px);
+        align-items: center;
+      }
+
+      .uriel-portrait img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+
+      .uriel-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .uriel-copy .strip {
+        font-size: 13px;
+      }
+
+      /* ---------- 08 position ---------- */
+      #position h2 {
+        margin-bottom: 30px;
+      }
+
+      .cards {
+        display: grid;
+        gap: clamp(20px, 3vw, 36px);
+      }
+
+      .card {
+        background: #fdfbf4;
+        border: 1px solid rgba(23, 61, 74, 0.16);
+        padding: clamp(18px, 2.5vw, 30px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .card .interior {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+      }
+
+      .card .plan {
+        width: 100%;
+        background: #fff;
+        border: 1px solid rgba(23, 61, 74, 0.12);
+        padding: 10px;
+      }
+
+      .card h3 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: 1.5rem;
+      }
+
+      .card-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 20px;
+        font-size: 15.5px;
+      }
+      .card-facts dt {
+        opacity: 0.6;
+      }
+      .card-facts dd {
+        font-weight: 600;
+        text-align: right;
+      }
+      .card-facts .avail {
+        color: var(--blue);
+      }
+
+      .cards-note {
+        margin-top: 18px;
+        font-size: 14px;
+        opacity: 0.65;
+      }
+
+      /* ---------- 09 meeting ---------- */
+      #meeting {
+        text-align: center;
+        padding-top: clamp(30px, 6vh, 70px);
+      }
+      #meeting h2 {
+        margin-bottom: 38px;
+      }
+      .meeting-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: var(--deep);
+        color: var(--plaster);
+        padding: 40px var(--gutter) 80px;
+        font-size: 14px;
+      }
+      footer .foot-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 28px;
+        align-items: center;
+      }
+      footer a {
+        color: var(--plaster);
+        text-underline-offset: 3px;
+      }
+      footer button {
+        background: none;
+        border: none;
+        color: var(--plaster);
+        font: inherit;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      /* ---------- desktop ---------- */
+      @media (min-width: 900px) {
+        .offer-split {
+          grid-template-columns: 2fr 3fr;
+        }
+        .earn-split {
+          grid-template-columns: 3fr 2fr;
+        }
+        .calc {
+          grid-template-columns: 1fr 1fr;
+          align-items: start;
+        }
+        .uriel-split {
+          grid-template-columns: 2fr 3fr;
+        }
+        .cards {
+          grid-template-columns: 1fr 1fr;
+        }
+        .record-pair {
+          grid-template-columns: 1fr 1fr;
+        }
+        /* mobile-first order flips: image already first in DOM for 06/07 */
+      }
+
+      /* ---------- mobile ---------- */
+      @media (max-width: 899px) {
+        #proof .proof-photo {
+          aspect-ratio: 4 / 5;
+        }
+        #fact-bar {
+          font-size: 13.5px;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= 01 · OFFER — identify ================= -->
+    <section class="frame" id="offer" data-section-id="offer">
+      <div class="offer-split">
+        <div class="offer-copy">
+          <p class="kicker">El Fortín · Riba-roja de Túria, Valencia</p>
+          <h1>One building. Engineered to max&nbsp;ROI.</h1>
+          <p class="support">
+            Ownership by titled apartment. Two weeks yearly personal use.
+            Tourist rental granted.
+          </p>
+          <p class="offer-fact" id="offer-fact">
+            From €236,141 all-in per apartment · Handover 2027
+          </p>
+          <a class="action" href="#earn">See how it can earn</a>
+        </div>
+        <!-- The building is the product. It stands beside the offer. Do not write on it. -->
+        <figure>
+          <img
+            class="img-frame"
+            src="assets/render-building-full.jpg"
+            alt="The El Fortín building: the full façade on its street in Riba-roja de Túria"
+            fetchpriority="high"
+          />
+          <figcaption class="caption">The building · render</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= 06 · EARN — desire ================= -->
+    <section class="frame" id="earn" data-section-id="earn">
+      <div class="earn-split">
+        <!-- The mechanism: the building cut open, ten apartments run as one. -->
+        <figure>
+          <img
+            class="roof-img img-frame"
+            src="assets/hero-cutaway-photoreal-v1.jpg"
+            alt="Engineering cutaway of the building: ten apartments, shared circulation and the roof terrace as one operation"
+            loading="lazy"
+          />
+          <figcaption class="caption">The building, cut open · illustration</figcaption>
+        </figure>
+        <div class="earn-copy">
+          <h2>The building is steered toward the&nbsp;money.</h2>
+          <p class="support">
+            Demand shifts. The mix shifts with it — long stays, medium stays,
+            tourist nights — across the whole building, from the ground. That
+            is an operation. Not a calendar you keep from another country.
+          </p>
+          <p class="fact-target">
+            ~7% net
+            <small>Target. Not a promise.</small>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 · RENT — explain (no photograph) ================= -->
+    <section class="frame" id="rent" data-section-id="rent">
+      <h2>What ordinary rent leaves after every&nbsp;cost.</h2>
+      <div class="rent-panel">
+        <div class="calc">
+          <div class="calc-col">
+            <h3>The calculation</h3>
+            <!-- Figures publish when the reconciled unit model matches €236,141. -->
+            <div class="calc-line"><span>All-in capital</span><span class="op">€236,141</span></div>
+            <div class="calc-line"><span>Ordinary rent, collected</span><span class="op"></span></div>
+            <div class="calc-line"><span>Vacancy allowance</span><span class="op">−</span></div>
+            <div class="calc-line"><span>Running costs</span><span class="op">−</span></div>
+            <div class="calc-line"><span>Management fee</span><span class="op">−</span></div>
+            <div class="calc-line">
+              <span><strong>Your share, monthly</strong></span>
+              <span class="op">=</span>
+            </div>
+          </div>
+          <div class="calc-col">
+            <h3>What reaches you</h3>
+            <p class="fact-floor">4% net</p>
+            <p class="fact-floor-caption">
+              Ordinary long-term rent, after every cost above.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 · PROOF — prove ================= -->
+    <section class="frame" id="proof" data-section-id="proof">
+      <h2>Already underway.</h2>
+      <figure>
+        <!-- PLACEHOLDER: replace with a dated Riba-roja construction photograph. -->
+        <img
+          class="proof-photo img-frame"
+          src="assets/riba-roja-construction-placeholder.jpg"
+          alt="The building mid-construction: scaffolding, raw brick and stone on pallets"
+          loading="lazy"
+        />
+        <figcaption class="caption">
+          Illustrative — dated site photographs arrive with the construction
+          record.
+        </figcaption>
+      </figure>
+      <p class="strip">
+        Exp. 4497/2025/GEN · Res. 3658/2025<br />
+        NODHOUSES · J. J. Pérez Redón, COACV 11.357<br />
+        Puzol delivered August 2025
+      </p>
+
+      <details class="record" id="construction-record">
+        <summary>See the construction record</summary>
+        <div class="record-body">
+          <div class="record-pair">
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/puzol-before.jpg"
+                alt="The Puzol building before works"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · before</figcaption>
+            </figure>
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/puzol-after-interior.webp"
+                alt="The Puzol building delivered, interior"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · delivered August 2025</figcaption>
+            </figure>
+          </div>
+          <p class="strip">
+            Building licence Exp. 4497/2025/GEN · Resolution 3658/2025 ·
+            Builder <a href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a> ·
+            Architect <a href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J. J. Pérez Redón</a>, COACV 11.357
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ================= 07 · URIEL — the person ================= -->
+    <section class="frame" id="uriel" data-section-id="uriel">
+      <div class="uriel-split">
+        <figure class="uriel-portrait">
+          <img
+            class="img-frame"
+            src="assets/uriel-onsite.jpg"
+            alt="Uriel Nabel on site, hands on the stone that will face the building"
+          />
+          <figcaption class="caption">
+            Uriel Nabel ·
+            <a href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </figcaption>
+        </figure>
+        <div class="uriel-copy">
+          <h2>I stay behind these&nbsp;words.</h2>
+          <p class="support">
+            I built this building. I run it.<br />
+            Twenty years in industry. Five at SAP, on engineering and
+            construction in Europe. This is now the work.
+          </p>
+          <p class="strip">You hold title. You may sell it.</p>
+          <button class="action" id="write-uriel" data-contact-channel="email" type="button">
+            Write to me
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 08 · POSITION — the two stakes ================= -->
+    <section class="frame" id="position" data-section-id="position">
+      <h2>Two sizes. Nine&nbsp;left.</h2>
+      <div class="cards">
+        <article class="card">
+          <img
+            class="interior"
+            src="assets/render-bedroom.jpg"
+            alt="Apartment design — bedroom render"
+            loading="lazy"
+          />
+          <img
+            class="plan"
+            src="assets/render-type-a-cropped.jpg"
+            alt="Type A floor plan"
+            loading="lazy"
+          />
+          <h3>Type A</h3>
+          <dl class="card-facts">
+            <dt>Useful area</dt>
+            <dd>~40.5 m²</dd>
+            <dt>In the building</dt>
+            <dd>Four</dd>
+            <dt>All-in price</dt>
+            <dd>—</dd>
+            <dt>Conservative monthly</dt>
+            <dd>—</dd>
+            <dt>Availability</dt>
+            <dd class="avail">Available</dd>
+          </dl>
+        </article>
+        <article class="card">
+          <img
+            class="interior"
+            src="assets/render-salon-loft.jpg"
+            alt="Apartment design — salon render"
+            loading="lazy"
+          />
+          <img
+            class="plan"
+            src="assets/render-type-b.jpg"
+            alt="Type B floor plan"
+            loading="lazy"
+          />
+          <h3>Type B</h3>
+          <dl class="card-facts">
+            <dt>Useful area</dt>
+            <dd>~49 m²</dd>
+            <dt>In the building</dt>
+            <dd>Six</dd>
+            <dt>All-in price</dt>
+            <dd>—</dd>
+            <dt>Conservative monthly</dt>
+            <dd>—</dd>
+            <dt>Availability</dt>
+            <dd class="avail">Available</dd>
+          </dl>
+        </article>
+      </div>
+      <p class="cards-note">
+        Interiors are apartment-design renders. Per-type figures publish with
+        the reconciled unit model.
+      </p>
+    </section>
+
+    <!-- ================= 09 · MEETING — the close ================= -->
+    <section class="frame" id="meeting" data-section-id="meeting">
+      <h2>Twenty minutes. The site, then the&nbsp;papers.</h2>
+      <div class="meeting-actions">
+        <a
+          class="action"
+          id="book-call"
+          data-contact-channel="calendar"
+          href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Choose a time</a
+        >
+        <button class="action--quiet" id="write-first" data-contact-channel="email" type="button">
+          Write first
+        </button>
+      </div>
+      <!-- Nothing under the heading. The heading is the meeting. -->
+    </section>
+
+    <footer>
+      <div class="foot-inner">
+        <span>© El Fortín · Riba-roja de Túria, Valencia</span>
+        <a href="privacy-policy-en.html">Privacy policy</a>
+        <button type="button" data-consent-settings>Analytics settings</button>
+      </div>
+    </footer>
+
+    <!-- Persistent fact — appears once 01 leaves the viewport -->
+    <div id="fact-bar" aria-hidden="true">
+      <strong>From €236,141 all-in · Handover 2027</strong>
+      <a href="#meeting">Choose a time</a>
+    </div>
+
+    <script>
+      (function () {
+        var bar = document.getElementById('fact-bar');
+        var anchor = document.getElementById('offer-fact');
+        if (!bar || !anchor || !('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(
+          function (entries) {
+            var below = !entries[0].isIntersecting && entries[0].boundingClientRect.top < 0;
+            bar.classList.toggle('visible', below);
+            bar.setAttribute('aria-hidden', below ? 'false' : 'true');
+          },
+          { threshold: 0 }
+        );
+        io.observe(anchor);
+      })();
+    </script>
+
+    <!-- First-party analytics + contact handoffs (no Google Analytics) -->
+    <script>
+      window.__EF_PAGE__ = { pageId: 'site_en', pageVersion: 'v3', locale: 'en' };
+      window.__EF_CONTACT__ = {
+        email: 'uriel.nabel@elfortincapital.com',
+        whatsapp: '34626459818',
+        calendar: 'https://calendar.app.google/R9LJvZFYTPwuXNw7A',
+        privacyUrl: 'privacy-policy-en.html'
+      };
+    </script>
+    <script src="assets/analytics.js" defer></script>
+  </body>
+</html>
