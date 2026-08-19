@@ -5,13 +5,15 @@
   Structure: landing-page-v3-5-second-structure.md
   Frames:    landing-page-v3-framing.md
 
-  Page order: 01 offer · 06 earn · 05 rent · 03 proof · 07 uriel · 08 position · 09 meeting
+  Page order: 01 offer · 06 earn · 05+03 floor (rent + proof merged) · 07 uriel · 08 position · 09 meeting
   02 and 04 stay off.
-  Visuals: the building render is the hero (01) — the product shines.
-  The engineering cutaway illustrates the mechanism (06). One illustration, once.
+  Visuals: the building render is the hero (01), blended into the plaster — no frame.
+  The engineering cutaway shows the machine at work (06). One illustration, once.
+  Number hierarchy: the ~7% blended target is the loud fact of the page (06);
+  the ~4% ordinary-rent case stays quiet inside the calculation (floor frame).
 
   Draft figures, human review before publish:
-  - #rent and #position use evidenced rents (17 comps, July 2026), the draft
+  - #floor and #position use evidenced rents (17 comps, July 2026), the draft
     unit schedule, and 4%-derived monthly nets. Reconcile against €236,141.
   - Interiors stay unlabelled until Uriel confirms which render is Type A
     and which is Type B.
@@ -21,10 +23,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>El Fortín — One building. Engineered to max ROI.</title>
+    <title>El Fortín — Camino Valencia 31</title>
     <meta
       name="description"
-      content="El Fortín · Riba-roja de Túria, Valencia. One purpose-built rental building of ten apartments, owned by titled apartment, managed as one. From €236,141 all-in. Handover 2027."
+      content="El Fortín · Camino Valencia 31, Riba-roja de Túria, Valencia. One building. Ten titles. From €236,141 all-in. Handover 2027."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -195,6 +197,37 @@
         border: 1px solid rgba(23, 61, 74, 0.18);
       }
 
+      /* Hero blend — the render rises out of the plaster instead of sitting
+         in a bordered box beside the offer. */
+      .offer-hero-img {
+        position: relative;
+      }
+      .offer-tag {
+        position: absolute;
+        left: clamp(12px, 2.2vw, 22px);
+        bottom: clamp(12px, 2.2vw, 22px);
+        z-index: 2;
+        background: var(--deep);
+        color: var(--plaster);
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 7px 11px;
+        line-height: 1.2;
+      }
+      .offer-hero-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(to right, var(--plaster), rgba(250, 245, 232, 0) 16%),
+          linear-gradient(to left, var(--plaster), rgba(250, 245, 232, 0) 10%),
+          linear-gradient(to bottom, var(--plaster), rgba(250, 245, 232, 0) 12%),
+          linear-gradient(to top, var(--plaster), rgba(250, 245, 232, 0) 10%);
+      }
+
       /* ---------- persistent fact bar ---------- */
       #fact-bar {
         position: fixed;
@@ -250,6 +283,18 @@
         align-items: flex-start;
       }
 
+      .offer-copy h1 {
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .offer-line {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+        line-height: 1.2;
+        color: var(--deep);
+      }
+
       .offer-fact {
         font-size: clamp(1.05rem, 1.6vw, 1.25rem);
         font-weight: 700;
@@ -271,18 +316,23 @@
         align-items: flex-start;
       }
 
-      .fact-target {
-        font-size: 1.5rem;
-        font-weight: 700;
+      /* The upside carries this frame — the largest number on the page. */
+      .fact-upside {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(2.8rem, 6vw, 4.4rem);
+        line-height: 1;
         color: var(--blue);
-        line-height: 1.2;
+        border-left: 4px solid var(--gold);
+        padding-left: 18px;
       }
-      .fact-target small {
+      .fact-upside small {
         display: block;
-        font-size: 14px;
-        font-weight: 500;
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 15px;
         color: var(--deep);
-        opacity: 0.7;
+        opacity: 0.75;
+        margin-top: 10px;
+        line-height: 1.45;
       }
 
       /* The illustration keeps its native ratio — never cropped into a banner. */
@@ -291,20 +341,23 @@
         background: #fdfbf4;
       }
 
-      /* ---------- 05 rent ---------- */
-      #rent .rent-panel {
-        background: var(--sand);
-        padding: clamp(28px, 5vw, 64px);
-        margin-top: 28px;
+      /* ---------- 05+03 floor — ordinary rent, resting on a real building ---------- */
+      #floor h2 {
+        margin-bottom: 30px;
       }
 
-      .calc {
+      .floor-split {
         display: grid;
-        gap: clamp(28px, 5vw, 72px);
-        max-width: 880px;
+        gap: clamp(28px, 4vw, 64px);
+        align-items: start;
       }
 
-      .calc-col h3 {
+      .rent-panel {
+        background: var(--sand);
+        padding: clamp(24px, 4vw, 44px);
+      }
+
+      .rent-panel h3 {
         font-size: 14px;
         font-weight: 600;
         letter-spacing: 0.12em;
@@ -328,33 +381,22 @@
       .calc-line .op {
         opacity: 0.55;
         font-weight: 600;
+        white-space: nowrap;
+      }
+      /* The 4% stays quiet: the result line is firm, never a poster. */
+      .calc-line.calc-result,
+      .calc-line.calc-result .op {
+        opacity: 1;
+        font-weight: 700;
       }
 
-      .fact-floor {
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(3.4rem, 7vw, 5.2rem);
-        line-height: 1;
-        color: var(--deep);
-      }
-      .fact-floor-caption {
-        font-size: 15px;
-        color: var(--deep);
-        opacity: 0.7;
-        margin-top: 8px;
+      #floor .floor-split .strip {
+        margin-top: 16px;
       }
 
-      /* ---------- 03 proof ---------- */
-      #proof h2 {
-        margin-bottom: 26px;
-      }
-
-      #proof .proof-photo {
+      #floor .proof-photo {
         width: 100%;
         object-fit: cover;
-      }
-
-      #proof .strip {
-        margin-top: 16px;
       }
 
       .record {
@@ -535,9 +577,8 @@
         .earn-split {
           grid-template-columns: 3fr 2fr;
         }
-        .calc {
+        .floor-split {
           grid-template-columns: 1fr 1fr;
-          align-items: start;
         }
         .uriel-split {
           grid-template-columns: 2fr 3fr;
@@ -553,7 +594,7 @@
 
       /* ---------- mobile ---------- */
       @media (max-width: 899px) {
-        #proof .proof-photo {
+        #floor .proof-photo {
           aspect-ratio: 4 / 5;
         }
         #fact-bar {
@@ -570,28 +611,30 @@
       <div class="offer-split">
         <div class="offer-copy">
           <p class="kicker">El Fortín · Riba-roja de Túria, Valencia</p>
-          <h1>One building. Engineered to max&nbsp;ROI.</h1>
+          <h1>Camino Valencia&nbsp;31</h1>
+          <p class="offer-line">One building. Ten&nbsp;titles.</p>
           <p class="support">
-            Ownership by titled apartment. Two weeks yearly personal use.
-            Tourist rental granted.
+            The power of a building. The cost of an apartment.
           </p>
           <p class="offer-fact" id="offer-fact">
-            From €236,141 all-in per apartment · Handover 2027
+            From €236,141 all-in per apartment
           </p>
           <a class="action" href="#earn">See how it can earn</a>
         </div>
-        <!-- The building is the product. It stands beside the offer. Do not write on it. -->
+        <!-- The building is the product. It blends into the offer — no border,
+             edges faded into the plaster. Handover sits on the image as a tag. -->
         <figure>
-          <picture>
-            <source media="(max-width: 899px)" srcset="assets/hero-mobile-elfortin.jpg" />
-            <img
-              class="img-frame"
-              src="assets/hero-desk-elfortin.jpg"
-              alt="The El Fortín building: the full façade on its street in Riba-roja de Túria"
-              fetchpriority="high"
-            />
-          </picture>
-          <figcaption class="caption">The building · render</figcaption>
+          <div class="offer-hero-img">
+            <picture>
+              <source media="(max-width: 899px)" srcset="assets/hero-mobile-elfortin.jpg" />
+              <img
+                src="assets/hero-desk-elfortin.jpg"
+                alt="El Fortín, Camino Valencia 31: the building on its street in Riba-roja de Túria. Handover 2027."
+                fetchpriority="high"
+              />
+            </picture>
+            <span class="offer-tag">Handover 2027</span>
+          </div>
         </figure>
       </div>
     </section>
@@ -599,130 +642,129 @@
     <!-- ================= 06 · EARN — desire ================= -->
     <section class="frame" id="earn" data-section-id="earn">
       <div class="earn-split">
-        <!-- The mechanism: the building cut open, ten apartments run as one. -->
+        <!-- Inventory of nights, at work. Not an empty diagram. Not a holiday. -->
         <figure>
           <img
             class="roof-img img-frame"
             src="assets/hero-cutaway-photoreal-v1.jpg"
-            alt="Engineering cutaway of the building: ten apartments, shared circulation and the roof terrace as one operation"
+            alt="The building at work: occupied apartments and one shared stair — ten doors, one inventory of nights"
             loading="lazy"
           />
-          <figcaption class="caption">The building, cut open · illustration</figcaption>
+          <figcaption class="caption">Ten apartments. One inventory of nights.</figcaption>
         </figure>
         <div class="earn-copy">
-          <h2>The building is steered toward the&nbsp;money.</h2>
+          <h2>We run the nights for the&nbsp;rate.</h2>
           <p class="support">
-            Demand shifts. The mix shifts with it — long stays, medium stays,
-            tourist nights — across the whole building, from the ground. That
-            is an operation. Not a calendar you keep from another country.
+            The building sells nights. A month’s rent is only a low rate, sold
+            in bulk. We manage all ten from here, and we put the nights where
+            the market will pay.
           </p>
-          <p class="fact-target">
+          <p class="fact-upside">
             ~7% net
-            <small>Target. Not a promise.</small>
+            <small>A target, not a promise.</small>
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ================= 05 · RENT — explain (no photograph) ================= -->
-    <section class="frame" id="rent" data-section-id="rent">
+    <!-- ================= 05+03 · FLOOR — the boring case, already real ================= -->
+    <!-- Rent and proof merged in meaning: the conservative calculation and the
+         building it rests on are one argument. The fallback is ordinary rent,
+         and the thing that collects it is already under construction.
+         The 4% lives quietly inside the calculation — never a poster. -->
+    <section class="frame" id="floor" data-section-id="floor">
       <h2>What ordinary rent leaves after every&nbsp;cost.</h2>
-      <div class="rent-panel">
-        <div class="calc">
-          <div class="calc-col">
-            <h3>The calculation</h3>
+      <div class="floor-split">
+        <div class="floor-case">
+          <div class="rent-panel">
             <!-- Draft figures: evidenced rents (17 comps, July 2026); combined
                  cost line derived from the 4% base. Human review before publish. -->
             <div class="calc-line"><span>All-in capital</span><span class="op">€236,141</span></div>
-            <div class="calc-line"><span>Ordinary rent, collected</span><span class="op">~€1,100 / mo</span></div>
             <div class="calc-line">
-              <span>Vacancy · running costs · management fee</span>
+              <span>Ordinary rent</span>
+              <span class="op">~€1,100 / mo</span>
+            </div>
+            <div class="calc-line">
+              <span>Vacancy · costs · fee</span>
               <span class="op">− ~€310</span>
             </div>
-            <div class="calc-line">
-              <span><strong>Your share, monthly</strong></span>
-              <span class="op">≈ €790</span>
+            <div class="calc-line calc-result">
+              <span>What remains, monthly</span>
+              <span class="op">≈ €790 · 4% net</span>
             </div>
           </div>
-          <div class="calc-col">
-            <h3>What reaches you</h3>
-            <p class="fact-floor">4% net</p>
-            <p class="fact-floor-caption">
-              Ordinary long-term rent, after every cost above.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 03 · PROOF — prove ================= -->
-    <section class="frame" id="proof" data-section-id="proof">
-      <h2>Already underway.</h2>
-      <figure>
-        <img
-          class="proof-photo img-frame"
-          src="assets/construction-2026-06.jpg"
-          alt="Inside the works: shoring props under the opened roof, June 2026"
-          loading="lazy"
-        />
-        <figcaption class="caption">The site · June 2026</figcaption>
-      </figure>
-      <p class="strip">
-        Exp. 4497/2025/GEN · Res. 3658/2025<br />
-        NODHOUSES · J. J. Pérez Redón, COACV 11.357<br />
-        Puzol delivered August 2025
-      </p>
-
-      <details class="record" id="construction-record">
-        <summary>See the construction record</summary>
-        <div class="record-body">
-          <div class="record-pair">
-            <figure>
-              <img
-                class="img-frame"
-                src="assets/construction-team-2026-06.jpg"
-                alt="The team on site among stacked roof tiles, June 2026"
-                loading="lazy"
-              />
-              <figcaption class="caption">On site · June 2026</figcaption>
-            </figure>
-            <figure>
-              <img
-                class="img-frame"
-                src="assets/construction-plans-2026-06.jpg"
-                alt="Hands over the floor plans on site, June 2026"
-                loading="lazy"
-              />
-              <figcaption class="caption">The plans, on site · June 2026</figcaption>
-            </figure>
-          </div>
-          <div class="record-pair">
-            <figure>
-              <img
-                class="img-frame"
-                src="assets/puzol-before.jpg"
-                alt="The Puzol building before works"
-                loading="lazy"
-              />
-              <figcaption class="caption">Puzol · before</figcaption>
-            </figure>
-            <figure>
-              <img
-                class="img-frame"
-                src="assets/puzol-after-interior.webp"
-                alt="The Puzol building delivered, interior"
-                loading="lazy"
-              />
-              <figcaption class="caption">Puzol · delivered August 2025</figcaption>
-            </figure>
-          </div>
           <p class="strip">
-            Building licence Exp. 4497/2025/GEN · Resolution 3658/2025 ·
-            Builder <a href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a> ·
-            Architect <a href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J. J. Pérez Redón</a>, COACV 11.357
+            Ordinary rent from 17 live comparables, July 2026.
           </p>
         </div>
-      </details>
+        <div class="floor-proof">
+          <figure>
+            <img
+              class="proof-photo img-frame"
+              src="assets/construction-2026-06.jpg"
+              alt="Inside the works: shoring props under the opened roof, June 2026"
+              loading="lazy"
+            />
+            <figcaption class="caption">June 2026</figcaption>
+          </figure>
+          <p class="strip">
+            Exp. 4497/2025/GEN · Res. 3658/2025<br />
+            NODHOUSES · J. J. Pérez Redón, COACV 11.357<br />
+            Puzol delivered August 2025
+          </p>
+
+          <details class="record" id="construction-record">
+            <summary>See the construction record</summary>
+            <div class="record-body">
+              <div class="record-pair">
+                <figure>
+                  <img
+                    class="img-frame"
+                    src="assets/construction-team-2026-06.jpg"
+                    alt="The team on site among stacked roof tiles, June 2026"
+                    loading="lazy"
+                  />
+                  <figcaption class="caption">On site · June 2026</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    class="img-frame"
+                    src="assets/construction-plans-2026-06.jpg"
+                    alt="Hands over the floor plans on site, June 2026"
+                    loading="lazy"
+                  />
+                  <figcaption class="caption">The plans, on site · June 2026</figcaption>
+                </figure>
+              </div>
+              <div class="record-pair">
+                <figure>
+                  <img
+                    class="img-frame"
+                    src="assets/puzol-before.jpg"
+                    alt="The Puzol building before works"
+                    loading="lazy"
+                  />
+                  <figcaption class="caption">Puzol · before</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    class="img-frame"
+                    src="assets/puzol-after-interior.webp"
+                    alt="The Puzol building delivered, interior"
+                    loading="lazy"
+                  />
+                  <figcaption class="caption">Puzol · delivered August 2025</figcaption>
+                </figure>
+              </div>
+              <p class="strip">
+                Building licence Exp. 4497/2025/GEN · Resolution 3658/2025 ·
+                Builder <a href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a> ·
+                Architect <a href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J. J. Pérez Redón</a>, COACV 11.357
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
     </section>
 
     <!-- ================= 07 · URIEL — the person ================= -->
@@ -741,8 +783,8 @@
         </figure>
         <div class="uriel-copy">
           <h2>I stay behind these&nbsp;words.</h2>
+          <p class="support">I built this building. I run it.</p>
           <p class="support">
-            I built this building. I run it.<br />
             Twenty years in industry. Five at SAP, on engineering and
             construction in Europe. This is now the work.
           </p>
@@ -778,11 +820,11 @@
             <dt>In the building</dt>
             <dd>Four</dd>
             <dt>All-in price</dt>
-            <dd>€197,370</dd>
+            <dd>€236,141</dd>
             <dt>Long-term rent, evidenced</dt>
             <dd>€850–950 / mo</dd>
             <dt>Conservative monthly</dt>
-            <dd>≈ €660 net</dd>
+            <dd>≈ €790 net</dd>
             <dt>Availability</dt>
             <dd class="avail">4 of 4 available</dd>
           </dl>
@@ -807,19 +849,20 @@
             <dt>In the building</dt>
             <dd>Six</dd>
             <dt>All-in price</dt>
-            <dd>€229,011–240,341</dd>
+            <dd>Above the entry</dd>
             <dt>Long-term rent, evidenced</dt>
             <dd>€1,050–1,150 / mo</dd>
             <dt>Conservative monthly</dt>
-            <dd>≈ €780 net</dd>
+            <dd>On the walk</dd>
             <dt>Availability</dt>
             <dd class="avail">5 of 6 available</dd>
           </dl>
         </article>
       </div>
       <p class="cards-note">
-        Interiors are apartment-design renders. Prices from the draft unit
-        schedule; rents evidenced by 17 live comparables, July 2026.
+        Interiors are apartment-design renders. Type B all-in waits for the
+        unit model to match the €236,141 entry. Rents: 17 live comparables,
+        July 2026.
       </p>
     </section>
 

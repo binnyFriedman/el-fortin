@@ -28,15 +28,15 @@ If the display already said it, delete the support.
 
 | Fact                                  | Home                | Weight                      |
 | ------------------------------------- | ------------------- | --------------------------- |
-| The product                           | 01 display          | Largest on the page         |
+| The address                           | 01 display          | Largest on the page         |
 | Place                                 | 01 kicker           | Small, above the display    |
-| Deed                                  | 01 support          | One line                    |
-| Tourist rental granted                | 01 support          | Same line                   |
+| One building. Ten titles.             | 01 line             | The structure               |
+| Power of a building, cost of a flat   | 01 support          | The leverage                |
 | Price · handover                      | 01 fact             | Isolated, persistent        |
 | Licence, names, last building         | 03 strip            | Small, under the photograph |
 | Income − costs − fee                  | 05 calculation      | The body of the 4%          |
 | ~4% net                               | 05 fact             | Largest number on the page  |
-| The building is steered, not self-run | 06 display          | The job, not the menu       |
+| We run the nights for the rate        | 06 display          | Management, and the unit    |
 | ~7% net, a target                     | 06 fact             | Smaller than the 4%         |
 | Uriel leads and stays behind the page | 07 display          | The man, then one line      |
 | His record                            | 07 support          | One line, under the job     |
@@ -57,38 +57,44 @@ El Fortín · Riba-roja de Túria, Valencia
 
 **Display**  
 
-# One building. Engineered to max ROI.
+# Camino Valencia 31
 
-**Support:**
+**Line**  
+One building. Ten titles.
 
-Ownership by titled apartment. 2W Yearly personal use . Tourist rental granted.
+**Support**  
+The power of a building. The cost of an apartment.
 
 **Fact**  
-From €236,141 all-in per apartment· Handover 2027
+From €236,141 all-in per apartment
+
+**Tag** — on the façade, not in the copy column  
+Handover 2027
 
 **Action**  
 See how it can earn
 
-The cutaway stands beside this. Do not write on it.
+The façade stands beside this. Do not write on it. Management is 06. Tourist rental is granted; it does not need the hero.
 
 ---
 
 ## 06 — How it can earn
 
-Three words on a line sound like a setting the buyer could flip himself. They are not. The work is reading a town every week and moving ten apartments as one. A single flat cannot do that. A listing run from abroad cannot do that.
+The hero names the structure. This section names the work: we manage the building. The unit of the work is the night — what a client will pay for one. A long lease is not a different product. It is the same nights, sold cheap, in bulk. The machinery is to put the nights where the rate is highest. If that machinery is real, we stand behind it. The 7% is the target of that work, not a tourist promise.
 
 **Display**  
 
-## The building is steered toward the money.
+## We run the nights for the rate.
 
 **Support**  
-Demand shifts. The mix shifts with it — long stays, medium stays, tourist nights — across the whole building, from the ground. That is an operation. Not a calendar you keep from another country.
+The building sells nights. A month’s rent is only a low rate, sold in bulk. We manage all ten from here, and we put the nights where the market will pay.
 
 **Fact**  
 ~7% net  
-Target. Not a promise.
+A target, not a promise.
 
-The 4% does not appear here. The terrace may. Caption the terrace as the roof, not a holiday. Do not display Long · Medium · Tourist as a feature row. They live inside the support, as the instruments, not as the job.
+**Image**  
+Not the empty façade. Not the pool as a holiday. The building at work — rooms occupied, the ten as one inventory of nights. The cutaway can do that if the caption says the job, not “illustration.” Prefer a frame that feels run: light in the windows, people in the rooms, the stair working. Do not typeset Long · Medium · Tourist as a menu.
 
 ---
 
