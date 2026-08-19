@@ -5,10 +5,19 @@
   Structure: landing-page-v3-5-second-structure.md
   Frames:    landing-page-v3-framing.md
 
-  Page order: 01 offer · 06 earn · 05+03 floor (rent + proof merged) · 07 uriel · 08 position · 09 meeting
+  Page order: 01 offer · 06 earn · 05 floor · 03 proof · 07 uriel · 08 position · 09 meeting
   02 and 04 stay off.
-  Visuals: the building render is the hero (01), blended into the plaster — no frame.
-  The engineering cutaway shows the machine at work (06). One illustration, once.
+  Visuals — the image grammar of the page:
+  - Renders bleed (they are the world being built): the hero is a full-height
+    panel anchored to the top/right corners of the first viewport (01).
+  - Photographs get the hairline border (they are documents): construction,
+    Uriel, Puzol (03, 07).
+  - Plans sit on white (they are paper): the deed drawings lead the cards (08).
+  Page rhythm: light hero → dark full-bleed night aerial with the ~7% set on
+  it (06) → quiet math (05) → booking-style photo gallery with lightbox (03)
+  → person with his Puzol record (07) → cutaway map + cards (08) → dark close:
+  a half-band of Uriel at work beside one generous button (09).
+  The hero cuts straight into the night band — day, then night, no gap.
   Number hierarchy: the ~7% blended target is the loud fact of the page (06);
   the ~4% ordinary-rent case stays quiet inside the calculation (floor frame).
 
@@ -167,23 +176,6 @@
         background: #e8ae22;
       }
 
-      .action--quiet {
-        display: inline-block;
-        background: transparent;
-        color: var(--deep);
-        font-weight: 600;
-        font-size: 16px;
-        text-decoration: none;
-        padding: 13px 22px;
-        border: 1px solid var(--deep);
-        cursor: pointer;
-        font-family: inherit;
-        line-height: 1.3;
-      }
-      .action--quiet:hover {
-        background: rgba(23, 61, 74, 0.06);
-      }
-
       .fact {
         font-weight: 700;
         color: var(--deep);
@@ -197,10 +189,25 @@
         border: 1px solid rgba(23, 61, 74, 0.18);
       }
 
-      /* Hero blend — the render rises out of the plaster instead of sitting
-         in a bordered box beside the offer. */
+      /* Small label sitting on an image — used for "render" honesty tags. */
+      .img-note {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        z-index: 2;
+        background: rgba(23, 61, 74, 0.55);
+        color: var(--plaster);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        padding: 4px 9px;
+        line-height: 1.2;
+      }
+
+      /* Hero — the render is the product. Its edge is architectural and
+         deliberate, with the copy held in its own column. */
       .offer-hero-img {
         position: relative;
+        height: 100%;
       }
       .offer-tag {
         position: absolute;
@@ -216,18 +223,6 @@
         padding: 7px 11px;
         line-height: 1.2;
       }
-      .offer-hero-img::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background:
-          linear-gradient(to right, var(--plaster), rgba(250, 245, 232, 0) 16%),
-          linear-gradient(to left, var(--plaster), rgba(250, 245, 232, 0) 10%),
-          linear-gradient(to bottom, var(--plaster), rgba(250, 245, 232, 0) 12%),
-          linear-gradient(to top, var(--plaster), rgba(250, 245, 232, 0) 10%);
-      }
-
       /* ---------- persistent fact bar ---------- */
       #fact-bar {
         position: fixed;
@@ -266,8 +261,11 @@
       }
 
       /* ---------- 01 offer ---------- */
-      #offer {
+      /* No gap into 06: the day render cuts straight to the night aerial —
+         screen one is day, screen two is night. */
+      #offer.frame {
         padding-top: clamp(28px, 6vh, 72px);
+        margin-bottom: 0;
       }
 
       .offer-split {
@@ -302,11 +300,65 @@
         padding-left: 14px;
       }
 
-      /* ---------- 06 earn ---------- */
-      .earn-split {
+      /* ---------- mechanism bridge ---------- */
+      /* The hinge between ownership by day and operation by night. It carries
+         the explanation so neither image has to become a diagram. */
+      .mechanism-strip {
+        background: var(--deep);
+        color: var(--plaster);
+        padding: 28px var(--gutter);
+      }
+      .mechanism-flow {
+        max-width: 1280px;
+        min-height: 40px;
+        margin: 0 auto;
         display: grid;
-        gap: clamp(24px, 4vw, 56px);
+        grid-template-columns: 1fr auto 1.45fr auto 1.2fr;
         align-items: center;
+        gap: clamp(16px, 2.5vw, 38px);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        line-height: 1.55;
+        text-transform: uppercase;
+      }
+      .mechanism-flow .arrow {
+        color: var(--gold);
+      }
+
+      /* ---------- 06 earn — the dark middle band ---------- */
+      /* The night aerial runs full-bleed: the lit roof over a dark town,
+         with the mechanism and the ~7% set directly on the image. */
+      #earn.frame {
+        max-width: none;
+        padding: 0;
+        position: relative;
+        background: var(--deep);
+        margin-bottom: clamp(64px, 9vh, 96px);
+        overflow: hidden;
+      }
+
+      .earn-media {
+        overflow: hidden;
+      }
+      .earn-media img {
+        width: 108%;
+        max-width: none;
+        display: block;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+
+      .earn-scrim {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          to right,
+          rgba(13, 33, 42, 0.72),
+          rgba(13, 33, 42, 0.28) 45%,
+          rgba(13, 33, 42, 0) 68%
+        );
       }
 
       .earn-copy {
@@ -316,12 +368,20 @@
         align-items: flex-start;
       }
 
+      .earn-copy h2,
+      .earn-copy .support {
+        color: var(--plaster);
+      }
+      .earn-copy h2 {
+        max-width: 13em;
+      }
+
       /* The upside carries this frame — the largest number on the page. */
       .fact-upside {
         font-family: "DM Serif Display", Georgia, serif;
         font-size: clamp(2.8rem, 6vw, 4.4rem);
         line-height: 1;
-        color: var(--blue);
+        color: var(--gold);
         border-left: 4px solid var(--gold);
         padding-left: 18px;
       }
@@ -329,113 +389,193 @@
         display: block;
         font-family: "Source Sans 3", -apple-system, sans-serif;
         font-size: 15px;
-        color: var(--deep);
-        opacity: 0.75;
+        color: var(--plaster);
+        opacity: 0.8;
         margin-top: 10px;
         line-height: 1.45;
       }
 
-      /* The illustration keeps its native ratio — never cropped into a banner. */
-      .roof-img {
-        width: 100%;
-        background: #fdfbf4;
-      }
-
-      /* ---------- 05+03 floor — ordinary rent, resting on a real building ---------- */
-      #floor h2 {
-        margin-bottom: 30px;
-      }
-
-      .floor-split {
+      /* ---------- 05 floor — downside protection ---------- */
+      /* Sober rather than muted: this is the objection that keeps a cautious
+         visitor in the argument, so the result carries the hierarchy. */
+      #floor {
         display: grid;
-        gap: clamp(28px, 4vw, 64px);
-        align-items: start;
+        gap: clamp(36px, 6vw, 88px);
+        align-items: center;
       }
-
-      .rent-panel {
+      .floor-intro {
+        max-width: 34rem;
+      }
+      #floor h2 {
+        margin: 10px 0 22px;
+      }
+      .floor-case {
+        width: 100%;
+        max-width: 620px;
+      }
+      .floor-rate {
         background: var(--sand);
         padding: clamp(24px, 4vw, 44px);
       }
-
-      .rent-panel h3 {
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+      .floor-rate.fact-upside {
         color: var(--deep);
-        opacity: 0.65;
-        margin-bottom: 16px;
+        border-left-color: var(--gold);
+      }
+      .floor-rate.fact-upside small {
+        color: var(--deep);
       }
 
-      .calc-line {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 9px 0;
-        border-bottom: 1px solid rgba(23, 61, 74, 0.16);
-        font-size: 16.5px;
-      }
-      .calc-line:last-child {
-        border-bottom: none;
-      }
-      .calc-line .op {
-        opacity: 0.55;
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      /* The 4% stays quiet: the result line is firm, never a poster. */
-      .calc-line.calc-result,
-      .calc-line.calc-result .op {
-        opacity: 1;
-        font-weight: 700;
-      }
-
-      #floor .floor-split .strip {
+      .floor-case .strip {
         margin-top: 16px;
       }
 
-      #floor .proof-photo {
-        width: 100%;
-        object-fit: cover;
+      /* ---------- 03 proof — the record, all of it visible ---------- */
+      /* Booking-style gallery: one main photograph, supporting frames
+         beside it, a lightbox on click. Nothing folded away. */
+      #proof h2 {
+        margin-bottom: 30px;
       }
 
-      .record {
-        margin-top: 26px;
-        border-top: 1px solid rgba(23, 61, 74, 0.18);
-      }
-      .record summary {
-        list-style: none;
-        cursor: pointer;
-        padding: 16px 0;
-        font-weight: 700;
-        color: var(--deep);
-        display: flex;
-        align-items: center;
+      .gallery {
+        display: grid;
         gap: 10px;
       }
-      .record summary::-webkit-details-marker {
+
+      .gallery-main {
+        position: relative;
+      }
+      .gallery-main img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        cursor: zoom-in;
+      }
+      /* The caption sits on the photograph, like the hero's handover tag,
+         so the grid rows stay flush with the thumbnails. */
+      .gallery-main .caption {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        margin: 0;
+        background: rgba(23, 61, 74, 0.6);
+        color: var(--plaster);
+        opacity: 1;
+        font-size: 12.5px;
+        padding: 4px 9px;
+        line-height: 1.2;
+      }
+
+      .gallery-thumbs {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .gallery-thumbs button {
+        padding: 0;
+        border: 1px solid rgba(23, 61, 74, 0.18);
+        background: none;
+        cursor: pointer;
+        display: block;
+      }
+      .gallery-thumbs button:hover {
+        border-color: rgba(23, 61, 74, 0.5);
+      }
+      .gallery-thumbs img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+        opacity: 0.92;
+        transition: opacity 0.15s ease;
+      }
+      .gallery-thumbs button:hover img {
+        opacity: 1;
+      }
+
+      /* The common language: a photo-count chip on the main image that
+         opens the full-screen viewer. */
+      .gallery-count {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(250, 245, 232, 0.94);
+        color: var(--deep);
+        border: none;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 11px;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .gallery-count:hover {
+        background: #fff;
+      }
+      .gallery-count svg {
+        display: block;
+      }
+
+      #proof .strip {
+        margin-top: 18px;
+      }
+
+      /* ---------- lightbox ---------- */
+      #lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(13, 25, 31, 0.93);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: clamp(16px, 4vw, 48px);
+      }
+      #lightbox[hidden] {
         display: none;
       }
-      .record summary::after {
-        content: "+";
-        font-size: 22px;
+      #lightbox img {
+        max-width: min(92vw, 1400px);
+        max-height: 78vh;
+        object-fit: contain;
+      }
+      #lightbox .lb-caption {
+        color: var(--plaster);
+        opacity: 0.85;
+        margin: 0;
+      }
+      #lightbox button {
+        background: none;
+        border: none;
+        color: var(--plaster);
+        font-size: 34px;
         line-height: 1;
-        color: var(--clay);
+        cursor: pointer;
+        padding: 10px;
       }
-      .record[open] summary::after {
-        content: "−";
+      #lightbox .lb-close {
+        position: absolute;
+        top: 14px;
+        right: 18px;
       }
-      .record-body {
-        padding-bottom: 22px;
-        display: grid;
-        gap: 18px;
+      #lightbox .lb-prev,
+      #lightbox .lb-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 46px;
       }
-      .record-pair {
-        display: grid;
-        gap: 12px;
+      #lightbox .lb-prev {
+        left: 10px;
       }
-      .record-pair figure {
-        flex: 1;
+      #lightbox .lb-next {
+        right: 10px;
       }
 
       /* ---------- 07 uriel ---------- */
@@ -463,9 +603,33 @@
         font-size: 13px;
       }
 
+      /* The delivered building sits with the person — his track record,
+         not this site's paperwork. */
+      .track-record {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        width: 100%;
+      }
+      .track-record img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
       /* ---------- 08 position ---------- */
       #position h2 {
         margin-bottom: 30px;
+      }
+
+      /* The cutaway is the map of the machine — placed at the moment of
+         choosing a title, above the two positions. */
+      .machine-map {
+        max-width: 880px;
+        margin: 0 auto clamp(36px, 6vh, 64px);
+      }
+      .machine-map img {
+        width: 100%;
       }
 
       .cards {
@@ -482,10 +646,16 @@
         gap: 16px;
       }
 
+      /* Interiors are demoted to equal letterbox strips: texture, not a
+         destination. The plan — the drawing of the deed — leads the card.
+         margin-top:auto pins both strips to the card bottom so the two
+         cards end on the same line whatever their plan heights. */
       .card .interior {
         width: 100%;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 16 / 7;
         object-fit: cover;
+        object-position: center 55%;
+        margin-top: auto;
       }
 
       .card .plan {
@@ -524,13 +694,63 @@
         opacity: 0.65;
       }
 
-      /* ---------- 09 meeting ---------- */
-      #meeting {
-        text-align: center;
-        padding-top: clamp(30px, 6vh, 70px);
+      /* ---------- 09 meeting — the meeting, with the person in it ---------- */
+      /* Half-band composition: Uriel inside the building on one side, the
+         invitation on the other. One generous button; the alternative is a
+         quiet text link, not a competing box. */
+      #meeting.frame {
+        max-width: none;
+        background: var(--deep);
+        padding: 0;
+        margin-bottom: 0;
       }
+
+      .meeting-split {
+        display: grid;
+      }
+
+      .meeting-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 55%;
+        display: block;
+      }
+
+      .meeting-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: clamp(56px, 10vh, 110px) var(--gutter);
+      }
+
       #meeting h2 {
+        color: var(--plaster);
         margin-bottom: 38px;
+      }
+
+      .action--big {
+        padding: 18px 46px;
+        font-size: 18px;
+      }
+
+      .meet-alt {
+        display: inline-block;
+        background: none;
+        border: none;
+        color: var(--plaster);
+        opacity: 0.85;
+        font: inherit;
+        font-size: 15.5px;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        cursor: pointer;
+        margin-top: 22px;
+        padding: 0;
+      }
+      .meet-alt:hover {
+        opacity: 1;
       }
       .meeting-actions {
         display: flex;
@@ -545,6 +765,7 @@
         color: var(--plaster);
         padding: 40px var(--gutter) 80px;
         font-size: 14px;
+        border-top: 1px solid rgba(250, 245, 232, 0.18);
       }
       footer .foot-inner {
         max-width: 1280px;
@@ -571,32 +792,133 @@
 
       /* ---------- desktop ---------- */
       @media (min-width: 900px) {
+        /* One screen, one product: the render is a full-height panel
+           anchored to the top and right corners of the viewport, the copy
+           vertically centred against it on the 1280 grid. */
+        #offer.frame {
+          max-width: none;
+          padding: 0;
+        }
         .offer-split {
-          grid-template-columns: 2fr 3fr;
+          grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+          gap: 0;
+          align-items: stretch;
+          min-height: 100svh;
         }
-        .earn-split {
-          grid-template-columns: 3fr 2fr;
+        .offer-copy {
+          min-width: 0;
+          align-self: center;
+          padding: clamp(40px, 6vh, 80px) clamp(24px, 3vw, 48px)
+            clamp(40px, 6vh, 80px) clamp(40px, 6vw, 96px);
         }
-        .floor-split {
+        .offer-split figure,
+        .offer-hero-img {
+          height: 100%;
+        }
+        .offer-hero-img img {
+          width: 100%;
+          height: 100%;
+          min-height: 100svh;
+          object-fit: cover;
+        }
+
+        /* The dark band: copy set on the image, over the dark rooftops. */
+        .earn-media img {
+          height: clamp(560px, 92vh, 900px);
+        }
+        .earn-copy {
+          position: absolute;
+          inset: 0;
+          justify-content: center;
+          padding-left: max(
+            var(--gutter),
+            calc((100vw - 1280px) / 2 + var(--gutter))
+          );
+          padding-right: var(--gutter);
+        }
+
+        #floor {
+          grid-template-columns: minmax(0, 0.85fr) minmax(440px, 1fr);
+        }
+
+        /* Booking-style: main photograph left, supporting frames 2×2 right. */
+        .gallery {
+          grid-template-columns: 2fr 1fr;
+        }
+        .gallery-thumbs {
           grid-template-columns: 1fr 1fr;
         }
+
         .uriel-split {
           grid-template-columns: 2fr 3fr;
         }
         .cards {
           grid-template-columns: 1fr 1fr;
         }
-        .record-pair {
-          grid-template-columns: 1fr 1fr;
+        /* The close: the human takes the left of the band, the invitation
+           sits centred against him on the grid. */
+        .meeting-split {
+          grid-template-columns: 2fr 3fr;
+          min-height: 560px;
+        }
+        .meeting-copy {
+          padding-left: clamp(48px, 7vw, 110px);
+          padding-right: max(
+            var(--gutter),
+            calc((100vw - 1280px) / 2 + var(--gutter))
+          );
         }
         /* mobile-first order flips: image already first in DOM for 06/07 */
       }
 
       /* ---------- mobile ---------- */
       @media (max-width: 899px) {
-        #floor .proof-photo {
-          aspect-ratio: 4 / 5;
+        /* The hero bleeds edge-to-edge on mobile too. */
+        #offer figure {
+          margin: 0 calc(-1 * var(--gutter));
         }
+        .offer-hero-img img {
+          width: 100%;
+          aspect-ratio: 4 / 5;
+          object-fit: cover;
+        }
+
+        .mechanism-strip {
+          padding-top: 24px;
+          padding-bottom: 24px;
+        }
+        .mechanism-flow {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .mechanism-flow .arrow {
+          transform: rotate(90deg);
+          transform-origin: center;
+          justify-self: start;
+          margin-left: 2px;
+        }
+
+        /* Dark band on mobile: the image on top, the copy on the deep
+           ground beneath it — one continuous dark block. */
+        .earn-media img {
+          width: 108%;
+          aspect-ratio: 4 / 3;
+        }
+        .earn-scrim {
+          display: none;
+        }
+        .earn-copy {
+          padding: 30px var(--gutter) 52px;
+        }
+
+        .gallery-thumbs img {
+          aspect-ratio: 1 / 1;
+        }
+
+        .meeting-photo img {
+          aspect-ratio: 1 / 1;
+        }
+
         #fact-bar {
           font-size: 13.5px;
           gap: 12px;
@@ -613,9 +935,6 @@
           <p class="kicker">El Fortín · Riba-roja de Túria, Valencia</p>
           <h1>Camino Valencia&nbsp;31</h1>
           <p class="offer-line">One building. Ten&nbsp;titles.</p>
-          <p class="support">
-            The power of a building. The cost of an apartment.
-          </p>
           <p class="offer-fact" id="offer-fact">
             From €236,141 all-in per apartment
           </p>
@@ -639,132 +958,137 @@
       </div>
     </section>
 
-    <!-- ================= 06 · EARN — desire ================= -->
-    <section class="frame" id="earn" data-section-id="earn">
-      <div class="earn-split">
-        <!-- Inventory of nights, at work. Not an empty diagram. Not a holiday. -->
-        <figure>
-          <img
-            class="roof-img img-frame"
-            src="assets/hero-cutaway-photoreal-v1.jpg"
-            alt="The building at work: occupied apartments and one shared stair — ten doors, one inventory of nights"
-            loading="lazy"
-          />
-          <figcaption class="caption">Ten apartments. One inventory of nights.</figcaption>
-        </figure>
-        <div class="earn-copy">
-          <h2>We run the nights for the&nbsp;rate.</h2>
-          <p class="support">
-            The building sells nights. A month’s rent is only a low rate, sold
-            in bulk. We manage all ten from here, and we put the nights where
-            the market will pay.
-          </p>
-          <p class="fact-upside">
-            ~7% net
-            <small>A target, not a promise.</small>
-          </p>
-        </div>
+    <section class="mechanism-strip" aria-label="How the investment works">
+      <div class="mechanism-flow">
+        <span>One title to you</span>
+        <span class="arrow" aria-hidden="true">→</span>
+        <span>Ten apartments operated together</span>
+        <span class="arrow" aria-hidden="true">→</span>
+        <span>Nights sold at market rate</span>
       </div>
     </section>
 
-    <!-- ================= 05+03 · FLOOR — the boring case, already real ================= -->
-    <!-- Rent and proof merged in meaning: the conservative calculation and the
-         building it rests on are one argument. The fallback is ordinary rent,
-         and the thing that collects it is already under construction.
-         The 4% lives quietly inside the calculation — never a poster. -->
-    <section class="frame" id="floor" data-section-id="floor">
-      <h2>What ordinary rent leaves after every&nbsp;cost.</h2>
-      <div class="floor-split">
-        <div class="floor-case">
-          <div class="rent-panel">
-            <!-- Draft figures: evidenced rents (17 comps, July 2026); combined
-                 cost line derived from the 4% base. Human review before publish. -->
-            <div class="calc-line"><span>All-in capital</span><span class="op">€236,141</span></div>
-            <div class="calc-line">
-              <span>Ordinary rent</span>
-              <span class="op">~€1,100 / mo</span>
-            </div>
-            <div class="calc-line">
-              <span>Vacancy · costs · fee</span>
-              <span class="op">− ~€310</span>
-            </div>
-            <div class="calc-line calc-result">
-              <span>What remains, monthly</span>
-              <span class="op">≈ €790 · 4% net</span>
-            </div>
-          </div>
-          <p class="strip">
-            Ordinary rent from 17 live comparables, July 2026.
-          </p>
-        </div>
-        <div class="floor-proof">
-          <figure>
-            <img
-              class="proof-photo img-frame"
-              src="assets/construction-2026-06.jpg"
-              alt="Inside the works: shoring props under the opened roof, June 2026"
-              loading="lazy"
-            />
-            <figcaption class="caption">June 2026</figcaption>
-          </figure>
-          <p class="strip">
-            Exp. 4497/2025/GEN · Res. 3658/2025<br />
-            NODHOUSES · J. J. Pérez Redón, COACV 11.357<br />
-            Puzol delivered August 2025
-          </p>
+    <!-- ================= 06 · EARN — desire ================= -->
+    <!-- The dark middle band: the lit roof over a dark town, full-bleed.
+         New information the street view cannot give — the terrace, the
+         pool, the block around it. The ~7% sits directly on the night. -->
+    <section class="frame" id="earn" data-section-id="earn">
+      <figure class="earn-media">
+        <img
+          src="assets/building-night-aerial.jpg"
+          alt="Camino Valencia 31 from above at dusk: the lit rooftop terrace and pool glowing over the dark town"
+          loading="lazy"
+        />
+      </figure>
+      <div class="earn-scrim" aria-hidden="true"></div>
+      <div class="earn-copy">
+        <h2>We run the nights for the&nbsp;rate.</h2>
+        <p class="support">
+          Short stays let the price follow demand. We manage the building as
+          one inventory and distribute the net.
+        </p>
+        <p class="fact-upside">
+          ~7% net
+          <small>A target, not a promise.</small>
+        </p>
+      </div>
+    </section>
 
-          <details class="record" id="construction-record">
-            <summary>See the construction record</summary>
-            <div class="record-body">
-              <div class="record-pair">
-                <figure>
-                  <img
-                    class="img-frame"
-                    src="assets/construction-team-2026-06.jpg"
-                    alt="The team on site among stacked roof tiles, June 2026"
-                    loading="lazy"
-                  />
-                  <figcaption class="caption">On site · June 2026</figcaption>
-                </figure>
-                <figure>
-                  <img
-                    class="img-frame"
-                    src="assets/construction-plans-2026-06.jpg"
-                    alt="Hands over the floor plans on site, June 2026"
-                    loading="lazy"
-                  />
-                  <figcaption class="caption">The plans, on site · June 2026</figcaption>
-                </figure>
-              </div>
-              <div class="record-pair">
-                <figure>
-                  <img
-                    class="img-frame"
-                    src="assets/puzol-before.jpg"
-                    alt="The Puzol building before works"
-                    loading="lazy"
-                  />
-                  <figcaption class="caption">Puzol · before</figcaption>
-                </figure>
-                <figure>
-                  <img
-                    class="img-frame"
-                    src="assets/puzol-after-interior.webp"
-                    alt="The Puzol building delivered, interior"
-                    loading="lazy"
-                  />
-                  <figcaption class="caption">Puzol · delivered August 2025</figcaption>
-                </figure>
-              </div>
-              <p class="strip">
-                Building licence Exp. 4497/2025/GEN · Resolution 3658/2025 ·
-                Builder <a href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a> ·
-                Architect <a href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J. J. Pérez Redón</a>, COACV 11.357
-              </p>
-            </div>
-          </details>
+    <!-- ================= 05 · FLOOR — the relationship ================= -->
+    <!-- Yield preserves the relationship without turning a model into a cap. -->
+    <section class="frame" id="floor" data-section-id="floor">
+      <div class="floor-intro">
+        <p class="kicker">The floor</p>
+        <h2>The ordinary-rent&nbsp;floor.</h2>
+        <p class="support">
+          Short stays aim higher. Ordinary rent is the fallback, measured by
+          the same relationship: net income against capital.
+        </p>
+      </div>
+      <div class="floor-case">
+        <p class="fact-upside floor-rate">
+          ~4% net
+          <small>
+            Modeled under ordinary long-term rent, after vacancy, operating
+            costs and management.
+          </small>
+        </p>
+        <p class="strip">
+          Based on 17 live rent comparables, July 2026. A scenario, not a promise.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 03 · PROOF — already real ================= -->
+    <!-- Booking-style gallery: the main photograph and the supporting
+         record beside it, a lightbox on click. Nothing folded away.
+         Puzol lives with Uriel now — it is his record, not this site's. -->
+    <section class="frame" id="proof" data-section-id="proof">
+      <h2>Already&nbsp;underway.</h2>
+      <div class="gallery" id="proof-gallery">
+        <figure class="gallery-main">
+          <img
+            id="gallery-main-img"
+            class="img-frame"
+            src="assets/construction-2026-06.jpg"
+            alt="Inside the works: shoring props under the opened roof, June 2026"
+            loading="lazy"
+          />
+          <figcaption class="caption" id="gallery-main-caption">
+            Inside the works · June 2026
+          </figcaption>
+          <button type="button" class="gallery-count" id="gallery-count" aria-label="Open all photos">
+            <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+              <rect x="0" y="0" width="5.5" height="5.5" fill="currentColor" />
+              <rect x="7.5" y="0" width="5.5" height="5.5" fill="currentColor" />
+              <rect x="0" y="7.5" width="5.5" height="5.5" fill="currentColor" />
+              <rect x="7.5" y="7.5" width="5.5" height="5.5" fill="currentColor" />
+            </svg>
+            <span id="gallery-count-label">5 photos</span>
+          </button>
+        </figure>
+        <!-- Clicking a thumb swaps it with the main photograph; clicking the
+             main opens the lightbox. All five frames always visible. -->
+        <div class="gallery-thumbs">
+          <button
+            type="button"
+            data-full="assets/construction-street-2026-06.jpg"
+            data-caption="The site from the street · June 2026"
+            data-alt="The site from the street: scaffold netting and the builder's board, June 2026"
+          >
+            <img src="assets/construction-street-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/construction-roof-open-2026-06.jpg"
+            data-caption="The roof, opened · June 2026"
+            data-alt="The roof opened: shoring props and new beams against the sky, June 2026"
+          >
+            <img src="assets/construction-roof-open-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/construction-team-2026-06.jpg"
+            data-caption="The team on site · June 2026"
+            data-alt="The team on site among stacked roof tiles, June 2026"
+          >
+            <img src="assets/construction-team-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/construction-plans-2026-06.jpg"
+            data-caption="The plans, on site · June 2026"
+            data-alt="Hands over the floor plans on site, June 2026"
+          >
+            <img src="assets/construction-plans-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
         </div>
       </div>
+      <p class="strip">
+        Building licence Exp. 4497/2025/GEN · Resolution 3658/2025 ·
+        Builder <a href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a> ·
+        Architect <a href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J. J. Pérez Redón</a>, COACV 11.357
+      </p>
     </section>
 
     <!-- ================= 07 · URIEL — the person ================= -->
@@ -773,8 +1097,8 @@
         <figure class="uriel-portrait">
           <img
             class="img-frame"
-            src="assets/uriel-onsite.jpg"
-            alt="Uriel Nabel on site, hands on the stone that will face the building"
+            src="assets/uriel-portrait.jpg"
+            alt="Uriel Nabel on site, facing the camera in a hard hat"
           />
           <figcaption class="caption">
             Uriel Nabel ·
@@ -788,6 +1112,27 @@
             Twenty years in industry. Five at SAP, on engineering and
             construction in Europe. This is now the work.
           </p>
+          <!-- His track record sits with him: the last building, delivered. -->
+          <div class="track-record">
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/puzol-before.jpg"
+                alt="The Puzol building before works"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · before</figcaption>
+            </figure>
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/puzol-after-interior.webp"
+                alt="The Puzol building delivered, interior"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · delivered August 2025</figcaption>
+            </figure>
+          </div>
           <p class="strip">You hold title. You may sell it.</p>
           <button class="action" id="write-uriel" data-contact-channel="email" type="button">
             Write to me
@@ -799,20 +1144,20 @@
     <!-- ================= 08 · POSITION — the two stakes ================= -->
     <section class="frame" id="position" data-section-id="position">
       <h2>Two sizes. Nine&nbsp;left.</h2>
+      <!-- The map of the machine, at the moment of choosing: ten units,
+           one building. The buyer picks a title inside it. -->
+      <figure class="machine-map">
+        <img
+          src="assets/hero-cutaway-photoreal-v1.jpg"
+          alt="Cutaway of the building: ten apartments, one shared stair, the roof terrace on top"
+          loading="lazy"
+        />
+        <figcaption class="caption">Ten apartments. One inventory of nights.</figcaption>
+      </figure>
       <div class="cards">
+        <!-- Plan and numbers lead — the plan is the drawing of the deed.
+             The interior sits last as an equal letterbox strip on both cards. -->
         <article class="card">
-          <img
-            class="interior"
-            src="assets/render-bedroom.jpg"
-            alt="Apartment design — bedroom render"
-            loading="lazy"
-          />
-          <img
-            class="plan"
-            src="assets/render-type-a-cropped.jpg"
-            alt="Type A floor plan"
-            loading="lazy"
-          />
           <h3>Type A</h3>
           <dl class="card-facts">
             <dt>Useful area</dt>
@@ -828,20 +1173,20 @@
             <dt>Availability</dt>
             <dd class="avail">4 of 4 available</dd>
           </dl>
-        </article>
-        <article class="card">
-          <img
-            class="interior"
-            src="assets/render-salon-loft.jpg"
-            alt="Apartment design — salon render"
-            loading="lazy"
-          />
           <img
             class="plan"
-            src="assets/render-type-b.jpg"
-            alt="Type B floor plan"
+            src="assets/render-type-a-cropped.jpg"
+            alt="Type A floor plan"
             loading="lazy"
           />
+          <img
+            class="interior"
+            src="assets/render-bedroom.jpg"
+            alt="Apartment design — bedroom render"
+            loading="lazy"
+          />
+        </article>
+        <article class="card">
           <h3>Type B</h3>
           <dl class="card-facts">
             <dt>Useful area</dt>
@@ -857,6 +1202,18 @@
             <dt>Availability</dt>
             <dd class="avail">5 of 6 available</dd>
           </dl>
+          <img
+            class="plan"
+            src="assets/render-type-b-cropped.jpg"
+            alt="Type B floor plan"
+            loading="lazy"
+          />
+          <img
+            class="interior"
+            src="assets/render-salon-loft.jpg"
+            alt="Apartment design — salon render"
+            loading="lazy"
+          />
         </article>
       </div>
       <p class="cards-note">
@@ -867,23 +1224,35 @@
     </section>
 
     <!-- ================= 09 · MEETING — the close ================= -->
+    <!-- The meeting has the person in it: Uriel inside the building, at
+         work, beside a single generous button — no decision tax. -->
     <section class="frame" id="meeting" data-section-id="meeting">
-      <h2>Twenty minutes. The site, then the&nbsp;papers.</h2>
-      <div class="meeting-actions">
-        <a
-          class="action"
-          id="book-call"
-          data-contact-channel="calendar"
-          href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Choose a time</a
-        >
-        <button class="action--quiet" id="write-first" data-contact-channel="email" type="button">
-          Write first
-        </button>
+      <div class="meeting-split">
+        <figure class="meeting-photo">
+          <img
+            src="assets/uriel-meeting.jpg"
+            alt="Uriel Nabel at work inside the building, looking back"
+            loading="lazy"
+          />
+        </figure>
+        <div class="meeting-copy">
+          <h2>Twenty minutes. The site, then the&nbsp;papers.</h2>
+          <div class="meeting-actions">
+            <a
+              class="action action--big"
+              id="book-call"
+              data-contact-channel="calendar"
+              href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Choose a time</a
+            >
+          </div>
+          <button class="meet-alt" id="write-first" data-contact-channel="email" type="button">
+            Write first
+          </button>
+        </div>
       </div>
-      <!-- Nothing under the heading. The heading is the meeting. -->
     </section>
 
     <footer>
@@ -899,6 +1268,109 @@
       <strong>From €236,141 all-in · Handover 2027</strong>
       <a href="#meeting">Choose a time</a>
     </div>
+
+    <!-- Lightbox for the construction record -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Construction record" hidden>
+      <button class="lb-close" type="button" aria-label="Close">×</button>
+      <button class="lb-prev" type="button" aria-label="Previous photo">‹</button>
+      <img class="lb-img" src="" alt="" />
+      <p class="lb-caption caption"></p>
+      <button class="lb-next" type="button" aria-label="Next photo">›</button>
+    </div>
+
+    <script>
+      // Proof gallery: thumbs swap with the main photograph; the main opens
+      // the lightbox, which pages through all five frames.
+      (function () {
+        var mainImg = document.getElementById('gallery-main-img');
+        var mainCap = document.getElementById('gallery-main-caption');
+        var thumbs = Array.prototype.slice.call(
+          document.querySelectorAll('#proof-gallery .gallery-thumbs button')
+        );
+        var lb = document.getElementById('lightbox');
+        if (!mainImg || !mainCap || !lb || !thumbs.length) return;
+
+        function dataOf(btn) {
+          return {
+            full: btn.getAttribute('data-full'),
+            caption: btn.getAttribute('data-caption'),
+            alt: btn.getAttribute('data-alt')
+          };
+        }
+        function mainData() {
+          return {
+            full: mainImg.getAttribute('src'),
+            caption: mainCap.textContent.trim(),
+            alt: mainImg.getAttribute('alt')
+          };
+        }
+        function setMain(d) {
+          mainImg.src = d.full;
+          mainImg.alt = d.alt;
+          mainCap.textContent = d.caption;
+        }
+        function setThumb(btn, d) {
+          btn.setAttribute('data-full', d.full);
+          btn.setAttribute('data-caption', d.caption);
+          btn.setAttribute('data-alt', d.alt);
+          btn.querySelector('img').src = d.full;
+        }
+        thumbs.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var previous = mainData();
+            setMain(dataOf(btn));
+            setThumb(btn, previous);
+          });
+        });
+
+        var lbImg = lb.querySelector('.lb-img');
+        var lbCap = lb.querySelector('.lb-caption');
+        var order = [];
+        var idx = 0;
+
+        function showCurrent() {
+          var d = order[idx];
+          lbImg.src = d.full;
+          lbImg.alt = d.alt;
+          lbCap.textContent = d.caption;
+        }
+        function step(delta) {
+          idx = (idx + delta + order.length) % order.length;
+          showCurrent();
+        }
+        function openLightbox() {
+          order = [mainData()].concat(thumbs.map(dataOf));
+          idx = 0;
+          showCurrent();
+          lb.hidden = false;
+          document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+          lb.hidden = true;
+          document.body.style.overflow = '';
+        }
+
+        mainImg.addEventListener('click', openLightbox);
+        var countBtn = document.getElementById('gallery-count');
+        if (countBtn) {
+          document.getElementById('gallery-count-label').textContent =
+            thumbs.length + 1 + ' photos';
+          countBtn.addEventListener('click', openLightbox);
+        }
+        lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
+        lb.querySelector('.lb-prev').addEventListener('click', function () { step(-1); });
+        lb.querySelector('.lb-next').addEventListener('click', function () { step(1); });
+        lb.addEventListener('click', function (e) {
+          if (e.target === lb) closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (lb.hidden) return;
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') step(-1);
+          if (e.key === 'ArrowRight') step(1);
+        });
+      })();
+    </script>
 
     <script>
       (function () {
