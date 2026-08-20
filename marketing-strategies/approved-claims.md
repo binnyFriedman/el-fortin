@@ -4,6 +4,7 @@
 
 **Last synced with deal doc:** 2026-08-06
 **Launch override (F26, 2026-08-10):** live landing economics may keep the word **“guaranteed”** on the contractual floor label by executive decision. Prefer “contractual income floor” in new ads/copy when practical; do not block shipment on this word alone. Revisit alignment with Uriel later.
+**Positioning confirmation (F28, 2026-08-18):** public copy may state that the building was **purpose-built for managed rental**, that **tourist rental has been granted**, and that **Uriel is the sole development investor using his own capital**. These are approved differentiators, not tentative claims.
 
 ---
 
@@ -19,13 +20,16 @@
 | "**you can sell your unit whenever you want** — it's your deeded title" | "exit option", "not locked in without recourse" (implies a buyback that isn't documented) |
 | "rents in this corridor grew **11–14.5%/yr** (2024–25); new-build furnished units rent **40–55% above town average**" | "Spain +15%/yr price growth" (not in our evidence ledger) |
 | "**10 units, 1 sold, 9 available**" | any other inventory framing, any manufactured urgency |
+| "**one managed building of ten apartments**; each buyer's ownership is held through an apartment deed, while the building operates as one" | presenting ten apartments as separate managed products or a property catalogue |
+| "the building was **purpose-built for managed rental** and **tourist rental has been granted**" | presenting tourist use as a speculative future possibility |
+| "**Uriel is the sole development investor; his own capital built the project**" | vague third-party backing or institutional-capital implications |
 
 ## Claims that need a document before ANY public use
 
 - Land 100% paid / debt-free → nota simple in data room first
 - 2 weeks/year personal use without affecting the floor → contract clause first
 - Any exit mechanism beyond ordinary resale → written mechanics first
-- Airbnb/tourist-use approval ("in the registry") → the actual registry/ICU document first
+- Exact legal classification or document wording beyond the approved statement “tourist rental has been granted” → retain and review the underlying registry/ICU document first
 
 ## Words banned everywhere
 

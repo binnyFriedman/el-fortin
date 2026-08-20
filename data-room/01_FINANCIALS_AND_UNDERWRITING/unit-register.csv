@@ -1,0 +1,41 @@
+EL FORTIN RIBA-ROJA — UNIT REGISTER (canonical grain)
+Grain: one row per puerta. Not Type A/B averages.
+Source of sale values: independent valuation (Valor Publicado) table, 10 unidades.
+Source of useful area + status: sales-info.xlsx ventas / m2_by_unit (exported 2026-07-12).
+Documented: 2026-08-19
+
+Footprint maps the old workbook labels onto the correct doors:
+  Small = old Type A (~47 m² built) = puertas 5–8
+  Large = old Type B (~57 m² built) = puertas 1–4 and 9–10
+Do not invert this. The July workbook yield tabs put 47 m² on units 1–4 and 57 m² on 5–10 — that assignment is wrong.
+
+=== REGISTER ===
+Puerta,Footprint,Sup Util m2,Valor Publicado EUR,EUR per m2,Status
+1,Large,49.05,220224.62,4489.80,AVAILABLE
+2,Large,49.05,220224.62,4489.80,AVAILABLE
+3,Large,49.05,225707.46,4601.58,AVAILABLE
+4,Large,49.05,225707.46,4601.58,AVAILABLE
+5,Small,40.48,190557.39,4707.45,AVAILABLE
+6,Small,40.44,190557.39,4712.10,AVAILABLE
+7,Small,40.44,190557.39,4712.10,AVAILABLE
+8,Small,40.44,190557.39,4712.10,AVAILABLE
+9,Large,49.05,232125.42,4732.42,AVAILABLE
+10,Large,49.05,232125.42,4732.42,Alejandro Contenti y Daniela Hoffman
+
+=== TOTALS ===
+Units,10
+Sold,1
+Available,9
+Total Sup Util m2,456.10
+Total Valor Publicado EUR,2118344.56
+
+=== BANDS (same grain, rolled up) ===
+Band,Puertas,Units,Sup Util m2,Valor Publicado EUR
+Small / Type A,5-8,4,40.44-40.48,190557.39
+Lower large,1-2,2,49.05,220224.62
+Mid large,3-4,2,49.05,225707.46
+Upper large,9-10,2,49.05,232125.42
+
+=== PUBLIC ENTRY (not a unit column) ===
+Canonical developer-verified all-in from EUR,236141
+Note,All-in includes sale + estimated purchase costs + furniture. Unit-level all-in vs this figure is not yet reconciled. Do not reuse July Type A/B sticker or the 197370 valuation-matrix all-in as the live offer.

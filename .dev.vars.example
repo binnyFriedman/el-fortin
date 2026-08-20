@@ -1,0 +1,2 @@
+# Local Pages / Functions secrets (copy to .dev.vars — never commit)
+ADMIN_TOKEN=dev-admin-token-change-me

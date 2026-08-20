@@ -12,11 +12,12 @@
 📁 EL FORTIN CAPITAL — MASTER DATA ROOM
 │
 ├── 📂 01_FINANCIALS_AND_UNDERWRITING
+│   ├── 📄 unit-register.csv                        ← CANONICAL grain: puerta / m² / Valor Publicado
 │   ├── 📄 El_Fortin_Master_Underwriting_Sheet_2026.xlsx
 │   ├── 📄 Valor_Publicado_by_Unit.png              ← appraisal sale prices by puerta
-│   ├── 📄 Valor_Publicado_All_In_by_Unit.csv       ← SUPERSEDED price model; audit only
-│   ├── 📄 Pre-Sale_vs_Sticker_Price_Inventory_List.csv  (superseded averages — keep for audit)
-│   └── 📄 sales-info-raw-export.json
+│   ├── 📄 Valor_Publicado_All_In_by_Unit.csv       ← sale columns = register; all-in = historical
+│   ├── 📄 Pre-Sale_vs_Sticker_Price_Inventory_List.csv  (stub → unit-register)
+│   └── 📄 sales-info-raw-export.json               ← raw July workbook; doors inverted on yield tabs
 │
 ├── 📂 02_LEGAL_AND_URBAN_PLANNING
 │   ├── 📄 Licencia_de_Obras_Riba_Roja.pdf          [SOURCE AVAILABLE: assets/docs/Licencia de Obra.pdf]
@@ -49,11 +50,12 @@
 
 | File | Status |
 |---|---|
-| `01_…/El_Fortin_Master_Underwriting_Sheet_2026.xlsx` | ✅ Live (from `sales-info.xlsx`) |
+| `01_…/unit-register.csv` | ✅ Canonical grain — puerta, useful m², Valor Publicado, status |
+| `01_…/El_Fortin_Master_Underwriting_Sheet_2026.xlsx` | ⚠ Live file from `sales-info.xlsx`; two-type 47/57 model, doors inverted vs register |
 | `01_…/Valor_Publicado_by_Unit.png` | ✅ Live — independent valuation by unit |
-| `01_…/Valor_Publicado_All_In_by_Unit.csv` | ⛔ Superseded audit model — never quote; rebuild against €236,141 |
-| `01_…/Pre-Sale_vs_Sticker_Price_Inventory_List.csv` | ⚠ Superseded averages (audit trail) |
-| `01_…/sales-info-raw-export.json` | ✅ Live |
+| `01_…/Valor_Publicado_All_In_by_Unit.csv` | ✅ Sale columns match register; ⛔ all-in columns historical — never quote; rebuild against €236,141 |
+| `01_…/Pre-Sale_vs_Sticker_Price_Inventory_List.csv` | ⚠ Stub pointing at unit-register |
+| `01_…/sales-info-raw-export.json` | ⚠ Raw July export — keep; do not treat yield `size_m2` as inventory |
 | `assets/docs/Licencia de Obra.pdf` | ✅ Official source available; stage only for controlled follow-up |
 | `assets/docs/P00-PE-PLANOS_firmado_sellado.PDF` | ✅ Official full plans available; stage only for controlled follow-up |
 | Remaining PDFs in folders 02–04 | ⏳ Obtain from counsel / architect |

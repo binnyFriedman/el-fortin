@@ -2,6 +2,19 @@
   "source": "sales-info.xlsx",
   "exported": "2026-07-12",
   "project": "El Fort\u00edn de Riba-Roja",
+  "canonical_grain": "puerta — see unit-register.csv. This JSON is the raw July workbook. Yield size_m2 used 47 on units 1-4 and 57 on 5-10; inventory and Valor Publicado do the opposite (small = 5-8, large = 1-4 and 9-10).",
+  "unit_register": [
+    {"puerta": 1, "footprint": "Large", "sup_util_m2": 49.05, "valor_publicado_eur": 220224.62, "status": "AVAILABLE"},
+    {"puerta": 2, "footprint": "Large", "sup_util_m2": 49.05, "valor_publicado_eur": 220224.62, "status": "AVAILABLE"},
+    {"puerta": 3, "footprint": "Large", "sup_util_m2": 49.05, "valor_publicado_eur": 225707.46, "status": "AVAILABLE"},
+    {"puerta": 4, "footprint": "Large", "sup_util_m2": 49.05, "valor_publicado_eur": 225707.46, "status": "AVAILABLE"},
+    {"puerta": 5, "footprint": "Small", "sup_util_m2": 40.48, "valor_publicado_eur": 190557.39, "status": "AVAILABLE"},
+    {"puerta": 6, "footprint": "Small", "sup_util_m2": 40.44, "valor_publicado_eur": 190557.39, "status": "AVAILABLE"},
+    {"puerta": 7, "footprint": "Small", "sup_util_m2": 40.44, "valor_publicado_eur": 190557.39, "status": "AVAILABLE"},
+    {"puerta": 8, "footprint": "Small", "sup_util_m2": 40.44, "valor_publicado_eur": 190557.39, "status": "AVAILABLE"},
+    {"puerta": 9, "footprint": "Large", "sup_util_m2": 49.05, "valor_publicado_eur": 232125.42, "status": "AVAILABLE"},
+    {"puerta": 10, "footprint": "Large", "sup_util_m2": 49.05, "valor_publicado_eur": 232125.42, "status": "Alejandro Contenti y Daniela Hoffman"}
+  ],
   "plan": {
     "unit_mix": {
       "units_47m2": 4.0,

@@ -1,39 +1,39 @@
-SUPERSEDED — AUDIT ONLY — DO NOT QUOTE OR SEND TO PROSPECTS
-Canonical developer-verified entry price: EUR 236141 all-in (2026-08-11)
-This historical model must be rebuilt before counsel use.
+SALE COLUMNS = CANONICAL (unit register). ALL-IN COLUMNS = AUDIT ONLY — DO NOT QUOTE.
+Canonical developer-verified entry price: EUR 236141 all-in (2026-08-11).
+All-in at presale / full Valor Publicado below is the 2026-08-02 working matrix (15% off VP + 12% closing on the price paid + furniture by footprint). It does not match 236141. Rebuild before counsel use.
 
-EL FORTIN RIBA-ROJA — HISTORICAL VALOR PUBLICADO + ALL-IN MODEL
-Source: Valor Publicado by unit (see Valor_Publicado_by_Unit.png)
-Documented: 2026-08-02
-Notes: sale price = Valor Publicado; pre-sale = 15% below that; closing costs = 12% of sale price paid; furniture from workbook by footprint.
+EL FORTIN RIBA-ROJA — VALOR PUBLICADO BY UNIT + HISTORICAL ALL-IN MATRIX
+Source: Valor_Publicado_by_Unit.png + unit-register.csv
+Documented: 2026-08-19 (grain aligned to puerta; all-in still historical)
 
 === BY UNIT ===
-Puerta,Sup Util m2,Valor Publicado EUR,Presale sale 15pct off EUR,Closing 12pct on presale EUR,Furniture EUR,All-in at presale EUR,All-in at full Valor Publicado EUR
-1,49.05,220224.62,187190.93,22462.91,19357.60,229011.44,266009.17
-2,49.05,220224.62,187190.93,22462.91,19357.60,229011.44,266009.17
-3,49.05,225707.46,191851.34,23022.16,19357.60,234231.10,272149.95
-4,49.05,225707.46,191851.34,23022.16,19357.60,234231.10,272149.95
-5,40.48,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
-6,40.44,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
-7,40.44,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
-8,40.44,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
-9,49.05,232125.42,197306.61,23676.79,19357.60,240341.00,279338.07
-10,49.05,232125.42,197306.61,23676.79,19357.60,240341.00,279338.07
+Puerta,Footprint,Sup Util m2,Valor Publicado EUR,Presale sale 15pct off EUR,Closing 12pct on presale EUR,Furniture EUR,All-in at presale EUR (historical),All-in at full Valor Publicado EUR (historical)
+1,Large,49.05,220224.62,187190.93,22462.91,19357.60,229011.44,266009.17
+2,Large,49.05,220224.62,187190.93,22462.91,19357.60,229011.44,266009.17
+3,Large,49.05,225707.46,191851.34,23022.16,19357.60,234231.10,272149.95
+4,Large,49.05,225707.46,191851.34,23022.16,19357.60,234231.10,272149.95
+5,Small,40.48,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
+6,Small,40.44,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
+7,Small,40.44,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
+8,Small,40.44,190557.39,161973.78,19436.85,15959.66,197370.29,229383.93
+9,Large,49.05,232125.42,197306.61,23676.79,19357.60,240341.00,279338.07
+10,Large,49.05,232125.42,197306.61,23676.79,19357.60,240341.00,279338.07
 
-=== PRICE BANDS (rounded for public use) ===
-Band,Units,Sup Util m2,Valor Publicado EUR,Presale sale EUR,All-in at presale EUR,All-in at full EUR
-Entry (small),5-8,40.44-40.48,190557.39,161973.78,197370.29,229383.93
+=== PRICE BANDS ===
+Band,Puertas,Sup Util m2,Valor Publicado EUR,Presale sale EUR,All-in at presale EUR (historical),All-in at full EUR (historical)
+Small / Type A,5-8,40.44-40.48,190557.39,161973.78,197370.29,229383.93
 Lower large,1-2,49.05,220224.62,187190.93,229011.44,266009.17
 Mid large,3-4,49.05,225707.46,191851.34,234231.10,272149.95
 Upper large,9-10,49.05,232125.42,197306.61,240341.00,279338.07
 
 === PORTFOLIO TOTALS ===
 Total Valor Publicado EUR,2118344.56
-Total all-in at presale EUR,2196648.24
-Total all-in at full Valor Publicado EUR,2552530.12
+Total all-in at presale EUR (historical),2196648.24
+Total all-in at full Valor Publicado EUR (historical),2552530.12
 
 === SUPERSEDED ENTRY POINT (NOT FOR PUBLIC USE) ===
-All-in from EUR,197370
+All-in from EUR (historical matrix),197370
 Independent valuation (Valor Publicado) EUR,190557
 Presale sale price EUR,161974
-Math: 190557 × 0.85 = 161974; +12% closing on that sale + furniture ≈ 197370
+Public canonical all-in from EUR,236141
+Math historical: 190557 × 0.85 = 161974; +12% closing on that sale + furniture ≈ 197370

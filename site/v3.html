@@ -1,41 +1,18 @@
 <!doctype html>
 <!--
-  Landing page v3 — English draft.
-  Copy:      marketing-strategies/01-direct-investor-funnel/assets/landing-page-v3-copy.md
-  Structure: landing-page-v3-5-second-structure.md
-  Frames:    landing-page-v3-framing.md
-
-  Page order: 01 offer · 06 earn · 05 floor · 03 proof · 07 uriel · 08 position · 09 meeting
-  02 and 04 stay off.
-  Visuals — the image grammar of the page:
-  - Renders bleed (they are the world being built): the hero is a full-height
-    panel anchored to the top/right corners of the first viewport (01).
-  - Photographs get the hairline border (they are documents): construction,
-    Uriel, Puzol (03, 07).
-  - Plans sit on white (they are paper): the deed drawings lead the cards (08).
-  Page rhythm: light hero → dark full-bleed night aerial with the ~7% set on
-  it (06) → quiet math (05) → booking-style photo gallery with lightbox (03)
-  → person with his Puzol record (07) → cutaway map + cards (08) → dark close:
-  a half-band of Uriel at work beside one generous button (09).
-  The hero cuts straight into the night band — day, then night, no gap.
-  Number hierarchy: the ~7% blended target is the loud fact of the page (06);
-  the ~4% ordinary-rent case stays quiet inside the calculation (floor frame).
-
-  Draft figures, human review before publish:
-  - #floor and #position use evidenced rents (17 comps, July 2026), the draft
-    unit schedule, and 4%-derived monthly nets. Reconcile against €236,141.
-  - Interiors stay unlabelled until Uriel confirms which render is Type A
-    and which is Type B.
+  Landing page v3 — global English draft.
+  Narrative: offer (ticket + yield) → ownership and operation → short stays →
+  long-term alternative → construction → operator → apartments → FAQ → contact.
 -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>El Fortín — Camino Valencia 31</title>
+    <title>El Fortín — Own an apartment in Valencia</title>
     <meta
       name="description"
-      content="El Fortín · Camino Valencia 31, Riba-roja de Túria, Valencia. One building. Ten titles. From €236,141 all-in. Handover 2027."
+      content="El Fortín, Riba-roja de Túria: ten apartments rented as one, profit paid monthly. From €236,141 all-in. Handover 2027."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,6 +36,10 @@
     />
     <style>
       :root {
+        /* Typography System */
+        --font-heading: "DM Serif Display", Georgia, serif;
+        --font-body: "Source Sans 3", -apple-system, sans-serif;
+
         /* Valencia palette — landing-page-v3-5-second-structure.md */
         --blue: #176b87;
         --sky: #72bde0;
@@ -89,7 +70,7 @@
       }
 
       body {
-        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-family: var(--font-body);
         font-size: 17px;
         line-height: 1.55;
         color: var(--deep);
@@ -123,7 +104,7 @@
 
       h1,
       h2 {
-        font-family: "DM Serif Display", Georgia, serif;
+        font-family: var(--font-heading);
         font-weight: 400;
         color: var(--deep);
         text-wrap: balance;
@@ -135,8 +116,8 @@
       }
 
       h2 {
-        font-size: clamp(1.8rem, 3.6vw, 2.7rem);
-        line-height: 1.12;
+        font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+        line-height: 1.15;
       }
 
       .support {
@@ -214,13 +195,13 @@
         left: clamp(12px, 2.2vw, 22px);
         bottom: clamp(12px, 2.2vw, 22px);
         z-index: 2;
-        background: var(--deep);
+        background: rgba(23, 61, 74, 0.72);
         color: var(--plaster);
-        font-size: 12.5px;
-        font-weight: 600;
-        letter-spacing: 0.08em;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        padding: 7px 11px;
+        padding: 5px 8px;
         line-height: 1.2;
       }
       /* ---------- persistent fact bar ---------- */
@@ -260,9 +241,8 @@
         }
       }
 
-      /* ---------- 01 offer ---------- */
-      /* No gap into 06: the day render cuts straight to the night aerial —
-         screen one is day, screen two is night. */
+      /* ---------- offer ---------- */
+      /* #how carries the spacing below the hero via its margin-top. */
       #offer.frame {
         padding-top: clamp(28px, 6vh, 72px);
         margin-bottom: 0;
@@ -282,53 +262,79 @@
       }
 
       .offer-copy h1 {
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        /* Let the display serif be natural, no screaming uppercase */
+        margin-bottom: -6px;
       }
 
-      .offer-line {
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-        line-height: 1.2;
-        color: var(--deep);
+      .offer-magnets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        margin-top: 6px;
       }
-
       .offer-fact {
-        font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-        font-weight: 700;
-        border-left: 3px solid var(--gold);
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+        font-weight: 500;
+        border-left: 2px solid var(--gold);
         padding-left: 14px;
+        opacity: 0.9;
+      }
+      .offer-copy .action {
+        margin-top: clamp(12px, 2.5vh, 24px);
       }
 
-      /* ---------- mechanism bridge ---------- */
-      /* The hinge between ownership by day and operation by night. It carries
-         the explanation so neither image has to become a diagram. */
-      .mechanism-strip {
-        background: var(--deep);
-        color: var(--plaster);
-        padding: 28px var(--gutter);
+      /* ---------- 02 how it works ---------- */
+      #how.frame {
+        margin-top: var(--frame-gap);
       }
-      .mechanism-flow {
-        max-width: 1280px;
-        min-height: 40px;
-        margin: 0 auto;
+      .how-intro {
+        max-width: 43rem;
+        margin-bottom: clamp(42px, 7vh, 72px);
+      }
+      .how-intro h2 {
+        margin: 10px 0 20px;
+      }
+      .steps {
         display: grid;
-        grid-template-columns: 1fr auto 1.45fr auto 1.2fr;
-        align-items: center;
-        gap: clamp(16px, 2.5vw, 38px);
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        line-height: 1.55;
+        gap: clamp(28px, 4vw, 48px);
+      }
+      .step {
+        border-top: 2px solid var(--gold);
+        padding-top: 18px;
+      }
+      .step-number {
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        margin-bottom: 12px;
         text-transform: uppercase;
       }
-      .mechanism-flow .arrow {
-        color: var(--gold);
+      .step h3 {
+        font-family: var(--font-heading);
+        font-size: 1.55rem;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 12px;
+      }
+      .step p {
+        max-width: 34em;
+      }
+      .profit-formula {
+        background: var(--sand);
+        border-left: 2px solid var(--gold);
+        margin-top: clamp(36px, 6vh, 64px);
+        padding: clamp(24px, 4vw, 42px);
+      }
+      .profit-formula strong {
+        display: block;
+        font-family: var(--font-heading);
+        font-size: clamp(1.25rem, 2vw, 1.55rem);
+        font-weight: 400;
+        line-height: 1.35;
       }
 
-      /* ---------- 06 earn — the dark middle band ---------- */
-      /* The night aerial runs full-bleed: the lit roof over a dark town,
-         with the mechanism and the ~7% set directly on the image. */
+      /* ---------- expected returns — the dark middle band ---------- */
       #earn.frame {
         max-width: none;
         padding: 0;
@@ -372,29 +378,22 @@
       .earn-copy .support {
         color: var(--plaster);
       }
+      .earn-copy .kicker {
+        color: var(--gold);
+      }
       .earn-copy h2 {
         max-width: 13em;
       }
 
-      /* The upside carries this frame — the largest number on the page. */
+      /* The upside carries this frame, but calmly — keeping the relationship open. */
       .fact-upside {
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(2.8rem, 6vw, 4.4rem);
-        line-height: 1;
+        font-family: var(--font-heading);
+        font-size: clamp(1.8rem, 3vw, 2.45rem);
+        line-height: 1.1;
         color: var(--gold);
-        border-left: 4px solid var(--gold);
-        padding-left: 18px;
+        border-left: 2px solid var(--gold);
+        padding-left: 16px;
       }
-      .fact-upside small {
-        display: block;
-        font-family: "Source Sans 3", -apple-system, sans-serif;
-        font-size: 15px;
-        color: var(--plaster);
-        opacity: 0.8;
-        margin-top: 10px;
-        line-height: 1.45;
-      }
-
       /* ---------- 05 floor — downside protection ---------- */
       /* Sober rather than muted: this is the objection that keeps a cautious
          visitor in the argument, so the result carries the hierarchy. */
@@ -416,16 +415,20 @@
       .floor-rate {
         background: var(--sand);
         padding: clamp(24px, 4vw, 44px);
+        border-left: 2px solid var(--gold);
       }
-      .floor-rate.fact-upside {
+      .floor-rate-value {
+        font-family: var(--font-heading);
+        font-size: clamp(1.45rem, 2vw, 1.75rem);
+        line-height: 1.2;
         color: var(--deep);
-        border-left-color: var(--gold);
+        margin-bottom: 12px;
       }
-      .floor-rate.fact-upside small {
-        color: var(--deep);
+      .floor-rate .strip {
+        opacity: 0.78;
       }
 
-      .floor-case .strip {
+      .floor-case > .strip {
         margin-top: 16px;
       }
 
@@ -666,9 +669,10 @@
       }
 
       .card h3 {
-        font-family: "DM Serif Display", Georgia, serif;
+        font-family: var(--font-heading);
         font-weight: 400;
         font-size: 1.5rem;
+        margin-bottom: 14px;
       }
 
       .card-facts {
@@ -694,7 +698,73 @@
         opacity: 0.65;
       }
 
-      /* ---------- 09 meeting — the meeting, with the person in it ---------- */
+      /* ---------- 09 FAQ — answer only what the page has not ---------- */
+      #clarity.frame {
+        max-width: none;
+        margin-bottom: 0;
+        padding-top: clamp(72px, 11vh, 128px);
+        padding-bottom: clamp(72px, 11vh, 128px);
+        background: rgba(220, 203, 170, 0.42);
+      }
+
+      .clarity-inner {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .clarity-intro {
+        max-width: 620px;
+        margin-bottom: clamp(40px, 6vh, 64px);
+      }
+
+      .clarity-intro .kicker {
+        margin-bottom: 14px;
+      }
+
+      .faq-item {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+      }
+
+      .faq-item:last-child {
+        border-bottom: 1px solid rgba(23, 61, 74, 0.22);
+      }
+
+      .faq-item summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 22px 0;
+        font-weight: 700;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-item summary::after {
+        content: "+";
+        flex: 0 0 auto;
+        color: var(--blue);
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .faq-item[open] summary::after {
+        content: "−";
+      }
+
+      .faq-answer {
+        max-width: 42em;
+        padding: 0 48px 24px 0;
+        color: rgba(23, 61, 74, 0.78);
+      }
+
+      /* ---------- 10 meeting — the meeting, with the person in it ---------- */
       /* Half-band composition: Uriel inside the building on one side, the
          invitation on the other. One generous button; the alternative is a
          quiet text link, not a competing box. */
@@ -852,6 +922,9 @@
         .uriel-split {
           grid-template-columns: 2fr 3fr;
         }
+        .steps {
+          grid-template-columns: repeat(3, 1fr);
+        }
         .cards {
           grid-template-columns: 1fr 1fr;
         }
@@ -874,6 +947,9 @@
       /* ---------- mobile ---------- */
       @media (max-width: 899px) {
         /* The hero bleeds edge-to-edge on mobile too. */
+        #offer .action {
+          align-self: center;
+        }
         #offer figure {
           margin: 0 calc(-1 * var(--gutter));
         }
@@ -882,20 +958,11 @@
           aspect-ratio: 4 / 5;
           object-fit: cover;
         }
-
-        .mechanism-strip {
-          padding-top: 24px;
-          padding-bottom: 24px;
-        }
-        .mechanism-flow {
-          grid-template-columns: 1fr;
-          gap: 10px;
-        }
-        .mechanism-flow .arrow {
-          transform: rotate(90deg);
-          transform-origin: center;
-          justify-self: start;
-          margin-left: 2px;
+        .offer-tag {
+          top: 12px;
+          right: 12px;
+          bottom: auto;
+          left: auto;
         }
 
         /* Dark band on mobile: the image on top, the copy on the deep
@@ -928,17 +995,17 @@
   </head>
 
   <body>
-    <!-- ================= 01 · OFFER — identify ================= -->
+    <!-- ================= OFFER ================= -->
     <section class="frame" id="offer" data-section-id="offer">
       <div class="offer-split">
         <div class="offer-copy">
           <p class="kicker">El Fortín · Riba-roja de Túria, Valencia</p>
-          <h1>Camino Valencia&nbsp;31</h1>
-          <p class="offer-line">One building. Ten&nbsp;titles.</p>
-          <p class="offer-fact" id="offer-fact">
-            From €236,141 all-in per apartment
-          </p>
-          <a class="action" href="#earn">See how it can earn</a>
+          <h1>Own one apartment. Earn from&nbsp;ten.</h1>
+          <div class="offer-magnets" id="offer-fact">
+            <p class="offer-fact">From €236,141 all-in</p>
+            <p class="offer-fact">7–8% net a year</p>
+          </div>
+          <a class="action" href="#how">See how it works</a>
         </div>
         <!-- The building is the product. It blends into the offer — no border,
              edges faded into the plaster. Handover sits on the image as a tag. -->
@@ -958,20 +1025,50 @@
       </div>
     </section>
 
-    <section class="mechanism-strip" aria-label="How the investment works">
-      <div class="mechanism-flow">
-        <span>One title to you</span>
-        <span class="arrow" aria-hidden="true">→</span>
-        <span>Ten apartments operated together</span>
-        <span class="arrow" aria-hidden="true">→</span>
-        <span>Nights sold at market rate</span>
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="frame" id="how" data-section-id="how">
+      <div class="how-intro">
+        <p class="kicker">How it works</p>
+        <h2>The whole deal, in three&nbsp;parts.</h2>
+      </div>
+
+      <div class="steps">
+        <article class="step">
+          <p class="step-number">1</p>
+          <h3>You buy an apartment</h3>
+          <p>
+            A normal apartment, in your name. Furniture and taxes are in the
+            price.
+          </p>
+        </article>
+
+        <article class="step">
+          <p class="step-number">2</p>
+          <h3>It rents as one building</h3>
+          <p>
+            We run all ten apartments for short and medium stays. Costs come
+            out, profit is split by your share, paid monthly.
+          </p>
+        </article>
+
+        <article class="step">
+          <p class="step-number">3</p>
+          <h3>You sell whenever you want</h3>
+          <p>
+            A normal sale, on the open market — any rise in value is yours. The
+            next owner can join the pool, or hold it as an ordinary apartment.
+          </p>
+        </article>
+      </div>
+
+      <div class="profit-formula">
+        <strong>
+          Your share of the capital = your share of the profit.
+        </strong>
       </div>
     </section>
 
-    <!-- ================= 06 · EARN — desire ================= -->
-    <!-- The dark middle band: the lit roof over a dark town, full-bleed.
-         New information the street view cannot give — the terrace, the
-         pool, the block around it. The ~7% sits directly on the night. -->
+    <!-- ================= EXPECTED RETURNS ================= -->
     <section class="frame" id="earn" data-section-id="earn">
       <figure class="earn-media">
         <img
@@ -982,49 +1079,40 @@
       </figure>
       <div class="earn-scrim" aria-hidden="true"></div>
       <div class="earn-copy">
-        <h2>We run the nights for the&nbsp;rate.</h2>
+        <p class="kicker">Expected returns</p>
+        <h2>Short stays, priced to&nbsp;demand.</h2>
         <p class="support">
-          Short stays let the price follow demand. We manage the building as
-          one inventory and distribute the net.
-        </p>
-        <p class="fact-upside">
-          ~7% net
-          <small>A target, not a promise.</small>
+          Backed by our market research and Airbnb data for the area.
         </p>
       </div>
     </section>
 
-    <!-- ================= 05 · FLOOR — the relationship ================= -->
-    <!-- Yield preserves the relationship without turning a model into a cap. -->
+    <!-- ================= LONG-TERM ALTERNATIVE ================= -->
     <section class="frame" id="floor" data-section-id="floor">
       <div class="floor-intro">
-        <p class="kicker">The floor</p>
-        <h2>The ordinary-rent&nbsp;floor.</h2>
+        <p class="kicker">The alternative</p>
+        <h2>Or plain long-term&nbsp;rent.</h2>
         <p class="support">
-          Short stays aim higher. Ordinary rent is the fallback, measured by
-          the same relationship: net income against capital.
+          If short stays are not the path, the apartments rent long-term
+          instead.
         </p>
       </div>
       <div class="floor-case">
-        <p class="fact-upside floor-rate">
-          ~4% net
-          <small>
-            Modeled under ordinary long-term rent, after vacancy, operating
-            costs and management.
-          </small>
-        </p>
-        <p class="strip">
-          Based on 17 live rent comparables, July 2026. A scenario, not a promise.
-        </p>
+        <div class="floor-rate">
+          <p class="floor-rate-value">About 4% net a year</p>
+          <p class="strip">
+            17 local rent comparisons · July 2026
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ================= 03 · PROOF — already real ================= -->
+    <!-- ================= CONSTRUCTION ================= -->
     <!-- Booking-style gallery: the main photograph and the supporting
          record beside it, a lightbox on click. Nothing folded away.
          Puzol lives with Uriel now — it is his record, not this site's. -->
     <section class="frame" id="proof" data-section-id="proof">
-      <h2>Already&nbsp;underway.</h2>
+      <h2>Construction is&nbsp;underway.</h2>
       <div class="gallery" id="proof-gallery">
         <figure class="gallery-main">
           <img
@@ -1052,6 +1140,7 @@
         <div class="gallery-thumbs">
           <button
             type="button"
+            aria-label="The site from the street · June 2026"
             data-full="assets/construction-street-2026-06.jpg"
             data-caption="The site from the street · June 2026"
             data-alt="The site from the street: scaffold netting and the builder's board, June 2026"
@@ -1060,6 +1149,7 @@
           </button>
           <button
             type="button"
+            aria-label="The roof, opened · June 2026"
             data-full="assets/construction-roof-open-2026-06.jpg"
             data-caption="The roof, opened · June 2026"
             data-alt="The roof opened: shoring props and new beams against the sky, June 2026"
@@ -1068,6 +1158,7 @@
           </button>
           <button
             type="button"
+            aria-label="The team on site · June 2026"
             data-full="assets/construction-team-2026-06.jpg"
             data-caption="The team on site · June 2026"
             data-alt="The team on site among stacked roof tiles, June 2026"
@@ -1076,6 +1167,7 @@
           </button>
           <button
             type="button"
+            aria-label="The plans, on site · June 2026"
             data-full="assets/construction-plans-2026-06.jpg"
             data-caption="The plans, on site · June 2026"
             data-alt="Hands over the floor plans on site, June 2026"
@@ -1091,7 +1183,7 @@
       </p>
     </section>
 
-    <!-- ================= 07 · URIEL — the person ================= -->
+    <!-- ================= OPERATOR ================= -->
     <section class="frame" id="uriel" data-section-id="uriel">
       <div class="uriel-split">
         <figure class="uriel-portrait">
@@ -1106,11 +1198,14 @@
           </figcaption>
         </figure>
         <div class="uriel-copy">
-          <h2>I stay behind these&nbsp;words.</h2>
-          <p class="support">I built this building. I run it.</p>
+          <h2>Built and run by the same&nbsp;person.</h2>
           <p class="support">
-            Twenty years in industry. Five at SAP, on engineering and
-            construction in Europe. This is now the work.
+            Uriel Nabel is developing El Fortín and will run it after
+            handover.
+          </p>
+          <p class="support">
+            Twenty years in industry, including five at SAP working with
+            engineering and construction businesses across Europe.
           </p>
           <!-- His track record sits with him: the last building, delivered. -->
           <div class="track-record">
@@ -1133,17 +1228,19 @@
               <figcaption class="caption">Puzol · delivered August 2025</figcaption>
             </figure>
           </div>
-          <p class="strip">You hold title. You may sell it.</p>
+          <p class="strip">
+            His last project in Puzol — delivered August 2025.
+          </p>
           <button class="action" id="write-uriel" data-contact-channel="email" type="button">
-            Write to me
+            Contact Uriel
           </button>
         </div>
       </div>
     </section>
 
-    <!-- ================= 08 · POSITION — the two stakes ================= -->
+    <!-- ================= APARTMENTS ================= -->
     <section class="frame" id="position" data-section-id="position">
-      <h2>Two sizes. Nine&nbsp;left.</h2>
+      <h2>Two apartment&nbsp;types.</h2>
       <!-- The map of the machine, at the moment of choosing: ten units,
            one building. The buyer picks a title inside it. -->
       <figure class="machine-map">
@@ -1152,7 +1249,9 @@
           alt="Cutaway of the building: ten apartments, one shared stair, the roof terrace on top"
           loading="lazy"
         />
-        <figcaption class="caption">Ten apartments. One inventory of nights.</figcaption>
+        <figcaption class="caption">
+          Ten apartments around one shared stair, the terrace on top.
+        </figcaption>
       </figure>
       <div class="cards">
         <!-- Plan and numbers lead — the plan is the drawing of the deed.
@@ -1160,16 +1259,16 @@
         <article class="card">
           <h3>Type A</h3>
           <dl class="card-facts">
-            <dt>Useful area</dt>
+            <dt>Internal area</dt>
             <dd>~40.5 m² · 47 m² built</dd>
             <dt>In the building</dt>
             <dd>Four</dd>
             <dt>All-in price</dt>
             <dd>€236,141</dd>
-            <dt>Long-term rent, evidenced</dt>
+            <dt>Expected long-term rent</dt>
             <dd>€850–950 / mo</dd>
-            <dt>Conservative monthly</dt>
-            <dd>≈ €790 net</dd>
+            <dt>Expected long-term net</dt>
+            <dd>≈ €790 / mo</dd>
             <dt>Availability</dt>
             <dd class="avail">4 of 4 available</dd>
           </dl>
@@ -1189,16 +1288,16 @@
         <article class="card">
           <h3>Type B</h3>
           <dl class="card-facts">
-            <dt>Useful area</dt>
+            <dt>Internal area</dt>
             <dd>49 m² · ~57 m² built</dd>
             <dt>In the building</dt>
             <dd>Six</dd>
             <dt>All-in price</dt>
-            <dd>Above the entry</dd>
-            <dt>Long-term rent, evidenced</dt>
+            <dd>From €273,818</dd>
+            <dt>Expected long-term rent</dt>
             <dd>€1,050–1,150 / mo</dd>
-            <dt>Conservative monthly</dt>
-            <dd>On the walk</dd>
+            <dt>Expected long-term net</dt>
+            <dd>≈ €910 / mo</dd>
             <dt>Availability</dt>
             <dd class="avail">5 of 6 available</dd>
           </dl>
@@ -1216,14 +1315,50 @@
           />
         </article>
       </div>
-      <p class="cards-note">
-        Interiors are apartment-design renders. Type B all-in waits for the
-        unit model to match the €236,141 entry. Rents: 17 live comparables,
-        July 2026.
-      </p>
+      <p class="cards-note">Interiors are design renders.</p>
     </section>
 
-    <!-- ================= 09 · MEETING — the close ================= -->
+    <!-- ================= FAQ ================= -->
+    <section class="frame" id="clarity" data-section-id="clarity">
+      <div class="clarity-inner">
+        <div class="clarity-intro">
+          <p class="kicker">FAQ</p>
+          <h2>The practical&nbsp;details.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How are payments staged?</summary>
+            <p class="faq-answer">
+              Four equal payments of 25%: at reservation; when construction
+              reaches 40%; when it reaches 80%, with furniture; then at the
+              notary on handover.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Does the building have tourist-rental approval?</summary>
+            <p class="faq-answer">
+              Yes. The licence covers the whole building.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>What about my personal taxes?</summary>
+            <p class="faq-answer">
+              Payouts arrive net of operating costs. Your own taxes depend on
+              your situation — we walk through it with you before you buy.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>How do owners stay informed?</summary>
+            <p class="faq-answer">
+              Quarterly reports, with an investor app for live property data
+              and votes on shared decisions.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
     <!-- The meeting has the person in it: Uriel inside the building, at
          work, beside a single generous button — no decision tax. -->
     <section class="frame" id="meeting" data-section-id="meeting">
@@ -1236,7 +1371,7 @@
           />
         </figure>
         <div class="meeting-copy">
-          <h2>Twenty minutes. The site, then the&nbsp;papers.</h2>
+          <h2>El Fortín is&nbsp;underway.</h2>
           <div class="meeting-actions">
             <a
               class="action action--big"
@@ -1245,11 +1380,11 @@
               href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
               target="_blank"
               rel="noopener noreferrer"
-              >Choose a time</a
+              >Talk with Uriel</a
             >
           </div>
           <button class="meet-alt" id="write-first" data-contact-channel="email" type="button">
-            Write first
+            Email Uriel
           </button>
         </div>
       </div>
@@ -1266,14 +1401,14 @@
     <!-- Persistent fact — appears once 01 leaves the viewport -->
     <div id="fact-bar" aria-hidden="true">
       <strong>From €236,141 all-in · Handover 2027</strong>
-      <a href="#meeting">Choose a time</a>
+      <a href="#meeting">Talk with Uriel</a>
     </div>
 
     <!-- Lightbox for the construction record -->
     <div id="lightbox" role="dialog" aria-modal="true" aria-label="Construction record" hidden>
       <button class="lb-close" type="button" aria-label="Close">×</button>
       <button class="lb-prev" type="button" aria-label="Previous photo">‹</button>
-      <img class="lb-img" src="" alt="" />
+      <img class="lb-img" src="assets/construction-2026-06.jpg" alt="" />
       <p class="lb-caption caption"></p>
       <button class="lb-next" type="button" aria-label="Next photo">›</button>
     </div>
@@ -1313,6 +1448,7 @@
           btn.setAttribute('data-full', d.full);
           btn.setAttribute('data-caption', d.caption);
           btn.setAttribute('data-alt', d.alt);
+          btn.setAttribute('aria-label', d.caption);
           btn.querySelector('img').src = d.full;
         }
         thumbs.forEach(function (btn) {
@@ -1400,5 +1536,89 @@
       };
     </script>
     <script src="assets/analytics.js" defer></script>
+
+    <!-- Typography Dev Tool (Press Ctrl+K to toggle) -->
+    <div id="typo-tool" hidden style="position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: sans-serif; font-size: 14px; color: #333; border: 1px solid #ccc; width: 300px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 12px; align-items: center;">
+        <strong style="font-size: 16px;">Type Hierarchy Explorer</strong>
+        <button id="typo-close" style="background: none; border: none; cursor: pointer; font-size: 16px;">×</button>
+      </div>
+      <div style="margin-bottom: 12px;">
+        <label style="display: block; margin-bottom: 4px; font-weight: 600;">Display Font (Headings)</label>
+        <select id="typo-heading" style="width: 100%; padding: 6px;"></select>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; margin-bottom: 4px; font-weight: 600;">Body Font</label>
+        <select id="typo-body" style="width: 100%; padding: 6px;"></select>
+      </div>
+      <p style="font-size: 12px; color: #666; margin: 0;">Press <b>Ctrl+K</b> to toggle this panel.</p>
+    </div>
+
+    <script>
+      (function() {
+        const headings = [
+          "DM Serif Display", "Playfair Display", "Cinzel", "Cormorant Garamond",
+          "Lora", "Fraunces", "Literata", "Instrument Serif", "Newsreader"
+        ];
+        const bodies = [
+          "Source Sans 3", "Inter", "DM Sans", "Lato", "Montserrat", "Work Sans", "Libre Franklin"
+        ];
+
+        const panel = document.getElementById('typo-tool');
+        const selHeading = document.getElementById('typo-heading');
+        const selBody = document.getElementById('typo-body');
+
+        // Toggle with Ctrl+K
+        document.addEventListener('keydown', (e) => {
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            panel.hidden = !panel.hidden;
+          }
+        });
+        document.getElementById('typo-close').addEventListener('click', () => { panel.hidden = true; });
+
+        function populateSelect(select, fonts) {
+          fonts.forEach(f => {
+            const opt = document.createElement('option');
+            opt.value = f;
+            opt.textContent = f;
+            select.appendChild(opt);
+          });
+        }
+        populateSelect(selHeading, headings);
+        populateSelect(selBody, bodies);
+
+        function loadFont(family) {
+          const id = 'font-' + family.replace(/\s+/g, '-').toLowerCase();
+          if (document.getElementById(id)) return;
+          const link = document.createElement('link');
+          link.id = id;
+          link.rel = 'stylesheet';
+          link.href = `https://fonts.googleapis.com/css2?family=${family.replace(/\s+/g, '+')}:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap`;
+          document.head.appendChild(link);
+        }
+
+        function applyFonts() {
+          const heading = selHeading.value;
+          const body = selBody.value;
+          loadFont(heading);
+          loadFont(body);
+          document.documentElement.style.setProperty('--font-heading', `"${heading}", Georgia, serif`);
+          document.documentElement.style.setProperty('--font-body', `"${body}", -apple-system, sans-serif`);
+          localStorage.setItem('ef-typo-heading', heading);
+          localStorage.setItem('ef-typo-body', body);
+        }
+
+        selHeading.addEventListener('change', applyFonts);
+        selBody.addEventListener('change', applyFonts);
+
+        // Load saved or defaults
+        const savedHeading = localStorage.getItem('ef-typo-heading') || "DM Serif Display";
+        const savedBody = localStorage.getItem('ef-typo-body') || "Libre Franklin";
+        selHeading.value = savedHeading;
+        selBody.value = savedBody;
+        applyFonts();
+      })();
+    </script>
   </body>
 </html>

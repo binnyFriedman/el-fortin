@@ -1,0 +1,40 @@
+{
+  "name": "el-fortin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev site --d1=DB --persist-to=.wrangler/state",
+    "db:migrate:local": "wrangler d1 migrations apply el-fortin-analytics --local",
+    "db:migrate:remote": "wrangler d1 migrations apply el-fortin-analytics --remote",
+    "types": "wrangler types",
+    "mcp": "node tools/campaign-mcp/server.mjs",
+    "ads:auth": "node tools/google-ads/auth.mjs",
+    "ads:campaign:en:apply": "node tools/google-ads/create-search-campaign.mjs --locale=en --apply",
+    "ads:campaign:en:validate": "node tools/google-ads/create-search-campaign.mjs --locale=en",
+    "ads:campaign:es:apply": "node tools/google-ads/create-search-campaign.mjs --locale=es --apply",
+    "ads:campaign:es:validate": "node tools/google-ads/create-search-campaign.mjs --locale=es",
+    "ads:sitelinks:en:apply": "node tools/google-ads/add-sitelinks.mjs --locale=en --apply",
+    "ads:sitelinks:en:validate": "node tools/google-ads/add-sitelinks.mjs --locale=en",
+    "ads:sitelinks:es:apply": "node tools/google-ads/add-sitelinks.mjs --locale=es --apply",
+    "ads:sitelinks:es:validate": "node tools/google-ads/add-sitelinks.mjs --locale=es",
+    "ads:negatives:en:apply": "node tools/google-ads/sync-negatives.mjs --locale=en --apply",
+    "ads:negatives:en:validate": "node tools/google-ads/sync-negatives.mjs --locale=en",
+    "ads:negatives:es:apply": "node tools/google-ads/sync-negatives.mjs --locale=es --apply",
+    "ads:negatives:es:validate": "node tools/google-ads/sync-negatives.mjs --locale=es",
+    "ads:destinations:en:apply": "node tools/google-ads/update-destinations.mjs --locale=en --apply",
+    "ads:destinations:en:validate": "node tools/google-ads/update-destinations.mjs --locale=en",
+    "ads:destinations:es:apply": "node tools/google-ads/update-destinations.mjs --locale=es --apply",
+    "ads:destinations:es:validate": "node tools/google-ads/update-destinations.mjs --locale=es",
+    "ads:link-client": "node tools/google-ads/link-client.mjs",
+    "ads:verify": "node tools/google-ads/verify.mjs",
+    "test:analytics": "node tools/analytics-smoke.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.120.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "google-auth-library": "^11.0.1",
+    "zod": "^3.25.28"
+  }
+}

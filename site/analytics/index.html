@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Campaign Ops — El Fortín</title>
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --slate: #3D4F5F;
+      --ash: #6B7B8D;
+      --parchment: #F7F4EF;
+      --white: #FDFCFA;
+      --terracotta: #C2703E;
+      --line: rgba(27,42,74,.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", -apple-system, sans-serif;
+      background: var(--parchment);
+      color: var(--navy);
+      line-height: 1.45;
+    }
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 18px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: .04em; }
+    header p { margin: 0; color: rgba(253,252,250,.7); font-size: 13px; }
+    main { padding: 24px; max-width: 1200px; margin: 0 auto; }
+    .auth, .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .metric { background: var(--parchment); padding: 14px; border: 1px solid var(--line); }
+    .metric .n { font-size: 28px; font-weight: 700; letter-spacing: -.02em; }
+    .metric .l { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--ash); margin-top: 4px; }
+    .metric.warn .n { color: var(--terracotta); }
+    label { display: block; font-size: 12px; font-weight: 600; color: var(--slate); margin-bottom: 10px; }
+    input, select, textarea, button {
+      font: inherit; padding: 8px 10px; border: 1px solid #D4B896; border-radius: 4px; background: #fff;
+    }
+    button {
+      background: var(--terracotta); color: var(--white); border: 0; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+    }
+    button.secondary { background: var(--navy); }
+    button.ghost { background: transparent; color: var(--navy); border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ash); }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .muted { color: var(--ash); font-size: 13px; }
+    .error { color: #8B3A1A; }
+    .ok { color: #2F6B3A; }
+    details { margin-top: 10px; }
+    .lead-detail { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 720px) { .lead-detail { grid-template-columns: 1fr; } }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin-bottom: 14px; }
+    .toolbar label { margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Campaign Ops</h1>
+      <p>Owned analytics · Binny only · Protect with Cloudflare Access in production</p>
+    </div>
+    <div id="auth-status" class="muted">Not signed in</div>
+  </header>
+  <main>
+    <section class="auth" id="auth-panel">
+      <label>Admin token
+        <input id="token" type="password" autocomplete="current-password" style="width:min(100%,420px); display:block; margin-top:6px;">
+      </label>
+      <div class="row-actions">
+        <button type="button" id="save-token">Save &amp; load</button>
+        <button type="button" class="ghost" id="clear-token">Clear</button>
+      </div>
+      <p class="muted">Set secret <code>ADMIN_TOKEN</code> on the Pages project. Token stays in this browser only.</p>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <label>From <input type="date" id="from"></label>
+        <label>To <input type="date" id="to"></label>
+        <button type="button" id="refresh">Refresh</button>
+        <button type="button" class="secondary" id="export-leads">Export leads CSV</button>
+        <button type="button" class="secondary" id="export-events">Export events CSV</button>
+      </div>
+      <p id="bottleneck" class="muted"></p>
+      <div class="grid" id="metrics"></div>
+      <div class="grid" id="costs" style="margin-top:12px;"></div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin:0 0 10px; font-size:16px;">Lead queue</h2>
+      <div class="toolbar">
+        <label>Stage
+          <select id="filter-stage">
+            <option value="">All</option>
+            <option>lead</option><option>contacted</option><option>valuable</option>
+            <option>call_booked</option><option>call_held</option><option>diligence</option>
+            <option>reserved</option><option>sold</option><option>lost</option>
+          </select>
+        </label>
+        <label>Value
+          <select id="filter-value">
+            <option value="">All</option>
+            <option>unknown</option><option>valuable</option><option>not_valuable</option>
+          </select>
+        </label>
+        <label>Search <input id="filter-q" placeholder="name, email, code…"></label>
+        <button type="button" id="load-leads">Load</button>
+      </div>
+      <div style="overflow:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th><th>When</th><th>Name</th><th>Channel</th><th>Stage</th><th>Value</th><th>Fear</th><th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="leads-body"></tbody>
+        </table>
+      </div>
+      <div id="lead-editor" hidden style="margin-top:16px; border-top:1px solid var(--line); padding-top:16px;"></div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin:0 0 10px; font-size:16px;">Import Google Ads CSV</h2>
+      <p class="muted">Headers recognized: date, campaign, ad group, ad, keyword, search term, impressions, clicks, spend/cost.</p>
+      <textarea id="ads-csv" rows="6" style="width:100%;" placeholder="Paste CSV…"></textarea>
+      <div class="row-actions">
+        <button type="button" id="import-ads">Import</button>
+        <span id="import-status" class="muted"></span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin:0 0 10px; font-size:16px;">Feedback &amp; sources</h2>
+      <div class="toolbar">
+        <label>Feedback search <input id="feedback-q" placeholder="objection words…"></label>
+        <button type="button" id="load-feedback">Search</button>
+        <label>Compare by
+          <select id="source-by">
+            <option value="utm_campaign">campaign</option>
+            <option value="utm_term">term</option>
+            <option value="utm_source">source</option>
+            <option value="locale">locale</option>
+            <option value="page_version">page version</option>
+            <option value="keyword">keyword</option>
+          </select>
+        </label>
+        <button type="button" id="load-sources">Compare</button>
+      </div>
+      <pre id="feedback-out" class="muted" style="white-space:pre-wrap;"></pre>
+      <pre id="sources-out" class="muted" style="white-space:pre-wrap;"></pre>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var TOKEN_KEY = 'ef_admin_token';
+      var tokenInput = document.getElementById('token');
+      var authStatus = document.getElementById('auth-status');
+      tokenInput.value = localStorage.getItem(TOKEN_KEY) || '';
+
+      function token() { return tokenInput.value.trim(); }
+      function setAuthLabel(ok, msg) {
+        authStatus.textContent = msg || (ok ? 'Authorized' : 'Not signed in');
+        authStatus.className = ok ? 'ok' : 'muted';
+      }
+
+      function rangeParams() {
+        var from = document.getElementById('from').value;
+        var to = document.getElementById('to').value;
+        var q = new URLSearchParams();
+        if (from) q.set('from', from);
+        if (to) q.set('to', to);
+        return q;
+      }
+
+      function api(path, opts) {
+        opts = opts || {};
+        var headers = Object.assign({ 'authorization': 'Bearer ' + token() }, opts.headers || {});
+        return fetch('/api/admin/' + path, Object.assign({}, opts, { headers: headers }))
+          .then(function (res) {
+            var ct = res.headers.get('content-type') || '';
+            if (ct.indexOf('application/json') !== -1) {
+              return res.json().then(function (data) {
+                if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+                return data;
+              });
+            }
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.blob();
+          });
+      }
+
+      function metric(label, value, warn) {
+        var div = document.createElement('div');
+        div.className = 'metric' + (warn ? ' warn' : '');
+        div.innerHTML = '<div class="n">' + (value == null ? '—' : value) + '</div><div class="l">' + label + '</div>';
+        return div;
+      }
+
+      function money(n) {
+        if (n == null || !isFinite(n)) return '—';
+        return '€' + Math.round(n).toLocaleString('en-GB');
+      }
+
+      function defaultDates() {
+        var to = new Date();
+        var from = new Date();
+        from.setUTCDate(from.getUTCDate() - 30);
+        document.getElementById('to').value = to.toISOString().slice(0, 10);
+        document.getElementById('from').value = from.toISOString().slice(0, 10);
+      }
+
+      function loadSummary() {
+        return api('summary?' + rangeParams().toString()).then(function (data) {
+          setAuthLabel(true, 'Authorized · ' + data.range.from + ' → ' + data.range.to);
+          var f = data.funnel;
+          var metrics = document.getElementById('metrics');
+          metrics.innerHTML = '';
+          [
+            ['Visits', f.visits, 'visits'],
+            ['Engaged', f.engaged, 'engaged'],
+            ['Leads', f.leads, 'leads'],
+            ['Valuable', f.valuable, 'valuable'],
+            ['Held calls', f.held, 'held'],
+            ['Reserved', f.reserved, 'reserved'],
+            ['Sold', f.sold, 'sold']
+          ].forEach(function (row) {
+            metrics.appendChild(metric(row[0], row[1], data.low_confidence && data.low_confidence[row[2]]));
+          });
+
+          var costs = document.getElementById('costs');
+          costs.innerHTML = '';
+          var u = data.unit_economics;
+          [
+            ['Ad spend', money(data.ads.spend_eur)],
+            ['Cost / lead', money(u.cost_per_lead)],
+            ['Cost / valuable', money(u.cost_per_valuable_lead)],
+            ['Cost / held call', money(u.cost_per_held_call)],
+            ['Cost / reservation', money(u.cost_per_reservation)],
+            ['Cost / sale', money(u.cost_per_sale)]
+          ].forEach(function (row) { costs.appendChild(metric(row[0], row[1])); });
+
+          return api('funnel?' + rangeParams().toString()).then(function (funnel) {
+            var b = funnel.bottleneck || {};
+            document.getElementById('bottleneck').textContent =
+              b.id === 'insufficient_data'
+                ? 'Bottleneck: not enough data yet (need ≥3 at a step).'
+                : 'Current bottleneck: ' + b.id + (b.rate != null ? ' (' + Math.round(b.rate * 100) + '%)' : '');
+          });
+        });
+      }
+
+      function loadLeads() {
+        var q = rangeParams();
+        var stage = document.getElementById('filter-stage').value;
+        var value = document.getElementById('filter-value').value;
+        var search = document.getElementById('filter-q').value.trim();
+        if (stage) q.set('stage', stage);
+        if (value) q.set('value_judgment', value);
+        if (search) q.set('q', search);
+        q.set('limit', '100');
+        return api('leads?' + q.toString()).then(function (data) {
+          var body = document.getElementById('leads-body');
+          body.innerHTML = '';
+          (data.leads || []).forEach(function (lead) {
+            var tr = document.createElement('tr');
+            tr.style.cursor = 'pointer';
+            tr.innerHTML =
+              '<td><code>' + esc(lead.lead_code) + '</code></td>' +
+              '<td>' + esc((lead.created_at || '').slice(0, 16).replace('T', ' ')) + '</td>' +
+              '<td>' + esc(lead.name) + '</td>' +
+              '<td>' + esc(lead.preferred_channel) + '</td>' +
+              '<td>' + esc(lead.stage) + '</td>' +
+              '<td>' + esc(lead.value_judgment) + '</td>' +
+              '<td>' + esc(lead.fear_id || '—') + '</td>' +
+              '<td>' + esc(lead.utm_campaign || lead.utm_term || 'unknown') + '</td>';
+            tr.addEventListener('click', function () { openLead(lead.lead_id); });
+            body.appendChild(tr);
+          });
+        });
+      }
+
+      function openLead(id) {
+        api('lead/' + encodeURIComponent(id)).then(function (data) {
+          var lead = data.lead;
+          var el = document.getElementById('lead-editor');
+          el.hidden = false;
+          el.innerHTML =
+            '<h3 style="margin:0 0 8px;">Lead ' + esc(lead.lead_code) + ' · ' + esc(lead.name) + '</h3>' +
+            '<p class="muted">' + esc(lead.email || '') + ' · ' + esc(lead.phone || '') + ' · ' + esc(lead.free_text || lead.fear_label || '') + '</p>' +
+            '<div class="lead-detail">' +
+            fieldSelect('stage', lead.stage, ['lead','contacted','valuable','call_booked','call_held','diligence','reserved','sold','lost']) +
+            fieldSelect('value_judgment', lead.value_judgment, ['unknown','valuable','not_valuable']) +
+            fieldText('value_judgment_reason', lead.value_judgment_reason || '', 'Value reason') +
+            fieldSelect('value_judgment_confidence', lead.value_judgment_confidence || 'medium', ['low','medium','high']) +
+            fieldSelect('call_status', lead.call_status || '', ['','booked','held','cancelled','no_show']) +
+            fieldText('call_result', lead.call_result || '', 'Call result') +
+            fieldText('next_action', lead.next_action || '', 'Next action') +
+            fieldText('next_action_at', (lead.next_action_at || '').slice(0,10), 'Next action date', 'date') +
+            fieldText('capital_band', lead.capital_band || '', 'Capital band') +
+            fieldText('country', lead.country || '', 'Country') +
+            fieldText('buying_timeframe', lead.buying_timeframe || '', 'Buying timeframe') +
+            fieldText('loss_reason', lead.loss_reason || '', 'Loss reason') +
+            fieldText('notes', lead.notes || '', 'Notes') +
+            '</div>' +
+            '<div class="row-actions">' +
+            '<button type="button" id="save-lead">Save lead</button>' +
+            '<button type="button" class="secondary" id="log-contact">Log contact attempt</button>' +
+            '</div>' +
+            '<details><summary>History</summary><pre class="muted">' + esc(JSON.stringify({ stages: data.stage_history, contacts: data.contact_attempts, events: data.events }, null, 2)) + '</pre></details>';
+
+          el.querySelector('#save-lead').onclick = function () {
+            var body = {
+              stage: val('stage'),
+              value_judgment: val('value_judgment'),
+              value_judgment_reason: val('value_judgment_reason'),
+              value_judgment_confidence: val('value_judgment_confidence'),
+              call_status: val('call_status') || null,
+              call_result: val('call_result'),
+              next_action: val('next_action'),
+              next_action_at: val('next_action_at') || null,
+              capital_band: val('capital_band'),
+              country: val('country'),
+              buying_timeframe: val('buying_timeframe'),
+              loss_reason: val('loss_reason'),
+              notes: val('notes')
+            };
+            api('lead/' + encodeURIComponent(lead.lead_id), {
+              method: 'PATCH',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify(body)
+            }).then(function () {
+              loadLeads();
+              openLead(lead.lead_id);
+            }).catch(showErr);
+          };
+
+          el.querySelector('#log-contact').onclick = function () {
+            api('contact/' + encodeURIComponent(lead.lead_id), {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ channel: lead.preferred_channel, outcome: 'attempted', note: 'Logged from dashboard' })
+            }).then(function () { openLead(lead.lead_id); loadLeads(); }).catch(showErr);
+          };
+
+          function val(name) {
+            var node = el.querySelector('[data-field="' + name + '"]');
+            return node ? node.value : '';
+          }
+        }).catch(showErr);
+      }
+
+      function fieldText(name, value, label, type) {
+        return '<label>' + esc(label) + '<input data-field="' + name + '" type="' + (type || 'text') + '" value="' + escAttr(value) + '" style="width:100%; margin-top:4px;"></label>';
+      }
+      function fieldSelect(name, value, options) {
+        return '<label>' + esc(name) + '<select data-field="' + name + '" style="width:100%; margin-top:4px;">' +
+          options.map(function (o) {
+            return '<option value="' + escAttr(o) + '"' + (o === value ? ' selected' : '') + '>' + esc(o || '(none)') + '</option>';
+          }).join('') + '</select></label>';
+      }
+
+      function esc(s) {
+        return String(s == null ? '' : s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+      function escAttr(s) {
+        return esc(s).replace(/"/g, '&quot;');
+      }
+      function showErr(err) {
+        setAuthLabel(false, err.message || String(err));
+        alert(err.message || String(err));
+      }
+
+      function downloadExport(kind) {
+        api('export?kind=' + encodeURIComponent(kind)).then(function (blob) {
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = kind + '.csv';
+          a.click();
+          URL.revokeObjectURL(url);
+        }).catch(showErr);
+      }
+
+      document.getElementById('save-token').onclick = function () {
+        localStorage.setItem(TOKEN_KEY, token());
+        refreshAll();
+      };
+      document.getElementById('clear-token').onclick = function () {
+        localStorage.removeItem(TOKEN_KEY);
+        tokenInput.value = '';
+        setAuthLabel(false);
+      };
+      document.getElementById('refresh').onclick = refreshAll;
+      document.getElementById('load-leads').onclick = function () { loadLeads().catch(showErr); };
+      document.getElementById('export-leads').onclick = function () { downloadExport('leads'); };
+      document.getElementById('export-events').onclick = function () { downloadExport('events'); };
+      document.getElementById('import-ads').onclick = function () {
+        var csv = document.getElementById('ads-csv').value;
+        api('import-ads', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ csv: csv })
+        }).then(function (data) {
+          document.getElementById('import-status').textContent = 'Imported ' + data.imported + ' rows';
+          return loadSummary();
+        }).catch(showErr);
+      };
+      document.getElementById('load-feedback').onclick = function () {
+        var q = rangeParams();
+        var search = document.getElementById('feedback-q').value.trim();
+        if (search) q.set('q', search);
+        api('feedback?' + q.toString()).then(function (data) {
+          document.getElementById('feedback-out').textContent = JSON.stringify(data, null, 2);
+        }).catch(showErr);
+      };
+      document.getElementById('load-sources').onclick = function () {
+        var q = rangeParams();
+        q.set('by', document.getElementById('source-by').value);
+        api('sources?' + q.toString()).then(function (data) {
+          document.getElementById('sources-out').textContent = JSON.stringify(data, null, 2);
+        }).catch(showErr);
+      };
+
+      function refreshAll() {
+        if (!token()) {
+          setAuthLabel(false, 'Enter admin token');
+          return;
+        }
+        loadSummary().then(loadLeads).catch(showErr);
+      }
+
+      defaultDates();
+      if (token()) refreshAll();
+    })();
+  </script>
+</body>
+</html>

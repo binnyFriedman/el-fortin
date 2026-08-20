@@ -1,0 +1,7 @@
+# Private analytics UI — protect with Cloudflare Access in production.
+/analytics/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
+/api/*
+  Cache-Control: no-store

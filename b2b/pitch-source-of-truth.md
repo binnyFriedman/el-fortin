@@ -2,7 +2,7 @@
 
 **Purpose:** Single, honest reference of deal facts. Every claim here is either sourced or flagged as an assumption. This doc is only about the deal itself — what it is and what it is not, according to numbers and evidence. It separates *proven* from *assumed* from *pending*. **No narrative, positioning, or copy lives here** — narrative is derived downstream and must never feed back into this doc.
 
-**Last updated:** 2026-08-02
+**Last updated:** 2026-08-19
 
 ---
 
@@ -23,11 +23,12 @@
 | Asset | Old building being converted into a **new 10-unit residential block** | ✅ |
 | Location | Camino Valencia nº 31 (aka Carretera Valencia 31), 46190 Riba-roja de Túria, Valencia | ✅ |
 | Connectivity | Valencia metro area · Metro Line 1 · airport close · logistics/employment hub | ✅ |
-| Unit mix | 4 × small (~40.45 m² useful / ~47 m² built) · 6 × large (49.05 m² useful / ~57 m² built) | ✅ |
+| Unit mix | **Grain = puerta.** 4 × small (puertas 5–8, 40.44–40.48 m² useful / ~47 m² built) · 6 × large (puertas 1–4 and 9–10, 49.05 m² useful / ~57 m² built). Register total useful **456.10 m²**. | ✅ |
 | Inventory | 1 sold · 9 available | ✅ |
 | First buyer profile | Argentinian-Israeli, married to an Argentinian, good income; visited in person, bought "out of love for Valencia" | ✅ per Uriel (F7) |
 | Handover | 2027 | ✅ |
 | Promoter | EL FORTIN CONSTRUCCIONES Y PATRIMONIO S.L. · CIF B22792923 · founded 01/08/2025 (Riba-Roja is its 2nd project after Puzol) | ✅ (F11) |
+| Development capital | Uriel is the sole development investor; the project is funded with his own capital | ✅ per direct launch confirmation (F28) |
 | Constructor | NODHOUSES | ✅ |
 | Architect | J. J. Pérez Redón · COACV 11.357 | ✅ |
 | Building license | Exp. 4497/2025/GEN · Res. 3658/2025 · Licencia de Obra Tipo I (10-unit) | ✅ |
@@ -39,9 +40,10 @@
 ## 2. What it is / what it is not
 
 **What it IS** ✅
+- One **managed building of 10 apartments**, designed and operated as a single income operation; apartment deeds define each buyer's ownership inside it.
 - A **direct purchase of a specific, titled apartment** (deeded — *escritura* at the Registro de la Propiedad).
 - A **pre-sale** buy at ~15% below independent valuation (Valor Publicado), in a **new 10-unit** conversion of an old building.
-- A **managed-yield** asset: you own the brick, the operator runs the letting (long-term / mid-term / vacation mix).
+- A **purpose-built managed-yield** asset: you own the brick, the operator runs the letting across long-term, mid-term, and approved tourist stays.
 - A **capital-preservation profile** asset in a structurally under-supplied, fast-renting market.
 
 **What it is NOT** ❗
@@ -66,16 +68,24 @@
 
 ### 4a. Sale prices — independent valuation (Valor Publicado) ✅
 
-Per-unit published values (floor-priced). Source: `data-room/01_FINANCIALS_AND_UNDERWRITING/Valor_Publicado_by_Unit.png` + `Valor_Publicado_All_In_by_Unit.csv`. Documented 2026-08-02.
+Base structure is **one row per puerta**, not Type A/B averages. Canonical file: `data-room/01_FINANCIALS_AND_UNDERWRITING/unit-register.csv`. Screenshot: `Valor_Publicado_by_Unit.png`.
 
-| Units | Useful area | Valor Publicado (sale) |
-|---|---|---|
-| 5–8 | 40.44–40.48 m² | **€190,557** |
-| 1–2 | 49.05 m² | €220,225 |
-| 3–4 | 49.05 m² | €225,707 |
-| 9–10 | 49.05 m² | €232,125 |
+| Puerta | Footprint | Useful area | Valor Publicado (sale) |
+|---|---|---|---|
+| 1 | Large | 49.05 m² | €220,224.62 |
+| 2 | Large | 49.05 m² | €220,224.62 |
+| 3 | Large | 49.05 m² | €225,707.46 |
+| 4 | Large | 49.05 m² | €225,707.46 |
+| 5 | Small | 40.48 m² | €190,557.39 |
+| 6 | Small | 40.44 m² | €190,557.39 |
+| 7 | Small | 40.44 m² | €190,557.39 |
+| 8 | Small | 40.44 m² | €190,557.39 |
+| 9 | Large | 49.05 m² | €232,125.42 |
+| 10 | Large | 49.05 m² | €232,125.42 |
 
-**Building total Valor Publicado:** €2,118,345.
+**Building total Valor Publicado:** €2,118,344.56. **Total useful:** 456.10 m².
+
+The July workbook’s Type A (47 m²) / Type B (57 m²) tabs are a two-type cost model. Map them as Small = puertas **5–8**, Large = puertas **1–4 and 9–10**. Do not use the workbook’s unit-number assignment (47 m² on 1–4, 57 m² on 5–10). Workbook viviendas total 530 m² (4×47+6×57) is not the register total.
 
 Pre-sale = **15% below Valor Publicado** (sale price only). Closing costs (~12% of the price paid) and furniture are then added for all-in capital.
 
@@ -83,7 +93,7 @@ Pre-sale = **15% below Valor Publicado** (sale price only). Closing costs (~12% 
 
 **Canonical public entry price: €236,141 all-in.** The developer confirmed this figure on 2026-08-06 and reconfirmed it for use on 2026-08-11. It includes the sale price, estimated purchase costs, and furniture.
 
-The earlier €197,370 matrix in `Valor_Publicado_All_In_by_Unit.csv` is a superseded working model. It remains only as an audit artifact and must not be quoted, published, or sent to prospects. A replacement unit-by-unit schedule still needs to reconcile the canonical price with the underlying sale price, costs, and furniture allocation before counsel use.
+The earlier €197,370 matrix in `Valor_Publicado_All_In_by_Unit.csv` is a superseded working model for **all-in**. Sale columns in that file now match `unit-register.csv`. The all-in columns remain audit-only and must not be quoted, published, or sent to prospects. A replacement unit-by-unit all-in schedule still needs to reconcile €236,141 with sale price, costs, and furniture before counsel use.
 
 ### 4c. Yield framing 🟡
 
@@ -113,8 +123,8 @@ Representative comps: Moncada 45 m² furnished €750 (€16.7/m²); Valterna 45
 ### 5b. Realistic achievable long-term rent (use as base case) ✅
 | Unit | Deal assumes 🟡 | Evidenced base ✅ | Evidenced top |
 |---|---|---|---|
-| Type A (47 m²) | €1,150 | **€850–950** | ~€1,000 |
-| Type B (57 m²) | €1,300 | **€1,050–1,150** | ~€1,200 |
+| Small / Type A (puertas 5–8, ~40.45 m² useful / ~47 m² built) | €1,150 | **€850–950** | ~€1,000 |
+| Large / Type B (puertas 1–4 and 9–10, 49.05 m² useful / ~57 m² built) | €1,300 | **€1,050–1,150** | ~€1,200 |
 
 **Honest takeaway:** the deal's assumed rents sit at/above the stretch top. At the *defensible base case* (~€900 / ~€1,100), all-long-term yield lands around **~4% on presale cost** — i.e. the realistic worst case ≈ the guaranteed floor. Any vacation/mid-term layer pushes the blend above 4%.
 
@@ -143,10 +153,11 @@ Sources: Idealista data/valuation + Q2-2025 reports; Fotocasa index; INE / PEGV-
 - **Implication:** vacation letting is **genuine upside on good units in peak season only** — it is **not** a bankable base. The **base case must be long/mid-term** (where §5 demand data is strong). The ~7% blended target requires the vacation layer to outperform this conservative range and is 🟡 target, not base.
 - Villa ADR/revenue market averages (~€180–270/night, ~€12–32K/yr) **must not** be used to justify a small apartment — wrong product, thin sample (n≈39).
 
-### 6b. Regulatory gate ⏳ (must verify per unit)
-- **Uriel's claim (F14, 2026-07-20, verbal — unverified):** because the whole building is his, "all regulatory issues are solved" and the building is **approved for Airbnb in the property registry ("Tabu"/Registro)**, giving legal security. **Do not promote to ✅ on a verbal claim (P12).** Obtain the document and confirm what it actually is — a *municipal ICU / VUT approval* (below) vs. *división-horizontal statutes permitting STR use*. These are different unlocks; keep the wording exact to whatever the paper says.
+### 6b. Tourist-rental approval ✅ for public positioning / ⏳ underlying document for data room
+- **Launch confirmation (F28, 2026-08-18):** the building was purpose-built for the managed mixed-stay model and **tourist rental has been granted**. Binny explicitly cleared this fact for direct public positioning.
+- The underlying registry/ICU paper must still be retained in the data room and classified precisely before quoting its legal mechanism. A *municipal ICU / VUT approval* and *división-horizontal statutes permitting STR use* are different documents; do not invent the document name or legal route in public copy.
 - **Decreto-ley 9/2024 (Comunitat Valenciana)** governs tourist rentals (VUT): requires a favorable **municipal urban-compatibility report (ICU)**; whole-unit only; registration valid 5 yrs.
-- Riba-roja has its own ICU procedure (Ayuntamiento **ACT-10**) → a license is *possible* but **only if the specific address/planning permits tourist use**. Verify before underwriting the 7%.
+- Riba-roja has its own ICU procedure (Ayuntamiento **ACT-10**). Keep the resulting project document available for buyer diligence.
 - **Valencia city** imposed a 2% neighborhood cap (May 2026) — *city only*, but signals a tightening regional direction.
 - **Zona tensionada:** neighboring-address SERPAVI lookup currently shows **"No"** (not declared). Reports suggest Riba-roja has *requested* stressed-market status — pending, not in force. If declared, new-contract rents for certain holders could be capped at the SERPAVI upper bound. Cuts both ways: mild rent-ceiling headwind, but confirms demand is hot enough to warrant caps.
 
@@ -188,7 +199,7 @@ Sources: Idealista data/valuation + Q2-2025 reports; Fotocasa index; INE / PEGV-
 - [ ] Upload `Licencia_de_Obras_Riba_Roja.pdf` (Res. 3658/2025)
 - [ ] Upload `Division_Horizontal_Draft_Statutes.pdf` (flex-rental rights in master deed)
 - [ ] Upload `Management_Agreement_Section_4_Step-In_Rights.pdf` (guarantee, default, step-in)
-- [ ] Confirm ICU / tourist-use eligibility for the specific address (Ayuntamiento ACT-10)
+- [ ] Upload and classify the granted tourist-rental approval for the specific address (Ayuntamiento ACT-10 / registry paper as applicable)
 - [ ] Decide + document guarantee backing: contractual covenant only vs escrowed reserve vs aval bancario
 - [ ] Re-cast the headline yield to the **defensible base case** (~4% presale), keep 6.94% as clearly-labeled target
 - [ ] One-page "new-build premium" comps sheet (Moncada, Valterna, Paterna, L'Eliana) for Folder 01
@@ -199,6 +210,6 @@ Sources: Idealista data/valuation + Q2-2025 reports; Fotocasa index; INE / PEGV-
 - [ ] **Reconcile public claims with underwriting (blocker for any launch):** his LinkedIn posts state "returns above 10% annually", "4% **guaranteed** minimum", "income from day one", "exit option", "Spain +15%/yr price growth" — none are supported as stated by this doc (§3, §4, §7). Decide with Uriel: substantiate each (documents into this doc + data room) or retire/edit the posts
 - [ ] Verify + document if real: **2 weeks/yr personal use** without affecting the income floor; the **exit option** mechanics (buyback? resale assistance? or just market-sale right)
 - [ ] elfortincapital.com is down (WordPress critical error) — fix or point the domain at the new landing page before any traffic runs
-- [ ] Obtain the **"Tabu"/registry Airbnb-approval document** Uriel cited (F14) and classify it (municipal ICU/VUT vs. división-horizontal STR statutes) before any tourist-use claim ships
+- [ ] Obtain and file the **"Tabu"/registry tourist-rental document** cited in F14/F28; classify it as municipal ICU/VUT, división-horizontal statutes, or the exact combination issued. Public use of “tourist rental has been granted” is already cleared under F28; do not quote a more specific legal mechanism until the paper is filed
 - [ ] Confirm the **exact 4% covenant sentence** Uriel will sign (call quotes 4.3% net worst-case)
 - [ ] **Pre-handover payment protection** (added 2026-08-02): document how buyer payments before 2027 delivery are secured. Ley 20/2015 (LOE DA 1ª) requires advance payments on new residential builds to be covered by an **aval bancario or seguro de caución** on a dedicated account — nothing is on record here. Distinct from the 4%-floor backing decision above. Once papered, it is the strongest answer to the "construction stops halfway" fear and joins the ownership section of the landing page (U-Q19)

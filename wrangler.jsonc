@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "el-fortin",
+  "compatibility_date": "2026-08-01",
+  "pages_build_output_dir": "./site",
+  "vars": {
+    "PAGE_VERSION": "v1",
+    "BROKER_CAC_LOW_EUR": "4600",
+    "BROKER_CAC_HIGH_EUR": "7000"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "el-fortin-analytics",
+      "database_id": "3fcf2da5-008e-4539-8141-7153ca5b0a41",
+      "preview_database_id": "DB",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

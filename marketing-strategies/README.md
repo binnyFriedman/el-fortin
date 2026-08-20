@@ -8,6 +8,8 @@
 | [`psychology-source-of-truth.md`](psychology-source-of-truth.md) | Decision science (P1–P16, cited) |
 | [`field-data-log.md`](field-data-log.md) | Real-world observations (F1, F2, …) — the growing anchor dataset |
 | [`approved-claims.md`](approved-claims.md) | The only public-safe numbers + phrasings — paste into any AI that writes for the brand |
+| [`analytics-measurement-plan.md`](analytics-measurement-plan.md) | Owned analytics contract — KPIs, events, attribution, content versions |
+| [`seo-geo-research.md`](seo-geo-research.md) | Open research — organic SEO + GEO/AEO for best non-paid results |
 | [`engagement-terms.md`](engagement-terms.md) | Commercial ground truth — signed scope, budget, timeline, economics |
 
 All strategies, narratives, and copy are derived from these two docs and never feed back into them. Every claim in an asset must trace to the deal doc; every structural choice must trace to a principle.

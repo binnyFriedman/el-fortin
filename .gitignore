@@ -10,6 +10,11 @@ assets/brand/Puzol - After/
 # Secrets / local env
 .env
 .env.*
+.dev.vars
+
+# Dependencies / Cloudflare local state
+node_modules/
+.wrangler/
 
 # Logs
 *.log

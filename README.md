@@ -40,4 +40,4 @@ The following root-level files are retained only as design/content history and m
 - root `index.html`
 - `site/_archive/` and `docs/_archive/`
 
-The workbook-derived files in `data-room/01_FINANCIALS_AND_UNDERWRITING/` also require reconciliation to €236,141 before counsel use.
+The unit grain is puerta, not Type A/B: `data-room/01_FINANCIALS_AND_UNDERWRITING/unit-register.csv`. Workbook-derived all-in and yield tabs still require reconciliation to €236,141 before counsel use.
