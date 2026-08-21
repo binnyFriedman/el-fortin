@@ -1,0 +1,1861 @@
+<!doctype html>
+<!--
+  Landing page v3 — English draft.
+  Copy:      marketing-strategies/01-direct-investor-funnel/assets/landing-page-v3-copy.md
+  Structure: landing-page-v3-5-second-structure.md
+  Frames:    landing-page-v3-framing.md
+
+  Page order: 01 offer · 06 earn · mechanism · 05 floor · 03 proof · 07 uriel · 08 position · 09 meeting
+  02 and 04 stay off.
+  Visuals — the image grammar of the page:
+  - Renders bleed (they are the world being built): the hero is a full-height
+    panel anchored to the top/right corners of the first viewport (01).
+  - Photographs get the hairline border (they are documents): construction,
+    Uriel, Puzol (03, 07).
+  - Plans sit on white (they are paper): the deed drawings lead the cards (08).
+  - Mechanism diagrams sit on parchment panels: the machine, the deed's power,
+    and the corridor facts (mechanism), after the yield band.
+  Page rhythm: light hero → dark full-bleed night aerial with the ~7% set on
+  it (06) → structure diagrams (mechanism) → quiet math (05) → booking-style
+  photo gallery with lightbox (03) → person with his Puzol record (07) →
+  cutaway map + cards (08) → dark close: a half-band of Uriel at work beside
+  one generous button (09).
+  The hero cuts straight into the night band — day, then night, no gap.
+  Number hierarchy: the ~7% blended target is the loud fact of the page (06);
+  the ~4% ordinary-rent case stays quiet inside the calculation (floor frame).
+  Mechanism hierarchy: trust the structure (machine + deed + corridor), not
+  the person — Uriel follows later as operator, not as the warrant.
+
+  Draft figures, human review before publish:
+  - #floor and #position use evidenced rents (17 comps, July 2026), the draft
+    unit schedule, and 4%-derived monthly nets. Reconcile against €236,141.
+  - Interiors stay unlabelled until Uriel confirms which render is Type A
+    and which is Type B.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>El Fortín — Camino Valencia 31</title>
+    <meta
+      name="description"
+      content="El Fortín · Camino Valencia 31, Riba-roja de Túria, Valencia. One building. Ten titles. From €236,141 all-in. Handover 2027."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero-desk-elfortin.jpg"
+      media="(min-width: 900px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero-mobile-elfortin.jpg"
+      media="(max-width: 899px)"
+      fetchpriority="high"
+    />
+    <style>
+      :root {
+        /* Valencia palette — landing-page-v3-5-second-structure.md */
+        --blue: #176b87;
+        --sky: #72bde0;
+        --gold: #f2bc3b;
+        --plaster: #faf5e8;
+        --sand: #dccbaa;
+        --clay: #c96843;
+        --deep: #173d4a;
+
+        --measure: 32em;
+        --gutter: clamp(20px, 4vw, 72px);
+        --frame-gap: clamp(96px, 15vh, 180px);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      body {
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--deep);
+        background: var(--plaster);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .frame {
+        padding: 0 var(--gutter);
+        margin: 0 auto var(--frame-gap);
+        max-width: 1280px;
+      }
+
+      .kicker {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--blue);
+      }
+
+      h1,
+      h2 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        color: var(--deep);
+        text-wrap: balance;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 5.2vw, 4rem);
+        line-height: 1.06;
+      }
+
+      h2 {
+        font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+        line-height: 1.12;
+      }
+
+      .support {
+        max-width: var(--measure);
+        color: var(--deep);
+      }
+
+      .strip {
+        font-size: 13.5px;
+        line-height: 1.7;
+        letter-spacing: 0.02em;
+        color: var(--deep);
+        opacity: 0.72;
+      }
+
+      .caption {
+        font-size: 13.5px;
+        color: var(--deep);
+        opacity: 0.62;
+        margin-top: 10px;
+      }
+
+      .action {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--deep);
+        font-weight: 700;
+        font-size: 17px;
+        text-decoration: none;
+        padding: 14px 26px;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        line-height: 1.3;
+      }
+      .action:hover {
+        background: #e8ae22;
+      }
+
+      .fact {
+        font-weight: 700;
+        color: var(--deep);
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      .img-frame {
+        border: 1px solid rgba(23, 61, 74, 0.18);
+      }
+
+      /* Small label sitting on an image — used for "render" honesty tags. */
+      .img-note {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        z-index: 2;
+        background: rgba(23, 61, 74, 0.55);
+        color: var(--plaster);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        padding: 4px 9px;
+        line-height: 1.2;
+      }
+
+      /* Hero — the render is the product. Its edge is architectural and
+         deliberate, with the copy held in its own column. */
+      .offer-hero-img {
+        position: relative;
+        height: 100%;
+      }
+      .offer-tag {
+        position: absolute;
+        left: clamp(12px, 2.2vw, 22px);
+        bottom: clamp(12px, 2.2vw, 22px);
+        z-index: 2;
+        background: var(--deep);
+        color: var(--plaster);
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 7px 11px;
+        line-height: 1.2;
+      }
+      /* ---------- persistent fact bar ---------- */
+      #fact-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 60;
+        background: var(--deep);
+        color: var(--plaster);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 10px var(--gutter);
+        font-size: 15px;
+        transform: translateY(110%);
+        transition: transform 0.3s ease;
+      }
+      #fact-bar.visible {
+        transform: translateY(0);
+      }
+      #fact-bar strong {
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      #fact-bar a {
+        color: var(--gold);
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #fact-bar {
+          transition: none;
+        }
+      }
+
+      /* ---------- 01 offer ---------- */
+      /* No gap into 06: the day render cuts straight to the night aerial —
+         screen one is day, screen two is night. */
+      #offer.frame {
+        padding-top: clamp(28px, 6vh, 72px);
+        margin-bottom: 0;
+      }
+
+      .offer-split {
+        display: grid;
+        gap: clamp(24px, 4vw, 56px);
+        align-items: center;
+      }
+
+      .offer-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        align-items: flex-start;
+      }
+
+      .offer-copy h1 {
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .offer-line {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+        line-height: 1.2;
+        color: var(--deep);
+      }
+
+      .offer-fact {
+        font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+        font-weight: 700;
+        border-left: 3px solid var(--gold);
+        padding-left: 14px;
+      }
+
+      /* ---------- mechanism bridge ---------- */
+      /* The hinge between ownership by day and operation by night. It carries
+         the explanation so neither image has to become a diagram. */
+      .mechanism-strip {
+        background: var(--deep);
+        color: var(--plaster);
+        padding: 28px var(--gutter);
+      }
+      .mechanism-flow {
+        max-width: 1280px;
+        min-height: 40px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto 1.45fr auto 1.2fr;
+        align-items: center;
+        gap: clamp(16px, 2.5vw, 38px);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        line-height: 1.55;
+        text-transform: uppercase;
+      }
+      .mechanism-flow .arrow {
+        color: var(--gold);
+      }
+
+      /* ---------- 06 earn — the dark middle band ---------- */
+      /* The night aerial runs full-bleed: the lit roof over a dark town,
+         with the mechanism and the ~7% set directly on the image. */
+      #earn.frame {
+        max-width: none;
+        padding: 0;
+        position: relative;
+        background: var(--deep);
+        margin-bottom: clamp(64px, 9vh, 96px);
+        overflow: hidden;
+      }
+
+      .earn-media {
+        overflow: hidden;
+      }
+      .earn-media img {
+        width: 108%;
+        max-width: none;
+        display: block;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+
+      .earn-scrim {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          to right,
+          rgba(13, 33, 42, 0.72),
+          rgba(13, 33, 42, 0.28) 45%,
+          rgba(13, 33, 42, 0) 68%
+        );
+      }
+
+      .earn-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .earn-copy h2,
+      .earn-copy .support {
+        color: var(--plaster);
+      }
+      .earn-copy h2 {
+        max-width: 13em;
+      }
+
+      /* The upside carries this frame — the largest number on the page. */
+      .fact-upside {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(2.8rem, 6vw, 4.4rem);
+        line-height: 1;
+        color: var(--gold);
+        border-left: 4px solid var(--gold);
+        padding-left: 18px;
+      }
+      .fact-upside small {
+        display: block;
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 15px;
+        color: var(--plaster);
+        opacity: 0.8;
+        margin-top: 10px;
+        line-height: 1.45;
+      }
+
+      /* ---------- mechanism — trust the structure ---------- */
+      /* Three diagram layers between yield and the floor: the machine,
+         the deed's power, and why this corridor. Light ground after the
+         dark earn band. Diagrams carry the argument; type labels the parts. */
+      #mechanism.frame {
+        margin-bottom: clamp(72px, 12vh, 140px);
+      }
+      .mech-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: clamp(48px, 8vh, 80px);
+        max-width: 36em;
+      }
+      .mech-heading h2 {
+        max-width: 14em;
+      }
+      .mech-heading .support {
+        opacity: 0.78;
+      }
+
+      .mech-layers {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(56px, 9vh, 96px);
+      }
+
+      .mech-layer {
+        display: grid;
+        gap: clamp(20px, 3vw, 36px);
+      }
+      .mech-layer-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 34em;
+      }
+      .mech-layer-copy h3 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+        line-height: 1.2;
+        color: var(--deep);
+      }
+      .mech-layer-copy p {
+        font-size: 16px;
+        line-height: 1.5;
+        opacity: 0.78;
+        max-width: 32em;
+      }
+
+      .mech-diagram {
+        background: #fdfbf4;
+        border: 1px solid rgba(23, 61, 74, 0.16);
+        padding: clamp(22px, 3.5vw, 40px);
+      }
+
+      /* Layer 1 — the machine: ten units → demand mix */
+      .machine-units {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .machine-unit {
+        aspect-ratio: 1 / 1.15;
+        background: var(--deep);
+        opacity: 0.88;
+      }
+      .machine-unit:nth-child(odd) {
+        opacity: 1;
+        background: var(--blue);
+      }
+      .machine-label {
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--deep);
+        opacity: 0.62;
+        margin-bottom: 16px;
+      }
+      .machine-flow .machine-label {
+        margin-bottom: 0;
+      }
+      .machine-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .machine-arrow {
+        color: var(--gold);
+        font-size: 22px;
+        line-height: 1;
+      }
+      .machine-mix {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+      }
+      .machine-channel {
+        border-top: 3px solid var(--gold);
+        padding-top: 12px;
+        text-align: center;
+      }
+      .machine-channel strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--deep);
+        margin-bottom: 4px;
+      }
+      .machine-channel span {
+        font-size: 13.5px;
+        opacity: 0.65;
+        line-height: 1.35;
+      }
+
+      /* Layer 2 — deed power + governance */
+      .power-grid {
+        display: grid;
+        gap: clamp(20px, 3vw, 32px);
+        grid-template-columns: 1fr 1fr;
+      }
+      .power-card {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+        padding-top: 16px;
+      }
+      .power-card h4 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        color: var(--deep);
+      }
+      .power-card p {
+        font-size: 15px;
+        line-height: 1.5;
+        opacity: 0.78;
+        max-width: none;
+      }
+      .power-gov {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+        padding-top: 16px;
+        margin-top: 8px;
+      }
+      .power-gov > h4 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+        color: var(--deep);
+      }
+      .gov-flow {
+        display: grid;
+        gap: 0;
+      }
+      .gov-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 12px 0;
+        border-top: 1px solid rgba(23, 61, 74, 0.14);
+      }
+      .gov-step:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .gov-num {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: 1.35rem;
+        color: var(--gold);
+        line-height: 1.1;
+        min-width: 1.4em;
+      }
+      .gov-step strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--deep);
+        margin-bottom: 2px;
+      }
+      .gov-step span {
+        font-size: 14px;
+        opacity: 0.72;
+        line-height: 1.4;
+      }
+      .power-align {
+        margin-top: 18px;
+        padding: 14px 16px;
+        background: rgba(23, 107, 135, 0.08);
+        border-left: 3px solid var(--blue);
+        font-size: 15px;
+        line-height: 1.45;
+        color: var(--deep);
+      }
+
+      /* Layer 3 — corridor mechanics */
+      .corridor-grid {
+        display: grid;
+        gap: clamp(18px, 2.5vw, 28px);
+      }
+      .corridor-fact {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+        padding-top: 14px;
+      }
+      .corridor-value {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.7rem, 3vw, 2.2rem);
+        line-height: 1.05;
+        color: var(--deep);
+        margin-bottom: 8px;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .corridor-fact p {
+        font-size: 14.5px;
+        line-height: 1.4;
+        opacity: 0.72;
+        max-width: none;
+      }
+
+      /* ---------- 05 floor — downside protection ---------- */
+      /* Sober rather than muted: this is the objection that keeps a cautious
+         visitor in the argument, so the result carries the hierarchy. */
+      #floor {
+        display: grid;
+        gap: clamp(36px, 6vw, 88px);
+        align-items: center;
+      }
+      .floor-intro {
+        max-width: 34rem;
+      }
+      #floor h2 {
+        margin: 10px 0 22px;
+      }
+      .floor-case {
+        width: 100%;
+        max-width: 620px;
+      }
+      .floor-rate {
+        background: var(--sand);
+        padding: clamp(24px, 4vw, 44px);
+      }
+      .floor-rate.fact-upside {
+        color: var(--deep);
+        border-left-color: var(--gold);
+      }
+      .floor-rate.fact-upside small {
+        color: var(--deep);
+      }
+
+      .floor-case .strip {
+        margin-top: 16px;
+      }
+
+      /* ---------- 03 proof — the record, all of it visible ---------- */
+      /* Booking-style gallery: one main photograph, supporting frames
+         beside it, a lightbox on click. Nothing folded away. */
+      #proof h2 {
+        margin-bottom: 30px;
+      }
+
+      .gallery {
+        display: grid;
+        gap: 10px;
+      }
+
+      .gallery-main {
+        position: relative;
+      }
+      .gallery-main img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        cursor: zoom-in;
+      }
+      /* The caption sits on the photograph, like the hero's handover tag,
+         so the grid rows stay flush with the thumbnails. */
+      .gallery-main .caption {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        margin: 0;
+        background: rgba(23, 61, 74, 0.6);
+        color: var(--plaster);
+        opacity: 1;
+        font-size: 12.5px;
+        padding: 4px 9px;
+        line-height: 1.2;
+      }
+
+      .gallery-thumbs {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .gallery-thumbs button {
+        padding: 0;
+        border: 1px solid rgba(23, 61, 74, 0.18);
+        background: none;
+        cursor: pointer;
+        display: block;
+      }
+      .gallery-thumbs button:hover {
+        border-color: rgba(23, 61, 74, 0.5);
+      }
+      .gallery-thumbs img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+        opacity: 0.92;
+        transition: opacity 0.15s ease;
+      }
+      .gallery-thumbs button:hover img {
+        opacity: 1;
+      }
+
+      /* The common language: a photo-count chip on the main image that
+         opens the full-screen viewer. */
+      .gallery-count {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(250, 245, 232, 0.94);
+        color: var(--deep);
+        border: none;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 11px;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .gallery-count:hover {
+        background: #fff;
+      }
+      .gallery-count svg {
+        display: block;
+      }
+
+      #proof .strip {
+        margin-top: 18px;
+      }
+
+      /* ---------- lightbox ---------- */
+      #lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(13, 25, 31, 0.93);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: clamp(16px, 4vw, 48px);
+      }
+      #lightbox[hidden] {
+        display: none;
+      }
+      #lightbox img {
+        max-width: min(92vw, 1400px);
+        max-height: 78vh;
+        object-fit: contain;
+      }
+      #lightbox .lb-caption {
+        color: var(--plaster);
+        opacity: 0.85;
+        margin: 0;
+      }
+      #lightbox button {
+        background: none;
+        border: none;
+        color: var(--plaster);
+        font-size: 34px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 10px;
+      }
+      #lightbox .lb-close {
+        position: absolute;
+        top: 14px;
+        right: 18px;
+      }
+      #lightbox .lb-prev,
+      #lightbox .lb-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 46px;
+      }
+      #lightbox .lb-prev {
+        left: 10px;
+      }
+      #lightbox .lb-next {
+        right: 10px;
+      }
+
+      /* ---------- 07 uriel ---------- */
+      .uriel-split {
+        display: grid;
+        gap: clamp(24px, 4vw, 56px);
+        align-items: center;
+      }
+
+      .uriel-portrait img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+
+      .uriel-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .uriel-copy .strip {
+        font-size: 13px;
+      }
+
+      /* The delivered building sits with the person — his track record,
+         not this site's paperwork. */
+      .track-record {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        width: 100%;
+      }
+      .track-record img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      /* ---------- 08 position ---------- */
+      #position h2 {
+        margin-bottom: 30px;
+      }
+
+      /* The cutaway is the map of the machine — placed at the moment of
+         choosing a title, above the two positions. */
+      .machine-map {
+        max-width: 880px;
+        margin: 0 auto clamp(36px, 6vh, 64px);
+      }
+      .machine-map img {
+        width: 100%;
+      }
+
+      .cards {
+        display: grid;
+        gap: clamp(20px, 3vw, 36px);
+      }
+
+      .card {
+        background: #fdfbf4;
+        border: 1px solid rgba(23, 61, 74, 0.16);
+        padding: clamp(18px, 2.5vw, 30px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* Interiors are demoted to equal letterbox strips: texture, not a
+         destination. The plan — the drawing of the deed — leads the card.
+         margin-top:auto pins both strips to the card bottom so the two
+         cards end on the same line whatever their plan heights. */
+      .card .interior {
+        width: 100%;
+        aspect-ratio: 16 / 7;
+        object-fit: cover;
+        object-position: center 55%;
+        margin-top: auto;
+      }
+
+      .card .plan {
+        width: 100%;
+        background: #fff;
+        border: 1px solid rgba(23, 61, 74, 0.12);
+        padding: 10px;
+      }
+
+      .card h3 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: 1.5rem;
+      }
+
+      .card-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 20px;
+        font-size: 15.5px;
+      }
+      .card-facts dt {
+        opacity: 0.6;
+      }
+      .card-facts dd {
+        font-weight: 600;
+        text-align: right;
+      }
+      .card-facts .avail {
+        color: var(--blue);
+      }
+
+      .cards-note {
+        margin-top: 18px;
+        font-size: 14px;
+        opacity: 0.65;
+      }
+
+      /* ---------- 09 meeting — the meeting, with the person in it ---------- */
+      /* Half-band composition: Uriel inside the building on one side, the
+         invitation on the other. One generous button; the alternative is a
+         quiet text link, not a competing box. */
+      #meeting.frame {
+        max-width: none;
+        background: var(--deep);
+        padding: 0;
+        margin-bottom: 0;
+      }
+
+      .meeting-split {
+        display: grid;
+      }
+
+      .meeting-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 55%;
+        display: block;
+      }
+
+      .meeting-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: clamp(56px, 10vh, 110px) var(--gutter);
+      }
+
+      #meeting h2 {
+        color: var(--plaster);
+        margin-bottom: 38px;
+      }
+
+      .action--big {
+        padding: 18px 46px;
+        font-size: 18px;
+      }
+
+      .meet-alt {
+        display: inline-block;
+        background: none;
+        border: none;
+        color: var(--plaster);
+        opacity: 0.85;
+        font: inherit;
+        font-size: 15.5px;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        cursor: pointer;
+        margin-top: 22px;
+        padding: 0;
+      }
+      .meet-alt:hover {
+        opacity: 1;
+      }
+      .meeting-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: var(--deep);
+        color: var(--plaster);
+        padding: 40px var(--gutter) 80px;
+        font-size: 14px;
+        border-top: 1px solid rgba(250, 245, 232, 0.18);
+      }
+      footer .foot-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 28px;
+        align-items: center;
+      }
+      footer a {
+        color: var(--plaster);
+        text-underline-offset: 3px;
+      }
+      footer button {
+        background: none;
+        border: none;
+        color: var(--plaster);
+        font: inherit;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      /* ---------- desktop ---------- */
+      @media (min-width: 900px) {
+        /* One screen, one product: the render is a full-height panel
+           anchored to the top and right corners of the viewport, the copy
+           vertically centred against it on the 1280 grid. */
+        #offer.frame {
+          max-width: none;
+          padding: 0;
+        }
+        .offer-split {
+          grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+          gap: 0;
+          align-items: stretch;
+          min-height: 100svh;
+        }
+        .offer-copy {
+          min-width: 0;
+          align-self: center;
+          padding: clamp(40px, 6vh, 80px) clamp(24px, 3vw, 48px)
+            clamp(40px, 6vh, 80px) clamp(40px, 6vw, 96px);
+        }
+        .offer-split figure,
+        .offer-hero-img {
+          height: 100%;
+        }
+        .offer-hero-img img {
+          width: 100%;
+          height: 100%;
+          min-height: 100svh;
+          object-fit: cover;
+        }
+
+        /* The dark band: copy set on the image, over the dark rooftops. */
+        .earn-media img {
+          height: clamp(560px, 92vh, 900px);
+        }
+        .earn-copy {
+          position: absolute;
+          inset: 0;
+          justify-content: center;
+          padding-left: max(
+            var(--gutter),
+            calc((100vw - 1280px) / 2 + var(--gutter))
+          );
+          padding-right: var(--gutter);
+        }
+
+        #floor {
+          grid-template-columns: minmax(0, 0.85fr) minmax(440px, 1fr);
+        }
+
+        /* Booking-style: main photograph left, supporting frames 2×2 right. */
+        .gallery {
+          grid-template-columns: 2fr 1fr;
+        }
+        .gallery-thumbs {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .mech-layer {
+          grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+          align-items: start;
+          gap: clamp(32px, 5vw, 64px);
+        }
+        .power-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gov-flow {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 12px;
+        }
+        .gov-step {
+          grid-template-columns: 1fr;
+          gap: 6px;
+          border-top: none;
+          border-left: 3px solid var(--gold);
+          padding: 0 0 0 12px;
+        }
+        .gov-step:first-child {
+          padding-top: 0;
+        }
+        .corridor-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .uriel-split {
+          grid-template-columns: 2fr 3fr;
+        }
+        .cards {
+          grid-template-columns: 1fr 1fr;
+        }
+        /* The close: the human takes the left of the band, the invitation
+           sits centred against him on the grid. */
+        .meeting-split {
+          grid-template-columns: 2fr 3fr;
+          min-height: 560px;
+        }
+        .meeting-copy {
+          padding-left: clamp(48px, 7vw, 110px);
+          padding-right: max(
+            var(--gutter),
+            calc((100vw - 1280px) / 2 + var(--gutter))
+          );
+        }
+        /* mobile-first order flips: image already first in DOM for 06/07 */
+      }
+
+      /* ---------- mobile ---------- */
+      @media (max-width: 899px) {
+        /* The hero bleeds edge-to-edge on mobile too. */
+        #offer figure {
+          margin: 0 calc(-1 * var(--gutter));
+        }
+        .offer-hero-img img {
+          width: 100%;
+          aspect-ratio: 4 / 5;
+          object-fit: cover;
+        }
+
+        .mechanism-strip {
+          padding-top: 24px;
+          padding-bottom: 24px;
+        }
+        .mechanism-flow {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .mechanism-flow .arrow {
+          transform: rotate(90deg);
+          transform-origin: center;
+          justify-self: start;
+          margin-left: 2px;
+        }
+
+        .machine-units {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 5px;
+        }
+        .machine-mix {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .machine-channel {
+          text-align: left;
+          padding-left: 12px;
+          border-top: none;
+          border-left: 3px solid var(--gold);
+          padding-top: 0;
+        }
+        .power-grid {
+          grid-template-columns: 1fr;
+        }
+        .gov-flow {
+          grid-template-columns: 1fr;
+        }
+        .gov-step {
+          grid-template-columns: auto 1fr;
+          border-left: none;
+          border-top: 1px solid rgba(23, 61, 74, 0.14);
+          padding: 12px 0 12px 0;
+        }
+        .gov-step:first-child {
+          border-top: none;
+          padding-top: 0;
+        }
+        .corridor-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* Dark band on mobile: the image on top, the copy on the deep
+           ground beneath it — one continuous dark block. */
+        .earn-media img {
+          width: 108%;
+          aspect-ratio: 4 / 3;
+        }
+        .earn-scrim {
+          display: none;
+        }
+        .earn-copy {
+          padding: 30px var(--gutter) 52px;
+        }
+
+        .gallery-thumbs img {
+          aspect-ratio: 1 / 1;
+        }
+
+        .meeting-photo img {
+          aspect-ratio: 1 / 1;
+        }
+
+        #fact-bar {
+          font-size: 13.5px;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= 01 · OFFER — identify ================= -->
+    <section class="frame" id="offer" data-section-id="offer">
+      <div class="offer-split">
+        <div class="offer-copy">
+          <p class="kicker">El Fortín · Riba-roja de Túria, Valencia</p>
+          <h1>Camino Valencia&nbsp;31</h1>
+          <p class="offer-line">One building. Ten&nbsp;titles.</p>
+          <p class="offer-fact" id="offer-fact">
+            From €236,141 all-in per apartment
+          </p>
+          <a class="action" href="#earn">See how it can earn</a>
+        </div>
+        <!-- The building is the product. It blends into the offer — no border,
+             edges faded into the plaster. Handover sits on the image as a tag. -->
+        <figure>
+          <div class="offer-hero-img">
+            <picture>
+              <source media="(max-width: 899px)" srcset="assets/hero-mobile-elfortin.jpg" />
+              <img
+                src="assets/hero-desk-elfortin.jpg"
+                alt="El Fortín, Camino Valencia 31: the building on its street in Riba-roja de Túria. Handover 2027."
+                fetchpriority="high"
+              />
+            </picture>
+            <span class="offer-tag">Handover 2027</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="mechanism-strip" aria-label="How the investment works">
+      <div class="mechanism-flow">
+        <span>One title to you</span>
+        <span class="arrow" aria-hidden="true">→</span>
+        <span>Ten apartments operated together</span>
+        <span class="arrow" aria-hidden="true">→</span>
+        <span>Nights sold at market rate</span>
+      </div>
+    </section>
+
+    <!-- ================= 06 · EARN — desire ================= -->
+    <!-- The dark middle band: the lit roof over a dark town, full-bleed.
+         New information the street view cannot give — the terrace, the
+         pool, the block around it. The ~7% sits directly on the night. -->
+    <section class="frame" id="earn" data-section-id="earn">
+      <figure class="earn-media">
+        <img
+          src="assets/building-night-aerial.jpg"
+          alt="Camino Valencia 31 from above at dusk: the lit rooftop terrace and pool glowing over the dark town"
+          loading="lazy"
+        />
+      </figure>
+      <div class="earn-scrim" aria-hidden="true"></div>
+      <div class="earn-copy">
+        <h2>We run the nights for the&nbsp;rate.</h2>
+        <p class="support">
+          Short stays let the price follow demand. We manage the building as
+          one inventory and distribute the net.
+        </p>
+        <p class="fact-upside">
+          ~7% net
+          <small>A target, not a promise.</small>
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= MECHANISM — trust the structure ================= -->
+    <!-- After the yield numbers, before the floor: the machine, the deed's
+         power, and why this corridor. Diagrams carry the argument. -->
+    <section class="frame" id="mechanism" data-section-id="mechanism">
+      <div class="mech-heading">
+        <p class="kicker">The structure</p>
+        <h2>Built so the plan&nbsp;holds.</h2>
+        <p class="support">
+          One managed building. Deeded control. A corridor that already rents
+          hard.
+        </p>
+      </div>
+
+      <div class="mech-layers">
+        <!-- Layer 1 — the machine -->
+        <div class="mech-layer">
+          <div class="mech-layer-copy">
+            <h3>One building. Ten levers.</h3>
+            <p>
+              Not ten separate rentals. One operation that shifts long-term,
+              mid-term and tourist mix as demand moves.
+            </p>
+          </div>
+          <div class="mech-diagram" aria-label="Building operated as one machine">
+            <p class="machine-label">Ten titled apartments</p>
+            <div class="machine-units" aria-hidden="true">
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+            </div>
+            <div class="machine-flow">
+              <span class="machine-arrow" aria-hidden="true">↓</span>
+              <p class="machine-label">Demand shifts · the mix shifts</p>
+              <div class="machine-mix">
+                <div class="machine-channel">
+                  <strong>Long-term</strong>
+                  <span>Base occupancy</span>
+                </div>
+                <div class="machine-channel">
+                  <strong>Mid-term</strong>
+                  <span>Corporate stays</span>
+                </div>
+                <div class="machine-channel">
+                  <strong>Tourist</strong>
+                  <span>Seasonal upside</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer 2 — deed = power -->
+        <div class="mech-layer">
+          <div class="mech-layer-copy">
+            <h3>You are paid in power: the&nbsp;deed.</h3>
+            <p>
+              Registered title at the Registro de la Propiedad. Capital is
+              never trapped. Together, owners control the operator.
+            </p>
+          </div>
+          <div class="mech-diagram">
+            <div class="power-grid">
+              <div class="power-card">
+                <h4>Registered title</h4>
+                <p>
+                  Your own escritura — a specific apartment, not a fund unit or
+                  paper share.
+                </p>
+              </div>
+              <div class="power-card">
+                <h4>Sell anytime</h4>
+                <p>
+                  Ordinary resale of your deeded title. More titles, more say
+                  in the building.
+                </p>
+              </div>
+            </div>
+            <div class="power-gov">
+              <h4>Collective governance</h4>
+              <div class="gov-flow" aria-label="Operator replacement sequence">
+                <div class="gov-step">
+                  <span class="gov-num">1</span>
+                  <div>
+                    <strong>Default</strong>
+                    <span>Missed covenant or material breach triggers the process.</span>
+                  </div>
+                </div>
+                <div class="gov-step">
+                  <span class="gov-num">2</span>
+                  <div>
+                    <strong>Cure period</strong>
+                    <span>The operator has a fixed window to remedy.</span>
+                  </div>
+                </div>
+                <div class="gov-step">
+                  <span class="gov-num">3</span>
+                  <div>
+                    <strong>Step-in rights</strong>
+                    <span>Owners can intervene if the cure fails.</span>
+                  </div>
+                </div>
+                <div class="gov-step">
+                  <span class="gov-num">4</span>
+                  <div>
+                    <strong>Collective replacement</strong>
+                    <span>Majority of owners can remove and replace the operator.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="power-align">
+              Developer capital went in first. He loses if you leave — the
+              incentives run the same direction.
+            </p>
+          </div>
+        </div>
+
+        <!-- Layer 3 — why here -->
+        <div class="mech-layer">
+          <div class="mech-layer-copy">
+            <h3>Why this corridor.</h3>
+            <p>
+              Valencia metro demand is structural. New furnished stock earns a
+              premium. The town is growing into that pressure.
+            </p>
+          </div>
+          <div class="mech-diagram">
+            <div class="corridor-grid" aria-label="Corridor market facts">
+              <div class="corridor-fact">
+                <p class="corridor-value">24%</p>
+                <p>of Valencia listings rent in under 24 hours — Spain’s fastest major market.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">+40–55%</p>
+                <p>new-build furnished rent above town average (17 comps, July 2026).</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">11–14.5%</p>
+                <p>corridor rent growth, 2024–25.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">~500&nbsp;m</p>
+                <p>to an existing Metro Line 1 station; another planned closer.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">×2</p>
+                <p>Riba-roja population in twenty years — youngest comarca in the province.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">32–38</p>
+                <p>enquiries per listing on average — vacancy risk sits near zero.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 · FLOOR — the relationship ================= -->
+    <!-- Yield preserves the relationship without turning a model into a cap. -->
+    <section class="frame" id="floor" data-section-id="floor">
+      <div class="floor-intro">
+        <p class="kicker">The floor</p>
+        <h2>The ordinary-rent&nbsp;floor.</h2>
+        <p class="support">
+          Short stays aim higher. Ordinary rent is the fallback, measured by
+          the same relationship: net income against capital.
+        </p>
+      </div>
+      <div class="floor-case">
+        <p class="fact-upside floor-rate">
+          ~4% net
+          <small>
+            Modeled under ordinary long-term rent, after vacancy, operating
+            costs and management.
+          </small>
+        </p>
+        <p class="strip">
+          Based on 17 live rent comparables, July 2026. A scenario, not a promise.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 03 · PROOF — already real ================= -->
+    <!-- Booking-style gallery: the main photograph and the supporting
+         record beside it, a lightbox on click. Nothing folded away.
+         Puzol lives with Uriel now — it is his record, not this site's. -->
+    <section class="frame" id="proof" data-section-id="proof">
+      <h2>Already&nbsp;underway.</h2>
+      <div class="gallery" id="proof-gallery">
+        <figure class="gallery-main">
+          <img
+            id="gallery-main-img"
+            class="img-frame"
+            src="assets/construction-2026-06.jpg"
+            alt="Inside the works: shoring props under the opened roof, June 2026"
+            loading="lazy"
+          />
+          <figcaption class="caption" id="gallery-main-caption">
+            Inside the works · June 2026
+          </figcaption>
+          <button type="button" class="gallery-count" id="gallery-count" aria-label="Open all photos">
+            <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+              <rect x="0" y="0" width="5.5" height="5.5" fill="currentColor" />
+              <rect x="7.5" y="0" width="5.5" height="5.5" fill="currentColor" />
+              <rect x="0" y="7.5" width="5.5" height="5.5" fill="currentColor" />
+              <rect x="7.5" y="7.5" width="5.5" height="5.5" fill="currentColor" />
+            </svg>
+            <span id="gallery-count-label">5 photos</span>
+          </button>
+        </figure>
+        <!-- Clicking a thumb swaps it with the main photograph; clicking the
+             main opens the lightbox. All five frames always visible. -->
+        <div class="gallery-thumbs">
+          <button
+            type="button"
+            data-full="assets/construction-street-2026-06.jpg"
+            data-caption="The site from the street · June 2026"
+            data-alt="The site from the street: scaffold netting and the builder's board, June 2026"
+          >
+            <img src="assets/construction-street-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/construction-roof-open-2026-06.jpg"
+            data-caption="The roof, opened · June 2026"
+            data-alt="The roof opened: shoring props and new beams against the sky, June 2026"
+          >
+            <img src="assets/construction-roof-open-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/construction-team-2026-06.jpg"
+            data-caption="The team on site · June 2026"
+            data-alt="The team on site among stacked roof tiles, June 2026"
+          >
+            <img src="assets/construction-team-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/construction-plans-2026-06.jpg"
+            data-caption="The plans, on site · June 2026"
+            data-alt="Hands over the floor plans on site, June 2026"
+          >
+            <img src="assets/construction-plans-2026-06-thumb.jpg" alt="" loading="lazy" />
+          </button>
+        </div>
+      </div>
+      <p class="strip">
+        Building licence Exp. 4497/2025/GEN · Resolution 3658/2025 ·
+        Builder <a href="https://www.nodhouses.es/" target="_blank" rel="noopener noreferrer">NODHOUSES</a> ·
+        Architect <a href="https://enlazaarquitectura.com/estudio/" target="_blank" rel="noopener noreferrer">J. J. Pérez Redón</a>, COACV 11.357
+      </p>
+    </section>
+
+    <!-- ================= 07 · URIEL — the person ================= -->
+    <section class="frame" id="uriel" data-section-id="uriel">
+      <div class="uriel-split">
+        <figure class="uriel-portrait">
+          <img
+            class="img-frame"
+            src="assets/uriel-portrait.jpg"
+            alt="Uriel Nabel on site, facing the camera in a hard hat"
+          />
+          <figcaption class="caption">
+            Uriel Nabel ·
+            <a href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </figcaption>
+        </figure>
+        <div class="uriel-copy">
+          <h2>I stay behind these&nbsp;words.</h2>
+          <p class="support">I built this building. I run it.</p>
+          <p class="support">
+            Twenty years in industry. Five at SAP, on engineering and
+            construction in Europe. This is now the work.
+          </p>
+          <!-- His track record sits with him: the last building, delivered. -->
+          <div class="track-record">
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/puzol-before.jpg"
+                alt="The Puzol building before works"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · before</figcaption>
+            </figure>
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/puzol-after-interior.webp"
+                alt="The Puzol building delivered, interior"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · delivered August 2025</figcaption>
+            </figure>
+          </div>
+          <p class="strip">You hold title. You may sell it.</p>
+          <button class="action" id="write-uriel" data-contact-channel="email" type="button">
+            Write to me
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 08 · POSITION — the two stakes ================= -->
+    <section class="frame" id="position" data-section-id="position">
+      <h2>Two sizes. Nine&nbsp;left.</h2>
+      <!-- The map of the machine, at the moment of choosing: ten units,
+           one building. The buyer picks a title inside it. -->
+      <figure class="machine-map">
+        <img
+          src="assets/hero-cutaway-photoreal-v1.jpg"
+          alt="Cutaway of the building: ten apartments, one shared stair, the roof terrace on top"
+          loading="lazy"
+        />
+        <figcaption class="caption">Ten apartments. One inventory of nights.</figcaption>
+      </figure>
+      <div class="cards">
+        <!-- Plan and numbers lead — the plan is the drawing of the deed.
+             The interior sits last as an equal letterbox strip on both cards. -->
+        <article class="card">
+          <h3>Type A</h3>
+          <dl class="card-facts">
+            <dt>Useful area</dt>
+            <dd>~40.5 m² · 47 m² built</dd>
+            <dt>In the building</dt>
+            <dd>Four</dd>
+            <dt>All-in price</dt>
+            <dd>€236,141</dd>
+            <dt>Long-term rent, evidenced</dt>
+            <dd>€850–950 / mo</dd>
+            <dt>Conservative monthly</dt>
+            <dd>≈ €790 net</dd>
+            <dt>Availability</dt>
+            <dd class="avail">4 of 4 available</dd>
+          </dl>
+          <img
+            class="plan"
+            src="assets/render-type-a-cropped.jpg"
+            alt="Type A floor plan"
+            loading="lazy"
+          />
+          <img
+            class="interior"
+            src="assets/render-bedroom.jpg"
+            alt="Apartment design — bedroom render"
+            loading="lazy"
+          />
+        </article>
+        <article class="card">
+          <h3>Type B</h3>
+          <dl class="card-facts">
+            <dt>Useful area</dt>
+            <dd>49 m² · ~57 m² built</dd>
+            <dt>In the building</dt>
+            <dd>Six</dd>
+            <dt>All-in price</dt>
+            <dd>Above the entry</dd>
+            <dt>Long-term rent, evidenced</dt>
+            <dd>€1,050–1,150 / mo</dd>
+            <dt>Conservative monthly</dt>
+            <dd>On the walk</dd>
+            <dt>Availability</dt>
+            <dd class="avail">5 of 6 available</dd>
+          </dl>
+          <img
+            class="plan"
+            src="assets/render-type-b-cropped.jpg"
+            alt="Type B floor plan"
+            loading="lazy"
+          />
+          <img
+            class="interior"
+            src="assets/render-salon-loft.jpg"
+            alt="Apartment design — salon render"
+            loading="lazy"
+          />
+        </article>
+      </div>
+      <p class="cards-note">
+        Interiors are apartment-design renders. Type B all-in waits for the
+        unit model to match the €236,141 entry. Rents: 17 live comparables,
+        July 2026.
+      </p>
+    </section>
+
+    <!-- ================= 09 · MEETING — the close ================= -->
+    <!-- The meeting has the person in it: Uriel inside the building, at
+         work, beside a single generous button — no decision tax. -->
+    <section class="frame" id="meeting" data-section-id="meeting">
+      <div class="meeting-split">
+        <figure class="meeting-photo">
+          <img
+            src="assets/uriel-meeting.jpg"
+            alt="Uriel Nabel at work inside the building, looking back"
+            loading="lazy"
+          />
+        </figure>
+        <div class="meeting-copy">
+          <h2>Twenty minutes. The site, then the&nbsp;papers.</h2>
+          <div class="meeting-actions">
+            <a
+              class="action action--big"
+              id="book-call"
+              data-contact-channel="calendar"
+              href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Choose a time</a
+            >
+          </div>
+          <button class="meet-alt" id="write-first" data-contact-channel="email" type="button">
+            Write first
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot-inner">
+        <span>© El Fortín · Riba-roja de Túria, Valencia</span>
+        <a href="privacy-policy-en.html">Privacy policy</a>
+        <button type="button" data-consent-settings>Analytics settings</button>
+      </div>
+    </footer>
+
+    <!-- Persistent fact — appears once 01 leaves the viewport -->
+    <div id="fact-bar" aria-hidden="true">
+      <strong>From €236,141 all-in · Handover 2027</strong>
+      <a href="#meeting">Choose a time</a>
+    </div>
+
+    <!-- Lightbox for the construction record -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Construction record" hidden>
+      <button class="lb-close" type="button" aria-label="Close">×</button>
+      <button class="lb-prev" type="button" aria-label="Previous photo">‹</button>
+      <img class="lb-img" src="" alt="" />
+      <p class="lb-caption caption"></p>
+      <button class="lb-next" type="button" aria-label="Next photo">›</button>
+    </div>
+
+    <script>
+      // Proof gallery: thumbs swap with the main photograph; the main opens
+      // the lightbox, which pages through all five frames.
+      (function () {
+        var mainImg = document.getElementById('gallery-main-img');
+        var mainCap = document.getElementById('gallery-main-caption');
+        var thumbs = Array.prototype.slice.call(
+          document.querySelectorAll('#proof-gallery .gallery-thumbs button')
+        );
+        var lb = document.getElementById('lightbox');
+        if (!mainImg || !mainCap || !lb || !thumbs.length) return;
+
+        function dataOf(btn) {
+          return {
+            full: btn.getAttribute('data-full'),
+            caption: btn.getAttribute('data-caption'),
+            alt: btn.getAttribute('data-alt')
+          };
+        }
+        function mainData() {
+          return {
+            full: mainImg.getAttribute('src'),
+            caption: mainCap.textContent.trim(),
+            alt: mainImg.getAttribute('alt')
+          };
+        }
+        function setMain(d) {
+          mainImg.src = d.full;
+          mainImg.alt = d.alt;
+          mainCap.textContent = d.caption;
+        }
+        function setThumb(btn, d) {
+          btn.setAttribute('data-full', d.full);
+          btn.setAttribute('data-caption', d.caption);
+          btn.setAttribute('data-alt', d.alt);
+          btn.querySelector('img').src = d.full;
+        }
+        thumbs.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var previous = mainData();
+            setMain(dataOf(btn));
+            setThumb(btn, previous);
+          });
+        });
+
+        var lbImg = lb.querySelector('.lb-img');
+        var lbCap = lb.querySelector('.lb-caption');
+        var order = [];
+        var idx = 0;
+
+        function showCurrent() {
+          var d = order[idx];
+          lbImg.src = d.full;
+          lbImg.alt = d.alt;
+          lbCap.textContent = d.caption;
+        }
+        function step(delta) {
+          idx = (idx + delta + order.length) % order.length;
+          showCurrent();
+        }
+        function openLightbox() {
+          order = [mainData()].concat(thumbs.map(dataOf));
+          idx = 0;
+          showCurrent();
+          lb.hidden = false;
+          document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+          lb.hidden = true;
+          document.body.style.overflow = '';
+        }
+
+        mainImg.addEventListener('click', openLightbox);
+        var countBtn = document.getElementById('gallery-count');
+        if (countBtn) {
+          document.getElementById('gallery-count-label').textContent =
+            thumbs.length + 1 + ' photos';
+          countBtn.addEventListener('click', openLightbox);
+        }
+        lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
+        lb.querySelector('.lb-prev').addEventListener('click', function () { step(-1); });
+        lb.querySelector('.lb-next').addEventListener('click', function () { step(1); });
+        lb.addEventListener('click', function (e) {
+          if (e.target === lb) closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (lb.hidden) return;
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') step(-1);
+          if (e.key === 'ArrowRight') step(1);
+        });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var bar = document.getElementById('fact-bar');
+        var anchor = document.getElementById('offer-fact');
+        if (!bar || !anchor || !('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(
+          function (entries) {
+            var below = !entries[0].isIntersecting && entries[0].boundingClientRect.top < 0;
+            bar.classList.toggle('visible', below);
+            bar.setAttribute('aria-hidden', below ? 'false' : 'true');
+          },
+          { threshold: 0 }
+        );
+        io.observe(anchor);
+      })();
+    </script>
+
+    <!-- First-party analytics + contact handoffs (no Google Analytics) -->
+    <script>
+      window.__EF_PAGE__ = { pageId: 'site_en', pageVersion: 'v3', locale: 'en' };
+      window.__EF_CONTACT__ = {
+        email: 'uriel.nabel@elfortincapital.com',
+        whatsapp: '34626459818',
+        calendar: 'https://calendar.app.google/R9LJvZFYTPwuXNw7A',
+        privacyUrl: 'privacy-policy-en.html'
+      };
+    </script>
+    <script src="assets/analytics.js" defer></script>
+  </body>
+</html>
