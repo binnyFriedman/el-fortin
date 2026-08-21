@@ -59,7 +59,7 @@
       '<p>' +
       (isSpanish
         ? 'Usamos analítica propia para medir la página y las campañas. Puedes aceptarla o rechazarla; los enlaces de contacto funcionan igual. '
-        : 'We use first-party analytics to measure the page and campaigns. You can accept or reject it; the contact links work either way. ') +
+        : 'First-party analytics help measure the page and campaigns. Accept or reject them; contact links work either way. ') +
       '<a href="' +
       CONFIG.privacyUrl +
       '">' +

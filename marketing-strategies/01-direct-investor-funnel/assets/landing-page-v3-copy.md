@@ -34,13 +34,12 @@ If the display already said it, delete the support.
 | Power of a building, cost of a flat   | 01 support          | The leverage                |
 | Price · handover                      | 01 fact             | Isolated, persistent        |
 | Licence, names, last building         | 03 strip            | Small, under the photograph |
-| Income − costs − fee                  | 05 calculation      | The body of the 4%          |
-| ~4% net                               | 05 fact             | Largest number on the page  |
-| We run the nights for the rate        | 06 display          | Management, and the unit    |
-| ~7% net, a target                     | 06 fact             | Smaller than the 4%         |
-| Uriel leads and stays behind the page | 07 display          | The man, then one line      |
-| His record                            | 07 support          | One line, under the job     |
-| You may sell                          | 07 strip            | Smallest type in 07         |
+| You own it · we let it                | 06 display          | The relationship            |
+| ~7% net on the all-in                 | 06 fact             | The work, once running      |
+| Long leases still return about 4%     | 06 relate           | Same money, ordinary leases |
+| Father, Husband, Dreamer…             | 07 who              | His words, unexpanded       |
+| Last August I delivered Puzol         | 07 display          | The record, then the photos |
+| This is the next building             | 07 support          | He stays on the letting     |
 | Write to him                          | 07 action           | In his section, not 09      |
 | Two sizes · nine                      | 08 display          | The cards carry the rest    |
 | The walk                              | 09 display + action | No paragraph                |
@@ -65,6 +64,8 @@ One building. Ten titles.
 **Support**  
 The power of a building. The cost of an apartment.
 
+On the live page.
+
 **Fact**  
 From €236,141 all-in per apartment
 
@@ -78,38 +79,41 @@ The façade stands beside this. Do not write on it. Management is 06. Tourist re
 
 ---
 
-## 06 — How it can earn
+## 06 — How it earns
 
-The hero names the structure. This section names the work: we manage the building. The unit of the work is the night — what a client will pay for one. A long lease is not a different product. It is the same nights, sold cheap, in bulk. The machinery is to put the nights where the rate is highest. If that machinery is real, we stand behind it. The 7% is the target of that work, not a tourist promise.
+The hero names the structure. This names the relationship. One band. Both numbers.
+
+**Strip** — the hinge under the façade  
+You buy the title → El Fortín manages every stay → The income is yours
 
 **Display**  
 
-## We run the nights for the rate.
+## Your property. None of the daily work.
 
 **Support**  
-The building sells nights. A month’s rent is only a low rate, sold in bulk. We manage all ten from here, and we put the nights where the market will pay.
+Every unit follows the same rental plan. You remain free to sell.
 
-**Fact**  
-~7% net  
-A target, not a promise.
-
-**Image**  
-Not the empty façade. Not the pool as a holiday. The building at work — rooms occupied, the ten as one inventory of nights. The cutaway can do that if the caption says the job, not “illustration.” Prefer a frame that feels run: light in the windows, people in the rooms, the stair working. Do not typeset Long · Medium · Tourist as a menu.
+**Return path — four separate beats**  
+First full year · **6.9%** · Net operating target  
+As operations mature · **>9%** · Long-run upside  
+Long leases · **4.4%** · Modelled net return  
+Contractual floor · **4.0%** · Developer income covenant
 
 ---
 
-## 05 — Ordinary rent
+## Fit — The right investor
+
+**Kicker**  
+Who this is for
 
 **Display**  
 
-## What ordinary rent leaves after every cost.
+## Capital in Europe. A place in Spain.
 
-The calculation is the body: capital, rent, vacancy, costs, fee. Quiet type. No lifestyle image.
-
-**Fact**  
-4% net
-
-Do not write “approximately” in a second line. The number is the line.
+**Three separate facts**  
+A deeded asset · Property in your name, backed by clear rental demand—and room to grow.  
+Managed for you · No tenants, bookings or daily administration to handle.  
+Two weeks in Spain · Personal use is included every year.
 
 ---
 
@@ -124,8 +128,6 @@ The photograph is the proof. Do not caption “construction.”
 **Strip**  
 Exp. 4497/2025/GEN · Res. 3658/2025  
 NODHOUSES · J. J. Pérez Redón, COACV 11.357  
-Puzol delivered August 2025
-
 **Action**  
 See the construction record
 
@@ -145,21 +147,19 @@ Uriel Nabel · [LinkedIn](https://es.linkedin.com/in/urielnabel/es)
 
 **Display**  
 
-## I stay behind these words.
+## In August 2025, I delivered El Fortín de Puzol.
 
 **Support**  
-I built this building. I run it.  
-Twenty years in industry. Five at SAP, on engineering and construction in Europe. This is now the work.
+A century-old house in the old centre, rebuilt. This is the next building.
 
-**Strip**  
-You hold title. You may sell it.
+My capital went in first. I stay to oversee the rentals after the sale.
+
+Before El Fortín, I spent five years at SAP working on capital-project engineering across Europe. I left in January 2026.
 
 **Action**  
-Write to me
+Ask me directly
 
-The display is the character. The support is the job, then the only experience the live page already stands on. Do not add Siemens, BCG, a biography, or the licensed team — those last names are in 03. Do not say *ex-Siemens*. Puzol is in 03.
-
-Do not write *trust me* or the replacement speech. The photograph does the rest.
+The display names the last building. The photographs prove it. Do not add Siemens, BCG, kids, Argentina, the gas-company sale, or a reason he left SAP until he says it and the claim is verified. He did not “build this building” — it is still open.
 
 ---
 
@@ -171,27 +171,34 @@ Do not write *trust me* or the replacement speech. The photograph does the rest.
 
 No support line. The cards are the support.
 
-Each card: plan · area · all-in price · conservative monthly · floor · available or not.
+Each card: plan · area · all-in price · conservative monthly · floor · availability · three interior design renders opening into a lightbox.
 
 Price is visible. Do not call either type a home.
 
-Publish the figures when the unit model matches €236,141.
+Type A: €236,141 all-in · ≈ €790 net/month · 4 of 4 available.  
+Type B: €253,885 all-in · ≈ €846 net/month · 5 of 6 available.
 
 ---
 
 ## 09 — Meeting
 
-**Display**  
+**Kicker**  
+A conversation with Uriel
 
-## Twenty minutes. The site, then the papers.
+**Display**
+
+## See what is taking shape.
+
+**Support**  
+The building, the numbers and anything still on your mind—at your pace.
 
 **Action**  
-Choose a time
+Find a time
 
 **Secondary**  
-Write first
+Email Uriel instead
 
-Nothing under the heading. The heading is the meeting.
+The close is an unhurried invitation, not a timed pitch.
 
 ---
 

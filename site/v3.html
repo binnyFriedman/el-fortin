@@ -5,25 +5,23 @@
   Structure: landing-page-v3-5-second-structure.md
   Frames:    landing-page-v3-framing.md
 
-  Page order: 01 offer · 06 earn · 05 floor · 03 proof · 07 uriel · 08 position · 09 meeting
-  02 and 04 stay off.
+  Page order: 01 offer · 06 earn · fit · 03 proof · 07 uriel · 08 position · 09 meeting
+  02, 04 and 05 stay off. The 4% sits inside 06.
   Visuals — the image grammar of the page:
   - Renders bleed (they are the world being built): the hero is a full-height
     panel anchored to the top/right corners of the first viewport (01).
   - Photographs get the hairline border (they are documents): construction,
     Uriel, Puzol (03, 07).
   - Plans sit on white (they are paper): the deed drawings lead the cards (08).
-  Page rhythm: light hero → dark full-bleed night aerial with the ~7% set on
-  it (06) → quiet math (05) → booking-style photo gallery with lightbox (03)
-  → person with his Puzol record (07) → cutaway map + cards (08) → dark close:
-  a half-band of Uriel at work beside one generous button (09).
-  The hero cuts straight into the night band — day, then night, no gap.
-  Number hierarchy: the ~7% blended target is the loud fact of the page (06);
-  the ~4% ordinary-rent case stays quiet inside the calculation (floor frame).
+  Page rhythm: light hero → dark band: ownership, letting, both yields (06)
+    → booking-style photo gallery (03) → person with his Puzol record (07)
+    → cutaway map + cards (08) → dark close (09).
+  The return band separates the first-year target, long-run upside, long-lease
+  case, and contractual floor.
 
   Draft figures, human review before publish:
-  - #floor and #position use evidenced rents (17 comps, July 2026), the draft
-    unit schedule, and 4%-derived monthly nets. Reconcile against €236,141.
+  - #earn and #position use evidenced rents (17 comps, July 2026), the unit
+    schedule, and 4%-derived monthly nets. Uriel will review and update figures.
   - Interiors stay unlabelled until Uriel confirms which render is Type A
     and which is Type B.
 -->
@@ -313,7 +311,7 @@
         min-height: 40px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr auto 1.45fr auto 1.2fr;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
         align-items: center;
         gap: clamp(16px, 2.5vw, 38px);
         font-size: 14px;
@@ -326,107 +324,100 @@
         color: var(--gold);
       }
 
-      /* ---------- 06 earn — the dark middle band ---------- */
-      /* The night aerial runs full-bleed: the lit roof over a dark town,
-         with the mechanism and the ~7% set directly on the image. */
+      /* ---------- 06 earn — one argument, one band ---------- */
       #earn.frame {
         max-width: none;
         padding: 0;
         position: relative;
         background: var(--deep);
         margin-bottom: clamp(64px, 9vh, 96px);
-        overflow: hidden;
-      }
-
-      .earn-media {
-        overflow: hidden;
-      }
-      .earn-media img {
-        width: 108%;
-        max-width: none;
-        display: block;
-        object-fit: cover;
-        object-position: center 20%;
-      }
-
-      .earn-scrim {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: linear-gradient(
-          to right,
-          rgba(13, 33, 42, 0.72),
-          rgba(13, 33, 42, 0.28) 45%,
-          rgba(13, 33, 42, 0) 68%
-        );
       }
 
       .earn-copy {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        align-items: flex-start;
+        gap: clamp(44px, 7vh, 72px);
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: clamp(72px, 14vh, 128px) var(--gutter);
       }
 
-      .earn-copy h2,
-      .earn-copy .support {
+      .earn-intro {
+        display: grid;
+        gap: 18px;
+        align-items: end;
+      }
+      .earn-intro h2,
+      .earn-intro .support {
         color: var(--plaster);
       }
-      .earn-copy h2 {
-        max-width: 13em;
+      .earn-intro h2 {
+        max-width: 14em;
+      }
+      .earn-intro .support {
+        opacity: 0.82;
       }
 
-      /* The upside carries this frame — the largest number on the page. */
-      .fact-upside {
+      .return-grid {
+        width: 100%;
+        display: grid;
+        gap: clamp(28px, 4vw, 52px);
+      }
+      .return-item {
+        border-top: 1px solid rgba(250, 245, 232, 0.28);
+        padding-top: 18px;
+      }
+      .return-label {
+        color: var(--plaster);
+        opacity: 0.68;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        min-height: 3em;
+      }
+      .return-value {
         font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(2.8rem, 6vw, 4.4rem);
+        font-size: clamp(2.8rem, 5vw, 4rem);
         line-height: 1;
         color: var(--gold);
-        border-left: 4px solid var(--gold);
-        padding-left: 18px;
+        margin: 14px 0 10px;
+        font-variant-numeric: tabular-nums lining-nums;
       }
-      .fact-upside small {
-        display: block;
-        font-family: "Source Sans 3", -apple-system, sans-serif;
-        font-size: 15px;
+      .return-detail {
         color: var(--plaster);
-        opacity: 0.8;
-        margin-top: 10px;
+        font-size: 15px;
         line-height: 1.45;
+        opacity: 0.88;
       }
 
-      /* ---------- 05 floor — downside protection ---------- */
-      /* Sober rather than muted: this is the objection that keeps a cautious
-         visitor in the argument, so the result carries the hierarchy. */
-      #floor {
+      /* ---------- fit — the reader recognizes themselves ---------- */
+      .fit-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .fit-heading h2 {
+        max-width: 12em;
+      }
+      .fit-points {
         display: grid;
-        gap: clamp(36px, 6vw, 88px);
-        align-items: center;
+        gap: clamp(30px, 4vw, 56px);
+        margin-top: clamp(48px, 8vh, 84px);
       }
-      .floor-intro {
-        max-width: 34rem;
+      .fit-point {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+        padding-top: 18px;
       }
-      #floor h2 {
-        margin: 10px 0 22px;
+      .fit-point h3 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+        font-weight: 400;
+        margin-bottom: 10px;
       }
-      .floor-case {
-        width: 100%;
-        max-width: 620px;
-      }
-      .floor-rate {
-        background: var(--sand);
-        padding: clamp(24px, 4vw, 44px);
-      }
-      .floor-rate.fact-upside {
-        color: var(--deep);
-        border-left-color: var(--gold);
-      }
-      .floor-rate.fact-upside small {
-        color: var(--deep);
-      }
-
-      .floor-case .strip {
-        margin-top: 16px;
+      .fit-point p {
+        max-width: 23em;
+        opacity: 0.78;
       }
 
       /* ---------- 03 proof — the record, all of it visible ---------- */
@@ -646,16 +637,31 @@
         gap: 16px;
       }
 
-      /* Interiors are demoted to equal letterbox strips: texture, not a
-         destination. The plan — the drawing of the deed — leads the card.
-         margin-top:auto pins both strips to the card bottom so the two
-         cards end on the same line whatever their plan heights. */
-      .card .interior {
-        width: 100%;
-        aspect-ratio: 16 / 7;
-        object-fit: cover;
-        object-position: center 55%;
+      /* The deed drawing leads. Three renders then show the apartment and
+         shared spaces without overpowering the facts. */
+      .render-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
         margin-top: auto;
+      }
+      .render-gallery button {
+        display: block;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: zoom-in;
+      }
+      .render-gallery img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border: 1px solid rgba(23, 61, 74, 0.12);
+        transition: opacity 0.15s ease;
+      }
+      .render-gallery button:hover img {
+        opacity: 0.86;
       }
 
       .card .plan {
@@ -725,14 +731,29 @@
         padding: clamp(56px, 10vh, 110px) var(--gutter);
       }
 
+      .meeting-kicker {
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
       #meeting h2 {
         color: var(--plaster);
+        font-size: clamp(1.9rem, 3vw, 2.45rem);
+        line-height: 1.18;
+        max-width: 14em;
+        margin-bottom: 18px;
+      }
+      .meeting-support {
+        max-width: 28em;
+        color: var(--plaster);
+        opacity: 0.78;
+        font-size: 17px;
+        line-height: 1.6;
         margin-bottom: 38px;
       }
 
       .action--big {
-        padding: 18px 46px;
-        font-size: 18px;
+        padding: 16px 34px;
+        font-size: 17px;
       }
 
       .meet-alt {
@@ -755,7 +776,7 @@
       .meeting-actions {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 14px;
       }
 
@@ -822,23 +843,21 @@
           object-fit: cover;
         }
 
-        /* The dark band: copy set on the image, over the dark rooftops. */
-        .earn-media img {
-          height: clamp(560px, 92vh, 900px);
-        }
         .earn-copy {
-          position: absolute;
-          inset: 0;
-          justify-content: center;
           padding-left: max(
             var(--gutter),
             calc((100vw - 1280px) / 2 + var(--gutter))
           );
           padding-right: var(--gutter);
         }
-
-        #floor {
-          grid-template-columns: minmax(0, 0.85fr) minmax(440px, 1fr);
+        .earn-intro {
+          grid-template-columns: 2fr 3fr;
+        }
+        .return-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .fit-points {
+          grid-template-columns: repeat(3, 1fr);
         }
 
         /* Booking-style: main photograph left, supporting frames 2×2 right. */
@@ -898,17 +917,8 @@
           margin-left: 2px;
         }
 
-        /* Dark band on mobile: the image on top, the copy on the deep
-           ground beneath it — one continuous dark block. */
-        .earn-media img {
-          width: 108%;
-          aspect-ratio: 4 / 3;
-        }
-        .earn-scrim {
-          display: none;
-        }
         .earn-copy {
-          padding: 30px var(--gutter) 52px;
+          padding: 48px var(--gutter) 64px;
         }
 
         .gallery-thumbs img {
@@ -935,6 +945,9 @@
           <p class="kicker">El Fortín · Riba-roja de Túria, Valencia</p>
           <h1>Camino Valencia&nbsp;31</h1>
           <p class="offer-line">One building. Ten&nbsp;titles.</p>
+          <p class="support">
+            The power of a building. The cost of an apartment.
+          </p>
           <p class="offer-fact" id="offer-fact">
             From €236,141 all-in per apartment
           </p>
@@ -960,62 +973,70 @@
 
     <section class="mechanism-strip" aria-label="How the investment works">
       <div class="mechanism-flow">
-        <span>One title to you</span>
+        <span>You buy the title</span>
         <span class="arrow" aria-hidden="true">→</span>
-        <span>Ten apartments operated together</span>
+        <span>El Fortín manages every stay</span>
         <span class="arrow" aria-hidden="true">→</span>
-        <span>Nights sold at market rate</span>
+        <span>The income is yours</span>
       </div>
     </section>
 
-    <!-- ================= 06 · EARN — desire ================= -->
-    <!-- The dark middle band: the lit roof over a dark town, full-bleed.
-         New information the street view cannot give — the terrace, the
-         pool, the block around it. The ~7% sits directly on the night. -->
+    <!-- ================= 06 · EARN — one argument ================= -->
     <section class="frame" id="earn" data-section-id="earn">
-      <figure class="earn-media">
-        <img
-          src="assets/building-night-aerial.jpg"
-          alt="Camino Valencia 31 from above at dusk: the lit rooftop terrace and pool glowing over the dark town"
-          loading="lazy"
-        />
-      </figure>
-      <div class="earn-scrim" aria-hidden="true"></div>
       <div class="earn-copy">
-        <h2>We run the nights for the&nbsp;rate.</h2>
-        <p class="support">
-          Short stays let the price follow demand. We manage the building as
-          one inventory and distribute the net.
-        </p>
-        <p class="fact-upside">
-          ~7% net
-          <small>A target, not a promise.</small>
-        </p>
+        <div class="earn-intro">
+          <h2>Your property. None of the daily&nbsp;work.</h2>
+          <p class="support">
+            Every unit follows the same rental plan. You remain free to sell.
+          </p>
+        </div>
+        <div class="return-grid" aria-label="Return scenarios">
+          <div class="return-item">
+            <p class="return-label">First full year</p>
+            <p class="return-value">6.9%</p>
+            <p class="return-detail">Net operating target</p>
+          </div>
+          <div class="return-item">
+            <p class="return-label">As operations mature</p>
+            <p class="return-value">&gt;9%</p>
+            <p class="return-detail">Long-run upside</p>
+          </div>
+          <div class="return-item">
+            <p class="return-label">Long leases</p>
+            <p class="return-value">4.4%</p>
+            <p class="return-detail">Modelled net return</p>
+          </div>
+          <div class="return-item">
+            <p class="return-label">Contractual floor</p>
+            <p class="return-value">4.0%</p>
+            <p class="return-detail">Developer income covenant</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ================= 05 · FLOOR — the relationship ================= -->
-    <!-- Yield preserves the relationship without turning a model into a cap. -->
-    <section class="frame" id="floor" data-section-id="floor">
-      <div class="floor-intro">
-        <p class="kicker">The floor</p>
-        <h2>The ordinary-rent&nbsp;floor.</h2>
-        <p class="support">
-          Short stays aim higher. Ordinary rent is the fallback, measured by
-          the same relationship: net income against capital.
-        </p>
+    <!-- ================= FIT — the right investor ================= -->
+    <section class="frame" id="fit" data-section-id="fit">
+      <div class="fit-heading">
+        <p class="kicker">Who this is for</p>
+        <h2>Capital in Europe. A place in&nbsp;Spain.</h2>
       </div>
-      <div class="floor-case">
-        <p class="fact-upside floor-rate">
-          ~4% net
-          <small>
-            Modeled under ordinary long-term rent, after vacancy, operating
-            costs and management.
-          </small>
-        </p>
-        <p class="strip">
-          Based on 17 live rent comparables, July 2026. A scenario, not a promise.
-        </p>
+      <div class="fit-points">
+        <div class="fit-point">
+          <h3>A deeded asset</h3>
+          <p>
+            Property in your name, backed by clear rental demand—and room to
+            grow.
+          </p>
+        </div>
+        <div class="fit-point">
+          <h3>Managed for you</h3>
+          <p>No tenants, bookings or daily administration to handle.</p>
+        </div>
+        <div class="fit-point">
+          <h3>Two weeks in Spain</h3>
+          <p>Personal use is included every year.</p>
+        </div>
       </div>
     </section>
 
@@ -1030,12 +1051,12 @@
           <img
             id="gallery-main-img"
             class="img-frame"
-            src="assets/construction-2026-06.jpg"
-            alt="Inside the works: shoring props under the opened roof, June 2026"
+            src="assets/brand/on-going-construction/005.jpg"
+            alt="The Camino Valencia 31 façade protected behind construction screening, June 2026"
             loading="lazy"
           />
           <figcaption class="caption" id="gallery-main-caption">
-            Inside the works · June 2026
+            Façade under construction · June 2026
           </figcaption>
           <button type="button" class="gallery-count" id="gallery-count" aria-label="Open all photos">
             <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
@@ -1044,43 +1065,59 @@
               <rect x="0" y="7.5" width="5.5" height="5.5" fill="currentColor" />
               <rect x="7.5" y="7.5" width="5.5" height="5.5" fill="currentColor" />
             </svg>
-            <span id="gallery-count-label">5 photos</span>
+            <span id="gallery-count-label">7 photos</span>
           </button>
         </figure>
         <!-- Clicking a thumb swaps it with the main photograph; clicking the
-             main opens the lightbox. All five frames always visible. -->
+             main opens the lightbox. All seven frames remain available. -->
         <div class="gallery-thumbs">
           <button
             type="button"
-            data-full="assets/construction-street-2026-06.jpg"
-            data-caption="The site from the street · June 2026"
-            data-alt="The site from the street: scaffold netting and the builder's board, June 2026"
+            data-full="assets/brand/on-going-construction/001.jpeg"
+            data-caption="Works at street level · June 2026"
+            data-alt="Street-level construction at Camino Valencia 31 with rubble being removed"
           >
-            <img src="assets/construction-street-2026-06-thumb.jpg" alt="" loading="lazy" />
+            <img src="assets/brand/on-going-construction/001.jpeg" alt="" loading="lazy" />
           </button>
           <button
             type="button"
-            data-full="assets/construction-roof-open-2026-06.jpg"
-            data-caption="The roof, opened · June 2026"
-            data-alt="The roof opened: shoring props and new beams against the sky, June 2026"
+            data-full="assets/brand/on-going-construction/002.jpeg"
+            data-caption="The roof opened for reconstruction"
+            data-alt="Original roof beams supported by shoring props beneath an open blue sky"
           >
-            <img src="assets/construction-roof-open-2026-06-thumb.jpg" alt="" loading="lazy" />
+            <img src="assets/brand/on-going-construction/002.jpeg" alt="" loading="lazy" />
           </button>
           <button
             type="button"
-            data-full="assets/construction-team-2026-06.jpg"
-            data-caption="The team on site · June 2026"
-            data-alt="The team on site among stacked roof tiles, June 2026"
+            data-full="assets/brand/on-going-construction/003.jpeg"
+            data-caption="Original tiles retained on site"
+            data-alt="Stacks of original patterned floor tiles retained during construction"
           >
-            <img src="assets/construction-team-2026-06-thumb.jpg" alt="" loading="lazy" />
+            <img src="assets/brand/on-going-construction/003.jpeg" alt="" loading="lazy" />
           </button>
           <button
             type="button"
-            data-full="assets/construction-plans-2026-06.jpg"
-            data-caption="The plans, on site · June 2026"
-            data-alt="Hands over the floor plans on site, June 2026"
+            data-full="assets/brand/on-going-construction/004.jpeg"
+            data-caption="Roof works in progress"
+            data-alt="The roof structure during demolition and reconstruction"
           >
-            <img src="assets/construction-plans-2026-06-thumb.jpg" alt="" loading="lazy" />
+            <img src="assets/brand/on-going-construction/004.jpeg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/brand/on-going-construction/006.jpg"
+            data-caption="Structure supported during works"
+            data-alt="Interior structure supported by red, yellow and green shoring props"
+          >
+            <img src="assets/brand/on-going-construction/006.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/brand/on-going-construction/007.jpeg"
+            data-caption="The team working inside"
+            data-alt="Construction team working inside the building among retained roof tiles"
+          >
+            <img src="assets/brand/on-going-construction/007.jpeg" alt="" loading="lazy" />
           </button>
         </div>
       </div>
@@ -1097,7 +1134,7 @@
         <figure class="uriel-portrait">
           <img
             class="img-frame"
-            src="assets/uriel-portrait.jpg"
+            src="assets/uriel-onsite.jpg"
             alt="Uriel Nabel on site, facing the camera in a hard hat"
           />
           <figcaption class="caption">
@@ -1106,13 +1143,19 @@
           </figcaption>
         </figure>
         <div class="uriel-copy">
-          <h2>I stay behind these&nbsp;words.</h2>
-          <p class="support">I built this building. I run it.</p>
+          <h2>In August 2025, I delivered El Fortín de&nbsp;Puzol.</h2>
           <p class="support">
-            Twenty years in industry. Five at SAP, on engineering and
-            construction in Europe. This is now the work.
+            A century-old house in the old centre, rebuilt. This is the next
+            building.
           </p>
-          <!-- His track record sits with him: the last building, delivered. -->
+          <p class="support">
+            My capital went in first. I stay to oversee the rentals after the
+            sale.
+          </p>
+          <p class="support">
+            Before El Fortín, I spent five years at SAP working on
+            capital-project engineering across Europe. I left in January 2026.
+          </p>
           <div class="track-record">
             <figure>
               <img
@@ -1121,7 +1164,7 @@
                 alt="The Puzol building before works"
                 loading="lazy"
               />
-              <figcaption class="caption">Puzol · before</figcaption>
+              <figcaption class="caption">Before</figcaption>
             </figure>
             <figure>
               <img
@@ -1130,12 +1173,11 @@
                 alt="The Puzol building delivered, interior"
                 loading="lazy"
               />
-              <figcaption class="caption">Puzol · delivered August 2025</figcaption>
+              <figcaption class="caption">Delivered</figcaption>
             </figure>
           </div>
-          <p class="strip">You hold title. You may sell it.</p>
           <button class="action" id="write-uriel" data-contact-channel="email" type="button">
-            Write to me
+            Ask me directly
           </button>
         </div>
       </div>
@@ -1152,11 +1194,11 @@
           alt="Cutaway of the building: ten apartments, one shared stair, the roof terrace on top"
           loading="lazy"
         />
-        <figcaption class="caption">Ten apartments. One inventory of nights.</figcaption>
+        <figcaption class="caption">Each title works with the whole.</figcaption>
       </figure>
       <div class="cards">
         <!-- Plan and numbers lead — the plan is the drawing of the deed.
-             The interior sits last as an equal letterbox strip on both cards. -->
+             Three renders follow under each type. -->
         <article class="card">
           <h3>Type A</h3>
           <dl class="card-facts">
@@ -1179,12 +1221,36 @@
             alt="Type A floor plan"
             loading="lazy"
           />
-          <img
-            class="interior"
-            src="assets/render-bedroom.jpg"
-            alt="Apartment design — bedroom render"
-            loading="lazy"
-          />
+          <div class="render-gallery" aria-label="Type A design renders">
+            <button
+              type="button"
+              data-full="assets/render-bedroom.jpg"
+              data-caption="Bedroom design render"
+              data-alt="Bedroom interior design render"
+              aria-label="Open bedroom render"
+            >
+              <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-kitchen-dining.jpg"
+              data-caption="Kitchen and dining design render"
+              data-alt="Kitchen and dining interior design render"
+              aria-label="Open kitchen and dining render"
+            >
+              <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-salon-loft.jpg"
+              data-caption="Living space design render"
+              data-alt="Loft living interior design render"
+              aria-label="Open living space render"
+            >
+              <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
+            </button>
+          </div>
+          <p class="caption">Interior design renders</p>
         </article>
         <article class="card">
           <h3>Type B</h3>
@@ -1194,32 +1260,54 @@
             <dt>In the building</dt>
             <dd>Six</dd>
             <dt>All-in price</dt>
-            <dd>Above the entry</dd>
+            <dd>€253,885</dd>
             <dt>Long-term rent, evidenced</dt>
             <dd>€1,050–1,150 / mo</dd>
             <dt>Conservative monthly</dt>
-            <dd>On the walk</dd>
+            <dd>≈ €846 net</dd>
             <dt>Availability</dt>
             <dd class="avail">5 of 6 available</dd>
           </dl>
           <img
             class="plan"
-            src="assets/render-type-b-cropped.jpg"
+            src="assets/render-type-b.jpg"
             alt="Type B floor plan"
             loading="lazy"
           />
-          <img
-            class="interior"
-            src="assets/render-salon-loft.jpg"
-            alt="Apartment design — salon render"
-            loading="lazy"
-          />
+          <div class="render-gallery" aria-label="Type B design renders">
+            <button
+              type="button"
+              data-full="assets/render-salon-loft.jpg"
+              data-caption="Living space design render"
+              data-alt="Loft living interior design render"
+              aria-label="Open living space render"
+            >
+              <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-kitchen-dining.jpg"
+              data-caption="Kitchen and dining design render"
+              data-alt="Kitchen and dining interior design render"
+              aria-label="Open kitchen and dining render"
+            >
+              <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-bedroom.jpg"
+              data-caption="Bedroom design render"
+              data-alt="Bedroom interior design render"
+              aria-label="Open bedroom render"
+            >
+              <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
+            </button>
+          </div>
+          <p class="caption">Interior design renders</p>
         </article>
       </div>
       <p class="cards-note">
-        Interiors are apartment-design renders. Type B all-in waits for the
-        unit model to match the €236,141 entry. Rents: 17 live comparables,
-        July 2026.
+        Interiors are design renders. Rents: 17 live comparables, July 2026.
       </p>
     </section>
 
@@ -1230,13 +1318,18 @@
       <div class="meeting-split">
         <figure class="meeting-photo">
           <img
-            src="assets/uriel-meeting.jpg"
-            alt="Uriel Nabel at work inside the building, looking back"
+            src="assets/uriel-site-balcony.jpg"
+            alt="Uriel Nabel in a window of the building during works, looking out"
             loading="lazy"
           />
         </figure>
         <div class="meeting-copy">
-          <h2>Twenty minutes. The site, then the&nbsp;papers.</h2>
+          <p class="kicker meeting-kicker">A conversation with Uriel</p>
+          <h2>See what is taking&nbsp;shape.</h2>
+          <p class="meeting-support">
+            The building, the numbers and anything still on your mind—at your
+            pace.
+          </p>
           <div class="meeting-actions">
             <a
               class="action action--big"
@@ -1245,11 +1338,11 @@
               href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
               target="_blank"
               rel="noopener noreferrer"
-              >Choose a time</a
+              >Find a time</a
             >
           </div>
           <button class="meet-alt" id="write-first" data-contact-channel="email" type="button">
-            Write first
+            Email Uriel instead
           </button>
         </div>
       </div>
@@ -1266,11 +1359,11 @@
     <!-- Persistent fact — appears once 01 leaves the viewport -->
     <div id="fact-bar" aria-hidden="true">
       <strong>From €236,141 all-in · Handover 2027</strong>
-      <a href="#meeting">Choose a time</a>
+      <a href="#meeting">Find a time</a>
     </div>
 
-    <!-- Lightbox for the construction record -->
-    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Construction record" hidden>
+    <!-- Shared lightbox for the construction record and interior renders -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery" hidden>
       <button class="lb-close" type="button" aria-label="Close">×</button>
       <button class="lb-prev" type="button" aria-label="Previous photo">‹</button>
       <img class="lb-img" src="" alt="" />
@@ -1279,8 +1372,8 @@
     </div>
 
     <script>
-      // Proof gallery: thumbs swap with the main photograph; the main opens
-      // the lightbox, which pages through all five frames.
+      // Proof thumbnails swap with the main photograph. The proof record and
+      // each type's interior renders share one keyboard-accessible lightbox.
       (function () {
         var mainImg = document.getElementById('gallery-main-img');
         var mainCap = document.getElementById('gallery-main-caption');
@@ -1338,25 +1431,50 @@
           idx = (idx + delta + order.length) % order.length;
           showCurrent();
         }
-        function openLightbox() {
-          order = [mainData()].concat(thumbs.map(dataOf));
-          idx = 0;
+        function openLightbox(items, startIndex, label) {
+          order = items;
+          idx = startIndex || 0;
+          lb.setAttribute('aria-label', label || 'Image gallery');
           showCurrent();
           lb.hidden = false;
           document.body.style.overflow = 'hidden';
+        }
+        function openProofLightbox() {
+          openLightbox(
+            [mainData()].concat(thumbs.map(dataOf)),
+            0,
+            'Construction record'
+          );
         }
         function closeLightbox() {
           lb.hidden = true;
           document.body.style.overflow = '';
         }
 
-        mainImg.addEventListener('click', openLightbox);
+        mainImg.addEventListener('click', openProofLightbox);
         var countBtn = document.getElementById('gallery-count');
         if (countBtn) {
           document.getElementById('gallery-count-label').textContent =
             thumbs.length + 1 + ' photos';
-          countBtn.addEventListener('click', openLightbox);
+          countBtn.addEventListener('click', openProofLightbox);
         }
+        Array.prototype.forEach.call(
+          document.querySelectorAll('.render-gallery'),
+          function (gallery) {
+            var renderButtons = Array.prototype.slice.call(
+              gallery.querySelectorAll('button')
+            );
+            renderButtons.forEach(function (btn, renderIndex) {
+              btn.addEventListener('click', function () {
+                openLightbox(
+                  renderButtons.map(dataOf),
+                  renderIndex,
+                  gallery.getAttribute('aria-label')
+                );
+              });
+            });
+          }
+        );
         lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
         lb.querySelector('.lb-prev').addEventListener('click', function () { step(-1); });
         lb.querySelector('.lb-next').addEventListener('click', function () { step(1); });
@@ -1399,6 +1517,6 @@
         privacyUrl: 'privacy-policy-en.html'
       };
     </script>
-    <script src="assets/analytics.js" defer></script>
+    <script src="assets/analytics.js?v=3" defer></script>
   </body>
 </html>
