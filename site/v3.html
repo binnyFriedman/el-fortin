@@ -5,7 +5,7 @@
   Structure: landing-page-v3-5-second-structure.md
   Frames:    landing-page-v3-framing.md
 
-  Page order: 01 offer · 06 earn · fit · 03 proof · 07 uriel · 08 position · 09 meeting
+  Page order: 01 offer · 06 earn · mechanism · fit · 03 proof · 07 uriel · 08 position · 09 meeting
   02, 04 and 05 stay off. The 4% sits inside 06.
   Visuals — the image grammar of the page:
   - Renders bleed (they are the world being built): the hero is a full-height
@@ -14,8 +14,10 @@
     Uriel, Puzol (03, 07).
   - Plans sit on white (they are paper): the deed drawings lead the cards (08).
   Page rhythm: light hero → dark band: ownership, letting, both yields (06)
-    → booking-style photo gallery (03) → person with his Puzol record (07)
-    → cutaway map + cards (08) → dark close (09).
+    → structure diagrams (mechanism) → fit → booking-style photo gallery (03)
+    → person with his Puzol record (07) → cutaway map + cards (08) → dark close (09).
+  Mechanism hierarchy: trust the structure (machine + deed + corridor), not
+  the person — Uriel follows later as operator, not as the warrant.
   The return band separates the first-year target, long-run upside, long-lease
   case, and contractual floor.
 
@@ -389,6 +391,232 @@
         font-size: 15px;
         line-height: 1.45;
         opacity: 0.88;
+      }
+
+      /* ---------- mechanism — trust the structure ---------- */
+      /* Three diagram layers between yield and fit: the machine,
+         the deed's power, and why this corridor. Light ground after the
+         dark earn band. Diagrams carry the argument; type labels the parts. */
+      #mechanism.frame {
+        margin-bottom: clamp(72px, 12vh, 140px);
+      }
+      .mech-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: clamp(48px, 8vh, 80px);
+        max-width: 36em;
+      }
+      .mech-heading h2 {
+        max-width: 14em;
+      }
+      .mech-heading .support {
+        opacity: 0.78;
+      }
+
+      .mech-layers {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(56px, 9vh, 96px);
+      }
+
+      .mech-layer {
+        display: grid;
+        gap: clamp(20px, 3vw, 36px);
+      }
+      .mech-layer-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 34em;
+      }
+      .mech-layer-copy h3 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+        line-height: 1.2;
+        color: var(--deep);
+      }
+      .mech-layer-copy p {
+        font-size: 16px;
+        line-height: 1.5;
+        opacity: 0.78;
+        max-width: 32em;
+      }
+
+      .mech-diagram {
+        background: #fdfbf4;
+        border: 1px solid rgba(23, 61, 74, 0.16);
+        padding: clamp(22px, 3.5vw, 40px);
+      }
+
+      /* Layer 1 — the machine: ten units → demand mix */
+      .machine-units {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .machine-unit {
+        aspect-ratio: 1 / 1.15;
+        background: var(--deep);
+        opacity: 0.88;
+      }
+      .machine-unit:nth-child(odd) {
+        opacity: 1;
+        background: var(--blue);
+      }
+      .machine-label {
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--deep);
+        opacity: 0.62;
+        margin-bottom: 16px;
+      }
+      .machine-flow .machine-label {
+        margin-bottom: 0;
+      }
+      .machine-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .machine-arrow {
+        color: var(--gold);
+        font-size: 22px;
+        line-height: 1;
+      }
+      .machine-mix {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+      }
+      .machine-channel {
+        border-top: 3px solid var(--gold);
+        padding-top: 12px;
+        text-align: center;
+      }
+      .machine-channel strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--deep);
+        margin-bottom: 4px;
+      }
+      .machine-channel span {
+        font-size: 13.5px;
+        opacity: 0.65;
+        line-height: 1.35;
+      }
+
+      /* Layer 2 — deed power + governance */
+      .power-grid {
+        display: grid;
+        gap: clamp(20px, 3vw, 32px);
+        grid-template-columns: 1fr 1fr;
+      }
+      .power-card {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+        padding-top: 16px;
+      }
+      .power-card h4 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        color: var(--deep);
+      }
+      .power-card p {
+        font-size: 15px;
+        line-height: 1.5;
+        opacity: 0.78;
+        max-width: none;
+      }
+      .power-gov {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+        padding-top: 16px;
+        margin-top: 8px;
+      }
+      .power-gov > h4 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+        color: var(--deep);
+      }
+      .gov-flow {
+        display: grid;
+        gap: 0;
+      }
+      .gov-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 12px 0;
+        border-top: 1px solid rgba(23, 61, 74, 0.14);
+      }
+      .gov-step:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .gov-num {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: 1.35rem;
+        color: var(--gold);
+        line-height: 1.1;
+        min-width: 1.4em;
+      }
+      .gov-step strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--deep);
+        margin-bottom: 2px;
+      }
+      .gov-step span {
+        font-size: 14px;
+        opacity: 0.72;
+        line-height: 1.4;
+      }
+      .power-align {
+        margin-top: 18px;
+        padding: 14px 16px;
+        background: rgba(23, 107, 135, 0.08);
+        border-left: 3px solid var(--blue);
+        font-size: 15px;
+        line-height: 1.45;
+        color: var(--deep);
+      }
+
+      /* Layer 3 — corridor mechanics */
+      .corridor-grid {
+        display: grid;
+        gap: clamp(18px, 2.5vw, 28px);
+      }
+      .corridor-fact {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+        padding-top: 14px;
+      }
+      .corridor-value {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.7rem, 3vw, 2.2rem);
+        line-height: 1.05;
+        color: var(--deep);
+        margin-bottom: 8px;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .corridor-fact p {
+        font-size: 14.5px;
+        line-height: 1.4;
+        opacity: 0.72;
+        max-width: none;
       }
 
       /* ---------- fit — the reader recognizes themselves ---------- */
@@ -856,6 +1084,32 @@
         .return-grid {
           grid-template-columns: repeat(4, 1fr);
         }
+        .mech-layer {
+          grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+          align-items: start;
+          gap: clamp(32px, 5vw, 64px);
+        }
+        .power-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gov-flow {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 12px;
+        }
+        .gov-step {
+          grid-template-columns: 1fr;
+          gap: 6px;
+          border-top: none;
+          border-left: 3px solid var(--gold);
+          padding: 0 0 0 12px;
+        }
+        .gov-step:first-child {
+          padding-top: 0;
+        }
+        .corridor-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
         .fit-points {
           grid-template-columns: repeat(3, 1fr);
         }
@@ -915,6 +1169,41 @@
           transform-origin: center;
           justify-self: start;
           margin-left: 2px;
+        }
+
+        .machine-units {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 5px;
+        }
+        .machine-mix {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .machine-channel {
+          text-align: left;
+          padding-left: 12px;
+          border-top: none;
+          border-left: 3px solid var(--gold);
+          padding-top: 0;
+        }
+        .power-grid {
+          grid-template-columns: 1fr;
+        }
+        .gov-flow {
+          grid-template-columns: 1fr;
+        }
+        .gov-step {
+          grid-template-columns: auto 1fr;
+          border-left: none;
+          border-top: 1px solid rgba(23, 61, 74, 0.14);
+          padding: 12px 0 12px 0;
+        }
+        .gov-step:first-child {
+          border-top: none;
+          padding-top: 0;
+        }
+        .corridor-grid {
+          grid-template-columns: 1fr 1fr;
         }
 
         .earn-copy {
@@ -1010,6 +1299,171 @@
             <p class="return-label">Contractual floor</p>
             <p class="return-value">4.0%</p>
             <p class="return-detail">Developer income covenant</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MECHANISM — trust the structure ================= -->
+    <!-- After the yield numbers, before fit: the machine, the deed's
+         power, and why this corridor. Diagrams carry the argument. -->
+    <section class="frame" id="mechanism" data-section-id="mechanism">
+      <div class="mech-heading">
+        <p class="kicker">The structure</p>
+        <h2>Built so the plan&nbsp;holds.</h2>
+        <p class="support">
+          One managed building. Deeded control. A corridor that already rents
+          hard.
+        </p>
+      </div>
+
+      <div class="mech-layers">
+        <!-- Layer 1 — the machine -->
+        <div class="mech-layer">
+          <div class="mech-layer-copy">
+            <h3>One building. Ten levers.</h3>
+            <p>
+              Not ten separate rentals. One operation that shifts long-term,
+              mid-term and tourist mix as demand moves.
+            </p>
+          </div>
+          <div class="mech-diagram" aria-label="Building operated as one machine">
+            <p class="machine-label">Ten titled apartments</p>
+            <div class="machine-units" aria-hidden="true">
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+              <span class="machine-unit"></span>
+            </div>
+            <div class="machine-flow">
+              <span class="machine-arrow" aria-hidden="true">↓</span>
+              <p class="machine-label">Demand shifts · the mix shifts</p>
+              <div class="machine-mix">
+                <div class="machine-channel">
+                  <strong>Long-term</strong>
+                  <span>Base occupancy</span>
+                </div>
+                <div class="machine-channel">
+                  <strong>Mid-term</strong>
+                  <span>Corporate stays</span>
+                </div>
+                <div class="machine-channel">
+                  <strong>Tourist</strong>
+                  <span>Seasonal upside</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer 2 — deed = power -->
+        <div class="mech-layer">
+          <div class="mech-layer-copy">
+            <h3>You are paid in power: the&nbsp;deed.</h3>
+            <p>
+              Registered title at the Registro de la Propiedad. Capital is
+              never trapped. Together, owners control the operator.
+            </p>
+          </div>
+          <div class="mech-diagram">
+            <div class="power-grid">
+              <div class="power-card">
+                <h4>Registered title</h4>
+                <p>
+                  Your own escritura — a specific apartment, not a fund unit or
+                  paper share.
+                </p>
+              </div>
+              <div class="power-card">
+                <h4>Sell anytime</h4>
+                <p>
+                  Ordinary resale of your deeded title. More titles, more say
+                  in the building.
+                </p>
+              </div>
+            </div>
+            <div class="power-gov">
+              <h4>Collective governance</h4>
+              <div class="gov-flow" aria-label="Operator replacement sequence">
+                <div class="gov-step">
+                  <span class="gov-num">1</span>
+                  <div>
+                    <strong>Default</strong>
+                    <span>Missed covenant or material breach triggers the process.</span>
+                  </div>
+                </div>
+                <div class="gov-step">
+                  <span class="gov-num">2</span>
+                  <div>
+                    <strong>Cure period</strong>
+                    <span>The operator has a fixed window to remedy.</span>
+                  </div>
+                </div>
+                <div class="gov-step">
+                  <span class="gov-num">3</span>
+                  <div>
+                    <strong>Step-in rights</strong>
+                    <span>Owners can intervene if the cure fails.</span>
+                  </div>
+                </div>
+                <div class="gov-step">
+                  <span class="gov-num">4</span>
+                  <div>
+                    <strong>Collective replacement</strong>
+                    <span>Majority of owners can remove and replace the operator.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="power-align">
+              Developer capital went in first. He loses if you leave — the
+              incentives run the same direction.
+            </p>
+          </div>
+        </div>
+
+        <!-- Layer 3 — why here -->
+        <div class="mech-layer">
+          <div class="mech-layer-copy">
+            <h3>Why this corridor.</h3>
+            <p>
+              Valencia metro demand is structural. New furnished stock earns a
+              premium. The town is growing into that pressure.
+            </p>
+          </div>
+          <div class="mech-diagram">
+            <div class="corridor-grid" aria-label="Corridor market facts">
+              <div class="corridor-fact">
+                <p class="corridor-value">24%</p>
+                <p>of Valencia listings rent in under 24 hours — Spain’s fastest major market.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">+40–55%</p>
+                <p>new-build furnished rent above town average (17 comps, July 2026).</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">11–14.5%</p>
+                <p>corridor rent growth, 2024–25.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">~500&nbsp;m</p>
+                <p>to an existing Metro Line 1 station; another planned closer.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">×2</p>
+                <p>Riba-roja population in twenty years — youngest comarca in the province.</p>
+              </div>
+              <div class="corridor-fact">
+                <p class="corridor-value">32–38</p>
+                <p>enquiries per listing on average — vacancy risk sits near zero.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
