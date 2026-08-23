@@ -20,13 +20,13 @@
     <title>El Fortín — Turn-Key Spanish Real Estate. Target 6.9%–9% Yields.</title>
     <meta
       name="description"
-      content="Own a fully managed, newly built apartment in Riba-roja, Valencia. Direct deed in your name, target 6.9%–9% yields, protected by a 4.0% contractual floor. From €229,383 all-in. Delivery late 2027."
+      content="Own a fully managed, newly built apartment in Riba-roja, Valencia. Direct deed in your name, target 6.9%–9% yields, protected by a 4.0% contractual floor. From €236,000 all-in. Delivery late 2027."
     />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="El Fortín — Turn-Key Spanish Real Estate. Target 6.9%–9% Yields." />
     <meta
       property="og:description"
-      content="Fully managed apartments in Riba-roja, Valencia. Direct deed, 6.9%–9% target yields, 4.0% contractual floor. From €229,383 all-in."
+      content="Fully managed apartments in Riba-roja, Valencia. Direct deed, 6.9%–9% target yields, 4.0% contractual floor. From €236,000 all-in."
     />
     <meta property="og:image" content="assets/hero-desk-elfortin.jpg" />
     <meta property="og:locale" content="en_GB" />
@@ -240,6 +240,24 @@
         color: var(--deep);
       }
 
+      .offer-entry {
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        line-height: 1.2;
+        color: var(--deep);
+      }
+
+      .heading-accent {
+        color: var(--blue);
+      }
+      #problem .heading-accent,
+      #package .heading-accent {
+        color: var(--gold);
+      }
+
       .offer-chips {
         display: flex;
         flex-wrap: wrap;
@@ -274,10 +292,33 @@
         margin: 0 auto;
         padding: clamp(56px, 10vh, 100px) var(--gutter);
       }
+      .friction-intro {
+        max-width: 42em;
+        margin-bottom: clamp(36px, 6vh, 60px);
+      }
       .friction-copy h2 {
         color: var(--plaster);
         max-width: 16em;
-        margin-bottom: clamp(36px, 6vh, 60px);
+        margin-bottom: 16px;
+      }
+      .friction-support {
+        max-width: 39em;
+        color: var(--plaster);
+        font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+        opacity: 0.8;
+      }
+      .pillar-visual {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        min-height: 150px;
+        margin-bottom: 22px;
+        background: rgba(250, 245, 232, 0.06);
+        border: 1px solid rgba(250, 245, 232, 0.14);
+      }
+      .pillar-visual svg {
+        width: min(100%, 190px);
+        height: 130px;
       }
       #problem .pillar {
         border-top-color: rgba(250, 245, 232, 0.28);
@@ -291,6 +332,20 @@
       }
 
       /* ---------- mechanism tiers ---------- */
+      .mech-icon {
+        display: grid;
+        place-items: center;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 18px;
+        color: var(--blue);
+        background: rgba(23, 107, 135, 0.09);
+        border: 1px solid rgba(23, 107, 135, 0.18);
+      }
+      .mech-icon svg {
+        width: 40px;
+        height: 40px;
+      }
       .mech-tag {
         display: inline-block;
         font-size: 12px;
@@ -303,15 +358,34 @@
         padding: 5px 10px;
         margin-bottom: 10px;
       }
+      .mech-tag--yield {
+        color: #795400;
+        background: rgba(242, 188, 59, 0.2);
+        border-color: rgba(121, 84, 0, 0.28);
+      }
+      .mech-tag--safety {
+        color: var(--blue);
+        background: rgba(23, 107, 135, 0.1);
+        border-color: rgba(23, 107, 135, 0.22);
+      }
+      .mech-tag--floor {
+        color: #a14325;
+        background: rgba(201, 104, 67, 0.12);
+        border-color: rgba(201, 104, 67, 0.3);
+      }
 
       /* ---------- calculator ---------- */
       .calc-panel {
         background: var(--deep);
         color: var(--plaster);
         padding: clamp(28px, 4vw, 44px);
-        margin-bottom: clamp(36px, 6vh, 64px);
         display: grid;
         gap: clamp(24px, 4vw, 36px);
+        align-content: start;
+        min-width: 0;
+      }
+      .calc-panel h3 {
+        color: var(--plaster);
       }
       .calc-controls {
         display: grid;
@@ -332,8 +406,7 @@
         margin: 0;
       }
       .calc-seg {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
         gap: 8px;
       }
       .calc-seg label {
@@ -387,51 +460,39 @@
         opacity: 0.85;
         line-height: 1.45;
       }
+      .calc-yield {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+        color: var(--plaster);
+        font-variant-numeric: tabular-nums lining-nums;
+        line-height: 1.2;
+      }
+      .calc-yield-label {
+        margin-top: 12px;
+      }
       .calc-outcome-note {
         font-size: 14px;
         opacity: 0.72;
-        margin-top: 4px;
+        margin-top: 10px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(250, 245, 232, 0.18);
       }
       .calc-unit-line {
         font-size: 15px;
         opacity: 0.82;
       }
-
-      /* ---------- offer snapshot ---------- */
-      .offer-snapshot {
-        display: grid;
-        gap: clamp(20px, 3vw, 32px);
-        margin-bottom: clamp(28px, 4vw, 44px);
-      }
-      .offer-stat {
-        border-top: 1px solid rgba(23, 61, 74, 0.22);
-        padding-top: 16px;
-      }
-      .offer-stat-label {
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        opacity: 0.62;
-        margin-bottom: 10px;
-      }
-      .offer-stat-value {
+      .calc-unit-line strong {
+        display: block;
         font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(2rem, 3.6vw, 2.8rem);
-        line-height: 1;
-        color: var(--deep);
-        font-variant-numeric: tabular-nums lining-nums;
-        margin-bottom: 8px;
-      }
-      .offer-stat-detail {
-        font-size: 15px;
-        opacity: 0.72;
-        line-height: 1.4;
+        font-size: clamp(1.15rem, 2vw, 1.45rem);
+        color: var(--plaster);
+        opacity: 1;
+        margin-top: 4px;
       }
 
       .align-copy {
         max-width: 36em;
-        margin-bottom: clamp(36px, 6vh, 64px);
+        margin: clamp(36px, 6vh, 64px) 0;
       }
       .align-copy h3 {
         margin-bottom: 10px;
@@ -497,20 +558,28 @@
       }
 
       /* ---------- inventory ---------- */
-      .position-overview {
+      .asset-calculator {
         display: grid;
-        gap: clamp(24px, 4vw, 48px);
-        align-items: start;
-        margin-bottom: clamp(36px, 6vh, 64px);
+        gap: clamp(20px, 3vw, 36px);
       }
-      .machine-label {
-        font-size: 12.5px;
-        font-weight: 600;
+      .asset-selector {
+        padding: clamp(24px, 3vw, 36px);
+        background: #fdfbf4;
+        border: 1px solid rgba(23, 61, 74, 0.16);
+      }
+      .step-label {
+        font-size: 12px;
+        font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--deep);
-        opacity: 0.62;
-        margin-bottom: 16px;
+        color: var(--blue);
+        margin-bottom: 8px;
+      }
+      .calc-panel .step-label {
+        color: var(--gold);
+      }
+      .step-title {
+        margin-bottom: 22px;
       }
       .inventory-legend {
         display: flex;
@@ -571,6 +640,7 @@
         color: var(--deep);
         cursor: default;
         border-style: dashed;
+        opacity: 1;
       }
       .inventory-unit.is-selected:not(.is-reserved) {
         outline: 2px solid var(--gold);
@@ -603,6 +673,9 @@
       }
       .machine-map img {
         width: 100%;
+      }
+      .machine-map {
+        margin-bottom: clamp(36px, 6vh, 64px);
       }
 
       .cards {
@@ -1073,15 +1146,9 @@
         .pillars {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
-        .calc-panel {
-          grid-template-columns: 1fr 1fr;
-          align-items: end;
-        }
-        .offer-snapshot {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-        .position-overview {
+        .asset-calculator {
           grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          align-items: stretch;
         }
         .cards {
           grid-template-columns: 1fr 1fr;
@@ -1146,20 +1213,25 @@
     <section class="frame" id="offer" data-section-id="offer">
       <div class="offer-split">
         <div class="offer-copy">
-          <p class="kicker">El Fortín · Riba-roja de Túria, Valencia</p>
-          <h1 style="max-width: 16em;">Turn-Key Spanish Real Estate: Target 6.9%–9% Yields, Protected by a 4.0% Floor.</h1>
-          <p class="support" style="font-size: 18px; max-width: 28em; opacity: 0.85;">
-            Own a fully managed, newly built apartment in Riba-roja (Valencia’s fastest-growing logistics hub). Direct deed in your name, 100% hands-off operations, and developer-aligned incentives.
+          <p class="kicker">
+            El Fortín · Riba-roja de Túria, Valencia · Handover 2027
           </p>
-          <ul class="offer-chips" id="offer-fact" aria-label="Key asset metrics" style="margin-top: 6px;">
-            <li>From €229,383 all-in</li>
-            <li>6.9% Year 1 → 9% stabilized</li>
-            <li>4.0% contractual floor</li>
-            <li>Late 2027</li>
-          </ul>
-          <div class="cta-pair" style="margin-top: 12px;">
-            <a class="action" href="#package" id="cta-hero">Request the Financial Model &amp; Prospectus</a>
+          <h1 style="max-width: 16em;">
+            Own a Fully Managed Spanish Apartment
+            <span class="heading-accent">Targeting 6.9%–9% Yields.</span>
+          </h1>
+          <p
+            class="support"
+            id="offer-fact"
+            style="font-size: 18px; max-width: 28em; opacity: 0.85;"
+          >
+            Your apartment is deeded directly in your name and protected by a contractual 4.0% net
+            yield floor.
+          </p>
+          <div class="cta-pair">
+            <a class="action" href="#package" id="cta-hero">Get the Financial Model</a>
           </div>
+          <p class="offer-entry">Entry ticket · From €236K</p>
         </div>
         <figure>
           <div class="offer-hero-img">
@@ -1180,27 +1252,78 @@
 
     <section class="frame" id="problem" data-section-id="problem">
       <div class="friction-copy">
-        <h2>Why Traditional Overseas Property is Broken</h2>
+        <div class="friction-intro">
+          <h2>Why Traditional Overseas Property <span class="heading-accent">is Broken</span></h2>
+          <p class="friction-support">
+            Between lifeless paper shares and the nightmare of cross-border landlording, the old way
+            of investing abroad is failing you.
+          </p>
+        </div>
         <div class="pillars">
           <article class="pillar">
-            <h3>Paper, not property</h3>
+            <div class="pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 190 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M22 27H84L78 43L86 56L76 70L84 87H22V27Z"
+                  fill="rgba(250,245,232,.08)"
+                  stroke="#72bde0"
+                  stroke-width="2"
+                />
+                <path
+                  d="M88 27H150V87H88L82 70L92 56L84 43L88 27Z"
+                  fill="rgba(250,245,232,.08)"
+                  stroke="#72bde0"
+                  stroke-width="2"
+                />
+                <path d="M34 42H68M34 52H61M105 42H138M111 52H138" stroke="#FAF5E8" stroke-width="2" opacity=".6" />
+                <circle cx="118" cy="82" r="12" stroke="#F2BC3B" stroke-width="5" />
+                <path d="M127 91L153 117M143 107L151 99M150 114L158 106" stroke="#F2BC3B" stroke-width="5" stroke-linecap="square" />
+              </svg>
+            </div>
+            <h3>Paper, Not Property</h3>
             <p>
-              Real estate funds give you shares, not control. You cannot sell your specific unit or
-              point to a physical asset you actually own.
+              Real estate funds sell you shares, not control. You can’t sell a specific unit, and
+              you can’t point to a physical asset you actually own. You’re buying paper, not bricks.
             </p>
           </article>
           <article class="pillar">
-            <h3>The long-distance landlord</h3>
+            <div class="pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 190 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="63" cy="65" r="42" stroke="#72bde0" stroke-width="2" opacity=".45" />
+                <path d="M21 65H105M63 23C77 37 84 51 84 65C84 79 77 93 63 107M63 23C49 37 42 51 42 65C42 79 49 93 63 107" stroke="#72bde0" stroke-width="2" opacity=".45" />
+                <rect x="82" y="14" width="72" height="102" rx="8" fill="#173D4A" stroke="#FAF5E8" stroke-width="2" />
+                <path d="M105 24H131" stroke="#FAF5E8" stroke-width="2" opacity=".45" />
+                <text x="118" y="53" fill="#F2BC3B" font-family="Source Sans 3, sans-serif" font-size="18" font-weight="700" text-anchor="middle">3:00 AM</text>
+                <rect x="94" y="65" width="48" height="14" rx="3" fill="#C96843" />
+                <circle cx="101" cy="72" r="2.5" fill="#FAF5E8" />
+                <path d="M108 72H134" stroke="#FAF5E8" stroke-width="2" opacity=".8" />
+                <rect x="94" y="85" width="48" height="14" rx="3" fill="#C96843" />
+                <circle cx="101" cy="92" r="2.5" fill="#FAF5E8" />
+                <path d="M108 92H134" stroke="#FAF5E8" stroke-width="2" opacity=".8" />
+              </svg>
+            </div>
+            <h3>The Long-Distance Landlord</h3>
             <p>
-              Buying direct abroad means managing foreign tenants, midnight maintenance calls, and
-              complex tax laws — all on you.
+              Buying direct abroad means managing foreign tenants, answering midnight maintenance
+              calls, and navigating complex tax traps—all entirely on you.
             </p>
           </article>
           <article class="pillar">
-            <h3>Fake yield projections</h3>
+            <div class="pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 190 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 19V108H169" stroke="#FAF5E8" stroke-width="2" opacity=".35" />
+                <path d="M31 93L61 75L87 81L116 45" stroke="#72bde0" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" />
+                <path d="M116 45L125 50M116 45L115 55" stroke="#F2BC3B" stroke-width="4" />
+                <path d="M128 58L145 91L164 109" stroke="#C96843" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" />
+                <path d="M152 108H165V95" stroke="#C96843" stroke-width="5" />
+                <path d="M35 29H96" stroke="#FAF5E8" stroke-width="8" opacity=".12" />
+                <path d="M35 43H77" stroke="#FAF5E8" stroke-width="5" opacity=".12" />
+              </svg>
+            </div>
+            <h3>Fake Yield Projections</h3>
             <p>
-              Brochures boast high returns based on perfect conditions. When the market dips, you
-              carry 100% of the downside risk.
+              Glossy brochures boast high returns based on flawless conditions. But the moment the
+              market dips, you shoulder 100% of the downside risk.
             </p>
           </article>
         </div>
@@ -1209,38 +1332,59 @@
 
     <section class="frame" id="mechanism" data-section-id="mechanism">
       <div class="section-head">
-        <p class="kicker">The strategy</p>
-        <h2>The 3-Tier Rental Strategy: High Yield Upside, Guaranteed Downside.</h2>
+        <p class="kicker">The 3-Tier Rental Strategy</p>
+        <h2>High Yield Upside, <span class="heading-accent">Guaranteed Downside.</span></h2>
         <p class="support">
-          We don’t rely on a single strategy. We stack three distinct rental models to maximize your
-          upside while aggressively protecting your baseline.
+          Forget perfect-world projections where you carry all the risk. We stack three distinct
+          rental models to maximize returns while contractually protecting your baseline.
         </p>
       </div>
       <div class="pillars">
         <article class="pillar">
+          <div class="mech-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 31L12 23L19 26L30 13" stroke="currentColor" stroke-width="3" />
+              <path d="M24 13H30V19" stroke="currentColor" stroke-width="3" />
+              <rect x="23" y="25" width="14" height="10" rx="1" fill="#F2BC3B" stroke="currentColor" stroke-width="2" />
+              <path d="M27 25V22H33V25" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
           <h3>Maximum Yield</h3>
-          <p class="mech-tag">Corporate &amp; short stays</p>
+          <p class="mech-tag mech-tag--yield">Corporate &amp; short stays</p>
           <p>
-            Riba-roja is Valencia’s most critical logistics and industrial node, sitting directly on
-            the A-3/AP-7 highways. We target high-margin short stays for visiting corporate
-            contractors, logistics executives, and airport transit to drive yields up to 9%.
+            We target high-margin short stays from visiting executives in Riba-roja to drive yields
+            up to 9%.
           </p>
         </article>
         <article class="pillar">
+          <div class="mech-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="7" width="27" height="27" rx="2" stroke="currentColor" stroke-width="2.5" />
+              <path d="M4 14H31M11 4V10M24 4V10" stroke="currentColor" stroke-width="2.5" />
+              <rect x="21" y="23" width="15" height="12" rx="2" fill="#F2BC3B" stroke="currentColor" stroke-width="2" />
+              <path d="M24 23V20.5C24 17.5 26 16 28.5 16C31 16 33 17.5 33 20.5V23" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
           <h3>The Safety Net</h3>
-          <p class="mech-tag">Mid-term corporate</p>
+          <p class="mech-tag mech-tag--safety">Mid-term corporate</p>
           <p>
-            To bridge seasonal gaps, we secure 3–4 month contracts with local corporations, ensuring
-            steady, high-margin occupancy.
+            To bridge seasonal gaps, we lock in 3–4 month corporate contracts for steady, high-margin
+            occupancy.
           </p>
         </article>
         <article class="pillar">
+          <div class="mech-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 25H35V34H5V25Z" fill="#173D4A" stroke="currentColor" stroke-width="2" />
+              <path d="M9 20H31V25H9V20ZM14 15H26V20H14V15Z" fill="#72BDE0" stroke="currentColor" stroke-width="2" />
+              <path d="M3 35H37" stroke="currentColor" stroke-width="3" />
+            </svg>
+          </div>
           <h3>The Guaranteed Floor</h3>
-          <p class="mech-tag">Long-term residential</p>
+          <p class="mech-tag mech-tag--floor">Long-term residential</p>
           <p>
-            Backed by massive local demand for traditional housing. Even if market conditions force
-            us to pivot to multi-year residential leases, you are contractually guaranteed a 4.0%
-            net baseline yield.
+            You no longer carry the downside. If market conditions pivot, you are contractually
+            guaranteed a 4.0% net baseline yield.
           </p>
         </article>
       </div>
@@ -1248,75 +1392,18 @@
 
     <section class="frame" id="inventory" data-section-id="inventory">
       <div class="section-head">
-        <p class="kicker">The offer &amp; the math</p>
-        <h2>Deeded Apartments. 100% Aligned Incentives.</h2>
+        <p class="kicker">The Offer &amp; The Math</p>
+        <h2>Deeded Apartments. <span class="heading-accent">100% Aligned Incentives.</span></h2>
         <p class="support">
-          Ten deeded apartments in one fully managed building. Pick a title and let us do the work.
-          <span id="units-left-label">Nine</span> of ten remain.
+          A boutique portfolio of just ten deeded apartments. You own the physical title; we handle
+          the midnight maintenance calls. Explore the live inventory and project your returns below.
         </p>
       </div>
 
-      <div class="offer-snapshot" aria-label="Unit 5 example">
-        <div class="offer-stat">
-          <p class="offer-stat-label">Example</p>
-          <p class="offer-stat-value">Unit 5</p>
-          <p class="offer-stat-detail">1-Bedroom · €229,383 all-in</p>
-        </div>
-        <div class="offer-stat">
-          <p class="offer-stat-label">Target stabilized income</p>
-          <p class="offer-stat-value">€1,318–€1,720</p>
-          <p class="offer-stat-detail">6.9% – 9% · per month</p>
-        </div>
-        <div class="offer-stat">
-          <p class="offer-stat-label">Guaranteed floor</p>
-          <p class="offer-stat-value">€765</p>
-          <p class="offer-stat-detail">4.0% · per month</p>
-        </div>
-      </div>
-
-      <div class="align-copy">
-        <h3>How we align our incentives</h3>
-        <p>
-          We charge zero fixed monthly management fees. We only take 15% of the rental revenue. We
-          only make money when your asset performs. If the property’s yield drops to the 4.0% floor,
-          we waive our management fee entirely to ensure your contractual minimum is protected.
-        </p>
-      </div>
-
-      <div class="calc-panel" aria-live="polite">
-        <div class="calc-controls">
-          <div class="calc-field">
-            <fieldset>
-              <legend>Rental strategy</legend>
-              <div class="calc-seg">
-                <label>
-                  <input type="radio" name="calc-strategy" value="long" checked />
-                  <span>Long-term</span>
-                </label>
-                <label>
-                  <input type="radio" name="calc-strategy" value="mixed" />
-                  <span>Mixed</span>
-                </label>
-                <label>
-                  <input type="radio" name="calc-strategy" value="tourist" />
-                  <span>Short stays</span>
-                </label>
-              </div>
-            </fieldset>
-          </div>
-          <p class="calc-unit-line" id="calc-unit-line">Unit 5 · 1 Bedroom · €229,383 all-in</p>
-        </div>
-        <div class="calc-outcome">
-          <p class="calc-outcome-label">You receive</p>
-          <p class="calc-outcome-value" id="calc-monthly">≈ €765 / mo</p>
-          <p class="calc-outcome-sub" id="calc-yearly">≈ €9,175 / yr · 4.0% on all-in price</p>
-          <p class="calc-outcome-note" id="calc-note">4.0% contractual floor applies where modelled net falls short.</p>
-        </div>
-      </div>
-
-      <div class="position-overview">
-        <div class="inventory-schematic">
-          <p class="machine-label">Building inventory · pick a title</p>
+      <div class="asset-calculator">
+        <div class="asset-selector">
+          <p class="step-label">1 · The Building Inventory</p>
+          <h3 class="step-title">Select Your Asset</h3>
           <ul class="inventory-legend">
             <li><span class="swatch is-type-a"></span>1 Bedroom</li>
             <li><span class="swatch is-type-b"></span>2 Bedrooms</li>
@@ -1327,17 +1414,70 @@
             Pick a title above — the calculator updates automatically.
           </p>
         </div>
-        <figure class="machine-map">
-          <img
-            src="assets/hero-cutaway-photoreal-v1.jpg"
-            width="1536"
-            height="1024"
-            alt="Cutaway of the building: ten apartments, one shared stair, the roof terrace on top"
-            loading="lazy"
-          />
-          <figcaption class="caption">Each title works with the whole. Architectural render.</figcaption>
-        </figure>
+
+        <div class="calc-panel" aria-live="polite">
+          <div>
+            <p class="step-label">2 · Interactive Calculator</p>
+            <h3 class="step-title">Project Your Yield</h3>
+            <p class="calc-unit-line">
+              Now showing projections for:
+              <strong id="calc-unit-line">Unit 5 · 1-Bed · €236,000 all-in</strong>
+            </p>
+          </div>
+          <div class="calc-controls">
+            <div class="calc-field">
+              <fieldset>
+                <legend>Select rental strategy</legend>
+                <div class="calc-seg">
+                  <label>
+                    <input type="radio" name="calc-strategy" value="long" checked />
+                    <span>Long-term · Guaranteed Floor</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="calc-strategy" value="mixed" />
+                    <span>Mixed · Stabilized</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="calc-strategy" value="tourist" />
+                    <span>Short Stays · Max Yield</span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="calc-outcome">
+            <p class="calc-outcome-label">You receive</p>
+            <p class="calc-outcome-value" id="calc-monthly">≈ €787 / month</p>
+            <p class="calc-outcome-sub" id="calc-yearly">≈ €9,440 / year</p>
+            <p class="calc-outcome-label calc-yield-label">Net yield</p>
+            <p class="calc-yield" id="calc-yield">4.0% on all-in price</p>
+            <p class="calc-outcome-note" id="calc-note">
+              Our 4.0% contractual floor applies. Even in a pure long-term residential model, your
+              downside is fully protected.
+            </p>
+          </div>
+        </div>
       </div>
+
+      <div class="align-copy">
+        <h3>No Landlord Headaches, No Hidden Fees</h3>
+        <p>
+          We charge zero fixed monthly fees—just 15% of rental revenue. We only make money when your
+          actual, physical asset performs. If your yield ever drops to the 4.0% floor, we waive our
+          management fee entirely. We take the hit, not you.
+        </p>
+      </div>
+
+      <figure class="machine-map">
+        <img
+          src="assets/hero-cutaway-photoreal-v1.jpg"
+          width="1536"
+          height="1024"
+          alt="Cutaway of the building: ten apartments, one shared stair, the roof terrace on top"
+          loading="lazy"
+        />
+        <figcaption class="caption">Each title works with the whole. Architectural render.</figcaption>
+      </figure>
       <div class="cards">
         <article class="card">
           <h3>1 Bedroom Layout</h3>
@@ -1416,7 +1556,7 @@
     <section class="frame" id="proof" data-section-id="proof">
       <div class="section-head">
         <p class="kicker">The execution &amp; timeline</p>
-        <h2>Fully Licensed. Under Construction.</h2>
+        <h2>Fully Licensed. <span class="heading-accent">Under Construction.</span></h2>
         <p class="support">
           Building license Exp. 4497/2025/GEN · Builder: NODHOUSES
         </p>
@@ -1529,7 +1669,10 @@
         </figure>
         <div class="uriel-copy">
           <p class="kicker">The operator</p>
-          <h2>Built by a Local. Executed to Institutional Standards.</h2>
+          <h2>
+            Built by a Local.
+            <span class="heading-accent">Executed to Institutional Standards.</span>
+          </h2>
           <p class="support">
             I grew up in Israel, spent time in Argentina, and ultimately chose to move my family to
             Spain. Today, my wife, our two kids, and I live right here in Riba-roja.
@@ -1595,7 +1738,7 @@
         </figure>
         <div class="meeting-copy">
           <p class="kicker meeting-kicker">Direct from the developer</p>
-          <h2>Request the Investor Package</h2>
+          <h2>Request the <span class="heading-accent">Investor Package</span></h2>
           <p class="meeting-support">
             Get the 10-year financial model, the legal framework, and direct access to the developer.
           </p>
@@ -1621,7 +1764,7 @@
               <label for="lead-capital">Available capital</label>
               <select id="lead-capital" name="capital" required>
                 <option value="" selected disabled>Select</option>
-                <option value="€229k–€300k (one apartment)">€229k–€300k (one apartment)</option>
+                <option value="€236k–€300k (one apartment)">€236k–€300k (one apartment)</option>
                 <option value="€300k–€550k">€300k–€550k</option>
                 <option value="€550k+">€550k+</option>
               </select>
@@ -1674,7 +1817,7 @@
     </footer>
 
     <div id="fact-bar" aria-hidden="true">
-      <strong>From €229,383 all-in · Late 2027</strong>
+      <strong>From €236,000 all-in · Late 2027</strong>
       <a href="#package">Request the financial model</a>
     </div>
 
@@ -1699,18 +1842,22 @@
     <script>
       window.EFConfig = {
         floorPct: 0.04,
-        taxCommunityEur: 400,
+        strategyYields: {
+          long: 0.04,
+          mixed: 0.069,
+          tourist: 0.09
+        },
         inventory: [
-          { id: '1', beds: 2, layout: '2-Bed', price: 266009, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available', rentMonthly: { long: 1100, mixed: 1650, tourist: 2500 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '2', beds: 2, layout: '2-Bed', price: 266009, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available', rentMonthly: { long: 1100, mixed: 1650, tourist: 2500 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '3', beds: 2, layout: '2-Bed', price: 272149, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available', rentMonthly: { long: 1100, mixed: 1650, tourist: 2500 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '4', beds: 2, layout: '2-Bed', price: 272149, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available', rentMonthly: { long: 1100, mixed: 1650, tourist: 2500 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '5', beds: 1, layout: '1-Bed', price: 229383, typeClass: 'A', area: '40.48 m² useful', plan: 'assets/render-type-a.jpg', status: 'available', rentMonthly: { long: 900, mixed: 1400, tourist: 2200 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '6', beds: 1, layout: '1-Bed', price: 229383, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available', rentMonthly: { long: 900, mixed: 1400, tourist: 2200 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '7', beds: 1, layout: '1-Bed', price: 229383, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available', rentMonthly: { long: 900, mixed: 1400, tourist: 2200 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '8', beds: 1, layout: '1-Bed', price: 229383, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available', rentMonthly: { long: 900, mixed: 1400, tourist: 2200 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '9', beds: 2, layout: '2-Bed', price: 279338, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available', rentMonthly: { long: 1100, mixed: 1650, tourist: 2500 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } },
-          { id: '10', beds: 2, layout: '2-Bed', price: 279338, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'reserved', rentMonthly: { long: 1100, mixed: 1650, tourist: 2500 }, opexEur: { long: 500, mixed: 1450, tourist: 1700 }, feePct: { long: 0.08, mixed: 0.1, tourist: 0.14 } }
+          { id: '1', beds: 2, layout: '2-Bed', price: 266009, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '2', beds: 2, layout: '2-Bed', price: 266009, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '3', beds: 2, layout: '2-Bed', price: 272149, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '4', beds: 2, layout: '2-Bed', price: 272149, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '5', beds: 1, layout: '1-Bed', price: 236000, typeClass: 'A', area: '40.48 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '6', beds: 1, layout: '1-Bed', price: 236000, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '7', beds: 1, layout: '1-Bed', price: 236000, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '8', beds: 1, layout: '1-Bed', price: 236000, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '9', beds: 2, layout: '2-Bed', price: 279338, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '10', beds: 2, layout: '2-Bed', price: 279338, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'reserved' }
         ]
       };
 
@@ -1723,22 +1870,14 @@
         },
         compute: function (unitId, strategy) {
           var u = window.EFConfig.inventory.find(function(item) { return item.id === unitId; });
-          var gross = u.rentMonthly[strategy] * 12;
-          var fee = gross * u.feePct[strategy];
-          var opex = u.opexEur[strategy];
-          var tax = window.EFConfig.taxCommunityEur;
-          var net = Math.max(0, gross - fee - opex - tax);
+          var projectedYield = window.EFConfig.strategyYields[strategy];
+          var projectedPayout = u.price * projectedYield;
           var floorEur = u.price * window.EFConfig.floorPct;
-          var payout = Math.max(net, floorEur);
+          var payout = Math.max(projectedPayout, floorEur);
           return {
             unit: u,
-            gross: gross,
-            fee: fee,
-            opex: opex,
-            tax: tax,
-            net: net,
             floorEur: floorEur,
-            floorApplies: floorEur > net,
+            floorApplies: projectedPayout <= floorEur,
             payout: payout,
             payoutYield: payout / u.price
           };
@@ -1766,6 +1905,7 @@
           var r = window.EFMath.compute(unit.id, strategy);
           var monthly = document.getElementById('calc-monthly');
           var yearly = document.getElementById('calc-yearly');
+          var yieldLine = document.getElementById('calc-yield');
           var note = document.getElementById('calc-note');
           var unitLine = document.getElementById('calc-unit-line');
 
@@ -1780,20 +1920,25 @@
               ' all-in';
           }
           if (monthly) {
-            monthly.textContent = '≈ ' + window.EFMath.euro(r.payout / 12) + ' / mo';
+            monthly.textContent = '≈ ' + window.EFMath.euro(r.payout / 12) + ' / month';
           }
           if (yearly) {
-            yearly.textContent =
-              '≈ ' +
-              window.EFMath.euro(r.payout) +
-              ' / yr · ' +
-              window.EFMath.pct(r.payoutYield) +
-              ' on all-in price';
+            yearly.textContent = '≈ ' + window.EFMath.euro(r.payout) + ' / year';
+          }
+          if (yieldLine) {
+            yieldLine.textContent = window.EFMath.pct(r.payoutYield) + ' on all-in price';
           }
           if (note) {
-            note.textContent = r.floorApplies
-              ? '4.0% contractual floor applies — modelled net falls short of the covenant.'
-              : 'Market yield exceeds the 4.0% floor — you keep the surplus.';
+            if (strategy === 'long') {
+              note.textContent =
+                'Our 4.0% contractual floor applies. Even in a pure long-term residential model, your downside is fully protected.';
+            } else if (strategy === 'mixed') {
+              note.textContent =
+                'The stabilized model projects a 6.9% net yield while the 4.0% contractual floor remains in place.';
+            } else {
+              note.textContent =
+                'Short stays project a 9.0% net yield. The 4.0% contractual floor continues to protect your baseline.';
+            }
           }
         }
 
@@ -1834,7 +1979,6 @@
         }
 
         function describe(unit) {
-          var r = window.EFMath.compute(unit.id, 'long');
           if (unit.status === 'reserved') {
             return 'Unit ' + unit.id + ' · ' + unit.layout + ' · Reserved — title already claimed.';
           }
@@ -1844,9 +1988,7 @@
             unit.layout +
             ' · ' +
             window.EFMath.euro(unit.price) +
-            ' all-in · you receive ≈ ' +
-            window.EFMath.euro(r.payout / 12) +
-            ' / mo'
+            ' all-in · selected'
           );
         }
 
@@ -1881,24 +2023,17 @@
             '</strong><span>' +
             (unit.status === 'reserved' ? 'Reserved' : 'Available') +
             '</span>';
-          btn.addEventListener('click', function () {
-            select(unit.id);
-          });
+          if (unit.status === 'reserved') {
+            btn.disabled = true;
+          } else {
+            btn.addEventListener('click', function () {
+              select(unit.id);
+            });
+          }
           grid.appendChild(btn);
         });
 
         var c = counts();
-        var leftLabel = document.getElementById('units-left-label');
-        if (leftLabel) {
-          var words = {
-            9: 'Nine',
-            8: 'Eight',
-            7: 'Seven',
-            6: 'Six',
-            5: 'Five'
-          };
-          leftLabel.textContent = words[c.left] || String(c.left);
-        }
         Array.prototype.forEach.call(document.querySelectorAll('[data-avail]'), function (el) {
           var t = el.getAttribute('data-avail');
           if (t === '1-Bed') {
