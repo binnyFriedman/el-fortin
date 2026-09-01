@@ -17,16 +17,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>El Fortín — Turn-Key Spanish Real Estate. Target 6.9%–9% Yields.</title>
+    <title>El Fortín — Turn-Key Spanish Real Estate. 4% Floor, 8% Target.</title>
     <meta
       name="description"
-      content="Own a fully managed, newly built apartment in Riba-roja, Valencia. Direct deed in your name, target 6.9%–9% yields, protected by a 4.0% contractual floor. From €236,000 all-in. Delivery late 2027."
+      content="Own a fully managed, newly built apartment in Riba-roja, Valencia. Direct deed in your name, 4% contractual floor, 6.9% first-year projected income, 8% target yield. From €236,000 all-in. Delivery late 2027."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="El Fortín — Turn-Key Spanish Real Estate. Target 6.9%–9% Yields." />
+    <meta property="og:title" content="El Fortín — Turn-Key Spanish Real Estate. 4% Floor, 8% Target." />
     <meta
       property="og:description"
-      content="Fully managed apartments in Riba-roja, Valencia. Direct deed, 6.9%–9% target yields, 4.0% contractual floor. From €236,000 all-in."
+      content="Fully managed apartments in Riba-roja, Valencia. Direct deed, 4% contractual floor, 6.9% first-year projected income, 8% target. From €236,000 all-in."
     />
     <meta property="og:image" content="assets/hero-desk-elfortin.jpg" />
     <meta property="og:locale" content="en_GB" />
@@ -205,6 +205,20 @@
         gap: 12px;
         align-items: center;
       }
+      #cta-hero {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      #cta-hero::after {
+        content: "";
+        width: 0.45em;
+        height: 0.45em;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-0.12em);
+        flex-shrink: 0;
+      }
 
       figure {
         margin: 0;
@@ -217,7 +231,7 @@
       /* ---------- 01 offer ---------- */
       #offer.frame {
         padding-top: clamp(28px, 6vh, 72px);
-        margin-bottom: 0;
+        margin-bottom: var(--frame-gap);
       }
 
       .offer-split {
@@ -229,7 +243,7 @@
       .offer-copy {
         display: flex;
         flex-direction: column;
-        gap: 22px;
+        gap: 36px;
         align-items: flex-start;
       }
 
@@ -250,10 +264,45 @@
         color: var(--deep);
       }
 
+      .offer-copy .offer-sub {
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.5;
+        max-width: 28em;
+        color: var(--deep);
+        opacity: 0.85;
+        text-wrap: pretty;
+      }
+
+      .offer-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+      }
+      .offer-features li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--deep);
+      }
+      .offer-features li::before {
+        content: "✓";
+        flex: 0 0 auto;
+        color: var(--blue);
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
       .heading-accent {
         color: var(--blue);
       }
-      #problem .heading-accent,
       #package .heading-accent {
         color: var(--gold);
       }
@@ -280,58 +329,7 @@
         width: 100%;
       }
 
-      /* ---------- problem band ---------- */
-      #problem.frame {
-        max-width: none;
-        padding: 0;
-        background: var(--deep);
-        margin-bottom: var(--frame-gap);
-      }
-      .friction-copy {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: clamp(56px, 10vh, 100px) var(--gutter);
-      }
-      .friction-intro {
-        max-width: 42em;
-        margin-bottom: clamp(36px, 6vh, 60px);
-      }
-      .friction-copy h2 {
-        color: var(--plaster);
-        max-width: 16em;
-        margin-bottom: 16px;
-      }
-      .friction-support {
-        max-width: 39em;
-        color: var(--plaster);
-        font-size: clamp(1.05rem, 1.7vw, 1.2rem);
-        opacity: 0.8;
-      }
-      .pillar-visual {
-        display: grid;
-        place-items: center;
-        width: 100%;
-        min-height: 150px;
-        margin-bottom: 22px;
-        background: rgba(250, 245, 232, 0.06);
-        border: 1px solid rgba(250, 245, 232, 0.14);
-      }
-      .pillar-visual svg {
-        width: min(100%, 190px);
-        height: 130px;
-      }
-      #problem .pillar {
-        border-top-color: rgba(250, 245, 232, 0.28);
-      }
-      #problem .pillar h3,
-      #problem .pillar p {
-        color: var(--plaster);
-      }
-      #problem .pillar p {
-        opacity: 0.82;
-      }
-
-      /* ---------- mechanism tiers ---------- */
+      /* ---------- mechanism cards ---------- */
       .mech-icon {
         display: grid;
         place-items: center;
@@ -346,159 +344,416 @@
         width: 40px;
         height: 40px;
       }
-      .mech-tag {
-        display: inline-block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--blue);
-        background: rgba(23, 107, 135, 0.1);
-        border: 1px solid rgba(23, 107, 135, 0.22);
-        padding: 5px 10px;
-        margin-bottom: 10px;
+      .pillar p strong {
+        font-weight: 700;
+        color: #6e5200;
       }
-      .mech-tag--yield {
-        color: #795400;
-        background: rgba(242, 188, 59, 0.2);
-        border-color: rgba(121, 84, 0, 0.28);
-      }
-      .mech-tag--safety {
-        color: var(--blue);
-        background: rgba(23, 107, 135, 0.1);
-        border-color: rgba(23, 107, 135, 0.22);
-      }
-      .mech-tag--floor {
-        color: #a14325;
-        background: rgba(201, 104, 67, 0.12);
-        border-color: rgba(201, 104, 67, 0.3);
+      #mechanism .pillar p {
+        opacity: 1;
+        font-weight: 500;
+        color: var(--deep);
       }
 
       /* ---------- calculator ---------- */
-      .calc-panel {
-        background: var(--deep);
-        color: var(--plaster);
-        padding: clamp(28px, 4vw, 44px);
-        display: grid;
-        gap: clamp(24px, 4vw, 36px);
-        align-content: start;
-        min-width: 0;
-      }
-      .calc-panel h3 {
-        color: var(--plaster);
-      }
-      .calc-controls {
-        display: grid;
-        gap: 20px;
-      }
-      .calc-field legend {
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--plaster);
-        opacity: 0.68;
-        margin-bottom: 10px;
-      }
-      .calc-field fieldset {
-        border: 0;
-        padding: 0;
-        margin: 0;
-      }
-      .calc-seg {
+      .calc-unit-block {
         display: grid;
         gap: 8px;
       }
-      .calc-seg label {
-        cursor: pointer;
-      }
-      .calc-seg input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-      }
-      .calc-seg span {
-        display: block;
-        font-size: 14.5px;
-        font-weight: 600;
-        padding: 10px 16px;
-        border: 1px solid rgba(250, 245, 232, 0.28);
-        background: rgba(250, 245, 232, 0.06);
-        color: var(--plaster);
-      }
-      .calc-seg input:checked + span {
-        background: var(--gold);
-        color: var(--deep);
-        border-color: var(--gold);
-      }
-      .calc-seg input:focus-visible + span {
-        outline: 2px solid var(--gold);
-        outline-offset: 2px;
-      }
-      .calc-outcome {
-        border-top: 1px solid rgba(250, 245, 232, 0.28);
-        padding-top: clamp(20px, 3vw, 28px);
-        display: grid;
-        gap: 6px;
-      }
-      .calc-outcome-label {
-        font-size: 13px;
-        font-weight: 600;
+      .calc-selection-label,
+      .scenario-label {
+        font-size: 12px;
+        font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
+      }
+      .calc-selection-label {
+        color: var(--blue);
+      }
+      .scenario-label {
+        color: var(--deep);
+      }
+      .calc-unit-picker {
+        position: relative;
+        max-width: 100%;
+      }
+      button.calc-unit-trigger {
+        appearance: none;
+        -webkit-appearance: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        margin: 0;
+        background: #fff;
+        color: var(--deep);
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.3;
+        text-align: left;
+        padding: 10px 12px 10px 14px;
+        border: 1px solid rgba(23, 61, 74, 0.28);
+        cursor: pointer;
+      }
+      button.calc-unit-trigger:hover {
+        border-color: var(--deep);
+        background: #fff;
+      }
+      .calc-unit-picker.is-open button.calc-unit-trigger {
+        border-color: var(--blue);
+        background: #fff;
+      }
+      button.calc-unit-trigger:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 2px;
+      }
+      .calc-unit-title {
+        min-width: 0;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .calc-unit-chevron {
+        flex: 0 0 auto;
+        width: 10px;
+        height: 6px;
+        background: currentColor;
+        opacity: 0.55;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
+      .calc-unit-picker.is-open .calc-unit-chevron {
+        transform: rotate(180deg);
+      }
+      .calc-unit-menu {
+        position: absolute;
+        z-index: 8;
+        left: 0;
+        right: 0;
+        top: calc(100% + 4px);
+        margin: 0;
+        padding: 4px;
+        list-style: none;
+        background: #fff;
+        border: 1px solid rgba(23, 61, 74, 0.28);
+        max-height: min(360px, 70vh);
+        overflow: auto;
+      }
+      .calc-unit-option {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px 18px;
+        width: 100%;
+        padding: 10px 12px;
+        border: 0;
+        background: transparent;
+        color: var(--deep);
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.3;
+        text-align: left;
+        cursor: pointer;
+      }
+      .calc-unit-option:hover,
+      .calc-unit-option.is-active {
+        background: rgba(23, 107, 135, 0.08);
+      }
+      .calc-unit-option.is-selected {
+        background: rgba(23, 107, 135, 0.12);
+        color: var(--deep);
+      }
+      .calc-unit-option.is-selected:hover,
+      .calc-unit-option.is-selected.is-active {
+        background: rgba(23, 107, 135, 0.16);
+        color: var(--deep);
+      }
+      .calc-unit-option:disabled {
+        opacity: 0.42;
+        cursor: not-allowed;
+        background: transparent;
+      }
+      .calc-unit-option-copy {
+        min-width: 0;
+      }
+      .calc-unit-option-price {
+        flex: 0 0 auto;
+        font-variant-numeric: tabular-nums lining-nums;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .calc-unit-option:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: -3px;
+      }
+      .calc-selected-meta {
+        font-size: 14px;
         opacity: 0.68;
       }
-      .calc-outcome-value {
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(2.2rem, 4vw, 3rem);
-        color: var(--gold);
-        font-variant-numeric: tabular-nums lining-nums;
-        line-height: 1.05;
+      .calc-static {
+        grid-area: static;
+        padding: clamp(24px, 3vw, 36px);
+        display: grid;
+        gap: 18px;
+        align-content: start;
+        min-width: 0;
       }
-      .calc-outcome-sub {
-        font-size: 15px;
-        opacity: 0.85;
-        line-height: 1.45;
+      .calc-unit-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 14px;
+        margin: 0;
       }
-      .calc-yield {
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-        color: var(--plaster);
-        font-variant-numeric: tabular-nums lining-nums;
-        line-height: 1.2;
+      .calc-unit-facts div {
+        padding: 9px 0;
+        border-top: 1px solid rgba(23, 61, 74, 0.14);
       }
-      .calc-yield-label {
-        margin-top: 12px;
+      .calc-unit-facts dt {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.56;
       }
-      .calc-outcome-note {
+      .calc-unit-facts dd {
+        margin-top: 2px;
         font-size: 14px;
-        opacity: 0.72;
-        margin-top: 10px;
-        padding-top: 14px;
-        border-top: 1px solid rgba(250, 245, 232, 0.18);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums lining-nums;
       }
-      .calc-unit-line {
-        font-size: 15px;
-        opacity: 0.82;
+      .calc-unit-plan {
+        min-width: 0;
+        margin: 0;
       }
-      .calc-unit-line strong {
+      .calc-interiors {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin: 0;
+      }
+      .calc-interiors button {
         display: block;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: zoom-in;
+      }
+      .calc-interiors img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border: 1px solid rgba(23, 61, 74, 0.12);
+      }
+      .calc-static .caption {
+        margin-top: -8px;
+      }
+      .calc-panel {
+        grid-area: numbers;
+        background: rgba(23, 107, 135, 0.045);
+        color: var(--deep);
+        padding: clamp(24px, 3vw, 36px);
+        display: grid;
+        gap: 16px;
+        align-content: start;
+        min-width: 0;
+      }
+      .calc-plan-button {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border: 1px solid rgba(23, 61, 74, 0.16);
+        background: #fff;
+        cursor: zoom-in;
+      }
+      .calc-plan-button:hover {
+        border-color: var(--blue);
+      }
+      .calc-plan-button:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 2px;
+      }
+      .calc-plan-button img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        object-fit: contain;
+      }
+      .calc-plan-caption {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 4px 12px;
+        margin-top: 6px;
+        font-size: 12px;
+        line-height: 1.35;
+        opacity: 0.65;
+      }
+      .calc-panel.is-updating .calc-slider {
+        animation: calc-result-refresh 0.42s ease-out;
+      }
+      @keyframes calc-result-refresh {
+        0% {
+          background: rgba(242, 188, 59, 0.22);
+          transform: translateX(-3px);
+        }
+        100% {
+          background: #fdfbf4;
+          transform: translateX(0);
+        }
+      }
+      .calc-slider {
+        padding: 16px 18px 18px;
+        background: #fdfbf4;
+        border: 1px solid rgba(23, 61, 74, 0.14);
+        border-left: 4px solid var(--gold);
+      }
+      .calc-slider-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .calc-slider-pct {
         font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(1.15rem, 2vw, 1.45rem);
-        color: var(--plaster);
-        opacity: 1;
+        font-size: 1.55rem;
+        line-height: 1;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--deep);
+      }
+      .calc-slider input[type="range"] {
+        display: block;
+        width: 100%;
+        margin: 0;
+        accent-color: var(--gold);
+        cursor: pointer;
+      }
+      .calc-slider-marks {
+        position: relative;
+        height: 18px;
+        margin-top: 8px;
+      }
+      .calc-slider-marks span {
+        position: absolute;
+        top: 0;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        opacity: 0.55;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+      .calc-slider-marks .mark-floor {
+        left: 0;
+        transform: none;
+      }
+      .calc-slider-marks .mark-yearone {
+        left: 48.333%;
+      }
+      .calc-slider-marks .mark-target {
+        left: 66.667%;
+      }
+      .calc-slider-marks .mark-max {
+        left: 100%;
+        transform: translateX(-100%);
+      }
+      .calc-slider-income {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 4px 10px;
+        margin-top: 14px;
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.65rem, 3vw, 2.15rem);
+        color: var(--deep);
+        font-variant-numeric: tabular-nums lining-nums;
+        line-height: 1.08;
+      }
+      .scenario-monthly {
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0.68;
+      }
+      .calc-ops {
+        font-size: 14.5px;
+        line-height: 1.5;
+        padding: 12px 14px;
+        background: rgba(23, 107, 135, 0.06);
+        border-left: 4px solid var(--blue);
+      }
+      .calc-ops-label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 4px;
+      }
+      .calc-method {
+        font-size: 13.5px;
+        line-height: 1.5;
+        opacity: 0.7;
+        padding-top: 2px;
+      }
+      .calc-method strong {
+        color: var(--deep);
+      }
+      .calc-method a {
+        color: var(--blue);
+        font-weight: 700;
+        text-underline-offset: 3px;
+      }
+      .calc-breakdown {
+        margin: 0 0 6px;
+      }
+      .calc-breakdown dl {
+        margin: 8px 0 0;
+      }
+      .calc-breakdown div {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        padding: 8px 0;
+        border-top: 1px solid rgba(23, 61, 74, 0.14);
+        font-size: 15px;
+      }
+      .calc-breakdown dt {
+        opacity: 0.72;
+      }
+      .calc-breakdown .calc-rate {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        opacity: 0.55;
+      }
+      .calc-breakdown dd {
+        margin: 0;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums lining-nums;
+        white-space: nowrap;
+      }
+      .calc-breakdown .is-total {
+        border-top: 2px solid var(--deep);
         margin-top: 4px;
+        padding-top: 12px;
       }
-
-      .align-copy {
-        max-width: 36em;
-        margin: clamp(36px, 6vh, 64px) 0;
+      .calc-breakdown .is-total dt,
+      .calc-breakdown .is-total dd {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        opacity: 1;
+        color: var(--deep);
       }
-      .align-copy h3 {
-        margin-bottom: 10px;
-      }
-      .align-copy p {
-        opacity: 0.78;
+      @media (prefers-reduced-motion: reduce) {
+        .calc-panel.is-updating .calc-slider {
+          animation: none;
+        }
       }
 
       .exec-timeline {
@@ -532,6 +787,92 @@
         font-weight: 700;
       }
 
+      .faq-list {
+        display: grid;
+        gap: 0;
+        max-width: 42em;
+      }
+      .faq-item {
+        border-top: 1px solid rgba(23, 61, 74, 0.22);
+      }
+      .faq-item:last-child {
+        border-bottom: 1px solid rgba(23, 61, 74, 0.22);
+      }
+      .faq-item summary {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        cursor: pointer;
+        list-style: none;
+        padding: 18px 0;
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: clamp(1.2rem, 2vw, 1.55rem);
+        line-height: 1.25;
+        color: var(--deep);
+      }
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-item summary::after {
+        content: "";
+        flex: 0 0 auto;
+        width: 10px;
+        height: 6px;
+        margin-top: 0.55em;
+        background: currentColor;
+        opacity: 0.55;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transition: transform 0.2s ease;
+      }
+      .faq-item[open] summary {
+        color: var(--blue);
+      }
+      .faq-item[open] summary::after {
+        transform: rotate(180deg);
+      }
+      .faq-item summary:hover {
+        color: var(--blue);
+      }
+      .faq-item summary:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 4px;
+      }
+      .faq-body {
+        padding: 0 0 22px;
+      }
+      .faq-body > p {
+        margin-bottom: 12px;
+        max-width: 38em;
+      }
+      .faq-cover {
+        list-style: none;
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+      }
+      .faq-cover li {
+        padding-left: 1.15em;
+        text-indent: -1.15em;
+      }
+      .faq-cover li::before {
+        content: "→ ";
+        color: var(--blue);
+        font-weight: 700;
+      }
+      .faq-note {
+        margin-top: 14px;
+        font-size: 15.5px;
+        max-width: 38em;
+        opacity: 0.78;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .faq-item summary::after {
+          transition: none;
+        }
+      }
+
       /* ---------- structure ---------- */
       .section-head {
         display: flex;
@@ -560,167 +901,13 @@
       /* ---------- inventory ---------- */
       .asset-calculator {
         display: grid;
-        gap: clamp(20px, 3vw, 36px);
-      }
-      .asset-selector {
-        padding: clamp(24px, 3vw, 36px);
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "numbers"
+          "static";
+        gap: 0;
         background: #fdfbf4;
         border: 1px solid rgba(23, 61, 74, 0.16);
-      }
-      .step-label {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--blue);
-        margin-bottom: 8px;
-      }
-      .calc-panel .step-label {
-        color: var(--gold);
-      }
-      .step-title {
-        margin-bottom: 22px;
-      }
-      .inventory-legend {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 20px;
-        list-style: none;
-        margin-bottom: 14px;
-        font-size: 13px;
-        opacity: 0.72;
-      }
-      .inventory-legend li {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-      }
-      .inventory-legend .swatch {
-        width: 13px;
-        height: 13px;
-        border: 1px solid rgba(23, 61, 74, 0.2);
-      }
-      .inventory-legend .swatch.is-type-a {
-        background: var(--deep);
-      }
-      .inventory-legend .swatch.is-type-b {
-        background: var(--blue);
-      }
-      .inventory-legend .swatch.is-reserved {
-        background: rgba(23, 61, 74, 0.28);
-        border-style: dashed;
-      }
-      .inventory-grid {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 8px;
-      }
-      .inventory-unit {
-        appearance: none;
-        -webkit-appearance: none;
-        border: 1px solid rgba(23, 61, 74, 0.2);
-        background: var(--blue);
-        color: var(--plaster);
-        padding: 14px 8px;
-        cursor: pointer;
-        font-family: inherit;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        align-items: center;
-        justify-content: center;
-        min-height: 78px;
-      }
-      .inventory-unit.is-type-a {
-        background: var(--deep);
-      }
-      .inventory-unit.is-reserved {
-        background: rgba(23, 61, 74, 0.28);
-        color: var(--deep);
-        cursor: default;
-        border-style: dashed;
-        opacity: 1;
-      }
-      .inventory-unit.is-selected:not(.is-reserved) {
-        outline: 2px solid var(--gold);
-        outline-offset: 2px;
-      }
-      .inventory-unit:hover:not(.is-reserved) {
-        opacity: 0.9;
-      }
-      .inventory-unit strong {
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-      }
-      .inventory-unit span {
-        font-size: 11.5px;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        opacity: 0.8;
-      }
-      .inventory-detail {
-        margin-top: 14px;
-        padding: 14px 16px;
-        background: rgba(23, 107, 135, 0.08);
-        border-left: 3px solid var(--blue);
-        font-size: 15px;
-        line-height: 1.45;
-        color: var(--deep);
-        min-height: 3.2em;
-      }
-      .machine-map img {
-        width: 100%;
-      }
-      .machine-map {
-        margin-bottom: clamp(36px, 6vh, 64px);
-      }
-
-      .cards {
-        display: grid;
-        gap: clamp(20px, 3vw, 36px);
-      }
-      .card {
-        background: #fdfbf4;
-        border: 1px solid rgba(23, 61, 74, 0.16);
-        padding: clamp(18px, 2.5vw, 30px);
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-      .card h3 {
-        font-size: 1.5rem;
-      }
-      .card-facts {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px 20px;
-        font-size: 15.5px;
-      }
-      .card-facts dt {
-        opacity: 0.6;
-      }
-      .card-facts dd {
-        font-weight: 600;
-        text-align: right;
-      }
-      .card-facts .avail {
-        color: var(--blue);
-      }
-      .card .plan {
-        width: 100%;
-        margin-top: auto;
-        aspect-ratio: 2.6 / 1;
-        object-fit: cover;
-        background: #fff;
-        border: 1px solid rgba(23, 61, 74, 0.12);
-      }
-      .cards-note {
-        margin-top: 18px;
-        font-size: 14px;
-        opacity: 0.65;
       }
 
       .render-strip {
@@ -826,6 +1013,17 @@
         flex-direction: column;
         gap: 20px;
         align-items: flex-start;
+      }
+      .uriel-statement {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .uriel-signoff {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        opacity: 0.72;
       }
       .ba-pair {
         display: grid;
@@ -1115,7 +1313,7 @@
           padding: 0;
         }
         .offer-split {
-          grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+          grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
           gap: 0;
           align-items: stretch;
           min-height: 100svh;
@@ -1123,8 +1321,8 @@
         .offer-copy {
           min-width: 0;
           align-self: center;
-          padding: clamp(40px, 6vh, 80px) clamp(24px, 3vw, 48px)
-            clamp(40px, 6vh, 80px) clamp(40px, 6vw, 96px);
+          padding: clamp(56px, 9vh, 112px) clamp(24px, 3vw, 48px)
+            clamp(56px, 9vh, 112px) clamp(40px, 6vw, 96px);
           container-type: inline-size;
         }
         .offer-copy h1 {
@@ -1147,11 +1345,12 @@
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
         .asset-calculator {
-          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-          align-items: stretch;
+          grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+          grid-template-areas:
+            "static numbers";
         }
-        .cards {
-          grid-template-columns: 1fr 1fr;
+        .calc-panel {
+          border-left: 1px solid rgba(23, 61, 74, 0.16);
         }
         .gallery {
           grid-template-columns: 2fr 1fr;
@@ -1184,8 +1383,11 @@
           aspect-ratio: 4 / 5;
           object-fit: cover;
         }
-        .inventory-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        .calc-panel {
+          border-top: 1px solid rgba(23, 61, 74, 0.16);
+        }
+        .calc-static {
+          border-top: 1px solid rgba(23, 61, 74, 0.16);
         }
         .gallery-thumbs img {
           aspect-ratio: 1 / 1;
@@ -1196,14 +1398,16 @@
         .render-gallery {
           grid-template-columns: 1fr;
         }
+        .calc-interiors {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
         .earn-copy {
           padding: 48px var(--gutter) 64px;
         }
       }
 
       @media (max-width: 560px) {
-        .ba-pair,
-        .cards {
+        .ba-pair {
           grid-template-columns: 1fr;
         }
       }
@@ -1214,24 +1418,25 @@
       <div class="offer-split">
         <div class="offer-copy">
           <p class="kicker">
-            El Fortín · Riba-roja de Túria, Valencia · Handover 2027
+            El Fortín · Riba-roja de Túria, Valencia
           </p>
           <h1 style="max-width: 16em;">
-            Own a Fully Managed Spanish Apartment
-            <span class="heading-accent">Targeting 6.9%–9% Yields.</span>
+            Effortless Real Estate.
+            <span class="heading-accent">Uncompromising Security.</span>
           </h1>
-          <p
-            class="support"
-            id="offer-fact"
-            style="font-size: 18px; max-width: 28em; opacity: 0.85;"
-          >
-            Your apartment is deeded directly in your name and protected by a contractual 4.0% net
-            yield floor.
-          </p>
+          <h2 class="offer-sub" id="offer-fact">
+            Professionally managed apartment in a prime location.<br />
+            Designed for investors who value their time.
+          </h2>
+          <ul class="offer-features">
+            <li>4% Secured Floor Yield (8% Projected Return)</li>
+            <li>100% Deeded Ownership (Direct Title / Escritura)</li>
+            <li>Turnkey Package Starting at €236,000</li>
+            <li>Project Completion: 2027</li>
+          </ul>
           <div class="cta-pair">
-            <a class="action" href="#package" id="cta-hero">Get the Financial Model</a>
+            <a class="action" href="#package" id="cta-hero">Request the Investment Deck</a>
           </div>
-          <p class="offer-entry">Entry ticket · From €236K</p>
         </div>
         <figure>
           <div class="offer-hero-img">
@@ -1250,141 +1455,61 @@
       </div>
     </section>
 
-    <section class="frame" id="problem" data-section-id="problem">
-      <div class="friction-copy">
-        <div class="friction-intro">
-          <h2>Why Traditional Overseas Property <span class="heading-accent">is Broken</span></h2>
-          <p class="friction-support">
-            Between lifeless paper shares and the nightmare of cross-border landlording, the old way
-            of investing abroad is failing you.
-          </p>
-        </div>
-        <div class="pillars">
-          <article class="pillar">
-            <div class="pillar-visual" aria-hidden="true">
-              <svg viewBox="0 0 190 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M22 27H84L78 43L86 56L76 70L84 87H22V27Z"
-                  fill="rgba(250,245,232,.08)"
-                  stroke="#72bde0"
-                  stroke-width="2"
-                />
-                <path
-                  d="M88 27H150V87H88L82 70L92 56L84 43L88 27Z"
-                  fill="rgba(250,245,232,.08)"
-                  stroke="#72bde0"
-                  stroke-width="2"
-                />
-                <path d="M34 42H68M34 52H61M105 42H138M111 52H138" stroke="#FAF5E8" stroke-width="2" opacity=".6" />
-                <circle cx="118" cy="82" r="12" stroke="#F2BC3B" stroke-width="5" />
-                <path d="M127 91L153 117M143 107L151 99M150 114L158 106" stroke="#F2BC3B" stroke-width="5" stroke-linecap="square" />
-              </svg>
-            </div>
-            <h3>Paper, Not Property</h3>
-            <p>
-              Real estate funds sell you shares, not control. You can’t sell a specific unit, and
-              you can’t point to a physical asset you actually own. You’re buying paper, not bricks.
-            </p>
-          </article>
-          <article class="pillar">
-            <div class="pillar-visual" aria-hidden="true">
-              <svg viewBox="0 0 190 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="63" cy="65" r="42" stroke="#72bde0" stroke-width="2" opacity=".45" />
-                <path d="M21 65H105M63 23C77 37 84 51 84 65C84 79 77 93 63 107M63 23C49 37 42 51 42 65C42 79 49 93 63 107" stroke="#72bde0" stroke-width="2" opacity=".45" />
-                <rect x="82" y="14" width="72" height="102" rx="8" fill="#173D4A" stroke="#FAF5E8" stroke-width="2" />
-                <path d="M105 24H131" stroke="#FAF5E8" stroke-width="2" opacity=".45" />
-                <text x="118" y="53" fill="#F2BC3B" font-family="Source Sans 3, sans-serif" font-size="18" font-weight="700" text-anchor="middle">3:00 AM</text>
-                <rect x="94" y="65" width="48" height="14" rx="3" fill="#C96843" />
-                <circle cx="101" cy="72" r="2.5" fill="#FAF5E8" />
-                <path d="M108 72H134" stroke="#FAF5E8" stroke-width="2" opacity=".8" />
-                <rect x="94" y="85" width="48" height="14" rx="3" fill="#C96843" />
-                <circle cx="101" cy="92" r="2.5" fill="#FAF5E8" />
-                <path d="M108 92H134" stroke="#FAF5E8" stroke-width="2" opacity=".8" />
-              </svg>
-            </div>
-            <h3>The Long-Distance Landlord</h3>
-            <p>
-              Buying direct abroad means managing foreign tenants, answering midnight maintenance
-              calls, and navigating complex tax traps—all entirely on you.
-            </p>
-          </article>
-          <article class="pillar">
-            <div class="pillar-visual" aria-hidden="true">
-              <svg viewBox="0 0 190 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M23 19V108H169" stroke="#FAF5E8" stroke-width="2" opacity=".35" />
-                <path d="M31 93L61 75L87 81L116 45" stroke="#72bde0" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" />
-                <path d="M116 45L125 50M116 45L115 55" stroke="#F2BC3B" stroke-width="4" />
-                <path d="M128 58L145 91L164 109" stroke="#C96843" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" />
-                <path d="M152 108H165V95" stroke="#C96843" stroke-width="5" />
-                <path d="M35 29H96" stroke="#FAF5E8" stroke-width="8" opacity=".12" />
-                <path d="M35 43H77" stroke="#FAF5E8" stroke-width="5" opacity=".12" />
-              </svg>
-            </div>
-            <h3>Fake Yield Projections</h3>
-            <p>
-              Glossy brochures boast high returns based on flawless conditions. But the moment the
-              market dips, you shoulder 100% of the downside risk.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="frame" id="mechanism" data-section-id="mechanism">
       <div class="section-head">
-        <p class="kicker">The 3-Tier Rental Strategy</p>
-        <h2>High Yield Upside, <span class="heading-accent">Guaranteed Downside.</span></h2>
-        <p class="support">
-          Forget perfect-world projections where you carry all the risk. We stack three distinct
-          rental models to maximize returns while contractually protecting your baseline.
-        </p>
+        <p class="kicker">The model</p>
+        <h2>Engineered for <span class="heading-accent">steady income</span></h2>
       </div>
       <div class="pillars">
         <article class="pillar">
           <div class="mech-icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 31L12 23L19 26L30 13" stroke="currentColor" stroke-width="3" />
-              <path d="M24 13H30V19" stroke="currentColor" stroke-width="3" />
-              <rect x="23" y="25" width="14" height="10" rx="1" fill="#F2BC3B" stroke="currentColor" stroke-width="2" />
-              <path d="M27 25V22H33V25" stroke="currentColor" stroke-width="2" />
+              <path d="M6 32V10M6 32h28" stroke="currentColor" stroke-width="2.5" />
+              <path d="M11 24l7-9 5 5 10-12" stroke="currentColor" stroke-width="2.5" />
+              <path d="M26 8h8v8" stroke="currentColor" stroke-width="2.5" />
             </svg>
           </div>
-          <h3>Maximum Yield</h3>
-          <p class="mech-tag mech-tag--yield">Corporate &amp; short stays</p>
+          <h3>Market Stability</h3>
           <p>
-            We target high-margin short stays from visiting executives in Riba-roja to drive yields
-            up to 9%.
+            Anchored in Valencia’s expanding logistics hub, your asset is backed by strong
+            macro-growth and continuous demand from corporate professionals—protecting long-term
+            asset value.
           </p>
         </article>
         <article class="pillar">
           <div class="mech-icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="7" width="27" height="27" rx="2" stroke="currentColor" stroke-width="2.5" />
-              <path d="M4 14H31M11 4V10M24 4V10" stroke="currentColor" stroke-width="2.5" />
-              <rect x="21" y="23" width="15" height="12" rx="2" fill="#F2BC3B" stroke="currentColor" stroke-width="2" />
-              <path d="M24 23V20.5C24 17.5 26 16 28.5 16C31 16 33 17.5 33 20.5V23" stroke="currentColor" stroke-width="2" />
+              <circle cx="20" cy="20" r="5.5" stroke="currentColor" stroke-width="2.5" />
+              <path
+                d="M20 6v4M20 30v4M6 20h4M30 20h4M10.2 10.2l2.8 2.8M27 27l2.8 2.8M10.2 29.8l2.8-2.8M27 13l2.8-2.8"
+                stroke="currentColor"
+                stroke-width="2.5"
+              />
             </svg>
           </div>
-          <h3>The Safety Net</h3>
-          <p class="mech-tag mech-tag--safety">Mid-term corporate</p>
+          <h3>Smart Optimization</h3>
           <p>
-            To bridge seasonal gaps, we lock in 3–4 month corporate contracts for steady, high-margin
-            occupancy.
+            Located on Metro Line 9 near the airport, we use dynamic data to pivot between
+            stable corporate leases and executive stays—targeting <strong>8%</strong> ROI safely.
           </p>
         </article>
         <article class="pillar">
           <div class="mech-icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 25H35V34H5V25Z" fill="#173D4A" stroke="currentColor" stroke-width="2" />
-              <path d="M9 20H31V25H9V20ZM14 15H26V20H14V15Z" fill="#72BDE0" stroke="currentColor" stroke-width="2" />
-              <path d="M3 35H37" stroke="currentColor" stroke-width="3" />
+              <path
+                d="M20 5 8 10.5v9.5c0 7.8 5.2 14.2 12 16 6.8-1.8 12-8.2 12-16V10.5L20 5Z"
+                stroke="currentColor"
+                stroke-width="2.5"
+              />
+              <path d="M14.5 20.2 18.2 23.8l7.4-7.6" stroke="currentColor" stroke-width="2.5" />
             </svg>
           </div>
-          <h3>The Guaranteed Floor</h3>
-          <p class="mech-tag mech-tag--floor">Long-term residential</p>
+          <h3>Income &amp; Title</h3>
           <p>
-            You no longer carry the downside. If market conditions pivot, you are contractually
-            guaranteed a 4.0% net baseline yield.
+            You keep 100% direct, deeded ownership (Escritura) of your apartment—you own the title,
+            not a fund share. Rental income is pooled across the building, so one empty unit cannot
+            zero out your return, and the contractual <strong>4%</strong> floor still holds.
+            Maximum security, zero hassle.
           </p>
         </article>
       </div>
@@ -1393,164 +1518,263 @@
     <section class="frame" id="inventory" data-section-id="inventory">
       <div class="section-head">
         <p class="kicker">The Offer &amp; The Math</p>
-        <h2>Deeded Apartments. <span class="heading-accent">100% Aligned Incentives.</span></h2>
+        <h2>Institutional Transparency <span class="heading-accent">from Day One</span></h2>
         <p class="support">
-          A boutique portfolio of just ten deeded apartments. You own the physical title; we handle
-          the midnight maintenance calls. Explore the live inventory and project your returns below.
+          Every euro of the purchase is itemized. The yields below are net of the 15% management
+          fee—what you see is what you clear, before tax.
         </p>
       </div>
 
       <div class="asset-calculator">
-        <div class="asset-selector">
-          <p class="step-label">1 · The Building Inventory</p>
-          <h3 class="step-title">Select Your Asset</h3>
-          <ul class="inventory-legend">
-            <li><span class="swatch is-type-a"></span>1 Bedroom</li>
-            <li><span class="swatch is-type-b"></span>2 Bedrooms</li>
-            <li><span class="swatch is-reserved"></span>Reserved</li>
-          </ul>
-          <div class="inventory-grid" id="position-inventory" role="group" aria-label="Ten titled apartments"></div>
-          <p class="inventory-detail" id="position-inventory-detail" role="status" aria-live="polite">
-            Pick a title above — the calculator updates automatically.
+        <div class="calc-static">
+          <figure class="calc-unit-plan">
+            <button
+              class="calc-plan-button"
+              id="calc-unit-plan-button"
+              type="button"
+              data-full="assets/render-type-a.jpg"
+              data-caption="1-Bedroom floor plan"
+              data-alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
+              aria-label="Enlarge the 1-Bedroom floor plan"
+            >
+              <img
+                id="calc-unit-plan"
+                src="assets/render-type-a.jpg"
+                width="1290"
+                height="653"
+                alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
+              />
+            </button>
+            <figcaption class="calc-plan-caption">
+              <span id="calc-plan-caption">1-Bedroom floor plan</span>
+              <span>Tap to enlarge</span>
+            </figcaption>
+          </figure>
+
+          <div class="calc-interiors render-gallery" aria-label="Interior design renders">
+            <button
+              type="button"
+              data-full="assets/render-salon-loft.jpg"
+              data-caption="Living space design render"
+              data-alt="Loft living interior design render"
+              aria-label="Open living space render"
+            >
+              <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-kitchen-dining.jpg"
+              data-caption="Kitchen and dining design render"
+              data-alt="Kitchen and dining interior design render"
+              aria-label="Open kitchen and dining render"
+            >
+              <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-bedroom.jpg"
+              data-caption="Bedroom design render"
+              data-alt="Bedroom interior design render"
+              aria-label="Open bedroom render"
+            >
+              <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
+            </button>
+          </div>
+          <p class="caption">Both types are finished to this specification · design renders</p>
+
+          <dl class="calc-unit-facts">
+            <div>
+              <dt>Bedrooms</dt>
+              <dd id="calc-unit-bedrooms">1</dd>
+            </div>
+            <div>
+              <dt>Bathrooms</dt>
+              <dd id="calc-unit-bathrooms">1</dd>
+            </div>
+            <div>
+              <dt>Useful area</dt>
+              <dd id="calc-unit-useful">40.48 m²</dd>
+            </div>
+            <div>
+              <dt>Built area</dt>
+              <dd id="calc-unit-built">~47 m²</dd>
+            </div>
+            <div>
+              <dt>In building</dt>
+              <dd id="calc-unit-total">4 units</dd>
+            </div>
+            <div>
+              <dt>Available now</dt>
+              <dd id="calc-unit-available">4 of 4</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="calc-panel" aria-live="polite" aria-atomic="true">
+          <div class="calc-unit-block">
+            <p class="calc-selection-label" id="calc-unit-label">Choose a title</p>
+            <div class="calc-unit-picker" id="calc-unit-picker">
+              <button
+                type="button"
+                class="calc-unit-trigger"
+                id="calc-unit-trigger"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-controls="calc-unit-menu"
+                aria-labelledby="calc-unit-label calc-unit-title"
+              >
+                <span id="calc-unit-title">Unit 5 · 1-Bedroom · €236,000</span>
+                <span class="calc-unit-chevron" aria-hidden="true"></span>
+              </button>
+              <div
+                class="calc-unit-menu"
+                id="calc-unit-menu"
+                role="listbox"
+                aria-labelledby="calc-unit-label"
+                hidden
+              ></div>
+            </div>
+            <p class="calc-selected-meta" id="calc-unit-meta">40.48 m² useful · available</p>
+          </div>
+          <div class="calc-breakdown">
+            <p class="calc-selection-label">All-in price</p>
+            <dl>
+              <div>
+                <dt>Apartment</dt>
+                <dd id="calc-price-sale">€196,465</dd>
+              </div>
+              <div>
+                <dt>Estimated purchase costs <span class="calc-rate">~12%</span></dt>
+                <dd id="calc-price-closing">€23,575</dd>
+              </div>
+              <div>
+                <dt>Furniture package</dt>
+                <dd id="calc-price-furniture">€15,960</dd>
+              </div>
+              <div class="is-total">
+                <dt>All-in</dt>
+                <dd id="calc-price-allin">€236,000</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="calc-ops">
+            <span class="calc-ops-label">Operational management · 15% of rent</span>
+            End-to-end: tenant placement, maintenance, yield optimization, and revenue pooling.
+            Already deducted from the 4% floor and 8% target below.
+          </p>
+          <div class="calc-slider">
+            <div class="calc-slider-head">
+              <p class="scenario-label">Live income</p>
+              <span class="calc-slider-pct" id="calc-slider-pct">8.0%</span>
+            </div>
+            <input
+              type="range"
+              id="calc-yield-range"
+              min="4"
+              max="10"
+              step="0.1"
+              value="8"
+              aria-valuemin="4"
+              aria-valuemax="10"
+              aria-valuenow="8"
+              aria-label="Model annual yield from 4 percent floor to 10 percent"
+            />
+            <div class="calc-slider-marks" aria-hidden="true">
+              <span class="mark-floor">4%</span>
+              <span class="mark-yearone">6.9%</span>
+              <span class="mark-target">8%</span>
+              <span class="mark-max">10%</span>
+            </div>
+            <p class="calc-slider-income">
+              <span id="calc-slider-yearly">≈ €18,880 / year</span>
+              <span class="scenario-monthly" id="calc-slider-monthly">· ≈ €1,573 / month</span>
+            </p>
+          </div>
+
+          <p class="calc-method">
+            4% is the contractual floor. 6.9% is first-year projected income. 8% is the operating
+            target, not a guarantee. All three are net of the 15% management fee, before
+            investor-specific tax or financing.
+            <a href="#package">Request the full assumptions</a>.
           </p>
         </div>
+      </div>
+    </section>
 
-        <div class="calc-panel" aria-live="polite">
-          <div>
-            <p class="step-label">2 · Interactive Calculator</p>
-            <h3 class="step-title">Project Your Yield</h3>
-            <p class="calc-unit-line">
-              Now showing projections for:
-              <strong id="calc-unit-line">Unit 5 · 1-Bed · €236,000 all-in</strong>
+    <section class="frame" id="uriel" data-section-id="uriel">
+      <div class="uriel-split">
+        <figure class="uriel-portrait">
+          <img
+            class="img-frame"
+            src="assets/uriel-onsite.jpg"
+            width="1199"
+            height="1600"
+            alt="Uriel Nabel on site, facing the camera in a hard hat"
+            loading="lazy"
+          />
+          <figcaption class="caption">
+            Uriel Nabel ·
+            <a href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </figcaption>
+        </figure>
+        <div class="uriel-copy">
+          <p class="kicker">Human, Direct &amp; Transparent</p>
+          <h2>
+            Trust isn't requested—
+            <span class="heading-accent">it's built into the structure.</span>
+          </h2>
+          <div class="uriel-statement">
+            <p class="support">
+              I don't expect you to take my word for it. We designed a low-risk investment model
+              where my success is directly tied to yours. If you don't earn, I don't earn. It's that
+              simple.
+            </p>
+            <p class="uriel-signoff">— Uriel Nabel, Founder &amp; Developer</p>
+          </div>
+          <p class="kicker">About Uriel</p>
+          <div class="track-list">
+            <p>
+              <strong>Systemic Rigor.</strong> Capital-project engineering at SAP, after building a
+              Siemens PLM partner practice. I approach real estate as a risk-mitigated system
+              focused on predictable value creation.
+            </p>
+            <p>
+              <strong>Execution.</strong> El Fortín de Puzol — a historic renovation, delivered
+              August 2025 and fully operating. This is the second project.
+            </p>
+            <p>
+              <strong>Built on Partnership.</strong> Value-driven entrepreneur with a deeply human
+              compass. I believe in straight talk, open-book financials, and long-term relationships
+              with every investor.
             </p>
           </div>
-          <div class="calc-controls">
-            <div class="calc-field">
-              <fieldset>
-                <legend>Select rental strategy</legend>
-                <div class="calc-seg">
-                  <label>
-                    <input type="radio" name="calc-strategy" value="long" checked />
-                    <span>Long-term · Guaranteed Floor</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="calc-strategy" value="mixed" />
-                    <span>Mixed · Stabilized</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="calc-strategy" value="tourist" />
-                    <span>Short Stays · Max Yield</span>
-                  </label>
-                </div>
-              </fieldset>
-            </div>
+          <div class="ba-pair" aria-label="Puzol before and after">
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/brand/puzol/before-compare.jpg"
+                alt="El Fortín de Puzol mid-renovation"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · before</figcaption>
+            </figure>
+            <figure>
+              <img
+                class="img-frame"
+                src="assets/brand/puzol/after-compare.jpg"
+                alt="El Fortín de Puzol delivered: finished entryway"
+                loading="lazy"
+              />
+              <figcaption class="caption">Puzol · delivered August 2025</figcaption>
+            </figure>
           </div>
-          <div class="calc-outcome">
-            <p class="calc-outcome-label">You receive</p>
-            <p class="calc-outcome-value" id="calc-monthly">≈ €787 / month</p>
-            <p class="calc-outcome-sub" id="calc-yearly">≈ €9,440 / year</p>
-            <p class="calc-outcome-label calc-yield-label">Net yield</p>
-            <p class="calc-yield" id="calc-yield">4.0% on all-in price</p>
-            <p class="calc-outcome-note" id="calc-note">
-              Our 4.0% contractual floor applies. Even in a pure long-term residential model, your
-              downside is fully protected.
-            </p>
+          <div class="puzol-actions">
+            <button class="action action--ghost" id="puzol-gallery" type="button">
+              See the delivered building
+            </button>
           </div>
         </div>
       </div>
-
-      <div class="align-copy">
-        <h3>No Landlord Headaches, No Hidden Fees</h3>
-        <p>
-          We charge zero fixed monthly fees—just 15% of rental revenue. We only make money when your
-          actual, physical asset performs. If your yield ever drops to the 4.0% floor, we waive our
-          management fee entirely. We take the hit, not you.
-        </p>
-      </div>
-
-      <figure class="machine-map">
-        <img
-          src="assets/hero-cutaway-photoreal-v1.jpg"
-          width="1536"
-          height="1024"
-          alt="Cutaway of the building: ten apartments, one shared stair, the roof terrace on top"
-          loading="lazy"
-        />
-        <figcaption class="caption">Each title works with the whole. Architectural render.</figcaption>
-      </figure>
-      <div class="cards">
-        <article class="card">
-          <h3>1 Bedroom Layout</h3>
-          <dl class="card-facts">
-            <dt>Useful area</dt>
-            <dd>~40.5 m² · ~47 m² built</dd>
-            <dt>In the building</dt>
-            <dd>Four</dd>
-            <dt>Availability</dt>
-            <dd class="avail" data-avail="1-Bed">4 of 4 available</dd>
-          </dl>
-          <img
-            class="plan"
-            id="unit-plan-a"
-            src="assets/render-type-a.jpg"
-            width="1290"
-            height="653"
-            alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
-            loading="lazy"
-          />
-        </article>
-        <article class="card">
-          <h3>2 Bedroom Layout</h3>
-          <dl class="card-facts">
-            <dt>Useful area</dt>
-            <dd>~49 m² · ~57 m² built</dd>
-            <dt>In the building</dt>
-            <dd>Six</dd>
-            <dt>Availability</dt>
-            <dd class="avail" data-avail="2-Bed">5 of 6 available</dd>
-          </dl>
-          <img
-            class="plan"
-            src="assets/render-type-b.jpg"
-            width="1290"
-            height="653"
-            alt="2-Bedroom floor plan: two bedrooms, two bathrooms and an open living and dining room"
-            loading="lazy"
-          />
-        </article>
-      </div>
-      <figure class="render-strip">
-        <div class="render-gallery" aria-label="Interior design renders">
-          <button
-            type="button"
-            data-full="assets/render-salon-loft.jpg"
-            data-caption="Living space design render"
-            data-alt="Loft living interior design render"
-            aria-label="Open living space render"
-          >
-            <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
-          </button>
-          <button
-            type="button"
-            data-full="assets/render-kitchen-dining.jpg"
-            data-caption="Kitchen and dining design render"
-            data-alt="Kitchen and dining interior design render"
-            aria-label="Open kitchen and dining render"
-          >
-            <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
-          </button>
-          <button
-            type="button"
-            data-full="assets/render-bedroom.jpg"
-            data-caption="Bedroom design render"
-            data-alt="Bedroom interior design render"
-            aria-label="Open bedroom render"
-          >
-            <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
-          </button>
-        </div>
-        <figcaption class="caption">Both types are finished to this specification · design renders</figcaption>
-      </figure>
     </section>
 
     <section class="frame" id="proof" data-section-id="proof">
@@ -1646,82 +1870,99 @@
           </button>
         </div>
       </div>
-      <p class="strip" style="margin-top: 18px">
-        Building license Exp. 4497/2025/GEN · Builder: NODHOUSES
-      </p>
     </section>
 
-    <section class="frame" id="uriel" data-section-id="uriel">
-      <div class="uriel-split">
-        <figure class="uriel-portrait">
-          <img
-            class="img-frame"
-            src="assets/uriel-onsite.jpg"
-            width="1199"
-            height="1600"
-            alt="Uriel Nabel on site, facing the camera in a hard hat"
-            loading="lazy"
-          />
-          <figcaption class="caption">
-            Uriel Nabel ·
-            <a href="https://es.linkedin.com/in/urielnabel/es" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </figcaption>
-        </figure>
-        <div class="uriel-copy">
-          <p class="kicker">The operator</p>
-          <h2>
-            Built by a Local.
-            <span class="heading-accent">Executed to Institutional Standards.</span>
-          </h2>
-          <p class="support">
-            I grew up in Israel, spent time in Argentina, and ultimately chose to move my family to
-            Spain. Today, my wife, our two kids, and I live right here in Riba-roja.
-          </p>
-          <p class="support">
-            I am building this project in my own backyard because I know the exact local demand for
-            high-quality corporate housing. My capital went into this project first, and my financial
-            incentives run in the exact same direction as yours.
-          </p>
-          <div class="track-list">
+    <section class="frame" id="faq" data-section-id="faq">
+      <div class="section-head">
+        <p class="kicker">Technical FAQ</p>
+        <h2>Frequently Asked <span class="heading-accent">Questions</span></h2>
+        <p class="support">
+          Payment, personal use, tax, and management—stated in advance for a risk-conscious buyer.
+        </p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is the payment structure and construction schedule?</summary>
+          <div class="faq-body">
             <p>
-              <strong>Execution.</strong> 5 years managing complex capital-project engineering across
-              Europe for SAP.
+              You do not pay the total amount upfront. Capital is released against verified
+              construction milestones:
             </p>
+            <div class="track-list">
+              <p>
+                <strong>Reservation contract.</strong> 25% to lock your unit and freeze the price.
+              </p>
+              <p>
+                <strong>Certified 40% of construction.</strong> 25%.
+              </p>
+              <p>
+                <strong>Certified 80% of construction.</strong> 25%, including the furniture package.
+              </p>
+              <p>
+                <strong>Handover (2027).</strong> 25% at the notary, on escritura.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I use the property for personal stays?</summary>
+          <div class="faq-body">
+            <p>Yes. Your ownership includes up to 14 days of personal usage per year.</p>
+            <div class="track-list">
+              <p>
+                <strong>Seamless booking.</strong> Reserve your stay through the dedicated Owner
+                Portal during off-peak windows without affecting your 4% contractual floor.
+              </p>
+              <p>
+                <strong>Hotel-grade service.</strong> Our management team handles professional
+                cleaning and preparation before and after your stay.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What are the tax implications for EU / Northern European investors?</summary>
+          <div class="faq-body">
+            <p>We provide open-book clarity to ensure full legal and tax compliance:</p>
+            <div class="track-list">
+              <p>
+                <strong>Closing costs &amp; taxes.</strong> Spanish Transfer Tax (ITP) and closing
+                fees are fully itemized upfront in your turn-key package—zero hidden extras.
+              </p>
+              <p>
+                <strong>Non-resident income tax (IRNR).</strong> Spanish rental income for EU
+                residents is taxed at a flat 19% on net profit (after operational deductions).
+              </p>
+              <p>
+                <strong>Double taxation protection.</strong> Under EU Double Taxation Treaties, real
+                estate is taxed where the property is located (Spain). This generally prevents double
+                taxation in the Netherlands (Box 3), Germany, or Belgium. We provide pre-formatted
+                annual reporting for your tax advisor.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How does the 15% management fee work, and what is my personal involvement?</summary>
+          <div class="faq-body">
             <p>
-              <strong>Delivery.</strong> In August 2025, I successfully delivered El Fortín de
-              Puzol — a ground-up historic renovation, 100% completed and fully operating.
+              Your involvement is strictly zero. The 15% management fee covers end-to-end operations:
             </p>
-            <p>
-              <strong>Validation.</strong> 1 of the 10 Riba-roja units is already sold to an
-              international investor who toured the site in person. 9 remain.
+            <ul class="faq-cover">
+              <li>Dual-strategy tenant placement (corporate leases + executive short-term)</li>
+              <li>Keyless check-ins, guest vetting, and 24/7 guest support</li>
+              <li>Routine maintenance, cleaning, and revenue pooling administration</li>
+            </ul>
+            <p class="faq-note">
+              All projected yields (including the 8% target and 4% floor) are calculated
+              <strong>net</strong> after management fees. The fee is automatically deducted before
+              your quarterly payout.
             </p>
           </div>
-          <div class="ba-pair" aria-label="Puzol before and after">
-            <figure>
-              <img
-                class="img-frame"
-                src="assets/brand/puzol/before-compare.jpg"
-                alt="El Fortín de Puzol mid-renovation"
-                loading="lazy"
-              />
-              <figcaption class="caption">Puzol · before</figcaption>
-            </figure>
-            <figure>
-              <img
-                class="img-frame"
-                src="assets/brand/puzol/after-compare.jpg"
-                alt="El Fortín de Puzol delivered: finished entryway"
-                loading="lazy"
-              />
-              <figcaption class="caption">Puzol · delivered August 2025</figcaption>
-            </figure>
-          </div>
-          <div class="puzol-actions">
-            <button class="action action--ghost" id="puzol-gallery" type="button">
-              See the delivered building
-            </button>
-          </div>
-        </div>
+        </details>
       </div>
     </section>
 
@@ -1818,7 +2059,7 @@
 
     <div id="fact-bar" aria-hidden="true">
       <strong>From €236,000 all-in · Late 2027</strong>
-      <a href="#package">Request the financial model</a>
+      <a href="#package">Request the Investment Deck</a>
     </div>
 
     <a
@@ -1842,10 +2083,26 @@
     <script>
       window.EFConfig = {
         floorPct: 0.04,
-        strategyYields: {
-          long: 0.04,
-          mixed: 0.069,
-          tourist: 0.09
+        closingPct: 0.12,
+        scenarioYields: {
+          yearOne: 0.069,
+          target: 0.08
+        },
+        unitTypes: {
+          A: {
+            bathrooms: 1,
+            builtArea: '~47 m²',
+            furniture: 15959.66,
+            planCaption: '1-Bedroom floor plan',
+            planAlt: '1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room'
+          },
+          B: {
+            bathrooms: 2,
+            builtArea: '~57 m²',
+            furniture: 19357.6,
+            planCaption: '2-Bedroom floor plan',
+            planAlt: '2-Bedroom floor plan: two bedrooms, two bathrooms and an open living and dining room'
+          }
         },
         inventory: [
           { id: '1', beds: 2, layout: '2-Bed', price: 266009, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
@@ -1857,7 +2114,7 @@
           { id: '7', beds: 1, layout: '1-Bed', price: 236000, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
           { id: '8', beds: 1, layout: '1-Bed', price: 236000, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
           { id: '9', beds: 2, layout: '2-Bed', price: 279338, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
-          { id: '10', beds: 2, layout: '2-Bed', price: 279338, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'reserved' }
+          { id: '10', beds: 2, layout: '2-Bed', price: 279338, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'sold' }
         ]
       };
 
@@ -1865,22 +2122,28 @@
         euro: function (n) {
           return '€' + Math.round(n).toLocaleString('en-GB');
         },
-        pct: function (n) {
-          return (n * 100).toFixed(1) + '%';
-        },
-        compute: function (unitId, strategy) {
-          var u = window.EFConfig.inventory.find(function(item) { return item.id === unitId; });
-          var projectedYield = window.EFConfig.strategyYields[strategy];
-          var projectedPayout = u.price * projectedYield;
-          var floorEur = u.price * window.EFConfig.floorPct;
-          var payout = Math.max(projectedPayout, floorEur);
+        priceStack: function (unit) {
+          var type = window.EFConfig.unitTypes[unit.typeClass];
+          var furniture = type.furniture;
+          var sale = (unit.price - furniture) / (1 + window.EFConfig.closingPct);
+          var rFurniture = Math.round(furniture);
+          var rSale = Math.round(sale);
           return {
-            unit: u,
-            floorEur: floorEur,
-            floorApplies: projectedPayout <= floorEur,
-            payout: payout,
-            payoutYield: payout / u.price
+            sale: rSale,
+            closing: unit.price - rFurniture - rSale,
+            furniture: rFurniture,
+            allIn: unit.price
           };
+        },
+        unitLine: function (unit) {
+          return (
+            'Unit ' +
+            unit.id +
+            ' · ' +
+            unit.beds +
+            '-Bedroom · ' +
+            this.euro(unit.price)
+          );
         }
       };
     </script>
@@ -1888,57 +2151,103 @@
     <script>
       (function () {
         var selectedUnitId = '5';
-        var strategy = 'long';
+        var modeledYield = 0.08;
+        var yieldSlider = document.getElementById('calc-yield-range');
+        var yieldPctLabel = document.getElementById('calc-slider-pct');
 
-        function getStrategy() {
-          var checked = document.querySelector('input[name="calc-strategy"]:checked');
-          return checked ? checked.value : 'long';
+        function selectedUnit() {
+          return window.EFConfig.inventory.find(function (u) {
+            return u.id === selectedUnitId;
+          });
+        }
+
+        function paintIncome(unit, yieldPct, yearlyId, monthlyId) {
+          var annual = unit.price * yieldPct;
+          var yearly = document.getElementById(yearlyId);
+          var monthly = document.getElementById(monthlyId);
+          if (yearly) yearly.textContent = '≈ ' + window.EFMath.euro(annual) + ' / year';
+          if (monthly) {
+            monthly.textContent = '· ≈ ' + window.EFMath.euro(annual / 12) + ' / month';
+          }
+        }
+
+        function paintSlider(unit) {
+          var pct = modeledYield * 100;
+          if (yieldPctLabel) yieldPctLabel.textContent = pct.toFixed(1) + '%';
+          if (yieldSlider) {
+            yieldSlider.value = String(pct);
+            yieldSlider.setAttribute('aria-valuenow', String(pct));
+          }
+          paintIncome(unit, modeledYield, 'calc-slider-yearly', 'calc-slider-monthly');
         }
 
         function updateCalculator() {
-          var unit = window.EFConfig.inventory.find(function (u) {
-            return u.id === selectedUnitId;
-          });
+          var unit = selectedUnit();
           if (!unit) return;
 
-          strategy = getStrategy();
-          var r = window.EFMath.compute(unit.id, strategy);
-          var monthly = document.getElementById('calc-monthly');
-          var yearly = document.getElementById('calc-yearly');
-          var yieldLine = document.getElementById('calc-yield');
-          var note = document.getElementById('calc-note');
-          var unitLine = document.getElementById('calc-unit-line');
+          var title = document.getElementById('calc-unit-title');
+          var meta = document.getElementById('calc-unit-meta');
+          var panel = document.querySelector('.calc-panel');
+          var type = window.EFConfig.unitTypes[unit.typeClass];
+          var typeUnits = window.EFConfig.inventory.filter(function (item) {
+            return item.typeClass === unit.typeClass;
+          });
+          var availableUnits = typeUnits.filter(function (item) {
+            return item.status === 'available';
+          });
 
-          if (unitLine) {
-            unitLine.textContent =
-              'Unit ' +
-              unit.id +
+          if (title) title.textContent = window.EFMath.unitLine(unit);
+          Array.prototype.forEach.call(document.querySelectorAll('.calc-unit-option'), function (opt) {
+            var on = opt.getAttribute('data-id') === unit.id;
+            opt.classList.toggle('is-selected', on);
+            opt.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          if (meta) {
+            meta.textContent =
+              unit.area +
               ' · ' +
-              unit.layout +
-              ' · ' +
-              window.EFMath.euro(unit.price) +
-              ' all-in';
+              unit.status.charAt(0).toUpperCase() +
+              unit.status.slice(1);
           }
-          if (monthly) {
-            monthly.textContent = '≈ ' + window.EFMath.euro(r.payout / 12) + ' / month';
-          }
-          if (yearly) {
-            yearly.textContent = '≈ ' + window.EFMath.euro(r.payout) + ' / year';
-          }
-          if (yieldLine) {
-            yieldLine.textContent = window.EFMath.pct(r.payoutYield) + ' on all-in price';
-          }
-          if (note) {
-            if (strategy === 'long') {
-              note.textContent =
-                'Our 4.0% contractual floor applies. Even in a pure long-term residential model, your downside is fully protected.';
-            } else if (strategy === 'mixed') {
-              note.textContent =
-                'The stabilized model projects a 6.9% net yield while the 4.0% contractual floor remains in place.';
-            } else {
-              note.textContent =
-                'Short stays project a 9.0% net yield. The 4.0% contractual floor continues to protect your baseline.';
-            }
+
+          document.getElementById('calc-unit-bedrooms').textContent = unit.beds;
+          document.getElementById('calc-unit-bathrooms').textContent = type.bathrooms;
+          document.getElementById('calc-unit-useful').textContent =
+            unit.area.replace(' useful', '');
+          document.getElementById('calc-unit-built').textContent = type.builtArea;
+          document.getElementById('calc-unit-total').textContent =
+            typeUnits.length + ' units';
+          document.getElementById('calc-unit-available').textContent =
+            availableUnits.length + ' of ' + typeUnits.length;
+
+          var plan = document.getElementById('calc-unit-plan');
+          var planButton = document.getElementById('calc-unit-plan-button');
+          var planCaption = document.getElementById('calc-plan-caption');
+          plan.src = unit.plan;
+          plan.alt = type.planAlt;
+          planButton.setAttribute('data-full', unit.plan);
+          planButton.setAttribute('data-caption', type.planCaption);
+          planButton.setAttribute('data-alt', type.planAlt);
+          planButton.setAttribute('aria-label', 'Enlarge the ' + type.planCaption);
+          planCaption.textContent = type.planCaption;
+
+          var stack = window.EFMath.priceStack(unit);
+          document.getElementById('calc-price-sale').textContent = window.EFMath.euro(stack.sale);
+          document.getElementById('calc-price-closing').textContent = window.EFMath.euro(stack.closing);
+          document.getElementById('calc-price-furniture').textContent = window.EFMath.euro(
+            stack.furniture
+          );
+          document.getElementById('calc-price-allin').textContent = window.EFMath.euro(stack.allIn);
+
+          paintSlider(unit);
+
+          if (panel) {
+            panel.classList.remove('is-updating');
+            void panel.offsetWidth;
+            panel.classList.add('is-updating');
+            window.setTimeout(function () {
+              panel.classList.remove('is-updating');
+            }, 450);
           }
         }
 
@@ -1948,12 +2257,13 @@
           updateCalculator();
         };
 
-        Array.prototype.forEach.call(
-          document.querySelectorAll('input[name="calc-strategy"]'),
-          function (input) {
-            input.addEventListener('change', updateCalculator);
-          }
-        );
+        if (yieldSlider) {
+          yieldSlider.addEventListener('input', function () {
+            modeledYield = parseFloat(yieldSlider.value, 10) / 100;
+            var unit = selectedUnit();
+            if (unit) paintSlider(unit);
+          });
+        }
 
         updateCalculator();
       })();
@@ -1962,88 +2272,137 @@
     <script>
       (function () {
         var inventory = window.EFConfig.inventory;
-        var grid = document.getElementById('position-inventory');
-        var detail = document.getElementById('position-inventory-detail');
-        if (!grid) return;
+        var picker = document.getElementById('calc-unit-picker');
+        var trigger = document.getElementById('calc-unit-trigger');
+        var menu = document.getElementById('calc-unit-menu');
+        if (!picker || !trigger || !menu) return;
 
-        function counts() {
-          var out = { A: { total: 0, avail: 0 }, B: { total: 0, avail: 0 }, left: 0 };
-          inventory.forEach(function (u) {
-            out[u.typeClass].total += 1;
-            if (u.status === 'available') {
-              out[u.typeClass].avail += 1;
-              out.left += 1;
-            }
-          });
-          return out;
+        var open = false;
+        var activeIndex = -1;
+
+        function options() {
+          return Array.prototype.slice.call(menu.querySelectorAll('.calc-unit-option'));
         }
 
-        function describe(unit) {
-          if (unit.status === 'reserved') {
-            return 'Unit ' + unit.id + ' · ' + unit.layout + ' · Reserved — title already claimed.';
+        function setOpen(next) {
+          open = next;
+          picker.classList.toggle('is-open', open);
+          trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          menu.hidden = !open;
+          if (open) {
+            var selected = menu.querySelector('.calc-unit-option.is-selected:not(:disabled)');
+            var items = options().filter(function (opt) {
+              return !opt.disabled;
+            });
+            activeIndex = selected ? items.indexOf(selected) : 0;
+            if (activeIndex < 0) activeIndex = 0;
+            paintActive();
+          } else {
+            activeIndex = -1;
+            options().forEach(function (opt) {
+              opt.classList.remove('is-active');
+            });
           }
-          return (
-            'Unit ' + unit.id +
-            ' · ' +
-            unit.layout +
-            ' · ' +
-            window.EFMath.euro(unit.price) +
-            ' all-in · selected'
-          );
         }
 
-        function select(id) {
-          Array.prototype.forEach.call(grid.querySelectorAll('.inventory-unit'), function (btn) {
-            btn.classList.toggle('is-selected', btn.getAttribute('data-id') === id);
-            btn.setAttribute('aria-pressed', btn.getAttribute('data-id') === id ? 'true' : 'false');
+        function enabledOptions() {
+          return options().filter(function (opt) {
+            return !opt.disabled;
           });
-          var unit = inventory.filter(function (u) {
-            return u.id === id;
-          })[0];
-          if (unit && detail) detail.textContent = describe(unit);
+        }
+
+        function paintActive() {
+          var items = enabledOptions();
+          items.forEach(function (opt, i) {
+            opt.classList.toggle('is-active', i === activeIndex);
+          });
+          if (items[activeIndex]) items[activeIndex].focus();
+        }
+
+        function choose(id) {
+          setOpen(false);
+          trigger.focus();
           if (typeof window.EFSelectUnit === 'function') window.EFSelectUnit(id);
         }
 
         inventory.forEach(function (unit) {
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className =
-            'inventory-unit is-type-' +
-            unit.typeClass.toLowerCase() +
-            (unit.status === 'reserved' ? ' is-reserved' : '');
-          btn.setAttribute('data-id', unit.id);
-          btn.setAttribute('aria-pressed', 'false');
-          btn.setAttribute(
-            'aria-label',
-            'Unit ' + unit.id + ', ' + unit.layout + ', ' + unit.status
-          );
-          btn.innerHTML =
-            '<strong>' +
+          var option = document.createElement('button');
+          var taken = unit.status !== 'available';
+          option.type = 'button';
+          option.className = 'calc-unit-option';
+          option.id = 'calc-unit-option-' + unit.id;
+          option.setAttribute('role', 'option');
+          option.setAttribute('data-id', unit.id);
+          option.setAttribute('aria-selected', 'false');
+          option.innerHTML =
+            '<span class="calc-unit-option-copy">Unit ' +
             unit.id +
-            '</strong><span>' +
-            (unit.status === 'reserved' ? 'Reserved' : 'Available') +
+            ' · ' +
+            unit.beds +
+            '-Bedroom' +
+            (unit.status === 'sold' ? ' · Sold' : taken ? ' · ' + unit.status : '') +
+            '</span><span class="calc-unit-option-price">' +
+            window.EFMath.euro(unit.price) +
             '</span>';
-          if (unit.status === 'reserved') {
-            btn.disabled = true;
+          if (taken) {
+            option.disabled = true;
           } else {
-            btn.addEventListener('click', function () {
-              select(unit.id);
+            option.addEventListener('click', function () {
+              choose(unit.id);
             });
           }
-          grid.appendChild(btn);
+          menu.appendChild(option);
         });
 
-        var c = counts();
-        Array.prototype.forEach.call(document.querySelectorAll('[data-avail]'), function (el) {
-          var t = el.getAttribute('data-avail');
-          if (t === '1-Bed') {
-            el.textContent = c.A.avail + ' of ' + c.A.total + ' available';
-          } else if (t === '2-Bed') {
-            el.textContent = c.B.avail + ' of ' + c.B.total + ' available';
+        trigger.addEventListener('click', function () {
+          setOpen(!open);
+        });
+
+        trigger.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+            if (!open) {
+              e.preventDefault();
+              setOpen(true);
+            }
           }
         });
 
-        select('5');
+        menu.addEventListener('keydown', function (e) {
+          var items = enabledOptions();
+          if (!items.length) return;
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            setOpen(false);
+            trigger.focus();
+            return;
+          }
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIndex = (activeIndex + 1) % items.length;
+            paintActive();
+          }
+          if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIndex = (activeIndex - 1 + items.length) % items.length;
+            paintActive();
+          }
+          if (e.key === 'Home') {
+            e.preventDefault();
+            activeIndex = 0;
+            paintActive();
+          }
+          if (e.key === 'End') {
+            e.preventDefault();
+            activeIndex = items.length - 1;
+            paintActive();
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (open && !picker.contains(e.target)) setOpen(false);
+        });
+
+        if (typeof window.EFSelectUnit === 'function') window.EFSelectUnit('5');
       })();
     </script>
 
@@ -2142,6 +2501,13 @@
             });
           });
         });
+
+        var calcPlanButton = document.getElementById('calc-unit-plan-button');
+        if (calcPlanButton) {
+          calcPlanButton.addEventListener('click', function () {
+            openLightbox([dataOf(calcPlanButton)], 0, 'Selected apartment floor plan');
+          });
+        }
 
         var puzolBtn = document.getElementById('puzol-gallery');
         if (puzolBtn) {
