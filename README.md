@@ -1,43 +1,14 @@
-# El Fortín repository map
+# El Fortín — reset
 
-## Canonical production surface
+First-principles reset. Starting page: `site/sniper.html`.
 
-- Spanish landing page: `site/index.html`
-- English landing page: `site/en.html`
-- Shared analytics and contact handoffs: `site/assets/analytics.js`
-- Pages Functions and D1: `functions/`, `migrations/`, `wrangler.jsonc`
+This branch keeps:
 
-Cloudflare Pages deploys only `site/`. Root-level website and brochure HTML files are legacy experiments unless explicitly promoted into `site/`.
-
-## Canonical commercial facts
-
-1. `b2b/pitch-source-of-truth.md`
-2. `marketing-strategies/approved-claims.md`
-3. `marketing-strategies/field-data-log.md`
-
-The canonical developer-verified entry price is **€236,141 all-in**. Older €197k, €209k, €247k, and Type A/B price models are historical artifacts, not live offers.
-
-## Sales sequence
-
-1. Prospect books a live meeting with Uriel.
-2. Uriel reviews the relevant documents on screen.
-3. The salesperson sends only the papers agreed during the meeting.
-4. Broader data-room access follows qualification and counsel involvement.
-
-There is no automatic dossier download and no pre-meeting document dump.
-
-## Legacy material
-
-The following root-level files are retained only as design/content history and must not be quoted or sent without a full source-of-truth audit:
-
-- `project-fact-hub.html`
-- `portfolio.html`
-- `portfolio-brochure.html`
-- `portfolio-brochure-sales.html`
-- `portfolio-brochure-outreach.html`
-- `flex-living-valencia.html`
-- `flex-living-valencia-executive-briefing.html`
-- root `index.html`
-- `site/_archive/` and `docs/_archive/`
-
-The workbook-derived files in `data-room/01_FINANCIALS_AND_UNDERWRITING/` also require reconciliation to €236,141 before counsel use.
+1. `facts.md` — project facts
+2. `developer/` — original files from the developer (one Excel, no duplicates)
+3. `assets/brand/` — selected photos, unchanged
+4. `site/sniper.html` — last landing page (WIP from campaign/sniper)
+5. Libs in `assets/`:
+   - `assets/js/analytics.js` — first-party campaign analytics + contact handoff
+   - `assets/js/lightbox.js` + `assets/css/lightbox.css` — photo lightbox
+   - `assets/js/calculator.js` — return-model estimator (`EFConfig` / `EFMath`)
