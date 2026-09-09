@@ -140,14 +140,31 @@ p + p {
 
 a {
   color: inherit;
+  text-decoration-line: underline;
   text-decoration-color: var(--brass);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
+  transition:
+    color 160ms var(--ease-out),
+    text-decoration-color 160ms var(--ease-out),
+    text-decoration-thickness 160ms var(--ease-out);
+}
+a:hover,
+a:focus-visible {
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--brass-light);
 }
 
+/* 2.4.13 Focus Appearance (AAA): ≥2px perimeter, ≥3:1 change vs unfocused pixels.
+   Brass-light on walnut; ink on ledger paper so the ring stays visible. */
 :focus-visible {
   outline: 2px solid var(--brass-light);
   outline-offset: 3px;
+}
+.chapter--ledger :focus-visible,
+.ratecard :focus-visible,
+.letter :focus-visible {
+  outline-color: var(--ink);
 }
 
 b {
@@ -204,9 +221,21 @@ dd {
     transform 220ms var(--ease-out),
     box-shadow 220ms var(--ease-out);
 }
+a.plate:hover,
+a.plate:focus-visible {
+  text-decoration: none;
+}
 .plate:hover {
   background: var(--brass-light);
   transform: translateY(-1px);
+}
+.plate:focus-visible {
+  outline: 2px solid var(--ledger);
+  outline-offset: 3px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 214, 0.55),
+    inset 0 -2px 0 rgba(60, 40, 12, 0.45),
+    0 0 0 5px rgba(26, 18, 14, 0.85);
 }
 .plate:active {
   transform: translateY(1px);
@@ -272,11 +301,25 @@ dd {
   text-decoration: none;
   color: var(--brass-light);
   padding: 10px 0;
-  border-bottom: 1px solid var(--brass);
-  transition: color 200ms var(--ease-out);
+  border-bottom: 2px solid var(--brass);
+  transition:
+    color 200ms var(--ease-out),
+    border-bottom-color 200ms var(--ease-out),
+    border-bottom-width 200ms var(--ease-out);
 }
-.masthead__talk:hover {
+.masthead__talk:hover,
+.masthead__talk:focus-visible {
   color: var(--ledger);
+  border-bottom-color: var(--ledger);
+  border-bottom-width: 3px;
+  text-decoration: none;
+}
+.masthead__name:hover,
+.masthead__name:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--brass-light);
+  text-underline-offset: 0.22em;
 }
 
 /* ---------- 1 · the picture window ---------- */
@@ -558,6 +601,12 @@ dd {
 .chapter--ledger a {
   text-decoration-color: var(--brass-dark);
 }
+.chapter--ledger a:hover,
+.chapter--ledger a:focus-visible {
+  color: var(--walnut-deep);
+  text-decoration-color: var(--ink);
+  text-decoration-thickness: 2px;
+}
 .chapter--desk {
   background: var(--walnut);
   color: var(--ledger);
@@ -578,22 +627,28 @@ dd {
 .place-link {
   display: inline;
   margin: 0;
-  padding: 0;
+  padding: 0 0 1px;
   border: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--brass-dark) 70%, transparent);
+  border-bottom: 2px solid var(--brass-dark);
   background: none;
   font: inherit;
   color: var(--ink);
   cursor: pointer;
   outline-offset: 3px;
+  transition:
+    color 160ms var(--ease-out),
+    border-bottom-color 160ms var(--ease-out),
+    border-bottom-width 160ms var(--ease-out);
 }
 .place-link:hover,
 .place-link:focus-visible {
-  border-bottom-color: var(--brass-dark);
   color: var(--walnut-deep);
+  border-bottom-color: var(--ink);
+  border-bottom-width: 3px;
 }
 .place-link:focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 .chapter__figure {
   margin: 0;
@@ -941,21 +996,28 @@ dd {
 }
 .letter__linkedin {
   font-family: var(--plates);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--brass-dark) 55%, transparent);
+  border-bottom: 2px solid var(--brass-dark);
   outline-offset: 3px;
+  transition:
+    color 160ms var(--ease-out),
+    border-bottom-color 160ms var(--ease-out),
+    border-bottom-width 160ms var(--ease-out);
 }
 .letter__linkedin:hover,
 .letter__linkedin:focus-visible {
-  color: var(--ink);
-  border-bottom-color: var(--brass-dark);
+  color: var(--walnut-deep);
+  border-bottom-color: var(--ink);
+  border-bottom-width: 3px;
+  text-decoration: none;
 }
 .letter__linkedin:focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 .letter__text p {
   font-size: 1.1875rem;
@@ -984,16 +1046,28 @@ dd {
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 8px;
   color: inherit;
   text-decoration: none;
-  outline-offset: 4px;
+  border: 2px solid transparent;
+  outline-offset: 2px;
+  transition:
+    border-color 160ms var(--ease-out),
+    background-color 160ms var(--ease-out);
 }
-.partners__link:hover img,
-.partners__link:focus-visible img {
-  opacity: 0.88;
+.partners__link:hover,
+.partners__link:focus-visible {
+  text-decoration: none;
+}
+.partners__link:hover {
+  border-color: var(--brass-dark);
+  background-color: color-mix(in srgb, var(--brass) 14%, transparent);
 }
 .partners__link:focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-color: var(--ink);
+  background-color: color-mix(in srgb, var(--brass) 18%, transparent);
 }
 .partners img {
   display: block;
@@ -1264,10 +1338,17 @@ dd {
   color: var(--paper-on-walnut);
 }
 .guestbook__direct a {
-  text-decoration-color: rgba(176, 141, 87, 0.6);
-}
-.guestbook__direct a:hover {
   color: var(--ledger);
+  text-decoration-line: underline;
+  text-decoration-color: var(--brass);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.guestbook__direct a:hover,
+.guestbook__direct a:focus-visible {
+  color: var(--brass-light);
+  text-decoration-color: var(--brass-light);
+  text-decoration-thickness: 2px;
 }
 .form {
   display: grid;
@@ -1319,9 +1400,13 @@ dd {
 }
 .field input:focus,
 .field textarea:focus {
-  outline: none;
   border-bottom-color: var(--brass-light);
   box-shadow: 0 1px 0 var(--brass-light);
+}
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--brass-light);
+  outline-offset: 4px;
 }
 .field textarea {
   resize: vertical;
@@ -1414,6 +1499,19 @@ dd {
 .colophon p + p {
   margin-top: 6px;
 }
+.colophon a {
+  color: var(--ledger);
+  text-decoration-line: underline;
+  text-decoration-color: var(--brass);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.colophon a:hover,
+.colophon a:focus-visible {
+  color: var(--brass-light);
+  text-decoration-color: var(--brass-light);
+  text-decoration-thickness: 2px;
+}
 
 /* ---------- place map dialog ---------- */
 
@@ -1468,7 +1566,7 @@ dd {
   color: var(--ledger);
 }
 .map-dialog__close:focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--ledger);
   outline-offset: 2px;
 }
 .map-dialog__frame {
@@ -1486,14 +1584,41 @@ dd {
   letter-spacing: 0.03em;
 }
 .map-dialog__foot a {
-  color: var(--brass-light);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--brass) 50%, transparent);
+  color: var(--ledger);
+  text-decoration-line: underline;
+  text-decoration-color: var(--brass);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 .map-dialog__foot a:hover,
 .map-dialog__foot a:focus-visible {
+  color: var(--brass-light);
+  text-decoration-color: var(--brass-light);
+  text-decoration-thickness: 2px;
+}
+
+.ext-dialog__fallback {
+  display: grid;
+  gap: 20px;
+  justify-items: start;
+  padding: clamp(28px, 5vh, 48px) 24px 32px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--brass) 8%, transparent), transparent 40%),
+    var(--walnut);
+}
+.ext-dialog__fallback[hidden] {
+  display: none;
+}
+.ext-dialog__fallback p {
+  margin: 0;
+  max-width: 42ch;
+  font-family: var(--book);
+  font-size: 1.0625rem;
+  line-height: 1.55;
   color: var(--ledger);
-  border-bottom-color: var(--brass-light);
+}
+.map-dialog__frame[hidden] {
+  display: none;
 }
 
 /* ---------- motion preferences ---------- */

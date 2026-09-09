@@ -273,14 +273,15 @@
       }
 
       submit.disabled = true;
-      var opened = window.open(handoffUrl(data), "_blank", "noopener");
-      if (!opened) window.location.href = handoffUrl(data);
-
+      var opened = window.open(handoffUrl(data), "_blank", "noopener,noreferrer");
       status.hidden = false;
-      status.textContent =
-        HANDOFF.mode === "mailto"
+      status.textContent = opened
+        ? HANDOFF.mode === "mailto"
           ? "Your mail app should now be open with the message ready for Uriel."
-          : "WhatsApp should now be open with your message to Uriel. If it did not open, write to " + HANDOFF.email + ".";
+          : "WhatsApp should now be open with your message to Uriel."
+        : "Could not open a new window. Write to " +
+          HANDOFF.email +
+          " or allow pop-ups for this site — this page will stay open.";
       submit.disabled = false;
     });
 
@@ -335,10 +336,181 @@
     });
   }
 
+  /* ---------- external links: stay on this page ---------- */
+
+  function initExternalLinks() {
+    var dialog = document.getElementById("ext-dialog");
+    if (!dialog) return;
+
+    var titleEl = document.getElementById("ext-dialog-title");
+    var frame = dialog.querySelector("[data-ext-frame]");
+    var fallback = dialog.querySelector("[data-ext-fallback]");
+    var fallbackCopy = dialog.querySelector("[data-ext-fallback-copy]");
+    var openWindow = dialog.querySelector("[data-ext-open-window]");
+    var external = dialog.querySelector("[data-ext-external]");
+    var closer = dialog.querySelector("[data-ext-close]");
+    var lastFocus = null;
+
+    /* Sites that refuse iframe embedding. */
+    var noEmbed = [
+      "wa.me",
+      "whatsapp.com",
+      "api.whatsapp.com",
+      "google.com",
+      "google.es",
+      "calendar.app.google",
+      "calendar.google.com",
+      "facebook.com",
+      "fb.com",
+      "instagram.com",
+      "homify.es",
+      "homify.com",
+      "houzz.es",
+      "houzz.com",
+      "x.com",
+      "twitter.com",
+    ];
+
+    /* LinkedIn refuses embeds and our on-page popup — leave it to target="_blank". */
+    var leaveAlone = ["linkedin.com", "lnkd.in"];
+
+    function hostnameOf(url) {
+      try {
+        return new URL(url, window.location.href).hostname.replace(/^www\./, "");
+      } catch (err) {
+        return "";
+      }
+    }
+
+    function hostMatches(host, list) {
+      return list.some(function (blocked) {
+        return host === blocked || host.endsWith("." + blocked);
+      });
+    }
+
+    function isExternalHttp(url) {
+      try {
+        var parsed = new URL(url, window.location.href);
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return false;
+        return parsed.origin !== window.location.origin;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    function canEmbed(url) {
+      var host = hostnameOf(url);
+      return !hostMatches(host, noEmbed);
+    }
+
+    function labelFor(anchor, url) {
+      var text = (anchor.getAttribute("aria-label") || anchor.textContent || "").replace(/\s+/g, " ").trim();
+      text = text.replace(/\s*\(opens in a (popup|new tab|new window)\)\s*$/i, "").trim();
+      if (text && text.length < 80) return text;
+      return hostnameOf(url) || "External link";
+    }
+
+    /* Open beside this page — never assign location.href (that would leave). */
+    function openBeside(url) {
+      return window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function wireAwayLinks(url) {
+      if (openWindow) {
+        openWindow.href = url;
+        openWindow.setAttribute("target", "_blank");
+        openWindow.setAttribute("rel", "noopener noreferrer");
+      }
+      if (external) {
+        external.href = url;
+        external.setAttribute("target", "_blank");
+        external.setAttribute("rel", "noopener noreferrer");
+        external.textContent = "Open full page";
+      }
+    }
+
+    function showDialog() {
+      lastFocus = document.activeElement;
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+      if (closer) closer.focus();
+    }
+
+    function closeDialog() {
+      if (frame) {
+        frame.hidden = true;
+        frame.removeAttribute("src");
+      }
+      if (fallback) fallback.hidden = true;
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }
+
+    function openExternal(anchor) {
+      var url = anchor.href;
+      wireAwayLinks(url);
+      if (titleEl) titleEl.textContent = labelFor(anchor, url);
+
+      if (canEmbed(url) && frame) {
+        if (fallback) fallback.hidden = true;
+        frame.hidden = false;
+        frame.setAttribute("title", titleEl ? titleEl.textContent : "External site");
+        frame.setAttribute("src", url);
+        showDialog();
+        return;
+      }
+
+      /* Instagram etc.: open a parallel tab on this gesture, keep the landing page. */
+      if (frame) {
+        frame.hidden = true;
+        frame.removeAttribute("src");
+      }
+      var opened = openBeside(url);
+      if (fallback) fallback.hidden = false;
+      if (fallbackCopy) {
+        fallbackCopy.textContent = opened
+          ? "Opened in another window. This page is still here."
+          : "Your browser blocked the window. Use the button below — this page will stay put.";
+      }
+      showDialog();
+    }
+
+    document.addEventListener(
+      "click",
+      function (event) {
+        if (event.defaultPrevented) return;
+        if (event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        var anchor = event.target.closest && event.target.closest("a[href]");
+        if (!anchor || anchor.hasAttribute("data-ext-ignore")) return;
+        if (anchor.closest("#ext-dialog")) return;
+        if (!isExternalHttp(anchor.getAttribute("href"))) return;
+        if (hostMatches(hostnameOf(anchor.href), leaveAlone)) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        openExternal(anchor);
+      },
+      true
+    );
+
+    if (closer) closer.addEventListener("click", closeDialog);
+    dialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      closeDialog();
+    });
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) closeDialog();
+    });
+  }
+
   initMasthead();
   initRack();
   initFlap();
   initCarousel();
   initForm();
   initMapDialog();
+  initExternalLinks();
 })();
