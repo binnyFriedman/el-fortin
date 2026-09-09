@@ -291,9 +291,54 @@
     });
   }
 
+  /* ---------- place map dialog ---------- */
+
+  function initMapDialog() {
+    var dialog = document.getElementById("place-map");
+    var openers = document.querySelectorAll("[data-map-open]");
+    if (!dialog || !openers.length) return;
+
+    var frame = dialog.querySelector(".map-dialog__frame");
+    var closer = dialog.querySelector("[data-map-close]");
+    var lastFocus = null;
+
+    function loadFrame() {
+      if (!frame || frame.getAttribute("src")) return;
+      var src = frame.getAttribute("data-map-src");
+      if (src) frame.setAttribute("src", src);
+    }
+
+    function open() {
+      lastFocus = document.activeElement;
+      loadFrame();
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+      if (closer) closer.focus();
+    }
+
+    function close() {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }
+
+    openers.forEach(function (btn) {
+      btn.addEventListener("click", open);
+    });
+    if (closer) closer.addEventListener("click", close);
+    dialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      close();
+    });
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) close();
+    });
+  }
+
   initMasthead();
   initRack();
   initFlap();
   initCarousel();
   initForm();
+  initMapDialog();
 })();

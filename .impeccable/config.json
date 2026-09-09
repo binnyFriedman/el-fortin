@@ -96,15 +96,6 @@
         "reason": "Agent: sections pad with clamp()/var(--gutter) the detector cannot resolve; every section has 20px+ inline padding"
       },
       {
-        "rule": "repeating-stripes-gradient",
-        "value": "*",
-        "files": [
-          "site/index-d.html"
-        ],
-        "createdAt": "2026-09-09T11:43:44.347Z",
-        "reason": "Agent: the ruled-line ledger paper is the committed world's material (surface brief OWN-WORLD), 14% alpha rules every 2rem"
-      },
-      {
         "rule": "cramped-padding",
         "value": "*",
         "files": [
@@ -112,15 +103,6 @@
         ],
         "createdAt": "2026-09-09T11:43:44.370Z",
         "reason": "Agent: same clamp()/var(--gutter) padding as site/index-d.html"
-      },
-      {
-        "rule": "repeating-stripes-gradient",
-        "value": "*",
-        "files": [
-          "site/assets/desk.css"
-        ],
-        "createdAt": "2026-09-09T11:43:44.393Z",
-        "reason": "Agent: ledger paper ruling, committed world material for site/index-d.html"
       },
       {
         "rule": "flat-type-hierarchy",
