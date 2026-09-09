@@ -270,23 +270,35 @@ a.plate:focus-visible {
   box-shadow: 0 1px 0 rgba(176, 141, 87, 0.35);
 }
 .masthead__name {
+  display: flex;
+  align-items: center;
+  gap: 0.85em;
+  min-width: 0;
   font-family: var(--plates);
-  font-weight: 600;
-  font-stretch: 112%;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-decoration: none;
+}
+.masthead__logo {
+  display: block;
+  height: 36px;
+  width: auto;
+  flex-shrink: 0;
+  transition: opacity 200ms var(--ease-out);
+}
+.masthead__name:hover,
+.masthead__name:focus-visible {
   text-decoration: none;
 }
 .masthead__name span {
   display: none;
-  margin-left: 0.75em;
-  font-weight: 400;
-  font-stretch: 100%;
-  letter-spacing: 0.04em;
   color: var(--paper-on-walnut);
+  white-space: nowrap;
 }
-/* the subtitle only appears once the masthead has its own walnut ground */
+/* the place-name only appears once the masthead has its own walnut ground */
 @media (min-width: 720px) {
   .masthead.is-solid .masthead__name span {
     display: inline;
@@ -314,12 +326,13 @@ a.plate:focus-visible {
   border-bottom-width: 3px;
   text-decoration: none;
 }
-.masthead__name:hover,
+.masthead__name:hover .masthead__logo,
+.masthead__name:focus-visible .masthead__logo {
+  opacity: 0.82;
+}
 .masthead__name:focus-visible {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-decoration-color: var(--brass-light);
-  text-underline-offset: 0.22em;
+  outline: 2px solid var(--brass-light);
+  outline-offset: 6px;
 }
 
 /* ---------- 1 · the picture window ---------- */
@@ -1134,6 +1147,15 @@ a.plate:focus-visible {
   background: var(--brass);
   color: var(--walnut-deep);
 }
+.arrow:focus-visible {
+  outline: 2px solid var(--ledger);
+  outline-offset: 2px;
+}
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
 .arrow svg {
   width: 20px;
   height: 20px;
@@ -1619,6 +1641,117 @@ a.plate:focus-visible {
 }
 .map-dialog__frame[hidden] {
   display: none;
+}
+
+/* ---------- Puzol album ---------- */
+
+.album-dialog {
+  max-width: min(1180px, calc(100vw - 20px));
+  height: min(92vh, 920px);
+  max-height: min(92vh, 920px);
+  overflow: hidden;
+}
+.album-dialog:focus {
+  outline: none;
+}
+.album-dialog .map-dialog__panel {
+  height: 100%;
+  max-height: inherit;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+.album__head h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.75em;
+  min-width: 0;
+}
+.album__head time {
+  font-weight: 500;
+  font-stretch: 100%;
+  letter-spacing: 0.04em;
+  color: var(--brass-light);
+}
+.album__panes {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--brass) var(--walnut-deep);
+}
+.album__pane {
+  padding: 16px 18px 28px;
+  min-width: 0;
+  overflow-x: hidden;
+}
+.album__pane + .album__pane {
+  border-top: 1px solid color-mix(in srgb, var(--brass) 40%, transparent);
+}
+.album__pane h3 {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0 0 14px;
+  padding: 2px 0 10px;
+  background: var(--walnut-deep);
+  font-family: var(--plates);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-stretch: 108%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+}
+.album__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.album__grid li {
+  min-width: 0;
+}
+.album__grid img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+@media (min-width: 800px) {
+  .album__panes {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+  }
+  .album__pane {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--brass) var(--walnut-deep);
+  }
+  .album__pane + .album__pane {
+    border-top: 0;
+    border-left: 1px solid color-mix(in srgb, var(--brass) 40%, transparent);
+  }
+}
+@media (max-width: 720px) {
+  .album-dialog {
+    max-width: 100vw;
+    width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+  }
 }
 
 /* ---------- motion preferences ---------- */

@@ -9,7 +9,8 @@
       content="Ten deeded apartments in Riba-roja de Túria, Valencia, built and run as one operation. A 4% return guaranteed in writing. Turnkey August 2027."
     />
     <meta name="robots" content="noindex" />
-    <link rel="icon" href="assets/logo.png" />
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/favicon.png" />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-variable-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/libre-caslon-text-400-latin.woff2" crossorigin />
     <link rel="preload" as="image" href="assets/hero-riba-roja-drone.webp" />
@@ -19,7 +20,10 @@
     <a class="skip" href="#project">Skip to the project</a>
 
     <header class="masthead" data-masthead>
-      <a class="masthead__name" href="#top">El Fortín <span>Riba-roja · Valencia</span></a>
+      <a class="masthead__name" href="#top" aria-label="El Fortín">
+        <img class="masthead__logo" src="assets/logo.png" width="350" height="100" alt="" />
+        <span>Riba-roja · Valencia</span>
+      </a>
       <a class="masthead__talk" href="#guestbook">Talk to Uriel</a>
     </header>
 
@@ -260,7 +264,17 @@
         <div class="chapter__text letter__text">
           <h2 id="letter-title">Here to stay.</h2>
           <p>Hello, I'm Uriel Nabel. I live here with my wife and our two children, and I'm the person behind El Fortín.</p>
-          <p>In 2025 we restored a 100-year-old property. After that success, I decided to go all in on this project.</p>
+          <p>
+            In 2025 we restored
+            <button
+              type="button"
+              class="place-link"
+              data-puzol-open
+              aria-haspopup="dialog"
+              aria-controls="puzol-story"
+            >a 100-year-old property</button>.
+            After that success, I decided to go all in on this project.
+          </p>
           <p>I believe in this project deeply and have put my own money into it. I brought in a first-rate team:</p>
           <ul class="partners">
             <li>
@@ -490,6 +504,68 @@
         appraised price. <a href="privacy-policy-en.html">Privacy</a>
       </p>
     </footer>
+
+    <dialog class="map-dialog album-dialog" id="puzol-story" aria-labelledby="puzol-story-title">
+      <div class="map-dialog__panel album">
+        <header class="map-dialog__head album__head">
+          <h2 id="puzol-story-title">El Fortín de Puzol <time datetime="2025-08">August 2025</time></h2>
+          <button type="button" class="map-dialog__close" data-puzol-close aria-label="Close album">
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="album__panes">
+          <section class="album__pane" aria-labelledby="puzol-before-title">
+            <h3 id="puzol-before-title">Before</h3>
+            <ul class="album__grid">
+              <li>
+                <img src="assets/brand/puzol/before/04.jpg" width="1600" height="1200" alt="A narrow hallway mid-works: new drywall, a dug-out floor, an arched door leaning beside the opening to the street." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/before/02.jpg" width="1600" height="1200" alt="A small room with old wooden ceiling slats, new floor tiles being set in wet mortar, a laser level and a saw on the floor." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/before/03.jpg" width="1600" height="1200" alt="The house on the street: weathered white façade, dark green arched doors, iron window bars, and a hanging lantern." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/before/05.jpg" width="1600" height="1200" alt="Interior stripped to rubble: old patterned wall tiles, a ladder, hanging wires, daylight through an open roof." loading="lazy" />
+              </li>
+            </ul>
+          </section>
+          <section class="album__pane album__pane--after" aria-labelledby="puzol-after-title">
+            <h3 id="puzol-after-title">After</h3>
+            <ul class="album__grid">
+              <li>
+                <img src="assets/brand/puzol/after/12.jpg" width="1066" height="1600" alt="The restored street façade: clean white plaster, a white door numbered 26, Juliet balconies, the lantern kept." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/06.jpg" width="1600" height="1066" alt="The finished entry: vaulted white ceiling, oak-look floor, wall sconces, a white door with a fanlight." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/01.jpg" width="1600" height="1066" alt="A narrow finished kitchen: white cabinets, cream counter, black hob, daylight at the far end." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/03.jpg" width="1600" height="1066" alt="The living room: orange sofa, wall niches with plants, a balcony door filling the room with light." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/02.jpg" width="1600" height="1066" alt="Wood-look stairs rising into a white living and dining room with an orange sofa at the far end." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/09.jpg" width="1600" height="1086" alt="A built-in desk in a narrow hall, a linear lamp above it, an old wooden beam kept over the doorway." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/07.jpg" width="1600" height="1066" alt="A bedroom with a woven headboard, tan linen, and a window in beige curtains." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/11.jpg" width="1066" height="1600" alt="A bathroom with a fluted floating vanity, a backlit capsule mirror, and wood-look floor." loading="lazy" />
+              </li>
+              <li>
+                <img src="assets/brand/puzol/after/10.jpg" width="1600" height="1066" alt="A terrace under a wooden pergola: two woven seats, a small table, white planters." loading="lazy" />
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </dialog>
 
     <dialog class="map-dialog" id="place-map" aria-labelledby="place-map-title">
       <div class="map-dialog__panel">

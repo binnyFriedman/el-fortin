@@ -506,6 +506,42 @@
     });
   }
 
+  /* ---------- Puzol album ---------- */
+
+  function initPuzolAlbum() {
+    var dialog = document.getElementById("puzol-story");
+    var openers = document.querySelectorAll("[data-puzol-open]");
+    if (!dialog || !openers.length) return;
+
+    var closer = dialog.querySelector("[data-puzol-close]");
+    var lastFocus = null;
+
+    function openAlbum() {
+      lastFocus = document.activeElement;
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+      if (closer) closer.focus();
+    }
+
+    function closeAlbum() {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }
+
+    openers.forEach(function (btn) {
+      btn.addEventListener("click", openAlbum);
+    });
+    if (closer) closer.addEventListener("click", closeAlbum);
+    dialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      closeAlbum();
+    });
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) closeAlbum();
+    });
+  }
+
   initMasthead();
   initRack();
   initFlap();
@@ -513,4 +549,5 @@
   initForm();
   initMapDialog();
   initExternalLinks();
+  initPuzolAlbum();
 })();
