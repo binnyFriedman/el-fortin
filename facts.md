@@ -35,9 +35,10 @@ From LinkedIn as checked 2026-07-20, plus his own notes and voice recordings in 
 | LinkedIn role at El Fortín   | Listed as “Part-time”                                                                                                                                                                           |
 | Voice note, 2026-07-28       | At SAP (2021) he moved a product from discrete manufacturing into infrastructure & energy; that year a sale to “the largest gas company in the world” (his account, not independently checked). |
 | Voice note, 2026-07-28       | He locates the product on “the border between a hotel and an apartment”; cites demand for new-build flexible, fully furnished short stays in Riba-roja / Valencia.                              |
+| Family (Binny, 2026-09-09)   | Lives in Riba-roja with his wife and two children. Cleared for landing-page use.                                                                                                                 |
 
 
-Constructor named in materials: NODHOUSES. Architect on the visado plans: José Joaquín Pérez Redón, COACV 11.357. Partner logos on file: Enlaza / Enlaza Arquitectura, NODHOUSES, Sofia Martin.
+Constructor named in materials: NODHOUSES. Architect on the visado plans: José Joaquín Pérez Redón, COACV 11.357. Interior designer: Sofia Martin. Partner logos on file: Enlaza / Enlaza Arquitectura, NODHOUSES, Sofia Martin.
 
 ## Property
 
@@ -52,6 +53,7 @@ Constructor named in materials: NODHOUSES. Architect on the visado plans: José 
 | Zoning                               | Urban land, intensive residential, historic centre (casco urbano)                                                                                                                                                                                                                        |
 | Cadastral reference (current parcel) | 9204809YJ0890C — to be split after *división horizontal*                                                                                                                                                                                                                                 |
 | Handover                             | **Turnkey August 2027** (Uriel, 2026-09-07). No other public construction milestones stated. Licence granted 20 Oct 2025, notified 21 Oct 2025.                                                                                                                                          |
+| Location claims (Binny, 2026-09-09)  | Metrovalencia **Line 9** connects the building to central Valencia. Airport **12 minutes** away. Riba-roja described as a busy logistics hub whose industrial parks drive steady mid-term demand. Cleared for landing-page use.                                                     |
 | Parking                              | Licence: 6 parking spaces (standard 1 per dwelling; footnote: plazas exceed 60% of that standard because a basement cannot be built). Plans show covered and uncovered parking. **The developer holds the parking spaces** (not sold with the apartments) — confirmed Uriel, 2026-09-07. |
 
 
@@ -60,12 +62,13 @@ Constructor named in materials: NODHOUSES. Architect on the visado plans: José 
 ## License and professionals
 
 
-|                  |                                                                              |
-| ---------------- | ---------------------------------------------------------------------------- |
-| Building license | Exp. 4497/2025/GEN · Res. 3658/2025 · Licencia de Obra Tipo I · 10 dwellings |
-| Granted          | 20 October 2025 (Alcaldía); notified 21 October 2025, registro 2025009980    |
-| Architect        | José Joaquín Pérez Redón · COACV 11.357 (visado plans)                       |
-| Constructor      | NODHOUSES                                                                    |
+|                   |                                                                              |
+| ----------------- | ---------------------------------------------------------------------------- |
+| Building license  | Exp. 4497/2025/GEN · Res. 3658/2025 · Licencia de Obra Tipo I · 10 dwellings |
+| Granted           | 20 October 2025 (Alcaldía); notified 21 October 2025, registro 2025009980    |
+| Architect         | José Joaquín Pérez Redón · COACV 11.357 (visado plans)                       |
+| Constructor       | NODHOUSES                                                                    |
+| Interior designer | Sofia Martin                                                                 |
 
 
 The licence is a building permit for a 10-dwelling residential building. It is not itself a tourist-rental licence.
@@ -90,6 +93,7 @@ Useful area and independent valuation (*Valor Publicado*) from `developer/Valor_
 | Units      | Useful m²   | Built type | Beds (workbook / later pages) | Valor Publicado |
 | ---------- | ----------- | ---------- | ----------------------------- | --------------- |
 | 5, 6, 7, 8 | 40.44–40.48 | ~47 m²     | 1 bed                         | €190,557        |
+| — per unit | 5: 40.48 · 6: 40.44 · 7: 40.44 · 8: 40.44 (read off `developer/Valor_Publicado_by_Unit.png`, 2026-09-09) | | | |
 | 1, 2       | 49.05       | ~57 m²     | 2 bed                         | €220,225        |
 | 3, 4       | 49.05       | ~57 m²     | 2 bed                         | €225,707        |
 | 9, 10      | 49.05       | ~57 m²     | 2 bed                         | €232,125        |
@@ -181,6 +185,20 @@ Ley 20/2015 (LOE DA 1ª) requires advance payments on new residential builds to 
 | When payouts start          | When **operation starts**. No void / ramp-up gap after that.                                                       |
 
 
+### Management fee (Uriel, 2026-09-07)
+
+Charged **on that month’s rental**, according to which strategy the unit actually ran that month — not a blended annual rate.
+
+
+| Strategy              | Fee of that month’s gross |
+| --------------------- | ------------------------- |
+| Long-term             | 8%                        |
+| Mid-term / corporate  | 10%                       |
+| Tourism               | 15%                       |
+
+
+Older estimator pages used 8% / 10% / **14%** tourist. The stated tourist rate is **15%**.
+
 
 
 ### Workbook (`sales-info.xlsx`, export 2026-07-12)
@@ -205,7 +223,7 @@ Portfolio results in that sheet (on the sheet’s own all-in capital, not on €
 | All long-term furnished                    | 4.35%               |
 
 
-Operator fees used on later estimator pages: 8% long-term · 10% short-term · 14% tourist.
+Operator fees used on later estimator pages: 8% long-term · 10% short-term · 14% tourist. Stated fees (Uriel, 2026-09-07): **8% long-term · 10% mid-term/corporate · 15% tourism**, applied to whichever rental that month actually ran.
 
 ### Later public labels (2026-08)
 
@@ -219,6 +237,18 @@ Operator fees used on later estimator pages: 8% long-term · 10% short-term · 1
 
 Income starts when the building is operational (turnkey August 2027), not at reservation. Confirmed: payouts begin when operation starts, no gap (Uriel, 2026-09-07).
 
+### Return trajectory as stated (Binny, 2026-09-09)
+
+
+| Period                                  | Net return (of *valor público*) |
+| --------------------------------------- | ------------------------------- |
+| Long-term rental only                   | ~4% (the 4.35% workbook case)   |
+| Year 1 of operation, mixed strategy     | **6.94%**                       |
+| After a few years of good guest reviews | **8%, and up to 10%**           |
+
+
+The 65% short-stay occupancy figure is cleared for landing-page use (Binny, 2026-09-09); note the AirDNA Riba-roja-specific figure below is ~43%.
+
 ## Model of returns
 
 How the operation was described:
@@ -227,7 +257,7 @@ How the operation was described:
 2. The ten apartments are run as one managed building, not ten separate rental products.
 3. Mix can move between long-term, mid-term, and tourist according to demand. Initial launch mix: **5 / 5** short-stay / corporate, then adjusted to market feedback (Uriel, 2026-09-07).
 4. Published return is a **net % of *valor público*** only. If that net is below 4%, the developer pays the gap out of pocket (Uriel, 2026-09-07). Older estimators modelled gross rent minus operator fee, opex, and tax/community — fuller opex stack vs “net after management fee only” is still open.
-5. Management fees stated: 8–15% of gross (brief); estimator used 8 / 10 / 14% by strategy.
+5. Management fee is **per the rental that month actually ran** (Uriel, 2026-09-07): **8% long-term · 10% mid-term/corporate · 15% tourism**. Brief had said 8–15% of gross; older estimators used 8 / 10 / 14%.
 6. Personal use: “up to 2 weeks a year” / 14 nights. Exact contractual terms **still to be written**. Basis: **free space, not peak season** (Uriel, 2026-09-07).
 7. **Open-book financials** planned via a **personal online portal** (Uriel, 2026-09-07).
 
@@ -263,7 +293,7 @@ Short-term in Riba-roja specifically: ~39 active STR listings, mostly 3–4 bed 
 
 ## Prior project
 
-El Fortín de Puzol: rehabilitation of an old house in Puzol, delivered August 2025. Before/after photos in `assets/brand/puzol/`.
+El Fortín de Puzol: rehabilitation of an old house in Puzol, delivered August 2025. Before/after photos in `assets/brand/puzol/`. The house is about **100 years old** (Binny, 2026-09-09).
 
 ## Contact (campaign targets)
 

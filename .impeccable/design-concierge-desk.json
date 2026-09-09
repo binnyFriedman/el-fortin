@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-09T12:30:00.000Z",
+  "title": "Design System: El Fortín Riba-roja — The Concierge Desk",
+  "scope": {
+    "appliesTo": ["site/index-d.html", "site/assets/desk.css", "site/assets/desk.js"],
+    "status": "candidate",
+    "note": "Option D candidate landing. Promote this file to .impeccable/design.json (and DESIGN-concierge-desk.md to DESIGN.md) only if Option D is chosen. The live site keeps the Pacaso-derived system in DESIGN.md until then."
+  },
+  "extensions": {
+    "colorMeta": {
+      "walnut": { "role": "neutral", "displayName": "Walnut", "canonical": "oklch(25.0% 0.021 54.0)", "tonalRamp": ["oklch(15% 0.021 54.0)", "oklch(26% 0.021 54.0)", "oklch(38% 0.021 54.0)", "oklch(49% 0.021 54.0)", "oklch(61% 0.021 54.0)", "oklch(72% 0.021 54.0)", "oklch(84% 0.021 54.0)", "oklch(95% 0.021 54.0)"] },
+      "walnut-deep": { "role": "neutral", "displayName": "Walnut Deep", "canonical": "oklch(19.7% 0.018 50.4)", "tonalRamp": ["oklch(15% 0.018 50.4)", "oklch(26% 0.018 50.4)", "oklch(38% 0.018 50.4)", "oklch(49% 0.018 50.4)", "oklch(61% 0.018 50.4)", "oklch(72% 0.018 50.4)", "oklch(84% 0.018 50.4)", "oklch(95% 0.018 50.4)"] },
+      "walnut-grain": { "role": "neutral", "displayName": "Walnut Grain", "canonical": "oklch(28.9% 0.025 56.2)", "tonalRamp": ["oklch(15% 0.025 56.2)", "oklch(26% 0.025 56.2)", "oklch(38% 0.025 56.2)", "oklch(49% 0.025 56.2)", "oklch(61% 0.025 56.2)", "oklch(72% 0.025 56.2)", "oklch(84% 0.025 56.2)", "oklch(95% 0.025 56.2)"] },
+      "brass": { "role": "primary", "displayName": "Brass", "canonical": "oklch(66.4% 0.083 77.4)", "tonalRamp": ["oklch(15% 0.083 77.4)", "oklch(26% 0.083 77.4)", "oklch(38% 0.083 77.4)", "oklch(49% 0.083 77.4)", "oklch(61% 0.083 77.4)", "oklch(72% 0.083 77.4)", "oklch(84% 0.083 77.4)", "oklch(95% 0.083 77.4)"] },
+      "brass-light": { "role": "primary", "displayName": "Brass Light", "canonical": "oklch(78.7% 0.084 82.9)", "tonalRamp": ["oklch(15% 0.084 82.9)", "oklch(26% 0.084 82.9)", "oklch(38% 0.084 82.9)", "oklch(49% 0.084 82.9)", "oklch(61% 0.084 82.9)", "oklch(72% 0.084 82.9)", "oklch(84% 0.084 82.9)", "oklch(95% 0.084 82.9)"] },
+      "brass-dark": { "role": "primary", "displayName": "Brass Dark", "canonical": "oklch(49.6% 0.074 76.3)", "tonalRamp": ["oklch(15% 0.074 76.3)", "oklch(26% 0.074 76.3)", "oklch(38% 0.074 76.3)", "oklch(49% 0.074 76.3)", "oklch(61% 0.074 76.3)", "oklch(72% 0.074 76.3)", "oklch(84% 0.074 76.3)", "oklch(95% 0.074 76.3)"] },
+      "ledger": { "role": "neutral", "displayName": "Ledger Paper", "canonical": "oklch(92.7% 0.028 86.6)", "tonalRamp": ["oklch(15% 0.028 86.6)", "oklch(26% 0.028 86.6)", "oklch(38% 0.028 86.6)", "oklch(49% 0.028 86.6)", "oklch(61% 0.028 86.6)", "oklch(72% 0.028 86.6)", "oklch(84% 0.028 86.6)", "oklch(95% 0.028 86.6)"] },
+      "ledger-rule": { "role": "neutral", "displayName": "Ledger Rule", "canonical": "rgba(42, 31, 24, 0.14)", "tonalRamp": ["rgba(42, 31, 24, 0.40)", "rgba(42, 31, 24, 0.32)", "rgba(42, 31, 24, 0.26)", "rgba(42, 31, 24, 0.20)", "rgba(42, 31, 24, 0.14)", "rgba(42, 31, 24, 0.10)", "rgba(42, 31, 24, 0.06)", "rgba(42, 31, 24, 0.03)"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "oklch(20.8% 0.016 53.6)", "tonalRamp": ["oklch(15% 0.016 53.6)", "oklch(26% 0.016 53.6)", "oklch(38% 0.016 53.6)", "oklch(49% 0.016 53.6)", "oklch(61% 0.016 53.6)", "oklch(72% 0.016 53.6)", "oklch(84% 0.016 53.6)", "oklch(95% 0.016 53.6)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "oklch(47.2% 0.039 65.2)", "tonalRamp": ["oklch(15% 0.039 65.2)", "oklch(26% 0.039 65.2)", "oklch(38% 0.039 65.2)", "oklch(49% 0.039 65.2)", "oklch(61% 0.039 65.2)", "oklch(72% 0.039 65.2)", "oklch(84% 0.039 65.2)", "oklch(95% 0.039 65.2)"] },
+      "paper-on-walnut": { "role": "neutral", "displayName": "Paper on Walnut", "canonical": "oklch(76.1% 0.069 79.8)", "tonalRamp": ["oklch(15% 0.069 79.8)", "oklch(26% 0.069 79.8)", "oklch(38% 0.069 79.8)", "oklch(49% 0.069 79.8)", "oklch(61% 0.069 79.8)", "oklch(72% 0.069 79.8)", "oklch(84% 0.069 79.8)", "oklch(95% 0.069 79.8)"] },
+      "green": { "role": "secondary", "displayName": "Hotel Green", "canonical": "oklch(37.4% 0.054 169.5)", "tonalRamp": ["oklch(15% 0.054 169.5)", "oklch(26% 0.054 169.5)", "oklch(38% 0.054 169.5)", "oklch(49% 0.054 169.5)", "oklch(61% 0.054 169.5)", "oklch(72% 0.054 169.5)", "oklch(84% 0.054 169.5)", "oklch(95% 0.054 169.5)"] },
+      "error-border": { "role": "state", "displayName": "Terracotta (error baseline)", "canonical": "oklch(70.4% 0.104 43.5)", "tonalRamp": ["oklch(15% 0.104 43.5)", "oklch(26% 0.104 43.5)", "oklch(38% 0.104 43.5)", "oklch(49% 0.104 43.5)", "oklch(61% 0.104 43.5)", "oklch(72% 0.104 43.5)", "oklch(84% 0.104 43.5)", "oklch(95% 0.104 43.5)"] },
+      "error-text": { "role": "state", "displayName": "Terracotta Light (error text)", "canonical": "oklch(78.0% 0.084 43.0)", "tonalRamp": ["oklch(15% 0.084 43.0)", "oklch(26% 0.084 43.0)", "oklch(38% 0.084 43.0)", "oklch(49% 0.084 43.0)", "oklch(61% 0.084 43.0)", "oklch(72% 0.084 43.0)", "oklch(84% 0.084 43.0)", "oklch(95% 0.084 43.0)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero promise only. Warm white #fbf6ea over the photograph with a 28px text-shadow; two lines at ≥900px." },
+      "headline": { "displayName": "Headline", "purpose": "One per chapter; text-wrap: balance; 28px before the prose." },
+      "title": { "displayName": "Title", "purpose": "Sub-titles within a chapter. Rate-card room titles run 2rem with a 2px ink rule." },
+      "figure": { "displayName": "Figure (engraved numeral)", "purpose": "Unit numbers, the 4% guarantee plate (clamp(4rem, 8vw, 6rem), width 84, tracking -0.03em). Narrow Archivo, tabular." },
+      "body": { "displayName": "Body", "purpose": "All prose in Libre Caslon Text at a 62ch measure; the manager's letter runs 1.1875rem." },
+      "data": { "displayName": "Data row", "purpose": "dt/dd rows on board, rate card, team list, fee table. Values 600 right-aligned on paper, 500 on walnut; tabular." },
+      "label": { "displayName": "Label / Plate", "purpose": "Plate buttons, masthead, tabs, form labels, plaque keys, Sold chip, signature. Uppercase, 0.10–0.14em, width 108–112." },
+      "caption": { "displayName": "Caption", "purpose": "Figure captions, board notes, hero provenance note, colophon." }
+    },
+    "fonts": [
+      { "family": "Archivo", "file": "site/assets/fonts/archivo-variable-latin.woff2", "axes": { "wght": "100 900", "wdth": "62% 125%" }, "license": "SIL OFL", "preload": true },
+      { "family": "Libre Caslon Text", "file": "site/assets/fonts/libre-caslon-text-400-latin.woff2", "weight": 400, "license": "SIL OFL", "preload": true },
+      { "family": "Libre Caslon Text", "file": "site/assets/fonts/libre-caslon-text-700-latin.woff2", "weight": 700, "license": "SIL OFL", "preload": false }
+    ],
+    "shadows": [
+      { "name": "engraved-plate", "value": "inset 0 1px 0 rgba(255, 244, 214, 0.55), inset 0 -2px 0 rgba(60, 40, 12, 0.45), 0 10px 24px -12px rgba(0, 0, 0, 0.6)", "purpose": "Plate buttons at rest. Brass is engraved: highlight top, bevel bottom, short drop." },
+      { "name": "engraved-plate-active", "value": "inset 0 2px 0 rgba(60, 40, 12, 0.45), 0 4px 12px -8px rgba(0, 0, 0, 0.6)", "purpose": "Plate pressed: bevel inverts, drop shortens." },
+      { "name": "brass-tag", "value": "inset 0 1px 0 rgba(255, 244, 214, 0.65), inset 0 -1px 0 rgba(60, 40, 12, 0.45), 0 10px 18px -8px rgba(0, 0, 0, 0.85)", "purpose": "Key tags at rest." },
+      { "name": "brass-tag-lifted", "value": "inset 0 1px 0 rgba(255, 244, 214, 0.65), inset 0 -1px 0 rgba(60, 40, 12, 0.45), 0 22px 26px -10px rgba(0, 0, 0, 0.9)", "purpose": "Key tag on hover/focus." },
+      { "name": "brass-plate-large", "value": "inset 0 1px 0 rgba(255, 244, 214, 0.65), inset 0 -2px 0 rgba(60, 40, 12, 0.45), 0 30px 50px -28px rgba(0, 0, 0, 0.9)", "purpose": "The 4% guarantee plate." },
+      { "name": "case", "value": "inset 0 2px 0 rgba(255, 244, 214, 0.05), inset 0 0 0 1px rgba(176, 141, 87, 0.4), 0 24px 48px -28px rgba(0, 0, 0, 0.9)", "purpose": "Recessed wooden cases: the split-flap board (rack uses .06 / .35 / -24px)." },
+      { "name": "cubby-recess", "value": "inset 0 6px 14px -6px rgba(0, 0, 0, 0.9), inset 0 -1px 0 rgba(176, 141, 87, 0.18)", "purpose": "Each key cubby." },
+      { "name": "object-on-desk", "value": "0 30px 60px -30px rgba(0, 0, 0, 0.7)", "purpose": "Photographs and the listing card (.8) lying on a walnut chapter. Carousel slides use 0 24px 48px -28px rgba(0,0,0,.9)." },
+      { "name": "masthead-hairline", "value": "0 1px 0 rgba(176, 141, 87, 0.35)", "purpose": "The solid masthead's only elevation." }
+    ],
+    "gradients": [
+      { "name": "brass-face", "value": "linear-gradient(160deg, #d9bc84 0%, #b08d57 45%, #a3844f 100%)", "purpose": "Stand-in for engraved brass on tags and the guarantee plate. Not canonised as brass; scheduled for replacement by raster assets." },
+      { "name": "cubby-back", "value": "linear-gradient(180deg, #1a120d 0%, #201711 60%, #241a13 100%)", "purpose": "Depth inside each cubby." },
+      { "name": "ledger-rules", "value": "repeating-linear-gradient(180deg, transparent 0 calc(2rem - 1px), rgba(42, 31, 24, 0.14) calc(2rem - 1px) 2rem)", "purpose": "Ruled lines every 2rem on every ledger chapter." },
+      { "name": "window-wash", "value": "linear-gradient(180deg, rgba(28, 19, 14, 0.42) 0%, rgba(28, 19, 14, 0.08) 38%, rgba(28, 19, 14, 0.12) 70%, rgba(28, 19, 14, 0.7) 100%)", "purpose": "Walnut wash over the hero photograph for masthead and headline legibility." },
+      { "name": "safe-warmth", "value": "radial-gradient(120% 90% at 100% 0%, rgba(176, 141, 87, 0.12), transparent 60%)", "purpose": "Brass warmth on the green safe (mirrored bottom-left at .14 on the guest book)." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The only easing curve. Every transition and keyframe uses it." },
+      { "name": "duration-colour", "value": "200ms", "purpose": "Colour-only changes: links, tabs, arrows, input baselines." },
+      { "name": "duration-plate", "value": "220ms", "purpose": "Plate hover/press: background, transform, shadow." },
+      { "name": "duration-underline", "value": "260ms", "purpose": "Tab underline scaleX." },
+      { "name": "duration-settle-shadow", "value": "320ms", "purpose": "Masthead solidifying; tag shadow." },
+      { "name": "duration-enter", "value": "420ms", "purpose": "Unit detail fade-up (unit-in) and split-flap cell flip." },
+      { "name": "duration-lift", "value": "480ms", "purpose": "Key tag transform on hover/press." },
+      { "name": "duration-pendulum", "value": "900ms", "purpose": "Tag settling back on its hook." },
+      { "name": "keyframes-settle", "value": "0% rotate(5deg); 35% rotate(-3deg); 70% rotate(1.2deg); 100% rotate(0)", "purpose": "Pendulum for a tag returned to the hook." },
+      { "name": "keyframes-flip", "value": "0% rotateX(-90deg) opacity 0; 60% rotateX(8deg) opacity 1; 100% rotateX(0)", "purpose": "Split-flap value cell; 60ms stagger per cell, perspective 600px." },
+      { "name": "keyframes-unit-in", "value": "from opacity 0 translateY(8px)", "purpose": "Selected unit detail entering the live region." },
+      { "name": "reduced-motion", "value": "animation: none; transition-duration: 0.01ms; tag transforms: none; scroll-behavior: auto", "purpose": "prefers-reduced-motion: reduce removes all motion; desk.js also skips settle/flip and uses instant scroll." }
+    ],
+    "breakpoints": [
+      { "name": "listing-stack", "value": "560px", "purpose": "Listing card stacks (image 4:3); tab labels compress to 0.75rem / 0.04em." },
+      { "name": "form-single", "value": "640px", "purpose": "Guest-book form goes to one column." },
+      { "name": "plaques-strip", "value": "720px", "purpose": "Plaques become 3-up; masthead subtitle shows once solid." },
+      { "name": "chapter-split", "value": "900px", "purpose": "Two-column chapters; key rack 5→10 columns; figure bleed; carousel basis min(34vw, 460px)." }
+    ],
+    "layout": {
+      "gutter": "clamp(20px, 5vw, 96px)",
+      "measure": "62ch",
+      "container": "none — chapters run edge to edge; the gutter frames",
+      "chapterSplits": { "front-desk": "6/6", "board": "6/6", "letter": "5/7", "guestbook": "5/7", "safe": "4/8", "statement": "7/5 with named areas title/text | fees" },
+      "ledgerRulePitch": "2rem",
+      "mastheadSolidAfter": "72px of hero scrolled (IntersectionObserver rootMargin -72px)"
+    }
+  },
+  "components": [
+    {
+      "name": "Plate (primary button)",
+      "kind": "button",
+      "refersTo": "plate",
+      "description": "Engraved brass plate; the only button style. Large variant on the hero and the form submit.",
+      "html": "<a class=\"ds-plate ds-plate--lg\" href=\"#\">About the project</a>",
+      "css": ".ds-plate { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px; border: 0; border-radius: 0; background: var(--brass, #b08d57); color: var(--walnut-deep, #1c130e); font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; font-size: 0.875rem; font-weight: 600; font-stretch: 108%; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,244,214,.55), inset 0 -2px 0 rgba(60,40,12,.45), 0 10px 24px -12px rgba(0,0,0,.6); transition: background-color 220ms cubic-bezier(.16,1,.3,1), transform 220ms cubic-bezier(.16,1,.3,1), box-shadow 220ms cubic-bezier(.16,1,.3,1); } .ds-plate:hover { background: var(--brass-light, #d4b57a); transform: translateY(-1px); } .ds-plate:active { transform: translateY(1px); box-shadow: inset 0 2px 0 rgba(60,40,12,.45), 0 4px 12px -8px rgba(0,0,0,.6); } .ds-plate:focus-visible { outline: 2px solid var(--brass-light, #d4b57a); outline-offset: 3px; } .ds-plate--lg { min-height: 56px; padding: 0 36px; font-size: 0.9375rem; }"
+    },
+    {
+      "name": "Arrow (carousel control)",
+      "kind": "button",
+      "refersTo": "arrow",
+      "description": "Square 48px outline control with a stroked chevron; the only non-plate button.",
+      "html": "<button class=\"ds-arrow\" type=\"button\" aria-label=\"Next photograph\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9 5l7 7-7 7\"/></svg></button>",
+      "css": ".ds-arrow { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--brass, #b08d57); border-radius: 0; background: transparent; color: var(--brass-light, #d4b57a); cursor: pointer; transition: background-color 200ms cubic-bezier(.16,1,.3,1), color 200ms cubic-bezier(.16,1,.3,1); } .ds-arrow:hover { background: var(--brass, #b08d57); color: var(--walnut-deep, #1c130e); } .ds-arrow:focus-visible { outline: 2px solid var(--brass-light, #d4b57a); outline-offset: 3px; } .ds-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: square; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "masthead-link",
+      "description": "Fixed masthead: uppercase wide Archivo name left, brass-light 'Talk to Uriel' link right; solid walnut-deep with brass hairline once scrolled.",
+      "html": "<header class=\"ds-masthead ds-masthead--solid\"><a class=\"ds-masthead__name\" href=\"#\">El Fortín <span>Riba-roja · Valencia</span></a><a class=\"ds-masthead__talk\" href=\"#\">Talk to Uriel</a></header>",
+      "css": ".ds-masthead { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 32px; color: var(--ledger, #efe6d2); font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; transition: background-color 320ms cubic-bezier(.16,1,.3,1), box-shadow 320ms cubic-bezier(.16,1,.3,1); } .ds-masthead--solid { background: rgba(28,19,14,.94); box-shadow: 0 1px 0 rgba(176,141,87,.35); } .ds-masthead__name { color: inherit; font-weight: 600; font-stretch: 112%; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; } .ds-masthead__name span { margin-left: 0.75em; font-weight: 400; font-stretch: 100%; letter-spacing: 0.04em; color: var(--paper-on-walnut, #c9ad7f); } .ds-masthead__talk { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; color: var(--brass-light, #d4b57a); padding: 10px 0; border-bottom: 1px solid var(--brass, #b08d57); transition: color 200ms cubic-bezier(.16,1,.3,1); } .ds-masthead__talk:hover { color: var(--ledger, #efe6d2); } .ds-masthead a:focus-visible { outline: 2px solid var(--brass-light, #d4b57a); outline-offset: 3px; }"
+    },
+    {
+      "name": "Tabs (split-flap board)",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "Text tabs on a brass hairline; the selected tab turns ledger and grows a 2px brass underline.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\" type=\"button\">Long-term</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\" type=\"button\">Mid-term</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\" type=\"button\">Short-stay</button></div>",
+      "css": ".ds-tabs { display: flex; gap: 4px; border-bottom: 1px solid rgba(176,141,87,.35); background: var(--walnut-deep, #1c130e); padding: 0 8px; } .ds-tab { flex: 1 1 0; position: relative; padding: 10px 6px 12px; border: 0; background: transparent; color: var(--paper-on-walnut, #c9ad7f); font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; cursor: pointer; transition: color 200ms cubic-bezier(.16,1,.3,1); } .ds-tab::after { content: \"\"; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--brass, #b08d57); transform: scaleX(0); transition: transform 260ms cubic-bezier(.16,1,.3,1); } .ds-tab:hover, .ds-tab[aria-selected=\"true\"] { color: var(--ledger, #efe6d2); } .ds-tab[aria-selected=\"true\"]::after { transform: scaleX(1); } .ds-tab:focus-visible { outline: 2px solid var(--brass-light, #d4b57a); outline-offset: 3px; }"
+    },
+    {
+      "name": "Field (baseline input)",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "No box: uppercase Archivo label over a Caslon input with a single brass baseline; brass-light on focus, terracotta on error.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-f-email\">Email</label><input id=\"ds-f-email\" type=\"email\" placeholder=\"you@example.com\" /><p class=\"ds-field__error\" hidden>That email address doesn't look complete.</p></div>",
+      "css": ".ds-field { display: grid; gap: 8px; background: var(--walnut-deep, #1c130e); padding: 16px; } .ds-field label { font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-on-walnut, #c9ad7f); } .ds-field input { width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid var(--brass, #b08d57); border-radius: 0; background: transparent; color: var(--ledger, #efe6d2); font-family: \"Libre Caslon Text\", Georgia, serif; font-size: 1.125rem; caret-color: var(--brass, #b08d57); transition: border-color 200ms cubic-bezier(.16,1,.3,1), box-shadow 200ms cubic-bezier(.16,1,.3,1); } .ds-field input::placeholder { color: rgba(201,173,127,.85); } .ds-field input:focus { outline: none; border-bottom-color: var(--brass-light, #d4b57a); box-shadow: 0 1px 0 var(--brass-light, #d4b57a); } .ds-field.is-invalid input { border-bottom-color: #d68a6a; } .ds-field__error { margin: 0; font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; font-size: 0.8125rem; color: #e6a68c; }"
+    },
+    {
+      "name": "Choice (square radio)",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "18px square brass outline; an 8px brass-light square scales in when checked. Option text in Caslon.",
+      "html": "<label class=\"ds-choice\"><input type=\"radio\" name=\"ds-type\" checked /> <span>One bedroom</span></label>",
+      "css": ".ds-choice { display: flex; align-items: center; gap: 12px; padding: 8px 16px; background: var(--walnut-deep, #1c130e); font-family: \"Libre Caslon Text\", Georgia, serif; font-size: 1.0625rem; color: var(--ledger, #efe6d2); cursor: pointer; } .ds-choice input { appearance: none; width: 18px; height: 18px; margin: 0; border: 1px solid var(--brass, #b08d57); border-radius: 0; background: transparent; display: grid; place-items: center; flex: none; } .ds-choice input::after { content: \"\"; width: 8px; height: 8px; background: var(--brass-light, #d4b57a); transform: scale(0); transition: transform 180ms cubic-bezier(.16,1,.3,1); } .ds-choice input:checked::after { transform: scale(1); } .ds-choice input:focus-visible { outline: 2px solid var(--brass-light, #d4b57a); outline-offset: 3px; }"
+    },
+    {
+      "name": "Key tag on hook",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "Signature: a brass tag hanging from a hook in a recessed walnut cubby. Lifts and rotates on hover; pressed state lifts further and brightens.",
+      "html": "<div class=\"ds-cubby\"><button class=\"ds-tag\" type=\"button\" aria-pressed=\"false\"><span class=\"ds-tag__hole\"></span><span class=\"ds-tag__num\">4</span></button></div>",
+      "css": ".ds-cubby { position: relative; width: 120px; aspect-ratio: 3 / 4; display: grid; place-items: start center; padding-top: 12%; background: linear-gradient(180deg, #1a120d 0%, #201711 60%, #241a13 100%); box-shadow: inset 0 6px 14px -6px rgba(0,0,0,.9), inset 0 -1px 0 rgba(176,141,87,.18); overflow: hidden; } .ds-cubby::before { content: \"\"; position: absolute; top: 6%; left: 50%; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: var(--brass-light, #d4b57a); box-shadow: 0 1px 0 rgba(0,0,0,.6); } .ds-tag { position: relative; width: 58%; aspect-ratio: 5 / 9; margin-top: 4%; padding: 0; border: 0; border-radius: 0; cursor: pointer; background: linear-gradient(160deg, #d9bc84 0%, var(--brass, #b08d57) 45%, #a3844f 100%); color: var(--walnut-deep, #1c130e); font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; display: grid; place-items: center; align-content: center; gap: 8%; transform-origin: 50% 0%; box-shadow: inset 0 1px 0 rgba(255,244,214,.65), inset 0 -1px 0 rgba(60,40,12,.45), 0 10px 18px -8px rgba(0,0,0,.85); transition: transform 480ms cubic-bezier(.16,1,.3,1), box-shadow 320ms cubic-bezier(.16,1,.3,1), filter 220ms cubic-bezier(.16,1,.3,1); } .ds-tag__hole { width: 22%; aspect-ratio: 1; border-radius: 50%; background: #1a120d; box-shadow: inset 0 1px 2px rgba(0,0,0,.8), 0 1px 0 rgba(255,244,214,.35); } .ds-tag__num { font-size: 1.5rem; font-weight: 600; font-stretch: 90%; line-height: 1; text-shadow: 0 1px 0 rgba(255,244,214,.5); } .ds-tag:hover, .ds-tag:focus-visible { transform: translateY(-8%) rotate(-4deg); box-shadow: inset 0 1px 0 rgba(255,244,214,.65), inset 0 -1px 0 rgba(60,40,12,.45), 0 22px 26px -10px rgba(0,0,0,.9); outline: none; } .ds-tag[aria-pressed=\"true\"] { transform: translateY(-14%) rotate(3deg); filter: brightness(1.12); }"
+    },
+    {
+      "name": "Data row (ledger)",
+      "kind": "card",
+      "refersTo": "ledger-card",
+      "description": "The rate-card row: label in ink-soft, value 600 tabular right-aligned, hairline in ledger-rule, on ruled paper.",
+      "html": "<dl class=\"ds-rows\"><div><dt>Appraised price</dt><dd>€190,557</dd></div><div><dt>Premium furniture &amp; fit-out package</dt><dd>€15,959.66</dd></div><div><dt>Closing costs &amp; taxes</dt><dd>~12% of price, indicative</dd></div></dl>",
+      "css": ".ds-rows { margin: 0; padding: 8px 24px; background-color: var(--ledger, #efe6d2); background-image: repeating-linear-gradient(180deg, transparent 0 calc(2rem - 1px), rgba(42,31,24,.14) calc(2rem - 1px) 2rem); color: var(--ink, #1e1611); } .ds-rows div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid rgba(42,31,24,.14); font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; font-size: 0.9375rem; } .ds-rows dt { margin: 0; color: var(--ink-soft, #6b5744); } .ds-rows dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }"
+    },
+    {
+      "name": "Plaque strip",
+      "kind": "card",
+      "refersTo": "plaque",
+      "description": "Walnut cells separated by brass hairlines; uppercase key, tabular value, the last value in brass-light.",
+      "html": "<dl class=\"ds-plaques\"><div><dt>Building licence</dt><dd>Exp. 4497/2025/GEN</dd></div><div><dt>Granted</dt><dd>20 October 2025</dd></div><div><dt>Turnkey handover</dt><dd>August 2027</dd></div></dl>",
+      "css": ".ds-plaques { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgba(176,141,87,.35); } .ds-plaques div { padding: 18px 20px 20px; background: var(--walnut, #2a1f18); font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; display: grid; gap: 6px; } .ds-plaques dt { margin: 0; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-on-walnut, #c9ad7f); } .ds-plaques dd { margin: 0; font-size: 1.125rem; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ledger, #efe6d2); } .ds-plaques div:last-child dd { color: var(--brass-light, #d4b57a); font-size: 1.5rem; }"
+    },
+    {
+      "name": "Sold chip",
+      "kind": "chip",
+      "refersTo": "sold-chip",
+      "description": "The empty cubby's marker: square, brass hairline at 50%, uppercase paper-on-walnut.",
+      "html": "<span class=\"ds-sold\">10 · Sold</span>",
+      "css": ".ds-sold { display: inline-block; font-family: \"Archivo\", \"Helvetica Neue\", Arial, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper-on-walnut, #c9ad7f); border: 1px solid rgba(176,141,87,.5); border-radius: 0; padding: 6px 8px; background: var(--walnut-deep, #1c130e); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Concierge Desk",
+    "overview": "Someone else runs the desk; you receive the statement. The page is a hotel front desk seen from the guest's side: a dark walnut counter, ledger paper laid on it, brass hardware for everything you can touch, and one green safe for the promise. The reader is a Northern-European professional in their fifties reading on a laptop in the evening. Nothing on the surface asks them to hurry, calculate, or scroll a dashboard. Chapters alternate between walnut (the desk) and ledger paper (the reading), so the eye rests on one of two grounds at any moment and is never asked to parse a third.\n\nDensity is editorial, not dense: one headline per chapter, prose at a 62-character measure, and numbers pulled out into brass numerals that read as engraved rather than charted. Motion is physical and short: a tag lifts off its hook, a split-flap cell turns, a settling tag swings like a pendulum. Nothing fades in for its own sake.\n\nConfirmed visual rejections (from the direction contract, held in the build): no cream-serif-olive development-site look, no yield dashboard, no cards floating on drop shadows, no rounded corners, no colour other than brass on an action.",
+    "keyCharacteristics": [
+      "Two grounds only: walnut desk chapters and ruled ledger-paper chapters, alternating.",
+      "Brass is the single action colour and the single money-numeral colour.",
+      "One hotel-green field, used exactly once, for the guarantee.",
+      "Archivo (variable width 62–125) for plates, labels, controls, captions, and every number; Libre Caslon Text for prose.",
+      "Zero radius everywhere; circles only for hardware (hooks, tag holes).",
+      "Depth is engraved (inset highlight top, inset shadow bottom), never floated.",
+      "Motion is physical, under half a second, and fully removed under prefers-reduced-motion."
+    ],
+    "rules": [
+      { "name": "The Brass Is Action Rule", "body": "Brass appears on exactly two kinds of element: things you can press (plates, tags, tabs, arrows, input baselines, links) and money or unit numerals. A decorative element in brass is a violation; a clickable element in any other colour is a violation.", "section": "colors" },
+      { "name": "The One Green Rule", "body": "Hotel green is the guarantee chapter and nothing else. A second green field would make it a theme colour; its rarity is what makes it a safe.", "section": "colors" },
+      { "name": "The Two Grounds Rule", "body": "Every chapter sits on walnut or on ruled ledger paper. Text on walnut is ledger (primary) or paper-on-walnut (secondary); text on ledger is ink (primary) or ink-soft (secondary). No third ground, no white.", "section": "colors" },
+      { "name": "The Plates-and-Book Rule", "body": "If it is a label, a control, a caption, or a number, it is Archivo. If a person would read it as a sentence, it is Libre Caslon Text. A number set in Caslon or a paragraph set in Archivo is a violation.", "section": "typography" },
+      { "name": "The Width-Not-Weight Rule", "body": "Archivo hierarchy is carried on the width axis. Numerals are narrow (84–92), headlines are near-normal (96–100), plates and labels are wide (108–112). Weight stays at 500 for anything large and 600 for anything small and uppercase; nothing goes bolder.", "section": "typography" },
+      { "name": "The Tabular Money Rule", "body": "Every euro amount, percentage, and area figure is font-variant-numeric: tabular-nums so columns of money line up on the ledger.", "section": "typography" },
+      { "name": "The Engraved Rule", "body": "Only brass lifts. A brass surface always carries the top highlight and bottom bevel; a wooden case is always recessed with an inset brass ring; paper never has a shadow. A floated card on a ledger chapter is a violation.", "section": "elevation" },
+      { "name": "The Press Rule", "body": "Pressing a plate moves it 1px down and shortens its shadow; hovering moves it 1px up and lightens it. Nothing scales.", "section": "elevation" },
+      { "name": "The Square Hardware Rule", "body": "If it is not a hook or a hole, it has no radius. Do not round a button, chip, image, or input \"a little\".", "section": "shapes" }
+    ],
+    "dos": [
+      "Do put every action in brass and every money numeral in brass-light; keep both off everything else (The Brass Is Action Rule).",
+      "Do alternate walnut and ruled ledger chapters and pair text colour to ground: ledger/paper-on-walnut on walnut, ink/ink-soft on ledger (The Two Grounds Rule).",
+      "Do set labels, controls, captions, and numbers in Archivo and prose in Libre Caslon Text; carry Archivo hierarchy on the width axis, narrow for numerals (84–92) and wide for plates (108–112) (The Plates-and-Book, Width-Not-Weight Rules).",
+      "Do set every euro, percentage, and m² figure in tabular numerals and hold prose to 62ch.",
+      "Do engrave brass (top highlight, bottom bevel, short drop) and recess cases (inset brass ring); leave paper flat (The Engraved Rule).",
+      "Do keep motion physical and under 500ms on cubic-bezier(0.16, 1, 0.3, 1), and remove all of it under prefers-reduced-motion: reduce.",
+      "Do frame with the single fluid gutter and a 12-column chapter grid at ≥900px; stack below."
+    ],
+    "donts": [
+      "Don't add a radius to anything that is not a hook or a hole (The Square Hardware Rule).",
+      "Don't use hotel green anywhere but the guarantee chapter (The One Green Rule).",
+      "Don't introduce a third ground (white, grey, a second paper tone) or float a card on a shadow over ledger paper.",
+      "Don't add a secondary or outlined button style; secondary actions are text links or the 48px arrow control.",
+      "Don't use a red for errors; the field error is terracotta (error-border / error-text) so it stays in the desk's temperature.",
+      "Don't set a number in Caslon or a paragraph in Archivo, and don't push Archivo above weight 600.",
+      "Don't add eyebrows or kickers above headlines; the build has none. Sub-lines sit under the headline in Title or paper-on-walnut body."
+    ],
+    "open": [
+      "Brass tags, the guarantee plate, and plate buttons are CSS gradients plus an engraved shadow stack, not engraved-brass raster assets (user scope: skeleton first).",
+      "Hero aerial hero-riba-roja-drone.webp (and -alt) is a Higgsfield nano_banana_pro render with a provenance .webp.json; labelled 'illustrative aerial, generated' until a real drone shot replaces it.",
+      "Construction carousel has 7 photographs; the brief wants 10.",
+      "Form handoff channel undecided: desk.js HANDOFF.mode is 'whatsapp' with a 'mailto' alternative; hint and status copy switch with it.",
+      "Analytics not hooked on index-d.html, by user decision.",
+      "The '€113 / night' listing price is derived from the workbook (€2,200 ÷ (30 × 0.65)) and labelled illustrative.",
+      "Libre Caslon Text italic is not shipped; no italic is used on the page.",
+      "Declared but unused tokens --ledger-deep (#e3d6b8) and --green-deep (#173a2f) are left out of the frontmatter.",
+      "One-off values not tokenised: hero headline #fbf6ea and its text-shadow; safe prose #e7e0cf; .listing__price colour via !important."
+    ]
+  }
+}

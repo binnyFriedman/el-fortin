@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Fortín — Choose a landing narrative</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/discover.css" />
+    <style>
+      h1.display {
+        font-size: clamp(3rem, 6.2vw, 4.75rem);
+      }
+      .chooser {
+        padding: clamp(120px, 18vh, 160px) 0 80px;
+      }
+      .chooser-grid {
+        display: grid;
+        gap: 0;
+        margin-top: 40px;
+        border: 1px solid var(--border-subtle);
+      }
+      @media (min-width: 900px) {
+        .chooser-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+      .chooser-card {
+        display: grid;
+        gap: 16px;
+        align-content: start;
+        padding: 32px 28px 36px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .chooser-card + .chooser-card {
+        border-top: 1px solid var(--border-subtle);
+      }
+      @media (min-width: 900px) {
+        .chooser-card + .chooser-card {
+          border-top: 0;
+          border-left: 1px solid var(--border-subtle);
+        }
+      }
+      .chooser-card:hover {
+        background: var(--surface);
+      }
+      .chooser-card h2 {
+        font-family: var(--font-family-heading);
+        font-size: 1.85rem;
+        font-weight: 400;
+        letter-spacing: var(--letter-spacing-tight);
+        line-height: 1.15;
+      }
+      .chooser-card p {
+        color: var(--brand-secondary);
+        max-width: 28em;
+      }
+      .chooser-kicker {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-olive);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header is-solid">
+      <div class="shell">
+        <a class="wordmark" href="index.html">El Fortín</a>
+        <a class="btn btn-olive" href="index.html">Current live page</a>
+      </div>
+    </header>
+    <main class="chooser">
+      <div class="shell">
+        <p class="hero-ident" style="color: var(--brand-secondary)">
+          Three narratives. One visual system. Pick the discovery question that should own the page.
+        </p>
+        <h1 class="display">Which landing should replace the current page?</h1>
+        <div class="chooser-grid">
+          <a class="chooser-card" href="index-a.html">
+            <p class="chooser-kicker">Option A · recommended</p>
+            <h2>The Model Revealed</h2>
+            <p>One building earns. One apartment is yours.</p>
+            <p>Clearest product explanation. Best if visitors do not yet understand whole-building operation.</p>
+          </a>
+          <a class="chooser-card" href="index-b.html">
+            <p class="chooser-kicker">Option B</p>
+            <h2>Protection Earned</h2>
+            <p>Property beneath your capital. A floor beneath the return.</p>
+            <p>For prospects who already grasp the model and distrust overseas-property promises.</p>
+          </a>
+          <a class="chooser-card" href="index-c.html">
+            <p class="chooser-kicker">Option C</p>
+            <h2>Boutique Accountability</h2>
+            <p>Ten apartments. One operator. Your name on one deed.</p>
+            <p>For prospects persuaded by direct access, boutique scale, and who remains after sale.</p>
+          </a>
+        </div>
+        <p class="lede schedule-lead">
+          <a href="index-a-he.html" lang="he">גרסה עברית של אפשרות א׳</a>
+        </p>
+        <p class="lede schedule-lead">
+          <a href="index-d.html">Option D · The Concierge Desk</a> — new visual world, promise-first structure, key rack, no analytics yet.
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

@@ -24,6 +24,7 @@
   var STORAGE_VISIT = 'ef_visit_id';
   var STORAGE_ATTR = 'ef_attr';
   var isSpanish = String(LOCALE).toLowerCase().indexOf('es') === 0;
+  var isHebrew = String(LOCALE).toLowerCase().indexOf('he') === 0;
 
   function readConsent() {
     try {
@@ -54,23 +55,29 @@
     banner.id = 'ef-consent';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-modal', 'false');
-    banner.setAttribute('aria-label', isSpanish ? 'Preferencias de privacidad' : 'Privacy preferences');
+    banner.setAttribute(
+      'aria-label',
+      isHebrew ? 'העדפות פרטיות' : isSpanish ? 'Preferencias de privacidad' : 'Privacy preferences'
+    );
+    banner.setAttribute('dir', isHebrew ? 'rtl' : 'ltr');
     banner.innerHTML =
       '<p>' +
-      (isSpanish
-        ? 'Usamos analítica propia para medir la página y las campañas. Puedes aceptarla o rechazarla; los enlaces de contacto funcionan igual. '
-        : 'First-party analytics help measure the page and campaigns. Accept or reject them; contact links work either way. ') +
+      (isHebrew
+        ? 'אנחנו משתמשים באנליטיקה עצמית למדידת העמוד והקמפיינים. אפשר לאשר או לדחות; קישורי יצירת הקשר פועלים בכל מקרה. '
+        : isSpanish
+          ? 'Usamos analítica propia para medir la página y las campañas. Puedes aceptarla o rechazarla; los enlaces de contacto funcionan igual. '
+          : 'First-party analytics help measure the page and campaigns. Accept or reject them; contact links work either way. ') +
       '<a href="' +
       CONFIG.privacyUrl +
       '">' +
-      (isSpanish ? 'Más información' : 'Learn more') +
+      (isHebrew ? 'מידע נוסף' : isSpanish ? 'Más información' : 'Learn more') +
       '</a></p>' +
       '<div class="ef-consent-actions">' +
       '<button type="button" data-consent="rejected">' +
-      (isSpanish ? 'Rechazar' : 'Reject') +
+      (isHebrew ? 'דחייה' : isSpanish ? 'Rechazar' : 'Reject') +
       '</button>' +
       '<button type="button" data-consent="accepted">' +
-      (isSpanish ? 'Aceptar analítica' : 'Accept analytics') +
+      (isHebrew ? 'אישור אנליטיקה' : isSpanish ? 'Aceptar analítica' : 'Accept analytics') +
       '</button>' +
       '</div>';
 
@@ -448,14 +455,29 @@
     }
   }
 
+  function wireDoors() {
+    document.querySelectorAll('details[data-door]').forEach(function (el) {
+      el.addEventListener('toggle', function () {
+        if (!el.open) return;
+        var id = el.getAttribute('data-door');
+        track('door_opened', {
+          door_id: id,
+          idempotency_key: visitId + ':door_opened:' + id
+        });
+      });
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       wireCtas();
+      wireDoors();
       wireConsentSettings();
       if (!readConsent()) renderConsent();
     });
   } else {
     wireCtas();
+    wireDoors();
     wireConsentSettings();
     if (!readConsent()) renderConsent();
   }

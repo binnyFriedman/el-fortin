@@ -1,8 +1,8 @@
 <!doctype html>
 <!--
   Sniper campaign landing page — English, paid-search destination.
-  Branch: campaign/sniper
-  Starting point: site/v3.html
+  Branch: sniper/floor-first
+  Starting point: site/sniper.html (reset)
 
   Visuals, type, colour and spacing follow v3 structure with the
   Pragmatic Mediterranean palette (alabaster, Prussian, slate, terracotta, olive).
@@ -10,23 +10,22 @@
     Renders bleed · photographs get the hairline · plans sit on white
     --frame-gap and the light → dark → light rhythm
 
-  Campaign copy and the gated model request stay here.
-  One source of truth: EFConfig holds price, floor, inventory.
+  One WhatsApp ask. One source of truth: EFConfig holds price, floor, inventory.
 -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>El Fortín — Secure, Hands-Off Wealth Preservation in Spanish Real Estate.</title>
+    <title>El Fortín — Deeded apartment in Valencia. 4% from first operations.</title>
     <meta
       name="description"
-      content="Fully managed real estate in Riba-roja, Valencia. Direct deed, 4.0% contractual floor, 8.0% projected target. Turn-key from ≈ €229,000 estimated all-in. Turnkey August 2027."
+      content="Deeded apartment in Riba-roja, Valencia. 4% from first operations. Uriel stays the operator. From ≈ €229,000. Turnkey August 2027."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="El Fortín — Secure, Hands-Off Wealth Preservation in Spanish Real Estate." />
+    <meta property="og:title" content="El Fortín — Deeded apartment in Valencia. 4% from first operations." />
     <meta
       property="og:description"
-      content="Fully managed Spanish real estate for Northern European professionals. Direct deed, 4.0% floor, 8.0% target. From ≈ €229,000 estimated all-in. Turnkey August 2027."
+      content="You take title. 4% from first operations. Uriel stays. From ≈ €229,000. Turnkey August 2027."
     />
     <meta property="og:image" content="assets/hero-desk-elfortin.jpg" />
     <meta property="og:locale" content="en_GB" />
@@ -214,16 +213,6 @@
       #cta-hero {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-      }
-      #cta-hero::after {
-        content: "";
-        width: 0.45em;
-        height: 0.45em;
-        border-right: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
-        transform: rotate(45deg) translateY(-0.12em);
-        flex-shrink: 0;
       }
 
       figure {
@@ -253,23 +242,6 @@
         align-items: flex-start;
       }
 
-      .offer-line {
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-        line-height: 1.2;
-        color: var(--deep);
-      }
-
-      .offer-entry {
-        font-family: "Source Sans 3", -apple-system, sans-serif;
-        font-size: 0.9rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        line-height: 1.2;
-        color: var(--deep);
-      }
-
       .offer-copy .offer-sub {
         font-family: "Source Sans 3", -apple-system, sans-serif;
         font-size: 18px;
@@ -285,25 +257,33 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 0;
         margin: 0;
         padding: 0;
+        width: 100%;
+        max-width: 28em;
       }
       .offer-features li {
         display: flex;
-        align-items: flex-start;
-        gap: 10px;
+        align-items: baseline;
+        gap: 1rem;
+        padding: 11px 0;
+        border-top: 1px solid rgba(var(--deep-rgb), 0.16);
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.4;
         color: var(--deep);
       }
-      .offer-features li::before {
-        content: "✓";
-        flex: 0 0 auto;
-        color: var(--olive);
+      .offer-features li:last-child {
+        border-bottom: 1px solid rgba(var(--deep-rgb), 0.16);
+      }
+      .offer-features .fact-label {
+        flex: 0 0 5.5rem;
+        font-size: 12px;
         font-weight: 700;
-        line-height: 1.35;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue);
       }
 
       .heading-accent {
@@ -357,6 +337,12 @@
       .pillar p strong.yield-floor,
       .yield-floor {
         color: var(--olive);
+      }
+      #mechanism .pillar h3 {
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        line-height: 1.3;
       }
       #mechanism .pillar p {
         opacity: 1;
@@ -628,8 +614,9 @@
         margin-bottom: 12px;
       }
       .calc-slider-pct {
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: 1.55rem;
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
         line-height: 1;
         font-variant-numeric: tabular-nums lining-nums;
         color: var(--blue);
@@ -664,16 +651,20 @@
         opacity: 1;
       }
       .calc-slider-marks .mark-yearone {
-        left: 48.333%;
+        left: 72.5%;
       }
       .calc-slider-marks .mark-target {
-        left: 66.667%;
+        left: 100%;
+        transform: translateX(-100%);
         color: var(--blue);
         opacity: 0.9;
       }
-      .calc-slider-marks .mark-max {
-        left: 100%;
-        transform: translateX(-100%);
+      .calc-slider-note {
+        font-size: 13.5px;
+        line-height: 1.5;
+        opacity: 0.72;
+        margin: 8px 0 0;
+        max-width: 36em;
       }
       .calc-slider-income {
         display: flex;
@@ -824,9 +815,10 @@
         cursor: pointer;
         list-style: none;
         padding: 18px 0;
-        font-family: "DM Serif Display", Georgia, serif;
-        font-size: clamp(1.2rem, 2vw, 1.55rem);
-        line-height: 1.25;
+        font-family: "Source Sans 3", -apple-system, sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.35;
         color: var(--deep);
       }
       .faq-item summary::-webkit-details-marker {
@@ -912,7 +904,7 @@
         margin-bottom: 10px;
       }
       .pillar p {
-        max-width: 28em;
+        max-width: 36em;
         opacity: 0.78;
       }
 
@@ -1076,7 +1068,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 72% 26%;
+        object-position: center 18%;
         display: block;
       }
       .meeting-copy {
@@ -1120,6 +1112,9 @@
         display: grid;
         gap: 14px;
         margin-top: 8px;
+      }
+      form[hidden] {
+        display: none;
       }
       .field {
         display: grid;
@@ -1349,6 +1344,10 @@
         .exec-timeline {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
+        .pillars {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: clamp(28px, 3vw, 48px);
+        }
         .offer-split figure,
         .offer-hero-img {
           height: 100%;
@@ -1358,9 +1357,6 @@
           height: 100%;
           min-height: 100svh;
           object-fit: cover;
-        }
-        .pillars {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
         .asset-calculator {
           grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
@@ -1438,24 +1434,23 @@
           <p class="kicker">
             El Fortín · Riba-roja de Túria, Valencia
           </p>
-          <h1 style="max-width: 18em;">
-            Secure, Hands-Off Wealth Preservation
-            <span class="heading-accent">in Spanish Real Estate.</span>
+          <h1 style="max-width: 14em;">
+            Deeded apartment.
+            <span class="heading-accent">4% from first operations.</span>
           </h1>
           <p class="offer-sub" id="offer-fact">
-            Fully managed real estate assets designed for high-net-worth Northern
-            European professionals. Engineered with the systemic precision of a
-            former SAP capital-project engineer and Siemens PLM practice builder,
-            El Fortín combines capital preservation with zero operational friction.
+            Uriel Nabel lives in Riba-roja and stays the operator after you take title.<br />
+            From ≈ €229,000 · turnkey August 2027
           </p>
-          <ul class="offer-features">
-            <li>4.0% Contractual Floor Yield (8.0% Projected Target)</li>
-            <li>100% Deeded Ownership (Direct Title / Escritura)</li>
-            <li>Turn-key Capital Deployment: from ≈ €229,000 (estimated all-in)</li>
-            <li>Turnkey &amp; First Income: August 2027</li>
-          </ul>
           <div class="cta-pair">
-            <a class="action" href="#package" id="cta-hero">Request the Executive Data Room</a>
+            <a
+              class="action"
+              id="cta-hero"
+              data-contact-channel="whatsapp"
+              href="https://wa.me/34626459818?text=Hello%20Uriel%20%E2%80%94%20I%20want%20to%20talk%20about%20El%20Fort%C3%ADn."
+              target="_blank"
+              rel="noopener noreferrer"
+              >Talk to Uriel</a>
           </div>
         </div>
         <figure>
@@ -1477,276 +1472,31 @@
 
     <section class="frame" id="mechanism" data-section-id="mechanism">
       <div class="section-head">
-        <p class="kicker">The Model</p>
-        <h2>Designed for <span class="heading-accent">Stability &amp; Lifestyle</span></h2>
+        <p class="kicker">The model</p>
+        <h2>Why this building. Why this yield. <span class="heading-accent">Why this person.</span></h2>
       </div>
       <div class="pillars">
         <article class="pillar">
-          <div class="mech-icon" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 32V10M6 32h28" stroke="currentColor" stroke-width="2.5" />
-              <path d="M11 24l7-9 5 5 10-12" stroke="currentColor" stroke-width="2.5" />
-              <path d="M26 8h8v8" stroke="currentColor" stroke-width="2.5" />
-            </svg>
-          </div>
-          <h3>Macro-Fundamentals</h3>
+          <h3>This building</h3>
           <p>
-            Anchored in Valencia’s expanding logistics and corporate hub. Your asset is backed
-            by strong economic growth and continuous demand from corporate professionals,
-            protecting your long-term value against inflation and market volatility.
+            Ten apartments on Camino Valencia 31, run as one house. Because we own the whole block, there are no community bans on short-term rentals. Furnished, flexible stays
+            for people moving through Valencia — not a city-centre holiday let.
           </p>
         </article>
         <article class="pillar">
-          <div class="mech-icon" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="20" r="5.5" stroke="currentColor" stroke-width="2.5" />
-              <path
-                d="M20 6v4M20 30v4M6 20h4M30 20h4M10.2 10.2l2.8 2.8M27 27l2.8 2.8M10.2 29.8l2.8-2.8M27 13l2.8-2.8"
-                stroke="currentColor"
-                stroke-width="2.5"
-              />
-            </svg>
-          </div>
-          <h3>How Your Income is Generated</h3>
+          <h3>This yield</h3>
           <p>
-            Situated on Metro Line 9 with direct airport connectivity. We utilize dynamic market
-            data to pivot between stable corporate leases and high-yield executive stays, safely
-            targeting an <strong>8.0%</strong> ROI while smoothing seasonal volatility.
+            4% of the sale price from the day operations start. If the pool is short, Uriel
+            pays the gap. The building is run to earn 8%.
           </p>
         </article>
         <article class="pillar">
-          <div class="mech-icon" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M20 5 8 10.5v9.5c0 7.8 5.2 14.2 12 16 6.8-1.8 12-8.2 12-16V10.5L20 5Z"
-                stroke="currentColor"
-                stroke-width="2.5"
-              />
-              <path d="M14.5 20.2 18.2 23.8l7.4-7.6" stroke="currentColor" stroke-width="2.5" />
-            </svg>
-          </div>
-          <h3>Direct Ownership &amp; Protected Income</h3>
+          <h3>This person</h3>
           <p>
-            You retain 100% direct, deeded ownership (Escritura) of the physical asset. You own
-            the title, not a share in an opaque fund. Rental income is pooled across the
-            building—meaning isolated unit vacancies cannot zero out your personal return. If
-            pooled net falls below the contractual <strong class="yield-floor">4.0%</strong>
-            floor of <em>Valor Público</em>, the developer covers the gap out of pocket.
+            Uriel lives in the town, put up the development capital, and stays the operator
+            after you take title.
           </p>
         </article>
-        <article class="pillar">
-          <div class="mech-icon" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="13" r="5" stroke="currentColor" stroke-width="2.5" />
-              <path
-                d="M20 4v2.5M8 13h2.5M29.5 13H32M11.2 6.2l1.8 1.8M27 8l1.8-1.8"
-                stroke="currentColor"
-                stroke-width="2.5"
-              />
-              <path
-                d="M6 26c3.2-2.8 6.4-2.8 9.6 0s6.4 2.8 9.6 0 6.4-2.8 9.6 0 6.4 2.8 9.6 0"
-                stroke="currentColor"
-                stroke-width="2.5"
-              />
-              <path
-                d="M6 33c3.2-2.8 6.4-2.8 9.6 0s6.4 2.8 9.6 0 6.4-2.8 9.6 0 6.4 2.8 9.6 0"
-                stroke="currentColor"
-                stroke-width="2.5"
-              />
-            </svg>
-          </div>
-          <h3>Flexible Personal Vacations</h3>
-          <p>
-            Up to 14 nights a year for personal use, subject to availability and outside peak
-            season. Exact booking terms are set in the owner agreement. The rest of the year, the
-            unit generates passive, pooled income for you.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="frame" id="inventory" data-section-id="inventory">
-      <div class="section-head">
-        <p class="kicker">The numbers</p>
-        <h2>Capital Deployment &amp; <span class="heading-accent">The Math</span></h2>
-        <p class="support">
-          Sale price and furniture are fixed line items. Acquisition costs are shown as an
-          indicative ~12% of <em>Valor Público</em>. Yields are a net percentage of that sale
-          price, after the 15% asset management overhead — before your own tax and financing.
-        </p>
-      </div>
-
-      <div class="asset-calculator">
-        <div class="calc-static">
-          <figure class="calc-unit-plan">
-            <button
-              class="calc-plan-button"
-              id="calc-unit-plan-button"
-              type="button"
-              data-full="assets/render-type-a.jpg"
-              data-caption="1-Bedroom floor plan"
-              data-alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
-              aria-label="Enlarge the 1-Bedroom floor plan"
-            >
-              <img
-                id="calc-unit-plan"
-                src="assets/render-type-a.jpg"
-                width="1290"
-                height="653"
-                alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
-              />
-            </button>
-            <figcaption class="calc-plan-caption">
-              <span id="calc-plan-caption">1-Bedroom floor plan</span>
-              <span>Tap to enlarge</span>
-            </figcaption>
-          </figure>
-
-          <div class="calc-interiors render-gallery" aria-label="Interior design renders">
-            <button
-              type="button"
-              data-full="assets/render-salon-loft.jpg"
-              data-caption="Living space design render"
-              data-alt="Loft living interior design render"
-              aria-label="Open living space render"
-            >
-              <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
-            </button>
-            <button
-              type="button"
-              data-full="assets/render-kitchen-dining.jpg"
-              data-caption="Kitchen and dining design render"
-              data-alt="Kitchen and dining interior design render"
-              aria-label="Open kitchen and dining render"
-            >
-              <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
-            </button>
-            <button
-              type="button"
-              data-full="assets/render-bedroom.jpg"
-              data-caption="Bedroom design render"
-              data-alt="Bedroom interior design render"
-              aria-label="Open bedroom render"
-            >
-              <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
-            </button>
-          </div>
-          <p class="caption">Both types are finished to this specification · design renders</p>
-
-          <p class="calc-selection-label" id="calc-spec-heading">
-            Asset Specification: 1-Bedroom Executive Unit
-          </p>
-          <dl class="calc-unit-facts">
-            <div>
-              <dt>Useful area</dt>
-              <dd id="calc-unit-useful">40.48 m²</dd>
-            </div>
-            <div>
-              <dt>Built area</dt>
-              <dd id="calc-unit-built">~47 m²</dd>
-            </div>
-            <div class="is-span">
-              <dt>Building Inventory</dt>
-              <dd id="calc-unit-inventory">4 units (4 currently available)</dd>
-            </div>
-          </dl>
-        </div>
-
-        <div class="calc-panel" aria-live="polite" aria-atomic="true">
-          <div class="calc-unit-block">
-            <p class="calc-selection-label" id="calc-unit-label">Select a unit</p>
-            <div class="calc-unit-picker" id="calc-unit-picker">
-              <button
-                type="button"
-                class="calc-unit-trigger"
-                id="calc-unit-trigger"
-                aria-haspopup="listbox"
-                aria-expanded="false"
-                aria-controls="calc-unit-menu"
-                aria-labelledby="calc-unit-label calc-unit-title"
-              >
-                <span id="calc-unit-title">Unit 5 · 1-Bedroom · €190,557</span>
-                <span class="calc-unit-chevron" aria-hidden="true"></span>
-              </button>
-              <div
-                class="calc-unit-menu"
-                id="calc-unit-menu"
-                role="listbox"
-                aria-labelledby="calc-unit-label"
-                hidden
-              ></div>
-            </div>
-            <p class="calc-selected-meta" id="calc-unit-meta">40.48 m² useful · available</p>
-          </div>
-          <div class="calc-breakdown">
-            <p class="calc-selection-label">Capital Allocation</p>
-            <dl>
-              <div>
-                <dt>Valor Público <span class="calc-rate">Apartment sale price</span></dt>
-                <dd id="calc-price-sale">€190,557</dd>
-              </div>
-              <div>
-                <dt>Est. acquisition costs <span class="calc-rate">Taxes, notary, legal · ~12%</span></dt>
-                <dd id="calc-price-closing">≈ €22,867</dd>
-              </div>
-              <div>
-                <dt>Turn-key Furniture &amp; Executive Fit-Out</dt>
-                <dd id="calc-price-furniture">€15,960</dd>
-              </div>
-              <div class="is-total">
-                <dt>Estimated all-in</dt>
-                <dd id="calc-price-allin">≈ €229,384</dd>
-              </div>
-            </dl>
-            <p class="calc-method" style="padding-top: 10px; margin: 0;">
-              Closing costs are indicative (~12% of <em>Valor Público</em>). Final taxes depend on
-              the deed structure — your advisor confirms at reservation.
-            </p>
-          </div>
-          <p class="calc-ops">
-            <span class="calc-ops-label">Asset Management Architecture · 15% of Gross Revenue</span>
-            End-to-end operational execution: corporate tenant procurement, preventative
-            maintenance, dynamic yield optimization, and centralized revenue pooling. This
-            overhead is already deducted from the performance metrics below. Zero operational
-            hassle for you.
-          </p>
-          <div class="calc-slider">
-            <div class="calc-slider-head">
-              <p class="scenario-label">Projected Income Metrics</p>
-              <span class="calc-slider-pct" id="calc-slider-pct">8.0%</span>
-            </div>
-            <input
-              type="range"
-              id="calc-yield-range"
-              min="4"
-              max="10"
-              step="0.1"
-              value="8"
-              aria-valuemin="4"
-              aria-valuemax="10"
-              aria-valuenow="8"
-              aria-label="Model annual yield from 4 percent floor to 10 percent"
-            />
-            <div class="calc-slider-marks" aria-hidden="true">
-              <span class="mark-floor">4%</span>
-              <span class="mark-yearone">6.9%</span>
-              <span class="mark-target">8%</span>
-              <span class="mark-max">10%</span>
-            </div>
-            <p class="calc-slider-income">
-              <span id="calc-slider-yearly">≈ €15,245 / year</span>
-              <span class="scenario-monthly" id="calc-slider-monthly">· ≈ €1,270 / month</span>
-            </p>
-          </div>
-
-          <p class="calc-method">
-            Contractual Floor: 4.0% of <em>Valor Público</em>. Year 1 Projected Income: 6.9%. Operating
-            Target: 8.0%. Income figures use the apartment sale price as denominator — not
-            furniture or closing costs. All figures are net of operational management, before
-            your own tax and financing.
-            <a href="#package">Request the comprehensive financial model</a> for full assumptions.
-          </p>
-        </div>
       </div>
     </section>
 
@@ -1767,30 +1517,22 @@
           </figcaption>
         </figure>
         <div class="uriel-copy">
-          <p class="kicker">Project Governance &amp; Leadership</p>
+          <p class="kicker">The operator</p>
           <h2>
-            Interests <span class="heading-accent">Structurally Aligned.</span>
+            A person you can reach. <span class="heading-accent">Still here after the deed.</span>
           </h2>
-          <div class="uriel-statement">
-            <p class="support">
-              Trust is not requested; it is engineered into the financial mechanics. This is a
-              low-risk deployment model where developer margins are subordinate to your baseline
-              returns.
-            </p>
-          </div>
           <div class="track-list">
             <p>
-              <strong>Uriel Nabel, Founder &amp; Developer.</strong> Former capital-project
-              engineer at SAP and Siemens PLM practice builder. Real estate is approached as a
-              highly governed, risk-mitigated system focused on predictable wealth generation.
+              <strong>Uriel Nabel lives in Riba-roja.</strong> With a background as a Global Expert at SAP and a BCG fellowship, he brings engineering precision to real estate. He is the sole development
+              investor and remains the operator after sale.
             </p>
             <p>
-              <strong>Proven Execution.</strong> Developer of El Fortín de Puzol—a historic
-              renovation delivered in August 2025.
+              <strong>Second building.</strong> El Fortín de Puzol — a historic renovation —
+              was delivered in August 2025.
             </p>
             <p>
-              <strong>Fiduciary Transparency.</strong> Open-book financials are planned via a
-              personal online portal, with straight talk and long-term capital partnerships.
+              <strong>You deal with him.</strong> Not a fund desk. WhatsApp, site visits, the
+              deed.
             </p>
           </div>
           <div class="ba-pair" aria-label="Puzol before and after">
@@ -1824,24 +1566,24 @@
 
     <section class="frame" id="proof" data-section-id="proof">
       <div class="section-head">
-        <p class="kicker">Execution Timeline</p>
-        <h2>Fully Licensed &amp; <span class="heading-accent">Under Construction.</span></h2>
+        <p class="kicker">The works</p>
+        <h2>Licensed. Under construction. <span class="heading-accent">Deed in August 2027.</span></h2>
         <p class="support">
-          Building License Exp. 4497/2025/GEN · General Contractor: NODHOUSES
+          Building licence Exp. 4497/2025/GEN · NODHOUSES
         </p>
       </div>
       <div class="exec-timeline">
         <article>
           <span class="exec-when">Now</span>
-          <h3>Fully licensed. Works underway on Camino Valencia 31.</h3>
+          <h3>Licensed. Works underway on Camino Valencia 31.</h3>
         </article>
         <article>
           <span class="exec-when">August 2027</span>
-          <h3>Turnkey delivery. Deed (<em>escritura</em>) executed. Operations begin hotel-grade ready.</h3>
+          <h3>You take the deed. Turnkey.</h3>
         </article>
         <article>
           <span class="exec-when">From first operations</span>
-          <h3>Pooled rental income starts — no void gap after go-live.</h3>
+          <h3>The 4% starts.</h3>
         </article>
       </div>
       <div class="gallery" id="proof-gallery">
@@ -1917,41 +1659,175 @@
       </div>
     </section>
 
-    <section class="frame" id="faq" data-section-id="faq">
+    <section class="frame" id="inventory" data-section-id="inventory">
       <div class="section-head">
-        <p class="kicker">Technical &amp; Legal FAQ</p>
-        <h2>Capital, operations, and <span class="heading-accent">personal involvement</span></h2>
+        <p class="kicker">The apartments</p>
+        <h2>Pick a unit. <span class="heading-accent">See the all-in.</span></h2>
+        <p class="support">
+          Sale price, about 12% for taxes and notary, furniture included. 4% of the sale price
+          is the floor.
+        </p>
+      </div>
+
+      <div class="asset-calculator">
+        <div class="calc-static">
+          <figure class="calc-unit-plan">
+            <button
+              class="calc-plan-button"
+              id="calc-unit-plan-button"
+              type="button"
+              data-full="assets/render-type-a.jpg"
+              data-caption="1-Bedroom floor plan"
+              data-alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
+              aria-label="Enlarge the 1-Bedroom floor plan"
+            >
+              <img
+                id="calc-unit-plan"
+                src="assets/render-type-a.jpg"
+                width="1290"
+                height="653"
+                alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
+              />
+            </button>
+            <figcaption class="calc-plan-caption">
+              <span id="calc-plan-caption">1-Bedroom floor plan</span>
+              <span>Tap to enlarge</span>
+            </figcaption>
+          </figure>
+
+          <div class="calc-interiors render-gallery" aria-label="Interior design renders">
+            <button
+              type="button"
+              data-full="assets/render-salon-loft.jpg"
+              data-caption="Living space design render"
+              data-alt="Loft living interior design render"
+              aria-label="Open living space render"
+            >
+              <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-kitchen-dining.jpg"
+              data-caption="Kitchen and dining design render"
+              data-alt="Kitchen and dining interior design render"
+              aria-label="Open kitchen and dining render"
+            >
+              <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
+            </button>
+            <button
+              type="button"
+              data-full="assets/render-bedroom.jpg"
+              data-caption="Bedroom design render"
+              data-alt="Bedroom interior design render"
+              aria-label="Open bedroom render"
+            >
+              <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
+            </button>
+          </div>
+          <p class="caption">Both types are finished to this specification · design renders</p>
+
+          <p class="calc-selection-label" id="calc-spec-heading">1-Bedroom</p>
+          <dl class="calc-unit-facts">
+            <div>
+              <dt>Useful area</dt>
+              <dd id="calc-unit-useful">40.48 m²</dd>
+            </div>
+            <div>
+              <dt>Built area</dt>
+              <dd id="calc-unit-built">~47 m²</dd>
+            </div>
+            <div class="is-span">
+              <dt>This type</dt>
+              <dd id="calc-unit-inventory">4 in the building</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="calc-panel" aria-live="polite" aria-atomic="true">
+          <div class="calc-unit-block">
+            <p class="calc-selection-label" id="calc-unit-label">Select a unit</p>
+            <div class="calc-unit-picker" id="calc-unit-picker">
+              <button
+                type="button"
+                class="calc-unit-trigger"
+                id="calc-unit-trigger"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-controls="calc-unit-menu"
+                aria-labelledby="calc-unit-label calc-unit-title"
+              >
+                <span id="calc-unit-title">Unit 5 · 1-Bedroom · €190,557</span>
+                <span class="calc-unit-chevron" aria-hidden="true"></span>
+              </button>
+              <div
+                class="calc-unit-menu"
+                id="calc-unit-menu"
+                role="listbox"
+                aria-labelledby="calc-unit-label"
+                hidden
+              ></div>
+            </div>
+            <p class="calc-selected-meta" id="calc-unit-meta">40.48 m² useful</p>
+          </div>
+          <div class="calc-breakdown">
+            <p class="calc-selection-label">What you pay</p>
+            <dl>
+              <div>
+                <dt>Sale price</dt>
+                <dd id="calc-price-sale">€190,557</dd>
+              </div>
+              <div>
+                <dt>Taxes and notary <span class="calc-rate">about 12%</span></dt>
+                <dd id="calc-price-closing">≈ €22,867</dd>
+              </div>
+              <div>
+                <dt>Furniture</dt>
+                <dd id="calc-price-furniture">€15,960</dd>
+              </div>
+              <div class="is-total">
+                <dt>All-in</dt>
+                <dd id="calc-price-allin">≈ €229,384</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="calc-slider">
+            <div class="calc-slider-head">
+              <p class="scenario-label">4% from first operations</p>
+              <span class="calc-slider-pct">4%</span>
+            </div>
+            <p class="calc-slider-income">
+              <span id="calc-slider-yearly">≈ €7,622 / year</span>
+              <span class="scenario-monthly" id="calc-slider-monthly">· ≈ €635 / month</span>
+            </p>
+            <p class="calc-slider-note">
+              If the pool is short, Uriel pays the gap. The building is run to earn 8%.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="frame" id="doors" data-section-id="doors">
+      <div class="section-head">
+        <p class="kicker">If you want the details</p>
+        <h2>How you pay. <span class="heading-accent">What you can use.</span></h2>
       </div>
       <div class="faq-list">
-        <details class="faq-item">
-          <summary>What is the capital call structure and construction schedule?</summary>
+        <details class="faq-item" data-door="payments">
+          <summary>How you pay</summary>
           <div class="faq-body">
             <p>
-              25% reservation · 25% at 40% of works · 25% at 80% (furniture included) · 25% at
-              <em>escritura</em>. Turnkey delivery August 2027.
+              25% to reserve · 25% at 40% of works · 25% at 80% (furniture included) · 25% at
+              the deed. Turnkey August 2027. Management is 15% of rent, already inside the 4%.
             </p>
           </div>
         </details>
-
-        <details class="faq-item">
-          <summary>How should I think about Spanish tax on this investment?</summary>
+        <details class="faq-item" data-door="use">
+          <summary>Personal use</summary>
           <div class="faq-body">
             <p>
-              You take direct deeded title to a specific apartment. Your own tax position
-              (including any Spanish non-resident rules that may apply) depends on your
-              residency and structure — we do not publish a tax outcome on this page. Bring your
-              advisor; the data room covers the legal framework for them to review.
-            </p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>What is my required personal involvement?</summary>
-          <div class="faq-body">
-            <p>
-              Zero day-to-day. The management fee covers hands-off operations. You review
-              financial reporting as issued; personal stays are limited to up to 14 nights a year
-              (availability, not peak season — exact terms in the owner agreement).
+              Up to 14 nights a year, off-peak, subject to availability. The rest of the year
+              the unit stays in the pool. Parking stays with the developer.
             </p>
           </div>
         </details>
@@ -1962,71 +1838,44 @@
       <div class="meeting-split">
         <figure class="meeting-photo">
           <img
-            src="assets/uriel-site-balcony.jpg"
-            width="1400"
-            height="1050"
-            alt="Uriel Nabel in a window of the building during works, looking out"
+            src="assets/uriel-onsite.jpg"
+            width="1199"
+            height="1600"
+            alt="Uriel Nabel on site, facing the camera in a hard hat"
             loading="lazy"
           />
         </figure>
         <div class="meeting-copy">
-          <p class="kicker meeting-kicker">Direct From the Developer</p>
-          <h2>Request the <span class="heading-accent">Executive Data Room</span></h2>
+          <p class="kicker meeting-kicker">The operator</p>
+          <h2>Talk to <span class="heading-accent">Uriel</span></h2>
           <p class="meeting-support">
-            Access the 10-year financial stress-test model, the legal framework, and schedule a
-            direct consultation with the developer.
+            One conversation. The deed, the 4%, the date.
           </p>
-          <ul class="package-list">
-            <li>Direct deed mechanics and owner governance documentation</li>
-            <li>Clear breakdown of net returns and 4.0% floor covenant legalities</li>
-            <li>Complete unit schedule, pricing, and August 2027 turnkey delivery</li>
-          </ul>
-          <div class="cta-pair">
-            <a
-              class="action action--ghost action--ghost-on-dark"
-              data-contact-channel="whatsapp"
-              href="https://wa.me/34626459818"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Connect with Uriel Nabel via WhatsApp</a
-            >
-          </div>
           <form id="lead-form" novalidate>
             <div class="field">
               <label for="lead-name">Name</label>
               <input id="lead-name" name="name" type="text" autocomplete="name" required />
             </div>
             <div class="field">
-              <label for="lead-email">Work email</label>
+              <label for="lead-email">Email</label>
               <input id="lead-email" name="email" type="email" autocomplete="email" required />
             </div>
             <div class="field">
-              <label for="lead-phone">WhatsApp</label>
+              <label for="lead-phone">Phone</label>
               <input id="lead-phone" name="phone" type="tel" autocomplete="tel" required />
-            </div>
-            <div class="field">
-              <label for="lead-capital">Available capital</label>
-              <select id="lead-capital" name="capital" required>
-                <option value="" selected disabled>Select</option>
-                <option value="€229k–€300k (one apartment)">€229k–€300k (one apartment)</option>
-                <option value="€300k–€550k">€300k–€550k</option>
-                <option value="€550k+">€550k+</option>
-              </select>
             </div>
             <p class="form-error" id="lead-error" role="alert"></p>
             <button class="action" type="submit" id="lead-submit">
-              Request Executive Data Room
+              Message Uriel
             </button>
             <p class="legal">
-              By submitting you agree that Uriel Nabel may contact you about El Fortín. See the
+              Opens WhatsApp with your details. See the
               <a href="privacy-policy-en.html">privacy policy</a>.
             </p>
           </form>
           <div class="thanks" id="lead-thanks" hidden>
-            <h3>The data room is on its way.</h3>
-            <p class="support">
-              Talk to Uriel now if you prefer not to wait — WhatsApp or a strategy call.
-            </p>
+            <h3>WhatsApp is open.</h3>
+            <p class="support">If it didn’t launch, tap below.</p>
             <div class="cta-pair">
               <a
                 class="action"
@@ -2036,15 +1885,6 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 >WhatsApp Uriel</a
-              >
-              <a
-                class="action action--ghost action--ghost-on-dark"
-                id="thanks-call"
-                data-contact-channel="calendar"
-                href="https://calendar.app.google/R9LJvZFYTPwuXNw7A"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Book a strategy call</a
               >
             </div>
           </div>
@@ -2059,21 +1899,6 @@
         <button type="button" data-consent-settings>Analytics settings</button>
       </div>
     </footer>
-
-    <div id="fact-bar" aria-hidden="true">
-      <strong>From ≈ €229,000 est. all-in · August 2027</strong>
-      <a href="#package">Request the Executive Data Room</a>
-    </div>
-
-    <a
-      class="wa-widget"
-      id="wa-widget"
-      href="https://wa.me/34626459818"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="WhatsApp Uriel Nabel"
-      >WhatsApp Uriel</a
-    >
 
     <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery" hidden>
       <button class="lb-close" type="button" aria-label="Close">×</button>
@@ -2159,9 +1984,7 @@
     <script>
       (function () {
         var selectedUnitId = '5';
-        var modeledYield = 0.08;
-        var yieldSlider = document.getElementById('calc-yield-range');
-        var yieldPctLabel = document.getElementById('calc-slider-pct');
+        var floorPct = window.EFConfig.floorPct;
 
         function selectedUnit() {
           return window.EFConfig.inventory.find(function (u) {
@@ -2169,24 +1992,14 @@
           });
         }
 
-        function paintIncome(unit, yieldPct, yearlyId, monthlyId) {
-          var annual = window.EFMath.yieldBase(unit) * yieldPct;
-          var yearly = document.getElementById(yearlyId);
-          var monthly = document.getElementById(monthlyId);
+        function paintIncome(unit) {
+          var annual = window.EFMath.yieldBase(unit) * floorPct;
+          var yearly = document.getElementById('calc-slider-yearly');
+          var monthly = document.getElementById('calc-slider-monthly');
           if (yearly) yearly.textContent = '≈ ' + window.EFMath.euro(annual) + ' / year';
           if (monthly) {
             monthly.textContent = '· ≈ ' + window.EFMath.euro(annual / 12) + ' / month';
           }
-        }
-
-        function paintSlider(unit) {
-          var pct = modeledYield * 100;
-          if (yieldPctLabel) yieldPctLabel.textContent = pct.toFixed(1) + '%';
-          if (yieldSlider) {
-            yieldSlider.value = String(pct);
-            yieldSlider.setAttribute('aria-valuenow', String(pct));
-          }
-          paintIncome(unit, modeledYield, 'calc-slider-yearly', 'calc-slider-monthly');
         }
 
         function updateCalculator() {
@@ -2200,9 +2013,6 @@
           var typeUnits = window.EFConfig.inventory.filter(function (item) {
             return item.typeClass === unit.typeClass;
           });
-          var availableUnits = typeUnits.filter(function (item) {
-            return item.status === 'available';
-          });
 
           if (title) title.textContent = window.EFMath.unitLine(unit);
           Array.prototype.forEach.call(document.querySelectorAll('.calc-unit-option'), function (opt) {
@@ -2210,29 +2020,16 @@
             opt.classList.toggle('is-selected', on);
             opt.setAttribute('aria-selected', on ? 'true' : 'false');
           });
-          if (meta) {
-            meta.textContent =
-              unit.area +
-              ' · ' +
-              unit.status.charAt(0).toUpperCase() +
-              unit.status.slice(1);
-          }
+          if (meta) meta.textContent = unit.area;
 
           var spec = document.getElementById('calc-spec-heading');
-          if (spec) {
-            spec.textContent =
-              'Asset Specification: ' + unit.beds + '-Bedroom Executive Unit';
-          }
+          if (spec) spec.textContent = unit.beds + '-Bedroom';
           document.getElementById('calc-unit-useful').textContent =
             unit.area.replace(' useful', '');
           document.getElementById('calc-unit-built').textContent = type.builtArea;
           var inventoryEl = document.getElementById('calc-unit-inventory');
           if (inventoryEl) {
-            inventoryEl.textContent =
-              typeUnits.length +
-              ' units (' +
-              availableUnits.length +
-              ' currently available)';
+            inventoryEl.textContent = typeUnits.length + ' in the building';
           }
 
           var plan = document.getElementById('calc-unit-plan');
@@ -2258,7 +2055,7 @@
             stack.allIn
           );
 
-          paintSlider(unit);
+          paintIncome(unit);
 
           if (panel) {
             panel.classList.remove('is-updating');
@@ -2271,18 +2068,17 @@
         }
 
         window.EFUpdateCalculator = updateCalculator;
-        window.EFSelectUnit = function (id) {
+        window.EFSelectUnit = function (id, fromUser) {
           selectedUnitId = id;
           updateCalculator();
+          if (
+            fromUser &&
+            window.EFAnalytics &&
+            typeof window.EFAnalytics.track === 'function'
+          ) {
+            window.EFAnalytics.track('unit_selected', { unit_id: id });
+          }
         };
-
-        if (yieldSlider) {
-          yieldSlider.addEventListener('input', function () {
-            modeledYield = parseFloat(yieldSlider.value, 10) / 100;
-            var unit = selectedUnit();
-            if (unit) paintSlider(unit);
-          });
-        }
 
         updateCalculator();
       })();
@@ -2341,7 +2137,7 @@
         function choose(id) {
           setOpen(false);
           trigger.focus();
-          if (typeof window.EFSelectUnit === 'function') window.EFSelectUnit(id);
+          if (typeof window.EFSelectUnit === 'function') window.EFSelectUnit(id, true);
         }
 
         inventory.forEach(function (unit) {
@@ -2599,7 +2395,6 @@
         var form = document.getElementById('lead-form');
         var thanks = document.getElementById('lead-thanks');
         var error = document.getElementById('lead-error');
-        var widget = document.getElementById('wa-widget');
         if (!form || !thanks) return;
 
         form.addEventListener('submit', function (e) {
@@ -2608,42 +2403,31 @@
           var name = document.getElementById('lead-name').value.trim();
           var email = document.getElementById('lead-email').value.trim();
           var phone = document.getElementById('lead-phone').value.trim();
-          var capital = document.getElementById('lead-capital').value;
-          if (!name || !email || !phone || !capital) {
-            error.textContent =
-              'All fields are required, including available capital.';
+          if (!name || !email || !phone) {
+            error.textContent = 'Name, email, and phone are required.';
             return;
           }
           if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            error.textContent = 'Enter a valid work email.';
+            error.textContent = 'Enter a valid email.';
             return;
           }
 
           var contact = window.__EF_CONTACT__ || {};
-          var body =
-            'Hello Uriel,\n\nPlease send the Executive Data Room and 10-year financial stress-test model.\n\n' +
-            'Name: ' +
-            name +
-            '\nWork email: ' +
-            email +
-            '\nWhatsApp / phone: ' +
-            phone +
-            '\nAvailable capital: ' +
-            capital +
-            '\n\nSource: Sniper campaign landing page.';
-          var mailto =
-            'mailto:' +
-            (contact.email || 'uriel.nabel@elfortincapital.com') +
-            '?subject=' +
-            encodeURIComponent('Request: El Fortín Executive Data Room') +
-            '&body=' +
-            encodeURIComponent(body);
+          var waText = encodeURIComponent(
+            'Hello Uriel — I want to talk about El Fortín.\n\n' +
+              'Name: ' +
+              name +
+              '\nEmail: ' +
+              email +
+              '\nPhone: ' +
+              phone
+          );
+          var waHref = 'https://wa.me/' + (contact.whatsapp || '34626459818') + '?text=' + waText;
 
           if (window.EFAnalytics && typeof window.EFAnalytics.track === 'function') {
             window.EFAnalytics.track('cta_opened', {
-              cta_id: 'sniper_model_request',
-              channel: 'email',
-              capital: capital
+              cta_id: 'sniper_whatsapp_form',
+              channel: 'whatsapp'
             });
             if (typeof window.EFAnalytics.flush === 'function') window.EFAnalytics.flush();
           }
@@ -2651,45 +2435,14 @@
           form.hidden = true;
           thanks.hidden = false;
           thanks.classList.add('is-open');
-          if (widget) widget.classList.add('is-on');
 
           var wa = document.getElementById('thanks-whatsapp');
-          var waText = encodeURIComponent(
-            'Hello Uriel — I just requested the El Fortín Executive Data Room. Capital: ' +
-              capital +
-              '.'
-          );
-          var waHref = 'https://wa.me/' + (contact.whatsapp || '34626459818') + '?text=' + waText;
           if (wa) wa.href = waHref;
-          if (widget) widget.href = waHref;
-
-          var mailLink = document.createElement('a');
-          mailLink.href = mailto;
-          mailLink.style.display = 'none';
-          document.body.appendChild(mailLink);
-          mailLink.click();
-          mailLink.remove();
+          window.open(waHref, '_blank', 'noopener');
         });
       })();
     </script>
 
-    <script>
-      (function () {
-        var bar = document.getElementById('fact-bar');
-        var anchor = document.getElementById('offer-fact');
-        if (!bar || !anchor || !('IntersectionObserver' in window)) return;
-        var io = new IntersectionObserver(
-          function (entries) {
-            var below = !entries[0].isIntersecting && entries[0].boundingClientRect.top < 0;
-            bar.classList.toggle('visible', below);
-            bar.setAttribute('aria-hidden', below ? 'false' : 'true');
-          },
-          { threshold: 0 }
-        );
-        io.observe(anchor);
-      })();
-    </script>
-
-    <script src="assets/analytics.js?v=3" defer></script>
+    <script src="assets/analytics.js?v=4" defer></script>
   </body>
 </html>

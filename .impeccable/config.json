@@ -1,0 +1,136 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "createdAt": "2026-09-07T15:16:26.110Z",
+        "reason": "User confirmed DESIGN.md: Plus Jakarta Sans is the UI face"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-09-07T15:16:26.152Z",
+        "reason": "Agent: DESIGN.md full-bleed photography and olive closer; bordered estimator already pads children 24px+"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-09-07T15:16:30.143Z",
+        "reason": "User confirmed DESIGN.md bone field #f1ece3"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-09-07T15:52:30.715Z",
+        "reason": "DESIGN.md display leading is 90/90; hero headline now 1.3 for full-width wrap"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index-a.html",
+          "site/index-b.html",
+          "site/index-c.html"
+        ],
+        "createdAt": "2026-09-08T10:49:04.646Z",
+        "reason": "Agent: DESIGN.md full-bleed photography and olive closer; shell gutters and estimator children already pad 24px+. Same exception as site/index.html."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "site/index-a.html",
+          "site/index-b.html",
+          "site/index-c.html"
+        ],
+        "createdAt": "2026-09-08T10:49:04.672Z",
+        "reason": "User confirmed DESIGN.md bone field #f1ece3"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "site/versions.html"
+        ],
+        "createdAt": "2026-09-08T10:50:35.884Z",
+        "reason": "User confirmed DESIGN.md bone field #f1ece3"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index-a-he.html"
+        ],
+        "createdAt": "2026-09-08T11:02:22.283Z",
+        "reason": "Agent: DESIGN.md full-bleed photography and olive closer; same exception as the English discover pages."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "site/index-a-he.html"
+        ],
+        "createdAt": "2026-09-08T11:02:22.305Z",
+        "reason": "User confirmed DESIGN.md bone field #f1ece3"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index-d.html"
+        ],
+        "createdAt": "2026-09-09T11:43:44.321Z",
+        "reason": "Agent: sections pad with clamp()/var(--gutter) the detector cannot resolve; every section has 20px+ inline padding"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "site/index-d.html"
+        ],
+        "createdAt": "2026-09-09T11:43:44.347Z",
+        "reason": "Agent: the ruled-line ledger paper is the committed world's material (surface brief OWN-WORLD), 14% alpha rules every 2rem"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/assets/desk.css"
+        ],
+        "createdAt": "2026-09-09T11:43:44.370Z",
+        "reason": "Agent: same clamp()/var(--gutter) padding as site/index-d.html"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "site/assets/desk.css"
+        ],
+        "createdAt": "2026-09-09T11:43:44.393Z",
+        "reason": "Agent: ledger paper ruling, committed world material for site/index-d.html"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/index-d.html"
+        ],
+        "createdAt": "2026-09-09T11:47:38.401Z",
+        "reason": "Agent: false positive at pre-write — the hook scans the new file before assets/desk.css resolves, so headings read unstyled; impeccable detect on the same markup with the stylesheet resolvable reports 0 findings (h1 clamp 2.25-5.5rem, h2 2-3.25rem, h3 1.375-1.75rem, body 1.125rem)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,2239 @@
+<!doctype html>
+<!--
+  El Fortín landing — Quiet Luxury + Engineering Precision.
+  Design: design.md (bone / olive / charcoal, 0 radius).
+  Copy: marketing-messages.md. Facts: facts.md.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Fortín — Deeded ownership in Valencia. 4% net floor.</title>
+    <meta
+      name="description"
+      content="Deeded ownership of a specific apartment in Riba-roja, Valencia. Engineered for a 7% yield, contractually floored at 4%. From ≈ €229,000. Turnkey August 2027."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="El Fortín — Deeded ownership in Valencia. 4% net floor." />
+    <meta
+      property="og:description"
+      content="A fully managed 10-unit residential asset. You hold the title; we handle the operations. From ≈ €229,000."
+    />
+    <meta property="og:image" content="assets/hero-desk-elfortin.jpg" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero-desk-elfortin.jpg"
+      media="(min-width: 900px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero-mobile-elfortin.jpg"
+      media="(max-width: 899px)"
+      fetchpriority="high"
+    />
+    <style>
+      :root {
+        --brand-bone: #f1ece3;
+        --brand-bone-hover: #ebe5d6;
+        --brand-bone-active: #e3dbc8;
+        --brand-olive: #5e6650;
+        --brand-olive-hover: #4a5240;
+        --brand-olive-active: #3f4637;
+        --brand-charcoal: #424242;
+        --brand-charcoal-hover: #5e5e5e;
+        --brand-charcoal-active: #2a2a2a;
+        --brand-secondary: #6f6a6a;
+        --text-on-dark: #f1ece3;
+        --border-subtle: #d4cdc0;
+        --ink-cool: #251e35;
+        --surface: #f7f3ea;
+        --hero-yield: #c5d6a8;
+        --hero-floor: #e39272;
+
+        --font-family-heading: "DM Serif Display", Georgia, serif;
+        --font-family-body: "Plus Jakarta Sans", sans-serif;
+
+        --font-weight-light: 300;
+        --font-weight-normal: 400;
+        --font-weight-semibold: 500;
+        --font-weight-bold: 600;
+        --font-weight-extra-bold: 700;
+
+        --letter-spacing-tight: -0.03125rem;
+        --letter-spacing-body: 0.03125rem;
+        --letter-spacing-button-label: 0.125rem;
+        --letter-spacing-eyebrow: 0.1875rem;
+
+        --radius-none: 0;
+        --nav-height: 72px;
+        --page-max: 1440px;
+        --gutter: clamp(24px, 4vw, 72px);
+        --section-y: clamp(72px, 12vh, 120px);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-color: var(--brand-olive) var(--brand-bone);
+        caret-color: var(--brand-olive);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      ::selection {
+        background: var(--brand-olive);
+        color: var(--text-on-dark);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--brand-olive);
+        outline-offset: 2px;
+      }
+
+      body {
+        font-family: var(--font-family-body);
+        font-size: 16px;
+        line-height: 1.5;
+        font-weight: var(--font-weight-light);
+        color: var(--brand-charcoal);
+        background: var(--brand-bone);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button,
+      input {
+        font-family: inherit;
+      }
+
+      .shell {
+        width: min(100%, var(--page-max));
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+      }
+
+      section[id] {
+        scroll-margin-top: calc(var(--nav-height) + 16px);
+      }
+
+      .eyebrow {
+        font-size: 0.6875rem;
+        font-weight: var(--font-weight-extra-bold);
+        letter-spacing: var(--letter-spacing-eyebrow);
+        text-transform: uppercase;
+        color: var(--brand-secondary);
+      }
+
+      .display {
+        font-family: var(--font-family-heading);
+        font-weight: 400;
+        letter-spacing: var(--letter-spacing-tight);
+        text-wrap: balance;
+      }
+
+      h1.display {
+        font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+        line-height: 1.05;
+      }
+
+      h2.display {
+        font-size: clamp(1.875rem, 3.8vw, 3.375rem);
+        line-height: 1.12;
+      }
+
+      .lede {
+        font-size: 1rem;
+        line-height: 1.5;
+        font-weight: var(--font-weight-light);
+        color: var(--brand-secondary);
+        max-width: 38em;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        padding: 8px 30px;
+        border: 0;
+        border-radius: var(--radius-none);
+        font-family: var(--font-family-body);
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-bold);
+        letter-spacing: var(--letter-spacing-button-label);
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+
+      .btn-olive {
+        background: var(--brand-olive);
+        color: var(--text-on-dark);
+      }
+      .btn-olive:hover {
+        background: var(--brand-olive-hover);
+      }
+
+      .btn-bone {
+        background: var(--brand-bone);
+        color: var(--brand-charcoal);
+      }
+      .btn-bone:hover {
+        background: var(--brand-bone-hover);
+      }
+
+      .btn-charcoal {
+        background: var(--brand-charcoal);
+        color: var(--text-on-dark);
+      }
+      .btn-charcoal:hover {
+        background: var(--brand-charcoal-hover);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-on-dark);
+        border: 1px solid rgba(241, 236, 227, 0.45);
+      }
+      .btn-ghost:hover {
+        background: rgba(241, 236, 227, 0.12);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      /* ---------- site header ---------- */
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 40;
+        height: var(--nav-height);
+        display: flex;
+        align-items: center;
+        transition: background 0.2s ease, border-color 0.2s ease;
+      }
+      .site-header.is-solid {
+        background: var(--brand-bone);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .site-header .shell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      .wordmark {
+        font-family: var(--font-family-heading);
+        font-size: 1.35rem;
+        color: var(--text-on-dark);
+        text-decoration: none;
+        letter-spacing: var(--letter-spacing-tight);
+      }
+      .site-header.is-solid .wordmark {
+        color: var(--brand-charcoal);
+      }
+      .site-header .btn {
+        height: 40px;
+        padding: 8px 20px;
+        min-width: 120px;
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        align-items: flex-end;
+        background: var(--brand-charcoal);
+        color: var(--text-on-dark);
+        overflow: hidden;
+      }
+      .hero-media {
+        position: absolute;
+        inset: 0;
+      }
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .hero-wash {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(36, 36, 36, 0.45) 0%,
+          rgba(36, 36, 36, 0.18) 42%,
+          rgba(36, 36, 36, 0.08) 100%
+        );
+      }
+      .hero-overlay {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        background: rgba(28, 28, 28, 0.82);
+        padding: 28px 0 40px;
+      }
+      .hero-copy {
+        width: 100%;
+        max-width: none;
+        display: grid;
+        gap: 16px 40px;
+        align-items: end;
+      }
+      @media (min-width: 900px) {
+        .hero-copy {
+          grid-template-columns: 1fr auto;
+          grid-template-areas:
+            "title title"
+            "lede cta";
+        }
+        .hero-copy h1 {
+          grid-area: title;
+        }
+        .hero-copy .lede {
+          grid-area: lede;
+        }
+        .hero-copy .cta-row {
+          grid-area: cta;
+          justify-self: end;
+        }
+      }
+      .hero h1.display {
+        font-size: clamp(2.25rem, 4.8vw, 4.5rem);
+        line-height: 1.3;
+        text-wrap: wrap;
+        max-width: none;
+        width: 100%;
+      }
+      .hero-deed {
+        color: var(--text-on-dark);
+      }
+      .hero-engine {
+        color: rgba(241, 236, 227, 0.88);
+      }
+      .hero-yield {
+        color: var(--hero-yield);
+        font-style: normal;
+      }
+      .hero-floor {
+        color: var(--hero-floor);
+        font-style: normal;
+      }
+      .hero-copy .lede {
+        color: rgba(241, 236, 227, 0.9);
+        max-width: 42em;
+      }
+      .hero-chevron {
+        position: absolute;
+        left: 50%;
+        top: -22px;
+        z-index: 2;
+        width: 18px;
+        height: 10px;
+        transform: translateX(-50%);
+        background: var(--text-on-dark);
+        opacity: 0.7;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        animation: hero-bob 2.4s ease-in-out infinite;
+      }
+      @keyframes hero-bob {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-chevron {
+          animation: none;
+        }
+      }
+
+      /* ---------- data bar ---------- */
+      .data-bar {
+        padding: clamp(40px, 7vh, 72px) 0;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 24px;
+      }
+      @media (min-width: 900px) {
+        .metrics {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 24px;
+        }
+      }
+      .metric {
+        display: grid;
+        gap: 8px;
+        padding-top: 4px;
+      }
+      @media (min-width: 900px) {
+        .metric + .metric {
+          border-left: 1px solid var(--border-subtle);
+          padding-left: 24px;
+        }
+      }
+      .metric-value {
+        font-family: var(--font-family-heading);
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
+        line-height: 1.1;
+        letter-spacing: var(--letter-spacing-tight);
+        color: var(--brand-charcoal);
+      }
+      .metric-label {
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-bold);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--brand-secondary);
+      }
+      .metric-note {
+        font-size: 0.875rem;
+        color: var(--brand-secondary);
+        line-height: 1.4;
+      }
+
+      /* ---------- sections ---------- */
+      .section {
+        padding: var(--section-y) 0;
+      }
+      .section-head {
+        display: grid;
+        gap: 14px;
+        margin-bottom: clamp(28px, 5vh, 48px);
+        max-width: 36em;
+      }
+      .section-head .lede {
+        margin-top: 4px;
+      }
+
+      .split {
+        display: grid;
+        gap: clamp(28px, 4vw, 56px);
+        align-items: center;
+      }
+      @media (min-width: 900px) {
+        .split {
+          grid-template-columns: 1fr 1fr;
+        }
+        .split.is-reverse > .split-copy {
+          order: 2;
+        }
+        .split.is-reverse > .split-media {
+          order: 1;
+        }
+      }
+      .split-copy {
+        display: grid;
+        gap: 16px;
+        align-content: start;
+      }
+      .split-media img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+      @media (min-width: 900px) {
+        .split-media img {
+          aspect-ratio: 5 / 6;
+        }
+      }
+      .split-media.is-landscape img {
+        height: auto;
+        aspect-ratio: 1035 / 571;
+        object-fit: contain;
+      }
+      @media (min-width: 900px) {
+        .split-media.is-landscape img {
+          aspect-ratio: 1035 / 571;
+        }
+      }
+      .split-note {
+        font-size: 0.875rem;
+        color: var(--brand-secondary);
+        border-top: 1px solid var(--border-subtle);
+        padding-top: 14px;
+        margin-top: 4px;
+      }
+
+      /* ---------- gallery ---------- */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      @media (min-width: 768px) {
+        .gallery-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
+        }
+      }
+      .gallery-grid button {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: zoom-in;
+        border-radius: var(--radius-none);
+      }
+      .gallery-grid img {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+      .gallery-grid .is-wide {
+        grid-column: 1 / -1;
+      }
+      @media (min-width: 768px) {
+        .gallery-grid .is-wide {
+          grid-column: span 2;
+        }
+      }
+
+      /* ---------- financial structure ---------- */
+      .breakdown-grid {
+        display: grid;
+        gap: clamp(32px, 5vw, 56px);
+      }
+      @media (min-width: 900px) {
+        .breakdown-grid {
+          grid-template-columns: 1.1fr 0.9fr;
+          align-items: start;
+        }
+      }
+      .table-block {
+        display: grid;
+        gap: 0;
+      }
+      .table-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        padding: 14px 0;
+        border-top: 1px solid var(--border-subtle);
+        font-size: 0.95rem;
+      }
+      .table-row:last-child {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .table-row dt {
+        color: var(--brand-secondary);
+        min-width: 0;
+      }
+      .table-row dd {
+        margin: 0;
+        font-weight: var(--font-weight-semibold);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        text-align: right;
+      }
+      .table-row.is-total {
+        border-top: 2px solid var(--brand-charcoal);
+        margin-top: 4px;
+        padding-top: 16px;
+      }
+      .table-row.is-total dt,
+      .table-row.is-total dd {
+        font-family: var(--font-family-heading);
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: var(--brand-charcoal);
+      }
+      .payment {
+        margin-top: clamp(40px, 7vh, 72px);
+      }
+      .payment .lede {
+        margin-bottom: 8px;
+      }
+      .schedule {
+        display: grid;
+        gap: 0;
+      }
+      @media (min-width: 900px) {
+        .schedule {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 0 24px;
+        }
+        .schedule-item {
+          border-top: 0;
+          border-bottom: 1px solid var(--border-subtle);
+          grid-template-columns: 1fr;
+          padding: 20px 0;
+        }
+      }
+      .schedule-item {
+        display: grid;
+        grid-template-columns: 3.5rem 1fr;
+        gap: 16px;
+        padding: 16px 0;
+        border-top: 1px solid var(--border-subtle);
+      }
+      .schedule-item:last-child {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .schedule-pct {
+        font-family: var(--font-family-heading);
+        font-size: 1.5rem;
+        line-height: 1;
+        letter-spacing: var(--letter-spacing-tight);
+      }
+      .schedule-label {
+        font-size: 0.95rem;
+        font-weight: var(--font-weight-semibold);
+      }
+      .schedule-note {
+        font-size: 0.875rem;
+        color: var(--brand-secondary);
+        margin-top: 4px;
+      }
+
+      /* ---------- calculator ---------- */
+      .estimator {
+        margin-top: clamp(32px, 5vh, 48px);
+        display: grid;
+        gap: 0;
+        border: 1px solid var(--border-subtle);
+        background: var(--surface);
+      }
+      @media (min-width: 960px) {
+        .estimator {
+          grid-template-columns: 1.15fr 0.85fr;
+        }
+      }
+      .calc-static {
+        padding: clamp(24px, 3vw, 36px);
+        display: grid;
+        gap: 18px;
+        align-content: start;
+        min-width: 0;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      @media (min-width: 960px) {
+        .calc-static {
+          border-bottom: 0;
+          border-right: 1px solid var(--border-subtle);
+        }
+      }
+      .calc-panel {
+        padding: clamp(24px, 3vw, 36px);
+        display: grid;
+        gap: 18px;
+        align-content: start;
+        min-width: 0;
+        background: rgba(94, 102, 80, 0.06);
+      }
+      .calc-selection-label {
+        font-size: 0.6875rem;
+        font-weight: var(--font-weight-extra-bold);
+        letter-spacing: var(--letter-spacing-eyebrow);
+        text-transform: uppercase;
+        color: var(--brand-olive);
+      }
+      .calc-unit-plan {
+        margin: 0;
+        min-width: 0;
+      }
+      .calc-plan-button {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border: 1px solid var(--border-subtle);
+        background: var(--brand-bone);
+        cursor: zoom-in;
+        border-radius: var(--radius-none);
+      }
+      .calc-plan-button:hover {
+        border-color: var(--brand-charcoal);
+      }
+      .calc-plan-button img {
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        object-fit: contain;
+      }
+      .calc-plan-caption {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 4px 12px;
+        margin-top: 6px;
+        font-size: 0.75rem;
+        color: var(--brand-secondary);
+      }
+      .calc-interiors {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .calc-interiors button {
+        display: block;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: zoom-in;
+      }
+      .calc-interiors img {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+      .calc-caption {
+        font-size: 0.8125rem;
+        color: var(--brand-secondary);
+        margin-top: -6px;
+      }
+      .calc-unit-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 14px;
+        margin: 0;
+      }
+      .calc-unit-facts div {
+        padding: 10px 0;
+        border-top: 1px solid var(--border-subtle);
+      }
+      .calc-unit-facts .is-span {
+        grid-column: 1 / -1;
+      }
+      .calc-unit-facts dt {
+        font-size: 0.6875rem;
+        font-weight: var(--font-weight-bold);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--brand-secondary);
+      }
+      .calc-unit-facts dd {
+        margin-top: 2px;
+        font-size: 0.875rem;
+        font-weight: var(--font-weight-bold);
+        font-variant-numeric: tabular-nums;
+      }
+      .calc-unit-block {
+        display: grid;
+        gap: 8px;
+      }
+      .calc-unit-picker {
+        position: relative;
+        max-width: 100%;
+      }
+      button.calc-unit-trigger {
+        appearance: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        margin: 0;
+        background: var(--brand-bone);
+        color: var(--brand-charcoal);
+        font-weight: var(--font-weight-semibold);
+        font-size: 0.95rem;
+        line-height: 1.3;
+        text-align: left;
+        padding: 12px 14px;
+        border: 1px solid var(--border-subtle);
+        cursor: pointer;
+        border-radius: var(--radius-none);
+      }
+      button.calc-unit-trigger:hover {
+        border-color: var(--brand-charcoal);
+      }
+      .calc-unit-picker.is-open button.calc-unit-trigger {
+        border-color: var(--brand-olive);
+      }
+      .calc-unit-chevron {
+        flex: 0 0 auto;
+        width: 10px;
+        height: 6px;
+        background: currentColor;
+        opacity: 0.55;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
+      .calc-unit-picker.is-open .calc-unit-chevron {
+        transform: rotate(180deg);
+      }
+      .calc-unit-menu {
+        position: absolute;
+        z-index: 8;
+        left: 0;
+        right: 0;
+        top: calc(100% + 4px);
+        margin: 0;
+        padding: 4px;
+        background: var(--brand-bone);
+        border: 1px solid var(--border-subtle);
+        max-height: min(360px, 70vh);
+        overflow: auto;
+      }
+      .calc-unit-option {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px 18px;
+        width: 100%;
+        padding: 10px 12px;
+        border: 0;
+        background: transparent;
+        color: var(--brand-charcoal);
+        font-size: 0.9rem;
+        font-weight: var(--font-weight-semibold);
+        line-height: 1.3;
+        text-align: left;
+        cursor: pointer;
+      }
+      .calc-unit-option:hover,
+      .calc-unit-option.is-active {
+        background: rgba(94, 102, 80, 0.1);
+      }
+      .calc-unit-option.is-selected {
+        background: rgba(94, 102, 80, 0.16);
+      }
+      .calc-unit-option:disabled {
+        opacity: 0.42;
+        cursor: not-allowed;
+        background: transparent;
+      }
+      .calc-unit-option-price {
+        flex: 0 0 auto;
+        font-variant-numeric: tabular-nums;
+        font-weight: var(--font-weight-bold);
+        white-space: nowrap;
+      }
+      .calc-selected-meta {
+        font-size: 0.875rem;
+        color: var(--brand-secondary);
+      }
+      .calc-breakdown dl {
+        margin: 8px 0 0;
+      }
+      .calc-breakdown div {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        padding: 10px 0;
+        border-top: 1px solid var(--border-subtle);
+        font-size: 0.9375rem;
+      }
+      .calc-breakdown dt {
+        color: var(--brand-secondary);
+        min-width: 0;
+      }
+      .calc-breakdown .calc-rate {
+        font-size: 0.6875rem;
+        font-weight: var(--font-weight-bold);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+      .calc-breakdown dd {
+        margin: 0;
+        font-weight: var(--font-weight-bold);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .calc-breakdown .is-total {
+        border-top: 2px solid var(--brand-charcoal);
+        margin-top: 4px;
+        padding-top: 14px;
+      }
+      .calc-breakdown .is-total dt,
+      .calc-breakdown .is-total dd {
+        font-family: var(--font-family-heading);
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: var(--brand-olive);
+      }
+      .calc-floor {
+        padding: 16px 18px 18px;
+        background: var(--brand-bone);
+        border: 1px solid var(--border-subtle);
+        border-left: 4px solid var(--brand-olive);
+      }
+      .calc-floor-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .calc-floor-head .scenario-label {
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-bold);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--brand-charcoal);
+      }
+      .calc-floor-pct {
+        font-size: 1.1rem;
+        font-weight: var(--font-weight-bold);
+        color: var(--brand-olive);
+        font-variant-numeric: tabular-nums;
+      }
+      .calc-floor-income {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 4px 10px;
+        font-family: var(--font-family-heading);
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        line-height: 1.08;
+        letter-spacing: var(--letter-spacing-tight);
+      }
+      .calc-floor-income .monthly {
+        font-family: var(--font-family-body);
+        font-size: 0.875rem;
+        font-weight: var(--font-weight-semibold);
+        color: var(--brand-secondary);
+      }
+      .calc-floor-note {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        color: var(--brand-secondary);
+        margin-top: 10px;
+        max-width: 36em;
+      }
+      .calc-panel.is-updating .calc-floor {
+        animation: calc-refresh 0.42s ease-out;
+      }
+      @keyframes calc-refresh {
+        0% {
+          background: rgba(94, 102, 80, 0.14);
+          transform: translateX(-3px);
+        }
+        100% {
+          background: var(--brand-bone);
+          transform: translateX(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .calc-panel.is-updating .calc-floor {
+          animation: none;
+        }
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq-list {
+        display: grid;
+        gap: 0;
+        max-width: 42em;
+      }
+      .faq-item {
+        border-top: 1px solid var(--border-subtle);
+      }
+      .faq-item:last-child {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .faq-item summary {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        cursor: pointer;
+        list-style: none;
+        padding: 18px 0;
+        font-size: 1.05rem;
+        font-weight: var(--font-weight-semibold);
+        line-height: 1.35;
+        color: var(--brand-charcoal);
+      }
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-item summary::after {
+        content: "";
+        flex: 0 0 auto;
+        width: 10px;
+        height: 6px;
+        margin-top: 0.55em;
+        background: currentColor;
+        opacity: 0.55;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transition: transform 0.15s ease;
+      }
+      .faq-item[open] summary {
+        color: var(--brand-olive);
+      }
+      .faq-item[open] summary::after {
+        transform: rotate(180deg);
+      }
+      .faq-item summary:hover {
+        color: var(--brand-olive);
+      }
+      .faq-body {
+        padding: 0 0 22px;
+      }
+      .faq-body p {
+        max-width: 38em;
+        color: var(--brand-secondary);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .faq-item summary::after {
+          transition: none;
+        }
+      }
+
+      /* ---------- close ---------- */
+      .close {
+        background: var(--brand-olive);
+        color: var(--text-on-dark);
+        padding: clamp(64px, 12vh, 112px) 0;
+        scroll-margin-top: calc(var(--nav-height) + 16px);
+      }
+      .close :focus-visible {
+        outline-color: var(--text-on-dark);
+      }
+      .close-grid {
+        display: grid;
+        gap: clamp(32px, 5vw, 64px);
+        align-items: start;
+      }
+      @media (min-width: 900px) {
+        .close-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .close-copy {
+        display: grid;
+        gap: 18px;
+        max-width: 28em;
+      }
+      .close .display {
+        color: var(--text-on-dark);
+      }
+      .close .lede {
+        color: rgba(241, 236, 227, 0.92);
+      }
+      .close-secondary {
+        font-size: 0.875rem;
+        color: rgba(241, 236, 227, 0.78);
+      }
+      .close-secondary a {
+        color: var(--text-on-dark);
+        text-underline-offset: 3px;
+      }
+      #lead-form {
+        display: grid;
+        gap: 14px;
+        max-width: 28em;
+        scroll-margin-top: calc(var(--nav-height) + 16px);
+      }
+      #lead-form.is-aimed {
+        outline: 2px solid var(--text-on-dark);
+        outline-offset: 10px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #lead-form.is-aimed {
+          outline: none;
+        }
+      }
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+      .field label {
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-bold);
+        letter-spacing: var(--letter-spacing-button-label);
+        text-transform: uppercase;
+        color: rgba(241, 236, 227, 0.82);
+      }
+      .field input {
+        width: 100%;
+        min-height: 50px;
+        padding: 12px 14px;
+        border: 0;
+        border-radius: var(--radius-none);
+        background: var(--brand-bone);
+        color: var(--brand-charcoal);
+        font-size: 1rem;
+      }
+      .field input::placeholder {
+        color: var(--brand-secondary);
+        opacity: 1;
+      }
+      .form-error {
+        color: var(--text-on-dark);
+        font-size: 0.875rem;
+        min-height: 1.2em;
+      }
+      .legal {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        color: rgba(241, 236, 227, 0.78);
+      }
+      .legal a {
+        color: var(--text-on-dark);
+        text-underline-offset: 3px;
+      }
+      .thanks[hidden],
+      .thanks {
+        display: none;
+        gap: 16px;
+        max-width: 28em;
+      }
+      .thanks.is-open {
+        display: grid;
+      }
+      .thanks h3 {
+        font-family: var(--font-family-heading);
+        font-weight: 400;
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+        letter-spacing: var(--letter-spacing-tight);
+      }
+      #lead-form[hidden] {
+        display: none;
+      }
+
+      /* ---------- footer ---------- */
+      .site-footer {
+        padding: 40px 0 64px;
+        border-top: 1px solid var(--border-subtle);
+      }
+      .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px 32px;
+        font-size: 0.875rem;
+        color: var(--brand-secondary);
+      }
+      .footer-row a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .footer-row a:hover {
+        color: var(--brand-charcoal);
+      }
+
+      /* ---------- lightbox ---------- */
+      #lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        background: rgba(36, 36, 36, 0.94);
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        align-items: center;
+        justify-items: center;
+        padding: 16px;
+        gap: 12px;
+      }
+      #lightbox[hidden] {
+        display: none;
+      }
+      #lightbox img {
+        max-width: min(96vw, 1200px);
+        max-height: calc(100vh - 140px);
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+      #lightbox .lb-caption {
+        color: var(--text-on-dark);
+        font-size: 0.875rem;
+        text-align: center;
+      }
+      #lightbox button {
+        position: absolute;
+        border: 0;
+        background: rgba(66, 66, 66, 0.85);
+        color: var(--text-on-dark);
+        width: 44px;
+        height: 44px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        border-radius: var(--radius-none);
+      }
+      #lightbox .lb-close {
+        top: 16px;
+        right: 16px;
+      }
+      #lightbox .lb-prev {
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      #lightbox .lb-next {
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell">
+        <a class="wordmark" href="#hero">El Fortín</a>
+        <a class="btn btn-olive" href="#lead-form" data-open-lead>Inquire</a>
+      </div>
+    </header>
+
+    <section class="hero" id="hero" data-section-id="hero">
+      <div class="hero-media" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 899px)" srcset="assets/hero-mobile-elfortin.jpg" />
+          <img
+            src="assets/hero-desk-elfortin.jpg"
+            width="2400"
+            height="1600"
+            alt=""
+            fetchpriority="high"
+          />
+        </picture>
+        <div class="hero-wash"></div>
+      </div>
+      <div class="hero-overlay">
+        <span class="hero-chevron" aria-hidden="true"></span>
+        <div class="shell">
+          <div class="hero-copy">
+            <h1 class="display">
+              <span class="hero-deed">Deeded ownership in Valencia.</span>
+              <span class="hero-engine">
+                Engineered for a <span class="hero-yield">7% yield</span>, contractually
+                floored at <span class="hero-floor">4%</span>.
+              </span>
+            </h1>
+            <p class="lede">
+              A fully managed, 10-unit residential asset in Riba-roja. You hold the title; we
+              handle the operations. Turnkey delivery in August 2027.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-bone" href="#lead-form" data-open-lead>Talk to Uriel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="data-bar" id="numbers" data-section-id="numbers">
+      <div class="shell">
+        <div class="metrics">
+          <div class="metric">
+            <p class="metric-value">≈ €229,000</p>
+            <p class="metric-label">Entry</p>
+            <p class="metric-note">Fully furnished &amp; taxes included</p>
+          </div>
+          <div class="metric">
+            <p class="metric-value">~7%</p>
+            <p class="metric-label">Target yield</p>
+            <p class="metric-note">Blended short-term &amp; corporate strategy</p>
+          </div>
+          <div class="metric">
+            <p class="metric-value">4%</p>
+            <p class="metric-label">The floor</p>
+            <p class="metric-note">Net guaranteed · contractual covenant</p>
+          </div>
+          <div class="metric">
+            <p class="metric-value">14 nights</p>
+            <p class="metric-label">Owner use</p>
+            <p class="metric-note">Annually · free personal use</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="moat" data-section-id="moat">
+      <div class="shell">
+        <div class="split">
+          <div class="split-copy">
+            <p class="eyebrow">The model</p>
+            <h2 class="display">Total operational control. Zero community restrictions.</h2>
+            <p class="lede">
+              In today’s market, buying a single tourist apartment exposes you to community
+              bans and shifting local laws. El Fortín is different. Because we own and operate
+              the entire building, there is no community of owners to restrict short-term
+              rentals. Your asset is shielded from regulatory roadblocks.
+            </p>
+          </div>
+          <figure class="split-media is-landscape">
+            <img
+              src="assets/brand/renders/garage.jpg"
+              width="1035"
+              height="571"
+              alt="Courtyard and covered parking at El Fortín"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="operator" data-section-id="operator">
+      <div class="shell">
+        <div class="split is-reverse">
+          <div class="split-copy">
+            <p class="eyebrow">The operator</p>
+            <h2 class="display">Institutional rigor. Personal accountability.</h2>
+            <p class="lede">
+              You aren't handing your capital to a faceless fund, and we don't outsource to
+              third-party management agencies. El Fortín is developed and operated by Uriel
+              Nabel (ex-SAP Global Expert, BCG). We apply data-driven, engineering precision to
+              real estate—and because Uriel remains the operator and lives in the community,
+              the accountability stays in-house.
+            </p>
+            <p class="split-note">
+              Following the successful delivery of El Fortín de Puzol in August 2025.
+            </p>
+          </div>
+          <figure class="split-media">
+            <img
+              src="assets/uriel-onsite.jpg"
+              width="1199"
+              height="1600"
+              alt="Uriel Nabel on the El Fortín construction site in Riba-roja"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="guarantee" data-section-id="guarantee">
+      <div class="shell">
+        <div class="split">
+          <div class="split-copy">
+            <p class="eyebrow">The guarantee</p>
+            <h2 class="display">A true net floor. Open-book operations.</h2>
+            <p class="lede">
+              We target a 7% annual return based on conservative occupancy models. However,
+              your downside is protected by a contractual 4% net floor. If the market dips, the
+              developer covers the gap out of pocket. Furthermore, you retain full visibility
+              into the building's performance through a live, open-book investor portal.
+            </p>
+          </div>
+          <figure class="split-media">
+            <img
+              src="assets/render-salon-loft.jpg"
+              width="1600"
+              height="1067"
+              alt="Hotel-grade living space interior render"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery" data-section-id="gallery">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">The product</p>
+          <h2 class="display">Interiors and construction progress.</h2>
+          <p class="lede">
+            Design renders for the finished specification, alongside photographs from the
+            works underway on Camino Valencia 31.
+          </p>
+        </div>
+        <div class="gallery-grid" id="product-gallery">
+          <button
+            type="button"
+            class="is-wide"
+            data-full="assets/render-salon-loft.jpg"
+            data-caption="Living space"
+            data-alt="Loft living interior design render"
+            aria-label="Open living space render"
+          >
+            <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/render-kitchen-dining.jpg"
+            data-caption="Kitchen and dining"
+            data-alt="Kitchen and dining interior design render"
+            aria-label="Open kitchen and dining render"
+          >
+            <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/render-bedroom.jpg"
+            data-caption="Bedroom"
+            data-alt="Bedroom interior design render"
+            aria-label="Open bedroom render"
+          >
+            <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/brand/on-going-construction/001.jpeg"
+            data-caption="Construction progress"
+            data-alt="Construction progress on Camino Valencia 31"
+            aria-label="Open construction photo 1"
+          >
+            <img src="assets/brand/on-going-construction/001.jpeg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/brand/on-going-construction/003.jpeg"
+            data-caption="Construction progress"
+            data-alt="Structure and works on site"
+            aria-label="Open construction photo 2"
+          >
+            <img src="assets/brand/on-going-construction/003.jpeg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/brand/on-going-construction/005.jpg"
+            data-caption="Construction progress"
+            data-alt="Site progress photograph"
+            aria-label="Open construction photo 3"
+          >
+            <img src="assets/brand/on-going-construction/005.jpg" alt="" loading="lazy" />
+          </button>
+          <button
+            type="button"
+            data-full="assets/brand/on-going-construction/007.jpeg"
+            data-caption="Construction progress"
+            data-alt="Ongoing construction photograph"
+            aria-label="Open construction photo 4"
+          >
+            <img src="assets/brand/on-going-construction/007.jpeg" alt="" loading="lazy" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="structure" data-section-id="structure">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">The numbers</p>
+          <h2 class="display">The financial structure.</h2>
+          <p class="lede">
+            Pick a remaining unit. Sale price, about 12% for taxes and notary, furniture,
+            all-in — and what 4% of the sale price pays.
+          </p>
+        </div>
+
+        <div class="estimator" id="estimator">
+          <div class="calc-static">
+            <figure class="calc-unit-plan">
+              <button
+                class="calc-plan-button"
+                id="calc-unit-plan-button"
+                type="button"
+                data-full="assets/render-type-a.jpg"
+                data-caption="1-Bedroom floor plan"
+                data-alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
+                aria-label="Enlarge the 1-Bedroom floor plan"
+              >
+                <img
+                  id="calc-unit-plan"
+                  src="assets/render-type-a.jpg"
+                  width="1290"
+                  height="653"
+                  alt="1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
+                />
+              </button>
+              <figcaption class="calc-plan-caption">
+                <span id="calc-plan-caption">1-Bedroom floor plan</span>
+                <span>Tap to enlarge</span>
+              </figcaption>
+            </figure>
+
+            <div class="calc-interiors render-gallery" aria-label="Interior design renders">
+              <button
+                type="button"
+                data-full="assets/render-salon-loft.jpg"
+                data-caption="Living space design render"
+                data-alt="Loft living interior design render"
+                aria-label="Open living space render"
+              >
+                <img src="assets/render-salon-loft.jpg" alt="" loading="lazy" />
+              </button>
+              <button
+                type="button"
+                data-full="assets/render-kitchen-dining.jpg"
+                data-caption="Kitchen and dining design render"
+                data-alt="Kitchen and dining interior design render"
+                aria-label="Open kitchen and dining render"
+              >
+                <img src="assets/render-kitchen-dining.jpg" alt="" loading="lazy" />
+              </button>
+              <button
+                type="button"
+                data-full="assets/render-bedroom.jpg"
+                data-caption="Bedroom design render"
+                data-alt="Bedroom interior design render"
+                aria-label="Open bedroom render"
+              >
+                <img src="assets/render-bedroom.jpg" alt="" loading="lazy" />
+              </button>
+            </div>
+            <p class="calc-caption">Both types are finished to this specification · design renders</p>
+
+            <p class="calc-selection-label" id="calc-spec-heading">1-Bedroom</p>
+            <dl class="calc-unit-facts">
+              <div>
+                <dt>Useful area</dt>
+                <dd id="calc-unit-useful">40.48 m²</dd>
+              </div>
+              <div>
+                <dt>Built area</dt>
+                <dd id="calc-unit-built">~47 m²</dd>
+              </div>
+              <div class="is-span">
+                <dt>This type</dt>
+                <dd id="calc-unit-inventory">4 in the building</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="calc-panel" aria-live="polite" aria-atomic="true">
+            <div class="calc-unit-block">
+              <p class="calc-selection-label" id="calc-unit-label">Select a unit</p>
+              <div class="calc-unit-picker" id="calc-unit-picker">
+                <button
+                  type="button"
+                  class="calc-unit-trigger"
+                  id="calc-unit-trigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="calc-unit-menu"
+                  aria-labelledby="calc-unit-label calc-unit-title"
+                >
+                  <span id="calc-unit-title">Unit 5 · 1-Bedroom · €190,557</span>
+                  <span class="calc-unit-chevron" aria-hidden="true"></span>
+                </button>
+                <div
+                  class="calc-unit-menu"
+                  id="calc-unit-menu"
+                  role="listbox"
+                  aria-labelledby="calc-unit-label"
+                  hidden
+                ></div>
+              </div>
+              <p class="calc-selected-meta" id="calc-unit-meta">40.48 m² useful</p>
+            </div>
+            <div class="calc-breakdown">
+              <p class="calc-selection-label">What you pay</p>
+              <dl>
+                <div>
+                  <dt>Sale price</dt>
+                  <dd id="calc-price-sale">€190,557</dd>
+                </div>
+                <div>
+                  <dt>Taxes and notary <span class="calc-rate">about 12%</span></dt>
+                  <dd id="calc-price-closing">≈ €22,867</dd>
+                </div>
+                <div>
+                  <dt>Furniture</dt>
+                  <dd id="calc-price-furniture">€15,960</dd>
+                </div>
+                <div class="is-total">
+                  <dt>All-in</dt>
+                  <dd id="calc-price-allin">≈ €229,384</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="calc-floor">
+              <div class="calc-floor-head">
+                <p class="scenario-label">4% from first operations</p>
+                <span class="calc-floor-pct">4%</span>
+              </div>
+              <p class="calc-floor-income">
+                <span id="calc-slider-yearly">≈ €7,622 / year</span>
+                <span class="monthly" id="calc-slider-monthly">· ≈ €635 / month</span>
+              </p>
+              <p class="calc-floor-note">
+                If the pool is short, the developer pays the gap. The building is run to earn
+                ~7%.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment">
+          <p class="lede">No mortgage required. Capital follows certified work.</p>
+          <div class="schedule">
+            <div class="schedule-item">
+              <span class="schedule-pct">25%</span>
+              <div>
+                <p class="schedule-label">At reservation</p>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <span class="schedule-pct">25%</span>
+              <div>
+                <p class="schedule-label">At 40% construction</p>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <span class="schedule-pct">25%</span>
+              <div>
+                <p class="schedule-label">At 80% construction</p>
+                <p class="schedule-note">Includes furniture package</p>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <span class="schedule-pct">25%</span>
+              <div>
+                <p class="schedule-label">At notary / deed</p>
+                <p class="schedule-note">Escritura</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" data-section-id="faq">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Details</p>
+          <h2 class="display">Frequently asked questions.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How is the property managed?</summary>
+            <div class="faq-body">
+              <p>
+                The building is operated as a single, cohesive asset with a 50/50 initial mix
+                of short-stay and corporate flex-living. We handle all bookings, cleaning, and
+                maintenance in-house.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>When do payouts begin?</summary>
+            <div class="faq-body">
+              <p>
+                Payouts begin immediately when operations start (turnkey delivery is scheduled
+                for August 2027). There is no “ramp-up” void period for investors.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What are the management fees?</summary>
+            <div class="faq-body">
+              <p>
+                Fees scale by strategy: 8% for long-term, 10% for mid-term / corporate, and 15%
+                for tourist rentals. The 4% net floor is calculated after these fees.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Are my funds protected during construction?</summary>
+            <div class="faq-body">
+              <p>
+                Payments are tied directly to certified construction milestones (40% and 80%
+                completion), ensuring your capital is deployed only as physical progress is
+                made on site.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="close" id="close" data-section-id="close">
+      <div class="shell close-grid">
+        <div class="close-copy">
+          <h2 class="display">Nine units remain. Talk to Uriel.</h2>
+          <p class="lede">
+            Name, email, and phone. He gets the message on WhatsApp. Turnkey August 2027.
+          </p>
+          <p class="close-secondary">
+            Or
+            <a
+              data-contact-channel="whatsapp"
+              href="https://wa.me/34626459818?text=Hello%20Uriel%20%E2%80%94%20I%20want%20to%20talk%20about%20El%20Fort%C3%ADn."
+              target="_blank"
+              rel="noopener noreferrer"
+              >WhatsApp him directly</a
+            >.
+          </p>
+        </div>
+        <form id="lead-form" novalidate>
+          <div class="field">
+            <label for="lead-name">Name</label>
+            <input id="lead-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="lead-email">Email</label>
+            <input id="lead-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="lead-phone">Phone</label>
+            <input id="lead-phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+          <p class="form-error" id="lead-error" role="alert"></p>
+          <button class="btn btn-bone" type="submit" id="lead-submit">Message Uriel</button>
+          <p class="legal">
+            Opens WhatsApp with your details. See the
+            <a href="privacy-policy-en.html">privacy policy</a>.
+          </p>
+        </form>
+        <div class="thanks" id="lead-thanks" hidden>
+          <h3>WhatsApp is open.</h3>
+          <p class="lede">If it did not launch, tap below.</p>
+          <a
+            class="btn btn-bone"
+            id="thanks-whatsapp"
+            data-contact-channel="whatsapp"
+            href="https://wa.me/34626459818"
+            target="_blank"
+            rel="noopener noreferrer"
+            >WhatsApp Uriel</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="shell footer-row">
+        <p>El Fortín · Camino Valencia 31, Riba-roja de Túria</p>
+        <p>
+          <a href="privacy-policy-en.html">Privacy</a>
+          ·
+          <button type="button" data-consent-settings style="background:none;border:0;padding:0;color:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font:inherit">
+            Cookie settings
+          </button>
+        </p>
+      </div>
+    </footer>
+
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery" hidden>
+      <button class="lb-close" type="button" aria-label="Close gallery">×</button>
+      <button class="lb-prev" type="button" aria-label="Previous photo">‹</button>
+      <img class="lb-img" src="assets/hero-desk-elfortin.jpg" alt="" />
+      <p class="lb-caption"></p>
+      <button class="lb-next" type="button" aria-label="Next photo">›</button>
+    </div>
+
+    <script>
+      window.EFConfig = {
+        floorPct: 0.04,
+        closingPct: 0.12,
+        scenarioYields: {
+          yearOne: 0.069,
+          target: 0.07
+        },
+        unitTypes: {
+          A: {
+            bathrooms: 1,
+            builtArea: '~47 m²',
+            furniture: 15959.66,
+            planCaption: '1-Bedroom floor plan',
+            planAlt: '1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room'
+          },
+          B: {
+            bathrooms: 2,
+            builtArea: '~57 m²',
+            furniture: 19357.6,
+            planCaption: '2-Bedroom floor plan',
+            planAlt: '2-Bedroom floor plan: two bedrooms, two bathrooms and an open living and dining room'
+          }
+        },
+        inventory: [
+          { id: '1', beds: 2, layout: '2-Bed', valorPublico: 220225, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '2', beds: 2, layout: '2-Bed', valorPublico: 220225, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '3', beds: 2, layout: '2-Bed', valorPublico: 225707, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '4', beds: 2, layout: '2-Bed', valorPublico: 225707, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '5', beds: 1, layout: '1-Bed', valorPublico: 190557, typeClass: 'A', area: '40.48 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '6', beds: 1, layout: '1-Bed', valorPublico: 190557, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '7', beds: 1, layout: '1-Bed', valorPublico: 190557, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '8', beds: 1, layout: '1-Bed', valorPublico: 190557, typeClass: 'A', area: '40.44 m² useful', plan: 'assets/render-type-a.jpg', status: 'available' },
+          { id: '9', beds: 2, layout: '2-Bed', valorPublico: 232125, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'available' },
+          { id: '10', beds: 2, layout: '2-Bed', valorPublico: 232125, typeClass: 'B', area: '49.05 m² useful', plan: 'assets/render-type-b.jpg', status: 'sold' }
+        ]
+      };
+
+      window.EFMath = {
+        euro: function (n) {
+          return '€' + Math.round(n).toLocaleString('en-GB');
+        },
+        approxEuro: function (n) {
+          return '≈ ' + this.euro(n);
+        },
+        priceStack: function (unit) {
+          var type = window.EFConfig.unitTypes[unit.typeClass];
+          var sale = Math.round(unit.valorPublico);
+          var furniture = Math.round(type.furniture);
+          var closing = Math.round(sale * window.EFConfig.closingPct);
+          return {
+            sale: sale,
+            closing: closing,
+            furniture: furniture,
+            allIn: sale + closing + furniture
+          };
+        },
+        yieldBase: function (unit) {
+          return Math.round(unit.valorPublico);
+        },
+        unitLine: function (unit) {
+          return (
+            'Unit ' +
+            unit.id +
+            ' · ' +
+            unit.beds +
+            '-Bedroom · ' +
+            this.euro(unit.valorPublico)
+          );
+        }
+      };
+    </script>
+
+    <script>
+      (function () {
+        var selectedUnitId = '5';
+        var floorPct = window.EFConfig.floorPct;
+
+        function selectedUnit() {
+          return window.EFConfig.inventory.find(function (u) {
+            return u.id === selectedUnitId;
+          });
+        }
+
+        function paintIncome(unit) {
+          var annual = window.EFMath.yieldBase(unit) * floorPct;
+          var yearly = document.getElementById('calc-slider-yearly');
+          var monthly = document.getElementById('calc-slider-monthly');
+          if (yearly) yearly.textContent = '≈ ' + window.EFMath.euro(annual) + ' / year';
+          if (monthly) {
+            monthly.textContent = '· ≈ ' + window.EFMath.euro(annual / 12) + ' / month';
+          }
+        }
+
+        function updateCalculator() {
+          var unit = selectedUnit();
+          if (!unit) return;
+
+          var title = document.getElementById('calc-unit-title');
+          var meta = document.getElementById('calc-unit-meta');
+          var panel = document.querySelector('.calc-panel');
+          var type = window.EFConfig.unitTypes[unit.typeClass];
+          var typeUnits = window.EFConfig.inventory.filter(function (item) {
+            return item.typeClass === unit.typeClass;
+          });
+
+          if (title) title.textContent = window.EFMath.unitLine(unit);
+          Array.prototype.forEach.call(document.querySelectorAll('.calc-unit-option'), function (opt) {
+            var on = opt.getAttribute('data-id') === unit.id;
+            opt.classList.toggle('is-selected', on);
+            opt.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          if (meta) meta.textContent = unit.area;
+
+          var spec = document.getElementById('calc-spec-heading');
+          if (spec) spec.textContent = unit.beds + '-Bedroom';
+          document.getElementById('calc-unit-useful').textContent = unit.area.replace(
+            ' useful',
+            ''
+          );
+          document.getElementById('calc-unit-built').textContent = type.builtArea;
+          var inventoryEl = document.getElementById('calc-unit-inventory');
+          if (inventoryEl) {
+            inventoryEl.textContent = typeUnits.length + ' in the building';
+          }
+
+          var plan = document.getElementById('calc-unit-plan');
+          var planButton = document.getElementById('calc-unit-plan-button');
+          var planCaption = document.getElementById('calc-plan-caption');
+          plan.src = unit.plan;
+          plan.alt = type.planAlt;
+          planButton.setAttribute('data-full', unit.plan);
+          planButton.setAttribute('data-caption', type.planCaption);
+          planButton.setAttribute('data-alt', type.planAlt);
+          planButton.setAttribute('aria-label', 'Enlarge the ' + type.planCaption);
+          planCaption.textContent = type.planCaption;
+
+          var stack = window.EFMath.priceStack(unit);
+          document.getElementById('calc-price-sale').textContent = window.EFMath.euro(stack.sale);
+          document.getElementById('calc-price-closing').textContent = window.EFMath.approxEuro(
+            stack.closing
+          );
+          document.getElementById('calc-price-furniture').textContent = window.EFMath.euro(
+            stack.furniture
+          );
+          document.getElementById('calc-price-allin').textContent = window.EFMath.approxEuro(
+            stack.allIn
+          );
+
+          paintIncome(unit);
+
+          if (panel) {
+            panel.classList.remove('is-updating');
+            void panel.offsetWidth;
+            panel.classList.add('is-updating');
+            window.setTimeout(function () {
+              panel.classList.remove('is-updating');
+            }, 450);
+          }
+        }
+
+        window.EFUpdateCalculator = updateCalculator;
+        window.EFSelectUnit = function (id, fromUser) {
+          selectedUnitId = id;
+          updateCalculator();
+          if (
+            fromUser &&
+            window.EFAnalytics &&
+            typeof window.EFAnalytics.track === 'function'
+          ) {
+            window.EFAnalytics.track('unit_selected', { unit_id: id });
+          }
+        };
+
+        updateCalculator();
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var inventory = window.EFConfig.inventory;
+        var picker = document.getElementById('calc-unit-picker');
+        var trigger = document.getElementById('calc-unit-trigger');
+        var menu = document.getElementById('calc-unit-menu');
+        if (!picker || !trigger || !menu) return;
+
+        var open = false;
+        var activeIndex = -1;
+
+        function options() {
+          return Array.prototype.slice.call(menu.querySelectorAll('.calc-unit-option'));
+        }
+
+        function setOpen(next) {
+          open = next;
+          picker.classList.toggle('is-open', open);
+          trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          menu.hidden = !open;
+          if (open) {
+            var selected = menu.querySelector('.calc-unit-option.is-selected:not(:disabled)');
+            var items = options().filter(function (opt) {
+              return !opt.disabled;
+            });
+            activeIndex = selected ? items.indexOf(selected) : 0;
+            if (activeIndex < 0) activeIndex = 0;
+            paintActive();
+          } else {
+            activeIndex = -1;
+            options().forEach(function (opt) {
+              opt.classList.remove('is-active');
+            });
+          }
+        }
+
+        function enabledOptions() {
+          return options().filter(function (opt) {
+            return !opt.disabled;
+          });
+        }
+
+        function paintActive() {
+          var items = enabledOptions();
+          items.forEach(function (opt, i) {
+            opt.classList.toggle('is-active', i === activeIndex);
+          });
+          if (items[activeIndex]) items[activeIndex].focus();
+        }
+
+        function choose(id) {
+          setOpen(false);
+          trigger.focus();
+          if (typeof window.EFSelectUnit === 'function') window.EFSelectUnit(id, true);
+        }
+
+        inventory.forEach(function (unit) {
+          var option = document.createElement('button');
+          var taken = unit.status !== 'available';
+          option.type = 'button';
+          option.className = 'calc-unit-option';
+          option.id = 'calc-unit-option-' + unit.id;
+          option.setAttribute('role', 'option');
+          option.setAttribute('data-id', unit.id);
+          option.setAttribute('aria-selected', 'false');
+          option.innerHTML =
+            '<span class="calc-unit-option-copy">Unit ' +
+            unit.id +
+            ' · ' +
+            unit.beds +
+            '-Bedroom' +
+            (unit.status === 'sold' ? ' · Sold' : taken ? ' · ' + unit.status : '') +
+            '</span><span class="calc-unit-option-price">' +
+            window.EFMath.euro(unit.valorPublico) +
+            '</span>';
+          if (taken) {
+            option.disabled = true;
+          } else {
+            option.addEventListener('click', function () {
+              choose(unit.id);
+            });
+          }
+          menu.appendChild(option);
+        });
+
+        trigger.addEventListener('click', function () {
+          setOpen(!open);
+        });
+
+        trigger.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+            if (!open) {
+              e.preventDefault();
+              setOpen(true);
+            }
+          }
+        });
+
+        menu.addEventListener('keydown', function (e) {
+          var items = enabledOptions();
+          if (!items.length) return;
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            setOpen(false);
+            trigger.focus();
+            return;
+          }
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIndex = (activeIndex + 1) % items.length;
+            paintActive();
+          }
+          if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIndex = (activeIndex - 1 + items.length) % items.length;
+            paintActive();
+          }
+          if (e.key === 'Home') {
+            e.preventDefault();
+            activeIndex = 0;
+            paintActive();
+          }
+          if (e.key === 'End') {
+            e.preventDefault();
+            activeIndex = items.length - 1;
+            paintActive();
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (open && !picker.contains(e.target)) setOpen(false);
+        });
+
+        if (typeof window.EFSelectUnit === 'function') window.EFSelectUnit('5');
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var lb = document.getElementById('lightbox');
+        if (!lb) return;
+        var lbImg = lb.querySelector('.lb-img');
+        var lbCap = lb.querySelector('.lb-caption');
+        var order = [];
+        var idx = 0;
+        var lastFocused = null;
+
+        function show() {
+          var d = order[idx];
+          lbImg.src = d.full;
+          lbImg.alt = d.alt || '';
+          lbCap.textContent = d.caption + ' · ' + (idx + 1) + ' of ' + order.length;
+        }
+        function openLightbox(items, start, label) {
+          order = items;
+          idx = start || 0;
+          lb.setAttribute('aria-label', label || 'Image gallery');
+          show();
+          lb.hidden = false;
+          document.body.style.overflow = 'hidden';
+          lastFocused = document.activeElement;
+          lb.querySelector('.lb-close').focus();
+        }
+        function closeLightbox() {
+          lb.hidden = true;
+          document.body.style.overflow = '';
+          if (lastFocused && lastFocused.focus) lastFocused.focus();
+        }
+        function step(delta) {
+          idx = (idx + delta + order.length) % order.length;
+          show();
+        }
+        function dataOf(btn) {
+          return {
+            full: btn.getAttribute('data-full'),
+            caption: btn.getAttribute('data-caption'),
+            alt: btn.getAttribute('data-alt')
+          };
+        }
+
+        Array.prototype.forEach.call(
+          document.querySelectorAll('#product-gallery button, .render-gallery button, .calc-plan-button'),
+          function (btn, i, list) {
+            btn.addEventListener('click', function () {
+              var group;
+              if (btn.classList.contains('calc-plan-button')) {
+                group = [btn];
+              } else if (btn.closest('.render-gallery')) {
+                group = Array.prototype.slice.call(
+                  btn.closest('.render-gallery').querySelectorAll('button')
+                );
+              } else {
+                group = Array.prototype.slice.call(
+                  document.querySelectorAll('#product-gallery button')
+                );
+              }
+              var start = group.indexOf(btn);
+              openLightbox(group.map(dataOf), start < 0 ? 0 : start, 'Gallery');
+            });
+          }
+        );
+
+        lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
+        lb.querySelector('.lb-prev').addEventListener('click', function () {
+          step(-1);
+        });
+        lb.querySelector('.lb-next').addEventListener('click', function () {
+          step(1);
+        });
+        lb.addEventListener('click', function (e) {
+          if (e.target === lb) closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (lb.hidden) return;
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') step(-1);
+          if (e.key === 'ArrowRight') step(1);
+        });
+      })();
+    </script>
+
+    <script>
+      window.__EF_PAGE__ = { pageId: 'site_index', pageVersion: 'index', locale: 'en' };
+      window.__EF_CONTACT__ = {
+        email: 'uriel.nabel@elfortincapital.com',
+        whatsapp: '34626459818',
+        calendar: 'https://calendar.app.google/R9LJvZFYTPwuXNw7A',
+        privacyUrl: 'privacy-policy-en.html'
+      };
+    </script>
+
+    <script>
+      (function () {
+        var header = document.querySelector('.site-header');
+        var hero = document.getElementById('hero');
+        if (header && hero && 'IntersectionObserver' in window) {
+          new IntersectionObserver(
+            function (entries) {
+              header.classList.toggle('is-solid', !entries[0].isIntersecting);
+            },
+            { rootMargin: '-72px 0px 0px 0px', threshold: 0 }
+          ).observe(hero);
+        }
+
+        function openLead(e) {
+          var form = document.getElementById('lead-form');
+          var name = document.getElementById('lead-name');
+          if (!form) return;
+          if (e) e.preventDefault();
+          form.hidden = false;
+          form.classList.add('is-aimed');
+          form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (name) name.focus();
+          window.setTimeout(function () {
+            form.classList.remove('is-aimed');
+          }, 1600);
+        }
+
+        document.querySelectorAll('[data-open-lead]').forEach(function (el) {
+          el.addEventListener('click', openLead);
+        });
+
+        var form = document.getElementById('lead-form');
+        var thanks = document.getElementById('lead-thanks');
+        var error = document.getElementById('lead-error');
+        if (!form || !thanks) return;
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          error.textContent = '';
+          var name = document.getElementById('lead-name').value.trim();
+          var email = document.getElementById('lead-email').value.trim();
+          var phone = document.getElementById('lead-phone').value.trim();
+          if (!name || !email || !phone) {
+            error.textContent = 'Name, email, and phone are required.';
+            return;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            error.textContent = 'Enter a valid email.';
+            return;
+          }
+
+          var contact = window.__EF_CONTACT__ || {};
+          var waText = encodeURIComponent(
+            'Hello Uriel — I want to talk about El Fortín.\n\n' +
+              'Name: ' +
+              name +
+              '\nEmail: ' +
+              email +
+              '\nPhone: ' +
+              phone
+          );
+          var waHref = 'https://wa.me/' + (contact.whatsapp || '34626459818') + '?text=' + waText;
+
+          if (window.EFAnalytics && typeof window.EFAnalytics.track === 'function') {
+            window.EFAnalytics.track('cta_opened', {
+              cta_id: 'index_lead_form',
+              channel: 'whatsapp'
+            });
+            if (typeof window.EFAnalytics.flush === 'function') window.EFAnalytics.flush();
+          }
+
+          form.hidden = true;
+          thanks.hidden = false;
+          thanks.classList.add('is-open');
+
+          var wa = document.getElementById('thanks-whatsapp');
+          if (wa) wa.href = waHref;
+          window.open(waHref, '_blank', 'noopener');
+        });
+      })();
+    </script>
+
+    <script src="assets/analytics.js?v=4" defer></script>
+  </body>
+</html>

@@ -448,14 +448,29 @@
     }
   }
 
+  function wireDoors() {
+    document.querySelectorAll('details[data-door]').forEach(function (el) {
+      el.addEventListener('toggle', function () {
+        if (!el.open) return;
+        var id = el.getAttribute('data-door');
+        track('door_opened', {
+          door_id: id,
+          idempotency_key: visitId + ':door_opened:' + id
+        });
+      });
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       wireCtas();
+      wireDoors();
       wireConsentSettings();
       if (!readConsent()) renderConsent();
     });
   } else {
     wireCtas();
+    wireDoors();
     wireConsentSettings();
     if (!readConsent()) renderConsent();
   }
