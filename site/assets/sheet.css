@@ -1,0 +1,403 @@
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("fonts/archivo-variable-latin.woff2") format("woff2");
+}
+
+:root {
+  --paper: #ffffff;
+  --canvas: #e7e7e5;
+  --ink: #202220;
+  --muted: #60645f;
+  --line: #c8cbc6;
+  --field: #f1f2ef;
+  --strong: #303630;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--canvas);
+}
+
+::selection {
+  background: var(--strong);
+  color: var(--paper);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--muted);
+  text-underline-offset: 0.16em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  width: min(210mm, 100%);
+  margin: 0 auto;
+  padding: 14mm 14mm 12mm;
+  background: var(--paper);
+  box-shadow: 0 12px 38px rgba(23, 25, 23, 0.16);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.sheet__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10mm;
+  padding-bottom: 5mm;
+  border-bottom: 1px solid var(--ink);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 5mm;
+}
+
+.identity img {
+  width: 35mm;
+  height: auto;
+  filter: invert(1);
+}
+
+h1,
+h2,
+p,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.identity p,
+.sheet__header address {
+  margin-top: 1.4mm;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+}
+
+.sheet__header address {
+  margin-top: 0;
+  text-align: right;
+}
+
+.overview {
+  display: grid;
+  gap: 5mm;
+  margin-top: 6mm;
+}
+
+.property img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.property figcaption {
+  margin-top: 1.8mm;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.headline-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.headline-metrics div {
+  min-width: 0;
+  padding: 3mm 2.4mm;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.headline-metrics dt,
+.headline-metrics small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.headline-metrics dd {
+  margin: 1.4mm 0 0.8mm;
+  font-size: 20px;
+  font-weight: 680;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+h2 {
+  margin-bottom: 3mm;
+  font-size: 13px;
+  font-weight: 680;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.asset,
+.market {
+  margin-top: 7mm;
+}
+
+.asset-list {
+  border-top: 1px solid var(--ink);
+}
+
+.asset-list div {
+  display: grid;
+  grid-template-columns: 32mm 1fr;
+  border-bottom: 1px solid var(--line);
+}
+
+.asset-list dt,
+.asset-list dd {
+  padding: 2.2mm 0;
+}
+
+.asset-list dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.asset-list div:last-child {
+  border-bottom: 0;
+}
+
+.asset-list dd {
+  font-size: 13px;
+  font-weight: 520;
+  font-variant-numeric: tabular-nums;
+}
+
+.market {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4mm 8mm;
+  align-items: end;
+  padding: 4.5mm 0 0;
+  border-top: 1px solid var(--ink);
+}
+
+.market > div > p {
+  max-width: 62ch;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.market dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5mm;
+}
+
+.market dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 620;
+  letter-spacing: 0.04em;
+}
+
+.market dd {
+  margin-top: 1.4mm;
+  font-size: 18px;
+  font-weight: 680;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.sheet__footer {
+  display: grid;
+  gap: 3mm;
+  margin-top: 8mm;
+  padding-top: 5mm;
+  border-top: 1px solid var(--ink);
+}
+
+.contact {
+  display: grid;
+  gap: 2.4mm;
+}
+
+.contact__who {
+  font-size: 13px;
+  font-weight: 620;
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2mm;
+}
+
+.contact__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 9mm;
+  padding: 2mm 4.5mm;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.contact__btn:hover {
+  background: var(--field);
+}
+
+.contact__btn--solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact__btn--solid:hover {
+  background: var(--strong);
+}
+
+.contact__btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.sheet__footer > p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 0;
+  }
+
+  .sheet {
+    width: 100%;
+    min-height: 0;
+    padding: 22px 18px 28px;
+    box-shadow: none;
+  }
+
+  .sheet__header,
+  .overview,
+  .market,
+  .sheet__footer {
+    grid-template-columns: 1fr;
+  }
+
+  .sheet__header {
+    display: grid;
+  }
+
+  .sheet__header address,
+  .sheet__footer p {
+    text-align: left;
+  }
+
+  .headline-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .asset-list div {
+    grid-template-columns: minmax(96px, 32%) 1fr;
+  }
+
+  .asset-list dd,
+  .market > div > p {
+    font-size: 14px;
+  }
+
+  .contact__btn {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    background: var(--paper);
+  }
+
+  body {
+    padding: 0;
+  }
+
+  .sheet {
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    overflow: hidden;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .sheet__footer {
+    margin-top: auto;
+  }
+}

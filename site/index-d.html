@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>El Fortín Riba-roja — Worry-free real estate investment</title>
+    <title>El Fortín Riba-roja — You own it. We make it earn.</title>
     <meta
       name="description"
-      content="Ten deeded apartments in Riba-roja de Túria, Valencia, built and run as one operation. A 4% return guaranteed in writing. Turnkey August 2027."
+      content="Ten deeded apartments in Riba-roja de Túria, Valencia. A 4% yearly return guaranteed in the contract. 8% projected. Five-year IRR above 40%. Operations August 2027."
     />
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/png" sizes="180x180" href="assets/favicon.png" />
@@ -14,22 +14,23 @@
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-variable-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/libre-caslon-text-400-latin.woff2" crossorigin />
     <link rel="preload" as="image" href="assets/hero-riba-roja-drone.webp" />
-    <link rel="stylesheet" href="assets/desk.css" />
+    <link rel="stylesheet" href="assets/desk.css?v=analytics" />
   </head>
   <body>
-    <a class="skip" href="#project">Skip to the project</a>
+    <a class="skip" href="#figures">Skip to the investment</a>
 
     <header class="masthead" data-masthead>
       <a class="masthead__name" href="#top" aria-label="El Fortín">
         <img class="masthead__logo" src="assets/logo.png" width="350" height="100" alt="" />
         <span>Riba-roja · Valencia</span>
       </a>
-      <a class="masthead__talk" href="#guestbook">Talk to Uriel</a>
+      <div class="masthead__actions">
+        <a class="masthead__talk" href="#guestbook" data-cta="masthead_talk">Talk to Uriel</a>
+      </div>
     </header>
 
     <main>
-      <!-- 1 · The picture window -->
-      <section class="window" id="top" aria-labelledby="promise">
+      <section class="window" id="top" data-section-id="top" aria-labelledby="promise">
         <img
           class="window__photo"
           src="assets/hero-riba-roja-drone.webp"
@@ -39,352 +40,134 @@
           fetchpriority="high"
         />
         <div class="window__copy">
-          <h1 id="promise">Worry-free real estate investment,<br />for people whose time is valuable.</h1>
-          <a class="plate plate--lg" href="#project">About the project</a>
+          <h1 id="promise">You own it. <br />We make it earn.</h1>
+          <a class="plate plate--lg plate--window" href="#figures" data-cta="view_investment">
+            View the investment
+            <svg class="plate__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 5v12M7 13l5 5 5-5" />
+            </svg>
+          </a>
         </div>
         <p class="visually-hidden">Riba-roja de Túria, Valencia</p>
       </section>
 
-      <!-- The key rack -->
-      <section class="rack" aria-labelledby="rack-title">
-        <div class="rack__head">
-          <h2 id="rack-title">Ten apartments. Nine keys still on the hook.</h2>
-          <p>Lift a tag to see the apartment behind it.</p>
+      <section class="figures" id="figures" data-section-id="figures" aria-labelledby="figures-title">
+        <div class="figures__text">
+          <h2 id="figures-title">The return.</h2>
+          <p>
+            Rental demand in Riba-roja is high. Income from the ten apartments is pooled, so a vacant month in one
+            apartment does not appear on your statement. You own a specific apartment, registered in your name.
+          </p>
         </div>
-        <ul class="rack__cubbies" data-rack role="list">
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="1" data-type="Two bedrooms" data-area="49.05" data-built="57" data-price="220225" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">1</span>
-            </button>
+        <ul class="figures__row">
+          <li>
+            <b>4%</b>
+            <span>Guaranteed yearly return, in the contract</span>
           </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="2" data-type="Two bedrooms" data-area="49.05" data-built="57" data-price="220225" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">2</span>
-            </button>
+          <li>
+            <b>8%</b>
+            <span>Projected yearly return</span>
           </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="3" data-type="Two bedrooms" data-area="49.05" data-built="57" data-price="225707" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">3</span>
-            </button>
-          </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="4" data-type="Two bedrooms" data-area="49.05" data-built="57" data-price="225707" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">4</span>
-            </button>
-          </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="5" data-type="One bedroom" data-area="40.48" data-built="47" data-price="190557" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">5</span>
-            </button>
-          </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="6" data-type="One bedroom" data-area="40.44" data-built="47" data-price="190557" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">6</span>
-            </button>
-          </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="7" data-type="One bedroom" data-area="40.44" data-built="47" data-price="190557" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">7</span>
-            </button>
-          </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="8" data-type="One bedroom" data-area="40.44" data-built="47" data-price="190557" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">8</span>
-            </button>
-          </li>
-          <li class="cubby">
-            <button class="tag" type="button" data-unit="9" data-type="Two bedrooms" data-area="49.05" data-built="57" data-price="232125" aria-pressed="false">
-              <span class="tag__hole"></span><span class="tag__num">9</span>
-            </button>
-          </li>
-          <li class="cubby cubby--empty">
-            <span class="cubby__sold">10 · Sold</span>
+          <li>
+            <b>40%+</b>
+            <span>Projected five-year IRR</span>
           </li>
         </ul>
-        <div class="rack__detail" data-rack-detail aria-live="polite">
-          <p class="rack__detail-empty">Nine apartments available. One bedroom or two; every one registered in its owner's name.</p>
-        </div>
       </section>
 
-      <!-- 2 · The front desk -->
-      <section class="chapter chapter--ledger" id="project" aria-labelledby="project-title">
+      <section class="chapter chapter--ledger" id="project" data-section-id="project" aria-labelledby="project-title">
         <div class="chapter__text">
-          <h2 id="project-title">An apartment building we build and run as a single operation.</h2>
+          <h2 id="project-title">In the historic centre, where demand is strongest.</h2>
           <p>
-            Set in the heart of
+            Riba-roja de Túria is a high-demand rental market:
             <button
               type="button"
               class="place-link"
               data-map-open
               aria-haspopup="dialog"
               aria-controls="place-map"
-            >Riba-roja's historic centre</button>.
-            Demand for rental apartments here has been climbing steadily for a
-            decade, and finding long-term tenants has never been easier. The expected return from that kind of rental alone is
-            around 4%.
+            >the old town</button>,
+            Metro Line 9 to central Valencia, and twelve minutes from the airport. The building stands here, in the heart of it.
           </p>
-          <p class="chapter__fact">Camino Valencia 31, 46190 Riba-roja de Túria · ten dwellings · historic-centre zoning</p>
+          <p class="chapter__fact">Camino Valencia 31, 46190 Riba-roja de Túria</p>
         </div>
-        <figure class="chapter__figure chapter__figure--bleed">
+        <figure class="chapter__figure chapter__figure--bleed chapter__figure--drawing">
           <img
-            src="assets/hero-desk-elfortin.jpg"
-            width="2400"
-            height="1600"
-            alt="Render of the finished building at Camino Valencia 31: white façade, terracotta roof, four balconies with brass mesh, a mesh-screened entrance courtyard."
+            src="assets/building-cutaway.jpg"
+            width="1075"
+            height="683"
+            alt="Cutaway drawing of the building: rooftop pool and terrace, ten apartments around a central stair, a shared common area, and parking at street level."
             loading="lazy"
           />
-          <figcaption class="visually-hidden">The building at completion</figcaption>
+          <figcaption class="visually-hidden">The building, shown in cutaway</figcaption>
         </figure>
       </section>
 
-      <!-- 2.2 · The occupancy board -->
-      <section class="chapter chapter--desk board" id="board" aria-labelledby="board-title">
-        <div class="chapter__text">
-          <h2 id="board-title">We can do better than that.</h2>
-          <p>
-            Metro Line 9 connects the building to central Valencia. The airport is 12 minutes away. Riba-roja is a busy logistics
-            hub, and its industrial parks generate steady demand for mid-term stays. Short-stay research shows 65% occupancy.
-          </p>
-          <p>
-            By moving between these markets as demand shifts, we expect close to 7% net in the first year of operation. After a
-            few years of strong guest reviews, that climbs to 8% — and can go above 10%.
-          </p>
-
-          <div
-            class="path"
-            role="img"
-            aria-label="Return path: long-term rental only, around 4 percent; first year of operation, 6.94 percent; after a few years of good reviews, 8 percent and above 10 percent. The 4 percent floor is guaranteed in the contract."
-          >
-            <div class="path__bars">
-              <i style="--v: 40"></i>
-              <i style="--v: 69.4"></i>
-              <i class="path__bar--outlook" style="--v: 80"></i>
-              <i class="path__bar--outlook" style="--v: 100"></i>
-              <span class="path__floor"><span>4% floor, in the contract</span></span>
-            </div>
-            <ol class="path__labels">
-              <li><b>~4%</b><span>long-term only</span></li>
-              <li><b>6.94%</b><span>year one, mixed</span></li>
-              <li><b>8%</b><span>after a few years of good reviews</span></li>
-              <li><b>&gt;10%</b><span>with strong reviews</span></li>
-            </ol>
-          </div>
+      <section class="suite" id="apartments" data-section-id="apartments" aria-labelledby="suite-title">
+        <div class="suite__intro">
+          <h2 id="suite-title">Ten apartments share a rooftop pool and a common area.</h2>
+          <p>Each apartment is finished and furnished, ready to let when operations begin.</p>
         </div>
 
-        <div class="chapter__figure">
-          <div class="flap" data-flap>
-            <div class="flap__tabs" role="tablist" aria-label="Rental mode">
-              <button role="tab" id="tab-long" aria-selected="true" aria-controls="panel-long" data-mode="long" type="button">Long-term</button>
-              <button role="tab" id="tab-mid" aria-selected="false" aria-controls="panel-mid" data-mode="mid" type="button" tabindex="-1">Mid-term</button>
-              <button role="tab" id="tab-short" aria-selected="false" aria-controls="panel-short" data-mode="short" type="button" tabindex="-1">Short-stay</button>
-            </div>
-
-            <div class="flap__panel" role="tabpanel" id="panel-long" aria-labelledby="tab-long">
-              <div class="flap__row"><span>Who stays</span><b data-flip>A tenant, on a long-term lease</b></div>
-              <div class="flap__row"><span>Management fee that month</span><b data-flip>8%</b></div>
-              <div class="flap__row"><span>Workbook gross, one bedroom</span><b data-flip>€1,150 / month</b></div>
-              <div class="flap__row"><span>Workbook gross, two bedrooms</span><b data-flip>€1,300 / month</b></div>
-            </div>
-            <div class="flap__panel" role="tabpanel" id="panel-mid" aria-labelledby="tab-mid" hidden>
-              <div class="flap__row"><span>Who stays</span><b data-flip>Mid-term stays from the industrial parks</b></div>
-              <div class="flap__row"><span>Management fee that month</span><b data-flip>10%</b></div>
-              <div class="flap__row"><span>Workbook gross, one bedroom</span><b data-flip>€1,400 / month</b></div>
-              <div class="flap__row"><span>Workbook gross, two bedrooms</span><b data-flip>€1,650 / month</b></div>
-            </div>
-            <div class="flap__panel" role="tabpanel" id="panel-short" aria-labelledby="tab-short" hidden>
-              <div class="flap__row"><span>Who stays</span><b data-flip>Guests, a few nights at a time</b></div>
-              <div class="flap__row"><span>Management fee that month</span><b data-flip>15%</b></div>
-              <div class="flap__row"><span>Workbook gross, one bedroom</span><b data-flip>€2,200 / month at 65% occupancy</b></div>
-              <div class="flap__row"><span>Workbook gross, two bedrooms</span><b data-flip>€2,500 / month at 65% occupancy</b></div>
-            </div>
-            <p class="flap__note">Gross monthly figures are the developer workbook's assumptions, before fees and costs. Not a promise.</p>
-          </div>
-
-          <article class="listing" aria-label="Sample guest listing">
-            <img
-              src="assets/render-bedroom.jpg"
-              width="1400"
-              height="1400"
-              alt="Interior render of a bedroom in the building: linen bedding, oak headboard, soft morning light."
-              loading="lazy"
-            />
-            <div class="listing__body">
-              <h3>New-build one-bedroom · hotel-grade · Riba-roja, Valencia</h3>
-              <p>Metro to the city · airport 12 min · self check-in · sleeps 2</p>
-              <p class="listing__price">
-                <b>€113</b> night
-                <span>≈ €2,200 a month at 65% occupancy</span>
-              </p>
-            </div>
-          </article>
-          <p class="visually-hidden">Sample guest listing</p>
-        </div>
-      </section>
-
-      <!-- 3 · The safe -->
-      <section class="safe" id="guarantee" aria-labelledby="safe-title">
-        <div class="safe__plate" aria-hidden="true"><b>4%</b><span>guaranteed<br />in writing</span></div>
-        <div class="safe__text">
-          <h2 id="safe-title">A secure investment, guaranteed in writing.</h2>
-          <p>
-            You take part by buying one or more of the apartments in the building. The apartment is registered in your name, and
-            you are free to sell it on the open market whenever you choose.
-          </p>
-          <p>
-            The income from all the apartments flows through our contract with you. As managers of the building, we decide who
-            rents and when. You never need to worry about whether your apartment is standing empty — income is pooled and shared
-            according to the value of each apartment.
-          </p>
-          <p>
-            Your safety net: a 4% return, guaranteed in our contract with you, regardless of what the market does. If we fall
-            short, we cover the difference from our own pocket.
-          </p>
-        </div>
-      </section>
-
-      <!-- 4 · The manager's letter -->
-      <section class="chapter chapter--ledger letter" id="uriel" aria-labelledby="letter-title">
-        <figure class="chapter__figure letter__photo">
-          <img
-            src="assets/uriel-onsite.jpg"
-            width="1199"
-            height="1600"
-            alt="Uriel Nabel on the construction site in a white hard hat, smiling, hands on a pallet of stone."
-            loading="lazy"
-          />
-          <figcaption>
-            <a
-              class="letter__linkedin"
-              href="https://www.linkedin.com/in/urielnabel"
-              target="_blank"
-              rel="noopener noreferrer"
-            >LinkedIn</a>
-          </figcaption>
-        </figure>
-        <div class="chapter__text letter__text">
-          <h2 id="letter-title">Here to stay.</h2>
-          <p>Hello, I'm Uriel Nabel. I live here with my wife and our two children, and I'm the person behind El Fortín.</p>
-          <p>
-            In 2025 we restored
-            <button
-              type="button"
-              class="place-link"
-              data-puzol-open
-              aria-haspopup="dialog"
-              aria-controls="puzol-story"
-            >a 100-year-old property</button>.
-            After that success, I decided to go all in on this project.
-          </p>
-          <p>I believe in this project deeply and have put my own money into it. I brought in a first-rate team:</p>
-          <ul class="partners">
-            <li>
-              <a
-                class="partners__link"
-                href="https://enlazaarquitectura.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span class="visually-hidden">Architect — Enlaza Arquitectura (opens in a popup)</span>
-                <img
-                  src="assets/brand/partners/enlaza-arquitectura.png"
-                  width="420"
-                  height="134"
-                  alt=""
-                  loading="lazy"
-                />
-              </a>
+        <div class="suite__gallery">
+          <ul class="suite__photos" aria-label="Photographs of the apartments and shared spaces">
+            <li class="suite__photo--lead">
+              <img
+                src="assets/renders/rooftop-pool.jpg"
+                width="1290"
+                height="653"
+                alt="The rooftop: a raised stone pool, two parasols, sofas and loungers, bougainvillea along the walls, mountains behind."
+                loading="lazy"
+              />
             </li>
             <li>
-              <a
-                class="partners__link"
-                href="https://www.nodhouses.es/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span class="visually-hidden">Constructor — NODHOUSES (opens in a popup)</span>
-                <img
-                  src="assets/brand/partners/nodhouses.png"
-                  width="660"
-                  height="351"
-                  alt=""
-                  loading="lazy"
-                />
-              </a>
+              <img
+                src="assets/renders/courtyard.jpg"
+                width="630"
+                height="608"
+                alt="The common area: an open steel stair, terracotta paving, four armchairs around a low table, a green wall."
+                loading="lazy"
+              />
             </li>
             <li>
-              <a
-                class="partners__link"
-                href="https://www.instagram.com/sofiamartin.studio/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span class="visually-hidden">Interior designer — Sofia Martin Studio on Instagram (opens in a popup)</span>
-                <img
-                  src="assets/brand/partners/sofia-martin.png"
-                  width="648"
-                  height="120"
-                  alt=""
-                  loading="lazy"
-                />
-              </a>
+              <img
+                src="assets/render-bedroom.jpg"
+                width="1400"
+                height="1400"
+                alt="The bedroom: linen bedding in terracotta and olive, an oak wardrobe wall, a tall window with linen curtains."
+                loading="lazy"
+              />
+            </li>
+            <li>
+              <img
+                src="assets/render-kitchen-dining.jpg"
+                width="1400"
+                height="1021"
+                alt="The living room: a fitted kitchen, a table for four under a pendant lamp, a sofa facing the television."
+                loading="lazy"
+              />
+            </li>
+            <li>
+              <img
+                src="assets/renders/bedroom-ensuite.jpg"
+                width="630"
+                height="608"
+                alt="From the bed: a glass-walled shower, a round mirror over a floating oak vanity, a tall vase by the window."
+                loading="lazy"
+              />
             </li>
           </ul>
-          <p>
-            The values that guide me start with people. Integrity and reliability are deep roots — they let storms pass over us
-            without damage.
-          </p>
-          <p>
-            I am the person you'll be talking to. If we turn out to be a good fit, we're looking at a relationship of many years —
-            and, most of the time, a very quiet one.
-          </p>
-          <p class="letter__sign">Uriel Nabel</p>
+          <button type="button" class="suite__all" data-listing-open>Show all photographs</button>
         </div>
       </section>
 
-      <!-- 5 · Progress -->
-      <section class="progress" id="progress" aria-labelledby="progress-title">
-        <div class="progress__head">
-          <h2 id="progress-title">Where we are today.</h2>
-          <div class="progress__nav">
-            <button type="button" class="arrow" data-carousel-prev aria-label="Previous photograph">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
-            </button>
-            <button type="button" class="arrow" data-carousel-next aria-label="Next photograph">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </div>
-        </div>
-        <ul class="carousel" data-carousel role="list" aria-label="Construction photographs">
-          <li><img src="assets/brand/on-going-construction/004.jpeg" alt="Construction site: concrete frame and formwork under open sky" loading="lazy" /></li>
-          <li><img src="assets/brand/on-going-construction/006.jpg" alt="Construction site: steel and timber beams before the roof" loading="lazy" /></li>
-          <li><img src="assets/brand/on-going-construction/002.jpeg" alt="Construction site: interior wall in progress" loading="lazy" /></li>
-          <li><img src="assets/brand/on-going-construction/003.jpeg" alt="Construction site: stairwell rising through the floors" loading="lazy" /></li>
-          <li><img src="assets/brand/on-going-construction/001.jpeg" alt="Construction site: workers on the upper floor" loading="lazy" /></li>
-          <li><img src="assets/brand/on-going-construction/007.jpeg" alt="Construction site: façade from the street" loading="lazy" /></li>
-          <li><img src="assets/brand/on-going-construction/005.jpg" alt="Construction site: materials stacked in the courtyard" loading="lazy" /></li>
-        </ul>
-        <dl class="plaques">
-          <div><dt>Building licence</dt><dd>Exp. 4497/2025/GEN · Res. 3658/2025</dd></div>
-          <div><dt>Granted</dt><dd>20 October 2025</dd></div>
-          <div><dt>Turnkey handover</dt><dd>August 2027</dd></div>
-        </dl>
-      </section>
-
-      <!-- 6 · The rate card -->
-      <section class="ratecard" id="menu" aria-labelledby="menu-title">
-        <h2 id="menu-title">Apartment prices were set by an independent appraiser, according to unit type and floor.</h2>
+      <section class="ratecard" id="menu" data-section-id="menu" aria-labelledby="menu-title">
+        <h2 id="menu-title">Two apartments. Two prices.</h2>
+        <p class="ratecard__lead">Prices include appliances &amp; furniture.</p>
 
         <div class="ratecard__grid">
           <article class="room" aria-labelledby="room-a">
             <h3 id="room-a">One bedroom</h3>
-            <img
-              class="room__plan"
-              src="assets/render-type-a.jpg"
-              width="1290"
-              height="653"
-              alt="Floor plan of the one-bedroom apartment: bedroom, bathroom, galley kitchen, living and dining room."
-              loading="lazy"
-            />
             <img
               class="room__render"
               src="assets/render-kitchen-dining.jpg"
@@ -393,25 +176,11 @@
               alt="Interior render: kitchen and dining area with oak cabinetry."
               loading="lazy"
             />
-            <dl class="room__lines">
-              <div><dt>Units</dt><dd>5 · 6 · 7 · 8</dd></div>
-              <div><dt>Built / useful</dt><dd>~47 m² / ~40.5 m²</dd></div>
-              <div><dt>Appraised price</dt><dd>€190,557</dd></div>
-              <div><dt>Premium furniture &amp; fit-out package</dt><dd>€15,959.66</dd></div>
-              <div><dt>Closing costs &amp; taxes</dt><dd>~12% of price, indicative</dd></div>
-            </dl>
+            <p class="room__allin"><b>€236,000</b></p>
           </article>
 
           <article class="room" aria-labelledby="room-b">
             <h3 id="room-b">Two bedrooms</h3>
-            <img
-              class="room__plan"
-              src="assets/render-type-b.jpg"
-              width="1290"
-              height="653"
-              alt="Floor plan of the two-bedroom apartment: two bedrooms, two bathrooms, open kitchen and living room."
-              loading="lazy"
-            />
             <img
               class="room__render"
               src="assets/render-salon-loft.jpg"
@@ -420,63 +189,70 @@
               alt="Interior render: living room with a loft and tall windows."
               loading="lazy"
             />
-            <dl class="room__lines">
-              <div><dt>Units</dt><dd>1 · 2 · 3 · 4 · 9 <s title="Sold">10</s></dd></div>
-              <div><dt>Built / useful</dt><dd>~57 m² / 49 m²</dd></div>
-              <div><dt>Appraised price</dt><dd>€220,225 – €232,125</dd></div>
-              <div><dt>Premium furniture &amp; fit-out package</dt><dd>€19,357.60</dd></div>
-              <div><dt>Closing costs &amp; taxes</dt><dd>~12% of price, indicative</dd></div>
-            </dl>
+            <p class="room__allin"><b>€270,000</b></p>
           </article>
         </div>
 
-        <div class="statement">
-          <h3>How your return is calculated</h3>
-          <p>
-            All apartments pay into one shared pool. From the building's income, your return is calculated according to your
-            apartment's value, minus a monthly management fee based on how the apartment was actually rented that month:
-          </p>
-          <dl class="fees">
-            <div><dt>Apartment stood empty</dt><dd>0%</dd></div>
-            <div><dt>Long-term rental</dt><dd>8%</dd></div>
-            <div><dt>Mid-term rental</dt><dd>10%</dd></div>
-            <div><dt>Short-term rental</dt><dd>15%</dd></div>
-          </dl>
+        <div class="stages">
+          <h3>Four equal payments of 25%.</h3>
+          <ol class="instalments">
+            <li><b>25%</b><span>Reservation</span></li>
+            <li><b>25%</b><span>Construction at 40%</span></li>
+            <li><b>25%</b><span>Construction at 80%</span></li>
+            <li><b>25%</b><span>Deed and operations begin.</span></li>
+          </ol>
         </div>
       </section>
 
-      <!-- 7 · The guest book -->
-      <section class="guestbook" id="guestbook" aria-labelledby="guestbook-title">
+      <section class="status" id="progress" data-section-id="progress" aria-labelledby="progress-title">
+        <h2 id="progress-title">Construction is 25% complete.</h2>
+        <p>Operations begin in August 2027.</p>
+      </section>
+
+      <section class="guestbook" id="guestbook" data-section-id="guestbook" aria-labelledby="guestbook-title">
         <div class="guestbook__head">
-          <h2 id="guestbook-title">Interested? Have more questions?</h2>
-          <p class="guestbook__sub">Talk to Uriel directly.</p>
+          <div class="guestbook__who">
+            <img
+              class="guestbook__avatar"
+              src="assets/uriel-avatar.jpg"
+              width="480"
+              height="480"
+              alt="Uriel Nabel, on the building site"
+              loading="lazy"
+            />
+            <div>
+              <h2 id="guestbook-title">Write to Uriel.</h2>
+              <p class="guestbook__sub">He is the person you will speak with.</p>
+            </div>
+          </div>
           <p class="guestbook__direct">
-            <a href="mailto:uriel.nabel@elfortincapital.com">uriel.nabel@elfortincapital.com</a><br />
-            <a href="https://wa.me/34626459818" target="_blank" rel="noopener noreferrer">WhatsApp +34 626 459 818</a><br />
-            <a href="https://calendar.app.google/R9LJvZFYTPwuXNw7A" target="_blank" rel="noopener noreferrer">Book a call</a>
+            <a href="mailto:uriel.nabel@elfortincapital.com" data-cta="direct_email" data-cta-channel="email">uriel.nabel@elfortincapital.com</a><br />
+            <a href="https://wa.me/34626459818" target="_blank" rel="noopener noreferrer" data-cta="direct_whatsapp" data-cta-channel="whatsapp">WhatsApp +34 626 459 818</a><br />
+            <a href="https://calendar.app.google/R9LJvZFYTPwuXNw7A" target="_blank" rel="noopener noreferrer" data-cta="direct_calendar" data-cta-channel="calendar">Book a call</a>
           </p>
         </div>
 
         <form class="form" data-form novalidate>
-          <div class="field">
-            <label for="f-name">Name</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" required />
-            <p class="field__error" data-error-for="name" hidden>Please tell us your name.</p>
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off" />
           </div>
-          <div class="field">
-            <label for="f-email">Email</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required />
-            <p class="field__error" data-error-for="email" hidden>That email address doesn't look complete.</p>
-          </div>
-          <div class="field">
-            <label for="f-residence">Country of tax residence</label>
-            <input
-              id="f-residence"
-              name="residence"
-              type="text"
-              autocomplete="country-name"
-              placeholder="Netherlands, Belgium, Germany…"
-            />
+          <div class="form__slips">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required />
+              <p class="field__error" data-error-for="name" hidden>Please tell us your name.</p>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required />
+              <p class="field__error" data-error-for="email" hidden>That email address doesn't look complete.</p>
+            </div>
+            <div class="field field--phone">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+              <p class="field__error" data-error-for="phone" hidden>Please leave a number Uriel can reach.</p>
+            </div>
           </div>
           <fieldset class="field field--choice">
             <legend>Interested in</legend>
@@ -490,7 +266,7 @@
           </div>
           <div class="form__actions">
             <button class="plate plate--lg" type="submit" data-submit>Send to Uriel</button>
-            <p class="form__hint" data-hint>Your message opens in WhatsApp, addressed to Uriel. Nothing is stored on this page.</p>
+            <p class="form__hint" data-hint>Uriel receives your note here. WhatsApp then opens so you can keep talking.</p>
           </div>
           <p class="form__status" data-status role="status" aria-live="polite" hidden></p>
         </form>
@@ -500,66 +276,55 @@
     <footer class="colophon">
       <p>El Fortín Construcciones y Patrimonio S.L. · CIF B22792923 · Camino Valencia 31, 46190 Riba-roja de Túria, Valencia</p>
       <p>
-        Prices set by an independent appraiser. Figures from the project file, September 2026; returns are stated net of the
-        appraised price. <a href="privacy-policy-en.html">Privacy</a>
+        The 4% yearly return is guaranteed in the contract. The 8% yearly return and the five-year IRR are projections, not a
+        promise. <a href="privacy-policy-en.html">Privacy</a>
+        ·
+        <button type="button" data-consent-settings>Analytics settings</button>
       </p>
     </footer>
 
-    <dialog class="map-dialog album-dialog" id="puzol-story" aria-labelledby="puzol-story-title">
+    <dialog class="map-dialog album-dialog" id="listing-photos" aria-labelledby="listing-photos-title">
       <div class="map-dialog__panel album">
         <header class="map-dialog__head album__head">
-          <h2 id="puzol-story-title">El Fortín de Puzol <time datetime="2025-08">August 2025</time></h2>
-          <button type="button" class="map-dialog__close" data-puzol-close aria-label="Close album">
+          <h2 id="listing-photos-title">Photographs <time>design renders</time></h2>
+          <button type="button" class="map-dialog__close" data-listing-close aria-label="Close photographs">
             <span aria-hidden="true">×</span>
           </button>
         </header>
         <div class="album__panes">
-          <section class="album__pane" aria-labelledby="puzol-before-title">
-            <h3 id="puzol-before-title">Before</h3>
-            <ul class="album__grid">
+          <section class="album__pane album__pane--wide" aria-label="Photographs">
+            <ul class="album__grid album__grid--captioned">
               <li>
-                <img src="assets/brand/puzol/before/04.jpg" width="1600" height="1200" alt="A narrow hallway mid-works: new drywall, a dug-out floor, an arched door leaning beside the opening to the street." loading="lazy" />
+                <img src="assets/renders/rooftop-pool.jpg" width="1290" height="653" alt="The rooftop: a raised stone pool, two parasols, sofas and loungers, bougainvillea along the walls, mountains behind." loading="lazy" />
+                <p>Rooftop pool</p>
               </li>
               <li>
-                <img src="assets/brand/puzol/before/02.jpg" width="1600" height="1200" alt="A small room with old wooden ceiling slats, new floor tiles being set in wet mortar, a laser level and a saw on the floor." loading="lazy" />
+                <img src="assets/renders/courtyard.jpg" width="630" height="608" alt="The common area: an open steel stair, terracotta paving, four armchairs around a low table, a green wall." loading="lazy" />
+                <p>Common area</p>
               </li>
               <li>
-                <img src="assets/brand/puzol/before/03.jpg" width="1600" height="1200" alt="The house on the street: weathered white façade, dark green arched doors, iron window bars, and a hanging lantern." loading="lazy" />
+                <img src="assets/render-bedroom.jpg" width="1400" height="1400" alt="The bedroom: linen bedding in terracotta and olive, an oak wardrobe wall, a tall window with linen curtains." loading="lazy" />
+                <p>Bedroom</p>
               </li>
               <li>
-                <img src="assets/brand/puzol/before/05.jpg" width="1600" height="1200" alt="Interior stripped to rubble: old patterned wall tiles, a ladder, hanging wires, daylight through an open roof." loading="lazy" />
-              </li>
-            </ul>
-          </section>
-          <section class="album__pane album__pane--after" aria-labelledby="puzol-after-title">
-            <h3 id="puzol-after-title">After</h3>
-            <ul class="album__grid">
-              <li>
-                <img src="assets/brand/puzol/after/12.jpg" width="1066" height="1600" alt="The restored street façade: clean white plaster, a white door numbered 26, Juliet balconies, the lantern kept." loading="lazy" />
+                <img src="assets/renders/bedroom-ensuite.jpg" width="630" height="608" alt="From the bed: a glass-walled shower, a round mirror over a floating oak vanity, a tall vase by the window." loading="lazy" />
+                <p>Bedroom and shower</p>
               </li>
               <li>
-                <img src="assets/brand/puzol/after/06.jpg" width="1600" height="1066" alt="The finished entry: vaulted white ceiling, oak-look floor, wall sconces, a white door with a fanlight." loading="lazy" />
+                <img src="assets/render-kitchen-dining.jpg" width="1400" height="1021" alt="The living room: a fitted kitchen, a table for four under a pendant lamp, a sofa facing the television." loading="lazy" />
+                <p>Kitchen and dining</p>
               </li>
               <li>
-                <img src="assets/brand/puzol/after/01.jpg" width="1600" height="1066" alt="A narrow finished kitchen: white cabinets, cream counter, black hob, daylight at the far end." loading="lazy" />
+                <img src="assets/renders/living-from-kitchen.jpg" width="630" height="608" alt="The living room seen from the kitchen: coffee machine, sofa, television, the bedroom through the doorway." loading="lazy" />
+                <p>Living room</p>
               </li>
               <li>
-                <img src="assets/brand/puzol/after/03.jpg" width="1600" height="1066" alt="The living room: orange sofa, wall niches with plants, a balcony door filling the room with light." loading="lazy" />
+                <img src="assets/render-salon-loft.jpg" width="1400" height="1400" alt="A two-bedroom living room: a loft above the kitchen, a walnut stair, a round table with four chairs." loading="lazy" />
+                <p>Two-bedroom · living room</p>
               </li>
               <li>
-                <img src="assets/brand/puzol/after/02.jpg" width="1600" height="1066" alt="Wood-look stairs rising into a white living and dining room with an orange sofa at the far end." loading="lazy" />
-              </li>
-              <li>
-                <img src="assets/brand/puzol/after/09.jpg" width="1600" height="1086" alt="A built-in desk in a narrow hall, a linear lamp above it, an old wooden beam kept over the doorway." loading="lazy" />
-              </li>
-              <li>
-                <img src="assets/brand/puzol/after/07.jpg" width="1600" height="1066" alt="A bedroom with a woven headboard, tan linen, and a window in beige curtains." loading="lazy" />
-              </li>
-              <li>
-                <img src="assets/brand/puzol/after/11.jpg" width="1066" height="1600" alt="A bathroom with a fluted floating vanity, a backlit capsule mirror, and wood-look floor." loading="lazy" />
-              </li>
-              <li>
-                <img src="assets/brand/puzol/after/10.jpg" width="1600" height="1066" alt="A terrace under a wooden pergola: two woven seats, a small table, white planters." loading="lazy" />
+                <img src="assets/renders/bedroom-green.jpg" width="1035" height="571" alt="A second bedroom: green tiled headboard, oak panelling, a rattan wardrobe door, a window with terracotta curtains." loading="lazy" />
+                <p>Two-bedroom · bedroom</p>
               </li>
             </ul>
           </section>
@@ -620,6 +385,19 @@
       </div>
     </dialog>
 
-    <script src="assets/desk.js" defer></script>
+    <script>
+      window.__EF_CAPTURE__ = {
+        endpoint: "https://hook.eu1.make.com/mlt6sapf4ftlkucqkcnosruw16hog241",
+      };
+      window.__EF_PAGE__ = { pageId: "site_index_d", pageVersion: "desk", locale: "en" };
+      window.__EF_CONTACT__ = {
+        email: "uriel.nabel@elfortincapital.com",
+        whatsapp: "34626459818",
+        calendar: "https://calendar.app.google/R9LJvZFYTPwuXNw7A",
+        privacyUrl: "privacy-policy-en.html",
+      };
+    </script>
+    <script src="assets/desk.js?v=analytics" defer></script>
+    <script src="assets/analytics.js?v=4" defer></script>
   </body>
 </html>

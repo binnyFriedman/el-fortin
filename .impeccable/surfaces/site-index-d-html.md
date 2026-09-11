@@ -10,18 +10,18 @@ related_targets: ["site/assets/desk.css","site/assets/desk.js"]
 Mode: Persuade
 Target: `site/index-d.html` (own CSS/JS: `site/assets/desk.css`, `site/assets/desk.js`)
 
-NL/BE/DE professionals ~50–60, evening, laptop or tablet. Job: understand deed + 4% floor + operator who lives there + August 2027, then submit the form to Uriel. Copy is `landing-copy.md` verbatim; numbers from `facts.md` only. Hero photo generated (Higgsfield), labelled until a real drone shot replaces it. Analytics not hooked (user decision, next run). Form handoff TBD: swappable handler, no phone field.
+NL/BE/DE professionals ~50–60, evening, laptop or tablet. Job: read the three return figures, the high-demand location, the two prices, and August 2027, then submit the form to Uriel. Copy is `landing-copy.md` verbatim; public numbers from `facts.md` (2026-09-11 labels). Developer biography, construction photographs, rental mix, and fees stay off the page. Analytics not hooked. Form handoff: WhatsApp to Uriel.
 
 ## Direction contract
 
-THESIS: "Worry-free" made literal — someone else runs the desk, you receive the statement. Refuses the cream-serif-olive development site and the yield dashboard.
+THESIS: An investment appetiser — three figures, a deeded apartment, a call. Refuses the yield dashboard, the developer CV, and the cream-serif-olive development site.
 
-OWN-WORLD: Dark walnut desk chapters, ledger-paper reading chapters, brass for tags and every action, one hotel-green field for the guarantee. Archivo (narrow to wide) for plates, labels, tabular money; Libre Caslon Text for body and the letter. Ruled ledger lines, brass hairlines, 0-radius, engraved plates.
+OWN-WORLD: Dark walnut desk chapters, ledger-paper reading chapters, brass for every action, one hotel-green field for the three return plates. Archivo for plates, labels, tabular money; Libre Caslon Text for body. Brass hairlines, 0-radius, engraved plates.
 
-STORY: They see the calm town, read the promise, find ten keys with one gone, follow the desk through building, board, safe, letter, progress, rate card, and sign the guest book.
+STORY: They see the town, read the promise, take in 4% / 8% / 40%+ IRR, the high-demand centre, the rooftop pool and common area, two final prices, construction status, and write to Uriel.
 
-FIRST VIEWPORT: Drone shot fills the viewport as the picture window. Masthead top-left. Promise headline centred, two lines, architectural scale. One brass-plate button: About the project. Below the fold: the key rack, ten walnut cubbies, nine brass tags, hook 10 empty.
+FIRST VIEWPORT: Drone shot fills the viewport as the picture window. Masthead top-left, Talk to Uriel top-right. Headline centred, two lines, architectural scale. One brass-plate button: View the investment. Below the fold: the green field with three brass plates.
 
-FORM: The Concierge Desk, #1 on the grounded list, chosen as IMPECCABLE'S PICK; seed 4bba6c22. Signature: tags lift on hover/tap and name their unit; split-flap board flips rental modes.
+FORM: The Concierge Desk, #1 on the grounded list, chosen as IMPECCABLE'S PICK; seed 4bba6c22. Signature: three engraved brass return plates on hotel green.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

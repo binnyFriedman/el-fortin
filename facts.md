@@ -52,7 +52,7 @@ Constructor named in materials: NODHOUSES. Architect on the visado plans: José 
 | Height                               | 10.55 m licensed; maximum permitted 10.90 m. New volume: three floors. No basement.                                                                                                                                                                                                      |
 | Zoning                               | Urban land, intensive residential, historic centre (casco urbano)                                                                                                                                                                                                                        |
 | Cadastral reference (current parcel) | 9204809YJ0890C — to be split after *división horizontal*                                                                                                                                                                                                                                 |
-| Handover                             | **Turnkey August 2027** (Uriel, 2026-09-07). No other public construction milestones stated. Licence granted 20 Oct 2025, notified 21 Oct 2025.                                                                                                                                          |
+| Handover                             | **Turnkey August 2027** (Uriel, 2026-09-07). Construction **25% complete** (Binny, 2026-09-11, public page). Licence granted 20 Oct 2025, notified 21 Oct 2025.                                                                                                                                          |
 | Location claims (Binny, 2026-09-09)  | Metrovalencia **Line 9** connects the building to central Valencia. Airport **12 minutes** away. Riba-roja described as a busy logistics hub whose industrial parks drive steady mid-term demand. Cleared for landing-page use.                                                     |
 | Parking                              | Licence: 6 parking spaces (standard 1 per dwelling; footnote: plazas exceed 60% of that standard because a basement cannot be built). Plans show covered and uncovered parking. **The developer holds the parking spaces** (not sold with the apartments) — confirmed Uriel, 2026-09-07. |
 
@@ -134,6 +134,8 @@ Names from the workbook. Persona from Uriel, 2026-07-20 (sales-strategy call). A
 ## Price as stated
 
 **Public entry (developer, 2026-08-06 and 2026-08-11):** €236,141 all-in — sale price + estimated purchase costs + furniture. Marketing round sometimes €236,000.
+
+**Landing page, final public prices (Binny, 2026-09-11):** one-bedroom **€236,000** · two-bedroom **€270,000**. Stated as including appliances and furniture. These replace the earlier “indicative all-in” bands on `site/index-d.html`.
 
 **Consistent estimate used on the sniper page (2026-09-07):** all-in ≈ *Valor Público* + ~12% acquisition + furniture (same formula for every unit). Type A lands near **€229,384**, not €236k — closing taxes are indicative, not exact; do not publish a hard all-in that fails VP×1.12+furniture arithmetic.
 
@@ -248,6 +250,20 @@ Income starts when the building is operational (turnkey August 2027), not at res
 
 
 The 65% short-stay occupancy figure is cleared for landing-page use (Binny, 2026-09-09); note the AirDNA Riba-roja-specific figure below is ~43%.
+
+### Public labels on the appetiser page (Binny, 2026-09-11)
+
+These are the figures shown on `site/index-d.html`. They simplify earlier workbook labels; they do not replace the workbook rows above.
+
+
+| Label                         | Figure                                      |
+| ----------------------------- | ------------------------------------------- |
+| Guaranteed yearly return      | **4%**, in the contract                     |
+| Projected yearly return       | **8%**                                      |
+| Projected five-year IRR       | **above 40%**                               |
+| Construction                  | **25%** complete                            |
+| Operations                    | August 2027                                 |
+
 
 ## Model of returns
 

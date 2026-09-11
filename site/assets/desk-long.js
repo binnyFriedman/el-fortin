@@ -1,5 +1,5 @@
-/* El Fortín Riba-roja — The Concierge Desk
-   Masthead, guest-book handoff, map and photograph albums. */
+/* El Fortín Riba-roja — The Concierge Desk (long page)
+   Key rack, split-flap board, progress carousel, masthead, guest-book handoff. */
 
 (function () {
   "use strict";
@@ -19,6 +19,8 @@
     endpoint: "",
   };
 
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ---------- masthead turns solid once the window has scrolled by ---------- */
 
   function initMasthead() {
@@ -33,6 +35,172 @@
       { rootMargin: "-72px 0px 0px 0px", threshold: 0 }
     );
     observer.observe(hero);
+  }
+
+  /* ---------- the key rack ---------- */
+
+  function unitMarkup(tag) {
+    var d = tag.dataset;
+    return (
+      '<div class="unit">' +
+      '<span class="unit__num">' +
+      d.unit +
+      "</span>" +
+      '<span class="unit__type">' +
+      d.type +
+      "</span>" +
+      '<span class="unit__lines">' +
+      "<span>Useful <b>" +
+      d.area +
+      " m²</b></span>" +
+      "<span>Built <b>~" +
+      d.built +
+      " m²</b></span>" +
+      "</span>" +
+      "</div>"
+    );
+  }
+
+  function initRack() {
+    var rack = document.querySelector("[data-rack]");
+    var detail = document.querySelector("[data-rack-detail]");
+    if (!rack || !detail) return;
+
+    var emptyState = detail.innerHTML;
+    var tags = Array.prototype.slice.call(rack.querySelectorAll(".tag"));
+
+    function settle(tag) {
+      if (reduceMotion) return;
+      tag.classList.add("is-settling");
+      tag.addEventListener(
+        "animationend",
+        function () {
+          tag.classList.remove("is-settling");
+        },
+        { once: true }
+      );
+    }
+
+    function select(tag) {
+      var wasPressed = tag.getAttribute("aria-pressed") === "true";
+      tags.forEach(function (t) {
+        if (t.getAttribute("aria-pressed") === "true" && t !== tag) settle(t);
+        t.setAttribute("aria-pressed", "false");
+      });
+      if (wasPressed) {
+        settle(tag);
+        detail.innerHTML = emptyState;
+        return;
+      }
+      tag.setAttribute("aria-pressed", "true");
+      detail.innerHTML = unitMarkup(tag);
+    }
+
+    rack.addEventListener("click", function (event) {
+      var tag = event.target.closest(".tag");
+      if (tag) select(tag);
+    });
+
+    rack.addEventListener("keydown", function (event) {
+      var tag = event.target.closest(".tag");
+      if (!tag) return;
+      var index = tags.indexOf(tag);
+      var next = null;
+      if (event.key === "ArrowRight") next = tags[(index + 1) % tags.length];
+      if (event.key === "ArrowLeft") next = tags[(index - 1 + tags.length) % tags.length];
+      if (next) {
+        event.preventDefault();
+        next.focus();
+      }
+    });
+  }
+
+  /* ---------- the split-flap board ---------- */
+
+  function initFlap() {
+    var board = document.querySelector("[data-flap]");
+    if (!board) return;
+
+    var tabs = Array.prototype.slice.call(board.querySelectorAll('[role="tab"]'));
+    var panels = Array.prototype.slice.call(board.querySelectorAll('[role="tabpanel"]'));
+
+    function show(tab) {
+      tabs.forEach(function (t) {
+        var selected = t === tab;
+        t.setAttribute("aria-selected", String(selected));
+        t.setAttribute("tabindex", selected ? "0" : "-1");
+      });
+      panels.forEach(function (panel) {
+        var active = panel.id === tab.getAttribute("aria-controls");
+        panel.hidden = !active;
+        if (active && !reduceMotion) {
+          panel.querySelectorAll("[data-flip]").forEach(function (cell, i) {
+            cell.classList.remove("is-flipping");
+            cell.style.animationDelay = i * 60 + "ms";
+            void cell.offsetWidth;
+            cell.classList.add("is-flipping");
+          });
+        }
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        show(tab);
+      });
+      tab.addEventListener("keydown", function (event) {
+        var index = tabs.indexOf(tab);
+        var next = null;
+        if (event.key === "ArrowRight") next = tabs[(index + 1) % tabs.length];
+        if (event.key === "ArrowLeft") next = tabs[(index - 1 + tabs.length) % tabs.length];
+        if (event.key === "Home") next = tabs[0];
+        if (event.key === "End") next = tabs[tabs.length - 1];
+        if (next) {
+          event.preventDefault();
+          next.focus();
+          show(next);
+        }
+      });
+    });
+  }
+
+  /* ---------- the progress carousel ---------- */
+
+  function initCarousel() {
+    var track = document.querySelector("[data-carousel]");
+    var prev = document.querySelector("[data-carousel-prev]");
+    var next = document.querySelector("[data-carousel-next]");
+    if (!track || !prev || !next) return;
+
+    function step() {
+      var first = track.querySelector("li");
+      if (!first) return track.clientWidth * 0.8;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+      return first.getBoundingClientRect().width + gap;
+    }
+
+    function scrollBy(direction) {
+      track.scrollBy({ left: direction * step(), behavior: reduceMotion ? "auto" : "smooth" });
+    }
+
+    prev.addEventListener("click", function () {
+      scrollBy(-1);
+    });
+    next.addEventListener("click", function () {
+      scrollBy(1);
+    });
+
+    track.setAttribute("tabindex", "0");
+    track.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollBy(1);
+      }
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        scrollBy(-1);
+      }
+    });
   }
 
   function composeMessage(data) {
@@ -525,6 +693,9 @@
   }
 
   initMasthead();
+  initRack();
+  initFlap();
+  initCarousel();
   initForm();
   initMapDialog();
   initExternalLinks();

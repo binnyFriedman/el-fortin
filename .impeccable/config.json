@@ -17,7 +17,7 @@
           "site/index.html"
         ],
         "createdAt": "2026-09-07T15:16:26.152Z",
-        "reason": "Agent: DESIGN.md full-bleed photography and olive closer; bordered estimator already pads children 24px+"
+        "reason": "Agent: same clamp()/var(--gutter) padding as site/index-d.html"
       },
       {
         "rule": "cream-palette",
@@ -112,6 +112,116 @@
         ],
         "createdAt": "2026-09-09T11:47:38.401Z",
         "reason": "Agent: false positive at pre-write — the hook scans the new file before assets/desk.css resolves, so headings read unstyled; impeccable detect on the same markup with the stylesheet resolvable reports 0 findings (h1 clamp 2.25-5.5rem, h2 2-3.25rem, h3 1.375-1.75rem, body 1.125rem)"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "site/index-d.html"
+        ],
+        "createdAt": "2026-09-10T19:13:22.264Z",
+        "reason": "agent: the guest listing depicts a third-party booking page; its sticky booking card inside the listing sheet is that platform's real structure, not our card system"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/sheet.html"
+        ],
+        "createdAt": "2026-09-10T19:49:00.203Z",
+        "reason": "Agent: pre-write scan cannot resolve the new linked sheet.css; explicit hierarchy is h1 22px, h2 13px, body 10px"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/sheet.html"
+        ],
+        "createdAt": "2026-09-10T19:54:20.650Z",
+        "reason": "Agent: category-standard ruled tables; wrapper borders meet padded cells, and all text cells have 1.4mm vertical and 2mm horizontal inset"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/expanded.html"
+        ],
+        "createdAt": "2026-09-11T13:18:08.908Z",
+        "reason": "Agent: same long Concierge Desk markup previously at site/index-d copy.html; pre-write scan cannot resolve assets/desk-long.css"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "site/privacy-policy-en.html"
+        ],
+        "createdAt": "2026-09-11T11:35:33.840Z",
+        "reason": "Agent: pre-existing legal page; parchment is the shipped policy surface, not a new campaign background"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "site/privacy-policy-en.html"
+        ],
+        "createdAt": "2026-09-11T11:35:33.864Z",
+        "reason": "Agent: pre-existing legal page contrast; this edit only adds Make as a processor"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "site/assets/sheet.css",
+          "site/sheet.html"
+        ],
+        "createdAt": "2026-09-11T12:52:28.428Z",
+        "reason": "Agent: CRE tear-sheet display figures and titles use tight leading by the surface brief, not body copy"
+      },
+      {
+        "rule": "tiny-text",
+        "value": "*",
+        "files": [
+          "site/assets/sheet.css",
+          "site/sheet.html"
+        ],
+        "createdAt": "2026-09-11T12:52:28.451Z",
+        "reason": "Agent: A4 tear-sheet labels and disclaimer are 11–12px Archivo by the surface brief, not body copy"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-09-11T13:18:08.836Z",
+        "reason": "Agent: same Concierge Desk markup as site/index-d.html; pre-write scan cannot resolve assets/desk.css so headings read unstyled (h1 clamp 2.25-5.5rem, body 1.125rem)"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-09-11T13:18:08.884Z",
+        "reason": "Agent: same guest-listing nested card as site/index-d.html; third-party booking chrome, not our card system"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/expanded.html"
+        ],
+        "createdAt": "2026-09-11T13:18:08.932Z",
+        "reason": "Agent: same clamp()/var(--gutter) padding as the long Concierge Desk page"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "site/expanded.html"
+        ],
+        "createdAt": "2026-09-11T13:18:36.544Z",
+        "reason": "Agent: same guest-listing nested card as site/index-d.html; third-party booking chrome, not our card system"
       }
     ]
   }
