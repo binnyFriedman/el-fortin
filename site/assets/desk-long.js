@@ -457,8 +457,9 @@
       "twitter.com",
     ];
 
-    /* LinkedIn refuses embeds and our on-page popup — leave it to target="_blank". */
-    var leaveAlone = ["linkedin.com", "lnkd.in"];
+    /* Sites that refuse embeds and our on-page popup — leave them to target="_blank".
+       OpenStreetMap’s full map is not the embed endpoint and cannot load in an iframe. */
+    var leaveAlone = ["linkedin.com", "lnkd.in", "openstreetmap.org"];
 
     function hostnameOf(url) {
       try {
@@ -571,7 +572,7 @@
 
         var anchor = event.target.closest && event.target.closest("a[href]");
         if (!anchor || anchor.hasAttribute("data-ext-ignore")) return;
-        if (anchor.closest("#ext-dialog")) return;
+        if (anchor.closest("#ext-dialog") || anchor.closest("#place-map")) return;
         if (!isExternalHttp(anchor.getAttribute("href"))) return;
         if (hostMatches(hostnameOf(anchor.href), leaveAlone)) return;
 
