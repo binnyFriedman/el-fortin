@@ -1,0 +1,41 @@
+# El Fortín — crawler access
+# Citation bots (ChatGPT search, Perplexity, Google AI Overviews) need Allow.
+# Draft and teaser URLs stay out of the index.
+
+User-agent: *
+Allow: /
+Disallow: /sheet.html
+Disallow: /sniper.html
+Disallow: /index-d.html
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://elfortincapital.com/sitemap.xml

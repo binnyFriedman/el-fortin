@@ -14,7 +14,7 @@
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-variable-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/libre-caslon-text-400-latin.woff2" crossorigin />
     <link rel="preload" as="image" href="assets/hero-riba-roja-drone.webp" />
-    <link rel="stylesheet" href="assets/desk.css?v=analytics" />
+    <link rel="stylesheet" href="assets/desk.css?v=received" />
   </head>
   <body>
     <a class="skip" href="#figures">Skip to the investment</a>
@@ -48,6 +48,7 @@
             </svg>
           </a>
         </div>
+        <a class="window__sheet" href="sheet.html" data-cta="deal_sheet">Download deal sheet</a>
         <p class="visually-hidden">Riba-roja de Túria, Valencia</p>
       </section>
 
@@ -55,7 +56,7 @@
         <div class="figures__text">
           <h2 id="figures-title">The return.</h2>
           <p>
-            Rental demand in Riba-roja is high. Income from the ten apartments is pooled, so a vacant month in one
+            Rental demand in Riba-roja is high. Income from ten apartments is pooled, so a vacant month in one
             apartment does not appear on your statement. You own a specific apartment, registered in your name.
           </p>
         </div>
@@ -77,9 +78,9 @@
 
       <section class="chapter chapter--ledger" id="project" data-section-id="project" aria-labelledby="project-title">
         <div class="chapter__text">
-          <h2 id="project-title">In the historic centre, where demand is strongest.</h2>
+          <h2 id="project-title">In the historic centre.</h2>
           <p>
-            Riba-roja de Túria is a high-demand rental market:
+            Riba-roja de Túria:
             <button
               type="button"
               class="place-link"
@@ -240,17 +241,17 @@
           <div class="form__slips">
             <div class="field">
               <label for="f-name">Name</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" required />
+              <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required />
               <p class="field__error" data-error-for="name" hidden>Please tell us your name.</p>
             </div>
             <div class="field">
               <label for="f-email">Email</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required />
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required />
               <p class="field__error" data-error-for="email" hidden>That email address doesn't look complete.</p>
             </div>
             <div class="field field--phone">
               <label for="f-phone">Phone</label>
-              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" required />
               <p class="field__error" data-error-for="phone" hidden>Please leave a number Uriel can reach.</p>
             </div>
           </div>
@@ -262,11 +263,10 @@
           </fieldset>
           <div class="field field--wide">
             <label for="f-questions">Your questions</label>
-            <textarea id="f-questions" name="questions" rows="5"></textarea>
+            <textarea id="f-questions" name="questions" rows="5" maxlength="2000"></textarea>
           </div>
           <div class="form__actions">
             <button class="plate plate--lg" type="submit" data-submit>Send to Uriel</button>
-            <p class="form__hint" data-hint>Uriel receives your note here. WhatsApp then opens so you can keep talking.</p>
           </div>
           <p class="form__status" data-status role="status" aria-live="polite" hidden></p>
         </form>
@@ -385,19 +385,33 @@
       </div>
     </dialog>
 
+    <dialog class="map-dialog receipt-dialog" id="form-received" aria-labelledby="form-received-title" aria-describedby="form-received-copy">
+      <div class="map-dialog__panel receipt">
+        <header class="map-dialog__head">
+          <h2 id="form-received-title">Message received</h2>
+          <button type="button" class="map-dialog__close" data-received-close aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="receipt__body">
+          <span class="receipt__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <rect x="6.5" y="6.5" width="35" height="35" />
+              <path d="M16 24.5 21.8 31 33 17" />
+            </svg>
+          </span>
+          <p id="form-received-copy">Uriel will be in touch.</p>
+          <button type="button" class="plate" data-received-close>Close</button>
+        </div>
+      </div>
+    </dialog>
+
     <script>
-      window.__EF_CAPTURE__ = {
-        endpoint: "https://hook.eu1.make.com/mlt6sapf4ftlkucqkcnosruw16hog241",
-      };
       window.__EF_PAGE__ = { pageId: "site_index_d", pageVersion: "desk", locale: "en" };
-      window.__EF_CONTACT__ = {
-        email: "uriel.nabel@elfortincapital.com",
-        whatsapp: "34626459818",
-        calendar: "https://calendar.app.google/R9LJvZFYTPwuXNw7A",
-        privacyUrl: "privacy-policy-en.html",
-      };
     </script>
-    <script src="assets/desk.js?v=analytics" defer></script>
-    <script src="assets/analytics.js?v=4" defer></script>
+    <!-- Ads + contact: only in assets/ef-config.js (single source). -->
+    <script src="assets/ef-config.js?v=ads180988"></script>
+    <script src="assets/desk.js?v=measure" defer></script>
+    <script src="assets/analytics.js?v=ads180988" defer></script>
   </body>
 </html>

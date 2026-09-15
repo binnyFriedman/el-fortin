@@ -17,6 +17,8 @@ Principle: the page is an appetiser. Enough to take a call. Nothing that belongs
 
 **Button:** View the investment → scrolls to the figures
 
+**Corner of the picture window (ledger slip, bottom left):** Download deal sheet → `sheet.html`
+
 ---
 
 ## 2. The return
@@ -27,7 +29,7 @@ Principle: the page is an appetiser. Enough to take a call. Nothing that belongs
 
 **Body:**
 
-Rental demand in Riba-roja is high. Income from the ten apartments is pooled, so a vacant month in one apartment does not appear on your statement. You own a specific apartment, registered in your name.
+Rental demand in Riba-roja is high. Income from ten apartments is pooled, so a vacant month in one apartment does not appear on your statement. You own a specific apartment, registered in your name.
 
 **Figures:**
 
@@ -43,11 +45,11 @@ Rental demand in Riba-roja is high. Income from the ten apartments is pooled, so
 
 **Layout:** text left, exterior render right (desktop).
 
-**Heading:** In the historic centre, where demand is strongest.
+**Heading:** In the historic centre.
 
 **Body:**
 
-Riba-roja de Túria is a high-demand rental market: the old town (opens the map), Metro Line 9 to central Valencia, and twelve minutes from the airport. The building stands here, in the heart of it.
+Riba-roja de Túria: the old town (opens the map), Metro Line 9 to central Valencia, and twelve minutes from the airport. The building stands here, in the heart of it.
 
 **Fact line:** Camino Valencia 31, 46190 Riba-roja de Túria
 
@@ -108,4 +110,4 @@ No construction photographs. No licence plaques.
 
 ## Off this page
 
-Developer biography, Puzol, construction photographs, key rack / units sold, rental mix, management fees, furniture and closing breakdowns, Deal sheet. Those stay for the call.
+Developer biography, Puzol, construction photographs, key rack / units sold, rental mix, management fees, furniture and closing breakdowns. Those stay for the call.

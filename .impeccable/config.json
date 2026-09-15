@@ -222,6 +222,33 @@
         ],
         "createdAt": "2026-09-11T13:18:36.544Z",
         "reason": "Agent: same guest-listing nested card as site/index-d.html; third-party booking chrome, not our card system"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "site/privacy-policy-en.html"
+        ],
+        "createdAt": "2026-09-15T10:36:05.574Z",
+        "reason": "Pre-existing .meta label (text-transform:uppercase) is a short 'Last updated' meta line, not a body passage; rule itself sanctions uppercase for short labels. Flagged incidentally while editing only the date text."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/index-nl.html"
+        ],
+        "createdAt": "2026-09-15T14:37:17.681Z",
+        "reason": "Agent: same Concierge Desk markup as site/index.html (Dutch copy only); pre-write scan cannot resolve assets/desk.css so headings read unstyled (h1 clamp 2.25-5.5rem, h2 2-3.25rem, h3 1.375-1.75rem, body 1.125rem). Same exception already recorded for site/index.html, site/index-d.html, site/expanded.html"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index-nl.html"
+        ],
+        "createdAt": "2026-09-15T14:39:09.932Z",
+        "reason": "Agent: same Concierge Desk markup as site/index.html (Dutch copy only); sections pad with clamp()/var(--gutter) in assets/desk.css that the pre-write scan cannot resolve. Same exception already recorded for site/index.html, site/index-d.html, site/assets/desk.css"
       }
     ]
   }

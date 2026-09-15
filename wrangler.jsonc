@@ -1,0 +1,18 @@
+{
+  "name": "el-fortin",
+  "compatibility_date": "2026-09-15",
+  "pages_build_output_dir": "./site",
+
+  // Leads land in site_leads. The older CRM tables in this database are dormant.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "el-fortin-analytics",
+      "database_id": "3fcf2da5-008e-4539-8141-7153ca5b0a41"
+    }
+  ]
+
+  // MAKE_WEBHOOK_URL and LEAD_IP_SALT are secrets:
+  //   wrangler pages secret put MAKE_WEBHOOK_URL
+  //   wrangler pages secret put LEAD_IP_SALT
+}

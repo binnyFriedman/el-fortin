@@ -11,6 +11,7 @@ For Uriel. Short written answers are enough. Please correct anything we have wro
 - Published return is a **net % of valor público** (apartment sale price). **Nothing else** in the denominator — not furniture, not closing costs.
 - If returns fall below **4%**, the **developer pays out of pocket**. No *aval bancario* on the floor. Uriel: looking at the numbers the gap is small, so the covenant is believable.
 - *Aval bancario* does not apply here for the floor; it would only cover the construction period anyway.
+- **Floor duration (Uriel, 2026-09-15):** as long as the contract — **15 years**, unless both sides end it earlier.
 - **Payouts begin when operation starts** — no void / ramp-up gap after that.
 
 ### Construction / delivery

@@ -1,0 +1,566 @@
+{
+  "geo": "NL+BE+DE",
+  "language": "English",
+  "ideaCount": 394,
+  "seedHits": [
+    {
+      "text": "buy apartment valencia",
+      "searches": 320,
+      "competition": "MEDIUM",
+      "competitionIndex": 47,
+      "lowBid": 0.02,
+      "highBid": 0.24
+    },
+    {
+      "text": "property investment spain",
+      "searches": 50,
+      "competition": "MEDIUM",
+      "competitionIndex": 49,
+      "lowBid": 0.8,
+      "highBid": 2.25
+    },
+    {
+      "text": "buy to let spain",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 86,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "property investment valencia",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "valencia property investment",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "guaranteed rental income spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "invest in valencia property",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "buy investment apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "valencia rental yield",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "investment apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "buy to let valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "managed rental property spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "fully managed apartment spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "hassle free property investment spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "turnkey investment property spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "managed apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "fully managed rental spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "buy apartment valencia deed",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "off plan apartment valencia investment",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "deeded apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "boutique apartment investment spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "off plan property spain investment",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "new build apartments valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "buy rental property spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "pre construction apartments valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "valencia real estate for foreigners",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    }
+  ],
+  "recommendedKeep": [
+    {
+      "text": "property investment valencia",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "valencia property investment",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "buy investment apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "investment apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "buy to let valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "managed apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "buy apartment valencia deed",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "off plan apartment valencia investment",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "deeded apartment valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 5
+    },
+    {
+      "text": "off plan property spain",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 80,
+      "lowBid": 0.32,
+      "highBid": 0.99,
+      "intent": 4
+    },
+    {
+      "text": "property investment spain",
+      "searches": 50,
+      "competition": "MEDIUM",
+      "competitionIndex": 49,
+      "lowBid": 0.8,
+      "highBid": 2.25,
+      "intent": 4
+    },
+    {
+      "text": "real estate investment spain",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 86,
+      "lowBid": 1.31,
+      "highBid": 5.02,
+      "intent": 4
+    },
+    {
+      "text": "buy to let spain",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 86,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "buy to let mortgage spain",
+      "searches": 10,
+      "competition": "LOW",
+      "competitionIndex": 11,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in spain costa del sol",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 86,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "spain property investment visa",
+      "searches": 10,
+      "competition": "LOW",
+      "competitionIndex": 14,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in alicante spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "buying investment property in spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "buy to let property in spain",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 86,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "direct property investments spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "investment property for sale spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property almeria spain",
+      "searches": 10,
+      "competition": "LOW",
+      "competitionIndex": 0,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property benalmadena spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property fuengirola spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in benalmadena spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in calpe spain",
+      "searches": 10,
+      "competition": "MEDIUM",
+      "competitionIndex": 52,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in denia spain",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 86,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in murcia spain",
+      "searches": 10,
+      "competition": "HIGH",
+      "competitionIndex": 86,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in playa flamenca spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property in quesada spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property spain costa blanca",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "rental property torrevieja spain",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "spain buy to let",
+      "searches": 10,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "buy to let mortgage for property in spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    },
+    {
+      "text": "off plan property for sale in spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null,
+      "intent": 4
+    }
+  ],
+  "avoidOccupier": [
+    {
+      "text": "buy apartment valencia",
+      "searches": 320,
+      "competition": "MEDIUM",
+      "competitionIndex": 47,
+      "lowBid": 0.02,
+      "highBid": 0.24
+    },
+    {
+      "text": "guaranteed rental income spain",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "new build apartments valencia",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    },
+    {
+      "text": "valencia real estate for foreigners",
+      "searches": 0,
+      "competition": "UNSPECIFIED",
+      "competitionIndex": null,
+      "lowBid": null,
+      "highBid": null
+    }
+  ]
+}

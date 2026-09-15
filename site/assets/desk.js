@@ -5,19 +5,58 @@
   "use strict";
 
   /* ------------------------------------------------------------------
-     Configuration — the one place to change when the form target is decided.
-     endpoint: Make (or any) webhook. The form POSTs the lead here first.
-               Paste it below, or set window.__EF_CAPTURE__.endpoint.
-     mode:     "whatsapp" opens a chat with Uriel after the lead is stored;
-               "mailto"   opens the visitor's mail client addressed to Uriel.
+     The lead goes to our own origin, which keeps the notification target
+     out of the page and lets the server validate before anything is stored.
+     SOURCE tells the server which page this form belongs to: the short desk
+     page here, "long" in desk-long.js.
   ------------------------------------------------------------------ */
-  var HANDOFF = {
-    mode: "whatsapp",
-    whatsapp: "34626459818",
-    email: "uriel.nabel@elfortincapital.com",
-    subject: "El Fortín Riba-roja — enquiry",
-    endpoint: "",
-  };
+  var CAPTURE_ENDPOINT = "/api/leads";
+  var SOURCE = "short";
+
+  /* Labels the form events in analytics, so short and long stay separable. */
+  var FORM_ID = SOURCE + "_form";
+
+  /* Offered only if we could not record the note. */
+  var URIEL_WHATSAPP = "34626459818";
+
+  /* ------------------------------------------------------------------
+     Strings the page shows. The note that reaches Uriel stays English,
+     like the stored lead values, so every enquiry reads the same to him.
+  ------------------------------------------------------------------ */
+  var LOCALE = String(
+    (window.__EF_PAGE__ || {}).locale || document.documentElement.lang || "en"
+  ).toLowerCase();
+
+  var COPY = {
+    en: {
+      submit: "Send to Uriel",
+      sendingButton: "Sending…",
+      sendingStatus: "Sending your note to Uriel…",
+      captureFailed: "We could not record your note. ",
+      captureFailedWhatsapp: "Write on WhatsApp instead",
+      captureFailedRetry: ", or try again.",
+      receivedFallback: "Your message was received. Uriel will be in touch.",
+      externalLink: "External link",
+      externalSite: "External site",
+      openFullPage: "Open full page",
+      openedBeside: "Opened in another window. This page is still here.",
+      windowBlocked: "Your browser blocked the window. Use the button below — this page will stay put.",
+    },
+    nl: {
+      submit: "Verstuur naar Uriel",
+      sendingButton: "Versturen…",
+      sendingStatus: "Uw bericht gaat naar Uriel…",
+      captureFailed: "Uw bericht is niet aangekomen. ",
+      captureFailedWhatsapp: "Stuur het via WhatsApp",
+      captureFailedRetry: ", of probeer het opnieuw.",
+      receivedFallback: "Uw bericht is ontvangen. Uriel neemt contact met u op.",
+      externalLink: "Externe link",
+      externalSite: "Externe site",
+      openFullPage: "Open de volledige pagina",
+      openedBeside: "Geopend in een nieuw venster. Deze pagina blijft hier staan.",
+      windowBlocked: "Uw browser blokkeerde het nieuwe venster. Gebruik de knop hieronder; deze pagina blijft hier staan.",
+    },
+  }[LOCALE.indexOf("nl") === 0 ? "nl" : "en"];
 
   /* ---------- masthead turns solid once the window has scrolled by ---------- */
 
@@ -49,16 +88,11 @@
     return lines.join("\n");
   }
 
-  function handoffUrl(data) {
-    var body = composeMessage(data);
-    if (HANDOFF.mode === "mailto") {
-      return (
-        "mailto:" + HANDOFF.email +
-        "?subject=" + encodeURIComponent(HANDOFF.subject) +
-        "&body=" + encodeURIComponent(body)
-      );
-    }
-    return "https://wa.me/" + HANDOFF.whatsapp + "?text=" + encodeURIComponent(body);
+  function whatsappUrl(data) {
+    return (
+      "https://wa.me/" + URIEL_WHATSAPP +
+      "?text=" + encodeURIComponent(composeMessage(data))
+    );
   }
 
   function track(eventName, extra) {
@@ -72,50 +106,53 @@
     }
   }
 
-  function captureEndpoint() {
-    var live = window.__EF_CAPTURE__ || {};
-    return String(live.endpoint || HANDOFF.endpoint || "").trim();
+  /* Ads parameters, present only once analytics consent is accepted. */
+  function attribution() {
+    if (!window.EFAnalytics || typeof window.EFAnalytics.attribution !== "function") {
+      return {};
+    }
+    return window.EFAnalytics.attribution() || {};
+  }
+
+  function visitId() {
+    if (!window.EFAnalytics || typeof window.EFAnalytics.visitId !== "function") {
+      return "";
+    }
+    return window.EFAnalytics.visitId() || "";
+  }
+
+  /* Tells Google Ads a lead landed. Never called before the lead is stored. */
+  function reportConversion() {
+    if (!window.EFAnalytics || typeof window.EFAnalytics.reportConversion !== "function") {
+      return;
+    }
+    window.EFAnalytics.reportConversion();
   }
 
   function leadBody(data) {
-    var params = new URLSearchParams();
-    params.set("name", data.name);
-    params.set("email", data.email);
-    params.set("phone", data.phone);
-    params.set("type", data.type);
-    params.set("questions", data.questions);
-    params.set("page", location.href);
-    params.set("submitted_at", new Date().toISOString());
-    params.set("source", "guestbook");
-    return params.toString();
+    var lead = Object.assign({}, attribution(), {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      type: data.type,
+      questions: data.questions,
+      page: location.href,
+      source: SOURCE,
+      visit_id: visitId(),
+    });
+    return JSON.stringify(lead);
   }
 
-  /* Urlencoded so a browser can POST to Make without a CORS preflight.
-     Make maps the fields on the first request. If fetch then throws
-     TypeError while online, the request was still sent — Make just
-     omitted Access-Control-Allow-Origin. Treat that as captured.
-     For a strict 2xx, add a Webhook Response in Make with
-     Access-Control-Allow-Origin: * */
+  /* Same-origin JSON, so only a real 2xx counts as captured. Anything else
+     leaves the visitor a direct route to Uriel instead of a false thank-you. */
   function captureLead(data) {
-    var endpoint = captureEndpoint();
-    if (!endpoint) return Promise.reject(new Error("missing-endpoint"));
-
-    return fetch(endpoint, {
+    return fetch(CAPTURE_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      headers: { "Content-Type": "application/json" },
       body: leadBody(data),
-      mode: "cors",
-      credentials: "omit",
-      keepalive: true,
+      credentials: "same-origin",
     }).then(function (res) {
       if (!res.ok) throw new Error("bad-status");
-    }).catch(function (err) {
-      if (err && err.message === "bad-status") throw err;
-      if (typeof navigator !== "undefined" && navigator.onLine === false) {
-        throw new Error("offline");
-      }
-      if (err instanceof TypeError) return;
-      throw err;
     });
   }
 
@@ -124,13 +161,10 @@
     if (!form) return;
 
     var status = form.querySelector("[data-status]");
-    var hint = form.querySelector("[data-hint]");
     var submit = form.querySelector("[data-submit]");
-    var idleLabel = submit ? submit.textContent : "Send to Uriel";
-
-    if (hint && HANDOFF.mode === "mailto") {
-      hint.textContent = "Uriel receives your note here. Your mail app then opens so you can keep talking.";
-    }
+    var idleLabel = submit ? submit.textContent : COPY.submit;
+    var received = document.getElementById("form-received");
+    var receivedFocus = null;
 
     function field(name) {
       return form.elements[name];
@@ -160,42 +194,63 @@
       status.textContent = message;
     }
 
+    /* Nothing was stored, so offer the direct route rather than a thank-you. */
     function showCaptureFailure(data) {
       if (!status) return;
       status.hidden = false;
       status.classList.add("is-error");
       status.textContent = "";
-      status.appendChild(document.createTextNode("We could not record your note. "));
+      status.appendChild(document.createTextNode(COPY.captureFailed));
       var wa = document.createElement("a");
-      wa.href = handoffUrl(data);
+      wa.href = whatsappUrl(data);
       wa.target = "_blank";
       wa.rel = "noopener noreferrer";
-      wa.textContent = HANDOFF.mode === "mailto" ? "Write by email anyway" : "Write on WhatsApp anyway";
+      wa.textContent = COPY.captureFailedWhatsapp;
       status.appendChild(wa);
-      status.appendChild(document.createTextNode(", or try again."));
-    }
-
-    function openHandoff(data) {
-      var opened = window.open(handoffUrl(data), "_blank", "noopener,noreferrer");
-      if (opened) {
-        showStatus(
-          HANDOFF.mode === "mailto"
-            ? "Uriel has your note. Your mail app should now be open."
-            : "Uriel has your note. WhatsApp should now be open."
-        );
-        return;
-      }
-      showStatus(
-        "Uriel has your note. Allow pop-ups to open the conversation, or write to " +
-          HANDOFF.email +
-          "."
-      );
+      status.appendChild(document.createTextNode(COPY.captureFailedRetry));
     }
 
     function idle() {
       if (!submit) return;
       submit.disabled = false;
       submit.textContent = idleLabel;
+    }
+
+    function openReceived() {
+      if (status) {
+        status.hidden = true;
+        status.textContent = "";
+        status.classList.remove("is-error");
+      }
+      if (!received) {
+        showStatus(COPY.receivedFallback);
+        return;
+      }
+      receivedFocus = document.activeElement;
+      if (typeof received.showModal === "function") received.showModal();
+      else received.setAttribute("open", "");
+      var done = received.querySelector(".receipt__body [data-received-close]");
+      if (done) done.focus();
+    }
+
+    function closeReceived() {
+      if (!received) return;
+      if (typeof received.close === "function") received.close();
+      else received.removeAttribute("open");
+      if (receivedFocus && typeof receivedFocus.focus === "function") receivedFocus.focus();
+    }
+
+    if (received) {
+      received.querySelectorAll("[data-received-close]").forEach(function (btn) {
+        btn.addEventListener("click", closeReceived);
+      });
+      received.addEventListener("cancel", function (event) {
+        event.preventDefault();
+        closeReceived();
+      });
+      received.addEventListener("click", function (event) {
+        if (event.target === received) closeReceived();
+      });
     }
 
     form.addEventListener("submit", function (event) {
@@ -221,32 +276,48 @@
 
       var honey = field("company");
       if (honey && honey.value.trim()) {
-        showStatus("Uriel has your note.");
+        openReceived();
         return;
       }
 
-      track("cta_opened", { cta_id: "guestbook_form", channel: HANDOFF.mode });
-      flushAnalytics();
-
       if (!submit) return;
       submit.disabled = true;
-      submit.textContent = "Sending…";
-      showStatus("Sending your note to Uriel…");
+      submit.textContent = COPY.sendingButton;
+      showStatus(COPY.sendingStatus);
 
       captureLead(data)
         .then(function () {
           idle();
-          openHandoff(data);
+          form.reset();
+          openReceived();
+          /* A stored lead is the only thing that counts as success, here and
+             in Google Ads. Everything before this is intent. */
+          track("form_submitted", { cta_id: FORM_ID });
+          flushAnalytics();
+          reportConversion();
         })
-        .catch(function (err) {
+        .catch(function () {
           idle();
-          if (err && err.message === "missing-endpoint") {
-            showStatus("Set the Make webhook on window.__EF_CAPTURE__.endpoint, then send again.", true);
-            return;
-          }
           showCaptureFailure(data);
+          track("form_failed", { cta_id: FORM_ID });
+          flushAnalytics();
         });
     });
+
+    /* Reaching for the first field is the intent we compare submits against.
+       Typing counts too, because autofill can populate the form without ever
+       giving a field focus. */
+    var startedTracked = false;
+    function trackFormStarted() {
+      if (startedTracked) return;
+      startedTracked = true;
+      track("form_started", {
+        cta_id: FORM_ID,
+        idempotency_key: visitId() + ":form_started",
+      });
+    }
+    form.addEventListener("focusin", trackFormStarted);
+    form.addEventListener("input", trackFormStarted);
 
     ["name", "email", "phone"].forEach(function (name) {
       field(name).addEventListener("input", function () {
@@ -371,7 +442,7 @@
       var text = (anchor.getAttribute("aria-label") || anchor.textContent || "").replace(/\s+/g, " ").trim();
       text = text.replace(/\s*\(opens in a (popup|new tab|new window)\)\s*$/i, "").trim();
       if (text && text.length < 80) return text;
-      return hostnameOf(url) || "External link";
+      return hostnameOf(url) || COPY.externalLink;
     }
 
     /* Open beside this page — never assign location.href (that would leave). */
@@ -389,7 +460,7 @@
         external.href = url;
         external.setAttribute("target", "_blank");
         external.setAttribute("rel", "noopener noreferrer");
-        external.textContent = "Open full page";
+        external.textContent = COPY.openFullPage;
       }
     }
 
@@ -419,7 +490,7 @@
       if (canEmbed(url) && frame) {
         if (fallback) fallback.hidden = true;
         frame.hidden = false;
-        frame.setAttribute("title", titleEl ? titleEl.textContent : "External site");
+        frame.setAttribute("title", titleEl ? titleEl.textContent : COPY.externalSite);
         frame.setAttribute("src", url);
         showDialog();
         return;
@@ -433,9 +504,7 @@
       var opened = openBeside(url);
       if (fallback) fallback.hidden = false;
       if (fallbackCopy) {
-        fallbackCopy.textContent = opened
-          ? "Opened in another window. This page is still here."
-          : "Your browser blocked the window. Use the button below — this page will stay put.";
+        fallbackCopy.textContent = opened ? COPY.openedBeside : COPY.windowBlocked;
       }
       showDialog();
     }
@@ -519,8 +588,10 @@
       track("cta_opened", extra);
       if (channel === "whatsapp" || channel === "email" || channel === "calendar") {
         track("handoff_opened", { channel: channel, cta_id: id });
-        flushAnalytics();
       }
+      /* Any CTA can be the last thing that happens on this page — the deal
+         sheet navigates away — so never leave the click sitting in the queue. */
+      flushAnalytics();
     });
   }
 

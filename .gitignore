@@ -10,6 +10,14 @@ assets/brand/Puzol - After/
 # Secrets / local env
 .env
 .env.*
+.dev.vars
+.dev.vars.*
+
+# Wrangler local state (local D1 lives here)
+.wrangler/
+
+# Database exports
+backups/
 
 # Logs
 *.log
@@ -21,3 +29,10 @@ __pycache__/
 # Editor backups
 *.swp
 *~
+
+# Google Ads CLI deps
+tools/google-ads/node_modules/
+
+# Impeccable local runtime
+.impeccable/live/
+tools/google-ads/keyword-planner-review.json

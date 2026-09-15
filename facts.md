@@ -184,6 +184,7 @@ Ley 20/2015 (LOE DA 1ª) requires advance payments on new residential builds to 
 | Contractual floor           | 4% net, covenant of the S.L.                                                                                       |
 | Who pays if below 4%        | **Developer out of pocket.** Uriel: looking at the actual numbers the gap is small, so the covenant is believable. |
 | Bank guarantee on the floor | **None.** No *aval bancario* on the floor.                                                                         |
+| Floor duration              | **As long as the contract — 15 years**, unless both sides end it earlier (Uriel, 2026-09-15).                      |
 | When payouts start          | When **operation starts**. No void / ramp-up gap after that.                                                       |
 
 
@@ -320,6 +321,10 @@ El Fortín de Puzol: rehabilitation of an old house in Puzol, delivered August 2
 | Phone / WhatsApp          | +34 626 459 818 (`34626459818`)                                                                |
 | Booking calendar (Google) | [https://calendar.app.google/R9LJvZFYTPwuXNw7A](https://calendar.app.google/R9LJvZFYTPwuXNw7A) |
 
+
+**Runtime single source:** live pages load contact + Google Ads conversion IDs only from [`site/assets/ef-config.js`](site/assets/ef-config.js). Do not paste `AW-…` IDs into HTML. Product / deal numbers stay in this file (`facts.md`); tracking IDs stay in `ef-config.js`.
+
+El Fortín Ads client `664-073-0266` → `AW-18098845262` / label `fcvJCObXzKMcEM7smbZD` (**Submit lead form**). Manager Beanie `925-809-1560` uses `AW-18382198696` — never fire leads there.
 
 An older Google Calendar appointment embed also appears in archived pages: `https://calendar.google.com/calendar/appointments/schedules/AcZssZ0ggzzAurhU1RcaUH9M8Ewvdv8E0J7_6mm0BEUNLlcp-DgNdpXI2_DVrqgQvLN9cNJkdP0KhB3J?gv=true`. Live pages used the `calendar.app.google` short link.
 

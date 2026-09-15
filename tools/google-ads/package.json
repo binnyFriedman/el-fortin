@@ -1,0 +1,12 @@
+{
+  "name": "el-fortin-google-ads",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "auth": "node auth.mjs",
+    "verify": "node verify.mjs"
+  },
+  "dependencies": {
+    "google-auth-library": "^9.15.1"
+  }
+}

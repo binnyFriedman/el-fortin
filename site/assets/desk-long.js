@@ -1,23 +1,23 @@
 /* El Fortín Riba-roja — The Concierge Desk (long page)
-   Key rack, split-flap board, progress carousel, masthead, guest-book handoff. */
+   Split-flap board, progress carousel, masthead, guest-book handoff. */
 
 (function () {
   "use strict";
 
   /* ------------------------------------------------------------------
-     Configuration — the one place to change when the form target is decided.
-     endpoint: Make (or any) webhook. The form POSTs the lead here first.
-               Paste it below, or set window.__EF_CAPTURE__.endpoint.
-     mode:     "whatsapp" opens a chat with Uriel after the lead is stored;
-               "mailto"   opens the visitor's mail client addressed to Uriel.
+     The lead goes to our own origin, which keeps the notification target
+     out of the page and lets the server validate before anything is stored.
+     SOURCE tells the server which page this form belongs to: the long page
+     here, "short" in desk.js.
   ------------------------------------------------------------------ */
-  var HANDOFF = {
-    mode: "whatsapp",
-    whatsapp: "34626459818",
-    email: "uriel.nabel@elfortincapital.com",
-    subject: "El Fortín Riba-roja — enquiry",
-    endpoint: "",
-  };
+  var CAPTURE_ENDPOINT = "/api/leads";
+  var SOURCE = "long";
+
+  /* Labels the form events in analytics, so short and long stay separable. */
+  var FORM_ID = SOURCE + "_form";
+
+  /* Offered only if we could not record the note. */
+  var URIEL_WHATSAPP = "34626459818";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -35,84 +35,6 @@
       { rootMargin: "-72px 0px 0px 0px", threshold: 0 }
     );
     observer.observe(hero);
-  }
-
-  /* ---------- the key rack ---------- */
-
-  function unitMarkup(tag) {
-    var d = tag.dataset;
-    return (
-      '<div class="unit">' +
-      '<span class="unit__num">' +
-      d.unit +
-      "</span>" +
-      '<span class="unit__type">' +
-      d.type +
-      "</span>" +
-      '<span class="unit__lines">' +
-      "<span>Useful <b>" +
-      d.area +
-      " m²</b></span>" +
-      "<span>Built <b>~" +
-      d.built +
-      " m²</b></span>" +
-      "</span>" +
-      "</div>"
-    );
-  }
-
-  function initRack() {
-    var rack = document.querySelector("[data-rack]");
-    var detail = document.querySelector("[data-rack-detail]");
-    if (!rack || !detail) return;
-
-    var emptyState = detail.innerHTML;
-    var tags = Array.prototype.slice.call(rack.querySelectorAll(".tag"));
-
-    function settle(tag) {
-      if (reduceMotion) return;
-      tag.classList.add("is-settling");
-      tag.addEventListener(
-        "animationend",
-        function () {
-          tag.classList.remove("is-settling");
-        },
-        { once: true }
-      );
-    }
-
-    function select(tag) {
-      var wasPressed = tag.getAttribute("aria-pressed") === "true";
-      tags.forEach(function (t) {
-        if (t.getAttribute("aria-pressed") === "true" && t !== tag) settle(t);
-        t.setAttribute("aria-pressed", "false");
-      });
-      if (wasPressed) {
-        settle(tag);
-        detail.innerHTML = emptyState;
-        return;
-      }
-      tag.setAttribute("aria-pressed", "true");
-      detail.innerHTML = unitMarkup(tag);
-    }
-
-    rack.addEventListener("click", function (event) {
-      var tag = event.target.closest(".tag");
-      if (tag) select(tag);
-    });
-
-    rack.addEventListener("keydown", function (event) {
-      var tag = event.target.closest(".tag");
-      if (!tag) return;
-      var index = tags.indexOf(tag);
-      var next = null;
-      if (event.key === "ArrowRight") next = tags[(index + 1) % tags.length];
-      if (event.key === "ArrowLeft") next = tags[(index - 1 + tags.length) % tags.length];
-      if (next) {
-        event.preventDefault();
-        next.focus();
-      }
-    });
   }
 
   /* ---------- the split-flap board ---------- */
@@ -217,16 +139,11 @@
     return lines.join("\n");
   }
 
-  function handoffUrl(data) {
-    var body = composeMessage(data);
-    if (HANDOFF.mode === "mailto") {
-      return (
-        "mailto:" + HANDOFF.email +
-        "?subject=" + encodeURIComponent(HANDOFF.subject) +
-        "&body=" + encodeURIComponent(body)
-      );
-    }
-    return "https://wa.me/" + HANDOFF.whatsapp + "?text=" + encodeURIComponent(body);
+  function whatsappUrl(data) {
+    return (
+      "https://wa.me/" + URIEL_WHATSAPP +
+      "?text=" + encodeURIComponent(composeMessage(data))
+    );
   }
 
   function track(eventName, extra) {
@@ -240,50 +157,53 @@
     }
   }
 
-  function captureEndpoint() {
-    var live = window.__EF_CAPTURE__ || {};
-    return String(live.endpoint || HANDOFF.endpoint || "").trim();
+  /* Ads parameters, present only once analytics consent is accepted. */
+  function attribution() {
+    if (!window.EFAnalytics || typeof window.EFAnalytics.attribution !== "function") {
+      return {};
+    }
+    return window.EFAnalytics.attribution() || {};
+  }
+
+  function visitId() {
+    if (!window.EFAnalytics || typeof window.EFAnalytics.visitId !== "function") {
+      return "";
+    }
+    return window.EFAnalytics.visitId() || "";
+  }
+
+  /* Tells Google Ads a lead landed. Never called before the lead is stored. */
+  function reportConversion() {
+    if (!window.EFAnalytics || typeof window.EFAnalytics.reportConversion !== "function") {
+      return;
+    }
+    window.EFAnalytics.reportConversion();
   }
 
   function leadBody(data) {
-    var params = new URLSearchParams();
-    params.set("name", data.name);
-    params.set("email", data.email);
-    params.set("phone", data.phone);
-    params.set("type", data.type);
-    params.set("questions", data.questions);
-    params.set("page", location.href);
-    params.set("submitted_at", new Date().toISOString());
-    params.set("source", "guestbook");
-    return params.toString();
+    var lead = Object.assign({}, attribution(), {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      type: data.type,
+      questions: data.questions,
+      page: location.href,
+      source: SOURCE,
+      visit_id: visitId(),
+    });
+    return JSON.stringify(lead);
   }
 
-  /* Urlencoded so a browser can POST to Make without a CORS preflight.
-     Make maps the fields on the first request. If fetch then throws
-     TypeError while online, the request was still sent — Make just
-     omitted Access-Control-Allow-Origin. Treat that as captured.
-     For a strict 2xx, add a Webhook Response in Make with
-     Access-Control-Allow-Origin: * */
+  /* Same-origin JSON, so only a real 2xx counts as captured. Anything else
+     leaves the visitor a direct route to Uriel instead of a false thank-you. */
   function captureLead(data) {
-    var endpoint = captureEndpoint();
-    if (!endpoint) return Promise.reject(new Error("missing-endpoint"));
-
-    return fetch(endpoint, {
+    return fetch(CAPTURE_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      headers: { "Content-Type": "application/json" },
       body: leadBody(data),
-      mode: "cors",
-      credentials: "omit",
-      keepalive: true,
+      credentials: "same-origin",
     }).then(function (res) {
       if (!res.ok) throw new Error("bad-status");
-    }).catch(function (err) {
-      if (err && err.message === "bad-status") throw err;
-      if (typeof navigator !== "undefined" && navigator.onLine === false) {
-        throw new Error("offline");
-      }
-      if (err instanceof TypeError) return;
-      throw err;
     });
   }
 
@@ -292,13 +212,10 @@
     if (!form) return;
 
     var status = form.querySelector("[data-status]");
-    var hint = form.querySelector("[data-hint]");
     var submit = form.querySelector("[data-submit]");
     var idleLabel = submit ? submit.textContent : "Send to Uriel";
-
-    if (hint && HANDOFF.mode === "mailto") {
-      hint.textContent = "Uriel receives your note here. Your mail app then opens so you can keep talking.";
-    }
+    var received = document.getElementById("form-received");
+    var receivedFocus = null;
 
     function field(name) {
       return form.elements[name];
@@ -328,6 +245,7 @@
       status.textContent = message;
     }
 
+    /* Nothing was stored, so offer the direct route rather than a thank-you. */
     function showCaptureFailure(data) {
       if (!status) return;
       status.hidden = false;
@@ -335,35 +253,55 @@
       status.textContent = "";
       status.appendChild(document.createTextNode("We could not record your note. "));
       var wa = document.createElement("a");
-      wa.href = handoffUrl(data);
+      wa.href = whatsappUrl(data);
       wa.target = "_blank";
       wa.rel = "noopener noreferrer";
-      wa.textContent = HANDOFF.mode === "mailto" ? "Write by email anyway" : "Write on WhatsApp anyway";
+      wa.textContent = "Write on WhatsApp instead";
       status.appendChild(wa);
       status.appendChild(document.createTextNode(", or try again."));
-    }
-
-    function openHandoff(data) {
-      var opened = window.open(handoffUrl(data), "_blank", "noopener,noreferrer");
-      if (opened) {
-        showStatus(
-          HANDOFF.mode === "mailto"
-            ? "Uriel has your note. Your mail app should now be open."
-            : "Uriel has your note. WhatsApp should now be open."
-        );
-        return;
-      }
-      showStatus(
-        "Uriel has your note. Allow pop-ups to open the conversation, or write to " +
-          HANDOFF.email +
-          "."
-      );
     }
 
     function idle() {
       if (!submit) return;
       submit.disabled = false;
       submit.textContent = idleLabel;
+    }
+
+    function openReceived() {
+      if (status) {
+        status.hidden = true;
+        status.textContent = "";
+        status.classList.remove("is-error");
+      }
+      if (!received) {
+        showStatus("Your message was received. Uriel will be in touch.");
+        return;
+      }
+      receivedFocus = document.activeElement;
+      if (typeof received.showModal === "function") received.showModal();
+      else received.setAttribute("open", "");
+      var done = received.querySelector(".receipt__body [data-received-close]");
+      if (done) done.focus();
+    }
+
+    function closeReceived() {
+      if (!received) return;
+      if (typeof received.close === "function") received.close();
+      else received.removeAttribute("open");
+      if (receivedFocus && typeof receivedFocus.focus === "function") receivedFocus.focus();
+    }
+
+    if (received) {
+      received.querySelectorAll("[data-received-close]").forEach(function (btn) {
+        btn.addEventListener("click", closeReceived);
+      });
+      received.addEventListener("cancel", function (event) {
+        event.preventDefault();
+        closeReceived();
+      });
+      received.addEventListener("click", function (event) {
+        if (event.target === received) closeReceived();
+      });
     }
 
     form.addEventListener("submit", function (event) {
@@ -389,12 +327,9 @@
 
       var honey = field("company");
       if (honey && honey.value.trim()) {
-        showStatus("Uriel has your note.");
+        openReceived();
         return;
       }
-
-      track("cta_opened", { cta_id: "guestbook_form", channel: HANDOFF.mode });
-      flushAnalytics();
 
       if (!submit) return;
       submit.disabled = true;
@@ -404,17 +339,36 @@
       captureLead(data)
         .then(function () {
           idle();
-          openHandoff(data);
+          form.reset();
+          openReceived();
+          /* A stored lead is the only thing that counts as success, here and
+             in Google Ads. Everything before this is intent. */
+          track("form_submitted", { cta_id: FORM_ID });
+          flushAnalytics();
+          reportConversion();
         })
-        .catch(function (err) {
+        .catch(function () {
           idle();
-          if (err && err.message === "missing-endpoint") {
-            showStatus("Set the Make webhook on window.__EF_CAPTURE__.endpoint, then send again.", true);
-            return;
-          }
           showCaptureFailure(data);
+          track("form_failed", { cta_id: FORM_ID });
+          flushAnalytics();
         });
     });
+
+    /* Reaching for the first field is the intent we compare submits against.
+       Typing counts too, because autofill can populate the form without ever
+       giving a field focus. */
+    var startedTracked = false;
+    function trackFormStarted() {
+      if (startedTracked) return;
+      startedTracked = true;
+      track("form_started", {
+        cta_id: FORM_ID,
+        idempotency_key: visitId() + ":form_started",
+      });
+    }
+    form.addEventListener("focusin", trackFormStarted);
+    form.addEventListener("input", trackFormStarted);
 
     ["name", "email", "phone"].forEach(function (name) {
       field(name).addEventListener("input", function () {
@@ -687,13 +641,14 @@
       track("cta_opened", extra);
       if (channel === "whatsapp" || channel === "email" || channel === "calendar") {
         track("handoff_opened", { channel: channel, cta_id: id });
-        flushAnalytics();
       }
+      /* Any CTA can be the last thing that happens on this page — the deal
+         sheet navigates away — so never leave the click sitting in the queue. */
+      flushAnalytics();
     });
   }
 
   initMasthead();
-  initRack();
   initFlap();
   initCarousel();
   initForm();

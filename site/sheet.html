@@ -81,10 +81,6 @@
             <dt>Prices</dt>
             <dd>One bedroom €236,000 · Two bedrooms €270,000. Prices include appliances &amp; furniture.</dd>
           </div>
-          <div>
-            <dt>Discount</dt>
-            <dd>15% below appraisal</dd>
-          </div>
         </dl>
       </section>
 
@@ -117,5 +113,13 @@
         <p>Indicative. Not an offer.</p>
       </footer>
     </main>
+
+    <script>
+      /* Measured so a deal-sheet click can be told apart from a deal-sheet
+         read. Same visit id as the landing page, so it joins that funnel. */
+      window.__EF_PAGE__ = { pageId: "sheet", pageVersion: "sheet", locale: "en" };
+      window.__EF_CONTACT__ = { privacyUrl: "privacy-policy-en.html" };
+    </script>
+    <script src="assets/analytics.js?v=measure" defer></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 /**
  * First-party campaign analytics collector.
  * Saves consented visit/events to /api/events and handles direct contact links.
+ * Also reports the one Google Ads conversion, which is a stored lead.
  * Tracking failure must never block the page.
  */
 (function () {
@@ -10,14 +11,22 @@
   var PAGE_ID = PAGE_META.pageId || 'unknown';
   var PAGE_VERSION = PAGE_META.pageVersion || 'v1';
   var LOCALE = PAGE_META.locale || document.documentElement.lang || 'en';
+
+  /* Ads + contact come only from assets/ef-config.js. Empty Ads turns the tag
+     off (non-advertised pages) rather than counting the wrong thing. */
+  var SHARED = window.__EF_CONFIG__ || {};
+  var ADS = Object.assign(
+    { conversionId: '', conversionLabel: '' },
+    SHARED.ads || window.__EF_ADS__ || {}
+  );
   var CONFIG = Object.assign(
     {
-      email: 'uriel.nabel@elfortincapital.com',
-      whatsapp: '34626459818',
-      calendar: 'https://calendar.app.google/R9LJvZFYTPwuXNw7A',
-      privacyUrl: 'privacy-policy.html'
+      email: '',
+      whatsapp: '',
+      calendar: '',
+      privacyUrl: 'privacy-policy-en.html'
     },
-    window.__EF_CONTACT__ || {}
+    SHARED.contact || window.__EF_CONTACT__ || {}
   );
 
   var CONSENT_KEY = 'ef_analytics_consent';
@@ -25,6 +34,7 @@
   var STORAGE_ATTR = 'ef_attr';
   var isSpanish = String(LOCALE).toLowerCase().indexOf('es') === 0;
   var isHebrew = String(LOCALE).toLowerCase().indexOf('he') === 0;
+  var isDutch = String(LOCALE).toLowerCase().indexOf('nl') === 0;
 
   function readConsent() {
     try {
@@ -57,7 +67,13 @@
     banner.setAttribute('aria-modal', 'false');
     banner.setAttribute(
       'aria-label',
-      isHebrew ? 'העדפות פרטיות' : isSpanish ? 'Preferencias de privacidad' : 'Privacy preferences'
+      isHebrew
+        ? 'העדפות פרטיות'
+        : isSpanish
+          ? 'Preferencias de privacidad'
+          : isDutch
+            ? 'Privacyvoorkeuren'
+            : 'Privacy preferences'
     );
     banner.setAttribute('dir', isHebrew ? 'rtl' : 'ltr');
     banner.innerHTML =
@@ -66,18 +82,32 @@
         ? 'אנחנו משתמשים באנליטיקה עצמית למדידת העמוד והקמפיינים. אפשר לאשר או לדחות; קישורי יצירת הקשר פועלים בכל מקרה. '
         : isSpanish
           ? 'Usamos analítica propia para medir la página y las campañas. Puedes aceptarla o rechazarla; los enlaces de contacto funcionan igual. '
-          : 'First-party analytics help measure the page and campaigns. Accept or reject them; contact links work either way. ') +
+          : isDutch
+            ? 'Wij meten deze pagina en onze campagnes met eigen statistieken, zonder derden. U kunt dat accepteren of weigeren; de contactlinks werken in beide gevallen. '
+            : 'First-party analytics help measure the page and campaigns. Accept or reject them; contact links work either way. ') +
       '<a href="' +
       CONFIG.privacyUrl +
       '">' +
-      (isHebrew ? 'מידע נוסף' : isSpanish ? 'Más información' : 'Learn more') +
+      (isHebrew
+        ? 'מידע נוסף'
+        : isSpanish
+          ? 'Más información'
+          : isDutch
+            ? 'Meer informatie (Engels)'
+            : 'Learn more') +
       '</a></p>' +
       '<div class="ef-consent-actions">' +
       '<button type="button" data-consent="rejected">' +
-      (isHebrew ? 'דחייה' : isSpanish ? 'Rechazar' : 'Reject') +
+      (isHebrew ? 'דחייה' : isSpanish ? 'Rechazar' : isDutch ? 'Weigeren' : 'Reject') +
       '</button>' +
       '<button type="button" data-consent="accepted">' +
-      (isHebrew ? 'אישור אנליטיקה' : isSpanish ? 'Aceptar analítica' : 'Accept analytics') +
+      (isHebrew
+        ? 'אישור אנליטיקה'
+        : isSpanish
+          ? 'Aceptar analítica'
+          : isDutch
+            ? 'Statistieken accepteren'
+            : 'Accept analytics') +
       '</button>' +
       '</div>';
 
@@ -242,28 +272,31 @@
     );
   }
 
+  /* Everything that makes this event distinct. The trailing timestamp means an
+     event without a caller-supplied key counts every time it happens. */
+  function defaultKey(eventName, extra) {
+    return [
+      visitId,
+      eventName,
+      (extra && extra.section_id) || '',
+      (extra && extra.cta_id) || '',
+      (extra && extra.fear_id) || '',
+      (extra && extra.channel) || '',
+      (extra && extra.seconds) || '',
+      (extra && extra.occurred_at) || Date.now()
+    ].join(':');
+  }
+
   function track(eventName, extra) {
     if (!analyticsEnabled) return;
     try {
       var payload = Object.assign(basePayload(), extra || {}, {
         event: eventName,
+        /* Namespaced by page, whatever the caller passed: one visit can read
+           the landing page and then the deal sheet, and that is two page views
+           rather than a duplicate of the first. */
         idempotency_key:
-          (extra && extra.idempotency_key) ||
-          visitId +
-            ':' +
-            eventName +
-            ':' +
-            ((extra && extra.section_id) || '') +
-            ':' +
-            ((extra && extra.cta_id) || '') +
-            ':' +
-            ((extra && extra.fear_id) || '') +
-            ':' +
-            ((extra && extra.channel) || '') +
-            ':' +
-            ((extra && extra.seconds) || '') +
-            ':' +
-            ((extra && extra.occurred_at) || Date.now())
+          PAGE_ID + ':' + ((extra && extra.idempotency_key) || defaultKey(eventName, extra))
       });
       queue.push(payload);
       scheduleFlush();
@@ -342,6 +375,98 @@
     lastActiveTick = now;
   }
 
+  /* ---------- scroll depth ---------- */
+
+  var deepestScroll = 0;
+
+  function currentDepth() {
+    var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    /* A page with nothing to scroll was read in full by definition. */
+    if (scrollable <= 0) return 100;
+    var travelled = window.scrollY || window.pageYOffset || 0;
+    return Math.max(0, Math.min(100, Math.round((travelled / scrollable) * 100)));
+  }
+
+  function markScroll() {
+    var depth = currentDepth();
+    if (depth > deepestScroll) deepestScroll = depth;
+  }
+
+  function depthBucket(depth) {
+    if (depth >= 100) return 100;
+    if (depth >= 75) return 75;
+    if (depth >= 50) return 50;
+    if (depth >= 25) return 25;
+    return 0;
+  }
+
+  /* Sent as the visit ends rather than on every quarter, so one abandoned read
+     costs one beacon. The bucket is in the key: a visitor who comes back from
+     the cache and reads further adds a deeper row instead of being ignored, and
+     the deepest row per visit is the answer. */
+  function trackScrollDepth() {
+    markScroll();
+    var bucket = depthBucket(deepestScroll);
+    track('scroll_depth', {
+      depth: bucket,
+      idempotency_key: visitId + ':scroll_depth:' + bucket
+    });
+  }
+
+  function endOfVisit() {
+    trackScrollDepth();
+    flush();
+  }
+
+  /* ---------- Google Ads conversion ---------- */
+
+  /* One conversion, fired from the form once the lead is stored. Clicks on
+     WhatsApp, the calendar, or the deal sheet are interest, not a lead, so they
+     are measured first-party and never sent here. */
+
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+
+  function adsConsentState(granted) {
+    var state = granted ? 'granted' : 'denied';
+    return {
+      ad_storage: state,
+      ad_user_data: state,
+      ad_personalization: state,
+      analytics_storage: state
+    };
+  }
+
+  /* Consent Mode: denied by default, so the tag holds no advertising storage
+     until the visitor accepts. A rejected visit can still send a cookieless
+     ping, which is what lets Google model conversions without identifying
+     anyone. Accepting reloads the page, so the granted state is set on load. */
+  function initAds() {
+    if (!ADS.conversionId) return;
+
+    window.dataLayer = window.dataLayer || [];
+    gtag('consent', 'default', adsConsentState(false));
+    if (analyticsEnabled) gtag('consent', 'update', adsConsentState(true));
+    gtag('js', new Date());
+    gtag('config', ADS.conversionId);
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ADS.conversionId);
+    document.head.appendChild(script);
+  }
+
+  function reportConversion() {
+    if (!ADS.conversionId || !ADS.conversionLabel) return;
+    if (!window.dataLayer) return;
+    try {
+      gtag('event', 'conversion', {
+        send_to: ADS.conversionId + '/' + ADS.conversionLabel
+      });
+    } catch (_) {}
+  }
+
   if (analyticsEnabled) {
     ['mousemove', 'keydown', 'scroll', 'touchstart', 'click'].forEach(function (evt) {
       window.addEventListener(
@@ -353,8 +478,15 @@
         { passive: true }
       );
     });
+    window.addEventListener('scroll', markScroll, { passive: true });
+    window.addEventListener('resize', markScroll, { passive: true });
+
+    /* Hiding the tab is where a mobile visit usually ends, so bank the read
+       there as well as on unload. */
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) isActive = false;
+      if (!document.hidden) return;
+      isActive = false;
+      endOfVisit();
     });
     setInterval(tickActive, 5000);
 
@@ -364,8 +496,8 @@
     } else {
       bindSections();
     }
-    window.addEventListener('pagehide', flush);
-    window.addEventListener('beforeunload', flush);
+    window.addEventListener('pagehide', endOfVisit);
+    window.addEventListener('beforeunload', endOfVisit);
   }
 
   /* ---------- Frictionless meeting and question handoffs ---------- */
@@ -468,6 +600,8 @@
     });
   }
 
+  initAds();
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       wireCtas();
@@ -488,6 +622,13 @@
     visitId: function () {
       return visitId;
     },
+    /* Ads parameters for the lead form. Empty until analytics consent is
+       accepted, so a lead never carries click IDs the visitor refused. */
+    attribution: function () {
+      return Object.assign({}, attr);
+    },
+    /* Called by the form, and only after the lead is stored. */
+    reportConversion: reportConversion,
     sectionIds: SECTION_IDS
   };
 })();
