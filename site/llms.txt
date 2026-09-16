@@ -6,9 +6,10 @@ El Fortín Construcciones y Patrimonio S.L. (CIF B22792923) is selling remaining
 
 ## Pages
 
-- [El Fortín Riba-roja](https://elfortincapital.com/): The investment, prices, payment stages, and contact.
-- [Project detail](https://elfortincapital.com/expanded.html): Rental mix, licence, inventory, operator, and prior project in Puzol.
-- [Privacy policy](https://elfortincapital.com/privacy-policy-en.html)
+- [El Fortín Riba-roja](https://invest.elfortincapital.com/): The investment, prices, payment stages, and contact.
+- [El Fortín Riba-roja, in Dutch](https://invest.elfortincapital.com/index-nl): The same investment in Dutch, for buyers in the Netherlands and Belgium.
+- [Project detail](https://invest.elfortincapital.com/expanded): Rental mix, licence, inventory, operator, and prior project in Puzol.
+- [Privacy policy](https://invest.elfortincapital.com/privacy-policy-en)
 
 ## Contact
 
