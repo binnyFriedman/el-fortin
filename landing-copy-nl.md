@@ -78,7 +78,7 @@ In Riba-roja is de vraag naar huurwoningen groot. De huurinkomsten van alle tien
 
 **Tekst:**
 
-Riba-roja de Túria: het historische centrum (opent de kaart), metrolijn 9 naar hartje Valencia, op twaalf minuten van de luchthaven. Het gebouw staat er middenin.
+Riba-roja de Túria heeft een sfeervol historisch centrum (opent de kaart) en een gunstige ligging. Dankzij metrolijn 9 reist u rechtstreeks naar hartje Valencia, en de luchthaven bevindt zich op slechts twaalf minuten afstand.
 
 **Adresregel:** Camino Valencia 31, 46190 Riba-roja de Túria
 
