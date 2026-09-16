@@ -83,7 +83,7 @@
         : isSpanish
           ? 'Usamos analítica propia para medir la página y las campañas. Puedes aceptarla o rechazarla; los enlaces de contacto funcionan igual. '
           : isDutch
-            ? 'Wij meten deze pagina en onze campagnes met eigen statistieken, zonder derden. U kunt dat accepteren of weigeren; de contactlinks werken in beide gevallen. '
+            ? 'Wij gebruiken eigen statistieken en Google Ads-conversiemeting om deze pagina en onze campagnes te meten. U kunt dit accepteren of weigeren; de contactlinks werken in beide gevallen. '
             : 'First-party analytics help measure the page and campaigns. Accept or reject them; contact links work either way. ') +
       '<a href="' +
       CONFIG.privacyUrl +
