@@ -35,7 +35,7 @@ Rental demand in Riba-roja is high. Income from ten apartments is pooled, so a v
 
 | Figure | Label |
 | --- | --- |
-| 4% | Guaranteed yearly return, in the contract |
+| 4% | Minimum yearly return, fixed in the contract |
 | 8% | Projected yearly return |
 | 40%+ | Projected five-year IRR |
 

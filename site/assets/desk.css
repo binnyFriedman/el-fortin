@@ -617,6 +617,13 @@ main > section[id] {
   line-height: 1.35;
   max-width: 22ch;
 }
+.figures__note {
+  margin: -8px 0 0;
+  color: #e7e0cf;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  max-width: 68ch;
+}
 
 /* ---------- the apartments ---------- */
 

@@ -9,6 +9,7 @@
  */
 
 import { googleAdsRequest, normalizeCustomerId } from './client.mjs';
+import { RSA_NL, RSA_EN, FINAL_URL_EN, FINAL_URL_NL, assertRsaLengths, toRsaAd } from './rsa-copy.mjs';
 
 const managerCustomerId = normalizeCustomerId(
   process.env.GOOGLE_ADS_MANAGER_CUSTOMER_ID || '925-809-1560'
@@ -20,71 +21,11 @@ const customer = `customers/${customerId}`;
 const CAMPAIGN_ID = process.env.GOOGLE_ADS_CAMPAIGN_ID || '24259919998';
 const campaignResource = `${customer}/campaigns/${CAMPAIGN_ID}`;
 
-const FINAL_URL = 'https://invest.elfortincapital.com/';
 const URL_SUFFIX =
   'utm_source=google&utm_medium=cpc&utm_campaign=ef-search-nlbe&utm_content={adgroupid}&utm_term={keyword}';
 
 const GEO_DE = 'geoTargetConstants/2276';
 const LANGUAGE_NL = 'languageConstants/1010';
-
-const HEADLINE_MAX = 30;
-const DESCRIPTION_MAX = 90;
-
-const RSA_NL = {
-  headlines: [
-    'Eigendom op Uw Naam',
-    'Volledig Beheerd. Geen Fonds.',
-    'Tien Appartementen. Eén Team.',
-    'Contractuele 4%-Bodem',
-    'Vanaf € 236.000 Gemeubileerd',
-    'Nieuwbouw bij Valencia',
-    'Geen Verhuurzorgen op Afstand',
-    'Ontwikkelaar Betaalt het Gat',
-    'Oplevering Augustus 2027',
-    'Praat Direct met Uriel',
-    'Boutique Gebouw Riba-roja',
-    'U Bezit. Wij Verhuren.',
-    'Vastgoed Spanje Zonder Gedoe',
-    'El Fortin Riba-roja',
-    'Schrijf aan Uriel'
-  ],
-  descriptions: [
-    'Appartement op uw naam bij Valencia. El Fortin beheert alle tien. U doet niets.',
-    'Boutique nieuwbouw. Contractuele 4%-bodem op de koopsom; ontwikkelaar betaalt het gat.',
-    'Vanaf € 236.000 gemeubileerd. Vier betalingen van 25%. Verhuur start augustus 2027.',
-    'Geen fonds, geen aandeel: volledig eigendom. Pagina in het Engels. Schrijf aan Uriel.'
-  ],
-  path1: 'Valencia',
-  path2: 'Appartement'
-};
-
-const RSA_EN = {
-  headlines: [
-    'Deeded Apartment in Valencia',
-    'You Own It. We Make It Earn.',
-    'Ten Apartments. One Operator.',
-    'Fully Managed. Not a Fund.',
-    'Talk to Uriel Directly',
-    'From EUR 236,000 Furnished',
-    'Boutique Building Riba-roja',
-    'No Remote Landlord Work',
-    'Contractual 4% Floor',
-    'Operations August 2027',
-    'Title in Your Name',
-    'Write to Uriel',
-    'El Fortin Riba-roja',
-    'Named Apartment by Deed',
-    'Developer Pays the Gap'
-  ],
-  descriptions: [
-    'Own a named apartment by deed. El Fortin runs all ten. No remote landlord work.',
-    'Boutique building. Contractual 4% floor of sale price; developer pays the gap.',
-    'From EUR 236,000 furnished. Four payments of 25%. Ops August 2027. Write to Uriel.',
-    'Not a fund. Title in your name. Fully managed operations from August 2027.'
-  ],
-  path1: 'Valencia',
-  path2: 'Apartment'
-};
 
 const kw = (text, match = 'EXACT') => ({ text, match });
 const both = (text) => [kw(text, 'EXACT'), kw(text, 'PHRASE')];
@@ -94,6 +35,7 @@ const AD_GROUPS = [
     name: 'NL | Investeren in vastgoed Spanje',
     cpcEur: 3.5,
     rsa: RSA_NL,
+    finalUrl: FINAL_URL_NL,
     keywords: [
       ...both('investeren in vastgoed spanje'),
       ...both('investeren vastgoed spanje'),
@@ -112,6 +54,7 @@ const AD_GROUPS = [
     name: 'NL | Nieuwbouw en tweede huis Spanje',
     cpcEur: 1.0,
     rsa: RSA_NL,
+    finalUrl: FINAL_URL_NL,
     keywords: [
       ...both('nieuwbouw valencia'),
       ...both('nieuwbouw appartement spanje'),
@@ -129,6 +72,7 @@ const AD_GROUPS = [
     name: 'NL | Appartement kopen Valencia',
     cpcEur: 0.5,
     rsa: RSA_NL,
+    finalUrl: FINAL_URL_NL,
     keywords: [
       ...both('appartement kopen valencia'),
       kw('appartement kopen in valencia'),
@@ -140,6 +84,7 @@ const AD_GROUPS = [
     name: 'EN | Spain property investment',
     cpcEur: 2.5,
     rsa: RSA_EN,
+    finalUrl: FINAL_URL_EN,
     keywords: [
       ...both('invest in spanish property'),
       ...both('property investment spain'),
@@ -158,6 +103,7 @@ const AD_GROUPS = [
     name: 'EN | Apartments for sale Valencia',
     cpcEur: 0.5,
     rsa: RSA_EN,
+    finalUrl: FINAL_URL_EN,
     keywords: [
       ...both('apartments for sale valencia'),
       kw('apartments for sale in valencia spain'),
@@ -218,12 +164,7 @@ const NEW_NEGATIVES = [
 const NEGATIVES_TO_DROP = ['buy apartment valencia'];
 
 function assertLengths(rsa, label) {
-  for (const h of rsa.headlines) {
-    if (h.length > HEADLINE_MAX) throw new Error(`${label} headline too long (${h.length}): ${h}`);
-  }
-  for (const d of rsa.descriptions) {
-    if (d.length > DESCRIPTION_MAX) throw new Error(`${label} description too long (${d.length}): ${d}`);
-  }
+  assertRsaLengths(rsa, label);
   if (rsa.headlines.length < 3 || rsa.headlines.length > 15) throw new Error(`${label}: 3–15 headlines required`);
   if (rsa.descriptions.length < 2 || rsa.descriptions.length > 4) throw new Error(`${label}: 2–4 descriptions required`);
 }
@@ -326,15 +267,7 @@ const createAdOps = AD_GROUPS.map((g, i) => ({
     create: {
       adGroup: tempAdGroup(i),
       status: 'ENABLED',
-      ad: {
-        finalUrls: [FINAL_URL],
-        responsiveSearchAd: {
-          headlines: g.rsa.headlines.map((text) => ({ text })),
-          descriptions: g.rsa.descriptions.map((text) => ({ text })),
-          path1: g.rsa.path1,
-          path2: g.rsa.path2
-        }
-      }
+      ad: toRsaAd(g.rsa, g.finalUrl)
     }
   }
 }));

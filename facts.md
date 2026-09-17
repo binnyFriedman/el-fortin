@@ -259,7 +259,7 @@ These are the figures shown on `site/index-d.html`. They simplify earlier workbo
 
 | Label                         | Figure                                      |
 | ----------------------------- | ------------------------------------------- |
-| Guaranteed yearly return      | **4%**, in the contract                     |
+| Minimum yearly return         | **4%**, fixed in the contract (say "minimum / fixed in the contract", never "guaranteed" — Google Ads Unreliable Claims policy) |
 | Projected yearly return       | **8%**                                      |
 | Projected five-year IRR       | **above 40%**                               |
 | Construction                  | **25%** complete                            |
