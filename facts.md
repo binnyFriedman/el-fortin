@@ -259,11 +259,29 @@ These are the figures shown on `site/index-d.html`. They simplify earlier workbo
 
 | Label                         | Figure                                      |
 | ----------------------------- | ------------------------------------------- |
-| Minimum yearly return         | **4%**, fixed in the contract (say "minimum / fixed in the contract", never "guaranteed" — Google Ads Unreliable Claims policy) |
-| Projected yearly return       | **8%**                                      |
-| Projected five-year IRR       | **above 40%**                               |
+| 4%                            | Minimum yearly return. Secured in the contract. (never "guaranteed" — Google Ads Unreliable Claims policy) |
+| 8%                            | Projected yearly return.                    |
+| +44%                          | Riba-roja house prices since 2022 (Engel & Völkers) |
 | Construction                  | **25%** complete                            |
 | Operations                    | August 2027                                 |
+
+**Retired label (2026-09-17):** "Projected five-year IRR above 40%". The 40% was meant to express area appreciation, not an IRR (a 40% IRR would mean ×5.4 in five years). It was also the trigger for Google's `MISLEADING_CONTENT` flags. Replaced by sourced past-tense market figures below. Never publish a forward-looking blended return.
+
+### Market appreciation — sourced (Binny, 2026-09-17)
+
+Past figures only, always with source and date. Whole-stock indices, not this building; say so on the page.
+
+| Where | Figure | Source |
+| --- | --- | --- |
+| Riba-roja de Túria, all housing | €1,321/m² (2022) → €1,901/m² (2026): **+44% in four years**; yearly +7.3 / +9.8 / +13.9 / +7.1% | [Engel & Völkers price index](https://www.engelvoelkers.com/es/es/precios-inmobiliarios/comunidad-valenciana/ribarroja-del-turia), Jul 2026 |
+| Riba-roja de Túria, apartments | +10.9% past 12 months; +48% over 3 years | [RealAdvisor](https://realadvisor.es/es/precios-viviendas/46394-riba-roja-de-turia), Jul 2026 |
+| Riba-roja de Túria, asking prices | +3.7% past 12 months (most conservative series) | [Fotocasa](https://www.fotocasa.es/es/indice-precio-vivienda/ribaroja-de-turia/todas-las-zonas), Aug 2026 |
+| Valencia province | **+21.2% year on year**, €1,857/m² | [Tinsa IMIE](https://www.tinsa.es/precio-vivienda/comunitat-valenciana/valencia/), Q2 2026 |
+| Valencia province | +11.9% in 2025, highest since 2009 | Colegio API via [EFE](https://efe.com/economia/2026-02-12/la-compraventa-de-viviendas-logra-maximos-en-2025-y-los-precios-suben-un-12-en-valencia/), Feb 2026 |
+| Comunitat Valenciana | +13.0% year on year (INE house price index) | INE IPV, Q2 2026 |
+| Valencia city | +6.1% year on year, 0.5% below all-time high | [Idealista](https://www.idealista.com/news/inmobiliario/vivienda/2026/09/07/912289-el-precio-de-la-vivienda-en-valencia-sigue-cerca-de-maximos-historicos-3-469-euros), Aug 2026 |
+
+Used on the pages: **+44% Riba-roja since 2022 (Engel & Völkers)** only. One market number is a highlight; two is a report.
 
 
 ## Model of returns

@@ -23,7 +23,7 @@ Principle: the page is an appetiser. Enough to take a call. Nothing that belongs
 
 ## 2. The return
 
-**Layout:** hotel-green field. Three brass plates. Short paragraph.
+**Layout:** hotel-green field. Three brass plates. Short paragraph. No footnotes — this is an appetiser, not a contract. Every figure must be one we can say openly: a contract clause, a labelled expectation, or a published index. No "guaranteed", no IRR, no blended forecast.
 
 **Heading:** The return.
 
@@ -35,9 +35,11 @@ Rental demand in Riba-roja is high. Income from ten apartments is pooled, so a v
 
 | Figure | Label |
 | --- | --- |
-| 4% | Minimum yearly return, fixed in the contract |
-| 8% | Projected yearly return |
-| 40%+ | Projected five-year IRR |
+| 4% | Minimum yearly return. Secured in the contract. |
+| 8% | Projected yearly return. |
+| +44% | Riba-roja house prices since 2022. |
+
+**Footer line:** The 4% is a minimum secured in the contract; the 8% is a projected yearly return. Market figure: Engel & Völkers.
 
 ---
 
