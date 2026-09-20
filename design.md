@@ -420,7 +420,7 @@ Fonts to load:
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
 ```
 
-If Typekit is unavailable, swap `--font-family-heading` to `"DM Serif Display", serif` (already used on the current sniper page) and keep Jakarta for UI.
+If Typekit is unavailable, swap `--font-family-heading` to `"DM Serif Display", serif` and keep Jakarta for UI.
 
 ---
 
