@@ -16,7 +16,7 @@ Secondary (do not design for first): the developer (Uriel Nabel) and the campaig
 
 El Fortín Riba-Roja is a 10-unit, fully managed residential building in Riba-roja de Túria, Valencia. The buyer takes title (*escritura*) to a specific apartment. The building is operated as one asset (hotel-grade, ready for guests at operations start). Turnkey delivery: August 2027.
 
-This repository’s digital product is the English campaign site that sells the remaining units. Success is a **lead-form submission** (name, email, phone). That form exists on `site/sniper.html` and hands off to WhatsApp with Uriel. It is **not** yet on `site/index.html` / the current design brief. WhatsApp and Uriel’s booking calendar are contact channels, not the success metric.
+This repository’s digital product is the English campaign site that sells the remaining units. Success is a **lead-form submission** (name, email, phone). That form lives on `site/index.html` and `site/index-nl.html`. WhatsApp and Uriel’s booking calendar are contact channels, not the success metric.
 
 ## Positioning
 
@@ -39,14 +39,14 @@ Deeded ownership of a named apartment, not a fund share and not a classic reside
 
 Confirmed:
 
-- Lead form: Name, Email, Phone (required). On sniper: submit opens WhatsApp with those details. Future surfaces must include this form; conversion is the submit, not a WhatsApp tap alone.
-- Unit types: ~47 m² 1-bed (units 5–8) and ~57 m² 2-bed (1–4, 9–10). Furniture packs €15,959.66 / €19,357.60. Parking stays with the developer.
-- Entry used on campaign pages: all-in ≈ *valor público* × 1.12 + furniture; Type A lands near **€229,384**. Do not publish a hard all-in that fails that arithmetic.
-- Target blended yield ~7% (workbook mix 6.94% on that sheet’s capital). Floor 4% net of *valor público*.
+- Lead form: Name, Email, Phone (required). Submit posts to `/api/leads`; conversion is the submit, not a WhatsApp tap alone.
+- Unit types: ~47 m² 1-bed (units 5–8) and ~57 m² 2-bed (1–4, 9–10). Marked prices are **€236,000 / €270,000**, including furniture and appliances. Parking stays with the developer.
+- Public prices: **€236,000 one bedroom · €270,000 two bedrooms**. Do not add furniture or appliances again as a separate charge.
+- Public projection: **8% projected yearly return over several years**. Floor: 4% net, with the apartment-specific euro amount completed in each executed contract. Net means nothing further is deducted from the owner's published net return.
 - Management fees of that month’s gross: 8% long-term · 10% mid-term/corporate · 15% tourism. Initial operating mix 5/5 short-stay / corporate, then market-adjusted.
-- Personal use: up to 14 nights / year, **free space, not peak season**. Exact contractual terms still unwritten.
+- Personal use: 14 nights / year are permitted, but full terms remain TBD. **Do not advertise this benefit until the terms are final.**
 - Open-book financials planned via a personal owner portal — **out of this repo until it exists**. Do not design or imply it has shipped.
-- Site is static HTML/CSS/JS under `site/` (`index.html`, `sniper.html`, `privacy-policy-en.html`).
+- Site is static HTML/CSS/JS under `site/` (`index.html`, `index-nl.html`, `expanded.html`, `privacy-policy-en.html`).
 
 Undecided / must not be invented:
 

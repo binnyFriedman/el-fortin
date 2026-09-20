@@ -9,6 +9,8 @@ For Uriel. Short written answers are enough. Please correct anything we have wro
 ### Return calculation
 
 - Published return is a **net % of valor público** (apartment sale price). **Nothing else** in the denominator — not furniture, not closing costs.
+- **Net means net to the owner. Nothing further is deducted from the published net return**
+  (Binny, 2026-09-20).
 - If returns fall below **4%**, the **developer pays out of pocket**. No *aval bancario* on the floor. Uriel: looking at the numbers the gap is small, so the covenant is believable.
 - *Aval bancario* does not apply here for the floor; it would only cover the construction period anyway.
 - **Floor duration (Uriel, 2026-09-15):** as long as the contract — **15 years**, unless both sides end it earlier.
@@ -20,7 +22,8 @@ For Uriel. Short written answers are enough. Please correct anything we have wro
 
 ### 14 nights personal use
 
-- Exact contractual terms **still to be written**. Basis: **free space, not peak season**.
+- Fourteen nights a year are permitted, but the full contractual terms remain to be written.
+- **Do not advertise personal use until those terms are final** (Binny, 2026-09-20).
 
 ### Payments and buyer protection
 
@@ -53,7 +56,6 @@ For Uriel. Short written answers are enough. Please correct anything we have wro
 5. **ICU / VUT / tourist-use** registration for executive short-stay — on file, or still to be obtained?
 6. Furniture: installed before escritura, and inventory list in the contract — confirm?
 7. Payout cadence: still **quarterly**?
-8. Is the published % net of the **15% management fee only**, or of a fuller opex stack (community, IBI, insurance, channels, cleaning)? Page currently says “net after 15% management fee.”
-9. Right to **rent a parking plaza** from the developer, or none?
+8. Right to **rent a parking plaza** from the developer, or none?
 
 Reply by number. One or two lines per item is enough.

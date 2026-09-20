@@ -6,10 +6,6 @@ User-agent: *
 Allow: /
 Disallow: /sheet.html
 Disallow: /sheet
-Disallow: /sniper.html
-Disallow: /sniper
-Disallow: /index-d.html
-Disallow: /index-d
 
 User-agent: Googlebot
 Allow: /

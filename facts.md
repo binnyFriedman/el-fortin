@@ -135,9 +135,13 @@ Names from the workbook. Persona from Uriel, 2026-07-20 (sales-strategy call). A
 
 **Public entry (developer, 2026-08-06 and 2026-08-11):** €236,141 all-in — sale price + estimated purchase costs + furniture. Marketing round sometimes €236,000.
 
-**Landing page, final public prices (Binny, 2026-09-11):** one-bedroom **€236,000** · two-bedroom **€270,000**. Stated as including appliances and furniture. These replace the earlier “indicative all-in” bands on `site/index-d.html`.
+**Controlling public prices (Binny, clarified 2026-09-20):** one-bedroom **€236,000** ·
+two-bedroom **€270,000**. These marked prices include all furniture and appliances. Do not
+add the furniture package to either marked price or describe it as separately payable.
 
-**Consistent estimate used on the sniper page (2026-09-07):** all-in ≈ *Valor Público* + ~12% acquisition + furniture (same formula for every unit). Type A lands near **€229,384**, not €236k — closing taxes are indicative, not exact; do not publish a hard all-in that fails VP×1.12+furniture arithmetic.
+**Retired estimate (2026-09-07):** the deleted sniper landing used *Valor Público* + ~12%
+acquisition + furniture. It is historical modelling and does not define the current marked
+prices. Do not use it to add furniture to €236,000 or €270,000.
 
 The workbook has other columns (presale 15% below *Valor Publicado*, ~12% closing on the price paid, furniture by footprint). Those figures are in `developer/sales-info.xlsx`.
 
@@ -154,7 +158,9 @@ From `developer/sales-info.xlsx` (furnishing lines):
 | ~57 m² (units 1–4, 9–10) | €19,357.60     |
 
 
-The original client brief (May 2026) stated a turn-key furniture package of €15,000–€20,000, paid with the 80% construction instalment. The later €236,141 all-in figure is stated to include furniture.
+The original client brief (May 2026) separately modelled a turn-key furniture package of
+€15,000–€20,000. That breakdown is historical: furniture and appliances are included in the
+current marked prices of €236,000 and €270,000.
 
 ## Payment stages
 
@@ -176,6 +182,14 @@ Ley 20/2015 (LOE DA 1ª) requires advance payments on new residential builds to 
 
 
 ### Denominator and floor (Uriel, 2026-09-07)
+
+**Interpretation of the draft placeholders (Binny, 2026-09-20):** The `XXXXX` minimum-rent
+field in clause 9 is intentionally completed per apartment after that apartment is appraised.
+Apartments differ in value, so the euro amount representing 4% cannot be fixed in the shared
+template. It must not be cited as evidence that the 4% commitment is absent. Uriel has approved
+the 4% floor, stands behind it, and the calculated apartment-specific amount will be inserted in
+the buyer's executed management contract. The relevant verification point is the completed
+buyer-specific contract, not whether the common draft contains one universal euro amount.
 
 
 |                             |                                                                                                                    |
@@ -249,6 +263,13 @@ Income starts when the building is operational (turnkey August 2027), not at res
 | Year 1 of operation, mixed strategy     | **6.94%**                       |
 | After a few years of good guest reviews | **8%, and up to 10%**           |
 
+**Marketing position (Binny, 2026-09-20):** The public advertisement uses **8% projected yearly
+return** as the concise headline figure. The detailed assumptions, trajectory, and apartment-specific
+economics are explained during the sales call and negotiation before any contract is signed. This is
+an intentional marketing decision, not an assertion that the old workbook's 6.94% mixed scenario
+equals 8%. Keep the word **projected** and do not describe 8% as contractual, minimum, secured, or
+guaranteed.
+
 
 The 65% short-stay occupancy figure is cleared for landing-page use (Binny, 2026-09-09); note the AirDNA Riba-roja-specific figure below is ~43%.
 
@@ -291,9 +312,14 @@ How the operation was described:
 1. Buyers take title to a specific apartment (*escritura*). This is an **investment backed by a deed**, not a classic residential key handover (Uriel, 2026-09-07). When operations start, the unit is already **hotel-grade ready** to welcome guests.
 2. The ten apartments are run as one managed building, not ten separate rental products.
 3. Mix can move between long-term, mid-term, and tourist according to demand. Initial launch mix: **5 / 5** short-stay / corporate, then adjusted to market feedback (Uriel, 2026-09-07).
-4. Published return is a **net % of *valor público*** only. If that net is below 4%, the developer pays the gap out of pocket (Uriel, 2026-09-07). Older estimators modelled gross rent minus operator fee, opex, and tax/community — fuller opex stack vs “net after management fee only” is still open.
+4. Published return is a **net % of *valor público*** only. **Net means net to the
+   owner: nothing further is deducted from the published net return.** If that net is below
+   4%, the developer pays the gap out of pocket (Uriel, 2026-09-07; clarified by Binny,
+   2026-09-20). Older estimator deductions are modelling inputs, not additional deductions
+   from the owner's published net return.
 5. Management fee is **per the rental that month actually ran** (Uriel, 2026-09-07): **8% long-term · 10% mid-term/corporate · 15% tourism**. Brief had said 8–15% of gross; older estimators used 8 / 10 / 14%.
-6. Personal use: “up to 2 weeks a year” / 14 nights. Exact contractual terms **still to be written**. Basis: **free space, not peak season** (Uriel, 2026-09-07).
+6. Personal use: 14 nights a year are permitted, but the full terms remain to be written.
+   **Do not advertise personal use until those terms are final** (Binny, 2026-09-20).
 7. **Open-book financials** planned via a **personal online portal** (Uriel, 2026-09-07).
 
 A later estimator also allowed a leveraged case (buyer LTV and rate as inputs). That is the buyer’s loan, not a project facility on file.
