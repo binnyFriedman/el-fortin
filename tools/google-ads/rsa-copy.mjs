@@ -1,10 +1,17 @@
 /**
  * Responsive Search Ad copy for campaign 24259919998 — single source.
  *
- * Housing, not a yield poster: a named apartment for sale. Differentiation
- * is boutique scale (ten units), whole-building professional management,
- * title in the buyer's name, furnished turnkey. No Uriel, no return %,
- * no "not a fund". The 4% floor lives on the landing page.
+ * Reads like the deal sheet, not a listing. Order: managed building and
+ * passive income, the projected return, the contractual floor, the deed
+ * and who operates, then price and delivery. Place is last.
+ * No "guaranteed", "secured", or "risk-free". The 8% stays "projected"
+ * or "verwacht". The 4% is a minimum in the contract, never a promise
+ * of more.
+ *
+ * The first description is the AFM licence-exemption sentence, pinned
+ * so a Dutch search ad carries it on every impression. The graphic
+ * cannot be placed in a search ad. The English sentence does not fit
+ * in 90 characters, so the English ad uses the AFM short form.
  */
 
 export const HEADLINE_MAX = 30;
@@ -15,58 +22,58 @@ export const FINAL_URL_NL = 'https://invest.elfortincapital.com/index-nl';
 
 export const RSA_NL = {
   headlines: [
-    'Nieuw Appartement in Valencia',
-    'Professioneel Beheerd',
-    'Boutique. Tien Appartementen.',
-    'Heel Gebouw. Eén Beheer.',
-    'Eigendom op Uw Naam',
-    'Gemeubileerd en Instapklaar',
-    'Nieuwbouw. Volledig Beheerd.',
-    'Vanaf € 236.000 Gemeubileerd',
-    'U Bezit het Appartement',
-    'Tien Appartementen. Eén Team.',
-    'Gebouw Professioneel Beheerd',
-    'In de Oude Kern',
-    'Metro naar Hartje Valencia',
-    'Oplevering Augustus 2027',
-    'Nieuwbouw bij Valencia'
+    'Beheerd gebouw',
+    'Passief inkomen',
+    '8% verwacht rendement',
+    '4% minimum in contract',
+    'Akte op uw naam',
+    'Wij exploiteren',
+    'Eén slaapkamer €236.000',
+    'Twee slaapkamers €270.000',
+    'Meubels inbegrepen',
+    'Oplevering augustus 2027',
+    'Tien appartementen',
+    'Eén gebouw, één beheer',
+    'Klaar augustus 2027',
+    'Indicatief, geen aanbod',
+    'Riba-roja, Valencia'
   ],
   descriptions: [
-    'Nieuw appartement in Valencia. Professioneel beheerd, op uw naam. Heel gebouw als één.',
-    'Boutique gebouw: tien appartementen, één beheer. Gemeubileerd, op uw naam.',
-    'Vanaf € 236.000 gemeubileerd. Vier betalingen van 25%. Klaar augustus 2027.',
-    'Klein nieuwbouwgebouw, professioneel verhuurd. Appartement op uw naam.'
+    'Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit.',
+    'Beheerd gebouw. Passief inkomen. 8% verwacht. 4% minimum in het contract.',
+    'Akte op uw naam. Wij exploiteren. Tien appartementen, één beheer.',
+    'Eén slaapkamer €236.000. Twee slaapkamers €270.000. Meubels erbij. Augustus 2027.'
   ],
-  path1: 'Valencia',
-  path2: 'Appartement'
+  path1: 'Rendement',
+  path2: 'Contract'
 };
 
 export const RSA_EN = {
   headlines: [
-    'New Apartment in Valencia',
-    'Professionally Managed',
-    'Boutique. Ten Apartments.',
-    'Whole Building. One Operator.',
-    'Title in Your Name',
-    'Furnished. Ready to Let.',
-    'New Build. Fully Managed.',
-    'From EUR 236,000 Furnished',
-    'You Own the Apartment',
-    'Ten Apartments. One Team.',
-    'Building Professionally Run',
-    'In the Historic Centre',
-    'Metro to Central Valencia',
-    'Completion August 2027',
-    'New Build near Valencia'
+    'Managed building',
+    'Passive income',
+    '8% projected return',
+    '4% floor in the contract',
+    'Deed in your name',
+    'We operate it',
+    'One bedroom EUR 236,000',
+    'Two bedrooms EUR 270,000',
+    'Furniture included',
+    'Delivery August 2027',
+    'Ten apartments',
+    'One building, one operator',
+    'Turnkey August 2027',
+    'Indicative. Not an offer.',
+    'Riba-roja, Valencia'
   ],
   descriptions: [
-    'New apartment in Valencia. Professionally managed, in your name. Whole building as one.',
-    'Boutique building: ten apartments, one operator. Furnished, titled in your name.',
-    'From EUR 236,000 furnished. Four payments of 25%. Ready August 2027.',
-    'A small new building, professionally let. Apartment titled in your name.'
+    'This investment falls outside AFM supervision',
+    'Managed building. Passive income. 8% projected. 4% floor in the contract.',
+    'Deed in your name. We operate. Ten apartments, one operator.',
+    'One bedroom EUR 236,000. Two bedrooms EUR 270,000. Furnished. August 2027.'
   ],
-  path1: 'Valencia',
-  path2: 'Apartment'
+  path1: 'Return',
+  path2: 'Contract'
 };
 
 export function assertRsaLengths(rsa, label) {
@@ -76,6 +83,8 @@ export function assertRsaLengths(rsa, label) {
   for (const d of rsa.descriptions) {
     if (d.length > DESCRIPTION_MAX) throw new Error(`${label} description too long (${d.length}): ${d}`);
   }
+  if (rsa.path1.length > 15) throw new Error(`${label} path1 too long`);
+  if (rsa.path2.length > 15) throw new Error(`${label} path2 too long`);
 }
 
 export function toRsaAd(rsa, finalUrl) {
@@ -83,7 +92,9 @@ export function toRsaAd(rsa, finalUrl) {
     finalUrls: [finalUrl],
     responsiveSearchAd: {
       headlines: rsa.headlines.map((text) => ({ text })),
-      descriptions: rsa.descriptions.map((text) => ({ text })),
+      descriptions: rsa.descriptions.map((text, index) =>
+        index === 0 ? { text, pinnedField: 'DESCRIPTION_1' } : { text }
+      ),
       path1: rsa.path1,
       path2: rsa.path2
     }

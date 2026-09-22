@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>El Fortín — search ad preview</title>
+    <link rel="icon" href="../../site/assets/favicon.png" />
+    <style>
+      @font-face {
+        font-family: Archivo;
+        src: url("../../site/assets/fonts/archivo-variable-latin.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+
+      :root {
+        --bone: #f1ece3;
+        --charcoal: #424242;
+        --secondary: #3c3834;
+        --line: #d4cdc0;
+        --ink: #251e35;
+        --google-blue: #1a0dab;
+        --google-text: #202124;
+        --google-desc: #4d5156;
+      }
+
+      * { box-sizing: border-box; }
+
+      ::selection {
+        background: #5e6650;
+        color: #f1ece3;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bone);
+        color: var(--charcoal);
+        font-family: Archivo, "Helvetica Neue", sans-serif;
+        font-weight: 420;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      header.page,
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding-left: clamp(24px, 4vw, 72px);
+        padding-right: clamp(24px, 4vw, 72px);
+      }
+
+      header.page { padding-top: 56px; padding-bottom: 8px; }
+
+      h1 {
+        margin: 0;
+        max-width: 18ch;
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 520;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        color: var(--ink);
+      }
+
+      header.page p {
+        max-width: 68ch;
+        margin: 16px 0 0;
+        color: var(--secondary);
+      }
+
+      main { padding-top: 40px; padding-bottom: 80px; }
+
+      article {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+        gap: 28px 40px;
+        align-items: start;
+        padding: 32px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      h2 {
+        margin: 0 0 14px;
+        font-size: 22px;
+        font-weight: 520;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+
+      .serp {
+        background: #fff;
+        padding: 20px 22px 18px;
+        max-width: 640px;
+      }
+
+      .query {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #f1f3f4;
+        color: var(--google-text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+      }
+
+      .query svg { flex: none; color: #5f6368; }
+
+      .ad { font-family: Arial, Helvetica, sans-serif; }
+
+      .sponsored {
+        margin: 0 0 10px;
+        color: var(--google-text);
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .identity {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .identity img {
+        width: 28px;
+        height: 28px;
+        object-fit: cover;
+        background: #fff;
+      }
+
+      .site-name {
+        color: var(--google-text);
+        font-size: 14px;
+        line-height: 1.3;
+      }
+
+      .display-url {
+        color: var(--google-text);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .headline {
+        margin: 2px 0 6px;
+        color: var(--google-blue);
+        font-size: 20px;
+        line-height: 1.3;
+        font-weight: 400;
+      }
+
+      .desc {
+        margin: 0;
+        color: var(--google-desc);
+        font-size: 14px;
+        line-height: 1.58;
+      }
+
+      .phone-label { margin-top: 28px; }
+
+      .phone {
+        width: 320px;
+        max-width: 100%;
+        padding: 16px 16px 18px;
+        background: #fff;
+      }
+
+      .phone .headline { font-size: 18px; }
+
+      .reading h2 { margin-bottom: 12px; }
+
+      .en-head {
+        margin: 0 0 10px;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        color: var(--ink);
+      }
+
+      .en-desc {
+        margin: 0;
+        color: var(--charcoal);
+      }
+
+      .note {
+        margin: 16px 0 0;
+        color: var(--secondary);
+        font-size: 14px;
+      }
+
+      section.assets { padding-top: 36px; border-top: 1px solid var(--line); }
+
+      section.assets > p {
+        max-width: 68ch;
+        margin: 0 0 22px;
+        color: var(--secondary);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 0 28px;
+        background: #fff;
+      }
+
+      th, td {
+        padding: 11px 14px;
+        text-align: left;
+        vertical-align: baseline;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        font-size: 13px;
+        font-weight: 560;
+        color: var(--charcoal);
+        background: #ebe5d6;
+      }
+
+      tr:last-child td { border-bottom: 0; }
+
+      td.count {
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        color: var(--secondary);
+      }
+
+      @media (max-width: 800px) {
+        article { grid-template-columns: 1fr; gap: 18px; }
+        .headline { font-size: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="page">
+      <h1>How the new ad can appear</h1>
+      <p>
+        One Dutch responsive search ad. Google shows at most three headlines and two descriptions, and it chooses the mix. The AFM sentence is pinned as the first description, so it is on every impression. A search ad cannot carry the AFM graphic. The right-hand column is the English of that same impression. The click goes to the Dutch page. The words after the domain are display text, not the address.
+      </p>
+    </header>
+    <main>
+      <article>
+        <div>
+          <h2>Terms first</h2>
+          <div class="serp">
+            <p class="query">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" />
+              </svg>
+              passief inkomen vastgoed
+            </p>
+            <div class="ad">
+              <p class="sponsored">Sponsored</p>
+              <div class="identity">
+                <img src="../../site/assets/favicon.png" alt="" />
+                <div>
+                  <div class="site-name">El Fortín</div>
+                  <div class="display-url">https://invest.elfortincapital.com › Rendement › Contract</div>
+                </div>
+              </div>
+              <div class="headline">Beheerd gebouw | Passief inkomen | 8% verwacht rendement</div>
+              <p class="desc">Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit. Beheerd gebouw. Passief inkomen. 8% verwacht. 4% minimum in het contract.</p>
+            </div>
+          </div>
+          <h2 class="phone-label">On a phone</h2>
+          <div class="phone">
+            <div class="ad">
+              <p class="sponsored">Sponsored</p>
+              <div class="identity">
+                <img src="../../site/assets/favicon.png" alt="" />
+                <div>
+                  <div class="site-name">El Fortín</div>
+                  <div class="display-url">invest.elfortincapital.com › Rendement › Contract</div>
+                </div>
+              </div>
+              <div class="headline">Beheerd gebouw | 8% verwacht rendement</div>
+              <p class="desc">Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reading">
+          <h2>English</h2>
+          <p class="en-head">Managed building | Passive income | 8% expected return</p>
+          <p class="en-desc">Attention! This investment falls outside AFM supervision. No license required for this activity. Managed building. Passive income. 8% expected. 4% minimum in the contract.</p>
+          <p class="note">On a phone Google often drops the third headline and the second description. The AFM sentence stays, because it is pinned. <em>Verwacht</em> means expected. The English ad says “projected” for the same 8%.</p>
+        </div>
+      </article>
+
+      <article>
+        <div>
+          <h2>The deed</h2>
+          <div class="serp">
+            <p class="query">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" />
+              </svg>
+              beleggen vastgoed spanje
+            </p>
+            <div class="ad">
+              <p class="sponsored">Sponsored</p>
+              <div class="identity">
+                <img src="../../site/assets/favicon.png" alt="" />
+                <div>
+                  <div class="site-name">El Fortín</div>
+                  <div class="display-url">https://invest.elfortincapital.com › Rendement › Contract</div>
+                </div>
+              </div>
+              <div class="headline">8% verwacht rendement | 4% minimum in contract | Akte op uw naam</div>
+              <p class="desc">Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit. Akte op uw naam. Wij exploiteren. Tien appartementen, één beheer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reading">
+          <h2>English</h2>
+          <p class="en-head">8% expected return | 4% minimum in the contract | Deed in your name</p>
+          <p class="en-desc">Attention! This investment falls outside AFM supervision. No license required for this activity. Deed in your name. We operate it. Ten apartments, one operator.</p>
+          <p class="note"><em>Wij exploiteren</em> means we operate the building. <em>Eén beheer</em> means one management.</p>
+        </div>
+      </article>
+
+      <article>
+        <div>
+          <h2>Price and date</h2>
+          <div class="serp">
+            <p class="query">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" />
+              </svg>
+              vastgoedbelegging valencia
+            </p>
+            <div class="ad">
+              <p class="sponsored">Sponsored</p>
+              <div class="identity">
+                <img src="../../site/assets/favicon.png" alt="" />
+                <div>
+                  <div class="site-name">El Fortín</div>
+                  <div class="display-url">https://invest.elfortincapital.com › Rendement › Contract</div>
+                </div>
+              </div>
+              <div class="headline">Eén slaapkamer €236.000 | Meubels inbegrepen | Oplevering augustus 2027</div>
+              <p class="desc">Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit. Eén slaapkamer €236.000. Twee slaapkamers €270.000. Meubels erbij. Augustus 2027.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reading">
+          <h2>English</h2>
+          <p class="en-head">One bedroom €236,000 | Furniture included | Handover August 2027</p>
+          <p class="en-desc">Attention! This investment falls outside AFM supervision. No license required for this activity. One bedroom €236,000. Two bedrooms €270,000. Furniture included. August 2027.</p>
+          <p class="note"><em>Oplevering</em> is the handover. <em>Meubels erbij</em> is furniture included.</p>
+        </div>
+      </article>
+
+      <section class="assets">
+        <h2>The lines Google can use</h2>
+        <p>
+          Fifteen headlines and four descriptions, which is the maximum. Headlines stop at 30 characters, descriptions at 90, paths at 15. The first description is pinned. Google will not usually pair the two August lines. “Indicatief, geen aanbod” is a headline only, so it appears only when Google picks it.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Dutch headline</th>
+              <th>English</th>
+              <th>Characters</th>
+            </tr>
+          </thead>
+          <tbody id="headlines"></tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Dutch description</th>
+              <th>English</th>
+              <th>Characters</th>
+            </tr>
+          </thead>
+          <tbody id="descriptions"></tbody>
+        </table>
+      </section>
+    </main>
+    <script>
+      const headlines = [
+        ["Beheerd gebouw", "Managed building"],
+        ["Passief inkomen", "Passive income"],
+        ["8% verwacht rendement", "8% expected return"],
+        ["4% minimum in contract", "4% minimum in the contract"],
+        ["Akte op uw naam", "Deed in your name"],
+        ["Wij exploiteren", "We operate it"],
+        ["Eén slaapkamer €236.000", "One bedroom €236,000"],
+        ["Twee slaapkamers €270.000", "Two bedrooms €270,000"],
+        ["Meubels inbegrepen", "Furniture included"],
+        ["Oplevering augustus 2027", "Handover August 2027"],
+        ["Tien appartementen", "Ten apartments"],
+        ["Eén gebouw, één beheer", "One building, one operator"],
+        ["Klaar augustus 2027", "Ready August 2027"],
+        ["Indicatief, geen aanbod", "Indicative, not an offer"],
+        ["Riba-roja, Valencia", "Riba-roja, Valencia"]
+      ];
+      const descriptions = [
+        ["Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit.", "Attention! This investment falls outside AFM supervision. No license required for this activity."],
+        ["Beheerd gebouw. Passief inkomen. 8% verwacht. 4% minimum in het contract.", "Managed building. Passive income. 8% expected. 4% minimum in the contract."],
+        ["Akte op uw naam. Wij exploiteren. Tien appartementen, één beheer.", "Deed in your name. We operate it. Ten apartments, one operator."],
+        ["Eén slaapkamer €236.000. Twee slaapkamers €270.000. Meubels erbij. Augustus 2027.", "One bedroom €236,000. Two bedrooms €270,000. Furniture included. August 2027."]
+      ];
+
+      fill("#headlines", headlines, 30);
+      fill("#descriptions", descriptions, 90);
+
+      function fill(selector, rows, limit) {
+        const body = document.querySelector(selector);
+        for (const [nl, en] of rows) {
+          const tr = document.createElement("tr");
+          const a = document.createElement("td");
+          const b = document.createElement("td");
+          const c = document.createElement("td");
+          a.textContent = nl;
+          b.textContent = en;
+          c.className = "count";
+          c.textContent = [...nl].length + " / " + limit;
+          tr.append(a, b, c);
+          body.append(tr);
+        }
+      }
+    </script>
+  </body>
+</html>

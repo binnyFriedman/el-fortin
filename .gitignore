@@ -36,3 +36,4 @@ tools/google-ads/node_modules/
 # Impeccable local runtime
 .impeccable/live/
 tools/google-ads/keyword-planner-review.json
+tools/google-ads/keyword-planner-owned-asset.json

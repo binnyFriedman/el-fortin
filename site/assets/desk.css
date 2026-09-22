@@ -265,9 +265,32 @@ a.plate:focus-visible {
 
 /* ---------- masthead ---------- */
 
+.afm-notice {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: #fff;
+  line-height: 0;
+}
+.afm-notice img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+body:has(.afm-notice) {
+  --afm-h: calc(100vw * 80 / 2357);
+}
+body:has(.afm-notice) .window {
+  min-height: calc(100svh - var(--afm-h));
+}
+
 .masthead {
   position: fixed;
   inset: 0 0 auto 0;
+  top: var(--afm-h, 0px);
   z-index: 50;
   display: flex;
   align-items: center;
@@ -585,11 +608,12 @@ main > section[id] {
 }
 @media (min-width: 900px) {
   .figures__row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
 }
-.figures__row li {
+.figures__row li,
+.place-gain {
   display: grid;
   gap: 10px;
   padding: 28px 28px 30px;
@@ -602,7 +626,8 @@ main > section[id] {
     inset 0 -2px 0 rgba(60, 40, 12, 0.45),
     0 24px 40px -28px rgba(0, 0, 0, 0.9);
 }
-.figures__row b {
+.figures__row b,
+.place-gain b {
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 500;
   font-stretch: 84%;
@@ -610,12 +635,19 @@ main > section[id] {
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
-.figures__row span {
+.figures__row span,
+.place-gain span {
   font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.35;
   max-width: 22ch;
+}
+.place-gain {
+  margin: 0 0 32px;
+}
+.place-gain span {
+  max-width: 28ch;
 }
 
 /* ---------- the apartments ---------- */

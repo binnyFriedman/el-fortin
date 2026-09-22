@@ -249,6 +249,30 @@
         ],
         "createdAt": "2026-09-15T14:39:09.932Z",
         "reason": "Agent: same Concierge Desk markup as site/index.html (Dutch copy only); sections pad with clamp()/var(--gutter) in assets/desk.css that the pre-write scan cannot resolve. Same exception already recorded for site/index.html, site/index-d.html, site/assets/desk.css"
+      },
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "createdAt": "2026-09-22T18:34:47.806Z",
+        "reason": "Google search ads render in Arial. This file is a SERP replica, so the ad mock uses that face. The page chrome uses Archivo."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "tools/google-ads/preview.html"
+        ],
+        "createdAt": "2026-09-22T18:36:24.568Z",
+        "reason": "DESIGN.md commits the page field to brand bone #f1ece3. This preview uses that palette."
+      },
+      {
+        "rule": "aphoristic-cadence",
+        "value": "*",
+        "files": [
+          "tools/google-ads/preview.html"
+        ],
+        "createdAt": "2026-09-22T21:55:35.918Z",
+        "reason": "The repeated sentence is the AFM prescribed exemption notice, which the preview must show on every impression."
       }
     ]
   }
