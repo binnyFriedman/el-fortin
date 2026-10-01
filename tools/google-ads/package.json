@@ -4,7 +4,10 @@
   "type": "module",
   "scripts": {
     "auth": "node auth.mjs",
-    "verify": "node verify.mjs"
+    "verify": "node verify.mjs",
+    "planner:investor": "node keyword-planner-investor.mjs",
+    "rebuild:v3": "node rebuild-v3.mjs",
+    "weekly": "node weekly-review.mjs"
   },
   "dependencies": {
     "google-auth-library": "^9.15.1"
