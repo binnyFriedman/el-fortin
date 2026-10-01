@@ -236,7 +236,33 @@ const NEW_NEGATIVES = [
   'ferax',
   'geert schaaij',
   'vrijheid vastgoed',
-  'fastned'
+  'fastned',
+  // T3 phrase-match leak (1 Oct 2026 search terms) — do NOT add bare
+  // "beleggen" / "te koop": those block T1/T2 keywords as broad negatives
+  'huis kopen',
+  'huizen kopen',
+  'woning kopen',
+  'funda',
+  'bankbeslag',
+  'estepona',
+  'torremolinos',
+  'frigiliana',
+  'aspe',
+  'la nucia',
+  'denemarken',
+  'frankrijk',
+  'italie',
+  'italië',
+  'griekenland',
+  'hongarije',
+  'montenegro',
+  'marokko',
+  'antwerpen',
+  'kust',
+  'aan zee',
+  'waar kan je',
+  'het beste in beleggen',
+  'geld investeren'
 ];
 
 function assertLengths(rsa, label) {
