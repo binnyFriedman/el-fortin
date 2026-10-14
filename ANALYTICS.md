@@ -152,6 +152,38 @@ GROUP BY channel
 ORDER BY visits DESC;
 ```
 
+**What is stopping them.** Hesitation dialog every page load (7s, scroll ≥40%,
+or exit intent — whichever first). `door_opened` with `hesitation_scroll` /
+`hesitation_time` / `hesitation_exit` is the show; `fear_selected` is the tap
+(foreign / visit / developer).
+
+```sql
+SELECT door_id, COUNT(DISTINCT visit_id) AS visits
+FROM site_events
+WHERE event = 'door_opened' AND door_id LIKE 'hesitation_%'
+GROUP BY door_id
+ORDER BY visits DESC;
+```
+
+```sql
+SELECT fear_id, COUNT(DISTINCT visit_id) AS visits
+FROM site_events
+WHERE event = 'fear_selected'
+GROUP BY fear_id
+ORDER BY visits DESC;
+```
+
+Paid traffic only:
+
+```sql
+SELECT fear_id, COUNT(DISTINCT visit_id) AS visits
+FROM site_events
+WHERE event = 'fear_selected'
+  AND (utm_source = 'google' OR utm_campaign = 'ef-search-nl-investor')
+GROUP BY fear_id
+ORDER BY visits DESC;
+```
+
 **Campaign quality.** Visits and stored leads per campaign. Compare with what
 Ads reports as **Submit lead form**; they should track closely, allowing for
 visitors who rejected analytics.

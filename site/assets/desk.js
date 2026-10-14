@@ -41,6 +41,19 @@
       openFullPage: "Open full page",
       openedBeside: "Opened in another window. This page is still here.",
       windowBlocked: "Your browser blocked the window. Use the button below — this page will stay put.",
+      fearAnswers: {
+        foreign:
+          "You take escritura to a named apartment. Tax depends on your situation — counsel can be introduced.",
+        visit:
+          "The building is in Riba-roja de Túria. A visit can be arranged by WhatsApp or a booked call.",
+        developer:
+          "Lives in Riba-roja. Delivered El Fortín de Puzol in August 2025. Stays as operator after sale.",
+      },
+      fearPrefill: {
+        foreign: "I want to understand investing in Spain as a foreigner.",
+        visit: "I would like to see the site in person before deciding.",
+        developer: "I want to understand who the developer is and their track record.",
+      },
     },
     nl: {
       submit: "Verstuur naar Uriel",
@@ -55,6 +68,19 @@
       openFullPage: "Open de volledige pagina",
       openedBeside: "Geopend in een nieuw venster. Deze pagina blijft hier staan.",
       windowBlocked: "Uw browser blokkeerde het nieuwe venster. Gebruik de knop hieronder; deze pagina blijft hier staan.",
+      fearAnswers: {
+        foreign:
+          "U krijgt escritura op een specifiek appartement. Belasting hangt van uw situatie af — een adviseur kan worden voorgesteld.",
+        visit:
+          "Het gebouw staat in Riba-roja de Túria. Een bezoek kan via WhatsApp of een gepland gesprek.",
+        developer:
+          "Woont in Riba-roja. Leverde El Fortín de Puzol op in augustus 2025. Blijft na verkoop de exploitant.",
+      },
+      fearPrefill: {
+        foreign: "Ik wil begrijpen wat beleggen in Spanje als buitenlander betekent.",
+        visit: "Ik wil het project eerst zelf zien voordat ik verder ga.",
+        developer: "Ik wil weten wie de ontwikkelaar is en wat de staat van dienst is.",
+      },
     },
   }[LOCALE.indexOf("nl") === 0 ? "nl" : "en"];
 
@@ -591,13 +617,208 @@
         track("handoff_opened", { channel: channel, cta_id: id });
       }
       /* Any CTA can be the last thing that happens on this page — the deal
-         sheet navigates away — so never leave the click sitting in the queue. */
+         sheet navigates away — so never leave the click sitting in the void. */
       flushAnalytics();
     });
   }
 
+  /* Hesitation pulse as a dialog: time, scroll, or exit intent.
+     Fires every page load (once per load). analytics.js records fear_selected. */
+  function initHesitation() {
+    var dialog = document.querySelector("[data-hesitation]");
+    if (!dialog) return;
+
+    var SCROLL_PCT = 40;
+    var TIME_MS = 7000;
+    var EXIT_ARM_MS = 3000;
+
+    var answer = dialog.querySelector("[data-fear-answer]");
+    var next = dialog.querySelector(".hesitation__next");
+    var questions = document.getElementById("f-questions");
+    var whatsapp = document.querySelector("[data-hesitation-whatsapp]");
+    var email = document.querySelector("[data-hesitation-email]");
+    var answers = COPY.fearAnswers || {};
+    var prefills = COPY.fearPrefill || {};
+    var whatsappBase = whatsapp ? whatsapp.getAttribute("href") : "";
+    var emailBase = email ? email.getAttribute("href") : "";
+    var consumed = false;
+    var armedExit = false;
+    var timeTimer = null;
+    var retryTimer = null;
+    var pendingTrigger = "";
+
+    try {
+      sessionStorage.removeItem("ef_hesitation_shown");
+    } catch (_) {}
+
+    function otherDialogOpen() {
+      return !!document.querySelector("dialog[open]:not([data-hesitation])");
+    }
+
+    function close() {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    }
+
+    function showDialog(trigger) {
+      if (dialog.open) return;
+      if (otherDialogOpen()) {
+        pendingTrigger = trigger || pendingTrigger || "time";
+        if (!retryTimer) {
+          retryTimer = setInterval(function () {
+            if (consumed) {
+              clearInterval(retryTimer);
+              retryTimer = null;
+              return;
+            }
+            if (!otherDialogOpen()) {
+              clearInterval(retryTimer);
+              retryTimer = null;
+              showDialog(pendingTrigger);
+            }
+          }, 500);
+        }
+        return;
+      }
+
+      consumed = true;
+      teardownTriggers();
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+
+      track("door_opened", {
+        door_id: "hesitation_" + (trigger || "time"),
+        idempotency_key: visitId() + ":hesitation:" + Date.now(),
+      });
+      flushAnalytics();
+    }
+
+    function open(trigger) {
+      if (consumed || dialog.open) return;
+      showDialog(trigger);
+    }
+
+    function scrollPct() {
+      var doc = document.documentElement;
+      var body = document.body;
+      var scrollTop = window.scrollY || doc.scrollTop || body.scrollTop || 0;
+      var height = Math.max(doc.scrollHeight, body.scrollHeight) - window.innerHeight;
+      if (height <= 0) return 100;
+      return (scrollTop / height) * 100;
+    }
+
+    function onScroll() {
+      if (scrollPct() >= SCROLL_PCT) open("scroll");
+    }
+
+    /* Canonical exit-intent: document mouseout with no relatedTarget/toElement
+       and cursor near the top of the viewport (tabs / close). Desktop only. */
+    function onExitIntent(event) {
+      if (!armedExit || consumed) return;
+      if (event.toElement || event.relatedTarget) return;
+      if (event.clientY >= 10) return;
+      open("exit");
+    }
+
+    function teardownTriggers() {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("mouseout", onExitIntent);
+      if (timeTimer) clearTimeout(timeTimer);
+      timeTimer = null;
+    }
+
+    function syncHandoffLinks(label, seed) {
+      var note = seed || label;
+      if (whatsapp && whatsappBase) {
+        whatsapp.setAttribute(
+          "href",
+          note
+            ? "https://wa.me/" + URIEL_WHATSAPP + "?text=" + encodeURIComponent(note)
+            : whatsappBase
+        );
+      }
+      if (email && emailBase) {
+        if (!note) {
+          email.setAttribute("href", emailBase);
+          return;
+        }
+        var subject =
+          LOCALE.indexOf("nl") === 0 ? "Vraag over El Fortín" : "El Fortín enquiry";
+        email.setAttribute(
+          "href",
+          "mailto:uriel.nabel@elfortincapital.com" +
+            "?subject=" +
+            encodeURIComponent(subject) +
+            "&body=" +
+            encodeURIComponent(note)
+        );
+      }
+    }
+
+    dialog.querySelectorAll("[data-hesitation-close]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        close();
+      });
+    });
+    dialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      close();
+    });
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) close();
+    });
+
+    dialog.querySelectorAll(".fear-btn").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", "false");
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-fear");
+        var label = btn.textContent.trim();
+        dialog.querySelectorAll(".fear-btn").forEach(function (b) {
+          b.classList.toggle("selected", b === btn);
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+
+        var text = answers[id] || "";
+        if (answer) {
+          if (text) {
+            answer.hidden = false;
+            answer.textContent = text;
+          } else {
+            answer.hidden = true;
+            answer.textContent = "";
+          }
+        }
+        if (next) next.hidden = false;
+
+        var seed = "";
+        if (questions && Object.prototype.hasOwnProperty.call(prefills, id)) {
+          seed = prefills[id];
+          if (!questions.value.trim() || questions.getAttribute("data-fear-seeded") === "1") {
+            questions.value = seed;
+            questions.setAttribute("data-fear-seeded", seed ? "1" : "0");
+          } else {
+            seed = questions.value.trim();
+          }
+        }
+
+        syncHandoffLinks(label, seed);
+        flushAnalytics();
+      });
+    });
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    timeTimer = setTimeout(function () {
+      open("time");
+    }, TIME_MS);
+    setTimeout(function () {
+      armedExit = true;
+      document.addEventListener("mouseout", onExitIntent);
+    }, EXIT_ARM_MS);
+  }
+
   initMasthead();
   initForm();
+  initHesitation();
   initMapDialog();
   initExternalLinks();
   initAlbum("listing-photos", "data-listing-open", "data-listing-close");

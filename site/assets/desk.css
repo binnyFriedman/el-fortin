@@ -914,6 +914,115 @@ main > section[id] {
   text-decoration-color: var(--brass-light);
   text-decoration-thickness: 2px;
 }
+/* Hesitation pulse — dialog, not a page section. */
+.hesitation-dialog {
+  max-width: min(720px, calc(100vw - 20px));
+  width: 100%;
+}
+.hesitation-dialog .map-dialog__head {
+  padding: 22px 24px 18px;
+  align-items: flex-start;
+}
+.hesitation-dialog .map-dialog__head h2 {
+  font-family: inherit;
+  font-size: clamp(1.5rem, 4.2vw, 2rem);
+  font-weight: 500;
+  font-stretch: 100%;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  max-width: 28ch;
+}
+.hesitation-dialog .map-dialog__close {
+  width: 48px;
+  height: 48px;
+  font-size: 1.75rem;
+}
+.hesitation__body {
+  display: grid;
+  gap: 22px;
+  padding: 8px 24px 28px;
+}
+.hesitation__ask {
+  margin: 0;
+  font-family: var(--plates);
+  font-size: clamp(1.0625rem, 2.4vw, 1.1875rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--paper-on-walnut);
+  max-width: 42rem;
+}
+.fear-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.fear-btn {
+  appearance: none;
+  margin: 0;
+  min-height: 3.25rem;
+  padding: 14px 18px;
+  border: 1.5px solid rgba(176, 141, 87, 0.65);
+  border-radius: 0;
+  background: rgba(239, 230, 210, 0.04);
+  color: var(--ledger);
+  font-family: var(--plates);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.fear-btn:hover {
+  border-color: var(--brass-light);
+  background: rgba(176, 141, 87, 0.14);
+  color: var(--brass-light);
+}
+.fear-btn:focus-visible {
+  outline: 2px solid var(--brass-light);
+  outline-offset: 2px;
+}
+.fear-btn.selected {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--walnut-deep);
+}
+.hesitation__answer {
+  margin: 0;
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(176, 141, 87, 0.28);
+  font-family: var(--plates);
+  font-size: clamp(1.0625rem, 2.2vw, 1.125rem);
+  line-height: 1.55;
+  color: var(--ledger);
+}
+.hesitation__next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  min-height: 3.25rem;
+  padding: 0 22px;
+  background: var(--brass);
+  color: var(--walnut-deep);
+  font-family: var(--plates);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.hesitation__next:hover,
+.hesitation__next:focus-visible {
+  background: var(--brass-light);
+  color: var(--walnut-deep);
+  text-decoration: none;
+}
+.hesitation__next:focus-visible {
+  outline: 2px solid var(--ledger);
+  outline-offset: 2px;
+}
 .form {
   display: grid;
   gap: 28px;

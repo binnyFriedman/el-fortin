@@ -39,7 +39,7 @@
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-variable-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/libre-caslon-text-400-latin.woff2" crossorigin />
     <link rel="preload" as="image" href="assets/hero-riba-roja-drone.webp" />
-    <link rel="stylesheet" href="assets/desk.css?v=afm3" />
+    <link rel="stylesheet" href="assets/desk.css?v=hesitation6" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -396,8 +396,8 @@
             </div>
           </div>
           <p class="guestbook__direct">
-            <a href="mailto:uriel.nabel@elfortincapital.com" data-cta="direct_email" data-cta-channel="email">uriel.nabel@elfortincapital.com</a><br />
-            <a href="https://wa.me/34626459818" target="_blank" rel="noopener noreferrer" data-cta="direct_whatsapp" data-cta-channel="whatsapp">WhatsApp +34 626 459 818</a><br />
+            <a href="mailto:uriel.nabel@elfortincapital.com" data-cta="direct_email" data-cta-channel="email" data-hesitation-email>uriel.nabel@elfortincapital.com</a><br />
+            <a href="https://wa.me/34626459818" target="_blank" rel="noopener noreferrer" data-cta="direct_whatsapp" data-cta-channel="whatsapp" data-hesitation-whatsapp>WhatsApp +34 626 459 818</a><br />
             <a href="https://calendar.app.google/R9LJvZFYTPwuXNw7A" target="_blank" rel="noopener noreferrer" data-cta="direct_calendar" data-cta-channel="calendar">Plan een gesprek</a>
           </p>
         </div>
@@ -575,12 +575,39 @@
       </div>
     </dialog>
 
+    <dialog
+      class="map-dialog hesitation-dialog"
+      id="hesitation"
+      aria-labelledby="hesitation-title"
+      aria-describedby="hesitation-ask"
+      data-hesitation
+    >
+      <div class="map-dialog__panel hesitation__panel">
+        <header class="map-dialog__head">
+          <h2 id="hesitation-title">Wat houdt u tegen?</h2>
+          <button type="button" class="map-dialog__close" data-hesitation-close aria-label="Sluiten">
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="hesitation__body">
+          <p class="hesitation__ask" id="hesitation-ask">Eén tik. Geen gegevens.</p>
+          <div class="fear-row" role="group" aria-label="Wat houdt u tegen">
+            <button type="button" class="fear-btn" data-fear="foreign">Beleggen in Spanje als buitenlander</button>
+            <button type="button" class="fear-btn" data-fear="visit">Eerst zelf gaan kijken</button>
+            <button type="button" class="fear-btn" data-fear="developer">Onbekende ontwikkelaar vertrouwen</button>
+          </div>
+          <p class="hesitation__answer" data-fear-answer hidden></p>
+          <a class="hesitation__next" href="#guestbook" data-cta="hesitation_to_contact" data-hesitation-close hidden>Stel een vraag</a>
+        </div>
+      </div>
+    </dialog>
+
     <script>
       window.__EF_PAGE__ = { pageId: "home_nl", pageVersion: "desk", locale: "nl" };
     </script>
     <!-- Ads + contact: only in assets/ef-config.js (single source). -->
     <script src="assets/ef-config.js?v=ads180988"></script>
-    <script src="assets/desk.js?v=map-open" defer></script>
+    <script src="assets/desk.js?v=hesitation9" defer></script>
     <script src="assets/analytics.js?v=measure" defer></script>
   </body>
 </html>
