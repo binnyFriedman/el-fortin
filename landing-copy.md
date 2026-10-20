@@ -29,7 +29,7 @@ Principle: the page is an appetiser. Enough to take a call. Nothing that belongs
 
 **Body:**
 
-Rental demand in Riba-roja is high. Income from ten apartments is pooled, so a vacant month in one apartment does not appear on your statement. You own a specific apartment, registered in your name.
+Rental demand in Riba-roja is high. Income from ten apartments is pooled. You own a specific apartment, registered in your name.
 
 **Figures:**
 

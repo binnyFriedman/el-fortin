@@ -60,7 +60,7 @@ Schrijfwijze: `€ 236.000` (punt als duizendscheiding, spatie na het teken), `4
 
 **Tekst:**
 
-In Riba-roja is de vraag naar huurwoningen groot. De huurinkomsten van alle tien appartementen worden samengevoegd: staat uw appartement een maand leeg, dan merkt u dat niet in uw afrekening. U koopt één specifiek appartement, ingeschreven op uw naam.
+In Riba-roja is de vraag naar huurwoningen groot. De huurinkomsten van alle tien appartementen worden samengevoegd. U koopt één specifiek appartement, ingeschreven op uw naam.
 
 **Cijfers:**
 

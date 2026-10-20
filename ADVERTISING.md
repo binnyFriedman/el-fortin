@@ -44,9 +44,9 @@ Rebuilt by `tools/google-ads/rebuild-v3.mjs` from the pull in `keyword-planner-i
 | 1 | NL \| T1 Capital passief inkomen | €5.00 | Exact: investeren/beleggen in vastgoed, passief inkomen, spaargeld, box 3, alternatief spaarrekening |
 | 2 | NL \| T2 Tangible deeded asset | €3.00 | Exact + phrase: beleggingspand, investeren in stenen, verhuurd vastgoed kopen |
 | 3 | NL \| T3 Foreign RE investment | €1.50 | Exact + phrase: vastgoed buitenland, vastgoed spanje, investeren in vastgoed spanje |
-| 4 | NL \| T4 Appartement kopen Valencia | €0.40 | Cheap Spain-property; ad copy filters home-shoppers |
 | 1 EN | EN \| T1 Property investment | €2.50 | property investment spain/europe, passive income property |
-| 4 EN | EN \| T4 Apartments for sale Valencia | €0.40 | buy apartment valencia |
+
+T4 is off. `NL | T4 Appartement kopen Valencia` and `EN | T4 Apartments for sale Valencia` were removed 18 Oct 2026. Those clicks left on the opening and never reached the price. Do not turn them back on.
 
 Final URL: Dutch groups → `/index-nl`, English → `/`. UTM: `utm_campaign=ef-search-nl-investor&utm_content={adgroupid}&utm_term={keyword}`.
 
@@ -64,6 +64,7 @@ Landing page is unchanged. The ad carries the terms; the page's rendement sectio
 
 - €40 / day for 21 days (~€840). Investor CPCs need the room; €15/day would starve Tier 1.
 - Manual CPC throughout. Revisit Max Conversions after ~15 leads.
+- Glance: `cd tools/google-ads && npm run dashboard` — leads out of 3, then each ad group: how far people read, where they leave, and whether to keep the ad. `-- --no-open` writes the file only.
 - Weekly: `node tools/google-ads/weekly-review.mjs` — search terms, promote converters to exact, add negatives (`--add-negatives "term1,term2"`), read D1 funnel by `utm_content` (queries printed by the script; see `ANALYTICS.md`).
 - Stop: new misleading-content flag, or 150 clicks in T1–T3 with no form.
 - Success: 3 leads and 1 call in 21 days — not a click count.

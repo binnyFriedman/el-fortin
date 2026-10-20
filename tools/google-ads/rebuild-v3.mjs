@@ -3,11 +3,12 @@
 /**
  * Rebuilds campaign 24259919998 into v3: investor-intent Search (NL only).
  *
- * Four CPC-capped tiers from keyword-planner-investor.json:
+ * Three CPC-capped tiers from keyword-planner-investor.json:
  *   1. Capital / passive income     — exact, ~EUR 5
  *   2. Tangible / deeded asset      — exact + phrase, ~EUR 3
  *   3. Foreign RE as investment     — exact + phrase, ~EUR 1.50
- *   4. Spain property (ad filters)  — exact + phrase, ~EUR 0.40
+ * T4 (appartement / apartments for sale Valencia) was removed 18 Oct 2026.
+ * Those clicks left on the opening and never reached the price.
  *
  * Campaign stays PAUSED. Ad groups and ads are ENABLED so one flip launches.
  * Belgium geo is removed. Daily budget set to EUR 40.
@@ -106,31 +107,20 @@ const AD_GROUPS = [
     rsa: RSA_NL,
     finalUrl: FINAL_URL_NL,
     keywords: [
-      ...both('vastgoed buitenland'),
+      // Exact only for bare "vastgoed + Spain/abroad" — phrase match pulled
+      // home-shoppers (huis te koop, €50k, zwembad). Paused live 8 Oct 2026.
+      kw('vastgoed buitenland'),
+      kw('vastgoed spanje'),
+      kw('vastgoed in spanje'),
       ...both('investeren in buitenlands vastgoed'),
       ...both('beleggen in vastgoed buitenland'),
       ...both('investeren in vastgoed spanje'),
-      ...both('vastgoed spanje'),
-      ...both('vastgoed in spanje'),
       kw('vastgoed kopen buitenland'),
       kw('huis kopen spanje voor verhuur'),
       kw('appartement kopen spanje voor verhuur'),
       kw('beleggingspand spanje'),
       kw('beleggingsappartement spanje'),
       kw('huurrendement spanje')
-    ]
-  },
-  {
-    name: 'NL | T4 Appartement kopen Valencia',
-    cpcEur: 0.4,
-    rsa: RSA_NL,
-    finalUrl: FINAL_URL_NL,
-    keywords: [
-      ...both('appartement kopen valencia'),
-      kw('appartement kopen in valencia'),
-      kw('appartement valencia kopen'),
-      kw('appartement te koop valencia'),
-      ...both('appartement kopen spanje')
     ]
   },
   {
@@ -148,19 +138,6 @@ const AD_GROUPS = [
       kw('foreign property investment'),
       kw('buy to let spain'),
       kw('buy to let europe')
-    ]
-  },
-  {
-    name: 'EN | T4 Apartments for sale Valencia',
-    cpcEur: 0.4,
-    rsa: RSA_EN,
-    finalUrl: FINAL_URL_EN,
-    keywords: [
-      ...both('apartments for sale valencia'),
-      kw('apartments for sale in valencia spain'),
-      kw('buy apartment in valencia'),
-      kw('buy apartment valencia'),
-      kw('apartments to buy in valencia')
     ]
   }
 ];
@@ -240,8 +217,23 @@ const NEW_NEGATIVES = [
   // T3 phrase-match leak (1 Oct 2026 search terms) — do NOT add bare
   // "beleggen" / "te koop": those block T1/T2 keywords as broad negatives
   'huis kopen',
+  'huis te koop',
   'huizen kopen',
   'woning kopen',
+  'appartement te koop',
+  'zwembad',
+  'landhuis',
+  'grotwoning',
+  'landgoed',
+  'bouwgrond',
+  'casa rural',
+  'vakantiehuisje',
+  'b en b',
+  'portugal',
+  'sax spanje',
+  '50.000',
+  '70.000',
+  '150.000',
   'funda',
   'bankbeslag',
   'estepona',
