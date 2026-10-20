@@ -273,6 +273,33 @@
         ],
         "createdAt": "2026-09-22T21:55:35.918Z",
         "reason": "The repeated sentence is the AFM prescribed exemption notice, which the preview must show on every impression."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/expanded-nl.html"
+        ],
+        "createdAt": "2026-10-20T11:25:53.146Z",
+        "reason": "Agent: Dutch copy of the shipped long page; type scale lives in desk-long.css, already used by site/expanded.html"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/expanded-nl.html"
+        ],
+        "createdAt": "2026-10-20T11:26:58.058Z",
+        "reason": "Agent: spacing comes from the shipped desk-long.css used by site/expanded.html; the detector scored markup before that stylesheet"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "site/expanded-nl.html"
+        ],
+        "createdAt": "2026-10-20T11:27:33.971Z",
+        "reason": "Agent: the guest listing is the same card layout already shipped on site/expanded.html; this file is the Dutch copy"
       }
     ]
   }

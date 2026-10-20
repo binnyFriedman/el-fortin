@@ -997,6 +997,10 @@ main > section[id] {
   line-height: 1.55;
   color: var(--ledger);
 }
+.hesitation__answer[hidden],
+.hesitation__next[hidden] {
+  display: none;
+}
 .hesitation__next {
   display: inline-flex;
   align-items: center;

@@ -13,6 +13,7 @@
  *   node weekly-review.mjs --add-negatives "cursus,boek"   # campaign negatives
  */
 
+import { campaignIds } from './campaigns.mjs';
 import { googleAdsRequest, normalizeCustomerId } from './client.mjs';
 
 const managerCustomerId = normalizeCustomerId(
@@ -22,7 +23,9 @@ const customerId = normalizeCustomerId(
   process.env.GOOGLE_ADS_CUSTOMER_ID || '664-073-0266'
 );
 const customer = `customers/${customerId}`;
-const CAMPAIGN_ID = process.env.GOOGLE_ADS_CAMPAIGN_ID || '24259919998';
+const CAMPAIGN_IDS = campaignIds();
+const CAMPAIGN_ID = CAMPAIGN_IDS[0];
+const CAMPAIGN_IN = CAMPAIGN_IDS.join(', ');
 
 const args = process.argv.slice(2);
 const daysIdx = args.indexOf('--days');
@@ -53,16 +56,16 @@ const during = ` AND segments.date DURING LAST_${DAYS}_DAYS`;
 
 const [campaignRows, adGroupRows, termRows, negativeRows] = await Promise.all([
   search(`
-    SELECT campaign.name, campaign.status, metrics.impressions, metrics.clicks,
+    SELECT campaign.id, campaign.name, campaign.status, metrics.impressions, metrics.clicks,
            metrics.cost_micros, metrics.conversions
     FROM campaign
-    WHERE campaign.id = ${CAMPAIGN_ID}${during}
+    WHERE campaign.id IN (${CAMPAIGN_IN})${during}
   `),
   search(`
     SELECT ad_group.id, ad_group.name, ad_group.status, ad_group.cpc_bid_micros,
            metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
     FROM ad_group
-    WHERE campaign.id = ${CAMPAIGN_ID} AND ad_group.status != 'REMOVED'${during}
+    WHERE campaign.id IN (${CAMPAIGN_IN}) AND ad_group.status != 'REMOVED'${during}
     ORDER BY metrics.cost_micros DESC
   `),
   search(`
@@ -70,7 +73,7 @@ const [campaignRows, adGroupRows, termRows, negativeRows] = await Promise.all([
            segments.keyword.info.text, segments.keyword.info.match_type,
            metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
     FROM search_term_view
-    WHERE campaign.id = ${CAMPAIGN_ID}${during}
+    WHERE campaign.id IN (${CAMPAIGN_IN})${during}
     ORDER BY metrics.cost_micros DESC
   `),
   search(`
@@ -88,14 +91,14 @@ const existingNegatives = new Set(
 );
 
 console.log(`# Weekly review — last ${DAYS} days`);
-console.log(`Campaign ${CAMPAIGN_ID}\n`);
+console.log(`Campaigns ${CAMPAIGN_IDS.join(', ')}\n`);
 
-const camp = campaignRows[0];
-if (camp) {
-  console.log('## Campaign');
+console.log('## Campaigns');
+for (const camp of campaignRows) {
   console.log(
     JSON.stringify(
       {
+        id: camp.campaign.id,
         name: camp.campaign.name,
         status: camp.campaign.status,
         impressions: Number(camp.metrics?.impressions || 0),
@@ -209,7 +212,7 @@ SELECT COALESCE(utm_content, '(none)') AS ad_group_id,
        COUNT(DISTINCT CASE WHEN event = 'page_view' THEN visit_id END) AS visits,
        COUNT(DISTINCT CASE WHEN event = 'form_submitted' THEN visit_id END) AS leads
 FROM site_events
-WHERE utm_campaign = 'ef-search-nl-investor'
+WHERE utm_campaign IN ('ef-search-nl-investor', 'ef-search-nl-investor-b')
    OR utm_source = 'google'
 GROUP BY ad_group_id
 ORDER BY visits DESC;
@@ -221,10 +224,12 @@ WITH ranked AS (
   SELECT visit_id, section_id,
          ROW_NUMBER() OVER (PARTITION BY visit_id ORDER BY occurred_at DESC) AS rn
   FROM site_events
-  WHERE event = 'section_seen' AND page_id = 'home'
+  WHERE event = 'section_seen' AND page_id IN ('home_nl', 'home', 'expanded_nl')
     AND visit_id IN (
       SELECT DISTINCT visit_id FROM site_events
-      WHERE event = 'page_view' AND utm_campaign = 'ef-search-nl-investor'
+      WHERE event = 'page_view'
+        AND (utm_campaign IN ('ef-search-nl-investor', 'ef-search-nl-investor-b')
+             OR utm_source = 'google')
     )
 )
 SELECT section_id AS died_on, COUNT(*) AS visits

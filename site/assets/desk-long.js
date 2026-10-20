@@ -19,6 +19,81 @@
   /* Offered only if we could not record the note. */
   var URIEL_WHATSAPP = "34626459818";
 
+  var LOCALE = String(
+    (window.__EF_PAGE__ || {}).locale || document.documentElement.lang || "en"
+  ).toLowerCase();
+
+  var COPY = {
+    en: {
+      submit: "Send to Uriel",
+      sendingButton: "Sending…",
+      sendingStatus: "Sending your note to Uriel…",
+      captureFailed: "We could not record your note. ",
+      captureFailedWhatsapp: "Write on WhatsApp instead",
+      captureFailedRetry: ", or try again.",
+      receivedFallback: "Your message was received. Uriel will be in touch.",
+      externalLink: "External link",
+      externalSite: "External site",
+      openFullPage: "Open full page",
+      openedBeside: "Opened in another window. This page is still here.",
+      windowBlocked: "Your browser blocked the window. Use the button below — this page will stay put.",
+      greeting: "Hello Uriel,",
+      nameLabel: "Name",
+      emailLabel: "Email",
+      phoneLabel: "Phone",
+      interestedLabel: "Interested in",
+      questionsLabel: "Questions:",
+      sentFrom: "Sent from the El Fortín Riba-roja page.",
+      fearAnswers: {
+        foreign:
+          "You take escritura to a named apartment. Tax depends on your situation — counsel can be introduced.",
+        visit:
+          "The building is in Riba-roja de Túria. A visit can be arranged by WhatsApp or a booked call.",
+        developer:
+          "Lives in Riba-roja. Delivered El Fortín de Puzol in August 2025. Stays as operator after sale.",
+      },
+      fearPrefill: {
+        foreign: "I want to understand investing in Spain as a foreigner.",
+        visit: "I would like to see the site in person before deciding.",
+        developer: "I want to understand who the developer is and their track record.",
+      },
+    },
+    nl: {
+      submit: "Verstuur naar Uriel",
+      sendingButton: "Versturen…",
+      sendingStatus: "Uw bericht gaat naar Uriel…",
+      captureFailed: "Uw bericht is niet aangekomen. ",
+      captureFailedWhatsapp: "Stuur het via WhatsApp",
+      captureFailedRetry: ", of probeer het opnieuw.",
+      receivedFallback: "Uw bericht is ontvangen. Uriel neemt contact met u op.",
+      externalLink: "Externe link",
+      externalSite: "Externe site",
+      openFullPage: "Open de volledige pagina",
+      openedBeside: "Geopend in een nieuw venster. Deze pagina blijft hier staan.",
+      windowBlocked: "Uw browser blokkeerde het nieuwe venster. Gebruik de knop hieronder; deze pagina blijft hier staan.",
+      greeting: "Beste Uriel,",
+      nameLabel: "Naam",
+      emailLabel: "E-mail",
+      phoneLabel: "Telefoon",
+      interestedLabel: "Interesse in",
+      questionsLabel: "Vragen:",
+      sentFrom: "Verstuurd vanaf de pagina van El Fortín Riba-roja.",
+      fearAnswers: {
+        foreign:
+          "U krijgt escritura op een specifiek appartement. Belasting hangt van uw situatie af — een adviseur kan worden voorgesteld.",
+        visit:
+          "Het gebouw staat in Riba-roja de Túria. Een bezoek kan via WhatsApp of een gepland gesprek.",
+        developer:
+          "Woont in Riba-roja. Leverde El Fortín de Puzol op in augustus 2025. Blijft na verkoop de exploitant.",
+      },
+      fearPrefill: {
+        foreign: "Ik wil begrijpen wat beleggen in Spanje als buitenlander betekent.",
+        visit: "Ik wil het project eerst zelf zien voordat ik verder ga.",
+        developer: "Ik wil weten wie de ontwikkelaar is en wat de staat van dienst is.",
+      },
+    },
+  }[LOCALE.indexOf("nl") === 0 ? "nl" : "en"];
+
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- masthead turns solid once the window has scrolled by ---------- */
@@ -127,15 +202,15 @@
 
   function composeMessage(data) {
     var lines = [
-      "Hello Uriel,",
+      COPY.greeting,
       "",
-      "Name: " + data.name,
-      "Email: " + data.email,
-      "Phone: " + data.phone,
+      COPY.nameLabel + ": " + data.name,
+      COPY.emailLabel + ": " + data.email,
+      COPY.phoneLabel + ": " + data.phone,
     ];
-    if (data.type) lines.push("Interested in: " + data.type);
-    if (data.questions) lines.push("", "Questions:", data.questions);
-    lines.push("", "Sent from the El Fortín Riba-roja page.");
+    if (data.type) lines.push(COPY.interestedLabel + ": " + data.type);
+    if (data.questions) lines.push("", COPY.questionsLabel, data.questions);
+    lines.push("", COPY.sentFrom);
     return lines.join("\n");
   }
 
@@ -213,7 +288,7 @@
 
     var status = form.querySelector("[data-status]");
     var submit = form.querySelector("[data-submit]");
-    var idleLabel = submit ? submit.textContent : "Send to Uriel";
+    var idleLabel = submit ? submit.textContent : COPY.submit;
     var received = document.getElementById("form-received");
     var receivedFocus = null;
 
@@ -251,14 +326,14 @@
       status.hidden = false;
       status.classList.add("is-error");
       status.textContent = "";
-      status.appendChild(document.createTextNode("We could not record your note. "));
+      status.appendChild(document.createTextNode(COPY.captureFailed));
       var wa = document.createElement("a");
       wa.href = whatsappUrl(data);
       wa.target = "_blank";
       wa.rel = "noopener noreferrer";
-      wa.textContent = "Write on WhatsApp instead";
+      wa.textContent = COPY.captureFailedWhatsapp;
       status.appendChild(wa);
-      status.appendChild(document.createTextNode(", or try again."));
+      status.appendChild(document.createTextNode(COPY.captureFailedRetry));
     }
 
     function idle() {
@@ -274,7 +349,7 @@
         status.classList.remove("is-error");
       }
       if (!received) {
-        showStatus("Your message was received. Uriel will be in touch.");
+        showStatus(COPY.receivedFallback);
         return;
       }
       receivedFocus = document.activeElement;
@@ -333,8 +408,8 @@
 
       if (!submit) return;
       submit.disabled = true;
-      submit.textContent = "Sending…";
-      showStatus("Sending your note to Uriel…");
+      submit.textContent = COPY.sendingButton;
+      showStatus(COPY.sendingStatus);
 
       captureLead(data)
         .then(function () {
@@ -494,7 +569,7 @@
       var text = (anchor.getAttribute("aria-label") || anchor.textContent || "").replace(/\s+/g, " ").trim();
       text = text.replace(/\s*\(opens in a (popup|new tab|new window)\)\s*$/i, "").trim();
       if (text && text.length < 80) return text;
-      return hostnameOf(url) || "External link";
+      return hostnameOf(url) || COPY.externalLink;
     }
 
     /* Open beside this page — never assign location.href (that would leave). */
@@ -512,7 +587,7 @@
         external.href = url;
         external.setAttribute("target", "_blank");
         external.setAttribute("rel", "noopener noreferrer");
-        external.textContent = "Open full page";
+        external.textContent = COPY.openFullPage;
       }
     }
 
@@ -542,7 +617,7 @@
       if (canEmbed(url) && frame) {
         if (fallback) fallback.hidden = true;
         frame.hidden = false;
-        frame.setAttribute("title", titleEl ? titleEl.textContent : "External site");
+        frame.setAttribute("title", titleEl ? titleEl.textContent : COPY.externalSite);
         frame.setAttribute("src", url);
         showDialog();
         return;
@@ -556,9 +631,7 @@
       var opened = openBeside(url);
       if (fallback) fallback.hidden = false;
       if (fallbackCopy) {
-        fallbackCopy.textContent = opened
-          ? "Opened in another window. This page is still here."
-          : "Your browser blocked the window. Use the button below — this page will stay put.";
+        fallbackCopy.textContent = opened ? COPY.openedBeside : COPY.windowBlocked;
       }
       showDialog();
     }
@@ -630,6 +703,193 @@
     });
   }
 
+  /* Hesitation pulse as a dialog: time, scroll, or exit intent.
+     Fires every page load (once per load). analytics.js records fear_selected. */
+  function initHesitation() {
+    var dialog = document.querySelector("[data-hesitation]");
+    if (!dialog) return;
+
+    var SCROLL_PCT = 40;
+    var TIME_MS = 7000;
+    var EXIT_ARM_MS = 3000;
+
+    var answer = dialog.querySelector("[data-fear-answer]");
+    var next = dialog.querySelector(".hesitation__next");
+    var questions = document.getElementById("f-questions");
+    var whatsapp = document.querySelector("[data-hesitation-whatsapp]");
+    var email = document.querySelector("[data-hesitation-email]");
+    var answers = COPY.fearAnswers || {};
+    var prefills = COPY.fearPrefill || {};
+    var whatsappBase = whatsapp ? whatsapp.getAttribute("href") : "";
+    var emailBase = email ? email.getAttribute("href") : "";
+    var consumed = false;
+    var armedExit = false;
+    var timeTimer = null;
+    var retryTimer = null;
+    var pendingTrigger = "";
+
+    function otherDialogOpen() {
+      return !!document.querySelector("dialog[open]:not([data-hesitation])");
+    }
+
+    function close() {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    }
+
+    function showDialog(trigger) {
+      if (dialog.open) return;
+      if (otherDialogOpen()) {
+        pendingTrigger = trigger || pendingTrigger || "time";
+        if (!retryTimer) {
+          retryTimer = setInterval(function () {
+            if (consumed) {
+              clearInterval(retryTimer);
+              retryTimer = null;
+              return;
+            }
+            if (!otherDialogOpen()) {
+              clearInterval(retryTimer);
+              retryTimer = null;
+              showDialog(pendingTrigger);
+            }
+          }, 500);
+        }
+        return;
+      }
+
+      consumed = true;
+      teardownTriggers();
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+
+      track("door_opened", {
+        door_id: "hesitation_" + (trigger || "time"),
+        idempotency_key: visitId() + ":hesitation:" + Date.now(),
+      });
+      flushAnalytics();
+    }
+
+    function open(trigger) {
+      if (consumed || dialog.open) return;
+      showDialog(trigger);
+    }
+
+    function scrollPct() {
+      var doc = document.documentElement;
+      var body = document.body;
+      var scrollTop = window.scrollY || doc.scrollTop || body.scrollTop || 0;
+      var height = Math.max(doc.scrollHeight, body.scrollHeight) - window.innerHeight;
+      if (height <= 0) return 100;
+      return (scrollTop / height) * 100;
+    }
+
+    function onScroll() {
+      if (scrollPct() >= SCROLL_PCT) open("scroll");
+    }
+
+    function onExitIntent(event) {
+      if (!armedExit || consumed) return;
+      if (event.toElement || event.relatedTarget) return;
+      if (event.clientY >= 10) return;
+      open("exit");
+    }
+
+    function teardownTriggers() {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("mouseout", onExitIntent);
+      if (timeTimer) clearTimeout(timeTimer);
+      timeTimer = null;
+    }
+
+    function syncHandoffLinks(label, seed) {
+      var note = seed || label;
+      if (whatsapp && whatsappBase) {
+        whatsapp.setAttribute(
+          "href",
+          note
+            ? "https://wa.me/" + URIEL_WHATSAPP + "?text=" + encodeURIComponent(note)
+            : whatsappBase
+        );
+      }
+      if (email && emailBase) {
+        if (!note) {
+          email.setAttribute("href", emailBase);
+          return;
+        }
+        var subject = LOCALE.indexOf("nl") === 0 ? "Vraag over El Fortín" : "El Fortín enquiry";
+        email.setAttribute(
+          "href",
+          "mailto:uriel.nabel@elfortincapital.com" +
+            "?subject=" +
+            encodeURIComponent(subject) +
+            "&body=" +
+            encodeURIComponent(note)
+        );
+      }
+    }
+
+    dialog.querySelectorAll("[data-hesitation-close]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        close();
+      });
+    });
+    dialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      close();
+    });
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) close();
+    });
+
+    dialog.querySelectorAll(".fear-btn").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", "false");
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-fear");
+        var label = btn.textContent.trim();
+        dialog.querySelectorAll(".fear-btn").forEach(function (b) {
+          b.classList.toggle("selected", b === btn);
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+
+        var text = answers[id] || "";
+        if (answer) {
+          if (text) {
+            answer.hidden = false;
+            answer.textContent = text;
+          } else {
+            answer.hidden = true;
+            answer.textContent = "";
+          }
+        }
+        if (next) next.hidden = false;
+
+        var seed = "";
+        if (questions && Object.prototype.hasOwnProperty.call(prefills, id)) {
+          seed = prefills[id];
+          if (!questions.value.trim() || questions.getAttribute("data-fear-seeded") === "1") {
+            questions.value = seed;
+            questions.setAttribute("data-fear-seeded", seed ? "1" : "0");
+          } else {
+            seed = questions.value.trim();
+          }
+        }
+
+        syncHandoffLinks(label, seed);
+        flushAnalytics();
+      });
+    });
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    timeTimer = setTimeout(function () {
+      open("time");
+    }, TIME_MS);
+    setTimeout(function () {
+      armedExit = true;
+      document.addEventListener("mouseout", onExitIntent);
+    }, EXIT_ARM_MS);
+  }
+
   function initAnalyticsCtas() {
     document.addEventListener("click", function (event) {
       var el = event.target.closest && event.target.closest("[data-cta]");
@@ -653,6 +913,7 @@
   initFlap();
   initCarousel();
   initForm();
+  initHesitation();
   initMapDialog();
   initExternalLinks();
   initAlbum("listing-photos", "data-listing-open", "data-listing-close");

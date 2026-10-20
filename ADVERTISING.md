@@ -68,3 +68,39 @@ Landing page is unchanged. The ad carries the terms; the page's rendement sectio
 - Weekly: `node tools/google-ads/weekly-review.mjs` — search terms, promote converters to exact, add negatives (`--add-negatives "term1,term2"`), read D1 funnel by `utm_content` (queries printed by the script; see `ANALYTICS.md`).
 - Stop: new misleading-content flag, or 150 clicks in T1–T3 with no form.
 - Success: 3 leads and 1 call in 21 days — not a click count.
+
+As of 20 Oct 2026 the pilot is on day 20 with 0 leads and about €264 of the €800 cap spent. The window closes without a lead. Keywords and ad copy stay as they are.
+
+## Phase 2: page experiment
+
+Same ads, same keywords, two landing pages. Control stays `/index-nl` (`page_id` `home_nl`). Treatment is `/expanded-nl` (`page_id` `expanded_nl`): the long page in Dutch, AFM strip included, numbers aligned with `facts.md`. The ask is the same form.
+
+Nothing points at `/expanded-nl` until three checks pass:
+
+1. The page is read on a phone and on a desktop, and the copy is approved.
+2. It is deployed, still unlinked from any ad. A test message arrives by email and Ads records **Submit lead form**. The test rows are deleted.
+3. The experiment exists as a draft in Ads → Experiments. Scheduling is a separate yes.
+
+Create the draft only after check 2:
+
+```sh
+cd tools/google-ads
+node experiment-expanded-nl.mjs --dry-run
+node experiment-expanded-nl.mjs --create
+```
+
+`--create` makes a Search experiment, 50/50, cookie split, on campaign `24259919998`. It copies the campaign into an in-design treatment, points the three NL ads at `/expanded-nl`, and sets the treatment suffix to `utm_campaign=ef-search-nl-investor-b`. The EN ad is left on `/`. It does not schedule. Ids land in `tools/google-ads/experiment-expanded-nl.json`, which the dashboard reads so spend covers both campaigns.
+
+Schedule only after check 3: `node experiment-expanded-nl.mjs --schedule`.
+
+If the API path fights back, build the same experiment in the Ads UI and write `{ "experimentResource", "treatmentCampaignId", "scheduled": false }` into that json file.
+
+Decision rule, fixed before the split starts:
+
+- Run until each arm has 40 consented visits, or 4 weeks, whichever first.
+- Primary: `form_started` + stored leads + WhatsApp/email taps, per consented visit.
+- Secondary: where the visit dies, and whether anyone stayed 15 seconds.
+- Early stop: one arm reaches 2 leads.
+- Otherwise no significance claim. Keep the arm with more of the primary metric and iterate on that page.
+
+The dashboard prints this as "Arm A vs Arm B" above the ad groups. Rollback is ending the experiment in Ads. The base campaign keeps 100% on `/index-nl`.

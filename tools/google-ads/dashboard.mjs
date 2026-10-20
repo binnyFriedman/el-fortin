@@ -13,6 +13,7 @@ import { writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { experimentState } from './campaigns.mjs';
 import { fetchAds } from './dashboard/ads.mjs';
 import { fetchD1 } from './dashboard/d1.mjs';
 import { renderDashboard } from './dashboard/render.mjs';
@@ -36,7 +37,12 @@ if (adsErrs.length) console.warn(`Ads partial errors: ${adsErrs.join(', ')}`);
 if (d1Errs.length) console.warn(`D1 partial errors: ${d1Errs.join(', ')}`);
 
 const generatedAt = new Date().toISOString().replace('T', ' ').slice(0, 19) + 'Z';
-const html = renderDashboard({ ads, d1, generatedAt });
+const html = renderDashboard({
+  ads,
+  d1,
+  generatedAt,
+  experiment: experimentState()
+});
 await writeFile(OUT, html, 'utf8');
 console.log(`Wrote ${OUT}`);
 
