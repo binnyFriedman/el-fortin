@@ -217,8 +217,8 @@ Toerisme rekent met 65% bezetting. Geen belofte. De balk erboven: 4% minimum, in
 
 **Bouw.** De bouw is voor 25% gereed. Drie foto's. Bouwvergunning Exp. 4497/2025/GEN · Res. 3658/2025, verleend 20 oktober 2025. Instapklaar augustus 2027. Inkomsten starten wanneer het gebouw opent.
 
-**Prijzen.** € 236.000 (appartementen 5–8, ~47 m²) en € 270.000 (1–4 en 9, ~57 m²), inclusief meubilair en apparatuur. Negen van de tien zijn nog beschikbaar. Vier gelijke termijnen van 25%. De 4% wordt berekend over de appartementsprijs, niet over de aankoopkosten.
+**Prijzen.** € 236.000 (appartementen 5–8, ~47 m²) en € 270.000 (1–4 en 9, ~57 m²), inclusief meubilair en apparatuur. Negen van de tien zijn nog beschikbaar. Vier gelijke termijnen van 25%.
 
-**Formulier en voettekst:** gelijk aan de korte pagina, inclusief de vergoedingen 8% / 10% / 15% in de voettekst.
+**Formulier:** gelijk aan de korte pagina. **Voettekst:** alleen het bedrijf, Privacy (Engels) en privacyinstellingen. De vergoedingen 8% / 10% / 15% staan al bij het verhuurprogramma.
 
-**Aarzeling.** Wat houdt u tegen? Beleggen in Spanje als buitenlander · Eerst zelf gaan kijken · Onbekende ontwikkelaar vertrouwen. Eén tik, geen gegevens.
+**Aarzeling.** Wat houdt u tegen? Beleggen in Spanje als buitenlander · Eerst zelf gaan kijken · Onbekende ontwikkelaar vertrouwen. Eén tik, geen gegevens. Op de lange pagina opent dit niet op een klok of bij scrollen. Alleen als iemand na 90 seconden naar de tabbalk beweegt.

@@ -158,8 +158,7 @@ GROUP BY channel
 ORDER BY visits DESC;
 ```
 
-**What is stopping them.** Hesitation dialog every page load (7s, scroll ≥40%,
-or exit intent — whichever first). `door_opened` with `hesitation_scroll` /
+**What is stopping them.** On the short pages, the hesitation dialog opens every load (7s, scroll ≥40%, or exit intent — whichever first). On the long page it waits: exit intent only, and only after 90s, so the read is not cut. `door_opened` with `hesitation_scroll` /
 `hesitation_time` / `hesitation_exit` is the show; `fear_selected` is the tap
 (foreign / visit / developer).
 

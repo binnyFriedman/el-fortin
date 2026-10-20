@@ -703,15 +703,14 @@
     });
   }
 
-  /* Hesitation pulse as a dialog: time, scroll, or exit intent.
-     Fires every page load (once per load). analytics.js records fear_selected. */
+  /* Hesitation on the long page does not interrupt the read.
+     No clock, no mid-page scroll. Exit intent only, after 90s.
+     analytics.js records fear_selected. */
   function initHesitation() {
     var dialog = document.querySelector("[data-hesitation]");
     if (!dialog) return;
 
-    var SCROLL_PCT = 40;
-    var TIME_MS = 7000;
-    var EXIT_ARM_MS = 3000;
+    var EXIT_ARM_MS = 90000;
 
     var answer = dialog.querySelector("[data-fear-answer]");
     var next = dialog.querySelector(".hesitation__next");
@@ -724,7 +723,6 @@
     var emailBase = email ? email.getAttribute("href") : "";
     var consumed = false;
     var armedExit = false;
-    var timeTimer = null;
     var retryTimer = null;
     var pendingTrigger = "";
 
@@ -775,19 +773,6 @@
       showDialog(trigger);
     }
 
-    function scrollPct() {
-      var doc = document.documentElement;
-      var body = document.body;
-      var scrollTop = window.scrollY || doc.scrollTop || body.scrollTop || 0;
-      var height = Math.max(doc.scrollHeight, body.scrollHeight) - window.innerHeight;
-      if (height <= 0) return 100;
-      return (scrollTop / height) * 100;
-    }
-
-    function onScroll() {
-      if (scrollPct() >= SCROLL_PCT) open("scroll");
-    }
-
     function onExitIntent(event) {
       if (!armedExit || consumed) return;
       if (event.toElement || event.relatedTarget) return;
@@ -796,10 +781,7 @@
     }
 
     function teardownTriggers() {
-      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onExitIntent);
-      if (timeTimer) clearTimeout(timeTimer);
-      timeTimer = null;
     }
 
     function syncHandoffLinks(label, seed) {
@@ -880,10 +862,6 @@
       });
     });
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    timeTimer = setTimeout(function () {
-      open("time");
-    }, TIME_MS);
     setTimeout(function () {
       armedExit = true;
       document.addEventListener("mouseout", onExitIntent);
