@@ -82,7 +82,34 @@
         developer: "Ik wil weten wie de ontwikkelaar is en wat de staat van dienst is.",
       },
     },
-  }[LOCALE.indexOf("nl") === 0 ? "nl" : "en"];
+    es: {
+      submit: "Enviar a Uriel",
+      sendingButton: "Enviando…",
+      sendingStatus: "Enviando su mensaje a Uriel…",
+      captureFailed: "No hemos podido registrar su mensaje. ",
+      captureFailedWhatsapp: "Escríbale por WhatsApp",
+      captureFailedRetry: ", o inténtelo de nuevo.",
+      receivedFallback: "Hemos recibido su mensaje. Uriel se pondrá en contacto con usted.",
+      externalLink: "Enlace externo",
+      externalSite: "Sitio externo",
+      openFullPage: "Abrir la página completa",
+      openedBeside: "Se ha abierto en otra ventana. Esta página sigue aquí.",
+      windowBlocked: "Su navegador ha bloqueado la ventana. Use el botón de abajo: esta página no se moverá.",
+      fearAnswers: {
+        foreign:
+          "La escritura es de un apartamento concreto, a su nombre. El impuesto depende de su situación; podemos presentarle a un asesor.",
+        visit:
+          "El edificio está en Riba-roja de Túria. La visita se puede concertar por WhatsApp o con una llamada.",
+        developer:
+          "Vive en Riba-roja. Entregó El Fortín de Puzol en agosto de 2025. Sigue como gestor después de la venta.",
+      },
+      fearPrefill: {
+        foreign: "Quiero entender qué supone invertir en España desde fuera.",
+        visit: "Me gustaría ver la obra antes de decidir.",
+        developer: "Quiero saber quién es el promotor y qué ha entregado.",
+      },
+    },
+  }[LOCALE.indexOf("es") === 0 ? "es" : LOCALE.indexOf("nl") === 0 ? "nl" : "en"];
 
   /* ---------- masthead turns solid once the window has scrolled by ---------- */
 

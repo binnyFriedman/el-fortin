@@ -273,6 +273,24 @@
         ],
         "createdAt": "2026-09-22T21:55:35.918Z",
         "reason": "The repeated sentence is the AFM prescribed exemption notice, which the preview must show on every impression."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/index-es.html"
+        ],
+        "createdAt": "2026-10-20T12:25:04.834Z",
+        "reason": "Agent: same Concierge Desk markup as site/index.html (Spain Spanish copy only); pre-write scan cannot resolve assets/desk.css so headings read unstyled. Same exception already recorded for site/index.html and site/index-nl.html"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index-es.html"
+        ],
+        "createdAt": "2026-10-20T12:26:05.682Z",
+        "reason": "Agent: same Concierge Desk markup as site/index.html (Spain Spanish copy only); sections pad with clamp()/var(--gutter) in assets/desk.css that the pre-write scan cannot resolve. Same exception already recorded for site/index.html and site/index-nl.html"
       }
     ]
   }
