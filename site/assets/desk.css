@@ -316,6 +316,7 @@ body:has(.afm-notice) .window {
   align-items: center;
   gap: 0.85em;
   min-width: 0;
+  flex-shrink: 0;
   font-family: var(--plates);
   font-weight: 400;
   font-stretch: 100%;
@@ -326,8 +327,10 @@ body:has(.afm-notice) .window {
 }
 .masthead__logo {
   display: block;
-  height: 36px;
+  height: clamp(28px, 9vw, 36px);
   width: auto;
+  max-width: none;
+  aspect-ratio: 350 / 100;
   flex-shrink: 0;
   transition: opacity 200ms var(--ease-out);
 }

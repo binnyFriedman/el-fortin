@@ -194,30 +194,32 @@ Nog niet vertaald, daarom gelabeld met "(Engels)": `sheet.html` en `privacy-poli
 
 Zelfde vraag als de korte pagina: het formulier. Meer grond eronder. Cijfers gelijk aan `facts.md` en aan `index-nl`.
 
+**Titel:** El Fortín Riba-roja — Een vastgoedbelegging in een kleinschalig nieuwbouwcomplex, op uw naam. "Kleinschalig" draagt wat "boutique" in het Engels doet; het Nederlandse "boetiek" is een winkel.
+
 **Hero:** U bent eigenaar. / Wij laten het renderen. Knop: Bekijk de belegging (naar het verhuurprogramma). Masthead: Factsheet (Engels) · Praat met Uriel. AFM-strook bovenaan, dezelfde als op `index-nl`.
 
-**Het gebouw.** Kop: Het gebouw staat in Riba-roja. Plaat: +44% woningprijzen in Riba-roja sinds 2022, Engel & Völkers. Tekst: oude kern, metrolijn 9 naar hartje Valencia, twaalf minuten van de luchthaven. Knop: Open de kaart.
+**Het gebouw.** Kop: Het gebouw staat in Riba-roja. Plaat: +44% woningprijzen in Riba-roja sinds 2022, Engel & Völkers. Tekst: oude kern, metrolijn 9 naar hartje Valencia, twaalf minuten van de luchthaven. Het gebouw staat in het hart van de oude kern. Knop: Open de kaart.
 
-**Verhuurprogramma.** Kop: Wij runnen één verhuurprogramma, niet tien losse verhuringen. De mix beweegt tussen lang verblijf, middellang en toerisme; wij bepalen die mix.
+**Verhuurprogramma.** Kop: Wij exploiteren één verhuurprogramma, niet tien losse verhuringen. De mix verschuift tussen lang verblijf, middellang verblijf en kort verblijf; wij bepalen die mix.
 
-| | Lang verblijf | Middellang | Toerisme |
+| | Lang verblijf | Middellang | Kort verblijf |
 | --- | --- | --- | --- |
 | Wie | Een huurder, langlopend contract | Mensen van de bedrijventerreinen, een paar maanden | Gasten, een paar nachten |
-| Vergoeding die maand | 8% | 10% | 15% |
-| Aangenomen huur, één slaapkamer | € 1.150 | € 1.400 | € 2.200 |
-| Aangenomen huur, twee slaapkamers | € 1.300 | € 1.650 | € 2.500 |
+| Vergoeding in die maand | 8% | 10% | 15% |
+| Veronderstelde huur, één slaapkamer | € 1.150 | € 1.400 | € 2.200 |
+| Veronderstelde huur, twee slaapkamers | € 1.300 | € 1.650 | € 2.500 |
 
-Toerisme rekent met 65% bezetting. Geen belofte. De balk erboven: 4% minimum, in het contract · 8% verwacht.
+Kort verblijf rekent met 65% bezetting. Dit is geen belofte. De balk erboven: 4% minimum, in het contract · 8% verwacht. De veronderstelde huren komen uit de projectberekening, vóór aftrek van vergoedingen en kosten.
 
 **Gastadvertentie**, dichtgevouwen. Nachttarief € 113, uit € 2.200 / (30 × 0,65). Onderschrift: artist impressions, exploitatie augustus 2027. De notities zijn voor de eigenaar: één architect, één meubelpakket, geen directe concurrentie in het centrum, wij schrijven de advertentie.
 
-**De akte.** U krijgt de akte. De huur van alle tien wordt samengevoegd en uitgekeerd naar verhouding van de waarde. Blijft het jaarrendement onder de 4%, dan betaalt de vennootschap het verschil.
+**De akte.** U krijgt de akte. De huurinkomsten van alle tien worden samengevoegd en naar rato van de waarde uitgekeerd. Blijft het jaarrendement onder de 4%, dan betaalt onze vennootschap het verschil.
 
-**Uriel.** Hier om te blijven. Woont in Riba-roja met vrouw en twee kinderen. In 2025 een huis van 100 jaar oud in Puzol gerestaureerd, opgeleverd augustus 2025. Eigen geld in dit gebouw. Team: Enlaza Arquitectura, NODHOUSES, Sofia Martin. Blijft de exploitant nadat de akte passeert.
+**Uriel.** Ik blijf hier. Woont in Riba-roja met vrouw en twee kinderen, en is de man achter El Fortín. In 2025 een huis van 100 jaar oud in Puzol gerestaureerd. Dat project is afgerond. Eigen geld in dit gebouw. Team aangetrokken: Enlaza Arquitectura, NODHOUSES, Sofia Martin. Blijft de exploitant nadat de akte passeert.
 
-**Bouw.** De bouw is voor 25% gereed. Drie foto's. Bouwvergunning Exp. 4497/2025/GEN · Res. 3658/2025, verleend 20 oktober 2025. Instapklaar augustus 2027. Inkomsten starten wanneer het gebouw opent.
+**Bouw.** De bouw is voor 25% gereed. Drie foto's. Bouwvergunning Exp. 4497/2025/GEN · Res. 3658/2025, verleend 20 oktober 2025. Instapklaar augustus 2027. De inkomsten beginnen wanneer het gebouw opent.
 
-**Prijzen.** € 236.000 (appartementen 5–8, ~47 m²) en € 270.000 (1–4 en 9, ~57 m²), inclusief meubilair en apparatuur. Negen van de tien zijn nog beschikbaar. Vier gelijke termijnen van 25%.
+**Prijzen.** € 236.000 (appartementen 5–8, ~47 m²) en € 270.000 (1–4 en 9, ~57 m²), inclusief meubilair en witgoed. Negen van de tien zijn nog beschikbaar. Vier gelijke termijnen van 25%. Termijnen 2 en 3: bouw 40% gereed, bouw 80% gereed.
 
 **Formulier:** gelijk aan de korte pagina. **Voettekst:** alleen het bedrijf, Privacy (Engels) en privacyinstellingen. De vergoedingen 8% / 10% / 15% staan al bij het verhuurprogramma.
 

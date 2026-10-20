@@ -80,11 +80,11 @@
       sentFrom: "Verstuurd vanaf de pagina van El Fortín Riba-roja.",
       fearAnswers: {
         foreign:
-          "U krijgt escritura op een specifiek appartement. Belasting hangt van uw situatie af — een adviseur kan worden voorgesteld.",
+          "U krijgt de akte van een specifiek appartement. Belasting hangt van uw situatie af — een adviseur kunnen we voorstellen.",
         visit:
-          "Het gebouw staat in Riba-roja de Túria. Een bezoek kan via WhatsApp of een gepland gesprek.",
+          "Het gebouw staat in Riba-roja de Túria. Een bezoek regelen we via WhatsApp of een gepland gesprek.",
         developer:
-          "Woont in Riba-roja. Leverde El Fortín de Puzol op in augustus 2025. Blijft na verkoop de exploitant.",
+          "Hij woont in Riba-roja. Hij leverde El Fortín de Puzol op in augustus 2025. Hij blijft na de verkoop de exploitant.",
       },
       fearPrefill: {
         foreign: "Ik wil begrijpen wat beleggen in Spanje als buitenlander betekent.",
