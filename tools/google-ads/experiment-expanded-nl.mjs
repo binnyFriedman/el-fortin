@@ -75,6 +75,7 @@ async function createDraft() {
     description:
       'Cookie split, 50/50. Treatment NL final URL is /expanded-nl. Ad copy and keywords unchanged. EN group unchanged.',
     type: 'SEARCH_CUSTOM',
+    status: 'SETUP',
     suffix: 'B',
     startDate,
     endDate
@@ -139,8 +140,11 @@ async function waitForTreatment(experimentResource) {
       FROM experiment_arm
       WHERE experiment_arm.experiment = '${quoted}'
     `);
-    const treatment = rows.find((row) => row.experimentArm?.control === false);
-    const resource = treatment?.experimentArm?.inDesignCampaigns?.[0];
+    /* A control arm omits `control` in JSON when it is false. */
+    const treatment = rows.find((row) => row.experimentArm?.control !== true);
+    const resource =
+      treatment?.experimentArm?.campaigns?.[0] ||
+      treatment?.experimentArm?.inDesignCampaigns?.[0];
     if (resource) {
       const id = resource.split('/').pop();
       console.log(`Treatment campaign ${id}`);
@@ -163,7 +167,22 @@ async function pointTreatment(treatmentCampaignId) {
       AND ad_group_ad.status != 'REMOVED'
   `);
 
+  const baseRows = await search(`
+    SELECT ad_group_ad.ad.resource_name
+    FROM ad_group_ad
+    WHERE campaign.id = ${BASE_CAMPAIGN_ID}
+      AND ad_group_ad.status != 'REMOVED'
+  `);
+  const baseAdResources = new Set(
+    baseRows.map((row) => row.adGroupAd?.ad?.resourceName).filter(Boolean)
+  );
   const nlAds = rows.filter((row) => String(row.adGroup?.name || '').startsWith('NL |'));
+  const shared = nlAds.filter((row) => baseAdResources.has(row.adGroupAd?.ad?.resourceName));
+  if (shared.length) {
+    throw new Error(
+      'Treatment still uses ads from the base campaign. Editing those URLs would move the control too.'
+    );
+  }
   const enAds = rows.filter((row) => String(row.adGroup?.name || '').startsWith('EN |'));
 
   console.log('\nFinal URL diff');
@@ -221,7 +240,7 @@ async function scheduleExperiment(state) {
     return;
   }
   console.log(`Scheduling ${state.experimentResource}`);
-  await googleAdsRequest(`${customer}/experiments:scheduleExperiment`, {
+  await googleAdsRequest(`${state.experimentResource}:scheduleExperiment`, {
     method: 'POST',
     loginCustomerId: managerCustomerId,
     body: { resourceName: state.experimentResource }

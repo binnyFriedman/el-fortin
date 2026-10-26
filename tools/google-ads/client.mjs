@@ -4,7 +4,7 @@ import { homedir } from 'node:os';
 import { resolve } from 'node:path';
 import { OAuth2Client } from 'google-auth-library';
 
-const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v22';
+const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v23';
 const CREDENTIALS_PATH = resolve(
   process.env.GOOGLE_ADS_OAUTH_CREDENTIALS ||
     `${homedir()}/.config/el-fortin/google-ads-oauth.json`
