@@ -51,8 +51,14 @@ instead, or use an API token with D1 write permission.
 Run these with `wrangler d1 execute el-fortin-analytics --remote --command "..."`,
 or in the Cloudflare dashboard under D1 → `el-fortin-analytics` → Console.
 
-`page_id` is the A/B split: `home` is `site/index.html`, `site_index_d` is
-`site/index-d.html`, `sheet` is the deal sheet.
+`page_id` is the page: `home` is `site/index.html`, `home_nl` is `site/index-nl.html`,
+`expanded` is `site/expanded.html`, `expanded_nl` is `site/expanded-nl.html`,
+`sheet` is the deal sheet.
+
+The page experiment compares `home_nl` (arm A) with `expanded_nl` (arm B).
+On the long page the return block is `section_id = 'board'`; on the short page
+it is `figures`. A "read the return" count is either of those. Treatment clicks
+carry `utm_campaign = ef-search-nl-investor-b`.
 
 **Visits per day, per page**
 
@@ -152,8 +158,7 @@ GROUP BY channel
 ORDER BY visits DESC;
 ```
 
-**What is stopping them.** Hesitation dialog every page load (7s, scroll ≥40%,
-or exit intent — whichever first). `door_opened` with `hesitation_scroll` /
+**What is stopping them.** On the short pages, the hesitation dialog opens every load (7s, scroll ≥40%, or exit intent — whichever first). On the long page it waits: exit intent only, and only after 90s, so the read is not cut. `door_opened` with `hesitation_scroll` /
 `hesitation_time` / `hesitation_exit` is the show; `fear_selected` is the tap
 (foreign / visit / developer).
 
@@ -181,6 +186,62 @@ FROM site_events
 WHERE event = 'fear_selected'
   AND (utm_source = 'google' OR utm_campaign = 'ef-search-nl-investor')
 GROUP BY fear_id
+ORDER BY visits DESC;
+```
+
+**Arm A vs arm B.** Consented paid visits on the two Dutch pages. Primary
+metric for the experiment is form starts + leads + WhatsApp/email taps.
+
+```sql
+SELECT page_id,
+       COUNT(DISTINCT CASE WHEN event = 'page_view' THEN visit_id END) AS visits,
+       COUNT(DISTINCT CASE WHEN event = 'section_seen'
+                            AND section_id IN ('figures', 'board') THEN visit_id END) AS saw_return,
+       COUNT(DISTINCT CASE WHEN event = 'section_seen'
+                            AND section_id = 'guestbook' THEN visit_id END) AS saw_form,
+       COUNT(DISTINCT CASE WHEN event = 'form_started' THEN visit_id END) AS started,
+       COUNT(DISTINCT CASE WHEN event = 'form_submitted' THEN visit_id END) AS leads,
+       COUNT(DISTINCT CASE WHEN event = 'handoff_opened'
+                            AND channel IN ('whatsapp', 'email') THEN visit_id END) AS handoffs
+FROM site_events
+WHERE page_id IN ('home_nl', 'expanded_nl')
+  AND (utm_campaign IN ('ef-search-nl-investor', 'ef-search-nl-investor-b')
+       OR utm_source = 'google')
+GROUP BY page_id;
+```
+
+**What they opened on the long page.** These do not pick the winner. They say
+what to change next. Stay tabs: if `stay_short` is common and those visits do
+not start the form, the 15% tourist line is the scare. Apartment choice: which
+price to lead with, including people who never send the form. Proof: map,
+guest photos, Puzol, the factsheet, the hero jump into the rental programme,
+the architect, the contractor, the interior designer, LinkedIn, and the
+unknown-developer fear. Read Puzol next to `fear:developer`.
+
+```sql
+SELECT opened, COUNT(DISTINCT visit_id) AS visits
+FROM (
+  SELECT visit_id,
+         CASE
+           WHEN event = 'cta_opened' AND cta_id IN (
+             'stay_long', 'stay_mid', 'stay_short',
+             'deal_sheet', 'view_investment',
+             'partner_enlaza', 'partner_nodhouses', 'partner_sofia',
+             'uriel_linkedin'
+           ) THEN cta_id
+           WHEN event = 'door_opened' AND door_id IN (
+             'place-map', 'listing-photos', 'puzol-story'
+           ) THEN door_id
+           WHEN event = 'unit_selected' THEN 'unit:' || unit_id
+           WHEN event = 'fear_selected' AND fear_id = 'developer' THEN 'fear:developer'
+         END AS opened
+  FROM site_events
+  WHERE page_id = 'expanded_nl'
+    AND (utm_campaign IN ('ef-search-nl-investor', 'ef-search-nl-investor-b')
+         OR utm_source = 'google')
+)
+WHERE opened IS NOT NULL
+GROUP BY opened
 ORDER BY visits DESC;
 ```
 

@@ -90,7 +90,7 @@ Riba-roja de Túria: the old town (opens the map), Metro Line 9 to central Valen
 
 **Heading:** Construction is 25% complete.
 
-**Body:** Operations begin in August 2027.
+**Body:** Operations begin in December 2027.
 
 No construction photographs. No licence plaques.
 

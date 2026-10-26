@@ -249,11 +249,36 @@ a.plate:focus-visible {
   font-size: 0.9375rem;
 }
 
+/* ---------- AFM exemption strip (Dutch pages only) ---------- */
+
+.afm-notice {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: #fff;
+  line-height: 0;
+}
+.afm-notice img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+body:has(.afm-notice) {
+  --afm-h: calc(100vw * 80 / 2357);
+}
+body:has(.afm-notice) .window {
+  min-height: calc(100svh - var(--afm-h));
+}
+
 /* ---------- masthead ---------- */
 
 .masthead {
   position: fixed;
   inset: 0 0 auto 0;
+  top: var(--afm-h, 0px);
   z-index: 50;
   display: flex;
   align-items: center;
@@ -274,6 +299,7 @@ a.plate:focus-visible {
   align-items: center;
   gap: 0.85em;
   min-width: 0;
+  flex-shrink: 0;
   font-family: var(--plates);
   font-weight: 400;
   font-stretch: 100%;
@@ -284,8 +310,10 @@ a.plate:focus-visible {
 }
 .masthead__logo {
   display: block;
-  height: 36px;
+  height: clamp(28px, 9vw, 36px);
   width: auto;
+  max-width: none;
+  aspect-ratio: 350 / 100;
   flex-shrink: 0;
   transition: opacity 200ms var(--ease-out);
 }
@@ -346,6 +374,11 @@ a.plate:focus-visible {
   border-bottom-color: var(--ledger);
   border-bottom-width: 3px;
   text-decoration: none;
+}
+@media (max-width: 719px) {
+  .masthead__talk {
+    display: none;
+  }
 }
 .masthead__name:hover .masthead__logo,
 .masthead__name:focus-visible .masthead__logo {
@@ -2345,4 +2378,148 @@ a.plate:focus-visible {
     animation: none !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ---------- +44% plate, same brass as the short page ---------- */
+
+.place-gain {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 32px;
+  padding: 28px 28px 30px;
+  background: linear-gradient(160deg, #d9bc84 0%, var(--brass) 45%, #a3844f 100%);
+  color: var(--walnut-deep);
+  font-family: var(--plates);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 214, 0.65),
+    inset 0 -2px 0 rgba(60, 40, 12, 0.45),
+    0 24px 40px -28px rgba(0, 0, 0, 0.9);
+}
+.place-gain b {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 500;
+  font-stretch: 84%;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.place-gain span {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  max-width: 28ch;
+}
+
+/* Hesitation pulse — dialog, not a page section. */
+.hesitation-dialog {
+  max-width: min(720px, calc(100vw - 20px));
+  width: 100%;
+}
+.hesitation-dialog .map-dialog__head {
+  padding: 22px 24px 18px;
+  align-items: flex-start;
+}
+.hesitation-dialog .map-dialog__head h2 {
+  font-family: inherit;
+  font-size: clamp(1.5rem, 4.2vw, 2rem);
+  font-weight: 500;
+  font-stretch: 100%;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  max-width: 28ch;
+}
+.hesitation-dialog .map-dialog__close {
+  width: 48px;
+  height: 48px;
+  font-size: 1.75rem;
+}
+.hesitation__body {
+  display: grid;
+  gap: 22px;
+  padding: 8px 24px 28px;
+}
+.hesitation__ask {
+  margin: 0;
+  font-family: var(--plates);
+  font-size: clamp(1.0625rem, 2.4vw, 1.1875rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--paper-on-walnut);
+  max-width: 42rem;
+}
+.fear-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.fear-btn {
+  appearance: none;
+  margin: 0;
+  min-height: 3.25rem;
+  padding: 14px 18px;
+  border: 1.5px solid rgba(176, 141, 87, 0.65);
+  border-radius: 0;
+  background: rgba(239, 230, 210, 0.04);
+  color: var(--ledger);
+  font-family: var(--plates);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-align: left;
+  cursor: pointer;
+}
+.fear-btn:hover {
+  border-color: var(--brass-light);
+  background: rgba(176, 141, 87, 0.14);
+  color: var(--brass-light);
+}
+.fear-btn:focus-visible {
+  outline: 2px solid var(--brass-light);
+  outline-offset: 2px;
+}
+.fear-btn.selected {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--walnut-deep);
+}
+.hesitation__answer {
+  margin: 0;
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(176, 141, 87, 0.28);
+  font-family: var(--plates);
+  font-size: clamp(1.0625rem, 2.2vw, 1.125rem);
+  line-height: 1.55;
+  color: var(--ledger);
+}
+.hesitation__answer[hidden],
+.hesitation__next[hidden] {
+  display: none;
+}
+.hesitation__next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  min-height: 3.25rem;
+  padding: 0 22px;
+  background: var(--brass);
+  color: var(--walnut-deep);
+  font-family: var(--plates);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.hesitation__next:hover,
+.hesitation__next:focus-visible {
+  background: var(--brass-light);
+  color: var(--walnut-deep);
+  text-decoration: none;
+}
+.hesitation__next:focus-visible {
+  outline: 2px solid var(--ledger);
+  outline-offset: 2px;
 }

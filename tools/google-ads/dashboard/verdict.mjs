@@ -296,12 +296,100 @@ export function glanceScore({ ads, d1 }) {
 const SECTION = {
   top: 'the opening',
   figures: 'the return',
+  board: 'the return',
   project: 'the place',
   apartments: 'the apartments',
+  guest: 'the guest listing',
+  floor: 'the deed',
+  uriel: 'Uriel',
   menu: 'the price',
   progress: 'construction, 25% done',
   guestbook: 'the form'
 };
+
+export const ARM_VISITS = 40;
+export const ARM_WEEKS = 4;
+export const ARM_LEAD_STOP = 2;
+
+const ARMS = [
+  { pageId: 'home_nl', label: 'A · index-nl' },
+  { pageId: 'expanded_nl', label: 'B · expanded-nl' }
+];
+
+/**
+ * Pre-registered read of the page experiment. Primary metric is form starts
+ * plus leads plus WhatsApp/email taps. No significance claim.
+ *
+ * @param {{ d1: object, startedAt?: string|null, now?: Date }} input
+ */
+export function armsVerdict({ d1, startedAt = null, now = new Date() }) {
+  const byPage = new Map((d1.funnelByPage || []).map((row) => [row.page_id, row]));
+  const died = new Map();
+  for (const row of d1.diedByPage || []) {
+    const prev = died.get(row.page_id);
+    if (!prev || Number(row.visits) > prev.visits) {
+      died.set(row.page_id, { section: row.died_on, visits: Number(row.visits) });
+    }
+  }
+
+  const arms = ARMS.map((arm) => {
+    const row = byPage.get(arm.pageId) || {};
+    const exit = died.get(arm.pageId);
+    return {
+      ...arm,
+      visits: Number(row.visits || 0),
+      sawReturn: Number(row.saw_return || 0),
+      sawPrice: Number(row.saw_price || 0),
+      sawForm: Number(row.saw_form || 0),
+      started: Number(row.started || 0),
+      leads: Number(row.leads || 0),
+      handoffs: Number(row.handoffs || 0),
+      fears: Number(row.fears || 0),
+      dwell: Number(row.dwell || 0),
+      exitSection: exit?.section || null,
+      exitVisits: exit?.visits || 0
+    };
+  });
+
+  const primary = (arm) => arm.started + arm.leads + arm.handoffs;
+  const [a, b] = arms;
+  const weeks = startedAt ? (now - new Date(startedAt)) / (7 * 86_400_000) : 0;
+  const ahead = primary(b) === primary(a) ? null : primary(b) > primary(a) ? b : a;
+
+  let decision;
+  if (a.leads >= ARM_LEAD_STOP || b.leads >= ARM_LEAD_STOP) {
+    const winner = a.leads === b.leads ? ahead || a : a.leads > b.leads ? a : b;
+    decision = {
+      level: 'green',
+      text: `Early stop. ${winner.label} reached ${ARM_LEAD_STOP} leads.`
+    };
+  } else if (
+    (a.visits >= ARM_VISITS && b.visits >= ARM_VISITS) ||
+    (startedAt && weeks >= ARM_WEEKS)
+  ) {
+    decision = ahead
+      ? {
+          level: 'amber',
+          text: `Window complete. ${ahead.label} has more form starts, leads, and contact taps. No significance claim.`
+        }
+      : {
+          level: 'amber',
+          text: 'Window complete. Form starts, leads, and contact taps are tied. No significance claim.'
+        };
+  } else if (!startedAt) {
+    decision = {
+      level: 'grey',
+      text: 'Not scheduled. Arm B stays dark until you say go.'
+    };
+  } else {
+    decision = {
+      level: 'grey',
+      text: `Running. A ${a.visits}/${ARM_VISITS} consented visits, B ${b.visits}/${ARM_VISITS}. Early stop at ${ARM_LEAD_STOP} leads, otherwise 40 each or 4 weeks.`
+    };
+  }
+
+  return { arms, decision, startedAt };
+}
 
 /**
  * One row per ad group that has either page reads or real spend.
