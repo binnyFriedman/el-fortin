@@ -31,7 +31,7 @@ Vaste keuzes op deze pagina:
 | one bedroom | één slaapkamer | 2-kamerappartement |
 | finished and furnished | instapklaar en volledig gemeubileerd | afgewerkt en gemeubeld |
 
-Schrijfwijze: `€ 236.000` (punt als duizendscheiding, spatie na het teken), `4%`, maanden met kleine letter (`augustus 2027`), `’` als apostrof (`foto’s`). `u` en `uw`, nooit `je`. Elke regel moet ook in Vlaanderen natuurlijk klinken.
+Schrijfwijze: `€ 236.000` (punt als duizendscheiding, spatie na het teken), `4%`, maanden met kleine letter (`december 2027`), `’` als apostrof (`foto’s`). `u` en `uw`, nooit `je`. Elke regel moet ook in Vlaanderen natuurlijk klinken.
 
 ---
 
@@ -122,7 +122,7 @@ Riba-roja de Túria heeft een sfeervol historisch centrum (opent de kaart) en ee
 
 **Kop:** De bouw is voor 25% gereed.
 
-**Tekst:** De exploitatie start in augustus 2027.
+**Tekst:** De exploitatie start in december 2027.
 
 Geen bouwfoto's. Geen vergunningsplaten.
 
@@ -178,7 +178,7 @@ Privacy (Engels) · Privacyinstellingen
 
 **Titel:** El Fortín Riba-roja — Beleggingsappartement in Valencia, op uw naam. 4% in het contract.
 
-**Omschrijving:** Tien appartementen in Riba-roja de Túria (Valencia), op uw naam. 4% minimum in het contract. 8% verwacht. Exploitatie vanaf augustus 2027. Vanaf € 236.000.
+**Omschrijving:** Tien appartementen in Riba-roja de Túria (Valencia), op uw naam. 4% minimum in het contract. 8% verwacht. Exploitatie vanaf december 2027. Vanaf € 236.000.
 
 ---
 
@@ -211,13 +211,13 @@ Zelfde vraag als de korte pagina: het formulier. Meer grond eronder. Cijfers gel
 
 Kort verblijf rekent met 65% bezetting. Dit is geen belofte. De balk erboven: 4% minimum, in het contract · 8% verwacht. De veronderstelde huren komen uit de projectberekening, vóór aftrek van vergoedingen en kosten.
 
-**Gastadvertentie**, dichtgevouwen. Nachttarief € 113, uit € 2.200 / (30 × 0,65). Onderschrift: artist impressions, exploitatie augustus 2027. De notities zijn voor de eigenaar: één architect, één meubelpakket, geen directe concurrentie in het centrum, wij schrijven de advertentie.
+**Gastadvertentie**, dichtgevouwen. Nachttarief € 113, uit € 2.200 / (30 × 0,65). Onderschrift: artist impressions, exploitatie december 2027. De notities zijn voor de eigenaar: één architect, één meubelpakket, geen directe concurrentie in het centrum, wij schrijven de advertentie.
 
 **De akte.** U krijgt de akte. De huurinkomsten van alle tien worden samengevoegd en naar rato van de waarde uitgekeerd. Blijft het jaarrendement onder de 4%, dan betaalt onze vennootschap het verschil.
 
 **Uriel.** Ik blijf hier. Woont in Riba-roja met vrouw en twee kinderen, en is de man achter El Fortín. In 2025 een huis van 100 jaar oud in Puzol gerestaureerd. Dat project is afgerond. Eigen geld in dit gebouw. Team aangetrokken: Enlaza Arquitectura, NODHOUSES, Sofia Martin. Blijft de exploitant nadat de akte passeert.
 
-**Bouw.** De bouw is voor 25% gereed. Drie foto's. Bouwvergunning Exp. 4497/2025/GEN · Res. 3658/2025, verleend 20 oktober 2025. Instapklaar augustus 2027. De inkomsten beginnen wanneer het gebouw opent.
+**Bouw.** De bouw is voor 25% gereed. Drie foto's. Bouwvergunning Exp. 4497/2025/GEN · Res. 3658/2025, verleend 20 oktober 2025. Instapklaar december 2027. De inkomsten beginnen wanneer het gebouw opent.
 
 **Prijzen.** € 236.000 (appartementen 5–8, ~47 m²) en € 270.000 (1–4 en 9, ~57 m²), inclusief meubilair en witgoed. Negen van de tien zijn nog beschikbaar. Vier gelijke termijnen van 25%. Termijnen 2 en 3: bouw 40% gereed, bouw 80% gereed.
 

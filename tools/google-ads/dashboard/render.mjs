@@ -18,6 +18,25 @@ const SECTION = {
   guestbook: 'the form'
 };
 
+const OPENED = {
+  stay_long: 'Chose long stay',
+  stay_mid: 'Chose mid stay',
+  stay_short: 'Chose short stay',
+  'unit:One bedroom': 'Apartment: one bedroom',
+  'unit:Two bedrooms': 'Apartment: two bedrooms',
+  'unit:Both': 'Apartment: both',
+  'place-map': 'Opened the map',
+  'listing-photos': 'Opened the guest photos',
+  'puzol-story': 'Opened Puzol',
+  deal_sheet: 'Opened the factsheet',
+  view_investment: 'Asked for the rental programme',
+  partner_enlaza: 'Opened the architect',
+  partner_nodhouses: 'Opened the contractor',
+  partner_sofia: 'Opened the interior designer',
+  uriel_linkedin: 'Opened LinkedIn',
+  'fear:developer': 'Named the unknown developer'
+};
+
 export function renderDashboard(data) {
   const { ads, d1, generatedAt, experiment } = data;
   const score = glanceScore({ ads, d1 });
@@ -85,6 +104,7 @@ export function renderDashboard(data) {
   <p class="word ${score.level}">${esc(score.word)}</p>
   ${stop ? `<p class="line ${stop.level}">${esc(stop.text)}</p>` : ''}
   ${armsBlock(arms)}
+  ${openedBlock(d1.openedOnExpanded || [])}
   ${tiers.map(tierBlock).join('')}
   ${err}
   <p class="when">People on the page are those who accepted analytics. ${esc(generatedAt)}</p>
@@ -110,6 +130,23 @@ function armsBlock(verdict) {
   return `<h2 class="arms-title">Arm A vs Arm B</h2>
   ${rows}
   <p class="steer ${verdict.decision.level}">${esc(verdict.decision.text)}</p>`;
+}
+
+function openedBlock(rows) {
+  const lines = rows.length
+    ? rows
+        .map((row) => {
+          const label = OPENED[row.opened] || row.opened;
+          const n = Number(row.visits || 0);
+          return `<p class="path">${n} ${esc(label)}</p>`;
+        })
+        .join('')
+    : '<p class="path">Nothing opened yet.</p>';
+  return `<h2 class="arms-title">What they opened on the long page</h2>
+  <article>
+    <p class="meta">Paid visits on expanded-nl. This does not pick the winner.</p>
+    ${lines}
+  </article>`;
 }
 
 function tierBlock(row) {

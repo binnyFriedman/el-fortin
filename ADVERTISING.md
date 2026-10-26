@@ -4,7 +4,7 @@ Live since 1 Oct 2026: `EF | Search | NL | Investor` (campaign `24259919998`). F
 
 ## Read it like the sheet
 
-The sheet at `site/sheet.html` is the order. Managed building. Passive income. Then the terms: 8% projected yearly return, 4% minimum in the contract, one bedroom €236,000 with furniture and appliances included, delivery August 2027, turnkey. Then the asset: a deeded apartment, and we operate. Ten apartments, one building. The place comes after that. The last line is: indicative, not an offer. The 4% is a minimum in the contract. The 8% is a projected yearly return.
+The sheet at `site/sheet.html` is the order. Managed building. Passive income. Then the terms: 8% projected yearly return, 4% minimum in the contract, one bedroom €236,000 with furniture and appliances included, delivery December 2027, turnkey. Then the asset: a deeded apartment, and we operate. Ten apartments, one building. The place comes after that. The last line is: indicative, not an offer. The 4% is a minimum in the contract. The 8% is a projected yearly return.
 
 That is a financial vehicle. The buyer takes title to one apartment and a contract that sets the floor. It is not a fund share, and it is not a home to live in.
 
@@ -14,7 +14,7 @@ Dutch professionals, about 50–60, deciding where to put ~€250k for passive i
 
 ## Say this
 
-A managed building, passive income. An 8% projected yearly return. A 4% floor in the contract. Deed in the buyer's name. We operate. One bedroom €236,000. Two bedrooms €270,000. Furniture and appliances are included. Operations start August 2027. Net means nothing further is deducted.
+A managed building, passive income. An 8% projected yearly return. A 4% floor in the contract. Deed in the buyer's name. We operate. One bedroom €236,000. Two bedrooms €270,000. Furniture and appliances are included. Operations start December 2027. Net means nothing further is deducted.
 
 The 4% is a commitment Uriel stands behind. The euro amount is filled in per apartment, because each apartment is appraised separately. The 8% is a projection over several years. It is already labelled projected. Do not explain it further in the ad or the opening.
 

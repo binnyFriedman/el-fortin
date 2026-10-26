@@ -210,6 +210,41 @@ WHERE page_id IN ('home_nl', 'expanded_nl')
 GROUP BY page_id;
 ```
 
+**What they opened on the long page.** These do not pick the winner. They say
+what to change next. Stay tabs: if `stay_short` is common and those visits do
+not start the form, the 15% tourist line is the scare. Apartment choice: which
+price to lead with, including people who never send the form. Proof: map,
+guest photos, Puzol, the factsheet, the hero jump into the rental programme,
+the architect, the contractor, the interior designer, LinkedIn, and the
+unknown-developer fear. Read Puzol next to `fear:developer`.
+
+```sql
+SELECT opened, COUNT(DISTINCT visit_id) AS visits
+FROM (
+  SELECT visit_id,
+         CASE
+           WHEN event = 'cta_opened' AND cta_id IN (
+             'stay_long', 'stay_mid', 'stay_short',
+             'deal_sheet', 'view_investment',
+             'partner_enlaza', 'partner_nodhouses', 'partner_sofia',
+             'uriel_linkedin'
+           ) THEN cta_id
+           WHEN event = 'door_opened' AND door_id IN (
+             'place-map', 'listing-photos', 'puzol-story'
+           ) THEN door_id
+           WHEN event = 'unit_selected' THEN 'unit:' || unit_id
+           WHEN event = 'fear_selected' AND fear_id = 'developer' THEN 'fear:developer'
+         END AS opened
+  FROM site_events
+  WHERE page_id = 'expanded_nl'
+    AND (utm_campaign IN ('ef-search-nl-investor', 'ef-search-nl-investor-b')
+         OR utm_source = 'google')
+)
+WHERE opened IS NOT NULL
+GROUP BY opened
+ORDER BY visits DESC;
+```
+
 **Campaign quality.** Visits and stored leads per campaign. Compare with what
 Ads reports as **Submit lead form**; they should track closely, allowing for
 visitors who rejected analytics.

@@ -33,7 +33,7 @@ export const RSA_NL = {
     'Eén slaapkamer €236.000',
     'Twee slaapkamers €270.000',
     'Meubels inbegrepen',
-    'Oplevering augustus 2027',
+    'Oplevering december 2027',
     'Eén gebouw, één beheer',
     'Indicatief, geen aanbod',
     'Riba-roja, Valencia'
@@ -42,7 +42,7 @@ export const RSA_NL = {
     'Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit.',
     'Beheerd gebouw. Passief inkomen. 8% verwacht. 4% minimum in het contract.',
     'Akte op uw naam. Wij exploiteren. Tien appartementen, één beheer.',
-    'Eén slaapkamer €236.000. Twee slaapkamers €270.000. Meubels erbij. Augustus 2027.'
+    'Eén slaapkamer €236.000. Twee slaapkamers €270.000. Meubels erbij. December 2027.'
   ],
   path1: 'Rendement',
   path2: 'Contract'

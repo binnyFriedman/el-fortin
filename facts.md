@@ -52,7 +52,7 @@ Constructor named in materials: NODHOUSES. Architect on the visado plans: José 
 | Height                               | 10.55 m licensed; maximum permitted 10.90 m. New volume: three floors. No basement.                                                                                                                                                                                                      |
 | Zoning                               | Urban land, intensive residential, historic centre (casco urbano)                                                                                                                                                                                                                        |
 | Cadastral reference (current parcel) | 9204809YJ0890C — to be split after *división horizontal*                                                                                                                                                                                                                                 |
-| Handover                             | **Turnkey August 2027** (Uriel, 2026-09-07). Construction **25% complete** (Binny, 2026-09-11, public page). Licence granted 20 Oct 2025, notified 21 Oct 2025.                                                                                                                                          |
+| Handover                             | **Turnkey December 2027** (updated 2026-10-26; previously August 2027, Uriel 2026-09-07). Construction **25% complete** (Binny, 2026-09-11, public page). Licence granted 20 Oct 2025, notified 21 Oct 2025.                                                                                                                                          |
 | Location claims (Binny, 2026-09-09)  | Metrovalencia **Line 9** connects the building to central Valencia. Airport **12 minutes** away. Riba-roja described as a busy logistics hub whose industrial parks drive steady mid-term demand. Cleared for landing-page use.                                                     |
 | Parking                              | Licence: 6 parking spaces (standard 1 per dwelling; footnote: plazas exceed 60% of that standard because a basement cannot be built). Plans show covered and uncovered parking. **The developer holds the parking spaces** (not sold with the apartments) — confirmed Uriel, 2026-09-07. |
 
@@ -252,7 +252,7 @@ Operator fees used on later estimator pages: 8% long-term · 10% short-term · 1
 | All-long-term stress on the old all-in | ~4.35%                       |
 
 
-Income starts when the building is operational (turnkey August 2027), not at reservation. Confirmed: payouts begin when operation starts, no gap (Uriel, 2026-09-07).
+Income starts when the building is operational (turnkey December 2027), not at reservation. Confirmed: payouts begin when operation starts, no gap (Uriel, 2026-09-07).
 
 ### Return trajectory as stated (Binny, 2026-09-09)
 
@@ -284,7 +284,7 @@ These are the figures shown on `site/index-d.html`. They simplify earlier workbo
 | 8%                            | Projected yearly return.                    |
 | +44%                          | Riba-roja house prices since 2022 (Engel & Völkers) |
 | Construction                  | **25%** complete                            |
-| Operations                    | August 2027                                 |
+| Operations                    | December 2027                               |
 
 **Retired label (2026-09-17):** "Projected five-year IRR above 40%". The 40% was meant to express area appreciation, not an IRR (a 40% IRR would mean ×5.4 in five years). It was also the trigger for Google's `MISLEADING_CONTENT` flags. Replaced by sourced past-tense market figures below. Never publish a forward-looking blended return.
 

@@ -350,6 +350,19 @@
         if (form.querySelector(".is-invalid")) setError(name, false);
       });
     });
+
+    /* The lead row only learns the apartment after a send. The choice itself
+       is the signal, including from someone who never submits. */
+    form.querySelectorAll('input[name="type"]').forEach(function (input) {
+      input.addEventListener("change", function () {
+        if (!input.checked || !input.value) return;
+        track("unit_selected", {
+          unit_id: input.value,
+          idempotency_key: visitId() + ":unit_selected:" + input.value,
+        });
+        flushAnalytics();
+      });
+    });
   }
 
   /* ---------- place map dialog ---------- */
@@ -603,23 +616,30 @@
     });
   }
 
+  /* Capture, and registered before the external-link handler. That handler
+     calls stopPropagation, which would otherwise swallow WhatsApp, the
+     calendar, and any off-site proof link before this listener (bubble) could run. */
   function initAnalyticsCtas() {
-    document.addEventListener("click", function (event) {
-      var el = event.target.closest && event.target.closest("[data-cta]");
-      if (!el) return;
-      var id = el.getAttribute("data-cta");
-      if (!id) return;
-      var channel = el.getAttribute("data-cta-channel") || "";
-      var extra = { cta_id: id };
-      if (channel) extra.channel = channel;
-      track("cta_opened", extra);
-      if (channel === "whatsapp" || channel === "email" || channel === "calendar") {
-        track("handoff_opened", { channel: channel, cta_id: id });
-      }
-      /* Any CTA can be the last thing that happens on this page — the deal
-         sheet navigates away — so never leave the click sitting in the void. */
-      flushAnalytics();
-    });
+    document.addEventListener(
+      "click",
+      function (event) {
+        var el = event.target.closest && event.target.closest("[data-cta]");
+        if (!el) return;
+        var id = el.getAttribute("data-cta");
+        if (!id) return;
+        var channel = el.getAttribute("data-cta-channel") || "";
+        var extra = { cta_id: id };
+        if (channel) extra.channel = channel;
+        track("cta_opened", extra);
+        if (channel === "whatsapp" || channel === "email" || channel === "calendar") {
+          track("handoff_opened", { channel: channel, cta_id: id });
+        }
+        /* Any CTA can be the last thing that happens on this page — the deal
+           sheet navigates away — so never leave the click sitting in the void. */
+        flushAnalytics();
+      },
+      true
+    );
   }
 
   /* Hesitation pulse as a dialog: time, scroll, or exit intent.
@@ -820,8 +840,8 @@
   initForm();
   initHesitation();
   initMapDialog();
+  initAnalyticsCtas();
   initExternalLinks();
   initAlbum("listing-photos", "data-listing-open", "data-listing-close");
   initAlbum("puzol-story", "data-puzol-open", "data-puzol-close");
-  initAnalyticsCtas();
 })();

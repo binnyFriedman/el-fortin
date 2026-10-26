@@ -64,6 +64,7 @@ export async function fetchD1({ launchDate }) {
     diedByAdGroup: [],
     funnelByPage: [],
     diedByPage: [],
+    openedOnExpanded: [],
     leadCount: 0,
     errors
   };
@@ -161,6 +162,36 @@ export async function fetchD1({ launchDate }) {
           FROM ranked
           WHERE rn = 1
           GROUP BY ad_group_id, section_id
+          ORDER BY visits DESC
+        `)
+    ],
+    [
+      'openedOnExpanded',
+      () =>
+        d1Query(`
+          SELECT opened, COUNT(DISTINCT visit_id) AS visits
+          FROM (
+            SELECT visit_id,
+                   CASE
+                     WHEN event = 'cta_opened' AND cta_id IN (
+                       'stay_long', 'stay_mid', 'stay_short',
+                       'deal_sheet', 'view_investment',
+                       'partner_enlaza', 'partner_nodhouses', 'partner_sofia',
+                       'uriel_linkedin'
+                     ) THEN cta_id
+                     WHEN event = 'door_opened' AND door_id IN (
+                       'place-map', 'listing-photos', 'puzol-story'
+                     ) THEN door_id
+                     WHEN event = 'unit_selected' THEN 'unit:' || unit_id
+                     WHEN event = 'fear_selected' AND fear_id = 'developer' THEN 'fear:developer'
+                   END AS opened
+            FROM site_events
+            WHERE page_id = 'expanded_nl'
+              AND ${PAID_FILTER}
+              AND occurred_at >= '${launchDate}'
+          )
+          WHERE opened IS NOT NULL
+          GROUP BY opened
           ORDER BY visits DESC
         `)
     ],
