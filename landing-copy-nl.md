@@ -200,7 +200,7 @@ Zelfde vraag als de korte pagina: het formulier. Meer grond eronder. Cijfers gel
 
 **Het gebouw.** Kop: Het gebouw staat in Riba-roja. Plaat: +44% woningprijzen in Riba-roja sinds 2022, Engel & Völkers. Tekst: oude kern, metrolijn 9 naar hartje Valencia, twaalf minuten van de luchthaven. Het gebouw staat in het hart van de oude kern. Knop: Open de kaart.
 
-**Verhuurprogramma.** Kop: Wij exploiteren één verhuurprogramma, niet tien losse verhuringen. De mix verschuift tussen lang verblijf, middellang verblijf en kort verblijf; wij bepalen die mix.
+**Verhuurprogramma.** Kop: Wij exploiteren de tien appartementen als één geheel. De mix verschuift tussen lang verblijf, middellang verblijf en kort verblijf; wij bepalen die mix.
 
 | | Lang verblijf | Middellang | Kort verblijf |
 | --- | --- | --- | --- |
