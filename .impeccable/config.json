@@ -318,6 +318,15 @@
         ],
         "createdAt": "2026-10-20T12:26:05.682Z",
         "reason": "Agent: same Concierge Desk markup as site/index.html (Spain Spanish copy only); sections pad with clamp()/var(--gutter) in assets/desk.css that the pre-write scan cannot resolve. Same exception already recorded for site/index.html and site/index-nl.html"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "site/sheet.html"
+        ],
+        "createdAt": "2026-11-03T19:37:57.898Z",
+        "reason": "deal-sheet aesthetic: intentional all-caps labels on the order sheet, pre-existing pattern not introduced by price update"
       }
     ]
   }

@@ -87,16 +87,24 @@ No ICU, VUT registration, or registry extract for tourist use is in `developer/`
 
 ## Units
 
-Useful area and independent valuation (*Valor Publicado*) from `developer/Valor_Publicado_by_Unit.png`, documented 2026-08-02. Built-area labels (~47 m² / ~57 m²) are the workbook’s unit types.
+Useful area and independent valuation (*Valor Publicado*) from `developer/Valor_Publicado_by_Unit.png`, documented 2026-08-02. Workbook unit-type labels were ~47 m² / ~57 m².
+
+**Size framing (Uriel, 2026-11-02; Binny 2026-11-04):** public copy uses **total built including allocated communal areas** only (~68 m² / ~83 m²). Do **not** publish the private / communal split on the site or in ads.
 
 
-| Units      | Useful m²   | Built type | Beds (workbook / later pages) | Valor Publicado |
-| ---------- | ----------- | ---------- | ----------------------------- | --------------- |
-| 5, 6, 7, 8 | 40.44–40.48 | ~47 m²     | 1 bed                         | €190,557        |
-| — per unit | 5: 40.48 · 6: 40.44 · 7: 40.44 · 8: 40.44 (read off `developer/Valor_Publicado_by_Unit.png`, 2026-09-09) | | | |
-| 1, 2       | 49.05       | ~57 m²     | 2 bed                         | €220,225        |
-| 3, 4       | 49.05       | ~57 m²     | 2 bed                         | €225,707        |
-| 9, 10      | 49.05       | ~57 m²     | 2 bed                         | €232,125        |
+| Type | Private apartment | Communal allocation | Total built (public) | Beds |
+| ---- | ----------------- | ------------------- | -------------------- | ---- |
+| Smaller (units 5–8) | 47 m² | 21 m² | **~68 m²** | 1 bed |
+| Larger (units 1–4, 9–10) | 57 m² | 26 m² | **~83 m²** | 2 bed |
+
+
+| Units      | Useful m²   | Built type (legacy workbook) | Total built (Uriel 2026-11) | Beds | Valor Publicado |
+| ---------- | ----------- | ---------------------------- | --------------------------- | ---- | --------------- |
+| 5, 6, 7, 8 | 40.44–40.48 | ~47 m²                       | 68 m²                       | 1 bed | €190,557        |
+| — per unit | 5: 40.48 · 6: 40.44 · 7: 40.44 · 8: 40.44 (read off `developer/Valor_Publicado_by_Unit.png`, 2026-09-09) | | | | |
+| 1, 2       | 49.05       | ~57 m²                       | 83 m²                       | 2 bed | €220,225        |
+| 3, 4       | 49.05       | ~57 m²                       | 83 m²                       | 2 bed | €225,707        |
+| 9, 10      | 49.05       | ~57 m²                       | 83 m²                       | 2 bed | €232,125        |
 
 
 Building total *Valor Publicado*: €2,118,345.
@@ -133,15 +141,23 @@ Names from the workbook. Persona from Uriel, 2026-07-20 (sales-strategy call). A
 
 ## Price as stated
 
-**Public entry (developer, 2026-08-06 and 2026-08-11):** €236,141 all-in — sale price + estimated purchase costs + furniture. Marketing round sometimes €236,000.
+**Controlling public prices (Binny, 2026-11-03; Uriel figures 2026-11-02):** one-bedroom **€256,000** · two-bedroom **€320,000**. Memorable rounds of Uriel’s total investment including furnishing (€264,529 / €320,850). These marked prices include all furniture and appliances. Do not add the furniture package to either marked price or describe it as separately payable.
 
-**Controlling public prices (Binny, clarified 2026-09-20):** one-bedroom **€236,000** ·
-two-bedroom **€270,000**. These marked prices include all furniture and appliances. Do not
-add the furniture package to either marked price or describe it as separately payable.
+Uriel’s breakdown (2026-11-02), before marketing round:
 
-**Retired estimate (2026-09-07):** the deleted sniper landing used *Valor Público* + ~12%
-acquisition + furniture. It is historical modelling and does not define the current marked
-prices. Do not use it to add furniture to €236,000 or €270,000.
+
+| | 47 m² private (68 m² total) | 57 m² private (83 m² total) |
+| --- | --- | --- |
+| Property purchase price (unfurnished) | €216,148 | €262,167 |
+| Price per m² (on total built) | €3,179/m² | €3,159/m² |
+| Total purchase cost (ITP + acquisition) | €248,570 | €301,492 |
+| Total investment (including furnishing) | €264,529 | €320,850 |
+| **Marketing all-in** | **€256,000** | **€320,000** |
+
+
+**Retired public prices (Binny, 2026-09-20):** one-bedroom €236,000 · two-bedroom €270,000 (from earlier developer all-in €236,141).
+
+**Retired estimate (2026-09-07):** the deleted sniper landing used *Valor Público* + ~12% acquisition + furniture. Historical modelling only.
 
 The workbook has other columns (presale 15% below *Valor Publicado*, ~12% closing on the price paid, furniture by footprint). Those figures are in `developer/sales-info.xlsx`.
 
@@ -160,7 +176,7 @@ From `developer/sales-info.xlsx` (furnishing lines):
 
 The original client brief (May 2026) separately modelled a turn-key furniture package of
 €15,000–€20,000. That breakdown is historical: furniture and appliances are included in the
-current marked prices of €236,000 and €270,000.
+current marked prices of €256,000 and €320,000.
 
 ## Payment stages
 

@@ -28,10 +28,10 @@ export const RSA_NL = {
     '4% minimum in contract',
     'Akte op uw naam',
     'Vastgoed Valencia, op uw naam',
-    'Vanaf € 236.000',
+    'Vanaf € 256.000',
     'Wij exploiteren',
-    'Eén slaapkamer €236.000',
-    'Twee slaapkamers €270.000',
+    'Eén slaapkamer €256.000',
+    'Twee slaapkamers €320.000',
     'Meubels inbegrepen',
     'Oplevering december 2027',
     'Eén gebouw, één beheer',
@@ -42,7 +42,7 @@ export const RSA_NL = {
     'Let op! U belegt buiten AFM-toezicht. Geen vergunningplicht voor deze activiteit.',
     'Beheerd gebouw. Passief inkomen. 8% verwacht. 4% minimum in het contract.',
     'Akte op uw naam. Wij exploiteren. Tien appartementen, één beheer.',
-    'Eén slaapkamer €236.000. Twee slaapkamers €270.000. Meubels erbij. December 2027.'
+    'Eén slaapkamer €256.000. Twee slaapkamers €320.000. Meubels erbij. December 2027.'
   ],
   path1: 'Rendement',
   path2: 'Contract'
@@ -56,10 +56,10 @@ export const RSA_EN = {
     '4% floor in the contract',
     'Deed in your name',
     'Valencia property, deeded',
-    'From EUR 236,000',
+    'From EUR 256,000',
     'We operate it',
-    'One bedroom EUR 236,000',
-    'Two bedrooms EUR 270,000',
+    'One bedroom EUR 256,000',
+    'Two bedrooms EUR 320,000',
     'Furniture included',
     'Delivery August 2027',
     'One building, one operator',
@@ -70,7 +70,7 @@ export const RSA_EN = {
     'This investment falls outside AFM supervision',
     'Managed building. Passive income. 8% projected. 4% floor in the contract.',
     'Deed in your name. We operate. Ten apartments, one operator.',
-    'One bedroom EUR 236,000. Two bedrooms EUR 270,000. Furnished. August 2027.'
+    'One bedroom EUR 256,000. Two bedrooms EUR 320,000. Furnished. August 2027.'
   ],
   path1: 'Return',
   path2: 'Contract'

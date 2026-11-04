@@ -40,8 +40,8 @@ Deeded ownership of a named apartment, not a fund share and not a classic reside
 Confirmed:
 
 - Lead form: Name, Email, Phone (required). Submit posts to `/api/leads`; conversion is the submit, not a WhatsApp tap alone.
-- Unit types: ~47 m² 1-bed (units 5–8) and ~57 m² 2-bed (1–4, 9–10). Marked prices are **€236,000 / €270,000**, including furniture and appliances. Parking stays with the developer.
-- Public prices: **€236,000 one bedroom · €270,000 two bedrooms**. Do not add furniture or appliances again as a separate charge.
+- Unit types: ~68 m² 1-bed (units 5–8) and ~83 m² 2-bed (1–4, 9–10). Public copy uses total built only — do not publish the private / communal split. Marked prices are **€256,000 / €320,000**, including furniture and appliances. Parking stays with the developer.
+- Public prices: **€256,000 one bedroom · €320,000 two bedrooms** (memorable rounds of Uriel’s all-in totals €264,529 / €320,850). Do not add furniture or appliances again as a separate charge.
 - Public projection: **8% projected yearly return over several years**. Floor: 4% net, with the apartment-specific euro amount completed in each executed contract. Net means nothing further is deducted from the owner's published net return.
 - Management fees of that month’s gross: 8% long-term · 10% mid-term/corporate · 15% tourism. Initial operating mix 5/5 short-stay / corporate, then market-adjusted.
 - Personal use: 14 nights / year are permitted, but full terms remain TBD. **Do not advertise this benefit until the terms are final.**

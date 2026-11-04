@@ -15,14 +15,14 @@
     unitTypes: {
       A: {
         bathrooms: 1,
-        builtArea: "~47 m²",
+        builtArea: "~68 m²",
         furniture: 15959.66,
         planCaption: "1-Bedroom floor plan",
         planAlt: "1-Bedroom floor plan: one bedroom, bathroom, kitchen and living room"
       },
       B: {
         bathrooms: 2,
-        builtArea: "~57 m²",
+        builtArea: "~83 m²",
         furniture: 19357.6,
         planCaption: "2-Bedroom floor plan",
         planAlt: "2-Bedroom floor plan: two bedrooms, two bathrooms and an open living and dining room"

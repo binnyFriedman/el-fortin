@@ -75,7 +75,7 @@ Riba-roja de Túria: the old town (opens the map), Metro Line 9 to central Valen
 
 | | One bedroom | Two bedrooms |
 | --- | --- | --- |
-| Price | €236,000 | €270,000 |
+| Price | €256,000 | €320,000 |
 
 **Sub-heading:** Four equal payments of 25%.
 

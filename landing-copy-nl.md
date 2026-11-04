@@ -31,7 +31,7 @@ Vaste keuzes op deze pagina:
 | one bedroom | één slaapkamer | 2-kamerappartement |
 | finished and furnished | instapklaar en volledig gemeubileerd | afgewerkt en gemeubeld |
 
-Schrijfwijze: `€ 236.000` (punt als duizendscheiding, spatie na het teken), `4%`, maanden met kleine letter (`december 2027`), `’` als apostrof (`foto’s`). `u` en `uw`, nooit `je`. Elke regel moet ook in Vlaanderen natuurlijk klinken.
+Schrijfwijze: `€ 256.000` (punt als duizendscheiding, spatie na het teken), `4%`, maanden met kleine letter (`december 2027`), `’` als apostrof (`foto’s`). `u` en `uw`, nooit `je`. Elke regel moet ook in Vlaanderen natuurlijk klinken.
 
 ---
 
@@ -107,7 +107,7 @@ Riba-roja de Túria heeft een sfeervol historisch centrum (opent de kaart) en ee
 
 | | Eén slaapkamer | Twee slaapkamers |
 | --- | --- | --- |
-| Prijs | € 236.000 | € 270.000 |
+| Prijs | € 256.000 | € 320.000 |
 
 **Subkop:** Betaling in vier termijnen van 25%.
 
@@ -178,7 +178,7 @@ Privacy (Engels) · Privacyinstellingen
 
 **Titel:** El Fortín Riba-roja — Beleggingsappartement in Valencia, op uw naam. 4% in het contract.
 
-**Omschrijving:** Tien appartementen in Riba-roja de Túria (Valencia), op uw naam. 4% minimum in het contract. 8% verwacht. Exploitatie vanaf december 2027. Vanaf € 236.000.
+**Omschrijving:** Tien appartementen in Riba-roja de Túria (Valencia), op uw naam. 4% minimum in het contract. 8% verwacht. Exploitatie vanaf december 2027. Vanaf € 256.000.
 
 ---
 
@@ -219,7 +219,7 @@ Kort verblijf rekent met 65% bezetting. Dit is geen belofte. De balk erboven: 4%
 
 **Bouw.** De bouw is voor 25% gereed. Drie foto's. Bouwvergunning Exp. 4497/2025/GEN · Res. 3658/2025, verleend 20 oktober 2025. Instapklaar december 2027. De inkomsten beginnen wanneer het gebouw opent.
 
-**Prijzen.** € 236.000 (appartementen 5–8, ~47 m²) en € 270.000 (1–4 en 9, ~57 m²), inclusief meubilair en witgoed. Negen van de tien zijn nog beschikbaar. Vier gelijke termijnen van 25%. Termijnen 2 en 3: bouw 40% gereed, bouw 80% gereed.
+**Prijzen.** € 256.000 (appartementen 5–8, ~68 m²) en € 320.000 (1–4 en 9, ~83 m²), inclusief meubilair en witgoed. Negen van de tien zijn nog beschikbaar. Vier gelijke termijnen van 25%. Termijnen 2 en 3: bouw 40% gereed, bouw 80% gereed.
 
 **Formulier:** gelijk aan de korte pagina. **Voettekst:** alleen het bedrijf, Privacy (Engels) en privacyinstellingen. De vergoedingen 8% / 10% / 15% staan al bij het verhuurprogramma.
 
