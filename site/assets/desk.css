@@ -807,6 +807,15 @@ main > section[id] {
   font-variant-numeric: tabular-nums;
   color: var(--walnut-deep);
 }
+.room__includes {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
 .stages {
   margin-top: clamp(56px, 8vh, 96px);
   padding-top: 32px;

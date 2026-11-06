@@ -1683,6 +1683,15 @@ body:has(.afm-notice) .window {
   font-variant-numeric: tabular-nums;
   color: var(--walnut-deep);
 }
+.room__includes {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
 .room__meta {
   margin: 0;
   max-width: none;
