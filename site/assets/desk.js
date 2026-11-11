@@ -27,7 +27,7 @@
     (window.__EF_PAGE__ || {}).locale || document.documentElement.lang || "en"
   ).toLowerCase();
 
-  var COPY = {
+  var COPY_BY_LANGUAGE = {
     en: {
       submit: "Send to Uriel",
       sendingButton: "Sending…",
@@ -109,7 +109,28 @@
         developer: "Quiero saber quién es el promotor y qué ha entregado.",
       },
     },
-  }[LOCALE.indexOf("es") === 0 ? "es" : LOCALE.indexOf("nl") === 0 ? "nl" : "en"];
+    he: {
+      submit: "שליחה לאוריאל",
+      sendingButton: "שולח…",
+      sendingStatus: "ההודעה שלכם בדרך לאוריאל…",
+      captureFailed: "ההודעה לא נשמרה. ",
+      captureFailedWhatsapp: "כתבו לאוריאל בוואטסאפ",
+      captureFailedRetry: ", או נסו שוב.",
+      receivedFallback: "ההודעה התקבלה. אוריאל יחזור אליכם.",
+      externalLink: "קישור חיצוני",
+      externalSite: "אתר חיצוני",
+      openFullPage: "פתיחת הדף המלא",
+      openedBeside: "נפתח בחלון אחר. הדף הזה נשאר כאן.",
+      windowBlocked: "הדפדפן חסם את החלון. השתמשו בכפתור שלמטה; הדף הזה יישאר במקומו.",
+    },
+  };
+
+  /* A page locale such as "nl-NL" maps to the copy for "nl". English is the fallback. */
+  var LANGUAGE =
+    Object.keys(COPY_BY_LANGUAGE).filter(function (code) {
+      return LOCALE.indexOf(code) === 0;
+    })[0] || "en";
+  var COPY = COPY_BY_LANGUAGE[LANGUAGE];
 
   /* ---------- masthead turns solid once the window has scrolled by ---------- */
 
@@ -135,6 +156,7 @@
       "Email: " + data.email,
       "Phone: " + data.phone,
     ];
+    if (data.country) lines.push("Country of residence: " + data.country);
     if (data.type) lines.push("Interested in: " + data.type);
     if (data.questions) lines.push("", "Questions:", data.questions);
     lines.push("", "Sent from the El Fortín Riba-roja page.");
@@ -187,6 +209,7 @@
       name: data.name,
       email: data.email,
       phone: data.phone,
+      country: data.country,
       type: data.type,
       questions: data.questions,
       page: location.href,
@@ -221,6 +244,12 @@
 
     function field(name) {
       return form.elements[name];
+    }
+
+    /* Fields only some pages ask for. */
+    function optionalValue(name) {
+      var input = field(name);
+      return input ? input.value.trim() : "";
     }
 
     function setError(name, show) {
@@ -312,6 +341,7 @@
         name: field("name").value.trim(),
         email: field("email").value.trim(),
         phone: field("phone").value.trim(),
+        country: optionalValue("country"),
         type: (form.querySelector('input[name="type"]:checked') || {}).value || "",
         questions: field("questions").value.trim(),
       };

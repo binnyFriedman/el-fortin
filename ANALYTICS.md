@@ -52,8 +52,8 @@ Run these with `wrangler d1 execute el-fortin-analytics --remote --command "..."
 or in the Cloudflare dashboard under D1 → `el-fortin-analytics` → Console.
 
 `page_id` is the page: `home` is `site/index.html`, `home_nl` is `site/index-nl.html`,
-`expanded` is `site/expanded.html`, `expanded_nl` is `site/expanded-nl.html`,
-`sheet` is the deal sheet.
+`home_he` is `site/index-he.html`, `expanded` is `site/expanded.html`,
+`expanded_nl` is `site/expanded-nl.html`, `sheet` is the deal sheet.
 
 The page experiment compares `home_nl` (arm A) with `expanded_nl` (arm B).
 On the long page the return block is `section_id = 'board'`; on the short page

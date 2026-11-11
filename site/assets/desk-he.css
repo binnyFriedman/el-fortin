@@ -1,0 +1,128 @@
+/* El Fortín Riba-roja — Hebrew page only.
+   Loaded after desk.css: Hebrew faces, and the few places where the shared
+   sheet assumes left-to-right Latin text. */
+
+/* Self-hosted Hebrew subsets (SIL Open Font License). Heebo: Oded Ezer;
+   Frank Ruhl Libre: Yanek Iontef. Latin and digits stay with the desk faces. */
+@font-face {
+  font-family: "Heebo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/heebo-variable-hebrew.woff2") format("woff2");
+  unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+  font-family: "Frank Ruhl Libre";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("fonts/frank-ruhl-libre-variable-hebrew.woff2") format("woff2");
+  unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+:root {
+  --plates: "Archivo", "Heebo", "Helvetica Neue", Arial, sans-serif;
+  --book: "Libre Caslon Text", "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+}
+
+/* Hebrew has no capitals, so the wide tracking that suits Latin capitals only
+   pulls the letters apart. Headings also need more room between lines. */
+h1,
+h2,
+h3,
+.window h1 {
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+.plate,
+.plate--window,
+.masthead__name,
+.masthead__talk,
+.suite__all,
+.form__slips .field label,
+.field--wide label,
+.field--choice legend {
+  letter-spacing: 0.02em;
+}
+
+/* ---------- right-to-left corrections ---------- */
+
+.skip {
+  left: auto;
+  right: 16px;
+}
+
+/* The figure sits in the left column here, so it bleeds off the left edge. */
+@media (min-width: 900px) {
+  .chapter__figure--bleed {
+    margin-right: 0;
+    margin-left: calc(-1 * var(--gutter));
+  }
+  .chapter__figure--bleed figcaption {
+    padding-right: 0;
+    padding-left: var(--gutter);
+  }
+}
+
+/* Addresses and numbers are typed left to right, but stay on the page's side. */
+.form__slips input[type="email"],
+.form__slips input[type="tel"] {
+  direction: ltr;
+  text-align: right;
+}
+
+/* ---------- the picture window carries a sentence under the title ---------- */
+
+.window h1 {
+  font-size: clamp(2.25rem, 8vw, 3.25rem);
+}
+@media (min-width: 900px) {
+  .window h1 {
+    font-size: clamp(3.5rem, 5.6vw, 5.25rem);
+  }
+}
+.window__lede {
+  max-width: 34ch;
+  margin: 0;
+  font-family: var(--plates);
+  font-size: clamp(1.0625rem, 2.4vw, 1.375rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fbf6ea;
+  text-shadow: 0 1px 18px rgba(20, 12, 6, 0.75);
+}
+/* A running sentence needs a darker middle than a two-line title did. */
+.window::after {
+  background: linear-gradient(
+    180deg,
+    rgba(28, 19, 14, 0.5) 0%,
+    rgba(28, 19, 14, 0.36) 38%,
+    rgba(28, 19, 14, 0.4) 70%,
+    rgba(28, 19, 14, 0.74) 100%
+  );
+}
+
+/* ---------- Uriel's story ---------- */
+
+.chapter__figure--portrait img {
+  max-height: 640px;
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+.chapter__quote {
+  margin: 28px 0 0;
+  padding-inline-start: 18px;
+  border-inline-start: 2px solid var(--brass-dark);
+  max-width: var(--measure);
+}
+.chapter__quote p {
+  font-size: 1.375rem;
+  line-height: 1.45;
+}
+.chapter__quote footer {
+  margin-top: 8px;
+  font-family: var(--plates);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
