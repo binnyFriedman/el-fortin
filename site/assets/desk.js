@@ -343,7 +343,7 @@
         phone: field("phone").value.trim(),
         country: optionalValue("country"),
         type: (form.querySelector('input[name="type"]:checked') || {}).value || "",
-        questions: field("questions").value.trim(),
+        questions: optionalValue("questions"),
       };
 
       var nameOk = data.name.length > 0;

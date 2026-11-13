@@ -3,7 +3,7 @@
    sheet assumes left-to-right Latin text. */
 
 /* Self-hosted Hebrew subsets (SIL Open Font License). Heebo: Oded Ezer;
-   Frank Ruhl Libre: Yanek Iontef. Latin and digits stay with the desk faces. */
+   Alef: Mushon Zer-Aviv / HaGilda. Latin and digits stay with the desk faces. */
 @font-face {
   font-family: "Heebo";
   font-style: normal;
@@ -13,17 +13,25 @@
   unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
 }
 @font-face {
-  font-family: "Frank Ruhl Libre";
+  font-family: "Alef";
   font-style: normal;
-  font-weight: 300 900;
+  font-weight: 400;
   font-display: swap;
-  src: url("fonts/frank-ruhl-libre-variable-hebrew.woff2") format("woff2");
+  src: url("fonts/alef-400-hebrew.woff2") format("woff2");
+  unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+  font-family: "Alef";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/alef-700-hebrew.woff2") format("woff2");
   unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
 }
 
 :root {
   --plates: "Archivo", "Heebo", "Helvetica Neue", Arial, sans-serif;
-  --book: "Libre Caslon Text", "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+  --book: "Libre Caslon Text", "Alef", Georgia, "Times New Roman", serif;
 }
 
 /* Hebrew has no capitals, so the wide tracking that suits Latin capitals only
@@ -72,57 +80,253 @@ h3,
   text-align: right;
 }
 
-/* ---------- the picture window carries a sentence under the title ---------- */
-
-.window h1 {
-  font-size: clamp(2.25rem, 8vw, 3.25rem);
+/* The caption rule `.place-gain span` also hits the LTR wrapper inside <b>. */
+.place-gain b span,
+.figures__row b span,
+.safe__plate b span {
+  font-size: inherit;
+  font-weight: inherit;
+  font-stretch: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  max-width: none;
 }
-@media (min-width: 900px) {
-  .window h1 {
-    font-size: clamp(3.5rem, 5.6vw, 5.25rem);
-  }
+
+.figures__row span {
+  max-width: 32ch;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.album__head .album__tag {
+  font-weight: 500;
+  font-stretch: 100%;
+  letter-spacing: 0.02em;
+  color: var(--brass-light);
+}
+
+/* ---------- the picture window: the developer's portrait beside the promise ---------- */
+
+/* The opening is about a person, so his face comes first: above the title on a
+   phone, beside it on a wide screen. */
+.window__copy {
+  width: 100%;
+  max-width: 70rem;
+  gap: clamp(24px, 3.5vh, 36px);
+  /* The top value clears the fixed masthead. */
+  padding: 104px 0 56px;
+}
+.window__host {
+  width: min(60vw, 15rem);
+  margin: 0;
+}
+.window__host img {
+  width: 100%;
+  border: 1px solid var(--brass-light);
+  box-shadow: 0 28px 56px -24px rgba(0, 0, 0, 0.85);
+  transform: scaleX(-1);
+}
+.window__words {
+  display: grid;
+  justify-items: center;
+  gap: inherit;
+}
+.window h1 {
+  font-size: clamp(2rem, 7.6vw, 3rem);
+  line-height: 1.18;
 }
 .window__lede {
-  max-width: 34ch;
+  max-width: 36ch;
   margin: 0;
   font-family: var(--plates);
   font-size: clamp(1.0625rem, 2.4vw, 1.375rem);
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.55;
   color: #fbf6ea;
   text-shadow: 0 1px 18px rgba(20, 12, 6, 0.75);
+  text-wrap: pretty;
+}
+.plate--window {
+  padding-inline: 32px 28px;
 }
 /* A running sentence needs a darker middle than a two-line title did. */
 .window::after {
   background: linear-gradient(
     180deg,
-    rgba(28, 19, 14, 0.5) 0%,
-    rgba(28, 19, 14, 0.36) 38%,
-    rgba(28, 19, 14, 0.4) 70%,
-    rgba(28, 19, 14, 0.74) 100%
+    rgba(28, 19, 14, 0.56) 0%,
+    rgba(28, 19, 14, 0.46) 38%,
+    rgba(28, 19, 14, 0.5) 70%,
+    rgba(28, 19, 14, 0.78) 100%
   );
 }
 
-/* ---------- Uriel's story ---------- */
+/* ---------- the safe (4% contractual floor) ---------- */
 
-.chapter__figure--portrait img {
-  max-height: 640px;
-  object-fit: cover;
-  object-position: 50% 22%;
+.safe {
+  display: grid;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding: clamp(80px, 12vh, 150px) var(--gutter);
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(176, 141, 87, 0.12), transparent 60%),
+    var(--green);
+  color: var(--ledger);
 }
-.chapter__quote {
-  margin: 28px 0 0;
-  padding-inline-start: 18px;
-  border-inline-start: 2px solid var(--brass-dark);
-  max-width: var(--measure);
+@media (min-width: 900px) {
+  .safe {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(44px, 6vw, 88px);
+  }
 }
-.chapter__quote p {
-  font-size: 1.375rem;
-  line-height: 1.45;
-}
-.chapter__quote footer {
-  margin-top: 8px;
+.safe__plate {
+  justify-self: start;
+  display: grid;
+  gap: 8px;
+  padding: 32px 36px 34px;
+  min-width: 260px;
+  background:
+    linear-gradient(160deg, #d9bc84 0%, var(--brass) 45%, #a3844f 100%);
+  color: var(--walnut-deep);
   font-family: var(--plates);
-  font-size: 0.875rem;
-  color: var(--ink-soft);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 214, 0.65),
+    inset 0 -2px 0 rgba(60, 40, 12, 0.45),
+    0 30px 50px -28px rgba(0, 0, 0, 0.9);
+}
+.safe__plate b {
+  font-size: clamp(4rem, 8vw, 6rem);
+  font-weight: 500;
+  font-stretch: 84%;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.safe__plate span {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+.safe__text h2 {
+  margin-bottom: 28px;
+}
+.safe__text p {
+  color: #e7e0cf;
+}
+
+/* ---------- calm guestbook ---------- */
+
+@media (min-width: 900px) {
+  .guestbook--calm {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+  }
+}
+.guestbook__sub {
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  line-height: 1.35;
+}
+.guestbook__note {
+  margin-top: 24px;
+  max-width: 48ch;
+  color: #e7e0cf;
+}
+.guestbook__actions {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+}
+.guestbook__actions .plate {
+  gap: 10px;
+}
+.plate__wa {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+.guestbook__avatar {
+  transform: scaleX(-1);
+}
+@media (min-width: 900px) {
+  .guestbook__actions {
+    justify-self: end;
+    justify-items: end;
+  }
+}
+.guestbook__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  color: var(--paper-on-walnut);
+}
+.guestbook__secondary {
+  font-family: var(--plates);
+  font-size: 0.9375rem;
+  color: var(--paper-on-walnut);
+}
+@media (min-width: 900px) {
+  .window__copy {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    align-items: center;
+    column-gap: clamp(48px, 6vw, 96px);
+    padding: 16vh 0 12vh;
+    text-align: start;
+  }
+  .window__words {
+    justify-self: stretch;
+    justify-items: start;
+  }
+  /* The portrait is first in the source for phones; here it follows the words. */
+  .window__host {
+    order: 1;
+    justify-self: end;
+    width: 100%;
+    max-width: 23rem;
+  }
+  .window h1 {
+    font-size: clamp(3rem, 4.6vw, 4.5rem);
+  }
+}
+
+/* ---------- first-party consent banner themed for the desk ---------- */
+
+body #ef-consent {
+  background: var(--walnut-deep);
+  color: var(--ledger);
+  border: 1px solid rgba(176, 141, 87, 0.45);
+  box-shadow: 0 28px 56px -24px rgba(0, 0, 0, 0.9);
+  font-family: var(--plates);
+}
+body #ef-consent p {
+  color: #e7e0cf;
+}
+body #ef-consent a {
+  color: var(--brass-light);
+  text-decoration-color: var(--brass);
+}
+body #ef-consent .ef-consent-actions button {
+  border-radius: 0;
+  font-family: var(--plates);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 180ms var(--ease-out), border-color 180ms var(--ease-out), color 180ms var(--ease-out);
+}
+body #ef-consent .ef-consent-actions button[data-consent="rejected"] {
+  background: transparent;
+  color: var(--ledger);
+  border: 1px solid rgba(176, 141, 87, 0.55);
+}
+body #ef-consent .ef-consent-actions button[data-consent="rejected"]:hover {
+  background: rgba(176, 141, 87, 0.14);
+  border-color: var(--brass-light);
+}
+body #ef-consent .ef-consent-actions button[data-consent="accepted"] {
+  background: var(--brass);
+  color: var(--walnut-deep);
+  border: 1px solid var(--brass);
+}
+body #ef-consent .ef-consent-actions button[data-consent="accepted"]:hover {
+  background: var(--brass-light);
+  border-color: var(--brass-light);
 }

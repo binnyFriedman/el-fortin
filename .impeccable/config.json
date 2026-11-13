@@ -327,6 +327,33 @@
         ],
         "createdAt": "2026-11-03T19:37:57.898Z",
         "reason": "deal-sheet aesthetic: intentional all-caps labels on the order sheet, pre-existing pattern not introduced by price update"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "site/index-he.html"
+        ],
+        "createdAt": "2026-11-11T09:50:10.388Z",
+        "reason": "hebrew-campaign-plan.md Part A: page starts from index-nl.html and inherits desk.css type scale; builder must not invent a new hierarchy"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "site/index-he.html"
+        ],
+        "createdAt": "2026-11-11T09:51:20.466Z",
+        "reason": "inherits desk.css Concierge Desk palette and hero text-shadow from hebrew-campaign-plan.md; same surface as index-nl.html"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index-he.html"
+        ],
+        "createdAt": "2026-11-11T09:51:20.484Z",
+        "reason": "inherits shared desk.css component padding; plan forbids editing desk.css"
       }
     ]
   }
